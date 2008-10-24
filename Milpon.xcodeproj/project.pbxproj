@@ -1,0 +1,965 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2899E5600DE3E45000AC0155 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* ListViewController.xib */; };
+		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		28C286E10D94DF7D0034E888 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* ListViewController.m */; };
+		860E976B0E965F7900876922 /* RTMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AB969F0E961A7B00DD5816 /* RTMNote.m */; };
+		860E976C0E965F7E00876922 /* RTMTaskSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 8654CBB20E943F7100C4646D /* RTMTaskSeries.m */; };
+		860E976E0E965FB200876922 /* UpdateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E0212E0E7EAB80001945E7 /* UpdateList.m */; };
+		861382D30EA770740040B0F6 /* ListSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 861382D20EA770740040B0F6 /* ListSelectViewController.m */; };
+		861534840EA24E0900AB3B87 /* RTMTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 861534830EA24E0900AB3B87 /* RTMTaskCell.m */; };
+		862C14AB0EAB805600AC8FFE /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C14A90EAB805600AC8FFE /* checkBox.png */; };
+		862C14AC0EAB805600AC8FFE /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C14AA0EAB805600AC8FFE /* checkBoxChecked.png */; };
+		867187270EAC7B3B000A9133 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867187260EAC7B3B000A9133 /* ProgressView.m */; };
+		867187C60EAC93C1000A9133 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867187C50EAC93C1000A9133 /* ConfigViewController.m */; };
+		867907AE0E96729600A75576 /* UpdateTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F41FBF0E813AA6006D98F4 /* UpdateTask.m */; };
+		8684039A0E9ADC9C009CEECD /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B98036BE0E71363B000961EE /* RTMAuth.m */; };
+		868C3D4B0E6ED4D20040BA42 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C3D4A0E6ED4D20040BA42 /* TaskListViewController.m */; };
+		8691FBD80E9D11F0003BE718 /* RTMStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8691FBD70E9D11F0003BE718 /* RTMStorable.m */; };
+		8691FBD90E9D11F0003BE718 /* RTMStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8691FBD70E9D11F0003BE718 /* RTMStorable.m */; };
+		8691FBDA0E9D11F0003BE718 /* RTMStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8691FBD70E9D11F0003BE718 /* RTMStorable.m */; };
+		86A07E9B0EA61B2300446784 /* RTMPendingTaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A07E9A0EA61B2300446784 /* RTMPendingTaskTest.m */; };
+		86A081C50EA6B78400446784 /* TaskEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A081C30EA6B74300446784 /* TaskEditCell.m */; };
+		86B9BBE90EABFC2A00210FCB /* AuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B9BBE80EABFC2A00210FCB /* AuthWebViewController.m */; };
+		86BF63310EA8C6710055D56B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BF63300EA8C6710055D56B /* RootViewController.m */; };
+		86BF641E0EA9CD1D0055D56B /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E5ED040E90BA2800C3DE94 /* AddTaskViewController.m */; };
+		86BF64CA0EA9F8920055D56B /* DueDatePickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BF64C90EA9F8920055D56B /* DueDatePickViewController.m */; };
+		86C148010E71739800456F6A /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C148000E71739800456F6A /* TaskView.xib */; };
+		86C1480F0E72142100456F6A /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71E10E6A53DE00EF2F9A /* RTMTask.m */; };
+		86C148120E72144300456F6A /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C148110E72144300456F6A /* TaskViewController.m */; };
+		86C29EC30E928437006E7C74 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553270E6A2A68004DC85A /* RTMAPIList.m */; };
+		86C29EC80E92846D006E7C74 /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9134DD00E65F0E1005028DC /* RTMAPIAuth.m */; };
+		86DB9B820E97176F00DA4D16 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DB9B810E97176F00DA4D16 /* MenuViewController.m */; };
+		86DB9B870E9717C300DA4D16 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DB9B860E9717C300DA4D16 /* HomeView.xib */; };
+		86DB9B8A0E9717D900DA4D16 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DB9B890E9717D900DA4D16 /* HomeViewController.m */; };
+		86E021190E7EAAD7001945E7 /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B98D24120E678C250006D6AF /* rtm.sql */; };
+		86E0211C0E7EAAD7001945E7 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D24490E6792F60006D6AF /* RTMList.m */; };
+		86E0211D0E7EAAD7001945E7 /* RTMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D23CC0E67875D0006D6AF /* RTMDatabase.m */; };
+		86E0211F0E7EAAD7001945E7 /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71E10E6A53DE00EF2F9A /* RTMTask.m */; };
+		86E021240E7EAAD7001945E7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DD5E960E6901FC007BFC7A /* SenTestingKit.framework */; };
+		86E021250E7EAAD7001945E7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B98D23C00E6784AE0006D6AF /* libsqlite3.dylib */; };
+		86E021670E7EADB6001945E7 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F2013D0E690C660093B344 /* RTMAPI.m */; };
+		86E021690E7EADBA001945E7 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553270E6A2A68004DC85A /* RTMAPIList.m */; };
+		86EE20B20E9F386300C62684 /* RTMSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553450E6A2E93004DC85A /* RTMSynchronizer.m */; };
+		86EE21190E9F45AC00C62684 /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71E10E6A53DE00EF2F9A /* RTMTask.m */; };
+		86F41FCA0E813CD7006D98F4 /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */; };
+		86F7E7070EAF4F6C00B122F9 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */; };
+		86FC8D180E9593F100BD30A4 /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */; };
+		86FD2E9C0EA249CC004631B0 /* rtm_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 86FD2E9B0EA249CB004631B0 /* rtm_icon.png */; };
+		B9134DD10E65F0E1005028DC /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9134DD00E65F0E1005028DC /* RTMAPIAuth.m */; };
+		B91553280E6A2A68004DC85A /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553270E6A2A68004DC85A /* RTMAPIList.m */; };
+		B91553460E6A2E93004DC85A /* RTMSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553450E6A2E93004DC85A /* RTMSynchronizer.m */; };
+		B915534D0E6A3250004DC85A /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D24490E6792F60006D6AF /* RTMList.m */; };
+		B91553E80E6A35A7004DC85A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B98D23C00E6784AE0006D6AF /* libsqlite3.dylib */; };
+		B91554270E6A367C004DC85A /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D24490E6792F60006D6AF /* RTMList.m */; };
+		B915543A0E6A3844004DC85A /* RTMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D23CC0E67875D0006D6AF /* RTMDatabase.m */; };
+		B91554600E6A3906004DC85A /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B98D24120E678C250006D6AF /* rtm.sql */; };
+		B9224C5C0E70AECF004F83CE /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9224C5B0E70AECF004F83CE /* AuthViewController.m */; };
+		B93A01CC0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */; };
+		B93A01CD0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */; };
+		B97131EE0E9AF1B70091057B /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B98036BE0E71363B000961EE /* RTMAuth.m */; };
+		B98036BF0E71363B000961EE /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B98036BE0E71363B000961EE /* RTMAuth.m */; };
+		B98D23C10E6784AE0006D6AF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B98D23C00E6784AE0006D6AF /* libsqlite3.dylib */; };
+		B98D23CD0E67875D0006D6AF /* RTMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D23CC0E67875D0006D6AF /* RTMDatabase.m */; };
+		B98D24130E678C250006D6AF /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B98D24120E678C250006D6AF /* rtm.sql */; };
+		B9AB96A00E961A7B00DD5816 /* RTMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AB969F0E961A7B00DD5816 /* RTMNote.m */; };
+		B9AB96A10E961A7B00DD5816 /* RTMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AB969F0E961A7B00DD5816 /* RTMNote.m */; };
+		B9B1C28E0EA571F800CBCA62 /* RTMPendingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B1C28D0EA571F800CBCA62 /* RTMPendingTask.m */; };
+		B9B1C28F0EA571F800CBCA62 /* RTMPendingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B1C28D0EA571F800CBCA62 /* RTMPendingTask.m */; };
+		B9DD5E970E6901FC007BFC7A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DD5E960E6901FC007BFC7A /* SenTestingKit.framework */; };
+		B9DE32080E92496400AA490E /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F2013D0E690C660093B344 /* RTMAPI.m */; };
+		B9E84F8B0E94547300B777C2 /* RTMTaskSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 8654CBB20E943F7100C4646D /* RTMTaskSeries.m */; };
+		B9F2013F0E690C660093B344 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F2013D0E690C660093B344 /* RTMAPI.m */; };
+		B9FF71D20E6A4AE800EF2F9A /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */; };
+		B9FF72CD0E6A7C5400EF2F9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2899E55F0DE3E45000AC0155 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
+		28A0AAE50D9B0CCF005BE974 /* Milpon_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Milpon_Prefix.pch; sourceTree = "<group>"; };
+		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28C286DF0D94DF7D0034E888 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		28C286E00D94DF7D0034E888 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		861382D10EA770740040B0F6 /* ListSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListSelectViewController.h; sourceTree = "<group>"; };
+		861382D20EA770740040B0F6 /* ListSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListSelectViewController.m; sourceTree = "<group>"; };
+		861534820EA24E0900AB3B87 /* RTMTaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMTaskCell.h; path = controller/RTMTaskCell.h; sourceTree = "<group>"; };
+		861534830EA24E0900AB3B87 /* RTMTaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMTaskCell.m; path = controller/RTMTaskCell.m; sourceTree = "<group>"; };
+		862C14A90EAB805600AC8FFE /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBox.png; path = resource/checkBox.png; sourceTree = "<group>"; };
+		862C14AA0EAB805600AC8FFE /* checkBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBoxChecked.png; path = resource/checkBoxChecked.png; sourceTree = "<group>"; };
+		8654CBB10E943F7100C4646D /* RTMTaskSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMTaskSeries.h; sourceTree = "<group>"; };
+		8654CBB20E943F7100C4646D /* RTMTaskSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMTaskSeries.m; sourceTree = "<group>"; };
+		867187250EAC7B3B000A9133 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgressView.h; path = view/ProgressView.h; sourceTree = "<group>"; };
+		867187260EAC7B3B000A9133 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProgressView.m; path = view/ProgressView.m; sourceTree = "<group>"; };
+		867187C40EAC93C1000A9133 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
+		867187C50EAC93C1000A9133 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
+		8682829F0E72776400346232 /* RTMTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMTaskTest.m; sourceTree = "<group>"; };
+		868C3D490E6ED4D20040BA42 /* TaskListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListViewController.h; sourceTree = "<group>"; };
+		868C3D4A0E6ED4D20040BA42 /* TaskListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListViewController.m; sourceTree = "<group>"; };
+		8691FBD60E9D11F0003BE718 /* RTMStorable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMStorable.h; sourceTree = "<group>"; };
+		8691FBD70E9D11F0003BE718 /* RTMStorable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMStorable.m; sourceTree = "<group>"; };
+		86A07E9A0EA61B2300446784 /* RTMPendingTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMPendingTaskTest.m; sourceTree = "<group>"; };
+		86A081C20EA6B74300446784 /* TaskEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskEditCell.h; path = controller/TaskEditCell.h; sourceTree = "<group>"; };
+		86A081C30EA6B74300446784 /* TaskEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskEditCell.m; path = controller/TaskEditCell.m; sourceTree = "<group>"; };
+		86B8FB540EAF0D4D006DCB67 /* ReloadableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReloadableTableViewController.h; sourceTree = "<group>"; };
+		86B9BBE70EABFC2A00210FCB /* AuthWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthWebViewController.h; sourceTree = "<group>"; };
+		86B9BBE80EABFC2A00210FCB /* AuthWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthWebViewController.m; sourceTree = "<group>"; };
+		86BF632F0EA8C6710055D56B /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		86BF63300EA8C6710055D56B /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		86BF64C80EA9F8920055D56B /* DueDatePickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DueDatePickViewController.h; sourceTree = "<group>"; };
+		86BF64C90EA9F8920055D56B /* DueDatePickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DueDatePickViewController.m; sourceTree = "<group>"; };
+		86C148000E71739800456F6A /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
+		86C148100E72144300456F6A /* TaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskViewController.h; sourceTree = "<group>"; };
+		86C148110E72144300456F6A /* TaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskViewController.m; sourceTree = "<group>"; };
+		86DB9B800E97176F00DA4D16 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		86DB9B810E97176F00DA4D16 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		86DB9B860E9717C300DA4D16 /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
+		86DB9B880E9717D900DA4D16 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		86DB9B890E9717D900DA4D16 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		86E0212A0E7EAAD7001945E7 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		86E0212E0E7EAB80001945E7 /* UpdateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateList.m; sourceTree = "<group>"; };
+		86EE1F990E9EED9900C62684 /* RTMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMError.h; sourceTree = "<group>"; };
+		86F41FBF0E813AA6006D98F4 /* UpdateTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateTask.m; sourceTree = "<group>"; };
+		86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		86FD2E9B0EA249CB004631B0 /* rtm_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rtm_icon.png; path = resource/rtm_icon.png; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9134DCF0E65F0E1005028DC /* RTMAPIAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIAuth.h; sourceTree = "<group>"; };
+		B9134DD00E65F0E1005028DC /* RTMAPIAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIAuth.m; sourceTree = "<group>"; };
+		B91553260E6A2A68004DC85A /* RTMAPIList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIList.h; sourceTree = "<group>"; };
+		B91553270E6A2A68004DC85A /* RTMAPIList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIList.m; sourceTree = "<group>"; };
+		B91553440E6A2E93004DC85A /* RTMSynchronizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMSynchronizer.h; sourceTree = "<group>"; };
+		B91553450E6A2E93004DC85A /* RTMSynchronizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMSynchronizer.m; sourceTree = "<group>"; };
+		B915536D0E6A328F004DC85A /* RTMSynchronizerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMSynchronizerTest.m; sourceTree = "<group>"; };
+		B9224C5A0E70AECF004F83CE /* AuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthViewController.h; sourceTree = "<group>"; };
+		B9224C5B0E70AECF004F83CE /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
+		B93A01CA0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIXMLParserCallback.h; sourceTree = "<group>"; };
+		B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIXMLParserCallback.m; sourceTree = "<group>"; };
+		B97131E90E9AF14C0091057B /* RTMAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuthTest.m; sourceTree = "<group>"; };
+		B98036BD0E71363B000961EE /* RTMAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAuth.h; sourceTree = "<group>"; };
+		B98036BE0E71363B000961EE /* RTMAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuth.m; sourceTree = "<group>"; };
+		B98D23C00E6784AE0006D6AF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		B98D23CB0E67875D0006D6AF /* RTMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMDatabase.h; sourceTree = "<group>"; };
+		B98D23CC0E67875D0006D6AF /* RTMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMDatabase.m; sourceTree = "<group>"; };
+		B98D24120E678C250006D6AF /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = rtm.sql; sourceTree = "<group>"; };
+		B98D24480E6792F60006D6AF /* RTMList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMList.h; sourceTree = "<group>"; };
+		B98D24490E6792F60006D6AF /* RTMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMList.m; sourceTree = "<group>"; };
+		B9AB968E0E95AAAB00DD5816 /* RTMTaskSeriesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMTaskSeriesTest.m; sourceTree = "<group>"; };
+		B9AB969E0E961A7B00DD5816 /* RTMNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMNote.h; sourceTree = "<group>"; };
+		B9AB969F0E961A7B00DD5816 /* RTMNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMNote.m; sourceTree = "<group>"; };
+		B9B1C28C0EA571F800CBCA62 /* RTMPendingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMPendingTask.h; sourceTree = "<group>"; };
+		B9B1C28D0EA571F800CBCA62 /* RTMPendingTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMPendingTask.m; sourceTree = "<group>"; };
+		B9C85BED0EA811F000359332 /* LocationSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSelectViewController.h; sourceTree = "<group>"; };
+		B9C85BEE0EA811F000359332 /* LocationSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSelectViewController.m; sourceTree = "<group>"; };
+		B9DD5E8F0E6901B7007BFC7A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9DD5E900E6901B7007BFC7A /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTest-Info.plist"; sourceTree = "<group>"; };
+		B9DD5E960E6901FC007BFC7A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		B9DD5E9C0E69022E007BFC7A /* RTMAPIListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIListTest.m; sourceTree = "<group>"; };
+		B9DD5F1A0E6909FC007BFC7A /* RTMAPIAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIAuthTest.m; sourceTree = "<group>"; };
+		B9DE31F70E92474C00AA490E /* MockRTMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockRTMAPI.m; sourceTree = "<group>"; };
+		B9DE320B0E92499000AA490E /* MockRTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockRTMAPI.h; sourceTree = "<group>"; };
+		B9E5ED030E90BA2800C3DE94 /* AddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskViewController.h; sourceTree = "<group>"; };
+		B9E5ED040E90BA2800C3DE94 /* AddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskViewController.m; sourceTree = "<group>"; };
+		B9ED8E320E90AD9700960F7F /* RTMDatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMDatabaseTest.m; sourceTree = "<group>"; };
+		B9F201280E690BB50093B344 /* RTMAPITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPITest.m; sourceTree = "<group>"; };
+		B9F2013C0E690C660093B344 /* RTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPI.h; sourceTree = "<group>"; };
+		B9F2013D0E690C660093B344 /* RTMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPI.m; sourceTree = "<group>"; };
+		B9FF71CF0E6A4AE800EF2F9A /* RTMAPITask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPITask.h; sourceTree = "<group>"; };
+		B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPITask.m; sourceTree = "<group>"; };
+		B9FF71D30E6A4BC000EF2F9A /* RTMAPITaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPITaskTest.m; sourceTree = "<group>"; };
+		B9FF71E00E6A53DE00EF2F9A /* RTMTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMTask.h; sourceTree = "<group>"; };
+		B9FF71E10E6A53DE00EF2F9A /* RTMTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMTask.m; sourceTree = "<group>"; };
+		B9FF72A40E6A732A00EF2F9A /* RTMListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMListTest.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				B98D23C10E6784AE0006D6AF /* libsqlite3.dylib in Frameworks */,
+				B9FF72CD0E6A7C5400EF2F9A /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86E021230E7EAAD7001945E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86E021240E7EAAD7001945E7 /* SenTestingKit.framework in Frameworks */,
+				86E021250E7EAAD7001945E7 /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9DD5E8C0E6901B7007BFC7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9DD5E970E6901FC007BFC7A /* SenTestingKit.framework in Frameworks */,
+				B91553E80E6A35A7004DC85A /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* Milpon.app */,
+				B9DD5E8F0E6901B7007BFC7A /* UnitTest.octest */,
+				86E0212A0E7EAAD7001945E7 /* UnitTest.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				B91553250E6A2A4B004DC85A /* api */,
+				B98D23B80E6783DD0006D6AF /* model */,
+				86E01EF00E7E5D42001945E7 /* controller */,
+				867187240EAC7B04000A9133 /* view */,
+				B9DD5EDC0E690566007BFC7A /* test */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				86EE1F990E9EED9900C62684 /* RTMError.h */,
+				28A0AAE50D9B0CCF005BE974 /* Milpon_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				862C14A90EAB805600AC8FFE /* checkBox.png */,
+				862C14AA0EAB805600AC8FFE /* checkBoxChecked.png */,
+				86FD2E9B0EA249CB004631B0 /* rtm_icon.png */,
+				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
+				2899E55F0DE3E45000AC0155 /* ListViewController.xib */,
+				86C148000E71739800456F6A /* TaskView.xib */,
+				B98D24120E678C250006D6AF /* rtm.sql */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				86DB9B860E9717C300DA4D16 /* HomeView.xib */,
+				B9DD5E900E6901B7007BFC7A /* UnitTest-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B9DD5E960E6901FC007BFC7A /* SenTestingKit.framework */,
+				B98D23C00E6784AE0006D6AF /* libsqlite3.dylib */,
+				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		86568D8C0E9704C400F85D6D /* WebAPI */ = {
+			isa = PBXGroup;
+			children = (
+				B915536D0E6A328F004DC85A /* RTMSynchronizerTest.m */,
+				B9F201280E690BB50093B344 /* RTMAPITest.m */,
+				B9DD5F1A0E6909FC007BFC7A /* RTMAPIAuthTest.m */,
+				B9DD5E9C0E69022E007BFC7A /* RTMAPIListTest.m */,
+				B9FF71D30E6A4BC000EF2F9A /* RTMAPITaskTest.m */,
+			);
+			name = WebAPI;
+			sourceTree = "<group>";
+		};
+		86568D8D0E9704DF00F85D6D /* Migrator */ = {
+			isa = PBXGroup;
+			children = (
+				86E0212E0E7EAB80001945E7 /* UpdateList.m */,
+				86F41FBF0E813AA6006D98F4 /* UpdateTask.m */,
+			);
+			name = Migrator;
+			sourceTree = "<group>";
+		};
+		867187240EAC7B04000A9133 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				86A081C20EA6B74300446784 /* TaskEditCell.h */,
+				86A081C30EA6B74300446784 /* TaskEditCell.m */,
+				861534820EA24E0900AB3B87 /* RTMTaskCell.h */,
+				861534830EA24E0900AB3B87 /* RTMTaskCell.m */,
+				867187250EAC7B3B000A9133 /* ProgressView.h */,
+				867187260EAC7B3B000A9133 /* ProgressView.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		86E01EF00E7E5D42001945E7 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				B9C85BED0EA811F000359332 /* LocationSelectViewController.h */,
+				B9C85BEE0EA811F000359332 /* LocationSelectViewController.m */,
+				28C286DF0D94DF7D0034E888 /* ListViewController.h */,
+				28C286E00D94DF7D0034E888 /* ListViewController.m */,
+				868C3D490E6ED4D20040BA42 /* TaskListViewController.h */,
+				868C3D4A0E6ED4D20040BA42 /* TaskListViewController.m */,
+				86C148100E72144300456F6A /* TaskViewController.h */,
+				86C148110E72144300456F6A /* TaskViewController.m */,
+				86DB9B800E97176F00DA4D16 /* MenuViewController.h */,
+				86DB9B810E97176F00DA4D16 /* MenuViewController.m */,
+				86DB9B880E9717D900DA4D16 /* HomeViewController.h */,
+				86DB9B890E9717D900DA4D16 /* HomeViewController.m */,
+				1D3623240D0F684500981E51 /* AppDelegate.h */,
+				1D3623250D0F684500981E51 /* AppDelegate.m */,
+				B9E5ED030E90BA2800C3DE94 /* AddTaskViewController.h */,
+				B9E5ED040E90BA2800C3DE94 /* AddTaskViewController.m */,
+				861382D10EA770740040B0F6 /* ListSelectViewController.h */,
+				861382D20EA770740040B0F6 /* ListSelectViewController.m */,
+				86BF632F0EA8C6710055D56B /* RootViewController.h */,
+				86BF63300EA8C6710055D56B /* RootViewController.m */,
+				86BF64C80EA9F8920055D56B /* DueDatePickViewController.h */,
+				86BF64C90EA9F8920055D56B /* DueDatePickViewController.m */,
+				B9224C5A0E70AECF004F83CE /* AuthViewController.h */,
+				B9224C5B0E70AECF004F83CE /* AuthViewController.m */,
+				86B9BBE70EABFC2A00210FCB /* AuthWebViewController.h */,
+				86B9BBE80EABFC2A00210FCB /* AuthWebViewController.m */,
+				867187C40EAC93C1000A9133 /* ConfigViewController.h */,
+				867187C50EAC93C1000A9133 /* ConfigViewController.m */,
+				86B8FB540EAF0D4D006DCB67 /* ReloadableTableViewController.h */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		B91553250E6A2A4B004DC85A /* api */ = {
+			isa = PBXGroup;
+			children = (
+				B9F2013C0E690C660093B344 /* RTMAPI.h */,
+				B9F2013D0E690C660093B344 /* RTMAPI.m */,
+				B9134DCF0E65F0E1005028DC /* RTMAPIAuth.h */,
+				B9134DD00E65F0E1005028DC /* RTMAPIAuth.m */,
+				B91553260E6A2A68004DC85A /* RTMAPIList.h */,
+				B91553270E6A2A68004DC85A /* RTMAPIList.m */,
+				B9FF71CF0E6A4AE800EF2F9A /* RTMAPITask.h */,
+				B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */,
+				B93A01CA0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.h */,
+				B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */,
+			);
+			path = api;
+			sourceTree = SOURCE_ROOT;
+		};
+		B98D23B80E6783DD0006D6AF /* model */ = {
+			isa = PBXGroup;
+			children = (
+				B98036BD0E71363B000961EE /* RTMAuth.h */,
+				B98036BE0E71363B000961EE /* RTMAuth.m */,
+				B98D23CB0E67875D0006D6AF /* RTMDatabase.h */,
+				B98D23CC0E67875D0006D6AF /* RTMDatabase.m */,
+				8691FBD60E9D11F0003BE718 /* RTMStorable.h */,
+				8691FBD70E9D11F0003BE718 /* RTMStorable.m */,
+				B98D24480E6792F60006D6AF /* RTMList.h */,
+				B98D24490E6792F60006D6AF /* RTMList.m */,
+				8654CBB10E943F7100C4646D /* RTMTaskSeries.h */,
+				8654CBB20E943F7100C4646D /* RTMTaskSeries.m */,
+				B9FF71E00E6A53DE00EF2F9A /* RTMTask.h */,
+				B9FF71E10E6A53DE00EF2F9A /* RTMTask.m */,
+				B9AB969E0E961A7B00DD5816 /* RTMNote.h */,
+				B9AB969F0E961A7B00DD5816 /* RTMNote.m */,
+				B91553440E6A2E93004DC85A /* RTMSynchronizer.h */,
+				B91553450E6A2E93004DC85A /* RTMSynchronizer.m */,
+				B9B1C28C0EA571F800CBCA62 /* RTMPendingTask.h */,
+				B9B1C28D0EA571F800CBCA62 /* RTMPendingTask.m */,
+			);
+			path = model;
+			sourceTree = SOURCE_ROOT;
+		};
+		B9DD5EDC0E690566007BFC7A /* test */ = {
+			isa = PBXGroup;
+			children = (
+				86A07E9A0EA61B2300446784 /* RTMPendingTaskTest.m */,
+				86568D8C0E9704C400F85D6D /* WebAPI */,
+				B9DE31F60E92472800AA490E /* Mock */,
+				86568D8D0E9704DF00F85D6D /* Migrator */,
+				B97131E90E9AF14C0091057B /* RTMAuthTest.m */,
+				B9ED8E320E90AD9700960F7F /* RTMDatabaseTest.m */,
+				B9FF72A40E6A732A00EF2F9A /* RTMListTest.m */,
+				B9AB968E0E95AAAB00DD5816 /* RTMTaskSeriesTest.m */,
+				8682829F0E72776400346232 /* RTMTaskTest.m */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		B9DE31F60E92472800AA490E /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				B9DE31F70E92474C00AA490E /* MockRTMAPI.m */,
+				B9DE320B0E92499000AA490E /* MockRTMAPI.h */,
+			);
+			name = Mock;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* RTM4iPhone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "RTM4iPhone" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RTM4iPhone;
+			productName = RTM4iPhone;
+			productReference = 1D6058910D05DD3D006BFB54 /* Milpon.app */;
+			productType = "com.apple.product-type.application";
+		};
+		86E021170E7EAAD7001945E7 /* UpdateDB */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86E021270E7EAAD7001945E7 /* Build configuration list for PBXNativeTarget "UpdateDB" */;
+			buildPhases = (
+				86E021180E7EAAD7001945E7 /* Resources */,
+				86E0211A0E7EAAD7001945E7 /* Sources */,
+				86E021230E7EAAD7001945E7 /* Frameworks */,
+				86E021260E7EAAD7001945E7 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UpdateDB;
+			productName = UnitTest;
+			productReference = 86E0212A0E7EAAD7001945E7 /* UnitTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		B9DD5E8E0E6901B7007BFC7A /* UnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9DD5E940E6901B8007BFC7A /* Build configuration list for PBXNativeTarget "UnitTest" */;
+			buildPhases = (
+				B9DD5E8A0E6901B7007BFC7A /* Resources */,
+				B9DD5E8B0E6901B7007BFC7A /* Sources */,
+				B9DD5E8C0E6901B7007BFC7A /* Frameworks */,
+				B9DD5E8D0E6901B7007BFC7A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UnitTest;
+			productName = UnitTest;
+			productReference = B9DD5E8F0E6901B7007BFC7A /* UnitTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Milpon" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* RTM4iPhone */,
+				B9DD5E8E0E6901B7007BFC7A /* UnitTest */,
+				86E021170E7EAAD7001945E7 /* UpdateDB */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
+				2899E5600DE3E45000AC0155 /* ListViewController.xib in Resources */,
+				B98D24130E678C250006D6AF /* rtm.sql in Resources */,
+				86C148010E71739800456F6A /* TaskView.xib in Resources */,
+				86DB9B870E9717C300DA4D16 /* HomeView.xib in Resources */,
+				86FD2E9C0EA249CC004631B0 /* rtm_icon.png in Resources */,
+				862C14AB0EAB805600AC8FFE /* checkBox.png in Resources */,
+				862C14AC0EAB805600AC8FFE /* checkBoxChecked.png in Resources */,
+				86F7E7070EAF4F6C00B122F9 /* Entitlements.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86E021180E7EAAD7001945E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86E021190E7EAAD7001945E7 /* rtm.sql in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9DD5E8A0E6901B7007BFC7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B91554600E6A3906004DC85A /* rtm.sql in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		86E021260E7EAAD7001945E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		B9DD5E8D0E6901B7007BFC7A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				28C286E10D94DF7D0034E888 /* ListViewController.m in Sources */,
+				B9134DD10E65F0E1005028DC /* RTMAPIAuth.m in Sources */,
+				B98D23CD0E67875D0006D6AF /* RTMDatabase.m in Sources */,
+				B9F2013F0E690C660093B344 /* RTMAPI.m in Sources */,
+				B91553280E6A2A68004DC85A /* RTMAPIList.m in Sources */,
+				B91553460E6A2E93004DC85A /* RTMSynchronizer.m in Sources */,
+				B91554270E6A367C004DC85A /* RTMList.m in Sources */,
+				B9FF71D20E6A4AE800EF2F9A /* RTMAPITask.m in Sources */,
+				868C3D4B0E6ED4D20040BA42 /* TaskListViewController.m in Sources */,
+				B9224C5C0E70AECF004F83CE /* AuthViewController.m in Sources */,
+				B98036BF0E71363B000961EE /* RTMAuth.m in Sources */,
+				86C1480F0E72142100456F6A /* RTMTask.m in Sources */,
+				86C148120E72144300456F6A /* TaskViewController.m in Sources */,
+				B93A01CC0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */,
+				B9AB96A10E961A7B00DD5816 /* RTMNote.m in Sources */,
+				86DB9B820E97176F00DA4D16 /* MenuViewController.m in Sources */,
+				86DB9B8A0E9717D900DA4D16 /* HomeViewController.m in Sources */,
+				8691FBD80E9D11F0003BE718 /* RTMStorable.m in Sources */,
+				861534840EA24E0900AB3B87 /* RTMTaskCell.m in Sources */,
+				B9B1C28F0EA571F800CBCA62 /* RTMPendingTask.m in Sources */,
+				86A081C50EA6B78400446784 /* TaskEditCell.m in Sources */,
+				861382D30EA770740040B0F6 /* ListSelectViewController.m in Sources */,
+				86BF63310EA8C6710055D56B /* RootViewController.m in Sources */,
+				86BF641E0EA9CD1D0055D56B /* AddTaskViewController.m in Sources */,
+				86BF64CA0EA9F8920055D56B /* DueDatePickViewController.m in Sources */,
+				86B9BBE90EABFC2A00210FCB /* AuthWebViewController.m in Sources */,
+				867187270EAC7B3B000A9133 /* ProgressView.m in Sources */,
+				867187C60EAC93C1000A9133 /* ConfigViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86E0211A0E7EAAD7001945E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86E0211C0E7EAAD7001945E7 /* RTMList.m in Sources */,
+				86E0211D0E7EAAD7001945E7 /* RTMDatabase.m in Sources */,
+				86E0211F0E7EAAD7001945E7 /* RTMTask.m in Sources */,
+				86E021670E7EADB6001945E7 /* RTMAPI.m in Sources */,
+				86E021690E7EADBA001945E7 /* RTMAPIList.m in Sources */,
+				86F41FCA0E813CD7006D98F4 /* RTMAPITask.m in Sources */,
+				860E976B0E965F7900876922 /* RTMNote.m in Sources */,
+				860E976C0E965F7E00876922 /* RTMTaskSeries.m in Sources */,
+				860E976E0E965FB200876922 /* UpdateList.m in Sources */,
+				867907AE0E96729600A75576 /* UpdateTask.m in Sources */,
+				8684039A0E9ADC9C009CEECD /* RTMAuth.m in Sources */,
+				8691FBDA0E9D11F0003BE718 /* RTMStorable.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9DD5E8B0E6901B7007BFC7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B915534D0E6A3250004DC85A /* RTMList.m in Sources */,
+				B915543A0E6A3844004DC85A /* RTMDatabase.m in Sources */,
+				B93A01CD0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */,
+				B9DE32080E92496400AA490E /* RTMAPI.m in Sources */,
+				86C29EC30E928437006E7C74 /* RTMAPIList.m in Sources */,
+				86C29EC80E92846D006E7C74 /* RTMAPIAuth.m in Sources */,
+				B9E84F8B0E94547300B777C2 /* RTMTaskSeries.m in Sources */,
+				86FC8D180E9593F100BD30A4 /* RTMAPITask.m in Sources */,
+				B9AB96A00E961A7B00DD5816 /* RTMNote.m in Sources */,
+				B97131EE0E9AF1B70091057B /* RTMAuth.m in Sources */,
+				8691FBD90E9D11F0003BE718 /* RTMStorable.m in Sources */,
+				86EE20B20E9F386300C62684 /* RTMSynchronizer.m in Sources */,
+				86EE21190E9F45AC00C62684 /* RTMTask.m in Sources */,
+				B9B1C28E0EA571F800CBCA62 /* RTMPendingTask.m in Sources */,
+				86A07E9B0EA61B2300446784 /* RTMPendingTaskTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = Milpon;
+				PROVISIONING_PROFILE = DefaultProfileUuid;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = RTM4iPhone_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = RTM4iPhone;
+			};
+			name = Release;
+		};
+		86E021280E7EAAD7001945E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DUMP_API_RESPONSE,
+					UNIT_TEST,
+				);
+				GCC_VERSION = 4.0;
+				INFOPLIST_FILE = "/Users/moto/prj/iphone/rtm4iphone/UnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LD_RUNPATH_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		86E021290E7EAAD7001945E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "/Users/moto/prj/iphone/rtm4iphone/UnitTest-Info copy.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		86F7E6F90EAF4E4E00B122F9 /* AdHocDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos2.1;
+			};
+			name = AdHocDistribution;
+		};
+		86F7E6FA0EAF4E4E00B122F9 /* AdHocDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = RTM4iPhone_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = Milpon;
+				PROVISIONING_PROFILE = DefaultProfileUuid;
+			};
+			name = AdHocDistribution;
+		};
+		86F7E6FB0EAF4E4E00B122F9 /* AdHocDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "UnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = AdHocDistribution;
+		};
+		86F7E6FC0EAF4E4E00B122F9 /* AdHocDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "/Users/moto/prj/iphone/rtm4iphone/UnitTest-Info copy.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = AdHocDistribution;
+		};
+		B9DD5E920E6901B7007BFC7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = UNIT_TEST;
+				GCC_VERSION = 4.0;
+				INFOPLIST_FILE = "UnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LD_RUNPATH_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				OTHER_CFLAGS = "-DDUMP_API_RESPONSE";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		B9DD5E930E6901B7007BFC7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "UnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				PREBINDING = NO;
+				SDKROOT = iphoneos2.1;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos2.1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "RTM4iPhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+				86F7E6FA0EAF4E4E00B122F9 /* AdHocDistribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		86E021270E7EAAD7001945E7 /* Build configuration list for PBXNativeTarget "UpdateDB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86E021280E7EAAD7001945E7 /* Debug */,
+				86E021290E7EAAD7001945E7 /* Release */,
+				86F7E6FC0EAF4E4E00B122F9 /* AdHocDistribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9DD5E940E6901B8007BFC7A /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9DD5E920E6901B7007BFC7A /* Debug */,
+				B9DD5E930E6901B7007BFC7A /* Release */,
+				86F7E6FB0EAF4E4E00B122F9 /* AdHocDistribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Milpon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+				86F7E6F90EAF4E4E00B122F9 /* AdHocDistribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

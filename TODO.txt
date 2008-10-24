@@ -1,0 +1,232 @@
+2008-10-22
+	- auth にミスったときのメッセージがまちがってる。 (#7)
+		成功したときのものが表示されてしまってる。
+	! sync したあとに チェックボックスに入ってることがある (#9)
+	+ ConfigView に all reload を入れる
+		> 2008-10-24: 入れた
+	- 要望をすぐメールできるようなフォームを仕込む (#10)
+	! PendingTask も一覧に出す (#4)
+	# かわいい牛 or ミルクのアイコンを募集する (#1)
+	- AutoReleasePool を活用してメモリ消費をへらす (#11)
+	- メモリ消費を計測する (#12)
+	+ チェックボックスがおかしくなる
+		スライドしたときに、チェックボックスの状態が reuse されてしまってる。
+		状態がオンメモリにあるオブジェクトのものを見ているからでは ?
+		> 2008-10-22 fixed: Cellのインスタンス変数をみていたからだった。
+
+
+2008-10-22 最初に認証を出す画面の完成度を上げる
+	* back navigation button を消す
+		> 2008-10-22 fixed:
+	+ "Setting" というタイトルを変える
+		というかナビゲーションバーを隠したほうがよいか
+		> 2008-10-22: ナビゲーションバーはそのままで、タイトルを 'Setup' にした
+	+ ツールバーを隠す
+		> 2008-10-22 won't fix: 隠さずにいく。
+	+ xib ファイルを消す
+		> 2008-10-22 fixed: SettingViewController.xib を消した。
+	+ ボタンのタイトル、アクションを状態ごとに変える
+		> 2008-10-22 fixed: 細かくした。
+
+
+2008-10-21
+	! too long to sync: (#13)
+		RTMSynchronizer::syncCompletedTasks で、もともと completed なタスクも
+		completedにしようとしてめちゃめちゃ時間がかかる。
+	  dirtyフラグみたいなのを用意しといて、ローカルで編集があったものとそうでな
+		いものとを区別できるようにすべき。
+	# dirtyフラグを task テーブルにつけるんだったら、 (#14)
+		pending_task テーブルは不要になるか。 
+	+ completeButton が小さすぎて押しづらい。
+		2008-10-22 fixed: 24x24 にした。
+	+ priority Bar は、UIView を addSubview するんじゃなくて、
+		なんか線を描画するだけにしたい。
+		> 2008-10-21: やってみた。あまり速くなってない?
+	+ drawInRect で、 selected な Cell の文字色がうまくセットできてない。
+		> 2008-10-22: ひとまず、selected な背景色をなしにしといた。
+		              必要だったらあとで reopen する。
+
+
+2008-10-20
+	+ DB table の completed は CHAR(24) じゃなくて Integer で OK
+		> 2008-10-22 won't fix: OKじゃない。RTMがもってるデータはCHAR(24)だった。
+	+ due date の表示が切れる
+		> 2008-10-20: fixed
+	! AddView と EditView を統合する (#15)
+	+ [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+		としてるのにクルクルと表示されない。
+		> 2008-10-21:	実機だとOKだった。
+	+ authが終わってすぐに sync しようとしても auth が設定されていないためか、
+	  sync されない。
+		> 2008-10-22 fixed: RTMAPI.setToken してOK
+	+ update ボタンが返ってこない
+		> 2008-10-22 dup: 2008-10-21 #1 の件だった。
+
+
+2008-10-19
+	# show build version (#16)
+	- DRY up RTMStorable:remove
+		SQL文のtableを parameter 化するだけでまとめられる。
+	- RTMStorable を protocol にする
+		defaultの実装とかあれだし。
+	+ locked List は Add のときに選べないようにする。Sent とか
+		> 2008-10-19: Sent だけ除外するようにした。
+	- 繰り返しの実装 (setRecurrence)
+	- MenuView の Cell にかわいいアイコンをつける
+	! sync, upload, addTask したあとに、View を redisplay する
+		> 2008-10-22: sync, upload のあとのは実装した。
+	+ Cell を選択状態のときにはtextを白抜きにする
+		> 2008-10-22 fixed: 選択状態を見せないようにした。
+	- ListView のときにも、task count がおかしくなる。
+		Cell の view を update しないといけないのか。
+	- task name のフォントサイズ、小さいとやっぱし見にくい。
+	- Smart List は sync しないでもよいか。(あとでやる)
+	- Task List のスクロールが遅い。
+	- touch をつかって、スライドしたら complete ボタンがでるようにする
+
+
+2008-10-18 mootoh
+	+ use loadView instead of drawRect
+		> 2008-10-20 won't fix: View なので drawRect を使う。
+	+ RootViewController を AppDelegate にくっつける
+		> 2008-10-20: done.
+	+ TableViewControllerをつかわない
+		datepickerにつかいたいから
+		> 2008-10-19: fixed.
+	+ loadView で [super loadView] すること
+		> 2008-10-20: done.
+	- AddTask で 入力中に submit すると crash する
+	- UserDefaults をつかって auth を get/set
+	- due date の選択は、[today, tomorrow, others] とかできるとよい。
+	+ hide bottom bar
+		> 2008-10-18: RootViewController を導入し、
+		              View hierarchy を整理することで対応した。
+
+2008-10-17 mootoh
+	+ AppDelegate, AddTaskView を modal でつくるときに、
+	  bottom bar を hide したいんだけどできてない。うまく効かない。
+		> 2008-10-18: できた。
+
+
+2008-10-16 mootoh
+	+ AddTaskView
+		name, list を指定して upload できるようにはなった。:
+		まだ View にのっけていないものとして、
+		 . tag
+		 . note
+		がある。tagについてはすっぱり忘れていた。
+
+
+2008-10-15 mootoh
+	+ Task last_sync
+		replaceTask のときは、ぜんぶを入れ替え直すので、last_sync は使わずに
+		getList するようにする。
+		ただし、getList が成功したあとの timestamp は 次の sync
+		で使うのでローカルにとっておく。 
+	+ add Task
+		ローカルに add した Task は、 sync されるまでどうやって保持しておくべきか。
+		task_series や ID がないので、そのまま table にはいれづらい。
+		=> pending table をつくるという手がある。
+		   task, task_series をあわせもつような。
+		> 2008-10-21: pending_task table をつくった。
+
+
+2008-10-12 mootoh
+	- exceptions
+		例外は投げずにエラーを使うようにしよう。
+
+
+2008-10-12 mootoh
+	+ List View
+	  スクロールすると、まちがった Cell がレンダリングされてしまう。
+		なぜ?  drawRect がおかしいのか?
+		> 2008-10-21: fixed.
+
+
+2008-10-12 mootoh
+	+ Auth
+		認証の画面は Safari 呼ばずに WebView を使えば、シームレスにつながる。
+		> 2008-10-21: done.
+
+	- Actinos:
+		ナビゲーションとして、何を用意すべきか。
+
+		. add
+		. setting (初回だけでよい?)
+		. sync (バックグラウンドで自動でやるからよい?)
+		. change sort order
+
+		これらを、どうボタンにして配置するか。
+
+
+2008-10-10 mootoh
+	- RTMAPIAuth.m
+		callback はひとつにまとめられる。
+		単に値をとりだすだけのものならば。
+
+	- task sync:
+		offline 時に施した変更を、 bulk update するのに 'dirty' flag のようなものを
+		使うことを想定していた。
+		だけれど、同じエントリに対して name を変え、次に tag をつけ、といった具合に
+		複数の操作をされた場合にはどうしたらいいのだろう。
+		transaction queue のようなものを持てばよいんだろうけど、ちょっと大袈裟だ。
+
+		最初のリリースでは、オフライン操作としてできることを絞っていればよいか。
+
+2008-10-07 mootoh
+	- RTMTask
+		aux な情報は常に持たなくても、必要に応じて DB から
+		取り出してくるようにしてもよい。
+
+		Web API から取れる情報すべてを Model クラスのフィールド
+		として持つ必要はないということだ。
+		DBには入れてもよいけど (入れなくてもよいけど)、
+		メモリの節約という意味では、そのとき必要なもの以外は
+		メモリに展開しない戦略の方がよいはず。
+
+		そうなると、場面場面で必要となる情報はなにか、ということを
+		ちゃんと洗いだすのが大事になってくる。
+
+
+2008-10-07 mootoh
+	+ RTMAuth
+		DBでエラーが起こったときに、例外を投げるようにした。
+		呼び出し側でハンドルする必要あり。
+		> 2008-10-12 dup 例外は極力つかわないように。 
+
+	+ RTMList
+		taskCount は、SQL の count() をつかえるし、
+		task_series ではなく task をつかうべき。
+		>: つかうようにした。
+
+
+2008-10-05 mootoh
+	+ なぜ、 ViewController initWithStyle が呼ばれないのか?
+		> 2008-10-22: nib ファイルをつかってたから。:
+	+ TabController と NavigationController とのつなぎかたが
+	  まだ完全に理解できていない
+		> 2008-10-22 wont fix: TabController は使わないことに。
+
+
+2008-10-04 mootoh
+	- care about offline HTTP request.
+	+ use RTMAuth to wrap secret information.
+		> done (2008-10-06):
+	+ use dictionary to pass many arguments packed.
+		> done (2008-10-22):
+	+ use array instead of set to order collections (Task, List, ...).
+		> done (2008-10-06):
+	- treat database error handling
+	+ AppDelegate initLists をなくす
+		> done (2008-10-06):
+	+ RTMTask を proxy として RTMTaskEntry と RTMTaskSeries の DB access
+	 	> done (2008-10-13):
+
+
+2008-09-29 mootoh
+	+ known bugs
+		[RTMList taskCount] の SQL が失敗する...
+		> fixed: iPhone simulator に入っていた rtm.sql のテーブル構造が古かったから。
+
+
+# vim:set ft=changelog:
