@@ -37,31 +37,21 @@
 - (void)loadView {
   [super loadView];
 
-  /*
-   * create a root view.
-   */
   CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
-	//CGFloat toolbarHeight = [toolbar frame].size.height;
 	const CGFloat toolbarHeight = 44;
 
   // create a top ViewController.
   MenuViewController *menuViewController = [[MenuViewController alloc] initWithStyle:UITableViewStylePlain];
   menuViewController.rootViewController = self;
 
-  /*
-   * create a NavigationController.
-   */
+  // create a NavigationController.
   UINavigationController *naviController = [[UINavigationController alloc] initWithRootViewController:menuViewController];
   naviController.view.frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height-toolbarHeight);
   naviController.view.backgroundColor = [UIColor greenColor];
   [self.view addSubview:naviController.view];
   self.navigationController = naviController;
 
-
-  /*
-   * create a bottom bar.
-   */
-
+  // create a bottom bar.
   UIToolbar *bar = [[UIToolbar alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height-toolbarHeight, appFrame.size.width, toolbarHeight)];
   UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTask)];
   UIBarButtonItem *uploadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(upload)];
@@ -81,12 +71,6 @@
     AuthViewController *avc = [[AuthViewController alloc] initWithNibName:nil bundle:nil];
     avc.rootViewController = self;
 
-    /*
-    self.hidesBottomBarWhenPushed = YES;
-    menuViewController.hidesBottomBarWhenPushed = YES;
-    avc.hidesBottomBarWhenPushed = YES;
-    */
-    //naviController.navigationBarHidden = YES;
     avc.navigationItem.hidesBackButton = YES;
     avc.bottomBar = bottomBar;
     bottomBar.hidden = YES;
@@ -96,12 +80,6 @@
   }
   [menuViewController release];
 }
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view.
-- (void)viewDidLoad {
-}
-*/
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   // Return YES for supported orientations
@@ -120,14 +98,12 @@
   self.bottomBar.hidden = YES;
 
   AddTaskViewController *ctrl = [[AddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
-  //ctrl.view.frame = CGRectMake(0, 44, appFrame.size.width, appFrame.size.height-44);
 
   UINavigationController *modalController = [[UINavigationController alloc] initWithRootViewController:ctrl];
   modalController.view.frame = CGRectMake(0, 44, appFrame.size.width, appFrame.size.height-44);
   [self presentModalViewController:modalController animated:YES];
   [modalController release];
   [ctrl release];
-
 }
 
 - (void) reload {
@@ -157,9 +133,6 @@
   [self reload];
 
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
-
-- (IBAction) sync {
 }
 
 - (void) fetchAll {

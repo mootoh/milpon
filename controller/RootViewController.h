@@ -22,7 +22,6 @@
 
 - (IBAction) addTask;
 - (IBAction) upload;
-- (IBAction) sync;
 - (void) fetchAll;
 
 @end

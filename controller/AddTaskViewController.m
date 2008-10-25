@@ -43,6 +43,12 @@ enum {
     self.title = @"Add a Task";
     self.list = [lists objectAtIndex:0]; // list default: INBOX
     self.priority = @"0";
+    self.tableView.bounces = NO;
+
+    // footer for scroll
+    UIView *fotterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+    self.tableView.tableFooterView = fotterView;
+    [fotterView release];
 	}
 	return self;
 }
@@ -71,11 +77,11 @@ enum {
       if (name) {
         name_field.text = name;
       }
-      [cell addSubview:name_field];
+      [cell.contentView addSubview:name_field];
       break;
     case CELL_PRIORITY: {
       cell.label = @"Priority:";
-      [cell addSubview:priority_segment];
+      [cell.contentView addSubview:priority_segment];
       break;
     }
     case CELL_LIST:
@@ -84,7 +90,7 @@ enum {
       break;
     case CELL_ESTIMATE: {
       cell.label = @"Estimate:";
-      [cell addSubview:estimate_field];
+      [cell.contentView addSubview:estimate_field];
       break;
     }
     case CELL_LOCATION:
@@ -109,6 +115,10 @@ enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   switch ([indexPath row]) {
+    case CELL_NAME:
+      [self textFieldShouldReturn:estimate_field];
+      [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+      break;
     case CELL_LIST: {
       ListSelectViewController *ctr = [[[ListSelectViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
       ctr.parent = self;
@@ -118,6 +128,15 @@ enum {
       [[self navigationController] pushViewController:ctr animated:YES];
       break;
     }
+    case CELL_PRIORITY: {
+      [self textFieldShouldReturn:name_field];
+      [self textFieldShouldReturn:estimate_field];
+      break;
+    }
+    case CELL_ESTIMATE:
+      [self textFieldShouldReturn:name_field];
+      [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+      break;
     case CELL_DUE: {
       DueDatePickViewController *duePickController = [[DueDatePickViewController alloc] initWithNibName:nil bundle:nil];
       duePickController.parent = self;
@@ -129,29 +148,6 @@ enum {
       break;
   }
 }
-/*
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	if (editingStyle == UITableViewCellEditingStyleDelete) {
-	}
-	if (editingStyle == UITableViewCellEditingStyleInsert) {
-	}
-}
-*/
-/*
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-/*
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-/*
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
 
 - (void)dealloc {
   [name release];
@@ -166,12 +162,6 @@ enum {
   [submitButton release];
 	[super dealloc];
 }
-
-
-- (void)viewDidLoad {
-	[super viewDidLoad];
-}
-
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
@@ -207,8 +197,7 @@ enum {
   return 1;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
   if (textField == name_field) {
     self.name = textField.text;
   } else if (textField == estimate_field) {
@@ -216,6 +205,13 @@ enum {
   }
 
   [textField resignFirstResponder];
+  return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+  UITableViewCell *cell = (UITableViewCell *)[[textField superview] superview];
+  NSIndexPath *path = [self.tableView indexPathForCell:cell];
+  [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
   return YES;
 }
 
@@ -234,16 +230,19 @@ enum {
   [self close];
 }
 
+- (void) commitTextFields {
+  [self textFieldShouldReturn:name_field];
+  [self textFieldShouldReturn:estimate_field];
+}
+
+
 /*
  * create RTMTask from given fields
  *
  * TODO: how to validate the fields ?
  */
 - (IBAction) save {
-  if (!name) {
-    // show alert
-    return;
-  }
+  [self commitTextFields];
 
   // store it to the DB
   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -274,19 +273,19 @@ enum {
   submitButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
   self.navigationItem.rightBarButtonItem = submitButton;
 
-  name_field = [[UITextField alloc] initWithFrame:CGRectMake(64, 12, CGRectGetWidth(self.view.frame)-64, CGRectGetHeight(self.view.frame)-8)];
+  name_field = [[UITextField alloc] initWithFrame:CGRectMake(32, 12, CGRectGetWidth(self.view.frame)-32, CGRectGetHeight(self.view.frame)-8)];
   name_field.placeholder = @"...";
   name_field.returnKeyType = UIReturnKeyDone;
   name_field.delegate = self;
 
-  estimate_field = [[UITextField alloc] initWithFrame:CGRectMake(64, 12, CGRectGetWidth(self.view.frame)-64, CGRectGetHeight(self.view.frame)-8)];
+  estimate_field = [[UITextField alloc] initWithFrame:CGRectMake(32, 12, CGRectGetWidth(self.view.frame)-32, CGRectGetHeight(self.view.frame)-8)];
   estimate_field.placeholder = @"...";
   estimate_field.returnKeyType = UIReturnKeyDone;
   estimate_field.delegate = self;
 
   // setup priority segment
   NSArray *priority_items = [NSArray arrayWithObjects:@"0", @"1", @"2", @"3", nil];
-  priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(64, 8, CGRectGetWidth(self.view.frame)-96, 28)];
+  priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(32, 8, CGRectGetWidth(self.view.frame)-96, 28)];
   for (int i=0; i<priority_items.count; i++)
     [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
 

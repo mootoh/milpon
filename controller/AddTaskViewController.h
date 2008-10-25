@@ -36,5 +36,6 @@
 @property (nonatomic, retain) NSString *estimate;
 
 - (IBAction) save;
+- (void) commitTextFields;
 
 @end
