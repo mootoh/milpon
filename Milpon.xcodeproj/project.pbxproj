@@ -427,9 +427,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* RTM4iPhone */ = {
+		1D6058900D05DD3D006BFB54 /* Milpon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "RTM4iPhone" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Milpon" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -439,7 +439,7 @@
 			);
 			dependencies = (
 			);
-			name = RTM4iPhone;
+			name = Milpon;
 			productName = RTM4iPhone;
 			productReference = 1D6058910D05DD3D006BFB54 /* Milpon.app */;
 			productType = "com.apple.product-type.application";
@@ -499,7 +499,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* RTM4iPhone */,
+				1D6058900D05DD3D006BFB54 /* Milpon */,
 				B9DD5E8E0E6901B7007BFC7A /* UnitTest */,
 				86E021170E7EAAD7001945E7 /* UpdateDB */,
 			);
@@ -674,9 +674,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = RTM4iPhone_Prefix.pch;
+				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = RTM4iPhone;
+				PRODUCT_NAME = Milpon;
 			};
 			name = Release;
 		};
@@ -762,7 +762,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = RTM4iPhone_Prefix.pch;
+				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Milpon;
 				PROVISIONING_PROFILE = DefaultProfileUuid;
@@ -919,7 +919,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "RTM4iPhone" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Milpon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
