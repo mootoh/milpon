@@ -65,24 +65,26 @@
 
 2008-10-19
 	# show build version (#16)
-	- DRY up RTMStorable:remove
+	- DRY up RTMStorable:remove (#17)
 		SQL文のtableを parameter 化するだけでまとめられる。
-	- RTMStorable を protocol にする
+	- RTMStorable を protocol にする (#18)
 		defaultの実装とかあれだし。
 	+ locked List は Add のときに選べないようにする。Sent とか
 		> 2008-10-19: Sent だけ除外するようにした。
-	- 繰り返しの実装 (setRecurrence)
-	- MenuView の Cell にかわいいアイコンをつける
-	! sync, upload, addTask したあとに、View を redisplay する
+	- 繰り返しの実装 (setRecurrence) (#19)
+	- MenuView の Cell にかわいいアイコンをつける (#20)
+	! sync, upload, addTask したあとに、View を redisplay する (#21)
 		> 2008-10-22: sync, upload のあとのは実装した。
 	+ Cell を選択状態のときにはtextを白抜きにする
 		> 2008-10-22 fixed: 選択状態を見せないようにした。
-	- ListView のときにも、task count がおかしくなる。
+	- ListView のときにも、task count がおかしくなる。 (#22)
 		Cell の view を update しないといけないのか。
-	- task name のフォントサイズ、小さいとやっぱし見にくい。
-	- Smart List は sync しないでもよいか。(あとでやる)
-	- Task List のスクロールが遅い。
-	- touch をつかって、スライドしたら complete ボタンがでるようにする
+	+ task name のフォントサイズ、小さいとやっぱし見にくい。
+		> 2008-10-25: fixed.
+	- Smart List は sync しないでもよいか。(あとでやる) (#2)
+	+ Task List のスクロールが遅い。
+		> 2008-10-25: fixed.
+	- touch をつかって、スライドしたら complete ボタンがでるようにする (#23)
 
 
 2008-10-18 mootoh
@@ -95,9 +97,9 @@
 		> 2008-10-19: fixed.
 	+ loadView で [super loadView] すること
 		> 2008-10-20: done.
-	- AddTask で 入力中に submit すると crash する
-	- UserDefaults をつかって auth を get/set
-	- due date の選択は、[today, tomorrow, others] とかできるとよい。
+	- AddTask で 入力中に submit すると crash する (#24)
+	- UserDefaults をつかって auth を get/set (#25)
+	- due date の選択は、[today, tomorrow, others] とかできるとよい。 (#26)
 	+ hide bottom bar
 		> 2008-10-18: RootViewController を導入し、
 		              View hierarchy を整理することで対応した。
@@ -112,8 +114,8 @@
 	+ AddTaskView
 		name, list を指定して upload できるようにはなった。:
 		まだ View にのっけていないものとして、
-		 . tag
-		 . note
+		 . tag (#28)
+		 . note (#27)
 		がある。tagについてはすっぱり忘れていた。
 
 
@@ -126,13 +128,12 @@
 	+ add Task
 		ローカルに add した Task は、 sync されるまでどうやって保持しておくべきか。
 		task_series や ID がないので、そのまま table にはいれづらい。
-		=> pending table をつくるという手がある。
-		   task, task_series をあわせもつような。
+		=> pending table をつくるという手がある。task, task_series をあわせもつような。
 		> 2008-10-21: pending_task table をつくった。
 
 
 2008-10-12 mootoh
-	- exceptions
+	- exceptions (#30)
 		例外は投げずにエラーを使うようにしよう。
 
 
@@ -160,7 +161,7 @@
 
 
 2008-10-10 mootoh
-	- RTMAPIAuth.m
+	- RTMAPIAuth.m (#31)
 		callback はひとつにまとめられる。
 		単に値をとりだすだけのものならば。
 
@@ -209,14 +210,14 @@
 
 
 2008-10-04 mootoh
-	- care about offline HTTP request.
+	- care about offline HTTP request. (#32)
 	+ use RTMAuth to wrap secret information.
 		> done (2008-10-06):
 	+ use dictionary to pass many arguments packed.
 		> done (2008-10-22):
 	+ use array instead of set to order collections (Task, List, ...).
 		> done (2008-10-06):
-	- treat database error handling
+	- treat database error handling (#33)
 	+ AppDelegate initLists をなくす
 		> done (2008-10-06):
 	+ RTMTask を proxy として RTMTaskEntry と RTMTaskSeries の DB access

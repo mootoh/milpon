@@ -243,7 +243,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -261,6 +260,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */,
 				862C14A90EAB805600AC8FFE /* checkBox.png */,
 				862C14AA0EAB805600AC8FFE /* checkBoxChecked.png */,
 				86FD2E9B0EA249CB004631B0 /* rtm_icon.png */,
