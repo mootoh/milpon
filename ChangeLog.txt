@@ -1,4 +1,10 @@
 2008-10-22 mootoh
+	* Beta 01 release:
+		first release!
+
+	* source code on github:
+		now Milpon source code is open!
+
 	* sort tasks:
 		priority, due でソートできるようにした。
 		SQL で `ORDER BY task.due IS NULL ASC, task.due ASC` といった具合に

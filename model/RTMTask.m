@@ -386,8 +386,25 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
   sqlite3_finalize(stmt);
 }
 
-+ (BOOL) taskSeriesExist:(NSString *)task_series_id {
-  return YES; // TODO
++ (BOOL) taskSeriesExist:(NSString *)task_series_id inDB:(RTMDatabase *)db {
+	sqlite3_stmt *stmt = nil;
+	char *sql = "select count() from task_series where id=?";
+	if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
+    // TODO: use Error.
+		NSLog(@"failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
+    return YES;
+	}
+
+	sqlite3_bind_int(stmt, 1, [task_series_id integerValue]);
+
+	if (sqlite3_step(stmt) == SQLITE_ERROR) {
+		NSLog(@"failed in counting %d from task_series.", task_series_id);
+		return YES;
+	}
+
+  int ret = sqlite3_column_int(stmt, 0);
+  sqlite3_finalize(stmt);
+  return ret > 0;
 }
 
 + (BOOL) taskExist:(NSString *)task_id {
@@ -412,7 +429,7 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
 
 + (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db {
   // TaskSeries
-  if (! [RTMTask taskSeriesExist:[task_series valueForKey:@"id"]]) {
+  if (! [RTMTask taskSeriesExist:[task_series valueForKey:@"id"] inDB:db]) {
     [RTMTask create:task_series inDB:db];
     return;
   }
