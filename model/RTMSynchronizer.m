@@ -93,34 +93,24 @@
 	RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
   NSString *last_sync = [RTMTask lastSync:db];
 
-	NSArray *tasks_new = [api_task getListWithLastSync:last_sync];
-  if (tasks_new && 0 < [tasks_new count]) {
-    [RTMTask updateLastSync:db];
+	NSArray *task_serieses_updated = [api_task getListWithLastSync:last_sync];
+  if (!task_serieses_updated || 0 == [task_serieses_updated count])
+    return;
 
-    // sync existing tasks, remove obsoletes, ...
+  [RTMTask updateLastSync:db];
 
-    NSArray *tasksInDB = [RTMTask tasks:db];
-    for (NSDictionary *task_new in tasks_new) {
-      BOOL found = NO;
-      // TODO: use more efficient search
-      for (RTMTask *task_old in tasksInDB) {
-        NSArray *entries = [task_new valueForKey:@"tasks"];
-        for (NSDictionary *tsk in entries) {
-          NSInteger tsk_id = [[tsk valueForKey:@"id"] integerValue];
-          if (tsk_id == task_old.iD) {
-            // TODO: chance to replace
-            found = YES;
-            break;
-          }
-        }
-      }
+  /*
+   * sync:
+   *   - existing tasks
+   *   - remove obsoletes
+   *   - add to DB
+   */
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-      if (!found) {
-        // TODO: care about dup task_series
-        [RTMTask create:task_new inDB:db];
-      }
-    }
-  }
+  for (NSDictionary *task_series in task_serieses_updated)
+    [RTMTask createOrUpdate:task_series inDB:db];
+
+  [pool release];
 }
 
 - (void) uploadPendingTasks:(ProgressView *)progressView {

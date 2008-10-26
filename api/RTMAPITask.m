@@ -9,7 +9,6 @@
 #import "RTMAPITask.h"
 #import "RTMAPI.h"
 #import "RTMTask.h"
-#import "RTMTaskSeries.h"
 #import "RTMNote.h"
 #import "RTMAPIXMLParserCallback.h"
 

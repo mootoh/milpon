@@ -40,6 +40,8 @@
 + (NSString *) lastSync:(RTMDatabase *)db;
 + (void) updateLastSync:(RTMDatabase *)db;
 
++ (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db;
+
 - (void) complete;
 - (void) uncomplete;
 

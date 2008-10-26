@@ -232,9 +232,8 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
   // Tasks
   NSInteger task_series_id = [[task_series valueForKey:@"id"] integerValue];
 
-  NSDictionary *task;
   NSArray *tasks = [task_series valueForKey:@"tasks"];
-  for (task in tasks) {
+  for (NSDictionary *task in tasks) {
     if ([[task valueForKey:@"completed"] isEqualToString:@"1"] || 
         [[task valueForKey:@"deleted"] isEqualToString:@"1"])
       continue;
@@ -242,9 +241,8 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
   }
 
   // Notes
-  NSDictionary *note;
   NSArray *notes = [task_series valueForKey:@"notes"];
-  for (note in notes)
+  for (NSDictionary *note in notes)
     [RTMTask createNote:note inDB:db inTaskSeries:task_series_id];
 
   // RRules
@@ -368,6 +366,10 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
   completed = @"";
 }
 
+- (BOOL) is_completed {
+  return (completed && ![completed isEqualToString:@""]);
+}
+
 // TODO: should also remove from task_series
 + (void) remove:(NSInteger)iid fromDB:(RTMDatabase *)db {
 	sqlite3_stmt *stmt = nil;
@@ -384,8 +386,72 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
   sqlite3_finalize(stmt);
 }
 
-- (BOOL) is_completed {
-  return (completed && ![completed isEqualToString:@""]);
++ (BOOL) taskSeriesExist:(NSString *)task_series_id {
+  return YES; // TODO
+}
+
++ (BOOL) taskExist:(NSString *)task_id {
+  return YES; // TODO
+}
+
++ (BOOL) noteExist:(NSString *)note_id {
+  return YES; // TODO
+}
+
++ (void) updateTaskSeries:(NSDictionary *)task_series inDB:(RTMDatabase *)db {
+  // TODO
+}
+
++ (void) updateTask:(NSDictionary *)task inDB:(RTMDatabase *)db inTaskSeries:(NSInteger) task_series_id {
+  // TODO
+}
+
++ (void) updateNote:(NSDictionary *)note inDB:(RTMDatabase *)db inTaskSeries:(NSInteger) task_series_id {
+  // TODO
+}
+
++ (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db {
+  // TaskSeries
+  if (! [RTMTask taskSeriesExist:[task_series valueForKey:@"id"]]) {
+    [RTMTask create:task_series inDB:db];
+    return;
+  }
+  [RTMTask updateTaskSeries:task_series inDB:db];
+
+  // Tasks
+  NSInteger task_series_id = [[task_series valueForKey:@"id"] integerValue];
+  NSArray *tasks = [task_series valueForKey:@"tasks"];
+  for (NSDictionary *task in tasks) {
+    if ([RTMTask taskExist:[task valueForKey:@"id"]]) {
+      [RTMTask updateTask:task inDB:db inTaskSeries:task_series_id];
+    } else {
+      [RTMTask createTask:task inDB:db inTaskSeries:task_series_id];
+    }
+  }
+
+  // notes
+  NSArray *notes = [task_series valueForKey:@"notes"];
+  for (NSDictionary *note in notes) {
+    if ([RTMTask noteExist:[note valueForKey:@"id"]]) {
+      [RTMTask updateNote:note inDB:db inTaskSeries:task_series_id];
+    } else {
+      [RTMTask createNote:note inDB:db inTaskSeries:task_series_id];
+    }
+  }
+
+  // RRules
+  // TODO
+#if 0
+  NSDictionary *rrule = [task_series valueForKey:@"rrule"];
+  if (rrule)
+    if ([RTMTask rruleExist:[task valueForKey:@"id"]]) {
+      [RTMTask updateNote:note inDB:db inTaskSeries:task_series_id];
+    } else {
+      [RTMTask createNote:note inDB:db inTaskSeries:task_series_id];
+    }
+  }
+#endif // 0
+  // Tag
 }
 
 @end

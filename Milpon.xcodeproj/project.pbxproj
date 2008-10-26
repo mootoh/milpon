@@ -15,7 +15,6 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* ListViewController.m */; };
 		860E976B0E965F7900876922 /* RTMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AB969F0E961A7B00DD5816 /* RTMNote.m */; };
-		860E976C0E965F7E00876922 /* RTMTaskSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 8654CBB20E943F7100C4646D /* RTMTaskSeries.m */; };
 		860E976E0E965FB200876922 /* UpdateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E0212E0E7EAB80001945E7 /* UpdateList.m */; };
 		861382D30EA770740040B0F6 /* ListSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 861382D20EA770740040B0F6 /* ListSelectViewController.m */; };
 		861534840EA24E0900AB3B87 /* RTMTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 861534830EA24E0900AB3B87 /* RTMTaskCell.m */; };
@@ -79,7 +78,6 @@
 		B9B1C28F0EA571F800CBCA62 /* RTMPendingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B1C28D0EA571F800CBCA62 /* RTMPendingTask.m */; };
 		B9DD5E970E6901FC007BFC7A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DD5E960E6901FC007BFC7A /* SenTestingKit.framework */; };
 		B9DE32080E92496400AA490E /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F2013D0E690C660093B344 /* RTMAPI.m */; };
-		B9E84F8B0E94547300B777C2 /* RTMTaskSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 8654CBB20E943F7100C4646D /* RTMTaskSeries.m */; };
 		B9F2013F0E690C660093B344 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F2013D0E690C660093B344 /* RTMAPI.m */; };
 		B9FF71D20E6A4AE800EF2F9A /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */; };
 		B9FF72CD0E6A7C5400EF2F9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
@@ -104,8 +102,6 @@
 		861534830EA24E0900AB3B87 /* RTMTaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMTaskCell.m; path = controller/RTMTaskCell.m; sourceTree = "<group>"; };
 		862C14A90EAB805600AC8FFE /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBox.png; path = resource/checkBox.png; sourceTree = "<group>"; };
 		862C14AA0EAB805600AC8FFE /* checkBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBoxChecked.png; path = resource/checkBoxChecked.png; sourceTree = "<group>"; };
-		8654CBB10E943F7100C4646D /* RTMTaskSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMTaskSeries.h; sourceTree = "<group>"; };
-		8654CBB20E943F7100C4646D /* RTMTaskSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMTaskSeries.m; sourceTree = "<group>"; };
 		867187250EAC7B3B000A9133 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgressView.h; path = view/ProgressView.h; sourceTree = "<group>"; };
 		867187260EAC7B3B000A9133 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProgressView.m; path = view/ProgressView.m; sourceTree = "<group>"; };
 		867187C40EAC93C1000A9133 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
@@ -385,8 +381,6 @@
 				8691FBD70E9D11F0003BE718 /* RTMStorable.m */,
 				B98D24480E6792F60006D6AF /* RTMList.h */,
 				B98D24490E6792F60006D6AF /* RTMList.m */,
-				8654CBB10E943F7100C4646D /* RTMTaskSeries.h */,
-				8654CBB20E943F7100C4646D /* RTMTaskSeries.m */,
 				B9FF71E00E6A53DE00EF2F9A /* RTMTask.h */,
 				B9FF71E10E6A53DE00EF2F9A /* RTMTask.m */,
 				B9AB969E0E961A7B00DD5816 /* RTMNote.h */,
@@ -619,7 +613,6 @@
 				86E021690E7EADBA001945E7 /* RTMAPIList.m in Sources */,
 				86F41FCA0E813CD7006D98F4 /* RTMAPITask.m in Sources */,
 				860E976B0E965F7900876922 /* RTMNote.m in Sources */,
-				860E976C0E965F7E00876922 /* RTMTaskSeries.m in Sources */,
 				860E976E0E965FB200876922 /* UpdateList.m in Sources */,
 				867907AE0E96729600A75576 /* UpdateTask.m in Sources */,
 				8684039A0E9ADC9C009CEECD /* RTMAuth.m in Sources */,
@@ -637,7 +630,6 @@
 				B9DE32080E92496400AA490E /* RTMAPI.m in Sources */,
 				86C29EC30E928437006E7C74 /* RTMAPIList.m in Sources */,
 				86C29EC80E92846D006E7C74 /* RTMAPIAuth.m in Sources */,
-				B9E84F8B0E94547300B777C2 /* RTMTaskSeries.m in Sources */,
 				86FC8D180E9593F100BD30A4 /* RTMAPITask.m in Sources */,
 				B9AB96A00E961A7B00DD5816 /* RTMNote.m in Sources */,
 				B97131EE0E9AF1B70091057B /* RTMAuth.m in Sources */,
