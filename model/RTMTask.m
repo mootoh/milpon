@@ -386,19 +386,19 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
   sqlite3_finalize(stmt);
 }
 
-+ (BOOL) taskSeriesExist:(NSString *)task_series_id inDB:(RTMDatabase *)db {
++ (BOOL) checkExisting:(NSString *)iD forTable:(NSString *)table inDB:(RTMDatabase *)db {
+  NSString *sql = [NSString stringWithFormat:@"select count() from %@ where id=?", table];
 	sqlite3_stmt *stmt = nil;
-	char *sql = "select count() from task_series where id=?";
-	if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
+	if (sqlite3_prepare_v2([db handle], [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
     // TODO: use Error.
 		NSLog(@"failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
     return YES;
 	}
 
-	sqlite3_bind_int(stmt, 1, [task_series_id integerValue]);
+	sqlite3_bind_int(stmt, 1, [iD integerValue]);
 
 	if (sqlite3_step(stmt) == SQLITE_ERROR) {
-		NSLog(@"failed in counting %d from task_series.", task_series_id);
+		NSLog(@"failed in counting %d from %@.", iD), table;
 		return YES;
 	}
 
@@ -407,12 +407,16 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
   return ret > 0;
 }
 
-+ (BOOL) taskExist:(NSString *)task_id {
-  return YES; // TODO
++ (BOOL) taskSeriesExist:(NSString *)task_series_id inDB:(RTMDatabase *)db {
+  return [RTMTask checkExisting:task_series_id forTable:@"task_series" inDB:db];
 }
 
-+ (BOOL) noteExist:(NSString *)note_id {
-  return YES; // TODO
++ (BOOL) taskExist:(NSString *)task_id inDB:(RTMDatabase *)db {
+  return [RTMTask checkExisting:task_id forTable:@"task" inDB:db];
+}
+
++ (BOOL) noteExist:(NSString *)note_id inDB:(RTMDatabase *)db {
+  return [RTMTask checkExisting:note_id forTable:@"note" inDB:db];
 }
 
 + (void) updateTaskSeries:(NSDictionary *)task_series inDB:(RTMDatabase *)db {
@@ -439,7 +443,7 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
   NSInteger task_series_id = [[task_series valueForKey:@"id"] integerValue];
   NSArray *tasks = [task_series valueForKey:@"tasks"];
   for (NSDictionary *task in tasks) {
-    if ([RTMTask taskExist:[task valueForKey:@"id"]]) {
+    if ([RTMTask taskExist:[task valueForKey:@"id"] inDB:db]) {
       [RTMTask updateTask:task inDB:db inTaskSeries:task_series_id];
     } else {
       [RTMTask createTask:task inDB:db inTaskSeries:task_series_id];
@@ -449,7 +453,7 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
   // notes
   NSArray *notes = [task_series valueForKey:@"notes"];
   for (NSDictionary *note in notes) {
-    if ([RTMTask noteExist:[note valueForKey:@"id"]]) {
+    if ([RTMTask noteExist:[note valueForKey:@"id"] inDB:db]) {
       [RTMTask updateNote:note inDB:db inTaskSeries:task_series_id];
     } else {
       [RTMTask createNote:note inDB:db inTaskSeries:task_series_id];
