@@ -36,3 +36,4 @@
 + (NSArray *) allTasks:(RTMDatabase *)db;
 
 @end
+// set vim:ft=objc

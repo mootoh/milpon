@@ -55,3 +55,4 @@
 + (void) remove:(RTMTask *)aTask;
 */
 @end
+// set vim:ft=objc
