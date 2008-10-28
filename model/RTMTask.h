@@ -19,6 +19,7 @@
 	NSInteger priority;
 	NSInteger postponed;
 	NSString *estimate;
+  NSInteger task_series_id;
 }
 
 @property (nonatomic) NSInteger iD;
@@ -46,6 +47,8 @@
 - (void) uncomplete;
 
 - (BOOL) is_completed;
+
+- (NSArray *) notes;
 
 /* TODO
 + (void) erase;

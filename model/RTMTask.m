@@ -15,14 +15,15 @@
 
 - (id) initWithDB:(RTMDatabase *)ddb withParams:(NSDictionary *)params {
   if (self = [super initWithDB:ddb forID:[[params valueForKey:@"id"] integerValue]]) {
-    self.name      = [params valueForKey:@"name"];
-    self.url       = [params valueForKey:@"url"];
-    self.due       = [params valueForKey:@"due"];
-    self.location  = [params valueForKey:@"location_id"];
-    self.completed = [params valueForKey:@"completed"];
-    self.priority  = [[params valueForKey:@"priority"] integerValue];
-    self.postponed = [[params valueForKey:@"postponed"] integerValue];
-    self.estimate  = [params valueForKey:@"estimate"];
+    self.name            = [params valueForKey:@"name"];
+    self.url             = [params valueForKey:@"url"];
+    self.due             = [params valueForKey:@"due"];
+    self.location        = [params valueForKey:@"location_id"];
+    self.completed       = [params valueForKey:@"completed"];
+    self.priority        = [[params valueForKey:@"priority"] integerValue];
+    self.postponed       = [[params valueForKey:@"postponed"] integerValue];
+    self.estimate        = [params valueForKey:@"estimate"];
+    task_series_id  = [[params valueForKey:@"task_series_id"] integerValue];
   }
   return self;
 }
@@ -98,9 +99,10 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
     NSString *postponed = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 6)];
     str = (char *)sqlite3_column_text(stmt, 7);
     NSString *estimate  = (str && *str != '\0') ? [NSString stringWithUTF8String:str] : @"";
+    NSString *task_series_id  = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 8)];
 
-    NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"location_id", @"priority", @"postponed", @"estimate", nil];
-    NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, location, priority, postponed, estimate, nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"location_id", @"priority", @"postponed", @"estimate", @"task_series_id", nil];
+    NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, location, priority, postponed, estimate, task_series_id, nil];
     NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
     RTMTask *task = [[[RTMTask alloc] initWithDB:db withParams:params] autorelease];
 		[tasks addObject:task];
@@ -110,12 +112,12 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
 }
 
 + (NSArray *) tasks:(RTMDatabase *)db {
-	NSString *sql = [NSString stringWithUTF8String:"SELECT task.id,task_series.name,task_series.url,task.due,task_series.location_id,task.priority,task.postponed,task.estimate from task JOIN task_series ON task.task_series_id=task_series.id where task.completed='' ORDER BY task.due IS NULL ASC, task.due ASC, task.priority=0 ASC, task.priority ASC"];
+	NSString *sql = [NSString stringWithUTF8String:"SELECT task.id,task_series.name,task_series.url,task.due,task_series.location_id,task.priority,task.postponed,task.estimate, task_series.id from task JOIN task_series ON task.task_series_id=task_series.id where task.completed='' ORDER BY task.due IS NULL ASC, task.due ASC, task.priority=0 ASC, task.priority ASC"];
   return [RTMTask tasksForSQL:sql inDB:db];
 }
 
 + (NSArray *) tasksInList:(NSInteger)list_id inDB:(RTMDatabase *)db {
-  NSString *sql = [NSString stringWithFormat:@"SELECT task.id,task_series.name,task_series.url,task.due,task_series.location_id,task.priority,task.postponed,task.estimate from task JOIN task_series ON task.task_series_id=task_series.id where task.completed='' AND list_id=%d ORDER BY task.priority=0 ASC,task.priority ASC, task.due IS NULL ASC, task.due ASC", list_id];
+  NSString *sql = [NSString stringWithFormat:@"SELECT task.id,task_series.name,task_series.url,task.due,task_series.location_id,task.priority,task.postponed,task.estimate, task_series.id from task JOIN task_series ON task.task_series_id=task_series.id where task.completed='' AND list_id=%d ORDER BY task.priority=0 ASC,task.priority ASC, task.due IS NULL ASC, task.due ASC", list_id];
 
 	//sqlite3_bind_int(stmt, 1, list_id);
   return [RTMTask tasksForSQL:sql inDB:db];
@@ -526,6 +528,38 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
 }
 #endif // 0
 // Tag
+}
+
+- (NSArray *) notes
+{
+	sqlite3_stmt *stmt = nil;
+	const char *sql = "SELECT "
+    "id, title, text, created, modified "
+    "from note "
+    "WHERE task_series_id=?";
+	if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
+    @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
+
+	sqlite3_bind_int(stmt,  1, task_series_id);
+
+  NSMutableArray *ret = [[NSMutableArray alloc] init];
+
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+    NSString *note_id  = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 0)];
+    NSString *title    = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 1)];
+    NSString *text     = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 2)];
+    NSString *created  = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 3)];
+    NSString *modified = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 4)];
+
+    NSArray *keys = [NSArray arrayWithObjects:@"id", @"title", @"text", @"created", @"modified", nil];
+    NSArray *values = [NSArray arrayWithObjects:note_id, title, text, created, modified, nil];
+    NSDictionary *note = [NSDictionary dictionaryWithObjects:values forKeys:keys];
+    [ret addObject:note];
+  }
+
+	sqlite3_finalize(stmt);
+
+  return ret;
 }
 
 @end

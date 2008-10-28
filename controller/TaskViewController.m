@@ -32,7 +32,6 @@
 	name.text = task.name;
 	url.text = task.url;
 
-
   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
   [formatter setDateFormat:@"yyyy-MM-dd-HH:mm:ss zzz"];
@@ -50,6 +49,13 @@
 	//priority.text = task.priority;
 	postponed.text = [NSString stringWithFormat:@"%d", task.postponed];
 	estimate.text = task.estimate;
+
+  for (NSDictionary *note in task.notes) {
+    NSLog(@"title=%@", [note valueForKey:@"title"]);
+    UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 20)];
+    noteLabel.text = [NSString stringWithFormat:@"title=%@, text=%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
+    [noteView addSubview:noteLabel];
+  }
 }
 
 
