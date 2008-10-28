@@ -464,7 +464,24 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
 }
 
 + (void) updateNote:(NSDictionary *)note inDB:(RTMDatabase *)db inTaskSeries:(NSInteger) task_series_id {
-  // TODO
+  sqlite3_stmt *stmt = nil;
+	static const char *sql = "UPDATE note "
+    "title=?, text=?, created=?, modified=?, task_series_id=? "
+    "where id=?";
+	if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
+    @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
+
+	sqlite3_bind_text(stmt, 1, [[note valueForKey:@"title"] UTF8String], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_text(stmt, 2, [[note valueForKey:@"text"] UTF8String], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_text(stmt, 3, [[note valueForKey:@"created"] UTF8String], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_text(stmt, 4, [[note valueForKey:@"modified"] UTF8String], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_int(stmt,  5, task_series_id);
+	sqlite3_bind_int(stmt,  6, [[note valueForKey:@"id"] integerValue]);
+	
+	if (SQLITE_ERROR == sqlite3_step(stmt))
+    @throw [NSString stringWithFormat:@"failed in update the database: '%s'.", sqlite3_errmsg([db handle])];
+
+	sqlite3_finalize(stmt);
 }
 
 + (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db {
