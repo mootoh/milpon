@@ -117,6 +117,7 @@ static const int SECTIONS = 4;
   return [headers objectAtIndex:section];
 }
 
+#if 0
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   TaskViewController *ctrl = [[TaskViewController alloc] initWithNibName:@"TaskView" bundle:nil];
   RTMTask *task = [[due_tasks objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
@@ -126,6 +127,7 @@ static const int SECTIONS = 4;
 	[[self navigationController] pushViewController:ctrl animated:YES];
 	[ctrl release];
 }
+#endif // 0
 
 /*
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
