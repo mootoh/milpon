@@ -59,7 +59,6 @@
 	return cell;
 }
 
-#if 0
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	// Navigation logic
 	TaskViewController *ctrl = [[TaskViewController alloc] initWithNibName:@"TaskView" bundle:nil];
@@ -70,7 +69,6 @@
 	[[self navigationController] pushViewController:ctrl animated:YES];
 	[ctrl release];
 }
-#endif // 0
 
 /*
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
