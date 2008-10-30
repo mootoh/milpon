@@ -51,7 +51,8 @@
   return self;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
   [operationQueue release];
   [auth release];
   [db release];
@@ -59,13 +60,15 @@
   [super dealloc];
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
+- (void)applicationDidFinishLaunching:(UIApplication *)application
+{
   RootViewController *root = [[RootViewController alloc] initWithNibName:nil bundle:nil];
   [window addSubview:root.view];
   [window makeKeyAndVisible];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
+- (void)applicationWillTerminate:(UIApplication *)application
+{
   // Save data if appropriate
    NSMutableData *theData = [NSMutableData data];
    NSKeyedArchiver *encoder = [[NSKeyedArchiver alloc] initForWritingWithMutableData:theData];

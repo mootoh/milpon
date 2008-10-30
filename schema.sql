@@ -60,14 +60,6 @@ CREATE TABLE tag (
   'name'      TEXT
 );
 
-CREATE TABLE auth (
-  'api_key'   CHAR(48),
-  'secret'    CHAR(48),
-  'frob'      CHAR(48),
-  'token'     CHAR(48),
-  'name'      TEXT
-);
-
 CREATE TABLE last_sync (
   'sync_date'      CHAR(24)
 );
