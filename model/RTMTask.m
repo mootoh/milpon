@@ -118,7 +118,7 @@
 
 + (void) createTaskSeries:(NSDictionary *)task_series inDB:(RTMDatabase *)db {
    sqlite3_stmt *stmt = nil;
-   static const char *sql = "INSERT INTO task_series (id, name, url, location_id, list_id) VALUES (?, ?, ?, ?, ?)";
+   static const char *sql = "INSERT INTO task_series (id, name, url, location_id, list_id, dirty) VALUES (?, ?, ?, ?, ?, ?)";
    if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
       @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
 
@@ -127,6 +127,8 @@
    sqlite3_bind_text(stmt, 3, [[task_series valueForKey:@"url"] UTF8String], -1, SQLITE_TRANSIENT);
    sqlite3_bind_int(stmt,  4, [[task_series valueForKey:@"location_id"] integerValue]);
    sqlite3_bind_int(stmt,  5, [[task_series valueForKey:@"list_id"] integerValue]);
+   int dirty = [task_series valueForKey:@"dirty"] ? [[task_series valueForKey:@"dirty"] intValue] : 0;
+   sqlite3_bind_int(stmt,  6, dirty);
 
    if (SQLITE_ERROR == sqlite3_step(stmt))
       @throw [NSString stringWithFormat:@"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle])];
@@ -197,7 +199,8 @@
    sqlite3_finalize(stmt);
 }
 
-+ (void) create:(NSDictionary *)task_series inDB:(RTMDatabase *)db {
++ (void) create:(NSDictionary *)task_series inDB:(RTMDatabase *)db
+{
    // TaskSeries
    [RTMTask createTaskSeries:task_series inDB:db];
 

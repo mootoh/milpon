@@ -11,7 +11,6 @@ sqlite3 $DATABASE_FILE < schema.sql
 
 echo 'import fixtures'
 sqlite3 $DATABASE_FILE < fixture.sql
-sqlite3 $DATABASE_FILE < fixture_auth.sql
 
 echo "copy into dest dir: $DEST_DIR"
 cp $DATABASE_FILE $DEST_DIR
