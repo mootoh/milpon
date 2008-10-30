@@ -17,15 +17,36 @@
 
 @synthesize window, auth, db, operationQueue;
 
-- (id)init {
+- (NSString *) authPath
+{
+   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+   NSString *documentDirectory = [paths objectAtIndex:0];
+   NSString *path = [documentDirectory stringByAppendingPathComponent:@"auth.dat"];
+   return path;
+}
+
+- (id) init
+{
   if (self = [super init]) {
-    db   = [[RTMDatabase alloc] init];
-    auth = [[RTMAuth alloc] initWithDB:db];
+    db = [[RTMDatabase alloc] init];
+
+    NSString *path = [self authPath];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if ([fm fileExistsAtPath:path]) {
+       NSMutableData *data = [NSMutableData dataWithContentsOfFile:path];
+       NSKeyedUnarchiver *decoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+       self.auth = [decoder decodeObjectForKey:@"auth"];
+       [decoder finishDecoding];
+       [decoder release];
+    } else {
+       self.auth = [[RTMAuth alloc] init];
+    }
+
 	  [RTMAPI setApiKey:auth.api_key];
 	  [RTMAPI setSecret:auth.shared_secret];
-    if (auth.token)
-      [RTMAPI setToken:auth.token];
-    operationQueue = [[NSOperationQueue alloc] init];
+     if (auth.token)
+        [RTMAPI setToken:auth.token];
+     operationQueue = [[NSOperationQueue alloc] init];
   }
   return self;
 }
@@ -46,6 +67,14 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
   // Save data if appropriate
+   NSMutableData *theData = [NSMutableData data];
+   NSKeyedArchiver *encoder = [[NSKeyedArchiver alloc] initForWritingWithMutableData:theData];
+
+   [encoder encodeObject:auth forKey:@"auth"];
+   [encoder finishEncoding];
+
+   [theData writeToFile:[self authPath] atomically:YES];
+   [encoder release];
 }
 
 /*

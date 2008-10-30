@@ -1,0 +1,11 @@
+/*
+ *  PrivateInfo.h
+ *  RTM4iPhone
+ *
+ *  Created by mootoh on 8/30/08.
+ *  Copyright 2008 deadbeaf.org. All rights reserved.
+ *
+ */
+
+#define API_KEY  @"YOUR_API_KEY"
+#define SHARED_SECRET @"YOUR_SHARED_SECRET"

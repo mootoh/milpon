@@ -19,7 +19,7 @@
 }
 
 @property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, readonly) RTMAuth *auth;
+@property (nonatomic, retain) RTMAuth *auth;
 @property (nonatomic, readonly) RTMDatabase *db;
 @property (nonatomic, retain) NSOperationQueue *operationQueue;
 
