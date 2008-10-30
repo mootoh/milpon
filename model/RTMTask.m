@@ -211,7 +211,8 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
 	sqlite3_finalize(stmt);
 }
 
-+ (void) createRRule:(NSDictionary *)rrule inDB:(RTMDatabase *)db inTaskSeries:(NSInteger)task_series_id {
++ (void) createRRule:(NSDictionary *)rrule inDB:(RTMDatabase *)db inTaskSeries:(NSInteger)task_series_id
+{
 	sqlite3_stmt *stmt = nil;
 	static const char *sql = "INSERT INTO rrule (every, rule, task_series_id) VALUES (?, ?, ?)";
 	if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
@@ -259,7 +260,8 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
   }
 }
 
-+ (void) erase:(RTMDatabase *)db from:(NSString *)table {
++ (void) erase:(RTMDatabase *)db from:(NSString *)table
+{
 	sqlite3_stmt *stmt = nil;
 	const char *sql = [[NSString stringWithFormat:@"delete from %@", table] UTF8String];
 	if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
@@ -272,7 +274,8 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
 	sqlite3_finalize(stmt);
 }
 
-+ (void) erase:(RTMDatabase *)db {
++ (void) erase:(RTMDatabase *)db
+{
   [RTMTask erase:db from:@"task_series"];
   [RTMTask erase:db from:@"task"];
   [RTMTask erase:db from:@"note"];

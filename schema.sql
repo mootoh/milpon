@@ -67,7 +67,6 @@ CREATE TABLE last_sync (
 CREATE TABLE pending_task (
   'id'           INTEGER PRIMARY KEY,
   'name'         TEXT,
-  'url'          TEXT,
   'due'          CHAR(24),
   'location_id'  INTEGER,
   'list_id'      INTEGER,

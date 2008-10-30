@@ -13,7 +13,6 @@
 
 @interface RTMPendingTask : RTMStorable {
   NSString *name;
-  NSString *url;
 	NSString *due;
   NSInteger location_id;
   NSInteger list_id;
@@ -23,7 +22,6 @@
 
 @property (nonatomic) NSInteger iD;
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSString *due;
 @property (nonatomic) NSInteger location_id;
 @property (nonatomic) NSInteger list_id;
