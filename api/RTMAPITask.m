@@ -196,7 +196,8 @@
   return [self getList_internal:args];
 }	
 
-- (NSDictionary *) add:(NSString *)name inList:(NSString *)list_id {
+- (NSDictionary *) add:(NSString *)name inList:(NSString *)list_id
+{
 	RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
 	NSString *timeline = [api createTimeline];
   if (! timeline) return nil;

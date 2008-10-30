@@ -9,13 +9,29 @@
 
 	* 同期のプロトコル:
 		1. ローカルで追加された task をリストアップ
+			いまは pending task を select してる
+			ここを、dirty フラグをみるようにする
 		2. task を web に upload
+			addTask
 		3. response から ID とかいった属性を取得
-		4. ローカルでつくっていた task を remove
-		5. web からとってきた task を DB に insert
+		4. とってきた ID をもとに、task の attribute を web に upload
+		5. ローカルでつくっていた task を remove
+		6. web からとってきた task を DB に insert
 
 		この順でやることで、ローカルの DB table につくっていた task の ID が web
 		にある task の ID とかぶらないことが保証できる、だろう。
+
+		ローカル用の TaskSeries ID を特別なものとしておけばよいかもしれない。
+		-1 とか。
+		-> よくない。TaskSeries は name とかいう task 固有の情報をもっているので、
+		   複数の task をひとつのローカル用 TaskSeries にまとめられない。
+
+		dirty にも複数の種類がある。
+			0: 最新
+			1: 新しくつくられた
+			2: 属性が更新された
+
+		で、TaskSeriesとTaskの両方にある。
 
 2008-10-22 mootoh
 	* Beta 01 release:

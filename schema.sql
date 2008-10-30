@@ -11,7 +11,8 @@ CREATE TABLE task_series (
   'source'       TEXT,
   'url'          TEXT,
   'location_id'  INTEGER,
-  'list_id'      INTEGER
+  'list_id'      INTEGER,
+  'dirty'        INTEGER
 );
 
 CREATE TABLE task (
