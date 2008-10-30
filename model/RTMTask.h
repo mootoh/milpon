@@ -11,15 +11,15 @@
 @class RTMDatabase;
 
 @interface RTMTask : RTMStorable {
-  NSString *name;
-  NSString *url;
-	NSString *due;
-  NSString *location;
-	NSString *completed;
-	NSInteger priority;
-	NSInteger postponed;
-	NSString *estimate;
-  NSInteger task_series_id;
+   NSString *name;
+   NSString *url;
+   NSString *due;
+   NSString *location;
+   NSString *completed;
+   NSInteger priority;
+   NSInteger postponed;
+   NSString *estimate;
+   NSInteger task_series_id;
 }
 
 @property (nonatomic) NSInteger iD;
@@ -51,13 +51,13 @@
 - (NSArray *) notes;
 
 /* TODO
-+ (void) erase;
-- (void) save;
- */
+   + (void) erase;
+   - (void) save;
+   */
 
 /* TODO
-+ (void) add:(NSDictionary *) params;
-+ (void) remove:(RTMTask *)aTask;
-*/
+   + (void) add:(NSDictionary *) params;
+   + (void) remove:(RTMTask *)aTask;
+   */
 @end
 // set vim:ft=objc

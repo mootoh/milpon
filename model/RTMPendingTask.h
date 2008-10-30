@@ -12,12 +12,12 @@
 @class RTMDatabase;
 
 @interface RTMPendingTask : RTMStorable {
-  NSString *name;
-	NSString *due;
-  NSInteger location_id;
-  NSInteger list_id;
-	NSInteger priority;
-	NSString *estimate;
+   NSString *name;
+   NSString *due;
+   NSInteger location_id;
+   NSInteger list_id;
+   NSInteger priority;
+   NSString *estimate;
 }
 
 @property (nonatomic) NSInteger iD;

@@ -1,3 +1,22 @@
+2008-10-30 mootoh
+	* Task, TaskSeries:
+		TaskSeries を使っているから、同期がややこしくなってる感。
+		TaskSeries の詳細については API で DL したときにぜんぶ処理し終えといて、
+		DB の方でケアしなくてよいというふうにすると、ローカルにつくってuploadし
+		てないタスクも、downloadしてあるタスクも透過的に使えるんじゃないか。
+
+		TaskSeries を展開してしまった、task テーブルにつっこんでしまうとよいか。
+
+	* 同期のプロトコル:
+		1. ローカルで追加された task をリストアップ
+		2. task を web に upload
+		3. response から ID とかいった属性を取得
+		4. ローカルでつくっていた task を remove
+		5. web からとってきた task を DB に insert
+
+		この順でやることで、ローカルの DB table につくっていた task の ID が web
+		にある task の ID とかぶらないことが保証できる、だろう。
+
 2008-10-22 mootoh
 	* Beta 01 release:
 		first release!
