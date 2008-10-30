@@ -253,6 +253,10 @@ if (SQLITE_OK != ((stmt))) { @throw(@"sqlite bind failed"); }
     [RTMTask createRRule:rrule inDB:db inTaskSeries:task_series_id];
 
   // Tag
+  NSDictionary *tags = [task_series valueForKey:@"tags"];
+  for (NSString *tag in tags) {
+     // TODO: create a tag
+  }
 }
 
 + (void) erase:(RTMDatabase *)db from:(NSString *)table {
