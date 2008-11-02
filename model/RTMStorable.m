@@ -12,14 +12,14 @@
 
 - (id) initWithDB:(RTMDatabase *)ddb forID:(NSInteger )iid {
   if (self = [super init]) {
-    db = [ddb retain];
-    iD = iid;
+    db_ = [ddb retain];
+    iD_ = iid;
   }
   return self;
 }
 
 - (void) dealloc {
-  [db release];
+  [db_ release];
   [super dealloc];
 }
 

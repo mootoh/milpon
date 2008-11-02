@@ -1,4 +1,10 @@
 2008-10-30 mootoh
+	* RTMStorage:
+		けっきょく、 Web からとってきた情報も DB に入っている情報も、単なる
+		Dictionary でしかないわけだ。
+		しかも構成要素が固定であるという。
+
+
 	* Task, TaskSeries:
 		TaskSeries を使っているから、同期がややこしくなってる感。
 		TaskSeries の詳細については API で DL したときにぜんぶ処理し終えといて、

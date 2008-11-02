@@ -12,28 +12,30 @@
 #import "RTMDatabase.h"
 
 @implementation RTMList
-@synthesize iD, name;
+@synthesize iD_, name;
 
-- (id) initWithDB:(RTMDatabase *)ddb withParams:(NSDictionary *)params {
+- (id) initWithDB:(RTMDatabase *)ddb withParams:(NSDictionary *)params
+{
   if (self = [super initWithDB:ddb forID:[[params valueForKey:@"id"] integerValue]]) {
     self.name = [params valueForKey:@"name"];
   }
   return self;
 }
 
-- (NSArray *)tasks {
-  return [RTMTask tasksInList:iD inDB:db];
+- (NSArray *)tasks
+{
+  return [RTMTask tasksInList:iD_ inDB:db_];
 }
 
 - (NSInteger) taskCount {
 	sqlite3_stmt *stmt = nil;
 	const static char *sql = "SELECT count() from task JOIN task_series ON task.task_series_id = task_series.id where list_id=? AND task.completed=''";
 
-	if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
-		NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
+	if (sqlite3_prepare_v2([db_ handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
+		NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db_ handle]));
 	}
 	
-	sqlite3_bind_int(stmt, 1, iD);
+	sqlite3_bind_int(stmt, 1, iD_);
 	
   NSInteger count = (sqlite3_step(stmt) == SQLITE_ROW) ?
     sqlite3_column_int(stmt,0) : 0;

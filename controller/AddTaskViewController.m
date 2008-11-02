@@ -255,7 +255,7 @@ enum {
       name,
       due_date ? due_date : @"",
       location_id ? location_id : @"",
-      [NSString stringWithFormat:@"%d", list.iD],
+      [NSString stringWithFormat:@"%d", list.iD_],
       priority,
       estimate ? estimate : @"",
       nil];

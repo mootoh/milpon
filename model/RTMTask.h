@@ -22,7 +22,7 @@
    NSInteger task_series_id;
 }
 
-@property (nonatomic) NSInteger iD;
+@property (nonatomic) NSInteger iD_;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSString *due;

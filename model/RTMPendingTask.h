@@ -20,7 +20,7 @@
    NSString *estimate;
 }
 
-@property (nonatomic) NSInteger iD;
+@property (nonatomic) NSInteger iD_;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *due;
 @property (nonatomic) NSInteger location_id;

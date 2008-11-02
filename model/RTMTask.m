@@ -11,7 +11,7 @@
 
 @implementation RTMTask
 
-@synthesize iD, name, url, due, location, completed, priority, postponed, estimate;
+@synthesize iD_, name, url, due, location, completed, priority, postponed, estimate;
 
 - (id) initWithDB:(RTMDatabase *)ddb withParams:(NSDictionary *)params
 {
@@ -116,7 +116,28 @@
    return tasks;
 }
 
-+ (void) createTaskSeries:(NSDictionary *)task_series inDB:(RTMDatabase *)db {
++ (void) createPendingTaskSeries:(NSDictionary *)task_series inDB:(RTMDatabase *)db
+{
+   sqlite3_stmt *stmt = nil;
+   static const char *sql = "INSERT INTO task_series (name, url, location_id, list_id, dirty) VALUES (?, ?, ?, ?, ?)";
+   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
+      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_bind_text(stmt, 1, [[task_series valueForKey:@"name"] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_text(stmt, 2, [[task_series valueForKey:@"url"] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_int(stmt,  3, [[task_series valueForKey:@"location_id"] integerValue]);
+   sqlite3_bind_int(stmt,  4, [[task_series valueForKey:@"list_id"] integerValue]);
+   int dirty = [task_series valueForKey:@"dirty"] ? [[task_series valueForKey:@"dirty"] intValue] : 0;
+   sqlite3_bind_int(stmt,  5, dirty);
+
+   if (SQLITE_ERROR == sqlite3_step(stmt))
+      @throw [NSString stringWithFormat:@"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_finalize(stmt);
+}
+
++ (void) createTaskSeries:(NSDictionary *)task_series inDB:(RTMDatabase *)db
+{
    sqlite3_stmt *stmt = nil;
    static const char *sql = "INSERT INTO task_series (id, name, url, location_id, list_id, dirty) VALUES (?, ?, ?, ?, ?, ?)";
    if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
@@ -129,6 +150,31 @@
    sqlite3_bind_int(stmt,  5, [[task_series valueForKey:@"list_id"] integerValue]);
    int dirty = [task_series valueForKey:@"dirty"] ? [[task_series valueForKey:@"dirty"] intValue] : 0;
    sqlite3_bind_int(stmt,  6, dirty);
+
+   if (SQLITE_ERROR == sqlite3_step(stmt))
+      @throw [NSString stringWithFormat:@"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_finalize(stmt);
+}
+
++ (void) createPendingTask:(NSDictionary *)task inDB:(RTMDatabase *)db inTaskSeries:(NSInteger)task_series_id {
+   sqlite3_stmt *stmt = nil;
+   static const char *sql = "INSERT INTO task "
+      "(due, completed, priority, postponed, estimate, task_series_id, dirty) "
+      "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
+      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_bind_text(stmt, 1, [[task valueForKey:@"due"] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_text(stmt, 2, [[task valueForKey:@"completed"] UTF8String], -1, SQLITE_TRANSIENT);
+   NSString *pri = [task valueForKey:@"priority"];
+   NSInteger priority = [pri isEqualToString:@"N"] ? 0 : [pri integerValue];
+
+   sqlite3_bind_int(stmt,  3, priority);
+   sqlite3_bind_int(stmt,  4, [[task valueForKey:@"postponed"] integerValue]);
+   sqlite3_bind_text(stmt, 5, [[task valueForKey:@"estimate"] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_int(stmt,  6, task_series_id);
+   sqlite3_bind_int(stmt,  7, 1);
 
    if (SQLITE_ERROR == sqlite3_step(stmt))
       @throw [NSString stringWithFormat:@"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle])];
@@ -309,13 +355,13 @@
 - (void) complete {
    sqlite3_stmt *stmt = nil;
    const char *sql = "UPDATE task SET completed=? where id=?";
-   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
+   if (sqlite3_prepare_v2([db_ handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db_ handle]));
       return;
    }
 
    sqlite3_bind_text(stmt, 1, "1", -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt, 2, iD);
+   sqlite3_bind_int(stmt, 2, iD_);
 
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
       NSLog(@"update 'completed' to DB failed.");
@@ -329,13 +375,13 @@
 - (void) uncomplete {
    sqlite3_stmt *stmt = nil;
    const char *sql = "UPDATE task SET completed=? where id=?";
-   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
+   if (sqlite3_prepare_v2([db_ handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db_ handle]));
       return;
    }
 
    sqlite3_bind_text(stmt, 1, "", -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt, 2, iD);
+   sqlite3_bind_int(stmt, 2, iD_);
 
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
       NSLog(@"update 'completed' to DB failed.");
@@ -516,8 +562,8 @@
       "id, title, text, created, modified "
       "from note "
       "WHERE task_series_id=?";
-   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
-      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
+   if (SQLITE_OK != sqlite3_prepare_v2([db_ handle], sql, -1, &stmt, NULL))
+      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db_ handle])];
 
    sqlite3_bind_int(stmt,  1, task_series_id);
 

@@ -8,11 +8,12 @@
 
 #import "RTMStorable.h"
 
-@interface RTMList : RTMStorable {
+@interface RTMList : RTMStorable
+{
   NSString *name;
 }
 
-@property (nonatomic) NSInteger iD;
+@property (nonatomic) NSInteger iD_;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, readonly) NSArray *tasks;
 

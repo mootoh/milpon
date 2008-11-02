@@ -19,7 +19,7 @@
 
 - (id) initWithDB:(RTMDatabase *)ddb withAuth:aauth {
   if (self = [super init]) {
-    db   = [ddb retain];
+    db_  = [ddb retain];
     auth = [aauth retain];
   }
   return self;
@@ -27,25 +27,25 @@
 
 - (void) dealloc {
   [auth release];
-  [db release];
+  [db_ release];
   [super dealloc];
 }
 
 - (void) replaceLists {
-  [RTMList erase:db];
+  [RTMList erase:db_];
 
 	RTMAPIList *api_list = [[[RTMAPIList alloc] init] autorelease];
 	NSArray *lists = [api_list getList];
 
   NSDictionary *list;
   for (list in lists)
-    [RTMList create:list inDB:db];
+    [RTMList create:list inDB:db_];
 }
 
 - (void) syncLists {
 	RTMAPIList *api_list = [[[RTMAPIList alloc] init] autorelease];
 	NSArray *new_lists = [api_list getList];
-  NSArray *old_lists = [RTMList allLists:db];
+  NSArray *old_lists = [RTMList allLists:db_];
 
   // remove only existing in olds
   RTMList *old;
@@ -53,51 +53,51 @@
   for (old in old_lists) {
     BOOL found = NO;
     for (new in new_lists) {
-      if (old.iD == [[new objectForKey:@"id"] integerValue]) {
+      if (old.iD_ == [[new objectForKey:@"id"] integerValue]) {
         found = YES;
         break;
       }
     }
     if (! found)
-      [RTMList remove:old.iD fromDB:db];
+      [RTMList remove:old.iD_ fromDB:db_];
   }
 
   // insert only existing in news
-  old_lists = [RTMList allLists:db];
+  old_lists = [RTMList allLists:db_];
   for (new in new_lists) {
     BOOL found = NO;
     for (old in old_lists) {
-      if (old.iD == [[new objectForKey:@"id"] integerValue]) {
+      if (old.iD_ == [[new objectForKey:@"id"] integerValue]) {
         found = YES;
         break;
       }
     }
     if (! found)
-      [RTMList create:new inDB:db];
+      [RTMList create:new inDB:db_];
   }
 }
 
 - (void) replaceTasks {
-  [RTMTask erase:db];
+  [RTMTask erase:db_];
 
 	RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
 	NSArray *tasks = [api_task getList];
   if (tasks)
-    [RTMTask updateLastSync:db];
+    [RTMTask updateLastSync:db_];
 
   for (NSDictionary *task_series in tasks)
-    [RTMTask create:task_series inDB:db];
+    [RTMTask create:task_series inDB:db_];
 }
 
 - (void) syncTasks {
 	RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
-  NSString *last_sync = [RTMTask lastSync:db];
+  NSString *last_sync = [RTMTask lastSync:db_];
 
 	NSArray *task_serieses_updated = [api_task getListWithLastSync:last_sync];
   if (!task_serieses_updated || 0 == [task_serieses_updated count])
     return;
 
-  [RTMTask updateLastSync:db];
+  [RTMTask updateLastSync:db_];
 
   /*
    * sync:
@@ -108,13 +108,13 @@
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
   for (NSDictionary *task_series in task_serieses_updated)
-    [RTMTask createOrUpdate:task_series inDB:db];
+    [RTMTask createOrUpdate:task_series inDB:db_];
 
   [pool release];
 }
 
 - (void) uploadPendingTasks:(ProgressView *)progressView {
-  NSArray *pendings = [RTMPendingTask allTasks:db];
+  NSArray *pendings = [RTMPendingTask allTasks:db_];
 	RTMAPITask *api_task = [[RTMAPITask alloc] init];
 
   [progressView progressBegin];
@@ -146,7 +146,7 @@
     // TODO: set notes
 
     // remove from DB
-    [RTMPendingTask remove:task.iD fromDB:db];
+    [RTMPendingTask remove:task.iD_ fromDB:db_];
 
     [progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/pendings.count];
     i++;
@@ -160,10 +160,10 @@
 - (void) syncCompletedTasks {
 	RTMAPITask *api_task = [[RTMAPITask alloc] init];
 
-  NSArray *tasks = [RTMTask completedTasks:db];
+  NSArray *tasks = [RTMTask completedTasks:db_];
   for (NSDictionary *task in tasks) {
     if ([api_task complete:task]) {
-      [RTMTask remove:[[task objectForKey:@"task_id"] integerValue] fromDB:db];
+      [RTMTask remove:[[task objectForKey:@"task_id"] integerValue] fromDB:db_];
     }
   }
 }
