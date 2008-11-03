@@ -274,7 +274,7 @@
   return YES;
 }
 
-- (BOOL) setLocation:(NSInteger)location_id forIDs:(NSDictionary *)ids {
+- (BOOL) setLocation:(NSNumber *)location_id forIDs:(NSDictionary *)ids {
 	RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
 	NSString *timeline = [api createTimeline];
   if (! timeline) return NO;
@@ -285,7 +285,7 @@
     [ids objectForKey:@"task_series_id"],
     [ids objectForKey:@"task_id"],
     timeline,
-    [NSString stringWithFormat:@"%d", location_id],
+    [location_id stringValue],
     nil];
 	NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
@@ -303,7 +303,7 @@
   return YES;
 }
 
-- (BOOL) setPriority:(NSInteger)priority forIDs:(NSDictionary *)ids {
+- (BOOL) setPriority:(NSNumber *)priority forIDs:(NSDictionary *)ids {
 	RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
 	NSString *timeline = [api createTimeline];
   if (! timeline) return NO;
@@ -314,7 +314,7 @@
     [ids objectForKey:@"task_series_id"],
     [ids objectForKey:@"task_id"],
     timeline,
-    [NSString stringWithFormat:@"%d", priority],
+    [priority stringValue],
     nil];
 	NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 

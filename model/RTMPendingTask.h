@@ -8,26 +8,13 @@
 //
 
 #import "RTMStorable.h"
+#import "RTMTask.h"
 
 @class RTMDatabase;
 
-@interface RTMPendingTask : RTMStorable
+@interface RTMPendingTask : RTMTask
 {
-   NSString *name;
-   NSString *due;
-   NSInteger location_id;
-   NSInteger list_id;
-   NSInteger priority;
-   NSString *estimate;
 }
-
-@property (nonatomic) NSInteger iD_;
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *due;
-@property (nonatomic) NSInteger location_id;
-@property (nonatomic) NSInteger list_id;
-@property (nonatomic) NSInteger priority;
-@property (nonatomic, retain) NSString *estimate;
 
 - (id) initWithDB:(RTMDatabase *)ddb withParams:(NSDictionary *)params;
 

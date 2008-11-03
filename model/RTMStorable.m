@@ -10,26 +10,38 @@
 
 @implementation RTMStorable
 
-- (id) initWithDB:(RTMDatabase *)ddb forID:(NSInteger )iid {
+@synthesize iD;
+
+- (id) iniByID:(NSNumber *)iid inDB:(RTMDatabase *)ddb
+{
   if (self = [super init]) {
-    db_ = [ddb retain];
-    iD_ = iid;
+    db = [ddb retain];
+    iD = [iid retain];
   }
   return self;
 }
 
-- (void) dealloc {
-  [db_ release];
+- (void) dealloc
+{
+  [iD release];
+  [db release];
   [super dealloc];
 }
 
-+ (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db {
++ (void) createAtOnline:(NSDictionary *)params inDB:(RTMDatabase *)db
+{
 }
 
-+ (void) erase:(RTMDatabase *)db {
++ (void) createAtOffline:(NSDictionary *)params inDB:(RTMDatabase *)db
+{
 }
 
-+ (void) remove:(NSInteger)iid fromDB:(RTMDatabase *)db {
++ (void) erase:(RTMDatabase *)db
+{
+}
+
++ (void) remove:(NSInteger)iid fromDB:(RTMDatabase *)db
+{
 }
 
 @end

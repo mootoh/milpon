@@ -23,6 +23,8 @@
    NSString *rrule;
    NSArray  *tags;
    NSArray  *notes;
+   NSNumber *list_id;
+   NSNumber *location_id;
 }
 
 @property (nonatomic, retain) NSString *name;
@@ -36,6 +38,8 @@
 @property (nonatomic, retain) NSString *rrule;
 @property (nonatomic, retain) NSArray  *tags;
 @property (nonatomic, retain) NSArray  *notes;
+@property (nonatomic, retain) NSNumber *list_id;
+@property (nonatomic, retain) NSNumber *location_id;
 
 - (void) complete;
 - (void) uncomplete;
@@ -43,7 +47,7 @@
 
 
 + (NSArray *) tasks:(RTMDatabase *)db;
-+ (NSArray *) tasksInList:(NSInteger)list_id inDB:(RTMDatabase *)db;
++ (NSArray *) tasksInList:(NSNumber *)list_id inDB:(RTMDatabase *)db;
 + (NSArray *) completedTasks:(RTMDatabase *)db;
 
 + (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db;

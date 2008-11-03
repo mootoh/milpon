@@ -20,7 +20,7 @@
 - (void) reloadFromDB {
   [tasks release];
   tasks = nil;
-  tasks = [[RTMTask tasksInList:self.list.iD_ inDB:db] retain];
+  tasks = [[RTMTask tasksInList:self.list.iD inDB:db] retain];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style withList:(RTMList *)lst {

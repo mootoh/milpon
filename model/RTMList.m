@@ -12,11 +12,11 @@
 #import "RTMDatabase.h"
 
 @implementation RTMList
-@synthesize iD_, name;
+@synthesize name;
 
-- (id) initWithDB:(RTMDatabase *)ddb withParams:(NSDictionary *)params
+- (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb
 {
-  if (self = [super initWithDB:ddb forID:[[params valueForKey:@"id"] integerValue]]) {
+  if (self = [super initByID:[params valueForKey:@"id"] inDB:ddb]) {
     self.name = [params valueForKey:@"name"];
   }
   return self;
@@ -24,18 +24,18 @@
 
 - (NSArray *)tasks
 {
-  return [RTMTask tasksInList:iD_ inDB:db_];
+  return [RTMTask tasksInList:iD inDB:db];
 }
 
 - (NSInteger) taskCount {
 	sqlite3_stmt *stmt = nil;
 	const static char *sql = "SELECT count() from task JOIN task_series ON task.task_series_id = task_series.id where list_id=? AND task.completed=''";
 
-	if (sqlite3_prepare_v2([db_ handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
-		NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db_ handle]));
+	if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
+		NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
 	}
 	
-	sqlite3_bind_int(stmt, 1, iD_);
+	sqlite3_bind_int(stmt, 1, [iD intValue]);
 	
   NSInteger count = (sqlite3_step(stmt) == SQLITE_ROW) ?
     sqlite3_column_int(stmt,0) : 0;
@@ -59,7 +59,7 @@
 		NSArray *vals = [NSArray arrayWithObjects:i, n, nil];
 		NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 		
-		RTMList *lst = [[[RTMList alloc] initWithDB:db withParams:params] autorelease];
+		RTMList *lst = [[[RTMList alloc] initByParams:params inDB:db] autorelease];
 		[lists addObject:lst];
 	}
 	sqlite3_finalize(stmt);
@@ -94,13 +94,13 @@
 	sqlite3_finalize(stmt);
 }
 
-+ (void) remove:(NSInteger)iid fromDB:(RTMDatabase *)db {
++ (void) remove:(NSNumber *)iid fromDB:(RTMDatabase *)db {
 	sqlite3_stmt *stmt = nil;
 	static char *sql = "delete from list where id=?";
 	if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
 		NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
 	}
-	sqlite3_bind_int(stmt, 1, iid);
+	sqlite3_bind_int(stmt, 1, [iid intValue]);
 
 	if (sqlite3_step(stmt) == SQLITE_ERROR) {
 		NSLog(@"erase all lists from DB failed.");

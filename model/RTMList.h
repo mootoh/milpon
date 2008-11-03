@@ -13,13 +13,12 @@
   NSString *name;
 }
 
-@property (nonatomic) NSInteger iD_;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, readonly) NSArray *tasks;
 
 + (NSArray *) allLists:(RTMDatabase *)db;
 
-- (id) initWithDB:(RTMDatabase *)ddb withParams:(NSDictionary *)params;
+- (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb;
 - (NSInteger) taskCount;
 
 @end

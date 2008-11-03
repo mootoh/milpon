@@ -8,23 +8,28 @@
 
 @class RTMDatabase;
 
-@interface RTMStorable : NSObject {
-   enum {
+@interface RTMStorable : NSObject
+{
+   enum
+   {
       SYNCHRONIZED,
       CREATED_OFFLINE,
       MODIFIED
-   } state_;
+   } state;
 
-   RTMDatabase *db_;
-   NSInteger iD_;
+   RTMDatabase *db;
+   NSNumber *iD;
 }
 
-- (id) initWithDB:(RTMDatabase *)ddb forID:(NSInteger )iid;
+@property (nonatomic, retain) NSNumber *iD;
+
+
+- (id) initByID:(NSNumber *)iid inDB:(RTMDatabase *)ddb;
 
 /**
  * create a entity via online.
  */
-+ (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db;
++ (void) createAtOnline:(NSDictionary *)params inDB:(RTMDatabase *)db;
 /**
  * create a entity at offline.
  */
@@ -36,7 +41,7 @@
 /**
  * remove a entity.
  */
-+ (void) remove:(NSInteger)iid fromDB:(RTMDatabase *)db;
++ (void) remove:(NSNumber *)iid fromDB:(RTMDatabase *)db;
 
 @end
 // vim:set ft=objc:

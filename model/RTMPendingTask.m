@@ -11,15 +11,13 @@
 
 @implementation RTMPendingTask
 
-@synthesize iD_, name, due, location_id, priority, estimate, list_id;
-
 - (id) initWithDB:(RTMDatabase *)ddb withParams:(NSDictionary *)params {
-   if (self = [super initWithDB:ddb forID:[[params valueForKey:@"id"] integerValue]]) {
+   if (self = [super initByID:[params valueForKey:@"id"] inDB:ddb]) {
       self.name         = [params valueForKey:@"name"];
       self.due          = [params valueForKey:@"due"];
-      self.location_id  = [[params valueForKey:@"location_id"] integerValue];
-      self.list_id      = [[params valueForKey:@"list_id"] integerValue];
-      self.priority     = [[params valueForKey:@"priority"] integerValue];
+      self.location_id  = [[NSNumber alloc] initWithInteger:[[params valueForKey:@"location_id"] integerValue]];
+      self.list_id      = [[NSNumber alloc] initWithInteger:[[params valueForKey:@"list_id"] integerValue]];
+      self.priority     = [[NSNumber alloc] initWithInteger:[[params valueForKey:@"priority"] integerValue]];
       self.estimate     = [params valueForKey:@"estimate"];
    }
    return self;

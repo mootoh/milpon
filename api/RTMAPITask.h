@@ -41,8 +41,8 @@
 - (BOOL) delete:(NSString *)task_id inTaskSeries:(NSString *)task_series_id inList:(NSString *)list_id;
 
 - (BOOL) setDue:(NSString *)due forIDs:(NSDictionary *)ids;
-- (BOOL) setLocation:(NSInteger)location_id forIDs:(NSDictionary *)ids;
-- (BOOL) setPriority:(NSInteger)priority forIDs:(NSDictionary *)ids;
+- (BOOL) setLocation:(NSNumber *)location_id forIDs:(NSDictionary *)ids;
+- (BOOL) setPriority:(NSNumber *)priority forIDs:(NSDictionary *)ids;
 - (BOOL) setEstimate:(NSString *)estimate forIDs:(NSDictionary *)ids;
 - (BOOL) complete:(NSDictionary *)ids;
 
