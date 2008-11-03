@@ -137,9 +137,11 @@
       NSMutableDictionary *ids = [NSMutableDictionary dictionaryWithDictionary:task_ret];
       [ids setObject:list_id forKey:@"list_id"];
 
-      //[api_task setUrl:task.url forIDs:ids];
-      if (task.due && ![task.due isEqualToString:@""]) 
-         [api_task setDue:task.due forIDs:ids];
+      if (task.due && ![task.due isEqualToString:@""]) {
+         NSString *due = [task.due stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
+         due = [due stringByReplacingOccurrencesOfString:@" GMT" withString:@"Z"];
+         [api_task setDue:due forIDs:ids];
+      }
 
       if (0 != [task.location_id intValue])
          [api_task setLocation:[task.location_id stringValue] forIDs:ids];

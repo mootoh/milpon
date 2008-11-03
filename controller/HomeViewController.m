@@ -39,13 +39,13 @@ static const int SECTIONS = 4;
    NSDate *now = [NSDate date];
    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
    [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-   [formatter setDateFormat:@"yyyy-MM-dd-HH:mm:ss zzz"];
+   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
 
    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
    NSCalendar *calendar = [NSCalendar currentCalendar];
    NSDateComponents *comps = [calendar components:unitFlags fromDate:now];
 
-   NSDate *today = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d-00:00:00 GMT",
+   NSDate *today = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
           [comps year], [comps month], [comps day]]];
 
    //[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
@@ -55,7 +55,7 @@ static const int SECTIONS = 4;
       if ([due isEqualToString:@""]) continue;
       NSDate *due_date = [formatter dateFromString:due];
       NSDateComponents *comp_due = [calendar components:unitFlags fromDate:due_date];
-      due_date = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d-00:00:00 GMT",
+      due_date = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
                [comp_due year], [comp_due month], [comp_due day]]];
 
       NSTimeInterval interval = [due_date timeIntervalSinceDate:today];

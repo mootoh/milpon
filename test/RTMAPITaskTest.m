@@ -54,7 +54,7 @@
   NSDate *now = [NSDate date];
   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-  [formatter setDateFormat:@"yyyy-MM-ddTHH:mm:ssZ"];
+  [formatter setDateFormat:@"yyyy-MM_ddTHH:mm:ssZ"];
 
   NSString *last_sync = [formatter stringFromDate:now];
 

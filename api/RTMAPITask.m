@@ -31,7 +31,6 @@
    NSMutableArray *task_entries;
    NSMutableDictionary *note;
    NSMutableDictionary *task_series;
-   NSMutableDictionary *rrule;
 }
 @end
 
@@ -80,8 +79,6 @@
    } else if ([elementName isEqualToString:@"rrule"]) {
       NSAssert(task_series, @"should be in taskseries element");
       mode = RRULE;
-      rrule = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
-      [task_series setObject:rrule forKey:@"rrule"];
    } else if ([elementName isEqualToString:@"task"]) {
       NSAssert(task_series, @"should be in taskseries element");
       NSAssert(task_entries, @"should be in taskseries element");
@@ -99,8 +96,6 @@
       notes = nil;
    } else if ([elementName isEqualToString:@"note"]) {
       note = nil;
-   } else if ([elementName isEqualToString:@"rrule"]) {
-      rrule = nil;
    }
 }
 
@@ -117,8 +112,7 @@
          [note setObject:chars forKey:@"text"];
          break;
       case RRULE:
-         NSAssert(rrule, @"should be in rrule");
-         [rrule setObject:chars forKey:@"rule"];
+         [task_series setObject:chars forKey:@"rrule"];
          break;
       default:
          NSAssert(NO, @"should not reach here");

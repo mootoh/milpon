@@ -128,7 +128,7 @@
       NSString *due = nil;
       if (str && *str != '\0') {
          due = [NSString stringWithUTF8String:str];
-         due = [due stringByReplacingOccurrencesOfString:@"T" withString:@"-"];
+         due = [due stringByReplacingOccurrencesOfString:@"T" withString:@"_"];
          due = [due stringByReplacingOccurrencesOfString:@"Z" withString:@" GMT"];      
       } else {
          due = @"";
@@ -162,17 +162,17 @@
    return tasks;
 }
 
-+ (void) remove:(NSInteger)iid fromDB:(RTMDatabase *)db
++ (void) remove:(NSNumber *)iid fromDB:(RTMDatabase *)db
 {
    sqlite3_stmt *stmt = nil;
    char *sql = "delete from task where id=?";
    if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
       NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
    }
-   sqlite3_bind_int(stmt, 1, iid);
+   sqlite3_bind_int(stmt, 1, [iid intValue]);
 
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      NSLog(@"failed in removing %d from task.", iid);
+      NSLog(@"failed in removing %d from task.", [iid intValue]);
       return;
    }
    sqlite3_finalize(stmt);
