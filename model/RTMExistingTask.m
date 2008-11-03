@@ -25,62 +25,27 @@
    [super dealloc];
 }
 
-+ (NSArray *) tasksForSQL:(NSString *)sql inDB:(RTMDatabase *)db
+
++ (NSArray *) tasks:(RTMDatabase *)db
 {
-   NSMutableArray *tasks = [NSMutableArray array];
-   sqlite3_stmt *stmt = nil;
-
-   if (sqlite3_prepare_v2([db handle], [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
-   }
-
-   char *str;
-   while (sqlite3_step(stmt) == SQLITE_ROW) {
-      NSNumber *task_id   = [NSNumber numberWithInt:sqlite3_column_int(stmt, 0)];
-      NSString *name      = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 1)];
-
-      str = (char *)sqlite3_column_text(stmt, 2);
-      NSString *url       = (str && *str != 0) ? [NSString stringWithUTF8String:str] : @"";
-      str = (char *)sqlite3_column_text(stmt, 3);
-      NSString *due = nil;
-      if (str && *str != '\0') {
-         due = [NSString stringWithUTF8String:str];
-         due = [due stringByReplacingOccurrencesOfString:@"T" withString:@"-"];
-         due = [due stringByReplacingOccurrencesOfString:@"Z" withString:@" GMT"];      
-      } else {
-         due = @"";
-      }
-      NSString *location  = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 4)];
-      NSString *priority  = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 5)];
-      NSString *postponed = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 6)];
-      str = (char *)sqlite3_column_text(stmt, 7);
-      NSString *estimate  = (str && *str != '\0') ? [NSString stringWithUTF8String:str] : @"";
-      NSString *task_series_id  = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 8)];
-
-      NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"location_id", @"priority", @"postponed", @"estimate", @"task_series_id", nil];
-      NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, location, priority, postponed, estimate, task_series_id, nil];
-      NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-      RTMExistingTask *task = [[RTMExistingTask alloc] initByParams:params inDB:db];
-      [tasks addObject:task];
-      [task release];
-   }
-   sqlite3_finalize(stmt);
-   return tasks;
+   NSString *sql = [NSString stringWithUTF8String:"SELECT " RTMTASK_SQL_COLUMNS 
+      " from task where completed='' "
+      "ORDER BY due IS NULL ASC, due ASC, priority=0 ASC, priority ASC"];
+   return [RTMTask tasksForSQL:sql inDB:db];
 }
 
-+ (NSArray *) tasks:(RTMDatabase *)db {
-   NSString *sql = [NSString stringWithUTF8String:"SELECT task.id,task_series.name,task_series.url,task.due,task_series.location_id,task.priority,task.postponed,task.estimate, task_series.id from task JOIN task_series ON task.task_series_id=task_series.id where task.completed='' ORDER BY task.due IS NULL ASC, task.due ASC, task.priority=0 ASC, task.priority ASC"];
-   return [RTMExistingTask tasksForSQL:sql inDB:db];
++ (NSArray *) tasksInList:(NSInteger)list_id inDB:(RTMDatabase *)db
+{
+   NSString *sql = [NSString stringWithFormat:@"SELECT %s from task "
+      "where completed='' AND list_id=%d "
+      "ORDER BY priority=0 ASC,priority ASC, due IS NULL ASC, due ASC",
+      RTMTASK_SQL_COLUMNS, list_id];
+
+   return [RTMTask tasksForSQL:sql inDB:db];
 }
 
-+ (NSArray *) tasksInList:(NSInteger)list_id inDB:(RTMDatabase *)db {
-   NSString *sql = [NSString stringWithFormat:@"SELECT task.id,task_series.name,task_series.url,task.due,task_series.location_id,task.priority,task.postponed,task.estimate, task_series.id from task JOIN task_series ON task.task_series_id=task_series.id where task.completed='' AND list_id=%d ORDER BY task.priority=0 ASC,task.priority ASC, task.due IS NULL ASC, task.due ASC", list_id];
-
-   //sqlite3_bind_int(stmt, 1, list_id);
-   return [RTMExistingTask tasksForSQL:sql inDB:db];
-}
-
-+ (NSArray *) completedTasks:(RTMDatabase *)db {
++ (NSArray *) completedTasks:(RTMDatabase *)db
+{
    NSString *sql = [NSString stringWithUTF8String:"SELECT task.id,task_series.id,task_series.list_id from task JOIN task_series ON task.task_series_id=task_series.id where task.completed='1'"];
 
    NSMutableArray *tasks = [NSMutableArray array];
@@ -124,27 +89,6 @@
    sqlite3_finalize(stmt);
 }
 
-+ (void) createTaskSeries:(NSDictionary *)task_series inDB:(RTMDatabase *)db
-{
-   sqlite3_stmt *stmt = nil;
-   static const char *sql = "INSERT INTO task_series (id, name, url, location_id, list_id, dirty) VALUES (?, ?, ?, ?, ?, ?)";
-   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
-      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
-
-   sqlite3_bind_int(stmt,  1, [[task_series valueForKey:@"id"] integerValue]);
-   sqlite3_bind_text(stmt, 2, [[task_series valueForKey:@"name"] UTF8String], -1, SQLITE_TRANSIENT);
-   sqlite3_bind_text(stmt, 3, [[task_series valueForKey:@"url"] UTF8String], -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt,  4, [[task_series valueForKey:@"location_id"] integerValue]);
-   sqlite3_bind_int(stmt,  5, [[task_series valueForKey:@"list_id"] integerValue]);
-   int dirty = [task_series valueForKey:@"dirty"] ? [[task_series valueForKey:@"dirty"] intValue] : 0;
-   sqlite3_bind_int(stmt,  6, dirty);
-
-   if (SQLITE_ERROR == sqlite3_step(stmt))
-      @throw [NSString stringWithFormat:@"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle])];
-
-   sqlite3_finalize(stmt);
-}
-
 + (void) createPendingTask:(NSDictionary *)task inDB:(RTMDatabase *)db inTaskSeries:(NSInteger)task_series_id {
    sqlite3_stmt *stmt = nil;
    static const char *sql = "INSERT INTO task "
@@ -170,27 +114,43 @@
    sqlite3_finalize(stmt);
 }
 
-+ (void) createTask:(NSDictionary *)task inDB:(RTMDatabase *)db inTaskSeries:(NSInteger)task_series_id {
++ (void) createTask:(NSDictionary *)task inTaskSeries:(NSDictionary *)task_series inDB:(RTMDatabase *)db
+{
    sqlite3_stmt *stmt = nil;
    static const char *sql = "INSERT INTO task "
-      "(id, due, completed, priority, postponed, estimate, task_series_id) "
-      "VALUES (?, ?, ?, ?, ?, ?, ?)";
-   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
-      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
+      "(id, due, completed, priority,   postponed, estimate, dirty, "  // task
+      "task_series_id, name, url, location_id, list_id, rrule) " // TaskSeries
+      "VALUES (?,?,?,?,  ?,?,?,?, ?,?,?,?, ?)";
+   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL)) {
+      NSLog(@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle]));
+      @throw @"failed in createTask"; // TODO
+      return;
+   }
 
    sqlite3_bind_int(stmt,  1, [[task valueForKey:@"id"] integerValue]);
    sqlite3_bind_text(stmt, 2, [[task valueForKey:@"due"] UTF8String], -1, SQLITE_TRANSIENT);
    sqlite3_bind_text(stmt, 3, [[task valueForKey:@"completed"] UTF8String], -1, SQLITE_TRANSIENT);
+
    NSString *pri = [task valueForKey:@"priority"];
    NSInteger priority = [pri isEqualToString:@"N"] ? 0 : [pri integerValue];
-
    sqlite3_bind_int(stmt,  4, priority);
+
    sqlite3_bind_int(stmt,  5, [[task valueForKey:@"postponed"] integerValue]);
    sqlite3_bind_text(stmt, 6, [[task valueForKey:@"estimate"] UTF8String], -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt,  7, task_series_id);
+   sqlite3_bind_int(stmt,  7, SYNCHRONIZED); 
 
-   if (SQLITE_ERROR == sqlite3_step(stmt))
-      @throw [NSString stringWithFormat:@"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle])];
+   sqlite3_bind_int(stmt,  8, [[task_series valueForKey:@"id"] integerValue]);
+   sqlite3_bind_text(stmt, 9, [[task_series valueForKey:@"name"] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_text(stmt, 10, [[task_series valueForKey:@"url"] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_int(stmt, 11, [[task_series valueForKey:@"location_id"] integerValue]);
+   sqlite3_bind_int(stmt, 12, [[task_series valueForKey:@"list_id"] integerValue]);
+   sqlite3_bind_text(stmt, 13, [[task_series valueForKey:@"rrule"] UTF8String], -1, SQLITE_TRANSIENT);
+
+   if (SQLITE_ERROR == sqlite3_step(stmt)) {
+      NSLog(@"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle]));
+      @throw @"failed in inserting into the database";
+      return;
+   }
 
    sqlite3_finalize(stmt);
 }
@@ -235,29 +195,21 @@
 
 + (void) create:(NSDictionary *)task_series inDB:(RTMDatabase *)db
 {
-   // TaskSeries
-   [RTMExistingTask createTaskSeries:task_series inDB:db];
-
    // Tasks
-   NSInteger task_series_id = [[task_series valueForKey:@"id"] integerValue];
-
    NSArray *tasks = [task_series valueForKey:@"tasks"];
    for (NSDictionary *task in tasks) {
       if ([[task valueForKey:@"completed"] isEqualToString:@"1"] || 
             [[task valueForKey:@"deleted"] isEqualToString:@"1"])
          continue;
-      [RTMExistingTask createTask:task inDB:db inTaskSeries:task_series_id];
+      [RTMExistingTask createTask:task inTaskSeries:task_series inDB:db];
    }
+
+   NSInteger task_series_id = [[task_series valueForKey:@"id"] integerValue];
 
    // Notes
    NSArray *notes = [task_series valueForKey:@"notes"];
    for (NSDictionary *note in notes)
       [RTMExistingTask createNote:note inDB:db inTaskSeries:task_series_id];
-
-   // RRules
-   NSDictionary *rrule = [task_series valueForKey:@"rrule"];
-   if (rrule)
-      [RTMExistingTask createRRule:rrule inDB:db inTaskSeries:task_series_id];
 
    // Tag
    NSDictionary *tags = [task_series valueForKey:@"tags"];
@@ -287,57 +239,6 @@
    [RTMExistingTask erase:db from:@"note"];
    [RTMExistingTask erase:db from:@"tag"];
    [RTMExistingTask erase:db from:@"location"];
-}
-
-/*
- * TODO: should call finalize on error.
- */
-+ (NSString *) lastSync:(RTMDatabase *)db {
-   sqlite3_stmt *stmt = nil;
-   const char *sql = "select * from last_sync";
-   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
-      return nil;
-   }
-   if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      NSLog(@"get 'last sync' from DB failed.");
-      return nil;
-   }
-
-   char *ls = (char *)sqlite3_column_text(stmt, 0);
-   if (!ls) return nil;
-   NSString *result = [NSString stringWithUTF8String:ls];
-
-   sqlite3_finalize(stmt);
-
-   return result;
-}
-
-+ (void) updateLastSync:(RTMDatabase *)db {
-   NSDate *now = [NSDate date];
-   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-   [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss"];
-   NSString *last_sync = [formatter stringFromDate:now];
-   last_sync = [last_sync stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
-   last_sync = [last_sync stringByAppendingString:@"Z"];
-
-   sqlite3_stmt *stmt = nil;
-   const char *sql = "UPDATE last_sync SET sync_date=?";
-   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
-      return;
-   }
-
-   sqlite3_bind_text(stmt, 1, [last_sync UTF8String], -1, SQLITE_TRANSIENT);
-
-   if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      NSLog(@"update 'last sync' to DB failed.");
-      return;
-   }
-
-   sqlite3_finalize(stmt);
 }
 
 - (void) complete {
@@ -514,7 +415,7 @@
       if ([RTMExistingTask taskExist:[task valueForKey:@"id"] inDB:db]) {
          [RTMExistingTask updateTask:task inDB:db inTaskSeries:task_series_id];
       } else {
-         [RTMExistingTask createTask:task inDB:db inTaskSeries:task_series_id];
+         [RTMExistingTask createTask:task inTaskSeries:task_series inDB:db];
       }
    }
 
@@ -573,27 +474,6 @@
    sqlite3_finalize(stmt);
 
    return ret;
-}
-
-+ (void) createPendingTask:(NSDictionary *)params inDB:(RTMDatabase *)db
-{
-   NSMutableDictionary *task_series = [NSMutableDictionary dictionary];
-
-   // set attributes here for penting task.
-   [task_series setObject:[params valueForKey:@"name"] forKey:@"name"];
-   [task_series setObject:[params valueForKey:@"location_id"] forKey:@"location_id"];
-   [task_series setObject:[params valueForKey:@"list_id"] forKey:@"list_id"];
-   [task_series setObject:[NSNumber numberWithInteger:1] forKey:@"dirty"];
-
-   NSMutableDictionary *task = [NSMutableDictionary dictionary];
-   [task setObject:[params valueForKey:@"due"] forKey:@"due"];
-   [task setObject:[params valueForKey:@"priority"] forKey:@"priority"];
-   [task setObject:[params valueForKey:@"estimate"] forKey:@"estimate"];
-   [task setObject:[NSNumber numberWithInteger:1] forKey:@"dirty"];
-   NSArray *tasks = [NSArray arrayWithObject:task];
-   [task_series setObject:tasks forKey:@"tasks"];
-
-   [RTMExistingTask create:task_series inDB:db];
 }
 
 @end

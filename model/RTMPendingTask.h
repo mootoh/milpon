@@ -16,7 +16,7 @@
 {
 }
 
-+ (void) createTask:(NSDictionary *)params inDB:(RTMDatabase *)db;
++ (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db;
 + (NSArray *) tasks:(RTMDatabase *)db;
 
 @end

@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, readonly) NSArray *tasks;
 
++ (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db;
 + (NSArray *) allLists:(RTMDatabase *)db;
 
 - (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb;

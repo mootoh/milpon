@@ -8,6 +8,8 @@
 
 #import "RTMStorable.h"
 
+#define RTMTASK_SQL_COLUMNS "id, name, url, due, priority, postponed, estimate, rrule, location_id, dirty, task_series_id"
+
 @class RTMDatabase;
 
 @interface RTMTask : RTMStorable
@@ -51,7 +53,6 @@
 + (NSArray *) completedTasks:(RTMDatabase *)db;
 
 + (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db;
-+ (void) createPendingTask:(NSDictionary *)params inDB:(RTMDatabase *)db;
 
 // TODO: lastSync should be moved to somewhere not here.
 + (NSString *) lastSync:(RTMDatabase *)db;

@@ -325,6 +325,8 @@
 		86E01EF00E7E5D42001945E7 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				1D3623240D0F684500981E51 /* AppDelegate.h */,
+				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				B9C85BED0EA811F000359332 /* LocationSelectViewController.h */,
 				B9C85BEE0EA811F000359332 /* LocationSelectViewController.m */,
 				28C286DF0D94DF7D0034E888 /* ListViewController.h */,
@@ -337,8 +339,6 @@
 				86DB9B810E97176F00DA4D16 /* MenuViewController.m */,
 				86DB9B880E9717D900DA4D16 /* HomeViewController.h */,
 				86DB9B890E9717D900DA4D16 /* HomeViewController.m */,
-				1D3623240D0F684500981E51 /* AppDelegate.h */,
-				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				B9E5ED030E90BA2800C3DE94 /* AddTaskViewController.h */,
 				B9E5ED040E90BA2800C3DE94 /* AddTaskViewController.m */,
 				861382D10EA770740040B0F6 /* ListSelectViewController.h */,

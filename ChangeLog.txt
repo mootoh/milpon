@@ -1,3 +1,8 @@
+2008-11-03 mootoh
+	* API:
+		API に渡す引数は NSString になる。
+
+
 2008-10-30 mootoh
 	* RTMStorage:
 		けっきょく、 Web からとってきた情報も DB に入っている情報も、単なる

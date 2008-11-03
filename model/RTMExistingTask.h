@@ -19,11 +19,8 @@
 + (NSArray *) tasksInList:(NSInteger)list_id inDB:(RTMDatabase *)db;
 + (NSArray *) completedTasks:(RTMDatabase *)db;
 
-+ (NSString *) lastSync:(RTMDatabase *)db;
-+ (void) updateLastSync:(RTMDatabase *)db;
-
++ (void) create:(NSDictionary *)task_series inDB:(RTMDatabase *)db;
 + (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db;
-+ (void) createPendingTask:(NSDictionary *)params inDB:(RTMDatabase *)db;
 
 - (void) complete;
 - (void) uncomplete;

@@ -281,7 +281,7 @@ enum {
       nil];
    NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   [RTMTask createPendingTask:params inDB:db];
+   [RTMTask createAtOffline:params inDB:db];
 
    [self close];
 }

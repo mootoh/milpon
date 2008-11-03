@@ -1,7 +1,6 @@
 2008-11-03
 	- AddTask View を table じゃなくする
 
-
 2008-11-02
 	- use NSNumber instead of NSInteger
 	- API キーをどう隠すか

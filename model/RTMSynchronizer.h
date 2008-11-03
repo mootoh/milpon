@@ -11,7 +11,7 @@
 @class ProgressView;
 
 @interface RTMSynchronizer : NSObject {
-  RTMDatabase *db_;
+  RTMDatabase *db;
   RTMAuth *auth;
 }
 
