@@ -18,3 +18,4 @@
 @property (nonatomic, retain) AddTaskViewController *parent;
 
 @end
+// vim:set ft=objc:

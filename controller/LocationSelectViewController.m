@@ -22,7 +22,6 @@
       AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
       RTMDatabase *db = app.db;
       lists = [[RTMLocation allLists:db] retain];
-      
     }
     return self;
 }
@@ -123,6 +122,4 @@
     [super dealloc];
 }
 
-
 @end
-

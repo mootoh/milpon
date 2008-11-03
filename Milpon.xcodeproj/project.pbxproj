@@ -20,6 +20,7 @@
 		861534840EA24E0900AB3B87 /* RTMTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 861534830EA24E0900AB3B87 /* RTMTaskCell.m */; };
 		862C14AB0EAB805600AC8FFE /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C14A90EAB805600AC8FFE /* checkBox.png */; };
 		862C14AC0EAB805600AC8FFE /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 862C14AA0EAB805600AC8FFE /* checkBoxChecked.png */; };
+		8656F00E0EBEC40000230290 /* RTMExistingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 8656F00D0EBEC40000230290 /* RTMExistingTask.m */; };
 		867187270EAC7B3B000A9133 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867187260EAC7B3B000A9133 /* ProgressView.m */; };
 		867187C60EAC93C1000A9133 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867187C50EAC93C1000A9133 /* ConfigViewController.m */; };
 		867907AE0E96729600A75576 /* UpdateTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F41FBF0E813AA6006D98F4 /* UpdateTask.m */; };
@@ -102,6 +103,8 @@
 		861534830EA24E0900AB3B87 /* RTMTaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMTaskCell.m; path = controller/RTMTaskCell.m; sourceTree = "<group>"; };
 		862C14A90EAB805600AC8FFE /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBox.png; path = resource/checkBox.png; sourceTree = "<group>"; };
 		862C14AA0EAB805600AC8FFE /* checkBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBoxChecked.png; path = resource/checkBoxChecked.png; sourceTree = "<group>"; };
+		8656F00C0EBEC40000230290 /* RTMExistingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMExistingTask.h; sourceTree = "<group>"; };
+		8656F00D0EBEC40000230290 /* RTMExistingTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMExistingTask.m; sourceTree = "<group>"; };
 		867187250EAC7B3B000A9133 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgressView.h; path = view/ProgressView.h; sourceTree = "<group>"; };
 		867187260EAC7B3B000A9133 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProgressView.m; path = view/ProgressView.m; sourceTree = "<group>"; };
 		867187C40EAC93C1000A9133 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
@@ -375,6 +378,8 @@
 		B98D23B80E6783DD0006D6AF /* model */ = {
 			isa = PBXGroup;
 			children = (
+				8656F00C0EBEC40000230290 /* RTMExistingTask.h */,
+				8656F00D0EBEC40000230290 /* RTMExistingTask.m */,
 				B98036BD0E71363B000961EE /* RTMAuth.h */,
 				B98036BE0E71363B000961EE /* RTMAuth.m */,
 				B98D23CB0E67875D0006D6AF /* RTMDatabase.h */,
@@ -601,6 +606,7 @@
 				86B9BBE90EABFC2A00210FCB /* AuthWebViewController.m in Sources */,
 				867187270EAC7B3B000A9133 /* ProgressView.m in Sources */,
 				867187C60EAC93C1000A9133 /* ConfigViewController.m in Sources */,
+				8656F00E0EBEC40000230290 /* RTMExistingTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

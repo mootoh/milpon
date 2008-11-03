@@ -65,7 +65,7 @@ static NSArray *s_priorityColors;
     withFont:[UIFont systemFontOfSize:14]
     lineBreakMode:UILineBreakModeTailTruncation];
 
-  switch (task.priority) {
+  switch ([task.priority intValue]) {
     case 0:
       CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 0.0);
       break;
