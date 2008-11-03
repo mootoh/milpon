@@ -115,7 +115,7 @@
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    for (NSDictionary *task_series in task_serieses_updated)
-      [RTMTask createOrUpdate:task_series inDB:db];
+      [RTMExistingTask createOrUpdate:task_series inDB:db];
 
    [pool release];
 }
@@ -141,10 +141,10 @@
       if (task.due && ![task.due isEqualToString:@""]) 
          [api_task setDue:task.due forIDs:ids];
 
-      if (0 != task.location_id)
+      if (0 != [task.location_id intValue])
          [api_task setLocation:[task.location_id stringValue] forIDs:ids];
 
-      if (0 != task.priority)
+      if (0 != [task.priority intValue])
          [api_task setPriority:[task.priority stringValue] forIDs:ids];
 
       if (task.estimate && ![task.estimate isEqualToString:@""]) 

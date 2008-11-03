@@ -16,5 +16,7 @@
 {
 }
 
++ (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db;
+
 @end
 // set vim:ft=objc

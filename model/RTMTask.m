@@ -19,6 +19,7 @@
       self.priority     = [params valueForKey:@"priority"];
       self.postponed    = [params valueForKey:@"postponed"];
       self.estimate     = [params valueForKey:@"estimate"];
+      self.list_id      = [params valueForKey:@"list_id"];
    }
    return self;
 }
@@ -87,6 +88,12 @@
    return [RTMTask tasksForSQL:sql inDB:db];
 }
 
++ (NSArray *) completedTasks:(RTMDatabase *)db
+{
+   NSString *sql = [NSString stringWithUTF8String:"SELECT " RTMTASK_SQL_COLUMNS 
+      " from task where completed='1' AND dirty!=0"];
+   return [RTMTask tasksForSQL:sql inDB:db];
+}
 
 
 + (void) createAtOnline:(NSDictionary *)params inDB:(RTMDatabase *)db
@@ -131,12 +138,13 @@
       str = (char *)sqlite3_column_text(stmt, 7);
       NSString *rrule     = (str && *str != '\0') ? [NSString stringWithUTF8String:str] : @"";
       NSNumber *location_id = [NSNumber numberWithInt:sqlite3_column_int(stmt, 8)];
-      NSNumber *dirty     = [NSNumber numberWithInt:sqlite3_column_int(stmt, 9)];
-      NSNumber *task_series_id  = [NSNumber numberWithInt:sqlite3_column_int(stmt, 10)];
+      NSNumber *list_id   = [NSNumber numberWithInt:sqlite3_column_int(stmt, 9)];
+      NSNumber *dirty     = [NSNumber numberWithInt:sqlite3_column_int(stmt, 10)];
+      NSNumber *task_series_id  = [NSNumber numberWithInt:sqlite3_column_int(stmt, 11)];
 
 
-      NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority", @"postponed", @"estimate", @"rrule", @"location_id", @"dirty", @"task_series_id", nil];
-      NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, dirty, task_series_id, nil];
+      NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority", @"postponed", @"estimate", @"rrule", @"location_id", @"list_id", @"dirty", @"task_series_id", nil];
+      NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, dirty, task_series_id, nil];
       NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
       RTMTask *task;
@@ -166,6 +174,28 @@
       return;
    }
    sqlite3_finalize(stmt);
+}
+
++ (void) erase:(RTMDatabase *)db from:(NSString *)table
+{
+   sqlite3_stmt *stmt = nil;
+   const char *sql = [[NSString stringWithFormat:@"delete from %@", table] UTF8String];
+   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
+   }
+   if (sqlite3_step(stmt) == SQLITE_ERROR) {
+      NSLog(@"erase all %@ from DB failed.", table);
+      return;
+   }
+   sqlite3_finalize(stmt);
+}
+
++ (void) erase:(RTMDatabase *)db
+{
+   [RTMExistingTask erase:db from:@"task"];
+   [RTMExistingTask erase:db from:@"note"];
+   [RTMExistingTask erase:db from:@"tag"];
+   [RTMExistingTask erase:db from:@"location"];
 }
 
 
