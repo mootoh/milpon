@@ -99,8 +99,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		861382D10EA770740040B0F6 /* ListSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListSelectViewController.h; sourceTree = "<group>"; };
 		861382D20EA770740040B0F6 /* ListSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListSelectViewController.m; sourceTree = "<group>"; };
-		861534820EA24E0900AB3B87 /* RTMTaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMTaskCell.h; path = controller/RTMTaskCell.h; sourceTree = "<group>"; };
-		861534830EA24E0900AB3B87 /* RTMTaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMTaskCell.m; path = controller/RTMTaskCell.m; sourceTree = "<group>"; };
+		861534820EA24E0900AB3B87 /* RTMTaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMTaskCell.h; path = view/RTMTaskCell.h; sourceTree = "<group>"; };
+		861534830EA24E0900AB3B87 /* RTMTaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMTaskCell.m; path = view/RTMTaskCell.m; sourceTree = "<group>"; };
 		862C14A90EAB805600AC8FFE /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBox.png; path = resource/checkBox.png; sourceTree = "<group>"; };
 		862C14AA0EAB805600AC8FFE /* checkBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBoxChecked.png; path = resource/checkBoxChecked.png; sourceTree = "<group>"; };
 		8656F00C0EBEC40000230290 /* RTMExistingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMExistingTask.h; sourceTree = "<group>"; };
@@ -115,8 +115,8 @@
 		8691FBD60E9D11F0003BE718 /* RTMStorable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMStorable.h; sourceTree = "<group>"; };
 		8691FBD70E9D11F0003BE718 /* RTMStorable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMStorable.m; sourceTree = "<group>"; };
 		86A07E9A0EA61B2300446784 /* RTMPendingTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMPendingTaskTest.m; sourceTree = "<group>"; };
-		86A081C20EA6B74300446784 /* TaskEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskEditCell.h; path = controller/TaskEditCell.h; sourceTree = "<group>"; };
-		86A081C30EA6B74300446784 /* TaskEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskEditCell.m; path = controller/TaskEditCell.m; sourceTree = "<group>"; };
+		86A081C20EA6B74300446784 /* TaskEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskEditCell.h; path = view/TaskEditCell.h; sourceTree = "<group>"; };
+		86A081C30EA6B74300446784 /* TaskEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskEditCell.m; path = view/TaskEditCell.m; sourceTree = "<group>"; };
 		86AF29510EB89840004EDEFE /* PrivateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateInfo.h; sourceTree = "<group>"; };
 		86B8FB540EAF0D4D006DCB67 /* ReloadableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReloadableTableViewController.h; sourceTree = "<group>"; };
 		86B9BBE70EABFC2A00210FCB /* AuthWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthWebViewController.h; sourceTree = "<group>"; };
