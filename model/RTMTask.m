@@ -23,10 +23,17 @@
    return self;
 }
 
+- (BOOL) is_completed {
+   return (completed && ![completed isEqualToString:@""]);
+}
+
+
 + (NSArray *) tasks:(RTMDatabase *)db
 {
-   NSArray * tsks = [RTMExistingTask tasks:db];
-   return [tsks arrayByAddingObjectsFromArray:[RTMPendingTask tasks:db]];
+   NSString *sql = [NSString stringWithUTF8String:"SELECT " RTMTASK_SQL_COLUMNS 
+      " from task where completed='' OR completed is NULL"
+      " ORDER BY due IS NULL ASC, due ASC, priority=0 ASC, priority ASC"];
+   return [RTMTask tasksForSQL:sql inDB:db];
 }
 
 + (void) createAtOnline:(NSDictionary *)params inDB:(RTMDatabase *)db
@@ -36,22 +43,7 @@
 
 + (void) createAtOffline:(NSDictionary *)params inDB:(RTMDatabase *)db
 {
-   NSMutableDictionary *task_series = [NSMutableDictionary dictionary];
-
-   // set attributes here for penting task.
-   [task_series setObject:[params valueForKey:@"name"] forKey:@"name"];
-   [task_series setObject:[params valueForKey:@"location_id"] forKey:@"location_id"];
-   [task_series setObject:[params valueForKey:@"list_id"] forKey:@"list_id"];
-
-   NSMutableDictionary *task = [NSMutableDictionary dictionary];
-   [task setObject:[params valueForKey:@"due"] forKey:@"due"];
-   [task setObject:[params valueForKey:@"priority"] forKey:@"priority"];
-   [task setObject:[params valueForKey:@"estimate"] forKey:@"estimate"];
-   [task setObject:[NSNumber numberWithInteger:1] forKey:@"dirty"];
-   NSArray *tasks = [NSArray arrayWithObject:task];
-   [task_series setObject:tasks forKey:@"tasks"];
-
-   [RTMPendingTask create:task_series inDB:db];
+   [RTMPendingTask create:params inDB:db];
 }
 
 + (NSArray *) tasksForSQL:(NSString *)sql inDB:(RTMDatabase *)db

@@ -117,7 +117,7 @@
 + (void) createTask:(NSDictionary *)task inTaskSeries:(NSDictionary *)task_series inDB:(RTMDatabase *)db
 {
    sqlite3_stmt *stmt = nil;
-   static const char *sql = "INSERT INTO task "
+   const char *sql = "INSERT INTO task "
       "(id, due, completed, priority,   postponed, estimate, dirty, "  // task
       "task_series_id, name, url, location_id, list_id, rrule) " // TaskSeries
       "VALUES (?,?,?,?,  ?,?,?,?, ?,?,?,?, ?)";
@@ -169,23 +169,6 @@
    sqlite3_bind_text(stmt, 4, [[note valueForKey:@"created"] UTF8String], -1, SQLITE_TRANSIENT);
    sqlite3_bind_text(stmt, 5, [[note valueForKey:@"modified"] UTF8String], -1, SQLITE_TRANSIENT);
    sqlite3_bind_int(stmt,  6, task_series_id);
-
-   if (SQLITE_ERROR == sqlite3_step(stmt))
-      @throw [NSString stringWithFormat:@"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle])];
-
-   sqlite3_finalize(stmt);
-}
-
-+ (void) createRRule:(NSDictionary *)rrule inDB:(RTMDatabase *)db inTaskSeries:(NSInteger)task_series_id
-{
-   sqlite3_stmt *stmt = nil;
-   static const char *sql = "INSERT INTO rrule (every, rule, task_series_id) VALUES (?, ?, ?)";
-   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
-      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
-
-   sqlite3_bind_text(stmt, 1, [[rrule valueForKey:@"every"] UTF8String], -1, SQLITE_TRANSIENT);
-   sqlite3_bind_text(stmt, 2, [[rrule valueForKey:@"rule"] UTF8String], -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt,  3, task_series_id);
 
    if (SQLITE_ERROR == sqlite3_step(stmt))
       @throw [NSString stringWithFormat:@"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle])];
@@ -280,10 +263,6 @@
    sqlite3_finalize(stmt);
 
    completed = @"";
-}
-
-- (BOOL) is_completed {
-   return (completed && ![completed isEqualToString:@""]);
 }
 
 // TODO: should also remove from task_series
@@ -429,19 +408,8 @@
       }
    }
 
-   // RRules
    // TODO
-#if 0
-   NSDictionary *rrule = [task_series valueForKey:@"rrule"];
-   if (rrule)
-      if ([RTMExistingTask rruleExist:[task valueForKey:@"id"]]) {
-         [RTMExistingTask updateNote:note inDB:db inTaskSeries:task_series_id];
-      } else {
-         [RTMExistingTask createNote:note inDB:db inTaskSeries:task_series_id];
-      }
-}
-#endif // 0
-// Tag
+   // Tag
 }
 
 - (NSArray *) notes
