@@ -10,9 +10,10 @@
 
 @class AddTaskViewController;
 
-@interface DueDatePickViewController : UIViewController {
-  UIDatePicker *picker;
-  AddTaskViewController *parent;
+@interface DueDatePickViewController : UIViewController
+{
+   UIDatePicker *picker;
+   AddTaskViewController *parent;
 }
 
 @property (nonatomic, retain) AddTaskViewController *parent;

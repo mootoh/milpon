@@ -14,149 +14,159 @@
 
 @implementation ListViewController
 
-- (id) initWithStyle:(UITableViewStyle)style {
-  if (self = [super initWithStyle:style]) {
-    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    lists = [[RTMList allLists:app.db] retain];
-    self.title = @"List";
-  }
-  return self;
-}
-  
-- (void)viewDidLoad {
-	// Add the following line if you want the list to be editable
-	// self.navigationItem.leftBarButtonItem = self.editButtonItem;
-	
-  // AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-	// app.currentNavigationViewController = [self navigationController];
-	
+- (id) initWithStyle:(UITableViewStyle)style
+{
+   if (self = [super initWithStyle:style]) {
+      AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+      lists = [[RTMList allLists:app.db] retain];
+      self.title = @"List";
+   }
+   return self;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+- (void)viewDidLoad
+{
+   // Add the following line if you want the list to be editable
+   // self.navigationItem.leftBarButtonItem = self.editButtonItem;
+
+   // AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+   // app.currentNavigationViewController = [self navigationController];
+
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return lists.count;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+   return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *MyIdentifier = @"TaskList";
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+   return lists.count;
+}
 
-  UILabel *task_count = nil;
-	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   static NSString *MyIdentifier = @"TaskList";
 
-    // task count label
-    task_count = [[[UILabel alloc] initWithFrame:
-      CGRectMake(cell.frame.size.width-60, 11.0, 30.0, 22.0)] autorelease];
-    task_count.tag = 1;
-    task_count.font = [UIFont systemFontOfSize:16.0];
-    task_count.textAlignment = UITextAlignmentCenter;
-    task_count.backgroundColor = [UIColor colorWithRed:0.0078 green:0.421 blue:0.921 alpha:1.0];
-    task_count.textColor = [UIColor whiteColor];
-    task_count.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
-    [cell addSubview:task_count];
-	} else {
-    task_count = (UILabel *)[cell.contentView viewWithTag:1];
-  }
-	
-	// Set up the cell
-  RTMList *lst = [lists objectAtIndex:indexPath.row];
-  cell.text = lst.name;
+   UILabel *task_count = nil;
 
-	task_count.text = [NSString stringWithFormat:@"%d", [lst taskCount]];
-  [cell setNeedsDisplay];
-	return cell;
+   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+   if (cell == nil) {
+      cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
+      cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+      // task count label
+      task_count = [[[UILabel alloc] initWithFrame:
+         CGRectMake(cell.frame.size.width-60, 11.0, 30.0, 22.0)] autorelease];
+      task_count.tag = 1;
+      task_count.font = [UIFont systemFontOfSize:16.0];
+      task_count.textAlignment = UITextAlignmentCenter;
+      task_count.backgroundColor = [UIColor colorWithRed:0.0078 green:0.421 blue:0.921 alpha:1.0];
+      task_count.textColor = [UIColor whiteColor];
+      task_count.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
+      [cell addSubview:task_count];
+   } else {
+      task_count = (UILabel *)[cell.contentView viewWithTag:1];
+   }
+
+   // Set up the cell
+   RTMList *lst = [lists objectAtIndex:indexPath.row];
+   cell.text = lst.name;
+
+   task_count.text = [NSString stringWithFormat:@"%d", [lst taskCount]];
+   [cell setNeedsDisplay];
+   return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  RTMList *lst = [lists objectAtIndex:indexPath.row];
+   RTMList *lst = [lists objectAtIndex:indexPath.row];
 
-  // Navigation logic
-  TaskListViewController *ctrl = [[TaskListViewController alloc] initWithStyle:UITableViewStylePlain withList:lst];
-  
-  // Push the detail view controller
-  [[self navigationController] pushViewController:ctrl animated:YES];
-  [ctrl release];
+   // Navigation logic
+   TaskListViewController *ctrl = [[TaskListViewController alloc] initWithStyle:UITableViewStylePlain withList:lst];
+
+   // Push the detail view controller
+   [[self navigationController] pushViewController:ctrl animated:YES];
+   [ctrl release];
 }
 
 /*
- Override if you support editing the list
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- 
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
- }	
- if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }	
- }
- */
+   Override if you support editing the list
+   - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+   if (editingStyle == UITableViewCellEditingStyleDelete) {
+// Delete the row from the data source
+[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+}	
+if (editingStyle == UITableViewCellEditingStyleInsert) {
+// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+}	
+}
+*/
 
 
 /*
- Override if you support conditional editing of the list
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+   Override if you support conditional editing of the list
+   - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+// Return NO if you do not want the specified item to be editable.
+return YES;
+}
+*/
 
 
 /*
- Override if you support rearranging the list
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
+   Override if you support rearranging the list
+   - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+   }
+   */
 
 
 /*
- Override if you support conditional rearranging of the list
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */ 
+   Override if you support conditional rearranging of the list
+   - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+// Return NO if you do not want the item to be re-orderable.
+return YES;
+}
+*/ 
 
 
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
+- (void)viewWillAppear:(BOOL)animated
+{
+   [super viewWillAppear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
+- (void)viewDidAppear:(BOOL)animated
+{
+   [super viewDidAppear:animated];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated
+{
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	// Return YES for supported orientations
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-	// Release anything that's not essential, such as cached data
+- (void)viewDidDisappear:(BOOL)animated
+{
 }
 
 
-- (void)dealloc {
-	[super dealloc];
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+   // Return YES for supported orientations
+   return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+
+- (void)didReceiveMemoryWarning
+{
+   [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
+   // Release anything that's not essential, such as cached data
+}
+
+
+- (void)dealloc
+{
+   [super dealloc];
+}
 
 @end
-

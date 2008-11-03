@@ -10,20 +10,21 @@
 
 @class RootViewController;
 
-@interface AuthViewController : UIViewController {
-  enum {
-    STATE_INITIAL,
-    STATE_JUMPED,
-    STATE_DONE
-  } state;
+@interface AuthViewController : UIViewController
+{
+   enum {
+      STATE_INITIAL,
+      STATE_JUMPED,
+      STATE_DONE
+   } state;
 
-  UILabel *greetingLabel;
-  UILabel *instructionLabel;
-	UIActivityIndicatorView *authActivity;
-	UIButton *confirmButton;
-  UIToolbar *bottomBar;
+   UILabel *greetingLabel;
+   UILabel *instructionLabel;
+   UIActivityIndicatorView *authActivity;
+   UIButton *confirmButton;
+   UIToolbar *bottomBar;
 
-  RootViewController *rootViewController;
+   RootViewController *rootViewController;
 }
 
 @property (nonatomic, retain) UIToolbar *bottomBar;
@@ -34,3 +35,4 @@
 - (void) greet;
 
 @end
+// vim:set ft=objc:

@@ -27,49 +27,49 @@
 
 - (id) init
 {
-  if (self = [super init]) {
-    db = [[RTMDatabase alloc] init];
+   if (self = [super init]) {
+      db = [[RTMDatabase alloc] init];
 
-    NSString *path = [self authPath];
-    NSFileManager *fm = [NSFileManager defaultManager];
-    if ([fm fileExistsAtPath:path]) {
-       NSMutableData *data = [NSMutableData dataWithContentsOfFile:path];
-       NSKeyedUnarchiver *decoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-       self.auth = [decoder decodeObjectForKey:@"auth"];
-       [decoder finishDecoding];
-       [decoder release];
-    } else {
-       self.auth = [[RTMAuth alloc] init];
-    }
+      NSString *path = [self authPath];
+      NSFileManager *fm = [NSFileManager defaultManager];
+      if ([fm fileExistsAtPath:path]) {
+         NSMutableData *data = [NSMutableData dataWithContentsOfFile:path];
+         NSKeyedUnarchiver *decoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+         self.auth = [decoder decodeObjectForKey:@"auth"];
+         [decoder finishDecoding];
+         [decoder release];
+      } else {
+         self.auth = [[RTMAuth alloc] init];
+      }
 
-	  [RTMAPI setApiKey:auth.api_key];
-	  [RTMAPI setSecret:auth.shared_secret];
-     if (auth.token)
-        [RTMAPI setToken:auth.token];
-     operationQueue = [[NSOperationQueue alloc] init];
-  }
-  return self;
+      [RTMAPI setApiKey:auth.api_key];
+      [RTMAPI setSecret:auth.shared_secret];
+      if (auth.token)
+         [RTMAPI setToken:auth.token];
+      operationQueue = [[NSOperationQueue alloc] init];
+   }
+   return self;
 }
 
 - (void)dealloc
 {
-  [operationQueue release];
-  [auth release];
-  [db release];
-  [window release];
-  [super dealloc];
+   [operationQueue release];
+   [auth release];
+   [db release];
+   [window release];
+   [super dealloc];
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-  RootViewController *root = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-  [window addSubview:root.view];
-  [window makeKeyAndVisible];
+   RootViewController *root = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+   [window addSubview:root.view];
+   [window makeKeyAndVisible];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-  // Save data if appropriate
+   // Save data if appropriate
    NSMutableData *theData = [NSMutableData data];
    NSKeyedArchiver *encoder = [[NSKeyedArchiver alloc] initForWritingWithMutableData:theData];
 

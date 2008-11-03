@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 
-@interface AuthWebViewController : UIViewController <UIWebViewDelegate> {
-  NSURL *url;
+@interface AuthWebViewController : UIViewController <UIWebViewDelegate>
+{
+   NSURL *url;
 }
 
 @property (nonatomic, retain) NSURL *url;

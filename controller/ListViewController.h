@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ListViewController : UITableViewController {
-  NSArray *lists;
+@interface ListViewController : UITableViewController
+{
+   NSArray *lists;
 }
 
 @end

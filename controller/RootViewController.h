@@ -10,10 +10,11 @@
 
 @class ProgressView;
 
-@interface RootViewController : UIViewController {
-	IBOutlet UINavigationController *navigationController;
-  UIToolbar *bottomBar;
-  ProgressView *progressView;
+@interface RootViewController : UIViewController
+{
+   IBOutlet UINavigationController *navigationController;
+   UIToolbar *bottomBar;
+   ProgressView *progressView;
 }
 
 @property (nonatomic, retain) UINavigationController *navigationController;

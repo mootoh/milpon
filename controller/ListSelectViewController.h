@@ -10,9 +10,10 @@
 
 @class AddTaskViewController;
 
-@interface ListSelectViewController : UITableViewController {
-  NSArray *lists;
-  AddTaskViewController *parent;
+@interface ListSelectViewController : UITableViewController
+{
+   NSArray *lists;
+   AddTaskViewController *parent;
 }
 
 @property (nonatomic, retain) AddTaskViewController *parent;

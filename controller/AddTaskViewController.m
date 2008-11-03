@@ -22,7 +22,8 @@
 
 @synthesize name, list, priority, location_id, due_date, estimate;
 
-enum {
+enum
+{
    CELL_NAME = 0,
    CELL_PRIORITY,
    CELL_LIST,
@@ -83,35 +84,35 @@ enum {
          [cell.contentView addSubview:name_field];
          break;
       case CELL_PRIORITY: {
-                             cell.label = @"Priority:";
-                             [cell.contentView addSubview:priority_segment];
-                             break;
-                          }
+         cell.label = @"Priority:";
+         [cell.contentView addSubview:priority_segment];
+         break;
+      }
       case CELL_LIST:
-                          cell.label = @"List:";
-                          cell.text = list.name;
-                          break;
+         cell.label = @"List:";
+         cell.text = list.name;
+         break;
       case CELL_ESTIMATE: {
-                             cell.label = @"Estimate:";
-                             [cell.contentView addSubview:estimate_field];
-                             break;
-                          }
+         cell.label = @"Estimate:";
+         [cell.contentView addSubview:estimate_field];
+         break;
+      }
       case CELL_LOCATION:
-                          cell.label = @"Location:";
-                          cell.text = location_id ? self.location_id : @"None";
-                          break;
+         cell.label = @"Location:";
+         cell.text = location_id ? self.location_id : @"None";
+         break;
       case CELL_DUE:
-                          cell.label = @"Due:";
-                          cell.text = due_date ? self.due_date : @"none";
-                          break;
+         cell.label = @"Due:";
+         cell.text = due_date ? self.due_date : @"none";
+         break;
       case CELL_TAG:
-                          cell.label = @"Tag:";
-                          break;
+         cell.label = @"Tag:";
+         break;
       case CELL_NOTE:
-                          cell.label = @"Note:";
-                          break;
+         cell.label = @"Note:";
+         break;
       default:
-                          break;
+         break;
    }
    return cell;
 }
@@ -123,36 +124,37 @@ enum {
          [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
          break;
       case CELL_LIST: {
-                         ListSelectViewController *ctr = [[[ListSelectViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-                         ctr.parent = self;
+         ListSelectViewController *ctr = [[[ListSelectViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+         ctr.parent = self;
 
-                         [self textFieldShouldReturn:name_field];
-                         [self textFieldShouldReturn:estimate_field];
-                         [[self navigationController] pushViewController:ctr animated:YES];
-                         break;
-                      }
+         [self textFieldShouldReturn:name_field];
+         [self textFieldShouldReturn:estimate_field];
+         [[self navigationController] pushViewController:ctr animated:YES];
+         break;
+       }
       case CELL_PRIORITY: {
-                             [self textFieldShouldReturn:name_field];
-                             [self textFieldShouldReturn:estimate_field];
-                             break;
-                          }
+         [self textFieldShouldReturn:name_field];
+         [self textFieldShouldReturn:estimate_field];
+         break;
+      }
       case CELL_ESTIMATE:
-                          [self textFieldShouldReturn:name_field];
-                          [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-                          break;
+         [self textFieldShouldReturn:name_field];
+         [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+         break;
       case CELL_DUE: {
-                        DueDatePickViewController *duePickController = [[DueDatePickViewController alloc] initWithNibName:nil bundle:nil];
-                        duePickController.parent = self;
-                        [self.navigationController pushViewController:duePickController animated:YES];
-                        [duePickController release];
-                        break;
-                     }
+         DueDatePickViewController *duePickController = [[DueDatePickViewController alloc] initWithNibName:nil bundle:nil];
+         duePickController.parent = self;
+         [self.navigationController pushViewController:duePickController animated:YES];
+         [duePickController release];
+         break;
+      }
       default:
-                     break;
+         break;
    }
 }
 
-- (void)dealloc {
+- (void) dealloc
+{
    [name release];
    [location_id release];
    [due_date release];
@@ -166,41 +168,51 @@ enum {
    [super dealloc];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void) viewWillAppear:(BOOL)animated
+{
    [super viewWillAppear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void) viewDidAppear:(BOOL)animated
+{
    [super viewDidAppear:animated];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
+- (void) viewWillDisappear:(BOOL)animated
+{
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+- (void) viewDidDisappear:(BOOL)animated
+{
 }
 
-- (void)didReceiveMemoryWarning {
+- (void) didReceiveMemoryWarning
+{
    [super didReceiveMemoryWarning];
 }
 
-- (CGFloat)pickerView:(UIPickerView *)pickerViewrowHeightForComponent:(NSInteger)component {
+- (CGFloat) pickerView:(UIPickerView *)pickerViewrowHeightForComponent:(NSInteger)component
+{
    return 2.0;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+- (NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
    return @"yey";
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+- (NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
    return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+- (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
    return 1;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
    if (textField == name_field) {
       self.name = textField.text;
    } else if (textField == estimate_field) {
@@ -211,29 +223,34 @@ enum {
    return YES;
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+{
    UITableViewCell *cell = (UITableViewCell *)[[textField superview] superview];
    NSIndexPath *path = [self.tableView indexPathForCell:cell];
    [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
    return YES;
 }
 
-- (void) updatePriority {
+- (void) updatePriority
+{
    self.priority = [NSString stringWithFormat:@"%d", priority_segment.selectedSegmentIndex];
 }
 
-- (void) close {
+- (void) close
+{
    UIViewController *nav = self.parentViewController;;
    RootViewController *root = (RootViewController *)nav.parentViewController;;
    root.bottomBar.hidden = NO;
    [self dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction) cancel {
+- (IBAction) cancel
+{
    [self close];
 }
 
-- (void) commitTextFields {
+- (void) commitTextFields
+{
    [self textFieldShouldReturn:name_field];
    [self textFieldShouldReturn:estimate_field];
 }
@@ -246,7 +263,8 @@ enum {
  *  - how to validate the fields ?
  *  - add note, tag, rrule
  */
-- (IBAction) save {
+- (IBAction) save
+{
    [self commitTextFields];
 
    // store it to the DB
@@ -269,7 +287,8 @@ enum {
    [self close];
 }
 
-- (void) loadView {
+- (void) loadView
+{
    [super loadView];
 
    cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];

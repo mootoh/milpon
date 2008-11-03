@@ -10,22 +10,23 @@
 
 @class RTMList;
 
-@interface AddTaskViewController : UITableViewController <UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate> {
-  NSString *name;
-  NSString *priority;
-  NSString *location_id;
-  NSString *due_date;
-  NSString *estimate;
+@interface AddTaskViewController : UITableViewController <UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate>
+{
+   NSString *name;
+   NSString *priority;
+   NSString *location_id;
+   NSString *due_date;
+   NSString *estimate;
 
-  NSArray *lists;
-  RTMList *list;
+   NSArray *lists;
+   RTMList *list;
 
-  UITextField *name_field;
-  UITextField *estimate_field;
-  UISegmentedControl *priority_segment;
+   UITextField *name_field;
+   UITextField *estimate_field;
+   UISegmentedControl *priority_segment;
 
-  UIBarButtonItem *cancelButton;
-  UIBarButtonItem *submitButton;
+   UIBarButtonItem *cancelButton;
+   UIBarButtonItem *submitButton;
 }
 
 @property (nonatomic, retain) NSString *name;

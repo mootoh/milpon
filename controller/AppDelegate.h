@@ -11,11 +11,12 @@
 @class RTMAuth;
 @class RTMDatabase;
 
-@interface AppDelegate : NSObject <UIApplicationDelegate> {	
-  IBOutlet UIWindow *window;
-  RTMAuth *auth;
-  RTMDatabase *db;
-  NSOperationQueue *operationQueue;
+@interface AppDelegate : NSObject <UIApplicationDelegate>
+{	
+   IBOutlet UIWindow *window;
+   RTMAuth *auth;
+   RTMDatabase *db;
+   NSOperationQueue *operationQueue;
 }
 
 @property (nonatomic, retain) UIWindow *window;
