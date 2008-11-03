@@ -11,7 +11,8 @@
 
 @class RTMDatabase;
 
-@interface RTMPendingTask : RTMStorable {
+@interface RTMPendingTask : RTMStorable
+{
    NSString *name;
    NSString *due;
    NSInteger location_id;

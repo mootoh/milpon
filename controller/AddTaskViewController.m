@@ -34,7 +34,8 @@ enum {
    CELL_TYPES
 };
 
-- (id)initWithStyle:(UITableViewStyle)style {
+- (id)initWithStyle:(UITableViewStyle)style
+{
    if (self = [super initWithStyle:style]) {
       AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
       RTMDatabase *db = app.db;
@@ -54,17 +55,19 @@ enum {
 }
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
    return 1;
 }
 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
    // name, (url), due, location_id, list_id, priority, estimate
    return CELL_TYPES;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
 
    TaskEditCell *cell = (TaskEditCell *)[tableView dequeueReusableCellWithIdentifier:kAddTaskViewController];
    if (cell == nil) {
