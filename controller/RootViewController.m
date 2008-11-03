@@ -133,10 +133,13 @@
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   RTMSynchronizer *syncer = [[[RTMSynchronizer alloc] initWithDB:app.db withAuth:app.auth] autorelease];
+   RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithDB:app.db withAuth:app.auth];
+
    [syncer uploadPendingTasks:progressView];
    [syncer syncCompletedTasks];
    [syncer syncTasks];
+
+   [syncer release];
 
    [self reload];
 

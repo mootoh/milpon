@@ -85,13 +85,6 @@ static const int SECTIONS = 4;
    return self;
 }
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view.
-- (void)viewDidLoad {
-[super viewDidLoad];
-}
-*/
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
    return SECTIONS;
@@ -109,12 +102,12 @@ static const int SECTIONS = 4;
    RTMTaskCell *cell = (RTMTaskCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
    if (cell == nil) {
       cell = [[[RTMTaskCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-      cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+      //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
    }
-   // Configure the cell
+
    RTMTask *task = [[due_tasks objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
    cell.task = task;
-   [cell setNeedsDisplay];
+   [cell setNeedsDisplay]; // TODO: causes slow
    return cell;
 }
 

@@ -185,21 +185,27 @@
 {
    sqlite3_stmt *stmt = nil;
    static const char *sql = "UPDATE task SET "
-      "due=?, completed=?, priority=?, postponed=?, estimate=?, task_series_id=? "
+      "name=?, url=?, due=?, completed=?, priority=?, postponed=?, estimate=?, rrule=?, location_id=?, list_id=?, task_series_id=? "
       "where id=?";
    if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
       @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
 
-   sqlite3_bind_text(stmt, 1, [[task valueForKey:@"due"] UTF8String], -1, SQLITE_TRANSIENT);
-   sqlite3_bind_text(stmt, 2, [[task valueForKey:@"completed"] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_text(stmt, 1, [[task_series valueForKey:@"name"] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_text(stmt, 2, [[task_series valueForKey:@"url"] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_text(stmt, 3, [[task valueForKey:@"due"] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_text(stmt, 4, [[task valueForKey:@"completed"] UTF8String], -1, SQLITE_TRANSIENT);
+
    NSString *pri = [task valueForKey:@"priority"];
    NSInteger priority = [pri isEqualToString:@"N"] ? 0 : [pri integerValue];
+   sqlite3_bind_int(stmt,  5, priority);
 
-   sqlite3_bind_int(stmt,  3, priority);
-   sqlite3_bind_int(stmt,  4, [[task valueForKey:@"postponed"] integerValue]);
-   sqlite3_bind_text(stmt, 5, [[task valueForKey:@"estimate"] UTF8String], -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt,  6, [[task_series valueForKey:@"id"] integerValue]);
-   sqlite3_bind_int(stmt,  7, [[task valueForKey:@"id"] integerValue]);
+   sqlite3_bind_int(stmt,  6, [[task valueForKey:@"postponed"] integerValue]);
+   sqlite3_bind_text(stmt, 7, [[task valueForKey:@"estimate"] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_text(stmt, 8, [[task valueForKey:@"rrule"] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_int(stmt,  9, [[task_series valueForKey:@"location_id"] integerValue]);
+   sqlite3_bind_int(stmt, 10, [[task_series valueForKey:@"list_id"] integerValue]);
+   sqlite3_bind_int(stmt, 11, [[task_series valueForKey:@"id"] integerValue]);
+   sqlite3_bind_int(stmt, 12, [[task valueForKey:@"id"] integerValue]);
 
    if (SQLITE_ERROR == sqlite3_step(stmt))
       @throw [NSString stringWithFormat:@"failed in update the database: '%s'.", sqlite3_errmsg([db handle])];
