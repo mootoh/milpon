@@ -11,32 +11,14 @@
 
 @class RTMDatabase;
 
-@interface RTMExistingTask : RTMTask {
+@interface RTMExistingTask : RTMTask
+{
    NSNumber *task_series_id;
 }
 
-+ (NSArray *) tasks:(RTMDatabase *)db;
-+ (NSArray *) tasksInList:(NSInteger)list_id inDB:(RTMDatabase *)db;
-+ (NSArray *) completedTasks:(RTMDatabase *)db;
+@property (nonatomic, retain) NSNumber *task_series_id;
 
-+ (void) create:(NSDictionary *)task_series inDB:(RTMDatabase *)db;
 + (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db;
 
-- (void) complete;
-- (void) uncomplete;
-
-- (BOOL) is_completed;
-
-- (NSArray *) notes;
-
-/* TODO
-   + (void) erase;
-   - (void) save;
-   */
-
-/* TODO
-   + (void) add:(NSDictionary *) params;
-   + (void) remove:(RTMTask *)aTask;
-   */
 @end
 // set vim:ft=objc

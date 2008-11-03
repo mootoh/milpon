@@ -6,6 +6,8 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
+@class RTMExistingTask;
+
 @interface RTMAPITask : NSObject {
   enum {
     // METHOD               ARGS
@@ -44,7 +46,7 @@
 - (BOOL) setLocation:(NSString *)location_id forIDs:(NSDictionary *)ids;
 - (BOOL) setPriority:(NSString *)priority forIDs:(NSDictionary *)ids;
 - (BOOL) setEstimate:(NSString *)estimate forIDs:(NSDictionary *)ids;
-- (BOOL) complete:(NSDictionary *)ids;
+- (BOOL) complete:(RTMExistingTask *)ids;
 
 @end
 // vim:set ft=objc:

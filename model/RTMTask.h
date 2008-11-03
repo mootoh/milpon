@@ -54,6 +54,7 @@
 
 + (NSArray *) tasksForSQL:(NSString *)sql inDB:(RTMDatabase *)db;
 
++ (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db;
 + (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db;
 
 // TODO: lastSync should be moved to somewhere not here.

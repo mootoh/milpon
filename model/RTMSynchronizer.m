@@ -9,6 +9,7 @@
 #import "RTMSynchronizer.h"
 #import "RTMList.h"
 #import "RTMTask.h"
+#import "RTMExistingTask.h"
 #import "RTMAuth.h"
 #import "RTMAPIList.h"
 #import "RTMAPITask.h"
@@ -141,10 +142,10 @@
          [api_task setDue:task.due forIDs:ids];
 
       if (0 != task.location_id)
-         [api_task setLocation:task.location_id forIDs:ids];
+         [api_task setLocation:[task.location_id stringValue] forIDs:ids];
 
       if (0 != task.priority)
-         [api_task setPriority:task.priority forIDs:ids];
+         [api_task setPriority:[task.priority stringValue] forIDs:ids];
 
       if (task.estimate && ![task.estimate isEqualToString:@""]) 
          [api_task setEstimate:task.estimate forIDs:ids];
@@ -163,17 +164,17 @@
    [progressView progressEnd];
 }
 
-// TODO: sync only dirty tasks.
 - (void) syncCompletedTasks
 {
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
 
    NSArray *tasks = [RTMTask completedTasks:db];
-   for (NSDictionary *task in tasks) {
+   for (RTMExistingTask *task in tasks) {
       if ([api_task complete:task]) {
-         [RTMTask remove:[task objectForKey:@"task_id"] fromDB:db];
+         [RTMTask remove:task.iD fromDB:db];
       }
    }
+   [api_task release];
 }
 
 @end

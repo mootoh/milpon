@@ -24,18 +24,18 @@
 
 - (NSArray *)tasks
 {
-   return [RTMTask tasksInList:iD inDB:db];
+   return [RTMTask tasksInList:self.iD inDB:db];
 }
 
 - (NSInteger) taskCount {
    sqlite3_stmt *stmt = nil;
-   const char *sql = "SELECT count() from task JOIN task_series ON task.task_series_id = task_series.id where list_id=? AND task.completed=''";
+   const char *sql = "SELECT count() from task where list_id=? AND (completed='' OR completed is NULL)";
 
    if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
       NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
    }
 
-   sqlite3_bind_int(stmt, 1, [iD intValue]);
+   sqlite3_bind_int(stmt, 1, [self.iD intValue]);
 
    NSInteger count = (sqlite3_step(stmt) == SQLITE_ROW) ?
       sqlite3_column_int(stmt,0) : 0;

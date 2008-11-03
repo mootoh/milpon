@@ -11,20 +11,61 @@
 - (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb 
 {
    if (self = [super initByID:[params valueForKey:@"id"] inDB:ddb]) {
-      self.name            = [params valueForKey:@"name"];
-      self.url             = [params valueForKey:@"url"];
-      self.due             = [params valueForKey:@"due"];
-      self.location_id     = [params valueForKey:@"location_id"];
-      self.completed       = [params valueForKey:@"completed"];
-      self.priority        = [params valueForKey:@"priority"];
-      self.postponed       = [params valueForKey:@"postponed"];
-      self.estimate        = [params valueForKey:@"estimate"];
+      self.name         = [params valueForKey:@"name"];
+      self.url          = [params valueForKey:@"url"];
+      self.due          = [params valueForKey:@"due"];
+      self.location_id  = [params valueForKey:@"location_id"];
+      self.completed    = [params valueForKey:@"completed"];
+      self.priority     = [params valueForKey:@"priority"];
+      self.postponed    = [params valueForKey:@"postponed"];
+      self.estimate     = [params valueForKey:@"estimate"];
    }
    return self;
 }
 
-- (BOOL) is_completed {
+- (BOOL) is_completed
+{
    return (completed && ![completed isEqualToString:@""]);
+}
+
+- (void) complete {
+   sqlite3_stmt *stmt = nil;
+   const char *sql = "UPDATE task SET completed=? where id=?";
+   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
+      return;
+   }
+
+   sqlite3_bind_text(stmt, 1, "1", -1, SQLITE_TRANSIENT);
+   sqlite3_bind_int(stmt, 2, [iD intValue]);
+
+   if (sqlite3_step(stmt) == SQLITE_ERROR) {
+      NSLog(@"update 'completed' to DB failed.");
+      return;
+   }
+
+   sqlite3_finalize(stmt);
+   completed = @"1";
+}
+
+- (void) uncomplete {
+   sqlite3_stmt *stmt = nil;
+   const char *sql = "UPDATE task SET completed=? where id=?";
+   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
+      return;
+   }
+
+   sqlite3_bind_text(stmt, 1, "", -1, SQLITE_TRANSIENT);
+   sqlite3_bind_int(stmt, 2, [iD intValue]);
+
+   if (sqlite3_step(stmt) == SQLITE_ERROR) {
+      NSLog(@"update 'completed' to DB failed.");
+      return;
+   }
+
+   sqlite3_finalize(stmt);
+   completed = @"";
 }
 
 
@@ -35,6 +76,18 @@
       " ORDER BY due IS NULL ASC, due ASC, priority=0 ASC, priority ASC"];
    return [RTMTask tasksForSQL:sql inDB:db];
 }
+
++ (NSArray *) tasksInList:(NSNumber *)list_id inDB:(RTMDatabase *)db
+{
+   NSString *sql = [NSString stringWithFormat:@"SELECT %s from task "
+      "where list_id=%d AND (completed='' OR completed is NULL) "
+      "ORDER BY priority=0 ASC,priority ASC, due IS NULL ASC, due ASC",
+      RTMTASK_SQL_COLUMNS, [list_id intValue]];
+
+   return [RTMTask tasksForSQL:sql inDB:db];
+}
+
+
 
 + (void) createAtOnline:(NSDictionary *)params inDB:(RTMDatabase *)db
 {
@@ -71,7 +124,7 @@
       } else {
          due = @"";
       }
-      NSString *priority  = [NSNumber numberWithInt:sqlite3_column_int(stmt, 4)];
+      NSNumber *priority  = [NSNumber numberWithInt:sqlite3_column_int(stmt, 4)];
       NSNumber *postponed = [NSNumber numberWithInt:sqlite3_column_int(stmt, 5)];
       str = (char *)sqlite3_column_text(stmt, 6);
       NSString *estimate  = (str && *str != '\0') ? [NSString stringWithUTF8String:str] : @"";
@@ -99,13 +152,28 @@
    return tasks;
 }
 
++ (void) remove:(NSInteger)iid fromDB:(RTMDatabase *)db
+{
+   sqlite3_stmt *stmt = nil;
+   char *sql = "delete from task where id=?";
+   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
+   }
+   sqlite3_bind_int(stmt, 1, iid);
 
+   if (sqlite3_step(stmt) == SQLITE_ERROR) {
+      NSLog(@"failed in removing %d from task.", iid);
+      return;
+   }
+   sqlite3_finalize(stmt);
+}
 
 
 /*
  * TODO: should call finalize on error.
  */
-+ (NSString *) lastSync:(RTMDatabase *)db {
++ (NSString *) lastSync:(RTMDatabase *)db
+{
    sqlite3_stmt *stmt = nil;
    const char *sql = "select * from last_sync";
    if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
@@ -126,7 +194,8 @@
    return result;
 }
 
-+ (void) updateLastSync:(RTMDatabase *)db {
++ (void) updateLastSync:(RTMDatabase *)db
+{
    NSDate *now = [NSDate date];
    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
    [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];

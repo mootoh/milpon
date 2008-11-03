@@ -40,7 +40,7 @@
 {
 }
 
-+ (void) remove:(NSInteger)iid fromDB:(RTMDatabase *)db
++ (void) remove:(NSNumber *)iid fromDB:(RTMDatabase *)db;
 {
 }
 

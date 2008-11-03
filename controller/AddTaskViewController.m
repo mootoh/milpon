@@ -240,6 +240,7 @@ enum {
    UIViewController *nav = self.parentViewController;;
    RootViewController *root = (RootViewController *)nav.parentViewController;;
    root.bottomBar.hidden = NO;
+   [root reload];
    [self dismissModalViewControllerAnimated:YES];
 }
 

@@ -9,6 +9,7 @@
 #import "RTMAPITask.h"
 #import "RTMAPI.h"
 #import "RTMTask.h"
+#import "RTMExistingTask.h"
 #import "RTMNote.h"
 #import "RTMAPIXMLParserCallback.h"
 
@@ -295,7 +296,7 @@
       [ids objectForKey:@"task_series_id"],
       [ids objectForKey:@"task_id"],
       timeline,
-      [location_id stringValue],
+      location_id,
       nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
@@ -324,7 +325,7 @@
       [ids objectForKey:@"task_series_id"],
       [ids objectForKey:@"task_id"],
       timeline,
-      [priority stringValue],
+      priority,
       nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
@@ -371,16 +372,16 @@
    return YES;
 }
 
-- (BOOL) complete:(NSDictionary *)ids {
+- (BOOL) complete:(RTMExistingTask *)task {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSString *timeline = [api createTimeline];
    if (! timeline) return NO;
 
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", nil];
    NSArray *vals = [NSArray arrayWithObjects:
-      [ids objectForKey:@"list_id"],
-      [ids objectForKey:@"task_series_id"],
-      [ids objectForKey:@"task_id"],
+      [task.list_id stringValue],
+      [task.task_series_id stringValue],
+      [task.iD stringValue],
       timeline,
       nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];

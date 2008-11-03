@@ -11,10 +11,12 @@
 
 @implementation RTMExistingTask
 
+@synthesize task_series_id;
+
 - (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb 
 {
    if (self = [super initByParams:params inDB:ddb]) {
-      task_series_id  = [[params valueForKey:@"task_series_id"] retain];
+      self.task_series_id  = [params valueForKey:@"task_series_id"];
    }
    return self;
 }
@@ -29,44 +31,16 @@
 + (NSArray *) tasks:(RTMDatabase *)db
 {
    NSString *sql = [NSString stringWithUTF8String:"SELECT " RTMTASK_SQL_COLUMNS 
-      " from task where completed='' "
+      " from task where completed='' OR completed is NULL"
       "ORDER BY due IS NULL ASC, due ASC, priority=0 ASC, priority ASC"];
-   return [RTMTask tasksForSQL:sql inDB:db];
-}
-
-+ (NSArray *) tasksInList:(NSInteger)list_id inDB:(RTMDatabase *)db
-{
-   NSString *sql = [NSString stringWithFormat:@"SELECT %s from task "
-      "where completed='' AND list_id=%d "
-      "ORDER BY priority=0 ASC,priority ASC, due IS NULL ASC, due ASC",
-      RTMTASK_SQL_COLUMNS, list_id];
-
    return [RTMTask tasksForSQL:sql inDB:db];
 }
 
 + (NSArray *) completedTasks:(RTMDatabase *)db
 {
-   NSString *sql = [NSString stringWithUTF8String:"SELECT task.id,task_series.id,task_series.list_id from task JOIN task_series ON task.task_series_id=task_series.id where task.completed='1'"];
-
-   NSMutableArray *tasks = [NSMutableArray array];
-   sqlite3_stmt *stmt = nil;
-
-   if (sqlite3_prepare_v2([db handle], [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
-   }
-
-   while (sqlite3_step(stmt) == SQLITE_ROW) {
-      NSString *task_id   = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 0)];
-      NSString *task_series_id   = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 1)];
-      NSString *list_id   = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 2)];
-
-      NSArray *keys = [NSArray arrayWithObjects:@"task_id", @"task_series_id", @"list_id", nil];
-      NSArray *vals = [NSArray arrayWithObjects:task_id, task_series_id, list_id, nil];
-      NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-      [tasks addObject:params];
-   }
-   sqlite3_finalize(stmt);
-   return tasks;
+   NSString *sql = [NSString stringWithUTF8String:"SELECT " RTMTASK_SQL_COLUMNS 
+      " from task where completed='1' AND dirty!=0"];
+   return [RTMTASK_SQL_COLUMNS tasksForSQL:sql inDB:db];
 }
 
 + (void) createPendingTaskSeries:(NSDictionary *)task_series inDB:(RTMDatabase *)db
@@ -224,62 +198,6 @@
    [RTMExistingTask erase:db from:@"location"];
 }
 
-- (void) complete {
-   sqlite3_stmt *stmt = nil;
-   const char *sql = "UPDATE task SET completed=? where id=?";
-   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
-      return;
-   }
-
-   sqlite3_bind_text(stmt, 1, "1", -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt, 2, [iD intValue]);
-
-   if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      NSLog(@"update 'completed' to DB failed.");
-      return;
-   }
-
-   sqlite3_finalize(stmt);
-   completed = @"1";
-}
-
-- (void) uncomplete {
-   sqlite3_stmt *stmt = nil;
-   const char *sql = "UPDATE task SET completed=? where id=?";
-   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
-      return;
-   }
-
-   sqlite3_bind_text(stmt, 1, "", -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt, 2, [iD intValue]);
-
-   if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      NSLog(@"update 'completed' to DB failed.");
-      return;
-   }
-
-   sqlite3_finalize(stmt);
-
-   completed = @"";
-}
-
-// TODO: should also remove from task_series
-+ (void) remove:(NSInteger)iid fromDB:(RTMDatabase *)db {
-   sqlite3_stmt *stmt = nil;
-   static char *sql = "delete from task where id=?";
-   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
-   }
-   sqlite3_bind_int(stmt, 1, iid);
-
-   if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      NSLog(@"failed in removing %d from task.", iid);
-      return;
-   }
-   sqlite3_finalize(stmt);
-}
 
 + (BOOL) checkExisting:(NSString *)iD forTable:(NSString *)table inDB:(RTMDatabase *)db {
    NSString *sql = [NSString stringWithFormat:@"select count() from %@ where id=?", table];

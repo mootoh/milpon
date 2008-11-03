@@ -17,13 +17,15 @@
 
 @synthesize list, tasks;
 
-- (void) reloadFromDB {
+- (void) reloadFromDB
+{
   [tasks release];
   tasks = nil;
-  tasks = [[RTMTask tasksInList:self.list.iD inDB:db] retain];
+  tasks = [[RTMTask tasksInList:list.iD inDB:db] retain];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style withList:(RTMList *)lst {
+- (id)initWithStyle:(UITableViewStyle)style withList:(RTMList *)lst
+{
   if (self = [super initWithStyle:style]) {
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     db = app.db;
@@ -35,11 +37,13 @@
 	return self;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
 	return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
 	return [list taskCount];
 }
 

@@ -24,5 +24,6 @@
 - (IBAction) addTask;
 - (IBAction) upload;
 - (void) fetchAll;
+- (void) reload;
 
 @end
