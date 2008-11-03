@@ -22,8 +22,7 @@
 
 @synthesize name, list, priority, location_id, due_date, estimate;
 
-enum
-{
+enum {
    CELL_NAME = 0,
    CELL_PRIORITY,
    CELL_LIST,

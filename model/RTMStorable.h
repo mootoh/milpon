@@ -10,8 +10,7 @@
 
 @interface RTMStorable : NSObject
 {
-   enum
-   {
+   enum {
       SYNCHRONIZED,
       CREATED_OFFLINE,
       MODIFIED

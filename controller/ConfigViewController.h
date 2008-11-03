@@ -12,8 +12,7 @@
 
 @interface ConfigViewController : UITableViewController
 {
-   enum
-   {
+   enum {
       CONFIG_RELOAD,
       CONFIG_VERSION,
       CONFIG_COUNT

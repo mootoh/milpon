@@ -13,8 +13,7 @@
 
 @interface HomeViewController : UITableViewController <ReloadableTableViewControllerProtocol>
 {
-   enum
-   {
+   enum {
       TODAY,
       TOMORROW,
       THIS_WEEK,
