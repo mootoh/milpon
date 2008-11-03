@@ -11,33 +11,22 @@
 
 @implementation RTMExistingTask
 
-- (id) initWithDB:(RTMDatabase *)ddb withParams:(NSDictionary *)params
+- (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb 
 {
-   if (self = [super initByID:[params valueForKey:@"id"] inDB:ddb]) {
-      self.name            = [params valueForKey:@"name"];
-      self.url             = [params valueForKey:@"url"];
-      self.due             = [params valueForKey:@"due"];
-      self.location        = [params valueForKey:@"location_id"];
-      self.completed       = [params valueForKey:@"completed"];
-      self.priority        = [params valueForKey:@"priority"];
-      self.postponed       = [params valueForKey:@"postponed"];
-      self.estimate        = [params valueForKey:@"estimate"];
-      task_series_id       = [params valueForKey:@"task_series_id"];
+   if (self = [super initByParams:params inDB:ddb]) {
+      task_series_id  = [[params valueForKey:@"task_series_id"] retain];
    }
    return self;
 }
 
-- (void) dealloc {
-   [estimate release];
-   [completed release];
-   [location release];
-   [due release];
-   [url release];
-   [name release];
+- (void) dealloc
+{
+   [task_series_id release];
    [super dealloc];
 }
 
-+ (NSArray *) tasksForSQL:(NSString *)sql inDB:(RTMDatabase *)db {
++ (NSArray *) tasksForSQL:(NSString *)sql inDB:(RTMDatabase *)db
+{
    NSMutableArray *tasks = [NSMutableArray array];
    sqlite3_stmt *stmt = nil;
 
@@ -47,7 +36,7 @@
 
    char *str;
    while (sqlite3_step(stmt) == SQLITE_ROW) {
-      NSString *task_id   = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 0)];
+      NSNumber *task_id   = [NSNumber numberWithInt:sqlite3_column_int(stmt, 0)];
       NSString *name      = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 1)];
 
       str = (char *)sqlite3_column_text(stmt, 2);
@@ -71,8 +60,9 @@
       NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"location_id", @"priority", @"postponed", @"estimate", @"task_series_id", nil];
       NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, location, priority, postponed, estimate, task_series_id, nil];
       NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-      RTMTask *task = [[[RTMTask alloc] initWithDB:db withParams:params] autorelease];
+      RTMExistingTask *task = [[RTMExistingTask alloc] initByParams:params inDB:db];
       [tasks addObject:task];
+      [task release];
    }
    sqlite3_finalize(stmt);
    return tasks;
@@ -359,7 +349,7 @@
    }
 
    sqlite3_bind_text(stmt, 1, "1", -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt, 2, iD);
+   sqlite3_bind_int(stmt, 2, [iD intValue]);
 
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
       NSLog(@"update 'completed' to DB failed.");
@@ -379,7 +369,7 @@
    }
 
    sqlite3_bind_text(stmt, 1, "", -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt, 2, iD);
+   sqlite3_bind_int(stmt, 2, [iD intValue]);
 
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
       NSLog(@"update 'completed' to DB failed.");
@@ -433,15 +423,15 @@
 }
 
 + (BOOL) taskSeriesExist:(NSString *)task_series_id inDB:(RTMDatabase *)db {
-   return [RTMTask checkExisting:task_series_id forTable:@"task_series" inDB:db];
+   return [RTMExistingTask checkExisting:task_series_id forTable:@"task_series" inDB:db];
 }
 
 + (BOOL) taskExist:(NSString *)task_id inDB:(RTMDatabase *)db {
-   return [RTMTask checkExisting:task_id forTable:@"task" inDB:db];
+   return [RTMExistingTask checkExisting:task_id forTable:@"task" inDB:db];
 }
 
 + (BOOL) noteExist:(NSString *)note_id inDB:(RTMDatabase *)db {
-   return [RTMTask checkExisting:note_id forTable:@"note" inDB:db];
+   return [RTMExistingTask checkExisting:note_id forTable:@"note" inDB:db];
 }
 
 + (void) updateTaskSeries:(NSDictionary *)task_series inDB:(RTMDatabase *)db {
@@ -511,30 +501,30 @@
 
 + (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db {
    // TaskSeries
-   if (! [RTMTask taskSeriesExist:[task_series valueForKey:@"id"] inDB:db]) {
-      [RTMTask create:task_series inDB:db];
+   if (! [RTMExistingTask taskSeriesExist:[task_series valueForKey:@"id"] inDB:db]) {
+      [RTMExistingTask create:task_series inDB:db];
       return;
    }
-   [RTMTask updateTaskSeries:task_series inDB:db];
+   [RTMExistingTask updateTaskSeries:task_series inDB:db];
 
    // Tasks
    NSInteger task_series_id = [[task_series valueForKey:@"id"] integerValue];
    NSArray *tasks = [task_series valueForKey:@"tasks"];
    for (NSDictionary *task in tasks) {
-      if ([RTMTask taskExist:[task valueForKey:@"id"] inDB:db]) {
-         [RTMTask updateTask:task inDB:db inTaskSeries:task_series_id];
+      if ([RTMExistingTask taskExist:[task valueForKey:@"id"] inDB:db]) {
+         [RTMExistingTask updateTask:task inDB:db inTaskSeries:task_series_id];
       } else {
-         [RTMTask createTask:task inDB:db inTaskSeries:task_series_id];
+         [RTMExistingTask createTask:task inDB:db inTaskSeries:task_series_id];
       }
    }
 
    // notes
    NSArray *notes = [task_series valueForKey:@"notes"];
    for (NSDictionary *note in notes) {
-      if ([RTMTask noteExist:[note valueForKey:@"id"] inDB:db]) {
-         [RTMTask updateNote:note inDB:db inTaskSeries:task_series_id];
+      if ([RTMExistingTask noteExist:[note valueForKey:@"id"] inDB:db]) {
+         [RTMExistingTask updateNote:note inDB:db inTaskSeries:task_series_id];
       } else {
-         [RTMTask createNote:note inDB:db inTaskSeries:task_series_id];
+         [RTMExistingTask createNote:note inDB:db inTaskSeries:task_series_id];
       }
    }
 
@@ -543,10 +533,10 @@
 #if 0
    NSDictionary *rrule = [task_series valueForKey:@"rrule"];
    if (rrule)
-      if ([RTMTask rruleExist:[task valueForKey:@"id"]]) {
-         [RTMTask updateNote:note inDB:db inTaskSeries:task_series_id];
+      if ([RTMExistingTask rruleExist:[task valueForKey:@"id"]]) {
+         [RTMExistingTask updateNote:note inDB:db inTaskSeries:task_series_id];
       } else {
-         [RTMTask createNote:note inDB:db inTaskSeries:task_series_id];
+         [RTMExistingTask createNote:note inDB:db inTaskSeries:task_series_id];
       }
 }
 #endif // 0
@@ -563,7 +553,7 @@
    if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
       @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
 
-   sqlite3_bind_int(stmt,  1, task_series_id);
+   sqlite3_bind_int(stmt,  1, [task_series_id intValue]);
 
    NSMutableArray *ret = [[NSMutableArray alloc] init];
 
@@ -603,7 +593,7 @@
    NSArray *tasks = [NSArray arrayWithObject:task];
    [task_series setObject:tasks forKey:@"tasks"];
 
-   [RTMTask create:task_series inDB:db];
+   [RTMExistingTask create:task_series inDB:db];
 }
 
 @end

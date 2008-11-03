@@ -11,14 +11,9 @@
 
 @implementation RTMPendingTask
 
-- (id) initWithDB:(RTMDatabase *)ddb withParams:(NSDictionary *)params {
-   if (self = [super initByID:[params valueForKey:@"id"] inDB:ddb]) {
-      self.name         = [params valueForKey:@"name"];
-      self.due          = [params valueForKey:@"due"];
-      self.location_id  = [[NSNumber alloc] initWithInteger:[[params valueForKey:@"location_id"] integerValue]];
-      self.list_id      = [[NSNumber alloc] initWithInteger:[[params valueForKey:@"list_id"] integerValue]];
-      self.priority     = [[NSNumber alloc] initWithInteger:[[params valueForKey:@"priority"] integerValue]];
-      self.estimate     = [params valueForKey:@"estimate"];
+- (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb
+{
+   if (self = [super initByParams:params inDB:ddb]) {
    }
    return self;
 }
@@ -49,7 +44,7 @@
    sqlite3_finalize(stmt);
 }
 
-+ (NSArray *) allTasks:(RTMDatabase *)db {
++ (NSArray *) tasks:(RTMDatabase *)db {
    NSMutableArray *tasks = [NSMutableArray array];
    sqlite3_stmt *stmt = nil;
    const char *sql = "SELECT id, name, due, location_id, list_id, priority, estimate from pending_task";
@@ -70,8 +65,9 @@
       NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"due", @"location_id", @"list_id", @"priority", @"estimate", nil];
       NSArray *vals = [NSArray arrayWithObjects:iD, name, due, location_id, list_id, priority, estimate, nil];
       NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-      RTMPendingTask *task = [[[RTMPendingTask alloc] initWithDB:db withParams:params] autorelease];
+      RTMPendingTask *task = [[RTMPendingTask alloc] initByParams:params inDB:db];
       [tasks addObject:task];
+      [task release];
    }
    sqlite3_finalize(stmt);
    return tasks;

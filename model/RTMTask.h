@@ -15,7 +15,6 @@
    NSString *name;
    NSString *url;
    NSString *due;
-   NSString *location;
    NSString *completed;
    NSNumber *priority;
    NSNumber *postponed;
@@ -30,7 +29,6 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSString *due;
-@property (nonatomic, retain) NSString *location;
 @property (nonatomic, retain) NSString *completed;
 @property (nonatomic, retain) NSNumber *priority;
 @property (nonatomic, retain) NSNumber *postponed;
@@ -40,6 +38,8 @@
 @property (nonatomic, retain) NSArray  *notes;
 @property (nonatomic, retain) NSNumber *list_id;
 @property (nonatomic, retain) NSNumber *location_id;
+
+- (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb;
 
 - (void) complete;
 - (void) uncomplete;

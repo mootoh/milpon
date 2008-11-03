@@ -12,7 +12,7 @@
 
 @synthesize iD;
 
-- (id) iniByID:(NSNumber *)iid inDB:(RTMDatabase *)ddb
+- (id) initByID:(NSNumber *)iid inDB:(RTMDatabase *)ddb
 {
   if (self = [super init]) {
     db = [ddb retain];

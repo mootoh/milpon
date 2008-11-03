@@ -15,8 +15,6 @@
    NSNumber *task_series_id;
 }
 
-- (id) initWithDB:(RTMDatabase *)ddb withParams:(NSDictionary *)params;
-
 + (NSArray *) tasks:(RTMDatabase *)db;
 + (NSArray *) tasksInList:(NSInteger)list_id inDB:(RTMDatabase *)db;
 + (NSArray *) completedTasks:(RTMDatabase *)db;

@@ -44,7 +44,7 @@
   NSString *dueString = [NSString stringWithFormat:@"%d-%d-%d", [comps year], [comps month], [comps day]];
 
 	due.text = dueString;
-	location.text = [NSString stringWithFormat:@"%d", task.location];
+	location.text = [NSString stringWithFormat:@"%d", task.location_id];
 	//completed.text = task.completed;
 	//priority.text = task.priority;
 	postponed.text = [NSString stringWithFormat:@"%d", task.postponed];

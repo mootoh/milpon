@@ -16,10 +16,8 @@
 {
 }
 
-- (id) initWithDB:(RTMDatabase *)ddb withParams:(NSDictionary *)params;
-
 + (void) createTask:(NSDictionary *)params inDB:(RTMDatabase *)db;
-+ (NSArray *) allTasks:(RTMDatabase *)db;
++ (NSArray *) tasks:(RTMDatabase *)db;
 
 @end
 // set vim:ft=objc

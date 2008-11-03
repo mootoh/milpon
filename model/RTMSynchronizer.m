@@ -114,7 +114,7 @@
 }
 
 - (void) uploadPendingTasks:(ProgressView *)progressView {
-   NSArray *pendings = [RTMPendingTask allTasks:db_];
+   NSArray *pendings = [RTMPendingTask tasks:db_];
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
 
    [progressView progressBegin];
