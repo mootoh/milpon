@@ -106,7 +106,6 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
-  NSLog(@"MenuViewController#viewWillAppear");
   [super viewWillAppear:animated];
   self.bottomBar.hidden = NO;
 }
@@ -116,7 +115,6 @@
 }
 */
 - (void)viewWillDisappear:(BOOL)animated {
-  NSLog(@"MenuViewController#viewWillDisappear");
   [super viewWillDisappear:animated];
 }
 /*

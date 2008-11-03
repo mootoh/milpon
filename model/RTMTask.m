@@ -31,14 +31,15 @@
 
 - (void) complete {
    sqlite3_stmt *stmt = nil;
-   const char *sql = "UPDATE task SET completed=? where id=?";
+   const char *sql = "UPDATE task SET completed=?, dirty=? where id=?";
    if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
       NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
       return;
    }
 
    sqlite3_bind_text(stmt, 1, "1", -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt, 2, [iD intValue]);
+   sqlite3_bind_int(stmt, 2, MODIFIED);
+   sqlite3_bind_int(stmt, 3, [iD intValue]);
 
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
       NSLog(@"update 'completed' to DB failed.");
@@ -51,14 +52,15 @@
 
 - (void) uncomplete {
    sqlite3_stmt *stmt = nil;
-   const char *sql = "UPDATE task SET completed=? where id=?";
+   const char *sql = "UPDATE task SET completed=?, dirty=? where id=?";
    if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
       NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
       return;
    }
 
    sqlite3_bind_text(stmt, 1, "", -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt, 2, [iD intValue]);
+   sqlite3_bind_int(stmt, 2, MODIFIED);
+   sqlite3_bind_int(stmt, 3, [iD intValue]);
 
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
       NSLog(@"update 'completed' to DB failed.");

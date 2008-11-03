@@ -171,7 +171,7 @@
    NSArray *tasks = [RTMTask completedTasks:db];
    for (RTMExistingTask *task in tasks) {
       if ([api_task complete:task]) {
-         [RTMTask remove:task.iD fromDB:db];
+         [RTMTask remove:task.iD fromDB:db]; // TODO: do not remove, keep it in DB to review completed tasks.
       }
    }
    [api_task release];
