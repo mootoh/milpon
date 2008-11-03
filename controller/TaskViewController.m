@@ -28,26 +28,34 @@
   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
-  
-  NSCalendar *calendar = [NSCalendar currentCalendar];
-  unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-  NSDate *due_date = [formatter dateFromString:task.due];
-  NSDateComponents *comps = [calendar components:unitFlags fromDate:due_date];    
-  
-  NSString *dueString = [NSString stringWithFormat:@"%d-%d-%d", [comps year], [comps month], [comps day]];
 
-	due.text = dueString;
-	location.text = [NSString stringWithFormat:@"%d", task.location_id];
-	//completed.text = task.completed;
+  if (task.rrule && ![task.rrule isEqualToString:@""])
+     repeat.text = task.rrule;
+  
+  if (task.due && ![task.due isEqualToString:@""]) {
+     NSCalendar *calendar = [NSCalendar currentCalendar];
+     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+     NSDate *due_date = [formatter dateFromString:task.due];
+     NSDateComponents *comps = [calendar components:unitFlags fromDate:due_date];    
+     
+     NSString *dueString = [NSString stringWithFormat:@"%d-%d-%d", [comps year], [comps month], [comps day]];
+
+      due.text = dueString;
+  }
+
+  // location.text = [NSString stringWithFormat:@"%d", task.location_id];
+   //completed.text = task.completed;
 	//priority.text = task.priority;
-	postponed.text = [NSString stringWithFormat:@"%d", task.postponed];
+	postponed.text = [task.postponed stringValue];
 	estimate.text = task.estimate;
 
   for (NSDictionary *note in task.notes) {
-    NSLog(@"title=%@", [note valueForKey:@"title"]);
-    UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 20)];
-    noteLabel.text = [NSString stringWithFormat:@"title=%@, text=%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
+    UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
+    noteLabel.font = [UIFont systemFontOfSize:10];
+    noteLabel.lineBreakMode = UILineBreakModeWordWrap;
+    noteLabel.text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
     [noteView addSubview:noteLabel];
+    [noteLabel release];
   }
 }
 

@@ -765,7 +765,7 @@
 				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Milpon;
-				PROVISIONING_PROFILE = DefaultProfileUuid;
+				PROVISIONING_PROFILE = "76275234-532D-4C8A-8B26-9CF32540D014";
 			};
 			name = AdHocDistribution;
 		};
