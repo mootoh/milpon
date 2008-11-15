@@ -78,7 +78,8 @@
 
 
 2008-10-19
-	# show build version (#16)
+	+ show build version (#16)
+		> 2008-11-14: OK
 	- DRY up RTMStorable:remove (#17)
 		SQL文のtableを parameter 化するだけでまとめられる。
 	- RTMStorable を protocol にする (#18)
