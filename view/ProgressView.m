@@ -13,7 +13,8 @@
 
 @synthesize message;
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
   if (self = [super initWithFrame:frame]) {
     self.opaque = NO;
     //activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -28,7 +29,7 @@
 
     progress = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     progress.frame = CGRectMake(frame.size.width/2-128/2, frame.size.height-10, 128, 6);
-    progress.hidden = YES;
+    progress.hidden = NO;
 
     //[self addSubview:activity];
     [self addSubview:messageLabel];
@@ -37,12 +38,14 @@
   return self;
 }
 
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect
+{
   [super drawRect:rect];
   //[activity startAnimating];
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
   [progress release];
   [messageLabel release];
   //[activity release];
@@ -50,26 +53,34 @@
   [super dealloc];
 }
 
-- (void) progressBegin {
-  progress.hidden = NO;
+- (void) progressBegin
+{
+  //progress.hidden = NO;
   progress.progress = 0.0;
 }
 
-- (void) progressEnd {
-  progress.hidden = YES;
+- (void) progressEnd
+{
+  //progress.hidden = YES;
   progress.progress = 1.0;
 }
 
-- (void) updateMessage:(NSString *)msg {
+- (void) updateMessage:(NSString *)msg
+{
   messageLabel.text = msg;
   [messageLabel setNeedsDisplay];
 }
 
-- (void) updateMessage:(NSString *)msg withProgress:(float)pg {
+- (void) updateMessage:(NSString *)msg withProgress:(float)pg
+{
   messageLabel.text = msg;
-  progress.progress = pg;
   [messageLabel setNeedsDisplay];
-  [progress setNeedsDisplay];
+  [self performSelectorInBackground:@selector(updateProgress:) withObject:[NSNumber numberWithFloat:pg]];
+}
+
+- (void) updateProgress:(NSNumber *)pg
+{
+  progress.progress = [pg floatValue];
 }
 
 @end
