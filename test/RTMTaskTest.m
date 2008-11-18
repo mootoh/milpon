@@ -15,22 +15,26 @@
 
 @implementation RTMTaskTest
 
-- (void) testAliveTasks {
+- (void) testAliveTasks
+{
   NSArray *alive_tasks = [RTMTask tasks];
 	STAssertTrue(4 == [alive_tasks count], @"4 tasks should exist in list_id=2.");
 }
 
-- (void) testAllTasks {
+- (void) testAllTasks
+{
 	NSArray *tasks = [RTMTask allTasks];
 	STAssertTrue(7 == [tasks count], @"7 tasks should exist.");
 }
 
-- (void) testTaskWithListID {
+- (void) testTaskWithListID
+{
 	NSArray *tasks = [RTMTask tasksInList:1];
 	STAssertTrue(5 == [tasks count], @"5 tasks should exist in list_id=1.");
 }
 
-- (void) testTaskProperties {
+- (void) testTaskProperties
+{
   NSArray *tasks = [RTMTask tasksInList:2];
 	STAssertTrue(2 == [tasks count], @"2 tasks should exist in list_id=2.");
 

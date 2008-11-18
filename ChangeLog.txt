@@ -1,3 +1,35 @@
+2008-11-18 mootoh
+	* Goal:
+		主眼をどこに置くか。
+
+		- オフラインアクセス
+		- 同期
+		- CRUD ができること
+		- 速い
+
+		これらが最低ライン。
+
+	* Models:
+		- Task
+		- List
+		- Note
+		- Tag
+		- (Location)
+
+	* Sync:
+		- create:
+			- upload a new entity created at offline
+			- download a new entity created at online
+		- update:
+			- overwrite online attributes editted attributes at offline
+			- overwrite offline attributes editted attributes at online
+		- merge:
+			- update based on last modified date
+		- delete:
+			- delete an entity deleted on another side,
+			  based on last modified date
+
+
 2008-11-14 mootoh
 	* advantages:
 		公式アプリもでてきた今、どう特色を出していくか。
@@ -30,7 +62,6 @@
 		けっきょく、 Web からとってきた情報も DB に入っている情報も、単なる
 		Dictionary でしかないわけだ。
 		しかも構成要素が固定であるという。
-
 
 	* Task, TaskSeries:
 		TaskSeries を使っているから、同期がややこしくなってる感。

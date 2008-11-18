@@ -29,7 +29,6 @@
 		8691FBD80E9D11F0003BE718 /* RTMStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8691FBD70E9D11F0003BE718 /* RTMStorable.m */; };
 		8691FBD90E9D11F0003BE718 /* RTMStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8691FBD70E9D11F0003BE718 /* RTMStorable.m */; };
 		8691FBDA0E9D11F0003BE718 /* RTMStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8691FBD70E9D11F0003BE718 /* RTMStorable.m */; };
-		86A07E9B0EA61B2300446784 /* RTMPendingTaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A07E9A0EA61B2300446784 /* RTMPendingTaskTest.m */; };
 		86A081C50EA6B78400446784 /* TaskEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A081C30EA6B74300446784 /* TaskEditCell.m */; };
 		86B9BBE90EABFC2A00210FCB /* AuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B9BBE80EABFC2A00210FCB /* AuthWebViewController.m */; };
 		86BF63310EA8C6710055D56B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BF63300EA8C6710055D56B /* RootViewController.m */; };
@@ -51,7 +50,6 @@
 		86E021250E7EAAD7001945E7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B98D23C00E6784AE0006D6AF /* libsqlite3.dylib */; };
 		86E021670E7EADB6001945E7 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F2013D0E690C660093B344 /* RTMAPI.m */; };
 		86E021690E7EADBA001945E7 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553270E6A2A68004DC85A /* RTMAPIList.m */; };
-		86EE20B20E9F386300C62684 /* RTMSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553450E6A2E93004DC85A /* RTMSynchronizer.m */; };
 		86EE21190E9F45AC00C62684 /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71E10E6A53DE00EF2F9A /* RTMTask.m */; };
 		86F41FCA0E813CD7006D98F4 /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */; };
 		86F7E7070EAF4F6C00B122F9 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */; };
@@ -70,6 +68,7 @@
 		B93A01CD0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */; };
 		B97131EE0E9AF1B70091057B /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B98036BE0E71363B000961EE /* RTMAuth.m */; };
 		B98036BF0E71363B000961EE /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B98036BE0E71363B000961EE /* RTMAuth.m */; };
+		B9835F860ED2955A0012CD3C /* RTMExistingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 8656F00D0EBEC40000230290 /* RTMExistingTask.m */; };
 		B98D23C10E6784AE0006D6AF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B98D23C00E6784AE0006D6AF /* libsqlite3.dylib */; };
 		B98D23CD0E67875D0006D6AF /* RTMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D23CC0E67875D0006D6AF /* RTMDatabase.m */; };
 		B98D24130E678C250006D6AF /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B98D24120E678C250006D6AF /* rtm.sql */; };
@@ -160,7 +159,6 @@
 		B98D24120E678C250006D6AF /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = rtm.sql; sourceTree = "<group>"; };
 		B98D24480E6792F60006D6AF /* RTMList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMList.h; sourceTree = "<group>"; };
 		B98D24490E6792F60006D6AF /* RTMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMList.m; sourceTree = "<group>"; };
-		B9AB968E0E95AAAB00DD5816 /* RTMTaskSeriesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMTaskSeriesTest.m; sourceTree = "<group>"; };
 		B9AB969E0E961A7B00DD5816 /* RTMNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMNote.h; sourceTree = "<group>"; };
 		B9AB969F0E961A7B00DD5816 /* RTMNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMNote.m; sourceTree = "<group>"; };
 		B9B1C28C0EA571F800CBCA62 /* RTMPendingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMPendingTask.h; sourceTree = "<group>"; };
@@ -403,15 +401,14 @@
 		B9DD5EDC0E690566007BFC7A /* test */ = {
 			isa = PBXGroup;
 			children = (
-				86A07E9A0EA61B2300446784 /* RTMPendingTaskTest.m */,
 				86568D8C0E9704C400F85D6D /* WebAPI */,
 				B9DE31F60E92472800AA490E /* Mock */,
 				86568D8D0E9704DF00F85D6D /* Migrator */,
 				B97131E90E9AF14C0091057B /* RTMAuthTest.m */,
 				B9ED8E320E90AD9700960F7F /* RTMDatabaseTest.m */,
 				B9FF72A40E6A732A00EF2F9A /* RTMListTest.m */,
-				B9AB968E0E95AAAB00DD5816 /* RTMTaskSeriesTest.m */,
 				8682829F0E72776400346232 /* RTMTaskTest.m */,
+				86A07E9A0EA61B2300446784 /* RTMPendingTaskTest.m */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -642,10 +639,9 @@
 				B9AB96A00E961A7B00DD5816 /* RTMNote.m in Sources */,
 				B97131EE0E9AF1B70091057B /* RTMAuth.m in Sources */,
 				8691FBD90E9D11F0003BE718 /* RTMStorable.m in Sources */,
-				86EE20B20E9F386300C62684 /* RTMSynchronizer.m in Sources */,
 				86EE21190E9F45AC00C62684 /* RTMTask.m in Sources */,
 				B9B1C28E0EA571F800CBCA62 /* RTMPendingTask.m in Sources */,
-				86A07E9B0EA61B2300446784 /* RTMPendingTaskTest.m in Sources */,
+				B9835F860ED2955A0012CD3C /* RTMExistingTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,7 +761,7 @@
 				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Milpon;
-				PROVISIONING_PROFILE = "DE11622F-91D6-451E-96FC-6FF41ADE8FD0";
+				PROVISIONING_PROFILE = "76275234-532D-4C8A-8B26-9CF32540D014";
 			};
 			name = AdHocDistribution;
 		};

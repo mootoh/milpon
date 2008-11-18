@@ -1,6 +1,6 @@
 CREATE TABLE list (
-  'id' INTEGER PRIMARY KEY,
-  'name'     CHAR(64)
+  'id'   INTEGER PRIMARY KEY,
+  'name' CHAR(64)
 );
 
 CREATE TABLE task (
