@@ -24,8 +24,8 @@
 - (void) syncLists;
 
 - (void) replaceTasks;
-- (void) syncTasks;
+- (void) syncTasks:(ProgressView *)progressView;
 - (void) uploadPendingTasks:(ProgressView *)progressView;
-- (void) syncCompletedTasks;
+- (void) syncCompletedTasks:(ProgressView *)ProgressView;
 
 @end

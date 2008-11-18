@@ -55,13 +55,13 @@
 
 - (void) progressBegin
 {
-  //progress.hidden = NO;
+  progress.hidden = NO;
   progress.progress = 0.0;
 }
 
 - (void) progressEnd
 {
-  //progress.hidden = YES;
+  progress.hidden = NO;
   progress.progress = 1.0;
 }
 

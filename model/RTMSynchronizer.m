@@ -95,7 +95,7 @@
       [RTMTask createAtOnline:task_series inDB:db];
 }
 
-- (void) syncTasks
+- (void) syncTasks:(ProgressView *)progressView
 {
    RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
    NSString *last_sync = [RTMTask lastSync:db];
@@ -114,8 +114,16 @@
     */
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-   for (NSDictionary *task_series in task_serieses_updated)
+   [progressView progressBegin];
+
+   int i=0;
+   for (NSDictionary *task_series in task_serieses_updated) {
+      [progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, task_serieses_updated.count] withProgress:(float)i/(float)task_serieses_updated.count];
+
       [RTMExistingTask createOrUpdate:task_series inDB:db];
+      i++;
+   }
+   [progressView progressEnd];
 
    [pool release];
 }
@@ -158,7 +166,7 @@
       // remove from DB
       [RTMPendingTask remove:task.iD fromDB:db];
 
-      [progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/pendings.count];
+      [progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/(float)pendings.count];
       i++;
    }
 
@@ -166,7 +174,7 @@
    [progressView progressEnd];
 }
 
-- (void) syncCompletedTasks
+- (void) syncCompletedTasks:(ProgressView *)progressView
 {
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
 

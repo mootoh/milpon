@@ -33,7 +33,6 @@
    [super dealloc];
 }
 
-
 // Implement loadView to create a view hierarchy programmatically.
 - (void)loadView
 {
@@ -61,6 +60,7 @@
    ProgressView *pv = [[ProgressView alloc] initWithFrame:CGRectMake(8, 8, 240, 36)];
    UIBarButtonItem *progressIndicator = [[UIBarButtonItem alloc] initWithCustomView:pv];
    self.progressView = pv;
+   [pv release];
 
    [bar setItems:[NSArray arrayWithObjects:uploadButton, progressIndicator, addButton, nil] animated:NO];
 
@@ -136,8 +136,8 @@
    RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithDB:app.db withAuth:app.auth];
 
    [syncer uploadPendingTasks:progressView];
-   [syncer syncCompletedTasks];
-   [syncer syncTasks];
+   [syncer syncCompletedTasks:progressView];
+   [syncer syncTasks:progressView];
 
    [syncer release];
 
