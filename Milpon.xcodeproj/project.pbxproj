@@ -55,6 +55,11 @@
 		86F7E7070EAF4F6C00B122F9 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */; };
 		86FC8D180E9593F100BD30A4 /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */; };
 		86FD2E9C0EA249CC004631B0 /* rtm_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 86FD2E9B0EA249CB004631B0 /* rtm_icon.png */; };
+		92F166730ED325370096EABC /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F166720ED325370096EABC /* ProgressViewController.m */; };
+		92F166740ED325560096EABC /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867187260EAC7B3B000A9133 /* ProgressView.m */; };
+		92F166760ED3256D0096EABC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		92F166840ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92F166830ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib */; };
+		92F166910ED326A80096EABC /* FunctionalTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F166900ED326A80096EABC /* FunctionalTestAppDelegate.m */; };
 		B9134DD10E65F0E1005028DC /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9134DD00E65F0E1005028DC /* RTMAPIAuth.m */; };
 		B91553280E6A2A68004DC85A /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553270E6A2A68004DC85A /* RTMAPIList.m */; };
 		B91553460E6A2E93004DC85A /* RTMSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553450E6A2E93004DC85A /* RTMSynchronizer.m */; };
@@ -139,6 +144,13 @@
 		86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		86FD2E9B0EA249CB004631B0 /* rtm_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rtm_icon.png; path = resource/rtm_icon.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92F166670ED324290096EABC /* ProgressViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgressViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92F166690ED324290096EABC /* ProgressViewTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ProgressViewTest-Info.plist"; path = "../ProgressViewTest-Info.plist"; sourceTree = "<group>"; };
+		92F166710ED325370096EABC /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
+		92F166720ED325370096EABC /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
+		92F166830ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FunctionalTestProgressViewWindow.xib; path = ../FunctionalTestProgressViewWindow.xib; sourceTree = "<group>"; };
+		92F1668F0ED326A80096EABC /* FunctionalTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionalTestAppDelegate.h; sourceTree = "<group>"; };
+		92F166900ED326A80096EABC /* FunctionalTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionalTestAppDelegate.m; sourceTree = "<group>"; };
 		B9134DCF0E65F0E1005028DC /* RTMAPIAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIAuth.h; sourceTree = "<group>"; };
 		B9134DD00E65F0E1005028DC /* RTMAPIAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIAuth.m; sourceTree = "<group>"; };
 		B91553260E6A2A68004DC85A /* RTMAPIList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIList.h; sourceTree = "<group>"; };
@@ -207,6 +219,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		92F166650ED324290096EABC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9DD5E8C0E6901B7007BFC7A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -225,6 +244,7 @@
 				1D6058910D05DD3D006BFB54 /* Milpon.app */,
 				B9DD5E8F0E6901B7007BFC7A /* UnitTest.octest */,
 				86E0212A0E7EAAD7001945E7 /* UnitTest.octest */,
+				92F166670ED324290096EABC /* ProgressViewTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -356,6 +376,19 @@
 			path = controller;
 			sourceTree = "<group>";
 		};
+		92F1666F0ED324F30096EABC /* view */ = {
+			isa = PBXGroup;
+			children = (
+				92F166690ED324290096EABC /* ProgressViewTest-Info.plist */,
+				92F166710ED325370096EABC /* ProgressViewController.h */,
+				92F166720ED325370096EABC /* ProgressViewController.m */,
+				92F1668F0ED326A80096EABC /* FunctionalTestAppDelegate.h */,
+				92F166900ED326A80096EABC /* FunctionalTestAppDelegate.m */,
+				92F166830ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		B91553250E6A2A4B004DC85A /* api */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +434,7 @@
 		B9DD5EDC0E690566007BFC7A /* test */ = {
 			isa = PBXGroup;
 			children = (
+				92F1666F0ED324F30096EABC /* view */,
 				86568D8C0E9704C400F85D6D /* WebAPI */,
 				B9DE31F60E92472800AA490E /* Mock */,
 				86568D8D0E9704DF00F85D6D /* Migrator */,
@@ -460,6 +494,23 @@
 			productReference = 86E0212A0E7EAAD7001945E7 /* UnitTest.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		92F166660ED324290096EABC /* ProgressViewTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92F1666D0ED3242A0096EABC /* Build configuration list for PBXNativeTarget "ProgressViewTest" */;
+			buildPhases = (
+				92F166630ED324290096EABC /* Resources */,
+				92F166640ED324290096EABC /* Sources */,
+				92F166650ED324290096EABC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ProgressViewTest;
+			productName = ProgressViewTest;
+			productReference = 92F166670ED324290096EABC /* ProgressViewTest.app */;
+			productType = "com.apple.product-type.application";
+		};
 		B9DD5E8E0E6901B7007BFC7A /* UnitTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9DD5E940E6901B8007BFC7A /* Build configuration list for PBXNativeTarget "UnitTest" */;
@@ -500,6 +551,7 @@
 				1D6058900D05DD3D006BFB54 /* Milpon */,
 				B9DD5E8E0E6901B7007BFC7A /* UnitTest */,
 				86E021170E7EAAD7001945E7 /* UpdateDB */,
+				92F166660ED324290096EABC /* ProgressViewTest */,
 			);
 		};
 /* End PBXProject section */
@@ -526,6 +578,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				86E021190E7EAAD7001945E7 /* rtm.sql in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92F166630ED324290096EABC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92F166840ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +682,17 @@
 				867907AE0E96729600A75576 /* UpdateTask.m in Sources */,
 				8684039A0E9ADC9C009CEECD /* RTMAuth.m in Sources */,
 				8691FBDA0E9D11F0003BE718 /* RTMStorable.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92F166640ED324290096EABC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92F166730ED325370096EABC /* ProgressViewController.m in Sources */,
+				92F166740ED325560096EABC /* ProgressView.m in Sources */,
+				92F166760ED3256D0096EABC /* main.m in Sources */,
+				92F166910ED326A80096EABC /* FunctionalTestAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,6 +892,76 @@
 			};
 			name = AdHocDistribution;
 		};
+		92F1666A0ED3242A0096EABC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "ProgressViewTest-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ProgressViewTest;
+				SDKROOT = iphonesimulator2.1;
+			};
+			name = Debug;
+		};
+		92F1666B0ED3242A0096EABC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "ProgressViewTest-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ProgressViewTest;
+				SDKROOT = iphoneos2.1;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		92F1666C0ED3242A0096EABC /* AdHocDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "ProgressViewTest-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ProgressViewTest;
+				SDKROOT = iphoneos2.1;
+			};
+			name = AdHocDistribution;
+		};
 		B9DD5E920E6901B7007BFC7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -931,6 +1072,16 @@
 				86E021280E7EAAD7001945E7 /* Debug */,
 				86E021290E7EAAD7001945E7 /* Release */,
 				86F7E6FC0EAF4E4E00B122F9 /* AdHocDistribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92F1666D0ED3242A0096EABC /* Build configuration list for PBXNativeTarget "ProgressViewTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92F1666A0ED3242A0096EABC /* Debug */,
+				92F1666B0ED3242A0096EABC /* Release */,
+				92F1666C0ED3242A0096EABC /* AdHocDistribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

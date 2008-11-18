@@ -74,12 +74,12 @@
 - (void) updateMessage:(NSString *)msg withProgress:(float)pg
 {
   messageLabel.text = msg;
-  [messageLabel setNeedsDisplay];
   [self performSelectorInBackground:@selector(updateProgress:) withObject:[NSNumber numberWithFloat:pg]];
 }
 
 - (void) updateProgress:(NSNumber *)pg
 {
+  [messageLabel setNeedsDisplay];
   progress.progress = [pg floatValue];
 }
 
