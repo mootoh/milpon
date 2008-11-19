@@ -13,6 +13,7 @@
   UILabel *messageLabel;
   UIProgressView *progress;
   NSString *message;
+  BOOL inProgress;
 }
 
 @property (nonatomic,retain) NSString *message;

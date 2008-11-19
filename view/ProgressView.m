@@ -11,79 +11,96 @@
 
 @implementation ProgressView
 
-@synthesize message;
-
 - (id)initWithFrame:(CGRect)frame
 {
-  if (self = [super initWithFrame:frame]) {
-    self.opaque = NO;
-    //activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    //activity.frame = CGRectMake(4, 0, 16, 16);
-    //activity.hidesWhenStopped = YES;
-    messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width/2-128/2, 0, 128, 20)];
-    messageLabel.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.0];
-    messageLabel.opaque = YES;
-    messageLabel.font = [UIFont systemFontOfSize:10];
-    messageLabel.textColor = [UIColor whiteColor];
-    messageLabel.textAlignment = UITextAlignmentCenter;
+   if (self = [super initWithFrame:frame]) {
+      inProgress = NO;
+      self.opaque = NO;
 
-    progress = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-    progress.frame = CGRectMake(frame.size.width/2-128/2, frame.size.height-10, 128, 6);
-    progress.hidden = NO;
+      activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+      activity.frame = CGRectMake(frame.origin.x, frame.origin.y, 16, 16);
+      activity.hidesWhenStopped = YES;
+      [self addSubview:activity];
 
-    //[self addSubview:activity];
-    [self addSubview:messageLabel];
-    [self addSubview:progress];
-  }
-  return self;
+      messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width/2-128/2, 0, 128, 20)];
+      messageLabel.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.0];
+      messageLabel.opaque = YES;
+      messageLabel.font = [UIFont systemFontOfSize:10];
+      messageLabel.textColor = [UIColor whiteColor];
+      messageLabel.textAlignment = UITextAlignmentCenter;
+      [self addSubview:messageLabel];
+
+      progress = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+      progress.frame = CGRectMake(frame.size.width/2-128/2, frame.size.height-10, 128, 6);
+      progress.hidden = NO;
+      [self addSubview:progress];
+   }
+   return self;
 }
 
 - (void)drawRect:(CGRect)rect
 {
-  [super drawRect:rect];
-  //[activity startAnimating];
+   [super drawRect:rect];
+   if (inProgress) {
+      [activity startAnimating];
+   } else {
+      [activity stopAnimating];
+   }
 }
 
 - (void)dealloc
 {
-  [progress release];
-  [messageLabel release];
-  //[activity release];
-  [message release];
-  [super dealloc];
+   [progress release];
+   [messageLabel release];
+   //[activity release];
+   [message release];
+   [super dealloc];
 }
 
 - (void) progressBegin
 {
-  progress.hidden = NO;
-  progress.progress = 0.0;
+   inProgress = YES;
+   progress.hidden = NO;
+   progress.progress = 0.0;
 }
 
 - (void) progressEnd
 {
-  progress.hidden = NO;
-  progress.progress = 1.0;
+   inProgress = NO;
+   progress.hidden = NO;
+   progress.progress = 1.0;
 }
 
 - (void) updateMessage:(NSString *)msg
 {
-  messageLabel.text = msg;
+   messageLabel.text = msg;
 }
 
 - (void) updateMessage:(NSString *)msg withProgress:(float)pg
 {
-   float pgg = 0.0;
-   for (int i=0; i<1000; i++) {
-  //messageLabel.text = msg;
-     [self performSelectorInBackground:@selector(updateProgress:) withObject:[NSNumber numberWithFloat:pgg]];
-     pgg += 0.001;
-   }
+   messageLabel.text = msg;
+   [self performSelectorInBackground:@selector(updateProgress:) withObject:[NSNumber numberWithFloat:pg]];
 }
 
 - (void) updateProgress:(NSNumber *)pg
 {
-  progress.progress = [pg floatValue];
-  //[messageLabel setNeedsDisplay];
+   progress.progress = [pg floatValue];
+   [messageLabel setNeedsDisplay];
+}
+
+- (void) setMessage:(NSString *)msg
+{
+   if (message) [message release];
+   message = [msg retain];
+
+   if (! inProgress) {
+      messageLabel.text = msg;
+   }
+}
+
+- (NSString *)message
+{
+   return message;
 }
 
 @end

@@ -27,14 +27,18 @@
    [super loadView];
    self.view.backgroundColor = [UIColor grayColor];
 
-   pv = [[ProgressView alloc] initWithFrame:CGRectMake(0,0, 320,240)];
+   pv = [[ProgressView alloc] initWithFrame:CGRectMake(32,48, 200,100)];
    [self.view addSubview:pv];
-   [pv progressBegin];
 
-   btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-   [self.view addSubview:btn];
-   btn.frame = CGRectMake(320/2-150/2, 300, 150, 40);
-   [btn addTarget:self action:@selector(progress) forControlEvents:UIControlEventTouchDown];
+   progressTriggerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+   [self.view addSubview:progressTriggerButton];
+   progressTriggerButton.frame = CGRectMake(320/2-80/2, 200, 80, 40);
+   [progressTriggerButton addTarget:self action:@selector(progress) forControlEvents:UIControlEventTouchDown];
+
+   messageSetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+   [self.view addSubview:messageSetButton];
+   messageSetButton.frame = CGRectMake(320/2-80/2, 260, 80, 40);
+   [messageSetButton addTarget:self action:@selector(setMessage) forControlEvents:UIControlEventTouchDown];
 
 }
 
@@ -61,22 +65,34 @@
 
 - (void)dealloc
 {
-   [btn release];
+   [messageSetButton release];
+   [progressTriggerButton release];
    [pv release];
    [super dealloc];
 }
 
 - (IBAction) progress
 {
-   /*
+   [self performSelectorInBackground:@selector(progressInBackground) withObject:nil];
+}
+
+- (void) progressInBackground
+{
+   [pv progressBegin];
+
    float pg = 0.0;
    for (int i=0; i<10; i++) {
       [pv updateMessage:[NSString stringWithFormat:@"progress... %f", pg] withProgress:pg];
       pg += 0.1;
-      //usleep(10000);
+      usleep(100000);
    }
-   */
-   [pv updateMessage:[NSString stringWithFormat:@"progress... %f", 0.0] withProgress:0.0];
+   [pv progressEnd];
+}
+
+
+- (IBAction) setMessage
+{
+   pv.message = @"message set from controller.";
 }
 
 @end

@@ -376,7 +376,7 @@
 			path = controller;
 			sourceTree = "<group>";
 		};
-		92F1666F0ED324F30096EABC /* view */ = {
+		B903CD250ED3BD2F00B2FD59 /* functional */ = {
 			isa = PBXGroup;
 			children = (
 				92F166690ED324290096EABC /* ProgressViewTest-Info.plist */,
@@ -386,7 +386,20 @@
 				92F166900ED326A80096EABC /* FunctionalTestAppDelegate.m */,
 				92F166830ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib */,
 			);
-			name = view;
+			name = functional;
+			sourceTree = "<group>";
+		};
+		B903CD260ED3BD3600B2FD59 /* unit */ = {
+			isa = PBXGroup;
+			children = (
+				86568D8C0E9704C400F85D6D /* WebAPI */,
+				B97131E90E9AF14C0091057B /* RTMAuthTest.m */,
+				B9ED8E320E90AD9700960F7F /* RTMDatabaseTest.m */,
+				B9FF72A40E6A732A00EF2F9A /* RTMListTest.m */,
+				8682829F0E72776400346232 /* RTMTaskTest.m */,
+				86A07E9A0EA61B2300446784 /* RTMPendingTaskTest.m */,
+			);
+			name = unit;
 			sourceTree = "<group>";
 		};
 		B91553250E6A2A4B004DC85A /* api */ = {
@@ -434,15 +447,10 @@
 		B9DD5EDC0E690566007BFC7A /* test */ = {
 			isa = PBXGroup;
 			children = (
-				92F1666F0ED324F30096EABC /* view */,
-				86568D8C0E9704C400F85D6D /* WebAPI */,
+				B903CD260ED3BD3600B2FD59 /* unit */,
+				B903CD250ED3BD2F00B2FD59 /* functional */,
 				B9DE31F60E92472800AA490E /* Mock */,
 				86568D8D0E9704DF00F85D6D /* Migrator */,
-				B97131E90E9AF14C0091057B /* RTMAuthTest.m */,
-				B9ED8E320E90AD9700960F7F /* RTMDatabaseTest.m */,
-				B9FF72A40E6A732A00EF2F9A /* RTMListTest.m */,
-				8682829F0E72776400346232 /* RTMTaskTest.m */,
-				86A07E9A0EA61B2300446784 /* RTMPendingTaskTest.m */,
 			);
 			path = test;
 			sourceTree = "<group>";
