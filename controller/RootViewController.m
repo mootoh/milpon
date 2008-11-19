@@ -51,6 +51,7 @@
    naviController.view.backgroundColor = [UIColor greenColor];
    [self.view addSubview:naviController.view];
    self.navigationController = naviController;
+   [naviController release];
 
    // create a bottom bar.
    UIToolbar *bar = [[UIToolbar alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height-toolbarHeight, appFrame.size.width, toolbarHeight)];
@@ -76,7 +77,7 @@
       avc.navigationItem.hidesBackButton = YES;
       avc.bottomBar = bottomBar;
       bottomBar.hidden = YES;
-      [naviController pushViewController:avc animated:NO];
+      [self.navigationController pushViewController:avc animated:NO];
 
       [avc release];
    }

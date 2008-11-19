@@ -46,6 +46,7 @@
       [RTMAPI setSecret:auth.shared_secret];
       if (auth.token)
          [RTMAPI setToken:auth.token];
+
       operationQueue = [[NSOperationQueue alloc] init];
    }
    return self;

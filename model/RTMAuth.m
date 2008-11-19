@@ -20,7 +20,11 @@
      self.api_key = API_KEY;
      self.shared_secret = SHARED_SECRET;
      frob = nil;
+#ifdef LOCAL_DEBUG
+     self.token = TOKEN;
+#else // LOCAL_DEBUG
      token = nil;
+#endif // LOCAL_DEBUG
   }
   return self;
 }
@@ -30,7 +34,11 @@
   self.api_key = API_KEY;
   self.shared_secret = SHARED_SECRET;
   self.frob = [coder decodeObjectForKey:@"frob"];
+#ifdef LOCAL_DEBUG
+  self.token = TOKEN;
+#else // LOCAL_DEBUG
   self.token = [coder decodeObjectForKey:@"token"];
+#endif // LOCAL_DEBUG
 
   return self;
 }

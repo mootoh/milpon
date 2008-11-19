@@ -825,7 +825,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.1;
+				SDKROOT = iphonesimulator2.1;
 			};
 			name = AdHocDistribution;
 		};
@@ -970,6 +970,129 @@
 			};
 			name = AdHocDistribution;
 		};
+		B903CE4B0ED3FC4300B2FD59 /* Local Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DLOCAL_DEBUG";
+				PREBINDING = NO;
+				SDKROOT = iphonesimulator2.1;
+			};
+			name = "Local Debug";
+		};
+		B903CE4C0ED3FC4300B2FD59 /* Local Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = Milpon;
+				PROVISIONING_PROFILE = DefaultProfileUuid;
+			};
+			name = "Local Debug";
+		};
+		B903CE4D0ED3FC4300B2FD59 /* Local Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = UNIT_TEST;
+				GCC_VERSION = 4.0;
+				INFOPLIST_FILE = "UnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LD_RUNPATH_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				OTHER_CFLAGS = "-DDUMP_API_RESPONSE";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Local Debug";
+		};
+		B903CE4E0ED3FC4300B2FD59 /* Local Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DUMP_API_RESPONSE,
+					UNIT_TEST,
+				);
+				GCC_VERSION = 4.0;
+				INFOPLIST_FILE = "/Users/moto/prj/iphone/rtm4iphone/UnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LD_RUNPATH_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Local Debug";
+		};
+		B903CE4F0ED3FC4300B2FD59 /* Local Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "ProgressViewTest-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ProgressViewTest;
+				SDKROOT = iphonesimulator2.1;
+			};
+			name = "Local Debug";
+		};
 		B9DD5E920E6901B7007BFC7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1044,7 +1167,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.1;
+				SDKROOT = iphonesimulator2.1;
 			};
 			name = Debug;
 		};
@@ -1057,7 +1180,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.1;
+				SDKROOT = iphonesimulator2.1;
 			};
 			name = Release;
 		};
@@ -1068,51 +1191,56 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
+				B903CE4C0ED3FC4300B2FD59 /* Local Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				86F7E6FA0EAF4E4E00B122F9 /* AdHocDistribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		86E021270E7EAAD7001945E7 /* Build configuration list for PBXNativeTarget "UpdateDB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				86E021280E7EAAD7001945E7 /* Debug */,
+				B903CE4E0ED3FC4300B2FD59 /* Local Debug */,
 				86E021290E7EAAD7001945E7 /* Release */,
 				86F7E6FC0EAF4E4E00B122F9 /* AdHocDistribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		92F1666D0ED3242A0096EABC /* Build configuration list for PBXNativeTarget "ProgressViewTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				92F1666A0ED3242A0096EABC /* Debug */,
+				B903CE4F0ED3FC4300B2FD59 /* Local Debug */,
 				92F1666B0ED3242A0096EABC /* Release */,
 				92F1666C0ED3242A0096EABC /* AdHocDistribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		B9DD5E940E6901B8007BFC7A /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B9DD5E920E6901B7007BFC7A /* Debug */,
+				B903CE4D0ED3FC4300B2FD59 /* Local Debug */,
 				B9DD5E930E6901B7007BFC7A /* Release */,
 				86F7E6FB0EAF4E4E00B122F9 /* AdHocDistribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Milpon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
+				B903CE4B0ED3FC4300B2FD59 /* Local Debug */,
 				C01FCF5008A954540054247B /* Release */,
 				86F7E6F90EAF4E4E00B122F9 /* AdHocDistribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
