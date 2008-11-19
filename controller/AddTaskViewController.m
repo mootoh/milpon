@@ -116,7 +116,8 @@ enum {
    return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
    switch ([indexPath row]) {
       case CELL_NAME:
          [self textFieldShouldReturn:estimate_field];

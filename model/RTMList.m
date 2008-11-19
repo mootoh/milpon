@@ -27,7 +27,8 @@
    return [RTMTask tasksInList:self.iD inDB:db];
 }
 
-- (NSInteger) taskCount {
+- (NSInteger) taskCount
+{
    sqlite3_stmt *stmt = nil;
    const char *sql = "SELECT count() from task where list_id=? AND (completed='' OR completed is NULL)";
 
@@ -43,7 +44,8 @@
    return count;
 }
 
-+ (NSArray *) allLists:(RTMDatabase *)db {
++ (NSArray *) allLists:(RTMDatabase *)db
+{
    NSMutableArray *lists = [NSMutableArray array];
 
    sqlite3_stmt *stmt = nil;
@@ -66,7 +68,8 @@
    return lists;
 }
 
-+ (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db {
++ (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db
+{
    sqlite3_stmt *stmt = nil;
    char *sql = "INSERT INTO list (id, name) VALUES(?, ?)";
    if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
@@ -81,7 +84,8 @@
    sqlite3_finalize(stmt);
 }
 
-+ (void) erase:(RTMDatabase *)db {
++ (void) erase:(RTMDatabase *)db
+{
    sqlite3_stmt *stmt = nil;
    char *sql = "delete from list";
    if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
@@ -94,7 +98,8 @@
    sqlite3_finalize(stmt);
 }
 
-+ (void) remove:(NSNumber *)iid fromDB:(RTMDatabase *)db {
++ (void) remove:(NSNumber *)iid fromDB:(RTMDatabase *)db
+{
    sqlite3_stmt *stmt = nil;
    char *sql = "delete from list where id=?";
    if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {

@@ -86,7 +86,8 @@
    }
 }
 
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
    if ([elementName isEqualToString:@"taskseries"]) {
       task_series = nil;
       task_entries = nil;
@@ -227,7 +228,8 @@
    return [cb ids];
 }
 
-- (BOOL) delete:(NSString *)task_id inTaskSeries:(NSString *)task_series_id inList:(NSString *)list_id {
+- (BOOL) delete:(NSString *)task_id inTaskSeries:(NSString *)task_series_id inList:(NSString *)list_id
+{
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSString *timeline = [api createTimeline];
    if (! timeline) return NO;
@@ -250,7 +252,8 @@
    return YES;
 }
 
-- (BOOL) setDue:(NSString *)due forIDs:(NSDictionary *)ids {
+- (BOOL) setDue:(NSString *)due forIDs:(NSDictionary *)ids
+{
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSString *timeline = [api createTimeline];
    if (! timeline) return NO;
@@ -279,7 +282,8 @@
    return YES;
 }
 
-- (BOOL) setLocation:(NSString *)location_id forIDs:(NSDictionary *)ids {
+- (BOOL) setLocation:(NSString *)location_id forIDs:(NSDictionary *)ids
+{
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSString *timeline = [api createTimeline];
    if (! timeline) return NO;
@@ -308,7 +312,8 @@
    return YES;
 }
 
-- (BOOL) setPriority:(NSString *)priority forIDs:(NSDictionary *)ids {
+- (BOOL) setPriority:(NSString *)priority forIDs:(NSDictionary *)ids
+{
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSString *timeline = [api createTimeline];
    if (! timeline) return NO;
@@ -337,7 +342,8 @@
    return YES;
 }
 
-- (BOOL) setEstimate:(NSString *)estimate forIDs:(NSDictionary *)ids {
+- (BOOL) setEstimate:(NSString *)estimate forIDs:(NSDictionary *)ids
+{
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSString *timeline = [api createTimeline];
    if (! timeline) return NO;
@@ -366,7 +372,8 @@
    return YES;
 }
 
-- (BOOL) complete:(RTMExistingTask *)task {
+- (BOOL) complete:(RTMExistingTask *)task
+{
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSString *timeline = [api createTimeline];
    if (! timeline) return NO;

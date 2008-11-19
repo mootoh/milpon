@@ -21,7 +21,8 @@
 
 @implementation RTMAPITaskTest
 
-- (void) setUp {
+- (void) setUp
+{
   db   = [[RTMDatabase alloc] init];
   auth = [[RTMAuth alloc] initWithDB:db];
   api  = [[RTMAPI alloc] init];
@@ -30,25 +31,29 @@
   [RTMAPI setToken:auth.token];
 }
 
-- (void) tearDown {
+- (void) tearDown
+{
   [api release];
   [auth release];
   [db release];
 }
 
-- (void) testGetList {
+- (void) testGetList
+{
 	RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
 	NSArray *tasks = [api_task getList];
   STAssertNotNil(tasks, @"task getList should not be nil");		
 	STAssertTrue([tasks count] > 0, @"tasks should be one or more.");
 }
 
-- (void) testGetListForID {
+- (void) testGetListForID
+{
 	RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
 	STAssertTrue([[api_task getListForList:@"977050"] count] > 0, @"tasks in Inbox should be one or more.");
 }
 
-- (void) testGetListWithLastSync {
+- (void) testGetListWithLastSync
+{
 	RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
 
   NSDate *now = [NSDate date];
@@ -63,7 +68,8 @@
 	STAssertTrue([tasks count] == 0, @"tasks should be zero");
 }
 
-- (void) testAdd_and_Delete {
+- (void) testAdd_and_Delete
+{
 	RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
   NSDictionary *ids = [api_task add:@"task add from API." inList:nil];
 	STAssertNotNil([ids valueForKey:@"task_series_id"], @"check created task_series id");
@@ -72,7 +78,8 @@
   STAssertTrue([api_task delete:[ids valueForKey:@"task_id"] inTaskSeries:[ids valueForKey:@"task_series_id"] inList:[ids valueForKey:@"list_id"]], @"check delete");
 }
 
-- (void) testAddInList_and_Delete {
+- (void) testAddInList_and_Delete
+{
 	RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
   NSDictionary *ids = [api_task add:@"task add from API specifying list." inList:@"4922895"];
 	STAssertNotNil([ids valueForKey:@"task_series_id"], @"check created task_series id");

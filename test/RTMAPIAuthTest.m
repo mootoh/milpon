@@ -23,7 +23,8 @@
 
 @implementation RTMAPIAuthTest
 
-- (void) setUp {
+- (void) setUp
+{
   db   = [[RTMDatabase alloc] init];
   auth = [[RTMAuth alloc] initWithDB:db];
   api  = [[RTMAPI alloc] init];
@@ -32,25 +33,29 @@
   [RTMAPI setToken:auth.token];
 }
 
-- (void) tearDown {
+- (void) tearDown
+{
   [api release];
   [auth release];
   [db release];
 }
 
-- (void) testCheckToken {
+- (void) testCheckToken
+{
 	RTMAPIAuth *api_auth = [[[RTMAPIAuth alloc] init] autorelease];
 	STAssertTrue([api_auth checkToken:auth.token], @"token should be valid");
 }
 
-- (void) not_testGetFrob {
+- (void) not_testGetFrob
+{
 	RTMAPIAuth *api_auth = [[[RTMAPIAuth alloc] init] autorelease];
 	NSString *frob = [api_auth getFrob];
 	STAssertNotNil(frob, @"frob should be acquired.");
 	NSLog(@"frob = %@", frob);
 }
 
-- (void) not_testGetToken {
+- (void) not_testGetToken
+{
 	RTMAPIAuth *api_auth = [[[RTMAPIAuth alloc] init] autorelease];
 	NSString *token = [api_auth getToken:TEST_FROB];
 	STAssertNotNil(token, @"token should be acquired.");

@@ -29,7 +29,8 @@
    return (completed && ![completed isEqualToString:@""]);
 }
 
-- (void) complete {
+- (void) complete
+{
    sqlite3_stmt *stmt = nil;
    const char *sql = "UPDATE task SET completed=?, dirty=? where id=?";
    if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
@@ -50,7 +51,8 @@
    completed = @"1";
 }
 
-- (void) uncomplete {
+- (void) uncomplete
+{
    sqlite3_stmt *stmt = nil;
    const char *sql = "UPDATE task SET completed=?, dirty=? where id=?";
    if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {

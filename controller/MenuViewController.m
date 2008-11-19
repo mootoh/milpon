@@ -15,7 +15,8 @@
 
 @synthesize bottomBar, rootViewController;
 
-- (id)initWithStyle:(UITableViewStyle)style {
+- (id)initWithStyle:(UITableViewStyle)style
+{
   if (self = [super initWithStyle:style]) {
     items = [[NSArray arrayWithObjects:@"Overview", @"List", @"Tag", @"Location", nil] retain];
     self.title = @"Milpon";
@@ -23,7 +24,8 @@
   return self;
 }
 
-- (void) loadView {
+- (void) loadView
+{
   [super loadView];
 
   UIBarButtonItem *configButton = [[UIBarButtonItem alloc] initWithTitle:@"debug" style:UIBarButtonItemStylePlain target:self action:@selector(config)];
@@ -31,16 +33,19 @@
   [configButton release];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
   return 1;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
   return items.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
   static NSString *CellIdentifier = @"Cell";
 
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -58,7 +63,8 @@
   return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
   switch (indexPath.row) {
     case MENU_OVERVIEW: {
       HomeViewController *ctr = [[HomeViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -78,7 +84,8 @@
 }
 
 /*
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
     }
@@ -88,51 +95,61 @@
 */
 
 /*
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return YES;
 }
 */
 
 /*
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
 }
 */
 
 /*
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return YES;
 }
 */
 
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
   [super viewWillAppear:animated];
   self.bottomBar.hidden = NO;
 }
 /*
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
 }
 */
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated
+{
   [super viewWillDisappear:animated];
 }
 /*
-- (void)viewDidDisappear:(BOOL)animated {
+- (void)viewDidDisappear:(BOOL)animated
+{
 }
 */
 /*
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
 }
 */
 
-- (void)dealloc {
+- (void)dealloc
+{
   [items release];
   [super dealloc];
 }
 
-- (IBAction) config {
+- (IBAction) config
+{
   self.bottomBar.hidden = YES;
 
   ConfigViewController *ctrl = [[ConfigViewController alloc] initWithNibName:nil bundle:nil];

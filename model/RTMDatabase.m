@@ -17,7 +17,8 @@
 
 @synthesize handle, path;
 
--(id) init {
+-(id) init
+{
   if (self = [super init]) {
     path = [[self databasePath] retain];
     if (SQLITE_OK == sqlite3_open([path UTF8String], &handle)) {
@@ -26,13 +27,15 @@
   return self;
 }
 
-- (void) dealloc {
+- (void) dealloc
+{
   [path release];
   sqlite3_close(handle);
   [super dealloc];
 }
 
-- (NSString *) databasePath {
+- (NSString *) databasePath
+{
   NSFileManager *fileManager = [NSFileManager defaultManager];
 #ifdef UNIT_TEST
   NSString *documentsDirectory = @"/tmp";

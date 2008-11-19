@@ -19,24 +19,29 @@ static NSString *s_api_key;
 static NSString *s_shared_secret;
 static NSString *s_token;
 
-+ (void) setApiKey:(NSString *)key {
++ (void) setApiKey:(NSString *)key
+{
   s_api_key = [key retain];
 }
 
-+ (void) setSecret:(NSString *)sec {
++ (void) setSecret:(NSString *)sec
+{
   s_shared_secret = [sec retain];
 }
 
-+ (void) setToken:(NSString *)tok {
++ (void) setToken:(NSString *)tok
+{
   s_token = [tok retain];
 }
 
-- (void) dealloc {
+- (void) dealloc
+{
   [timeline release];
   [super dealloc];
 }
 
-- (NSData *) call:(NSString *)method withArgs:(NSDictionary *)args {
+- (NSData *) call:(NSString *)method withArgs:(NSDictionary *)args
+{
   NSString *url = [self path:method withArgs:args];
   NSURLRequest *req = [NSURLRequest
     requestWithURL:[NSURL URLWithString:url]
@@ -62,7 +67,8 @@ static NSString *s_token;
   return ret;
 }
 
-- (NSString *) path:(NSString *)method withArgs:(NSDictionary *)args {
+- (NSString *) path:(NSString *)method withArgs:(NSDictionary *)args
+{
   NSMutableString *arg = [[[NSMutableString alloc] init] autorelease];
 
   NSMutableDictionary *args_with_token = [NSMutableDictionary dictionaryWithDictionary:args];
@@ -87,7 +93,8 @@ static NSString *s_token;
   return ret;
 }
 
-- (NSString *)sign:(NSString *)method withArgs:(NSDictionary *)args {
+- (NSString *)sign:(NSString *)method withArgs:(NSDictionary *)args
+{
   // append method, api_key
   NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:args];
   if (method) [params setObject:method forKey:@"method"];
@@ -134,7 +141,8 @@ static NSString *s_token;
   return ret;
 }
 
-- (NSString *) createTimeline {
+- (NSString *) createTimeline
+{
   NSData *response = [self call:@"rtm.timelines.create" withArgs:nil];
   if (! response) return nil;
 
@@ -147,20 +155,23 @@ static NSString *s_token;
   return timeline;
 }
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict {
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
+{
   if ([elementName isEqualToString:@"timeline"]) {
     NSAssert(method_ == TIMELINES_CREATE, @"method should be timelines.create");
   }
 }
 
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
   if ([elementName isEqualToString:@"timeline"]) {
     NSAssert(method_ == TIMELINES_CREATE, @"method should be timelines.create");
     NSAssert(timeline, @"timeline should be obtained");
   }
 }
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars {
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars
+{
   [timeline release];
   timeline = [chars retain];
 }

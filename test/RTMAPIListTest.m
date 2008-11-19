@@ -21,7 +21,8 @@
 
 @implementation RTMAPIListTest
 
-- (void) setUp {
+- (void) setUp
+{
   db   = [[RTMDatabase alloc] init];
   auth = [[RTMAuth alloc] initWithDB:db];
   api  = [[RTMAPI alloc] init];
@@ -30,18 +31,21 @@
   [RTMAPI setToken:auth.token];
 }
 
-- (void) tearDown {
+- (void) tearDown
+{
   [api release];
   [auth release];
   [db release];
 }
 
-- (void) testGetList {
+- (void) testGetList
+{
 	RTMAPIList *list_api = [[[RTMAPIList alloc] init] autorelease];
 	STAssertTrue([[list_api getList] count] > 0, @"lists should be one or more.");
 }
 
-- (void) testAddDelete {
+- (void) testAddDelete
+{
 	RTMAPIList *list_api = [[[RTMAPIList alloc] init] autorelease];
 
 	NSInteger count_first = [[list_api getList] count];

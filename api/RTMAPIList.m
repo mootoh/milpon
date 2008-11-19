@@ -31,11 +31,13 @@
 
 @implementation ListGetCallback
 
-- (NSArray *)lists {
+- (NSArray *)lists
+{
   return lists;
 }
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict {
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
+{
   [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict];
   
   if ([elementName isEqualToString:@"lists"]) {
@@ -57,13 +59,15 @@
   }
 }
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars {
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars
+{
   if (FILTER != mode)
     @throw @"characters should be found in <filter>";
   [params setObject:chars forKey:@"filter"];
 }
 
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
   if ([elementName isEqualToString:@"list"] && !skip) {
     [lists addObject:params];
   } else if ([elementName isEqualToString:@"filter"]) {
@@ -84,7 +88,8 @@
 @implementation ListAddCallback
 @synthesize iD;
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict {
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
+{
   [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict];
   
   if ([elementName isEqualToString:@"list"]) {
@@ -103,7 +108,8 @@
 
 @implementation ListDeleteCallback
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict {
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
+{
   [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict];
   
   if ([elementName isEqualToString:@"list"]) {
@@ -119,7 +125,8 @@
  */
 @implementation RTMAPIList
 
-- (NSArray *) getList {
+- (NSArray *) getList
+{
 	RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
 	NSData *response = [api call:@"rtm.lists.getList" withArgs:nil];
   if (! response) return nil;
@@ -133,7 +140,8 @@
   return [cb lists];
 }
 
-- (NSString *) add:(NSString *)name withFilter:(NSString *)filter {
+- (NSString *) add:(NSString *)name withFilter:(NSString *)filter
+{
 	RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
 	NSString *timeline = [api createTimeline];
   if (! timeline) return nil;
@@ -156,7 +164,8 @@
   return cb.iD;
 }
 
-- (BOOL) delete:(NSString *)list_id {
+- (BOOL) delete:(NSString *)list_id
+{
 	RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
 	NSString *timeline = [api createTimeline];
   if (! timeline) return NO;

@@ -36,7 +36,8 @@
    return [RTMTask tasksForSQL:sql inDB:db];
 }
 
-+ (void) createPendingTask:(NSDictionary *)task inDB:(RTMDatabase *)db inTaskSeries:(NSInteger)task_series_id {
++ (void) createPendingTask:(NSDictionary *)task inDB:(RTMDatabase *)db inTaskSeries:(NSInteger)task_series_id
+{
    sqlite3_stmt *stmt = nil;
    static const char *sql = "INSERT INTO task "
       "(due, completed, priority, postponed, estimate, task_series_id, dirty) "
@@ -102,7 +103,8 @@
    sqlite3_finalize(stmt);
 }
 
-+ (void) createNote:(NSDictionary *)note inDB:(RTMDatabase *)db inTaskSeries:(NSInteger)task_series_id {
++ (void) createNote:(NSDictionary *)note inDB:(RTMDatabase *)db inTaskSeries:(NSInteger)task_series_id
+{
    sqlite3_stmt *stmt = nil;
    static const char *sql = "INSERT INTO note "
       "(id, title, text, created, modified, task_series_id) "
@@ -213,7 +215,8 @@
    sqlite3_finalize(stmt);
 }
 
-+ (void) updateNote:(NSDictionary *)note inDB:(RTMDatabase *)db inTaskSeries:(NSInteger) task_series_id {
++ (void) updateNote:(NSDictionary *)note inDB:(RTMDatabase *)db inTaskSeries:(NSInteger) task_series_id
+{
    sqlite3_stmt *stmt = nil;
    static const char *sql = "UPDATE note "
       "title=?, text=?, created=?, modified=?, task_series_id=? "
@@ -234,7 +237,8 @@
    sqlite3_finalize(stmt);
 }
 
-+ (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db {
++ (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db
+{
    // Tasks
    NSArray *tasks = [task_series valueForKey:@"tasks"];
    for (NSDictionary *task in tasks) {

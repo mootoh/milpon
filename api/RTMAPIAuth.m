@@ -22,7 +22,8 @@
 @implementation CheckTokenCallback
 @synthesize token;
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars {
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars
+{
   self.token = chars;
   [parser abortParsing];
 }
@@ -40,7 +41,8 @@
 @implementation GetFrobCallback
 @synthesize frob;
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars {
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars
+{
   self.frob = chars;
   [parser abortParsing];
 }
@@ -58,7 +60,8 @@
 @implementation GetTokenCallback
 @synthesize token;
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars {
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars
+{
   self.token = [chars retain];
   [parser abortParsing];
 }
@@ -69,7 +72,8 @@
  */
 @implementation RTMAPIAuth
 
-- (BOOL) checkToken:(NSString *)token {
+- (BOOL) checkToken:(NSString *)token
+{
   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
   NSDictionary *args = [NSDictionary dictionaryWithObject:token forKey:@"auth_token"];
   NSData *ret = [api call:@"rtm.auth.checkToken" withArgs:args];
@@ -86,7 +90,8 @@
   return [token isEqualToString:cb.token];
 }
 
-- (NSString *) getFrob {
+- (NSString *) getFrob
+{
   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
   NSData *ret = [api call:@"rtm.auth.getFrob" withArgs:nil];
   if (! ret) return nil;
@@ -102,7 +107,8 @@
   return cb.frob;
 }
 
-- (NSString *) getToken:(NSString *)frob {
+- (NSString *) getToken:(NSString *)frob
+{
   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
   NSDictionary *args = [NSDictionary dictionaryWithObject:frob forKey:@"frob"];
   NSData *ret = [api call:@"rtm.auth.getToken" withArgs:args];
