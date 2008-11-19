@@ -21,7 +21,7 @@ static const float messageLabelPadding = 16.0f;
       activityIndicator = [[UIActivityIndicatorView alloc]
          initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
       activityIndicator.frame = CGRectMake(frame.origin.x, frame.origin.y, 16, 16);
-      activityIndicator.hidesWhenStopped = NO;
+      activityIndicator.hidesWhenStopped = YES;
       [self addSubview:activityIndicator];
 
       messageRect = CGRectMake(frame.origin.x+messageLabelPadding, frame.origin.y, frame.size.width-messageLabelPadding*2, 20);
@@ -37,7 +37,7 @@ static const float messageLabelPadding = 16.0f;
 
       progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
       progressView.frame = CGRectMake(frame.size.width/2-128/2, frame.size.height-10, 128, 6);
-      progressView.hidden = NO;
+      progressView.hidden = YES;
       [self addSubview:progressView];
    }
    return self;
@@ -54,14 +54,14 @@ static const float messageLabelPadding = 16.0f;
 
 - (void) progressBegin
 {
-   [self toggleDisplay];
+   //[self toggleDisplay];
    [activityIndicator startAnimating];
    progressView.progress = 0.0;
 }
 
 - (void) progressEnd
 {
-   [self toggleDisplay];
+   //[self toggleDisplay];
    [activityIndicator stopAnimating];
    progressView.progress = 1.0;
 }

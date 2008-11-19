@@ -62,7 +62,12 @@
 
 - (IBAction) setMessage
 {
-   static int count = 0;
+   static int count = 1;
+   if (count % 2)
+      [pv progressBegin];
+   else
+      [pv progressEnd];
+
    pv.message = [NSString stringWithFormat:@"message set from controller %d", count++];
 }
 
