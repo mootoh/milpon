@@ -11,62 +11,30 @@
 
 @implementation ProgressViewController
 
-/*
-// Override initWithNibName:bundle: to load the view using a nib file then perform additional customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
 // Implement loadView to create a view hierarchy programmatically.
 - (void)loadView
 {
    [super loadView];
    self.view.backgroundColor = [UIColor grayColor];
 
-   pv = [[ProgressView alloc] initWithFrame:CGRectMake(32,48, 200,100)];
+   pv = [[ProgressView alloc] initWithFrame:CGRectMake(32,48, 200,80)];
    [self.view addSubview:pv];
 
-   progressTriggerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-   [self.view addSubview:progressTriggerButton];
-   progressTriggerButton.frame = CGRectMake(320/2-80/2, 200, 80, 40);
-   [progressTriggerButton addTarget:self action:@selector(progress) forControlEvents:UIControlEventTouchDown];
+   UIButton *ptbtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+   [self.view addSubview:ptbtn];
+   ptbtn.frame = CGRectMake(320/2-160/2, 200, 160, 40);
+   [ptbtn addTarget:self action:@selector(progress) forControlEvents:UIControlEventTouchDown];
+   [ptbtn setTitle:@"trigger progress" forState:UIControlStateNormal];
 
-   messageSetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-   [self.view addSubview:messageSetButton];
-   messageSetButton.frame = CGRectMake(320/2-80/2, 260, 80, 40);
-   [messageSetButton addTarget:self action:@selector(setMessage) forControlEvents:UIControlEventTouchDown];
-
-}
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-*/
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-    // Release anything that's not essential, such as cached data
+   UIButton *msbtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+   [self.view addSubview:msbtn];
+   msbtn.frame = CGRectMake(320/2-160/2, 260, 160, 40);
+   [msbtn addTarget:self action:@selector(setMessage) forControlEvents:UIControlEventTouchDown];
+   [msbtn setTitle:@"show message" forState:UIControlStateNormal];
 }
 
 - (void)dealloc
 {
-   [messageSetButton release];
-   [progressTriggerButton release];
    [pv release];
    [super dealloc];
 }
@@ -79,6 +47,7 @@
 - (void) progressInBackground
 {
    [pv progressBegin];
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    float pg = 0.0;
    for (int i=0; i<10; i++) {
@@ -86,13 +55,15 @@
       pg += 0.1;
       usleep(100000);
    }
+
+   [pool release];
    [pv progressEnd];
 }
 
-
 - (IBAction) setMessage
 {
-   pv.message = @"message set from controller.";
+   static int count = 0;
+   pv.message = [NSString stringWithFormat:@"message set from controller %d", count++];
 }
 
 @end

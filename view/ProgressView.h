@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface ProgressView : UIView {
-  UIActivityIndicatorView *activity;
+  UIActivityIndicatorView *activityIndicator;
   UILabel *messageLabel;
-  UIProgressView *progress;
+  UIProgressView *progressView;
   NSString *message;
   BOOL inProgress;
+  CGRect messageRect;
+
 }
 
 @property (nonatomic,retain) NSString *message;
@@ -22,5 +24,6 @@
 - (void) progressEnd;
 - (void) updateMessage:(NSString *)msg;
 - (void) updateMessage:(NSString *)msg withProgress:(float)pg;
+- (void) toggleDisplay;
 
 @end

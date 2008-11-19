@@ -13,7 +13,6 @@
 @interface ProgressViewController : UIViewController
 {
    ProgressView *pv;
-   UIButton *progressTriggerButton, *messageSetButton;
 }
 
 - (IBAction) progress;
