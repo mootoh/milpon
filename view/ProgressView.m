@@ -68,19 +68,22 @@
 - (void) updateMessage:(NSString *)msg
 {
   messageLabel.text = msg;
-  [messageLabel setNeedsDisplay];
 }
 
 - (void) updateMessage:(NSString *)msg withProgress:(float)pg
 {
-  messageLabel.text = msg;
-  [self performSelectorInBackground:@selector(updateProgress:) withObject:[NSNumber numberWithFloat:pg]];
+   float pgg = 0.0;
+   for (int i=0; i<1000; i++) {
+  //messageLabel.text = msg;
+     [self performSelectorInBackground:@selector(updateProgress:) withObject:[NSNumber numberWithFloat:pgg]];
+     pgg += 0.001;
+   }
 }
 
 - (void) updateProgress:(NSNumber *)pg
 {
-  [messageLabel setNeedsDisplay];
   progress.progress = [pg floatValue];
+  //[messageLabel setNeedsDisplay];
 }
 
 @end

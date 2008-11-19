@@ -68,7 +68,15 @@
 
 - (IBAction) progress
 {
-   [pv updateMessage:@"yey" withProgress:0.2];
+   /*
+   float pg = 0.0;
+   for (int i=0; i<10; i++) {
+      [pv updateMessage:[NSString stringWithFormat:@"progress... %f", pg] withProgress:pg];
+      pg += 0.1;
+      //usleep(10000);
+   }
+   */
+   [pv updateMessage:[NSString stringWithFormat:@"progress... %f", 0.0] withProgress:0.0];
 }
 
 @end
