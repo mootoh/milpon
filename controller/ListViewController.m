@@ -166,6 +166,7 @@ return YES;
 
 - (void)dealloc
 {
+	if (lists) [lists release];
    [super dealloc];
 }
 

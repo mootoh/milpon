@@ -126,7 +126,7 @@
    char *str;
    while (sqlite3_step(stmt) == SQLITE_ROW) {
       NSNumber *task_id   = [NSNumber numberWithInt:sqlite3_column_int(stmt, 0)];
-      NSString *name      = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt, 1)];
+      NSString *name      = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 1)];
 
       str = (char *)sqlite3_column_text(stmt, 2);
       NSString *url       = (str && *str != 0) ? [NSString stringWithUTF8String:str] : @"";
@@ -151,9 +151,9 @@
       NSNumber *task_series_id  = [NSNumber numberWithInt:sqlite3_column_int(stmt, 11)];
 
 
-      NSArray *keys = [[NSArray alloc] initWithObjects:@"id", @"name", @"url", @"due", @"priority", @"postponed", @"estimate", @"rrule", @"location_id", @"list_id", @"dirty", @"task_series_id", nil];
-      NSArray *vals = [[NSArray alloc] initWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, dirty, task_series_id, nil];
-      NSDictionary *params = [[NSDictionary alloc] initWithObjects:vals forKeys:keys];
+      NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority", @"postponed", @"estimate", @"rrule", @"location_id", @"list_id", @"dirty", @"task_series_id", nil];
+      NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, dirty, task_series_id, nil];
+      NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
       RTMTask *task;
       if ([dirty intValue] == CREATED_OFFLINE)
@@ -163,10 +163,6 @@
 
       [tasks addObject:task];
       [task release];
-      [name release];
-      [params release];
-      [vals release];
-      [keys release];
    }
 
    [pool release];
@@ -264,6 +260,24 @@
    }
 
    sqlite3_finalize(stmt);
+}
+
+- (void) dealloc
+{
+   if (name) [name release];
+   if (url) [url release];
+   if (due) [due release];
+   if (completed) [completed release];
+   if (priority) [priority release];
+   if (postponed) [postponed release];
+   if (estimate) [estimate release];
+   if (rrule) [rrule release];
+   if (tags) [tags release];
+   if (notes) [notes release];
+   if (list_id) [list_id release];
+   if (location_id) [location_id release];
+
+   [super dealloc];
 }
 
 @end // RTMTask

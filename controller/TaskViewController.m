@@ -51,7 +51,8 @@
 	postponed.text = [task.postponed stringValue];
 	estimate.text = task.estimate;
 
-  for (NSDictionary *note in task.notes) {
+  NSArray *notes = task.notes;
+  for (NSDictionary *note in notes) {
     UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
     noteLabel.font = [UIFont systemFontOfSize:10];
     noteLabel.lineBreakMode = UILineBreakModeWordWrap;
@@ -59,6 +60,7 @@
     [noteView addSubview:noteLabel];
     [noteLabel release];
   }
+  [notes release];
 }
 
 

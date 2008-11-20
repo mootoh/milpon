@@ -47,6 +47,8 @@
 + (NSArray *) allLists:(RTMDatabase *)db
 {
    NSMutableArray *lists = [NSMutableArray array];
+	
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    sqlite3_stmt *stmt = nil;
    char *sql = "SELECT id,name from list";
@@ -65,6 +67,7 @@
       [lists addObject:lst];
    }
    sqlite3_finalize(stmt);
+	[pool release];
    return lists;
 }
 
@@ -113,4 +116,12 @@
    }
    sqlite3_finalize(stmt);
 }
+
+- (void) dealloc
+{
+   if (name) [name release];
+   if (tasks) [tasks release];
+   [super dealloc];
+}
+
 @end

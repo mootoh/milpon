@@ -135,6 +135,7 @@
          continue;
       [RTMExistingTask createTask:task inTaskSeries:task_series inDB:db];
    }
+	[tasks release];
 
    NSInteger task_series_id = [[task_series valueForKey:@"id"] integerValue];
 
@@ -142,12 +143,14 @@
    NSArray *notes = [task_series valueForKey:@"notes"];
    for (NSDictionary *note in notes)
       [RTMExistingTask createNote:note inDB:db inTaskSeries:task_series_id];
+	[notes release];
 
    // Tag
    NSDictionary *tags = [task_series valueForKey:@"tags"];
    for (NSString *tag in tags) {
       // TODO: create a tag
    }
+	[tags release];
 }
 
 

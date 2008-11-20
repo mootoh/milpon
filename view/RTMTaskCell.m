@@ -53,9 +53,10 @@ static NSArray *s_priorityColors;
 
 - (void) drawRect:(CGRect)rect
 {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
    [super drawRect:rect];
    NSAssert(task, @"task should be set");
-
+	
    CGColorRef textColor;
    [self renderWithStatus];
    textColor = task.is_completed ? [UIColor grayColor].CGColor : [UIColor blackColor].CGColor;
@@ -120,6 +121,7 @@ static NSArray *s_priorityColors;
             withFont:[UIFont systemFontOfSize:10]];
       }
    }
+	[pool release];
 }
 
 /*
