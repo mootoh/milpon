@@ -84,12 +84,14 @@
 
 + (NSArray *) tasksInList:(NSNumber *)list_id inDB:(RTMDatabase *)db
 {
-   NSString *sql = [NSString stringWithFormat:@"SELECT %s from task "
+   NSString *sql = [[NSString alloc] initWithFormat:@"SELECT %s from task "
       "where list_id=%d AND (completed='' OR completed is NULL) "
       "ORDER BY priority=0 ASC,priority ASC, due IS NULL ASC, due ASC",
       RTMTASK_SQL_COLUMNS, [list_id intValue]];
 
-   return [RTMTask tasksForSQL:sql inDB:db];
+  NSArray *ret = [RTMTask tasksForSQL:sql inDB:db];
+  [sql release];
+  return ret;
 }
 
 + (NSArray *) completedTasks:(RTMDatabase *)db
@@ -119,10 +121,12 @@
       NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
    }
 
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
    char *str;
    while (sqlite3_step(stmt) == SQLITE_ROW) {
       NSNumber *task_id   = [NSNumber numberWithInt:sqlite3_column_int(stmt, 0)];
-      NSString *name      = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 1)];
+      NSString *name      = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(stmt, 1)];
 
       str = (char *)sqlite3_column_text(stmt, 2);
       NSString *url       = (str && *str != 0) ? [NSString stringWithUTF8String:str] : @"";
@@ -147,9 +151,9 @@
       NSNumber *task_series_id  = [NSNumber numberWithInt:sqlite3_column_int(stmt, 11)];
 
 
-      NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority", @"postponed", @"estimate", @"rrule", @"location_id", @"list_id", @"dirty", @"task_series_id", nil];
-      NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, dirty, task_series_id, nil];
-      NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+      NSArray *keys = [[NSArray alloc] initWithObjects:@"id", @"name", @"url", @"due", @"priority", @"postponed", @"estimate", @"rrule", @"location_id", @"list_id", @"dirty", @"task_series_id", nil];
+      NSArray *vals = [[NSArray alloc] initWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, dirty, task_series_id, nil];
+      NSDictionary *params = [[NSDictionary alloc] initWithObjects:vals forKeys:keys];
 
       RTMTask *task;
       if ([dirty intValue] == CREATED_OFFLINE)
@@ -159,7 +163,13 @@
 
       [tasks addObject:task];
       [task release];
+      [name release];
+      [params release];
+      [vals release];
+      [keys release];
    }
+
+   [pool release];
    sqlite3_finalize(stmt);
    return tasks;
 }
