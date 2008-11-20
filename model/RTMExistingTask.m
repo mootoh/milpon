@@ -243,7 +243,12 @@
    NSArray *tasks = [task_series valueForKey:@"tasks"];
    for (NSDictionary *task in tasks) {
       if ([RTMExistingTask taskExist:[task valueForKey:@"id"] inDB:db]) {
-         [RTMExistingTask updateTask:task inTaskSeries:task_series inDB:db];
+         NSString *deleted = [task valueForKey:@"deleted"];
+         if (deleted && ! [deleted isEqualToString:@""]) {
+            [RTMExistingTask remove:[task valueForKey:@"id"] fromDB:db];
+         } else {
+            [RTMExistingTask updateTask:task inTaskSeries:task_series inDB:db];
+         }
       } else {
          [RTMExistingTask createTask:task inTaskSeries:task_series inDB:db];
       }

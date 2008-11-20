@@ -118,7 +118,8 @@
 
    int i=0;
    for (NSDictionary *task_series in task_serieses_updated) {
-      [progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, task_serieses_updated.count] withProgress:(float)i/(float)task_serieses_updated.count];
+      //[progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, task_serieses_updated.count] withProgress:(float)i/(float)task_serieses_updated.count];
+      progressView.message = [NSString stringWithFormat:@"syncing task %d/%d", i, task_serieses_updated.count];
 
       [RTMExistingTask createOrUpdate:task_series inDB:db];
       i++;
@@ -134,9 +135,10 @@
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
 
    [progressView progressBegin];
-   [progressView updateMessage:[NSString stringWithFormat:@"uploading 0/%d tasks", pendings.count]];
+   //[progressView updateMessage:[NSString stringWithFormat:@"uploading 0/%d tasks", pendings.count]];
+   progressView.message = [NSString stringWithFormat:@"uploading 0/%d tasks", pendings.count];
 
-   int i=0;
+   int i=1;
    for (RTMPendingTask *task in pendings) {
       NSString *list_id = [task.list_id stringValue];
       NSDictionary *task_ret = [api_task add:task.name inList:list_id];
@@ -166,11 +168,12 @@
       // remove from DB
       [RTMPendingTask remove:task.iD fromDB:db];
 
-      [progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/(float)pendings.count];
+      //[progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/(float)pendings.count];
+      progressView.message = [NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count];
       i++;
    }
 
-   [progressView updateMessage:@"" withProgress:1.0];
+   //[progressView updateMessage:@"" withProgress:1.0];
    [progressView progressEnd];
 }
 
@@ -180,6 +183,8 @@
 
    NSArray *tasks = [RTMTask completedTasks:db];
    for (RTMExistingTask *task in tasks) {
+      progressView.message = [NSString stringWithFormat:@"completing %@...", task.name];
+
       if ([api_task complete:task]) {
          [RTMTask remove:task.iD fromDB:db]; // TODO: do not remove, keep it in DB to review completed tasks.
       }
