@@ -283,6 +283,8 @@
 
    NSMutableArray *ret = [[NSMutableArray alloc] init];
 
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
    while (sqlite3_step(stmt) == SQLITE_ROW) {
       NSString *note_id  = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 0)];
       NSString *title    = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 1)];
@@ -296,6 +298,7 @@
       [ret addObject:note];
    }
 
+	[pool release];
    sqlite3_finalize(stmt);
 
    return ret;

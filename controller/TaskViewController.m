@@ -78,6 +78,7 @@
 
 - (void)dealloc
 {
+   if (task) [task release];
 	[super dealloc];
 }
 
