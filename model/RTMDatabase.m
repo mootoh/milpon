@@ -30,8 +30,6 @@
 
 - (void) dealloc
 {
-   LOG(@"RTMDatabase dealloced!");
-
    [path release];
    sqlite3_close(handle);
    [super dealloc];
@@ -66,18 +64,6 @@
       }
    }
    return writableDBPath;
-}
-
-- (id) retain
-{
-   LOG(@"RTMDatabase retaining %d", [self retainCount]);
-   return [super retain];
-}
-
-- (void) release
-{
-   LOG(@"RTMDatabase releasing %d", [self retainCount]);
-   [super release];
 }
 
 @end

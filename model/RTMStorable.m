@@ -44,16 +44,4 @@
 {
 }
 
-- (id) retain
-{
-   LOG(@"RTMStorable retaining %d", [self retainCount]);
-   return [super retain];
-}
-
-- (void) release
-{
-   LOG(@"RTMStorable releasing %d", [self retainCount]);
-   [super release];
-}
-
 @end

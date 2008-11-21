@@ -173,6 +173,7 @@
 
    //[progressView updateMessage:@"" withProgress:1.0];
    [progressView progressEnd];
+	[api_task release];
 }
 
 - (void) syncCompletedTasks:(ProgressView *)progressView
