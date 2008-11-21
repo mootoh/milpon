@@ -7,6 +7,7 @@
 //
 
 #import "RTMStorable.h"
+#import "logger.h"
 
 @implementation RTMStorable
 
@@ -15,7 +16,7 @@
 - (id) initByID:(NSNumber *)iid inDB:(RTMDatabase *)ddb
 {
   if (self = [super init]) {
-    db = [ddb retain];
+    db = ddb;
     iD = [iid retain];
   }
   return self;
@@ -24,7 +25,6 @@
 - (void) dealloc
 {
   [iD release];
-  [db release];
   [super dealloc];
 }
 
@@ -42,6 +42,18 @@
 
 + (void) remove:(NSNumber *)iid fromDB:(RTMDatabase *)db;
 {
+}
+
+- (id) retain
+{
+   LOG(@"RTMStorable retaining %d", [self retainCount]);
+   return [super retain];
+}
+
+- (void) release
+{
+   LOG(@"RTMStorable releasing %d", [self retainCount]);
+   [super release];
 }
 
 @end

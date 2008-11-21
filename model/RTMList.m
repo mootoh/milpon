@@ -120,7 +120,6 @@
 - (void) dealloc
 {
    if (name) [name release];
-   if (tasks) [tasks release];
    [super dealloc];
 }
 

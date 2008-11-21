@@ -78,7 +78,7 @@ static const int SECTIONS = 4;
 
       self.headers = [NSArray arrayWithObjects:@"Today", @"Tomorrow", @"This Week", @"Outdated", nil];
       AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-      db = [app.db retain];
+      db = app.db;
 
       [self reloadFromDB];
    }
@@ -190,7 +190,6 @@ static const int SECTIONS = 4;
 
 - (void)dealloc
 {
-   [db release];
    [headers release];
    [tasks release];
    [due_tasks release];

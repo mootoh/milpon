@@ -21,16 +21,14 @@
 - (id) initWithDB:(RTMDatabase *)ddb withAuth:aauth
 {
    if (self = [super init]) {
-      db   = [ddb retain];
-      auth = [aauth retain];
+      db   = ddb;
+      auth = aauth;
    }
    return self;
 }
 
 - (void) dealloc
 {
-   [auth release];
-   [db release];
    [super dealloc];
 }
 

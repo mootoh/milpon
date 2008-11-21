@@ -103,7 +103,6 @@
 {
    [list release];
    [tasks release];
-   [db release];
    [super dealloc];
 }
 
