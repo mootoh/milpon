@@ -11,6 +11,10 @@
 
 @interface RTMDatabase (Private)
 - (NSString *) databasePath;
+- (NSArray *) splitSQLs:(NSString *)migrations;
+- (void) run_migration_sql:(NSString *)sql;
+- (NSArray *) migrations;
+- (void) migrate;
 @end
 
 
@@ -23,6 +27,7 @@
    if (self = [super init]) {
       path = [[self databasePath] retain];
       if (SQLITE_OK == sqlite3_open([path UTF8String], &handle)) {
+         [self migrate];
       }
    }
    return self;
@@ -64,6 +69,61 @@
       }
    }
    return writableDBPath;
+}
+
+- (void) migrate
+{
+   for (NSString *mig_path in [self migrations]) {
+      NSError *error;
+      NSString *mig = [NSString stringWithContentsOfFile:mig_path encoding:NSUTF8StringEncoding error:&error];
+      if (! mig) {
+         NSAssert2(0, @"failed to read migration file: %@, error=%@", mig_path, [error localizedDescription]);
+         return;
+      }
+      for (NSString *sql in [self splitSQLs:mig]) {
+         [self run_migration_sql:sql];
+      }
+
+      if (! [[NSFileManager defaultManager] removeItemAtPath:mig_path error:&error]) {
+         NSAssert1(0, @"Failed to remove used migration: %@", mig_path);
+         return;
+      }
+   }
+}
+
+- (NSArray *) migrations
+{
+   NSMutableArray *ret = [NSMutableArray array];
+
+   NSString *target_dir = [[NSBundle mainBundle] resourcePath];
+   NSDirectoryEnumerator *dir = [[NSFileManager defaultManager] enumeratorAtPath:target_dir];
+   for (NSString *mig_path in dir)
+      if ([mig_path hasPrefix:@"migrate_"] && [mig_path hasSuffix:@"sql"])
+         [ret addObject:[target_dir stringByAppendingPathComponent:mig_path]];
+
+   return ret;
+}
+
+- (void) run_migration_sql:(NSString *)sql_str
+{
+   LOG(@"run_migration_sql: %@", sql_str);
+
+   sqlite3_stmt *stmt = nil;
+   const char *sql = [sql_str UTF8String];
+   if (sqlite3_prepare_v2(handle, sql, -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle));
+      return;
+   }
+   if (sqlite3_step(stmt) == SQLITE_ERROR) {
+      NSAssert1(0, @"Error: failed to exec sql with message '%s'.", sqlite3_errmsg(handle));
+      return;
+   }
+   sqlite3_finalize(stmt);
+}
+
+- (NSArray *) splitSQLs:(NSString *)migrations
+{
+   return [migrations componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@";"]];
 }
 
 @end

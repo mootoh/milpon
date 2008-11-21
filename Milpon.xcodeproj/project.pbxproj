@@ -69,6 +69,9 @@
 		B9224C5C0E70AECF004F83CE /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9224C5B0E70AECF004F83CE /* AuthViewController.m */; };
 		B93A01CC0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */; };
 		B93A01CD0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */; };
+		B96D27F20ED6B9A900DE8E66 /* migrate_001_edit_bits.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */; };
+		B96D27F30ED6B9B300DE8E66 /* migrate_001_edit_bits.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */; };
+		B96D27F40ED6B9B400DE8E66 /* migrate_001_edit_bits.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */; };
 		B97131EE0E9AF1B70091057B /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B98036BE0E71363B000961EE /* RTMAuth.m */; };
 		B98036BF0E71363B000961EE /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B98036BE0E71363B000961EE /* RTMAuth.m */; };
 		B9835F860ED2955A0012CD3C /* RTMExistingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 8656F00D0EBEC40000230290 /* RTMExistingTask.m */; };
@@ -159,6 +162,7 @@
 		B9224C5B0E70AECF004F83CE /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
 		B93A01CA0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIXMLParserCallback.h; sourceTree = "<group>"; };
 		B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIXMLParserCallback.m; sourceTree = "<group>"; };
+		B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_001_edit_bits.sql; sourceTree = "<group>"; };
 		B97131E90E9AF14C0091057B /* RTMAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuthTest.m; sourceTree = "<group>"; };
 		B98036BD0E71363B000961EE /* RTMAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAuth.h; sourceTree = "<group>"; };
 		B98036BE0E71363B000961EE /* RTMAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuth.m; sourceTree = "<group>"; };
@@ -277,6 +281,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B96D27EA0ED6B98700DE8E66 /* migrate */,
 				86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */,
 				862C14A90EAB805600AC8FFE /* checkBox.png */,
 				862C14AA0EAB805600AC8FFE /* checkBoxChecked.png */,
@@ -414,6 +419,14 @@
 			);
 			path = api;
 			sourceTree = SOURCE_ROOT;
+		};
+		B96D27EA0ED6B98700DE8E66 /* migrate */ = {
+			isa = PBXGroup;
+			children = (
+				B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */,
+			);
+			name = migrate;
+			sourceTree = "<group>";
 		};
 		B98D23B80E6783DD0006D6AF /* model */ = {
 			isa = PBXGroup;
@@ -572,6 +585,7 @@
 				862C14AB0EAB805600AC8FFE /* checkBox.png in Resources */,
 				862C14AC0EAB805600AC8FFE /* checkBoxChecked.png in Resources */,
 				86F7E7070EAF4F6C00B122F9 /* Entitlements.plist in Resources */,
+				B96D27F20ED6B9A900DE8E66 /* migrate_001_edit_bits.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +594,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86E021190E7EAAD7001945E7 /* rtm.sql in Resources */,
+				B96D27F40ED6B9B400DE8E66 /* migrate_001_edit_bits.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91554600E6A3906004DC85A /* rtm.sql in Resources */,
+				B96D27F30ED6B9B300DE8E66 /* migrate_001_edit_bits.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -970,6 +986,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
