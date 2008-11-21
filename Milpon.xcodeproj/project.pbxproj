@@ -39,7 +39,6 @@
 		86C29EC30E928437006E7C74 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553270E6A2A68004DC85A /* RTMAPIList.m */; };
 		86C29EC80E92846D006E7C74 /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9134DD00E65F0E1005028DC /* RTMAPIAuth.m */; };
 		86DB9B820E97176F00DA4D16 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DB9B810E97176F00DA4D16 /* MenuViewController.m */; };
-		86DB9B870E9717C300DA4D16 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DB9B860E9717C300DA4D16 /* HomeView.xib */; };
 		86DB9B8A0E9717D900DA4D16 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DB9B890E9717D900DA4D16 /* HomeViewController.m */; };
 		86E021190E7EAAD7001945E7 /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B98D24120E678C250006D6AF /* rtm.sql */; };
 		86E0211C0E7EAAD7001945E7 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D24490E6792F60006D6AF /* RTMList.m */; };
@@ -132,7 +131,6 @@
 		86C148110E72144300456F6A /* TaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskViewController.m; sourceTree = "<group>"; };
 		86DB9B800E97176F00DA4D16 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		86DB9B810E97176F00DA4D16 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
-		86DB9B860E9717C300DA4D16 /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
 		86DB9B880E9717D900DA4D16 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		86DB9B890E9717D900DA4D16 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		86E0212A0E7EAAD7001945E7 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,7 +285,6 @@
 				86C148000E71739800456F6A /* TaskView.xib */,
 				B98D24120E678C250006D6AF /* rtm.sql */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				86DB9B860E9717C300DA4D16 /* HomeView.xib */,
 				B9DD5E900E6901B7007BFC7A /* UnitTest-Info.plist */,
 			);
 			name = Resources;
@@ -571,7 +568,6 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				B98D24130E678C250006D6AF /* rtm.sql in Resources */,
 				86C148010E71739800456F6A /* TaskView.xib in Resources */,
-				86DB9B870E9717C300DA4D16 /* HomeView.xib in Resources */,
 				86FD2E9C0EA249CC004631B0 /* rtm_icon.png in Resources */,
 				862C14AB0EAB805600AC8FFE /* checkBox.png in Resources */,
 				862C14AC0EAB805600AC8FFE /* checkBoxChecked.png in Resources */,
