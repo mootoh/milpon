@@ -5,7 +5,7 @@
 
 @implementation RTMTask
 
-@synthesize name, url, due, completed, priority, postponed, estimate, rrule, tags, notes, list_id, location_id;
+@synthesize name, url, due, completed, priority, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits;
 
 
 - (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb 
@@ -20,6 +20,7 @@
       self.postponed    = [params valueForKey:@"postponed"];
       self.estimate     = [params valueForKey:@"estimate"];
       self.list_id      = [params valueForKey:@"list_id"];
+      self.edit_bits    = [params valueForKey:@"edit_bits"];
    }
    return self;
 }
@@ -149,9 +150,10 @@
       NSNumber *list_id   = [NSNumber numberWithInt:sqlite3_column_int(stmt, 9)];
       NSNumber *dirty     = [NSNumber numberWithInt:sqlite3_column_int(stmt, 10)];
       NSNumber *task_series_id  = [NSNumber numberWithInt:sqlite3_column_int(stmt, 11)];
+      NSNumber *edit_bits = [NSNumber numberWithInt:0];
 
-      NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority", @"postponed", @"estimate", @"rrule", @"location_id", @"list_id", @"dirty", @"task_series_id", nil];
-      NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, dirty, task_series_id, nil];
+      NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority", @"postponed", @"estimate", @"rrule", @"location_id", @"list_id", @"dirty", @"task_series_id",@"edit_bits", nil];
+      NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, dirty, task_series_id, edit_bits, nil];
       NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
       RTMTask *task = ([dirty intValue] == CREATED_OFFLINE) ?
@@ -261,6 +263,7 @@
 
 - (void) dealloc
 {
+   if (edit_bits) [edit_bits release];
    if (name) [name release];
    if (url) [url release];
    if (due) [due release];
