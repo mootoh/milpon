@@ -15,73 +15,74 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-	}
-	return self;
+   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+   }
+   return self;
 }
 
 - (void)viewDidLoad
 {
-  self.title = task.name;
+   self.title = task.name;
 
-	name.text = task.name;
-	url.text = task.url;
+   name.text = task.name;
+   name.clearsOnBeginEditing = NO;
+   url.text = task.url;
 
-  NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-  [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-  [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
+   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
 
-  if (task.rrule && ![task.rrule isEqualToString:@""])
-     repeat.text = task.rrule;
-  
-  if (task.due && ![task.due isEqualToString:@""]) {
-     NSCalendar *calendar = [NSCalendar currentCalendar];
-     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-     NSDate *due_date = [formatter dateFromString:task.due];
-     NSDateComponents *comps = [calendar components:unitFlags fromDate:due_date];    
-     
-     NSString *dueString = [NSString stringWithFormat:@"%d-%d-%d", [comps year], [comps month], [comps day]];
+   if (task.rrule && ![task.rrule isEqualToString:@""])
+      repeat.text = task.rrule;
+
+   if (task.due && ![task.due isEqualToString:@""]) {
+      NSCalendar *calendar = [NSCalendar currentCalendar];
+      unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+      NSDate *due_date = [formatter dateFromString:task.due];
+      NSDateComponents *comps = [calendar components:unitFlags fromDate:due_date];    
+
+      NSString *dueString = [NSString stringWithFormat:@"%d-%d-%d", [comps year], [comps month], [comps day]];
 
       due.text = dueString;
-  }
+   }
 
-  // location.text = [NSString stringWithFormat:@"%d", task.location_id];
+   // location.text = [NSString stringWithFormat:@"%d", task.location_id];
    //completed.text = task.completed;
-	//priority.text = task.priority;
-	postponed.text = [task.postponed stringValue];
-	estimate.text = task.estimate;
+   priority.text = [NSString stringWithFormat:@"%d", [task.priority intValue]];
+   postponed.text = [task.postponed stringValue];
+   estimate.text = task.estimate;
 
-  NSArray *notes = task.notes;
-  for (NSDictionary *note in notes) {
-    UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
-    noteLabel.font = [UIFont systemFontOfSize:10];
-    noteLabel.lineBreakMode = UILineBreakModeWordWrap;
-    noteLabel.text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
-    [noteView addSubview:noteLabel];
-    [noteLabel release];
-  }
-  [notes release];
+   NSArray *notes = task.notes;
+   for (NSDictionary *note in notes) {
+      UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
+      noteLabel.font = [UIFont systemFontOfSize:10];
+      noteLabel.lineBreakMode = UILineBreakModeWordWrap;
+      noteLabel.text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
+      [noteView addSubview:noteLabel];
+      [noteLabel release];
+   }
+   [notes release];
 }
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-	// Return YES for supported orientations
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+   // Return YES for supported orientations
+   return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 
 - (void)didReceiveMemoryWarning
 {
-	[super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-	// Release anything that's not essential, such as cached data
+   [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
+   // Release anything that's not essential, such as cached data
 }
 
 
 - (void)dealloc
 {
    if (task) [task release];
-	[super dealloc];
+   [super dealloc];
 }
 
 

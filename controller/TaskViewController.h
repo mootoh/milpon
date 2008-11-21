@@ -10,15 +10,16 @@
 #import "RTMTask.h"
 
 @interface TaskViewController : UIViewController {
-	RTMTask *task;
-	IBOutlet UILabel *name;
-	IBOutlet UITextField *url;
-	IBOutlet UITextField *location;
-	IBOutlet UITextField *repeat;
-	IBOutlet UITextField *estimate;
-	IBOutlet UITextField *postponed;
-	IBOutlet UITextField *due;
-	IBOutlet UIView *noteView;
+   RTMTask *task;
+   IBOutlet UITextField *name;
+   IBOutlet UITextField *url;
+   IBOutlet UITextField *location;
+   IBOutlet UITextField *repeat;
+   IBOutlet UITextField *estimate;
+   IBOutlet UITextField *postponed;
+   IBOutlet UITextField *due;
+   IBOutlet UILabel *priority;
+   IBOutlet UIView *noteView;
 }
 
 @property (nonatomic, retain) RTMTask *task;
