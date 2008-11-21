@@ -154,11 +154,9 @@
       NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, dirty, task_series_id, nil];
       NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-      RTMTask *task;
-      if ([dirty intValue] == CREATED_OFFLINE)
-         task = [[RTMPendingTask alloc] initByParams:params inDB:db];
-      else
-         task = [[RTMExistingTask alloc] initByParams:params inDB:db];
+      RTMTask *task = ([dirty intValue] == CREATED_OFFLINE) ?
+         [[RTMPendingTask alloc] initByParams:params inDB:db] :
+         [[RTMExistingTask alloc] initByParams:params inDB:db];
 
       [tasks addObject:task];
       [task release];
