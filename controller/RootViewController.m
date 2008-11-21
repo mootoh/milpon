@@ -17,6 +17,7 @@
 #import "RTMAuth.h"
 #import "ProgressView.h"
 #import "ReloadableTableViewController.h"
+#import "logger.h"
 
 /* -------------------------------------------------------------------
  * RootViewController
@@ -131,20 +132,39 @@
 
 - (void) uploadOperation
 {
+   LOG(@"RootViewController uploadOperation begin");
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
+   LOG(@"RootViewController uploadOperation 1");
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithDB:app.db withAuth:app.auth];
 
+   LOG(@"RootViewController uploadOperation 2");
+
    [syncer uploadPendingTasks:progressView];
+
+   LOG(@"RootViewController uploadOperation 3");
+
    [syncer syncCompletedTasks:progressView];
+
+   LOG(@"RootViewController uploadOperation 4");
+
    [syncer syncTasks:progressView];
+
+   LOG(@"RootViewController uploadOperation 5");
 
    [syncer release];
 
+   LOG(@"RootViewController uploadOperation 6");
+
    [self reload];
 
+   LOG(@"RootViewController uploadOperation 7");
+
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
+   LOG(@"RootViewController uploadOperation end");
 }
 
 - (void) fetchAll
