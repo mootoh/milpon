@@ -2,4 +2,4 @@ CREATE TABLE migrate_version (
    'version' INTEGER
 );
 
-INSERT migrate_version (version) VALUES (2);
+INSERT into migrate_version (version) VALUES (2);

@@ -15,6 +15,7 @@
 - (void) run_migration_sql:(NSString *)sql;
 - (NSArray *) migrations;
 - (void) migrate;
+- (int) current_migrate_version;
 @end
 
 
@@ -81,6 +82,11 @@
          return;
       }
       for (NSString *sql in [self splitSQLs:mig]) {
+         NSString *version = [[mig_path componentsSeparatedByString:@"_"] objectAtIndex:1];
+         int mig_version = [version integerValue];
+         if (mig_version >= [self  current_migrate_version])
+            continue;
+         
          [self run_migration_sql:sql];
       }
 
@@ -124,6 +130,24 @@
 - (NSArray *) splitSQLs:(NSString *)migrations
 {
    return [migrations componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@";"]];
+}
+
+- (int) current_migrate_version
+{
+   sqlite3_stmt *stmt = nil;
+   const char *sql = "select version from migrate_version";
+   if (sqlite3_prepare_v2(handle, sql, -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle));
+      return - 1;
+   }
+   if (sqlite3_step(stmt) == SQLITE_ERROR) {
+      NSAssert1(0, @"Error: failed to exec sql with message '%s'.", sqlite3_errmsg(handle));
+      return -1;
+   }
+
+   int ret = sqlite3_column_int(stmt, 8);
+   sqlite3_finalize(stmt);
+   return ret;
 }
 
 @end
