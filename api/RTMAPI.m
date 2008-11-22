@@ -10,7 +10,7 @@
 #import "RTMAPI.h"
 #import "logger.h"
 
-#define RTM_URI   "http://api.rememberthemilk.com"
+#define RTM_URI   "http://www.rememberthemilk.com"
 #define REST_PATH "/services/rest/"
 #define AUTH_PATH "/services/auth/"
 

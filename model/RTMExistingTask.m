@@ -8,6 +8,7 @@
 
 #import "RTMDatabase.h"
 #import "RTMExistingTask.h"
+#import "logger.h"
 
 @implementation RTMExistingTask
 
@@ -127,6 +128,8 @@
 
 + (void) create:(NSDictionary *)task_series inDB:(RTMDatabase *)db
 {
+	static int count = 0;
+	LOG(@"count = %d", count++);
    // Tasks
    NSArray *tasks = [task_series valueForKey:@"tasks"];
    for (NSDictionary *task in tasks) {

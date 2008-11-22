@@ -91,6 +91,8 @@
 
    for (NSDictionary *task_series in tasks)
       [RTMTask createAtOnline:task_series inDB:db];
+
+   [api_task release];
 }
 
 - (void) syncTasks:(ProgressView *)progressView
