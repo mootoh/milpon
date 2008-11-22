@@ -84,7 +84,7 @@
 {
    [RTMTask erase:db];
 
-   RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
+   RTMAPITask *api_task = [[RTMAPITask alloc] init];
    NSArray *tasks = [api_task getList];
    if (tasks)
       [RTMTask updateLastSync:db];
