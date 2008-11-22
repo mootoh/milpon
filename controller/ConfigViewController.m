@@ -98,7 +98,7 @@
 - (void) fetchAll
 {
    [activityIndicator startAnimating];
-   [self.rootViewController fetchAll];
+   [rootViewController fetchAll];
    [activityIndicator stopAnimating];
 }
 

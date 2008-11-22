@@ -76,6 +76,7 @@
 		B96D28580ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */; };
 		B97131EE0E9AF1B70091057B /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B98036BE0E71363B000961EE /* RTMAuth.m */; };
 		B98036BF0E71363B000961EE /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B98036BE0E71363B000961EE /* RTMAuth.m */; };
+		B980E7460ED7E472007E2301 /* rtm.tasks.getList.xml in Resources */ = {isa = PBXBuildFile; fileRef = B980E7450ED7E472007E2301 /* rtm.tasks.getList.xml */; };
 		B9835F860ED2955A0012CD3C /* RTMExistingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 8656F00D0EBEC40000230290 /* RTMExistingTask.m */; };
 		B98D23C10E6784AE0006D6AF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B98D23C00E6784AE0006D6AF /* libsqlite3.dylib */; };
 		B98D23CD0E67875D0006D6AF /* RTMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D23CC0E67875D0006D6AF /* RTMDatabase.m */; };
@@ -169,6 +170,7 @@
 		B97131E90E9AF14C0091057B /* RTMAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuthTest.m; sourceTree = "<group>"; };
 		B98036BD0E71363B000961EE /* RTMAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAuth.h; sourceTree = "<group>"; };
 		B98036BE0E71363B000961EE /* RTMAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuth.m; sourceTree = "<group>"; };
+		B980E7450ED7E472007E2301 /* rtm.tasks.getList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.tasks.getList.xml; path = sample/rtm.tasks.getList.xml; sourceTree = "<group>"; };
 		B98D23C00E6784AE0006D6AF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B98D23CB0E67875D0006D6AF /* RTMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMDatabase.h; sourceTree = "<group>"; };
 		B98D23CC0E67875D0006D6AF /* RTMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMDatabase.m; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B980E7430ED7E444007E2301 /* sample */,
 				B96D27EA0ED6B98700DE8E66 /* migrate */,
 				86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */,
 				862C14A90EAB805600AC8FFE /* checkBox.png */,
@@ -430,6 +433,14 @@
 				B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */,
 			);
 			name = migrate;
+			sourceTree = "<group>";
+		};
+		B980E7430ED7E444007E2301 /* sample */ = {
+			isa = PBXGroup;
+			children = (
+				B980E7450ED7E472007E2301 /* rtm.tasks.getList.xml */,
+			);
+			name = sample;
 			sourceTree = "<group>";
 		};
 		B98D23B80E6783DD0006D6AF /* model */ = {
@@ -589,6 +600,7 @@
 				862C14AB0EAB805600AC8FFE /* checkBox.png in Resources */,
 				862C14AC0EAB805600AC8FFE /* checkBoxChecked.png in Resources */,
 				86F7E7070EAF4F6C00B122F9 /* Entitlements.plist in Resources */,
+				B980E7460ED7E472007E2301 /* rtm.tasks.getList.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -992,14 +1004,16 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					LOCAL_DEBUG,
+					DEBUG,
+				);
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "-DLOCAL_DEBUG";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator2.1;
+				SDKROOT = iphonesimulator2.2;
 			};
 			name = "Local Debug";
 		};
