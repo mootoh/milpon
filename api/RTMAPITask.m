@@ -102,6 +102,14 @@
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars
 {
+   // check whethere chars contains white space only.
+   const char *str = [chars UTF8String];
+   int i=0, len=[chars length];
+   for (; i<len; i++)
+      if (! isspace(str[i])) break;
+
+   if (i == len) return;
+
    switch (mode) {
       case TAG:
          NSAssert(tags, @"should be in tags");
@@ -161,8 +169,13 @@
 
 - (NSArray *) getList_internal:(NSDictionary *)args
 {
+#ifdef LOCAL_DEBUG
+   NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"rtm.tasks.getList.xml"];
+   NSData *response = [NSData dataWithContentsOfFile:path];
+#else // LOCAL_DEBUG
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSData *response = [api call:@"rtm.tasks.getList" withArgs:args];
+#endif // LOCAL_DEBUG
    if (! response) return nil;
 
    method = TASKS_GETLIST;
