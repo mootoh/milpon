@@ -7,7 +7,9 @@
 //
 
 #import "TaskViewController.h"
-
+#import "RTMDatabase.h"
+#import "AppDelegate.h"
+#import "RTMList.h"
 
 @implementation TaskViewController
 
@@ -27,6 +29,11 @@
    name.text = task.name;
    name.clearsOnBeginEditing = NO;
    url.text = task.url;
+
+   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+   RTMDatabase *db = app.db;
+
+   list.text = [RTMList nameForListID:task.list_id fromDB:db];
 
    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
    [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];

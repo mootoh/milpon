@@ -18,8 +18,9 @@
    IBOutlet UITextField *estimate;
    IBOutlet UITextField *postponed;
    IBOutlet UITextField *due;
-   IBOutlet UILabel *priority;
-   IBOutlet UIView *noteView;
+   IBOutlet UILabel     *priority;
+   IBOutlet UIView      *noteView;
+   IBOutlet UITextField *list;
 }
 
 @property (nonatomic, retain) RTMTask *task;

@@ -18,6 +18,7 @@
 
 + (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db;
 + (NSArray *) allLists:(RTMDatabase *)db;
++ (NSString *) nameForListID:(NSNumber *) lid fromDB:(RTMDatabase *)db;
 
 - (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb;
 - (NSInteger) taskCount;

@@ -47,8 +47,8 @@
 + (NSArray *) allLists:(RTMDatabase *)db
 {
    NSMutableArray *lists = [NSMutableArray array];
-	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    sqlite3_stmt *stmt = nil;
    char *sql = "SELECT id,name from list";
@@ -67,7 +67,7 @@
       [lists addObject:lst];
    }
    sqlite3_finalize(stmt);
-	[pool release];
+   [pool release];
    return lists;
 }
 
@@ -121,6 +121,26 @@
 {
    if (name) [name release];
    [super dealloc];
+}
+
++ (NSString *) nameForListID:(NSNumber *) lid fromDB:(RTMDatabase *)db
+{
+   sqlite3_stmt *stmt = nil;
+   char *sql = "SELECT name from list where id=?";
+   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
+      return nil;
+   }
+
+   sqlite3_bind_int(stmt, 1, [lid integerValue]);
+
+   if (sqlite3_step(stmt) == SQLITE_ERROR)
+      return nil;
+
+   NSString *ret = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 0)];
+   sqlite3_finalize(stmt);
+
+   return ret;
 }
 
 @end

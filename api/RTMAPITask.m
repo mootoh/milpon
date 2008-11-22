@@ -107,7 +107,6 @@
    int i=0, len=[chars length];
    for (; i<len; i++)
       if (! isspace(str[i])) break;
-
    if (i == len) return;
 
    switch (mode) {

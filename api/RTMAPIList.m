@@ -61,6 +61,14 @@
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars
 {
+   // check whethere chars contains white space only.
+   const char *str = [chars UTF8String];
+   int i=0, len=[chars length];
+   for (; i<len; i++)
+      if (! isspace(str[i])) break;
+   if (i == len) return;
+
+
   if (FILTER != mode)
     @throw @"characters should be found in <filter>";
   [params setObject:chars forKey:@"filter"];
@@ -127,8 +135,13 @@
 
 - (NSArray *) getList
 {
+#ifdef LOCAL_DEBUG
+   NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"rtm.lists.getList.xml"];
+   NSData *response = [NSData dataWithContentsOfFile:path];
+#else // LOCAL_DEBUG
 	RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
 	NSData *response = [api call:@"rtm.lists.getList" withArgs:nil];
+#endif // LOCAL_DEBUG
   if (! response) return nil;
   
   method = LISTS_GETLIST;
