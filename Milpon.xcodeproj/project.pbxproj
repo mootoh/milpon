@@ -74,8 +74,6 @@
 		B96D28560ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */; };
 		B96D28570ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */; };
 		B96D28580ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */; };
-		B96D28BC0ED7036100DE8E66 /* migrate_001_edit_bits.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */; };
-		B96D28BD0ED7036200DE8E66 /* migrate_002_add_version.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */; };
 		B97131EE0E9AF1B70091057B /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B98036BE0E71363B000961EE /* RTMAuth.m */; };
 		B98036BF0E71363B000961EE /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B98036BE0E71363B000961EE /* RTMAuth.m */; };
 		B9835F860ED2955A0012CD3C /* RTMExistingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 8656F00D0EBEC40000230290 /* RTMExistingTask.m */; };
@@ -591,8 +589,6 @@
 				862C14AB0EAB805600AC8FFE /* checkBox.png in Resources */,
 				862C14AC0EAB805600AC8FFE /* checkBoxChecked.png in Resources */,
 				86F7E7070EAF4F6C00B122F9 /* Entitlements.plist in Resources */,
-				B96D28BC0ED7036100DE8E66 /* migrate_001_edit_bits.sql in Resources */,
-				B96D28BD0ED7036200DE8E66 /* migrate_002_add_version.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
