@@ -42,9 +42,10 @@ enum {
       lists = [[RTMList allLists:db] retain];
 
       self.title = @"Add a Task";
-      self.list = [lists objectAtIndex:0]; // list default: INBOX
       self.priority = @"0";
       self.tableView.bounces = NO;
+
+      self.list = [lists objectAtIndex:0]; // list default: INBOX
 
       // footer for scroll
       UIView *fotterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];

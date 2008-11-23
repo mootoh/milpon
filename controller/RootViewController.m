@@ -10,6 +10,7 @@
 #import "ListViewController.h"
 #import "MenuViewController.h"
 #import "AddTaskViewController.h"
+#import "TaskListViewController.h"
 #import "RTMSynchronizer.h"
 #import "RTMDatabase.h"
 #import "AppDelegate.h"
@@ -105,6 +106,12 @@
    self.bottomBar.hidden = YES;
 
    AddTaskViewController *ctrl = [[AddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
+
+   // get current list
+   UIViewController *vc = [navigationController topViewController];
+   if ([vc isKindOfClass:[TaskListViewController class]]) {
+      ctrl.list = ((TaskListViewController *)vc).list;
+   }
 
    UINavigationController *modalController = [[UINavigationController alloc] initWithRootViewController:ctrl];
    modalController.view.frame = CGRectMake(0, 44, appFrame.size.width, appFrame.size.height-44);
