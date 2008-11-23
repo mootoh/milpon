@@ -10,7 +10,7 @@
 #import "RTMAPI.h"
 #import "logger.h"
 
-#define RTM_URI   "http://www.rememberthemilk.com"
+#define RTM_URI   "http://api.rememberthemilk.com"
 #define REST_PATH "/services/rest/"
 #define AUTH_PATH "/services/auth/"
 
@@ -43,6 +43,7 @@ static NSString *s_token;
 
 - (NSData *) call:(NSString *)method withArgs:(NSDictionary *)args
 {
+   sleep(1);
    NSString *url = [self path:method withArgs:args];
    NSURLRequest *req = [NSURLRequest
       requestWithURL:[NSURL URLWithString:url]
