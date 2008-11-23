@@ -59,16 +59,21 @@
    postponed.text = [task.postponed stringValue];
    estimate.text = task.estimate;
 
+   CGRect note_view_frame = noteView.frame;
    NSArray *notes = task.notes;
+   int i=0;
    for (NSDictionary *note in notes) {
-      UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
+      int height = note_view_frame.size.height / notes.count;
+      UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height*i, note_view_frame.size.width, height)];
       noteLabel.font = [UIFont systemFontOfSize:10];
-      noteLabel.lineBreakMode = UILineBreakModeWordWrap;
+      noteLabel.lineBreakMode = UILineBreakModeCharacterWrap;
       noteLabel.text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
+      noteLabel.textAlignment = UITextAlignmentLeft;
+      noteLabel.numberOfLines = 2;
       [noteView addSubview:noteLabel];
       [noteLabel release];
+      i++;
    }
-   [notes release];
 }
 
 
