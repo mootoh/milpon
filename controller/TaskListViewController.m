@@ -57,6 +57,7 @@
    }
 
    RTMTask *tsk = [tasks objectAtIndex:indexPath.row];
+   NSAssert(tsk, @"task should not be nil");
    cell.task = tsk;
    [cell setNeedsDisplay]; // TODO: causes slow
    return cell;
