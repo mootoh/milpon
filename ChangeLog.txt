@@ -1,3 +1,10 @@
+2008-11-25 mootoh
+	* PriorityView:
+		TaskView で、priority を選択するためのパーツとして PriorityView というのを
+		つくりはじめていたんだけど、よく考えてみるとこれは UIButton だけで実現で
+		きそうだよな。
+
+
 2008-11-21 mootoh
 	* edit bit:
 		オフラインでタスクの属性を変更したときに、オンラインとどう同期するか。
