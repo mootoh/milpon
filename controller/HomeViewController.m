@@ -106,7 +106,9 @@ static const int SECTIONS = 4;
    }
 
    RTMTask *task = [[due_tasks objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+   NSAssert2(task, @"task should not be nil for (section, row) = (%d, %d)", indexPath.section, indexPath.row);
    cell.task = task;
+
    [cell setNeedsDisplay]; // TODO: causes slow
    return cell;
 }
@@ -119,6 +121,7 @@ static const int SECTIONS = 4;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    TaskViewController *ctrl = [[TaskViewController alloc] initWithNibName:@"TaskView" bundle:nil];
+
    RTMTask *task = [[due_tasks objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
    ctrl.task = task;
 
@@ -127,32 +130,6 @@ static const int SECTIONS = 4;
    [ctrl release];
 }
 
-/*
-   - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-
-   if (editingStyle == UITableViewCellEditingStyleDelete) {
-   }
-   if (editingStyle == UITableViewCellEditingStyleInsert) {
-   }
-   }
-   */
-/*
-   - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-   return YES;
-   }
-   */
-/*
-   - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-   }
-   */
-
-/*
-   - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-   return YES;
-   }
-   */
-
-
 - (void)viewWillAppear:(BOOL)animated
 {
    [super viewWillAppear:animated];
@@ -160,33 +137,6 @@ static const int SECTIONS = 4;
    [self.tableView deselectRowAtIndexPath:selected animated:NO];
    //[self.tableView reloadData];
 }
-/*
-   - (void)viewDidAppear:(BOOL)animated {
-   [super viewDidAppear:animated];
-   [super viewWillAppear:animated];
-   NSIndexPath *selected = [self.tableView indexPathForSelectedRow];
-   [self.tableView deselectRowAtIndexPath:selected animated:NO];
-   [self.tableView reloadData];
-   }
-   */
-
-/*
-   - (void)viewWillDisappear:(BOOL)animated {
-   [super viewWillDisappear:animated];
-   }
-   */
-
-/*
-   - (void)viewDidDisappear:(BOOL)animated {
-   [super viewDidDisappear:animated];
-   }
-   */
-
-/*
-   - (void)didReceiveMemoryWarning {
-   [super didReceiveMemoryWarning];
-   }
-   */
 
 - (void)dealloc
 {
