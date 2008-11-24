@@ -30,8 +30,7 @@ static NSArray *s_priorityColors;
 
 - (void) prepareForReuse
 {
-   if (task)
-      [task release];
+   if (task) [task release];
    task = nil;
 }
 

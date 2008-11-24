@@ -12,17 +12,17 @@
  * access to RTM Web API.
  */
 @interface RTMAPI : NSObject {
-  enum {
-    TIMELINES_CREATE
-  } method_;
+   enum {
+      TIMELINES_CREATE
+   } method_;
 
-  NSString *timeline; //!< for parser
+   NSString *timeline; //!< for parser
 }
 
 + (void) setApiKey:(NSString *)key;
 + (void) setSecret:(NSString *)sec;
 + (void) setToken:(NSString *)tok;
-	
+
 /**
  * call RTM API method with args.
  *

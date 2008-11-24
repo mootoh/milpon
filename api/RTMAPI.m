@@ -56,11 +56,11 @@ static NSString *s_token;
    NSData *ret = [NSURLConnection sendSynchronousRequest:req
       returningResponse:&res
       error:&err];
-	if (NULL == ret) {
+   if (NULL == ret) {
       LOG(@"failed in API call: %@, url=%@", [err localizedDescription], url);
-	} else {
+   } else {
       LOG(@"API call succeeded for url=%@", url);
-	}
+   }
 
 #ifdef DUMP_API_RESPONSE
    if (ret) {
