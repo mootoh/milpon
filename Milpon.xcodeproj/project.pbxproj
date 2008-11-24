@@ -59,7 +59,10 @@
 		92C057E80ED836190019E07B /* ico_link_gry.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E40ED836190019E07B /* ico_link_gry.gif */; };
 		92C057EB0ED836230019E07B /* ico_recur.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E90ED836230019E07B /* ico_recur.gif */; };
 		92C057EC0ED836230019E07B /* ico_calendar.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057EA0ED836230019E07B /* ico_calendar.gif */; };
-		92C0580A0ED83B3E0019E07B /* icon_priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C058090ED83B3E0019E07B /* icon_priority_1.png */; };
+		92C058E70EDAB7F50019E07B /* icon_priority_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C058E30EDAB7F50019E07B /* icon_priority_0.png */; };
+		92C058E80EDAB7F50019E07B /* icon_priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C058E40EDAB7F50019E07B /* icon_priority_1.png */; };
+		92C058E90EDAB7F50019E07B /* icon_priority_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C058E50EDAB7F50019E07B /* icon_priority_2.png */; };
+		92C058EA0EDAB7F50019E07B /* icon_priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C058E60EDAB7F50019E07B /* icon_priority_3.png */; };
 		92F166730ED325370096EABC /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F166720ED325370096EABC /* ProgressViewController.m */; };
 		92F166740ED325560096EABC /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867187260EAC7B3B000A9133 /* ProgressView.m */; };
 		92F166760ED3256D0096EABC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -159,7 +162,10 @@
 		92C057E40ED836190019E07B /* ico_link_gry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ico_link_gry.gif; sourceTree = "<group>"; };
 		92C057E90ED836230019E07B /* ico_recur.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ico_recur.gif; sourceTree = "<group>"; };
 		92C057EA0ED836230019E07B /* ico_calendar.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ico_calendar.gif; sourceTree = "<group>"; };
-		92C058090ED83B3E0019E07B /* icon_priority_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_priority_1.png; sourceTree = "<group>"; };
+		92C058E30EDAB7F50019E07B /* icon_priority_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_priority_0.png; path = resource/icon_priority_0.png; sourceTree = "<group>"; };
+		92C058E40EDAB7F50019E07B /* icon_priority_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_priority_1.png; path = resource/icon_priority_1.png; sourceTree = "<group>"; };
+		92C058E50EDAB7F50019E07B /* icon_priority_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_priority_2.png; path = resource/icon_priority_2.png; sourceTree = "<group>"; };
+		92C058E60EDAB7F50019E07B /* icon_priority_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_priority_3.png; path = resource/icon_priority_3.png; sourceTree = "<group>"; };
 		92F166670ED324290096EABC /* ProgressViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgressViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F166690ED324290096EABC /* ProgressViewTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ProgressViewTest-Info.plist"; path = "../ProgressViewTest-Info.plist"; sourceTree = "<group>"; };
 		92F166710ED325370096EABC /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
@@ -401,7 +407,10 @@
 		92C057DB0ED836060019E07B /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				92C058090ED83B3E0019E07B /* icon_priority_1.png */,
+				92C058E30EDAB7F50019E07B /* icon_priority_0.png */,
+				92C058E40EDAB7F50019E07B /* icon_priority_1.png */,
+				92C058E50EDAB7F50019E07B /* icon_priority_2.png */,
+				92C058E60EDAB7F50019E07B /* icon_priority_3.png */,
 				92C057E90ED836230019E07B /* ico_recur.gif */,
 				92C057EA0ED836230019E07B /* ico_calendar.gif */,
 				92C057E10ED836180019E07B /* ico_clock.gif */,
@@ -636,7 +645,10 @@
 				92C057E80ED836190019E07B /* ico_link_gry.gif in Resources */,
 				92C057EB0ED836230019E07B /* ico_recur.gif in Resources */,
 				92C057EC0ED836230019E07B /* ico_calendar.gif in Resources */,
-				92C0580A0ED83B3E0019E07B /* icon_priority_1.png in Resources */,
+				92C058E70EDAB7F50019E07B /* icon_priority_0.png in Resources */,
+				92C058E80EDAB7F50019E07B /* icon_priority_1.png in Resources */,
+				92C058E90EDAB7F50019E07B /* icon_priority_2.png in Resources */,
+				92C058EA0EDAB7F50019E07B /* icon_priority_3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

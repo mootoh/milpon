@@ -11,6 +11,11 @@
 #import "AppDelegate.h"
 #import "RTMList.h"
 
+@interface TaskViewController (Private)
+- (void) setPriorityImageView;
+@end
+
+
 @implementation TaskViewController
 
 @synthesize task;
@@ -55,7 +60,7 @@
 
    // location.text = [NSString stringWithFormat:@"%d", task.location_id];
    //completed.text = task.completed;
-   priority.text = [NSString stringWithFormat:@"%d", [task.priority intValue]];
+   [self setPriorityImageView];
    postponed.text = [task.postponed stringValue];
    estimate.text = task.estimate;
 
@@ -97,5 +102,14 @@
    [super dealloc];
 }
 
+- (void) setPriorityImageView
+{
+   int priority = [task.priority intValue];
+   UIImage *priorityImage = [[UIImage alloc] initWithContentsOfFile:
+      [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:
+         [NSString stringWithFormat:@"icon_priority_%d.png", priority]]];
+   priorityImageView.image = priorityImage;
+   [priorityImage release];
+}
 
 @end

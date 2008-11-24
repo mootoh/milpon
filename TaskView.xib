@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="52"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -137,7 +137,7 @@
 					<object class="IBUITextField" id="1017670078">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 20}, {280, 32}}</string>
+						<string key="NSFrame">{{20, 20}, {280, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="IBUIBackgroundColor" ref="934518474"/>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -151,7 +151,6 @@
 							<reference key="NSCustomColorSpace" ref="937200214"/>
 						</object>
 						<reference key="IBUIFont" ref="249930178"/>
-						<bool key="IBUIClearsOnBeginEditing">YES</bool>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">1.400000e+01</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -260,10 +259,6 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">icon_priority_1.png</string>
-						</object>
 					</object>
 					<object class="IBUIImageView" id="467456722">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -375,14 +370,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">priority</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="719635764"/>
-					</object>
-					<int key="connectionID">67</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">list</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="579799055"/>
@@ -396,6 +383,14 @@
 						<reference key="destination" ref="342597361"/>
 					</object>
 					<int key="connectionID">72</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">priorityImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1038879481"/>
+					</object>
+					<int key="connectionID">79</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -596,7 +591,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">78</int>
+			<int key="maxID">79</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -615,7 +610,7 @@
 							<string>name</string>
 							<string>noteView</string>
 							<string>postponed</string>
-							<string>priority</string>
+							<string>priorityImageView</string>
 							<string>repeat</string>
 							<string>url</string>
 						</object>
@@ -628,7 +623,7 @@
 							<string>UITextField</string>
 							<string>UIView</string>
 							<string>UITextField</string>
-							<string>UILabel</string>
+							<string>UIImageView</string>
 							<string>UITextField</string>
 							<string>UITextField</string>
 						</object>

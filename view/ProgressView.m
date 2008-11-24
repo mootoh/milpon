@@ -82,7 +82,7 @@ static const float messageLabelPadding = 16.0f;
 {
    progressView.progress = [pg floatValue];
    //[progressView setNeedsDisplay];
-   //[messageLabel setNeedsDisplay];
+   [messageLabel setNeedsDisplay];
 }
 
 - (void) setMessage:(NSString *)msg
