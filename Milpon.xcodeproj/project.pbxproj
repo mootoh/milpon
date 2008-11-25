@@ -110,7 +110,7 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* Milpon_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Milpon_Prefix.pch; sourceTree = "<group>"; };
-		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = view/MainWindow.xib; sourceTree = "<group>"; };
 		28C286DF0D94DF7D0034E888 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 		86A07E9A0EA61B2300446784 /* RTMPendingTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMPendingTaskTest.m; sourceTree = "<group>"; };
 		86A081C20EA6B74300446784 /* TaskEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskEditCell.h; path = view/TaskEditCell.h; sourceTree = "<group>"; };
 		86A081C30EA6B74300446784 /* TaskEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskEditCell.m; path = view/TaskEditCell.m; sourceTree = "<group>"; };
-		86AF29510EB89840004EDEFE /* PrivateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateInfo.h; sourceTree = "<group>"; };
+		86AF29510EB89840004EDEFE /* PrivateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateInfo.h; path = others/PrivateInfo.h; sourceTree = "<group>"; };
 		86B8FB540EAF0D4D006DCB67 /* ReloadableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReloadableTableViewController.h; sourceTree = "<group>"; };
 		86B9BBE70EABFC2A00210FCB /* AuthWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthWebViewController.h; sourceTree = "<group>"; };
 		86B9BBE80EABFC2A00210FCB /* AuthWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthWebViewController.m; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 		86BF63300EA8C6710055D56B /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		86BF64C80EA9F8920055D56B /* DueDatePickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DueDatePickViewController.h; sourceTree = "<group>"; };
 		86BF64C90EA9F8920055D56B /* DueDatePickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DueDatePickViewController.m; sourceTree = "<group>"; };
-		86C148000E71739800456F6A /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
+		86C148000E71739800456F6A /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TaskView.xib; path = view/TaskView.xib; sourceTree = "<group>"; };
 		86C148100E72144300456F6A /* TaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskViewController.h; sourceTree = "<group>"; };
 		86C148110E72144300456F6A /* TaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskViewController.m; sourceTree = "<group>"; };
 		86DB9B800E97176F00DA4D16 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -151,12 +151,12 @@
 		86DB9B890E9717D900DA4D16 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		86E0212A0E7EAAD7001945E7 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86E0212E0E7EAB80001945E7 /* UpdateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateList.m; sourceTree = "<group>"; };
-		86EE1F990E9EED9900C62684 /* RTMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMError.h; sourceTree = "<group>"; };
+		86EE1F990E9EED9900C62684 /* RTMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMError.h; path = common/RTMError.h; sourceTree = "<group>"; };
 		86F41FBF0E813AA6006D98F4 /* UpdateTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateTask.m; sourceTree = "<group>"; };
-		86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = others/Entitlements.plist; sourceTree = "<group>"; };
 		86FD2E9B0EA249CB004631B0 /* rtm_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rtm_icon.png; path = resource/rtm_icon.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9204794C0ED6434E0088060C /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logger.h; sourceTree = "<group>"; };
+		9204794C0ED6434E0088060C /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = logger.h; path = common/logger.h; sourceTree = "<group>"; };
 		92C057E10ED836180019E07B /* ico_clock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_clock.gif; path = resource/ico_clock.gif; sourceTree = "<group>"; };
 		92C057E20ED836190019E07B /* ico_tag.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_tag.gif; path = resource/ico_tag.gif; sourceTree = "<group>"; };
 		92C057E30ED836190019E07B /* ico_globe.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_globe.gif; path = resource/ico_globe.gif; sourceTree = "<group>"; };
@@ -170,10 +170,10 @@
 		92C059070EDAC04C0019E07B /* PriorityImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PriorityImageView.h; path = view/PriorityImageView.h; sourceTree = "<group>"; };
 		92C059080EDAC04C0019E07B /* PriorityImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PriorityImageView.m; path = view/PriorityImageView.m; sourceTree = "<group>"; };
 		92F166670ED324290096EABC /* ProgressViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgressViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		92F166690ED324290096EABC /* ProgressViewTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ProgressViewTest-Info.plist"; path = "../ProgressViewTest-Info.plist"; sourceTree = "<group>"; };
+		92F166690ED324290096EABC /* ProgressViewTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ProgressViewTest-Info.plist"; path = "../others/ProgressViewTest-Info.plist"; sourceTree = "<group>"; };
 		92F166710ED325370096EABC /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
 		92F166720ED325370096EABC /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
-		92F166830ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FunctionalTestProgressViewWindow.xib; path = ../FunctionalTestProgressViewWindow.xib; sourceTree = "<group>"; };
+		92F166830ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FunctionalTestProgressViewWindow.xib; path = ../view/FunctionalTestProgressViewWindow.xib; sourceTree = "<group>"; };
 		92F1668F0ED326A80096EABC /* FunctionalTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionalTestAppDelegate.h; sourceTree = "<group>"; };
 		92F166900ED326A80096EABC /* FunctionalTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionalTestAppDelegate.m; sourceTree = "<group>"; };
 		B9134DCF0E65F0E1005028DC /* RTMAPIAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIAuth.h; sourceTree = "<group>"; };
@@ -187,8 +187,8 @@
 		B9224C5B0E70AECF004F83CE /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
 		B93A01CA0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIXMLParserCallback.h; sourceTree = "<group>"; };
 		B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIXMLParserCallback.m; sourceTree = "<group>"; };
-		B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_001_edit_bits.sql; sourceTree = "<group>"; };
-		B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_002_add_version.sql; sourceTree = "<group>"; };
+		B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_001_edit_bits.sql; path = db/migrate_001_edit_bits.sql; sourceTree = "<group>"; };
+		B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_002_add_version.sql; path = db/migrate_002_add_version.sql; sourceTree = "<group>"; };
 		B97131E90E9AF14C0091057B /* RTMAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuthTest.m; sourceTree = "<group>"; };
 		B98036BD0E71363B000961EE /* RTMAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAuth.h; sourceTree = "<group>"; };
 		B98036BE0E71363B000961EE /* RTMAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuth.m; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 		B98D23C00E6784AE0006D6AF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B98D23CB0E67875D0006D6AF /* RTMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMDatabase.h; sourceTree = "<group>"; };
 		B98D23CC0E67875D0006D6AF /* RTMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMDatabase.m; sourceTree = "<group>"; };
-		B98D24120E678C250006D6AF /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = rtm.sql; sourceTree = "<group>"; };
+		B98D24120E678C250006D6AF /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = file; name = rtm.sql; path = db/rtm.sql; sourceTree = "<group>"; };
 		B98D24480E6792F60006D6AF /* RTMList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMList.h; sourceTree = "<group>"; };
 		B98D24490E6792F60006D6AF /* RTMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMList.m; sourceTree = "<group>"; };
 		B9A4CC8A0ED8125400A6A119 /* rtm.lists.getList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.lists.getList.xml; path = sample/rtm.lists.getList.xml; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 		B9C85BED0EA811F000359332 /* LocationSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSelectViewController.h; sourceTree = "<group>"; };
 		B9C85BEE0EA811F000359332 /* LocationSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSelectViewController.m; sourceTree = "<group>"; };
 		B9DD5E8F0E6901B7007BFC7A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9DD5E900E6901B7007BFC7A /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTest-Info.plist"; sourceTree = "<group>"; };
+		B9DD5E900E6901B7007BFC7A /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTest-Info.plist"; path = "others/UnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9DD5E960E6901FC007BFC7A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		B9DD5E9C0E69022E007BFC7A /* RTMAPIListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIListTest.m; sourceTree = "<group>"; };
 		B9DD5F1A0E6909FC007BFC7A /* RTMAPIAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIAuthTest.m; sourceTree = "<group>"; };
@@ -472,8 +472,8 @@
 		B96D27EA0ED6B98700DE8E66 /* migrate */ = {
 			isa = PBXGroup;
 			children = (
-				B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */,
 				B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */,
+				B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */,
 			);
 			name = migrate;
 			sourceTree = "<group>";

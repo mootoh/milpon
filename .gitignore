@@ -3,6 +3,6 @@ build
 *.xcodeproj/*.pbxuser
 .DS_Store
 .*.swp
-PrivateInfo.h
+others/PrivateInfo.h
 tags
 *.crash
