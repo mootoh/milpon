@@ -250,15 +250,6 @@
 							<string key="NSResourceName">ico_recur.gif</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="1038879481">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{148, 72}, {24, 24}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<int key="IBUIContentMode">4</int>
-					</object>
 					<object class="IBUIImageView" id="467456722">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
@@ -309,6 +300,37 @@
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">1.800000e+01</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits"/>
+					</object>
+					<object class="IBUIButton" id="614617216">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{148, 70}, {24, 24}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">1.500000e+01</double>
+							<int key="NSfFlags">16</int>
+						</object>
+						<string key="IBUIHighlightedTitle">priorityButton</string>
+						<string key="IBUIDisabledTitle">priorityButton</string>
+						<string key="IBUISelectedTitle">priorityButton</string>
+						<string key="IBUINormalTitle">priorityButton</string>
+						<reference key="IBUIHighlightedTitleColor" ref="934518474"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+						</object>
+						<object class="NSCustomResource" key="IBUIHighlightedImage" id="610094352">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">icon_priority_0.png</string>
+						</object>
+						<reference key="IBUIDisabledImage" ref="610094352"/>
+						<reference key="IBUISelectedImage" ref="610094352"/>
+						<reference key="IBUINormalImage" ref="610094352"/>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 366}</string>
@@ -385,11 +407,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">priorityImageView</string>
+						<string key="label">priorityButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1038879481"/>
+						<reference key="destination" ref="614617216"/>
 					</object>
-					<int key="connectionID">79</int>
+					<int key="connectionID">81</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -421,7 +443,7 @@
 							<reference ref="108520310"/>
 							<reference ref="872436152"/>
 							<reference ref="719635764"/>
-							<reference ref="1038879481"/>
+							<reference ref="614617216"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -506,14 +528,14 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">77</int>
-						<reference key="object" ref="1038879481"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">78</int>
 						<reference key="object" ref="304024303"/>
 						<reference key="parent" ref="345020789"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">80</int>
+						<reference key="object" ref="614617216"/>
+						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
 			</object>
@@ -539,15 +561,14 @@
 					<string>74.IBPluginDependency</string>
 					<string>75.IBPluginDependency</string>
 					<string>76.IBPluginDependency</string>
-					<string>77.CustomClassName</string>
-					<string>77.IBPluginDependency</string>
 					<string>78.IBPluginDependency</string>
+					<string>80.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>TaskViewController</string>
 					<string>UIResponder</string>
-					<string>{{839, 42}, {320, 366}}</string>
+					<string>{{628, 42}, {320, 366}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -567,7 +588,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>PriorityImageView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -592,19 +612,11 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">79</int>
+			<int key="maxID">81</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="IBPartialClassDescription">
-					<string key="className">PriorityImageView</string>
-					<string key="superclassName">UIImageView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">view/PriorityImageView.h</string>
-					</object>
-				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">TaskViewController</string>
 					<string key="superclassName">UIViewController</string>
@@ -619,7 +631,7 @@
 							<string>name</string>
 							<string>noteView</string>
 							<string>postponed</string>
-							<string>priorityImageView</string>
+							<string>priorityButton</string>
 							<string>repeat</string>
 							<string>url</string>
 						</object>
@@ -632,7 +644,7 @@
 							<string>UITextField</string>
 							<string>UIView</string>
 							<string>UITextField</string>
-							<string>UIImageView</string>
+							<string>UIButton</string>
 							<string>UITextField</string>
 							<string>UITextField</string>
 						</object>

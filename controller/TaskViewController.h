@@ -18,7 +18,7 @@
    IBOutlet UITextField *estimate;
    IBOutlet UITextField *postponed;
    IBOutlet UITextField *due;
-   IBOutlet UIImageView *priorityImageView;
+   IBOutlet UIButton    *priorityButton;
    IBOutlet UIView      *noteView;
    IBOutlet UITextField *list;
 }

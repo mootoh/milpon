@@ -10,9 +10,10 @@
 #import "RTMDatabase.h"
 #import "AppDelegate.h"
 #import "RTMList.h"
+#import "logger.h"
 
 @interface TaskViewController (Private)
-- (void) setPriorityImageView;
+- (void) setPriorityButton;
 @end
 
 
@@ -54,7 +55,7 @@
    // location.text = [NSString stringWithFormat:@"%d", task.location_id];
    //completed.text = task.completed;
 
-   [self setPriorityImageView];
+   [self setPriorityButton];
    postponed.text = [task.postponed stringValue];
    estimate.text = task.estimate;
 
@@ -96,14 +97,22 @@
    [super dealloc];
 }
 
-- (void) setPriorityImageView
+- (void) setPriorityButton
 {
    int priority = [task.priority intValue];
    UIImage *priorityImage = [[UIImage alloc] initWithContentsOfFile:
       [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:
          [NSString stringWithFormat:@"icon_priority_%d.png", priority]]];
-   priorityImageView.image = priorityImage;
+
+   [priorityButton setImage:priorityImage forState:UIControlStateNormal];
+   [priorityButton addTarget:self action:@selector(togglePriorityView) forControlEvents:UIControlEventTouchDown];
+
    [priorityImage release];
+}
+
+- (void) togglePriorityView
+{
+   LOG(@"togglePriorityView");
 }
 
 @end
