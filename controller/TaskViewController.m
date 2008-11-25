@@ -20,14 +20,7 @@
 
 @synthesize task;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-   }
-   return self;
-}
-
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
    self.title = task.name;
 
@@ -60,6 +53,7 @@
 
    // location.text = [NSString stringWithFormat:@"%d", task.location_id];
    //completed.text = task.completed;
+
    [self setPriorityImageView];
    postponed.text = [task.postponed stringValue];
    estimate.text = task.estimate;
