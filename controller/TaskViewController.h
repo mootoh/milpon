@@ -21,6 +21,8 @@
    IBOutlet UIButton    *priorityButton;
    IBOutlet UIView      *noteView;
    IBOutlet UITextField *list;
+
+   UIView *dialogView;
 }
 
 @property (nonatomic, retain) RTMTask *task;

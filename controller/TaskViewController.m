@@ -19,6 +19,27 @@
 
 @implementation TaskViewController
 
+static NSArray *s_icons;
+
++ (NSArray *) icons
+{
+   static BOOL first = YES;
+   if (first) {
+      NSMutableArray *ics = [[NSMutableArray alloc] init];
+      for (int i=0; i<4; i++) {
+         UIImage *img = [[UIImage alloc] initWithContentsOfFile:
+            [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:
+               [NSString stringWithFormat:@"icon_priority_%d.png", i]]];
+         [ics addObject:img];
+         [img release];
+      }
+      s_icons = ics;
+   }
+   return s_icons;
+}
+
+
+
 @synthesize task;
 
 - (void) viewDidLoad
@@ -56,6 +77,22 @@
    //completed.text = task.completed;
 
    [self setPriorityButton];
+
+   dialogView = [[UIView alloc] initWithFrame:
+      CGRectMake(priorityButton.frame.origin.x, priorityButton.frame.origin.y+24, 44*4, 44)];
+   dialogView.backgroundColor = [UIColor blackColor];
+   dialogView.hidden = YES;
+
+   for (int i=0; i<4; i++) {
+      UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(i*44, 0, 44, 44)];
+      [btn setImage:[[TaskViewController icons] objectAtIndex:i] forState:UIControlStateNormal];
+      [btn addTarget:self action:@selector(togglePriorityView) forControlEvents:UIControlEventTouchDown];
+      [dialogView addSubview:btn];
+      [btn release];
+   }
+
+   [self.view addSubview:dialogView];
+
    postponed.text = [task.postponed stringValue];
    estimate.text = task.estimate;
 
@@ -94,6 +131,7 @@
 - (void)dealloc
 {
    if (task) [task release];
+   [dialogView release];
    [super dealloc];
 }
 
@@ -112,7 +150,10 @@
 
 - (void) togglePriorityView
 {
-   LOG(@"togglePriorityView");
+   dialogView.hidden = ! dialogView.hidden;
+   [dialogView setNeedsDisplay];
+
+   // selected button action
 }
 
 @end
