@@ -206,6 +206,7 @@
 		B9B1C28D0EA571F800CBCA62 /* RTMPendingTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMPendingTask.m; sourceTree = "<group>"; };
 		B9C85BED0EA811F000359332 /* LocationSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSelectViewController.h; sourceTree = "<group>"; };
 		B9C85BEE0EA811F000359332 /* LocationSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSelectViewController.m; sourceTree = "<group>"; };
+		B9CBB8100EDD655200971B5E /* migrate_003_set_zero_edit_bits.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_003_set_zero_edit_bits.sql; path = db/migrate_003_set_zero_edit_bits.sql; sourceTree = "<group>"; };
 		B9DD5E8F0E6901B7007BFC7A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9DD5E900E6901B7007BFC7A /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTest-Info.plist"; path = "others/UnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9DD5E960E6901FC007BFC7A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -472,6 +473,7 @@
 		B96D27EA0ED6B98700DE8E66 /* migrate */ = {
 			isa = PBXGroup;
 			children = (
+				B9CBB8100EDD655200971B5E /* migrate_003_set_zero_edit_bits.sql */,
 				B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */,
 				B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */,
 			);

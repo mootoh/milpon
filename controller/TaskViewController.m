@@ -141,6 +141,8 @@ static NSArray *s_icons;
 - (void) displayNote
 {
    notePages.numberOfPages = task.notes.count;
+   if (0 == task.notes.count) return;
+
    NSDictionary *note = [task.notes objectAtIndex:notePages.currentPage];
    NSString *text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
    noteView.text = text;
