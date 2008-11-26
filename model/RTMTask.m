@@ -5,7 +5,7 @@
 
 @implementation RTMTask
 
-@synthesize name, url, due, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits;
+@synthesize name, url, due, completed, priority, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits;
 
 
 - (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb 
@@ -16,7 +16,7 @@
       self.due          = [params valueForKey:@"due"];
       self.location_id  = [params valueForKey:@"location_id"];
       self.completed    = [params valueForKey:@"completed"];
-      self.priority     = [params valueForKey:@"priority"];
+      priority          = [[params valueForKey:@"priority"] retain];
       self.postponed    = [params valueForKey:@"postponed"];
       self.estimate     = [params valueForKey:@"estimate"];
       self.list_id      = [params valueForKey:@"list_id"];
@@ -280,16 +280,4 @@
    [super dealloc];
 }
 
-- (NSNumber *) priority
-{
-   return priority;
-}
-
-- (void) setPriority:(NSNumber *)pri
-{
-   if (priority) [priority release];
-   priority = [pri retain];
-
-   // TODO: flag up edit bits
-}
 @end // RTMTask

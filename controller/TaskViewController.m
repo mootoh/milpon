@@ -156,7 +156,6 @@ static NSArray *s_icons;
 #define prioritySelected_N(n) \
 - (void) prioritySelected_##n \
 { \
-   LOG(@"selected %d", n); \
    task.priority = [NSNumber numberWithInt:n]; \
    [self setPriorityButton]; \
    [self togglePriorityView]; \

@@ -1,5 +1,6 @@
 2008-11-26
-	- TaskView の notes を UIPageControl を使って複数表示できるようにする
+	+ TaskView の notes を UIPageControl を使って複数表示できるようにする
+		> 2008-11-26: done.
 
 2008-11-19
 	- ProgressView: progressが進行中に別スレッドから起動されたら、

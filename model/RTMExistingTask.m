@@ -305,4 +305,17 @@
    return ret;
 }
 
+- (NSNumber *) priority
+{
+   return priority;
+}
+
+- (void) setPriority:(NSNumber *)pri
+{
+   if (priority) [priority release];
+   priority = [pri retain];
+
+   // TODO: flag up edit bits
+}
+
 @end
