@@ -339,9 +339,23 @@ enum task_edit_bits {
    if (priority) [priority release];
    priority = [pri retain];
 
-   // TODO: flag up edit bits
+   sqlite3_stmt *stmt = nil;
+   static const char *sql = "UPDATE task SET priority=? where id=?";
+   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
+      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_bind_int(stmt, 1, [priority intValue]);
+   sqlite3_bind_int(stmt, 2, [iD intValue]);
+
+   if (SQLITE_ERROR == sqlite3_step(stmt))
+      @throw [NSString stringWithFormat:@"failed in update the database: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_finalize(stmt);
+
    [self flagUpEditBits:PRIORITY];
 }
+
+
 
 - (void) flagUpEditBits:(enum task_edit_bits) flag
 {
