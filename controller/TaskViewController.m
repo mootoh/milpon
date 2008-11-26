@@ -77,6 +77,9 @@ static NSArray *s_icons;
    //completed.text = task.completed;
 
    [self setPriorityButton];
+   [priorityButton addTarget:self action:@selector(togglePriorityView) forControlEvents:UIControlEventTouchDown];
+
+   NSMutableArray *btns = [[NSMutableArray alloc] init];
 
    dialogView = [[UIView alloc] initWithFrame:
       CGRectMake(priorityButton.frame.origin.x, priorityButton.frame.origin.y+24, 44*4, 44)];
@@ -86,11 +89,15 @@ static NSArray *s_icons;
    for (int i=0; i<4; i++) {
       UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(i*44, 0, 44, 44)];
       [btn setImage:[[TaskViewController icons] objectAtIndex:i] forState:UIControlStateNormal];
-      [btn addTarget:self action:@selector(togglePriorityView) forControlEvents:UIControlEventTouchDown];
+      NSString *selector = [NSString stringWithFormat:@"prioritySelected_%d", i];
+      [btn addTarget:self action:NSSelectorFromString(selector) forControlEvents:UIControlEventTouchDown];
       [dialogView addSubview:btn];
+      [btns addObject:btn];
+
       [btn release];
    }
 
+   prioritySelections = btns;
    [self.view addSubview:dialogView];
 
    postponed.text = [task.postponed stringValue];
@@ -132,20 +139,15 @@ static NSArray *s_icons;
 {
    if (task) [task release];
    [dialogView release];
+   [prioritySelections release];
    [super dealloc];
 }
 
 - (void) setPriorityButton
 {
    int priority = [task.priority intValue];
-   UIImage *priorityImage = [[UIImage alloc] initWithContentsOfFile:
-      [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:
-         [NSString stringWithFormat:@"icon_priority_%d.png", priority]]];
 
-   [priorityButton setImage:priorityImage forState:UIControlStateNormal];
-   [priorityButton addTarget:self action:@selector(togglePriorityView) forControlEvents:UIControlEventTouchDown];
-
-   [priorityImage release];
+   [priorityButton setImage:[[TaskViewController icons] objectAtIndex:priority] forState:UIControlStateNormal];
 }
 
 - (void) togglePriorityView
@@ -153,7 +155,20 @@ static NSArray *s_icons;
    dialogView.hidden = ! dialogView.hidden;
    [dialogView setNeedsDisplay];
 
-   // selected button action
 }
+
+#define prioritySelected_N(n) \
+- (void) prioritySelected_##n \
+{ \
+   LOG(@"selected %d", n); \
+   task.priority = [NSNumber numberWithInt:n]; \
+   [self setPriorityButton]; \
+   [self togglePriorityView]; \
+}
+
+prioritySelected_N(0);
+prioritySelected_N(1);
+prioritySelected_N(2);
+prioritySelected_N(3);
 
 @end

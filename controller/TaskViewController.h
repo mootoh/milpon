@@ -22,7 +22,8 @@
    IBOutlet UIView      *noteView;
    IBOutlet UITextField *list;
 
-   UIView *dialogView;
+   UIView  *dialogView;
+   NSArray *prioritySelections;
 }
 
 @property (nonatomic, retain) RTMTask *task;
