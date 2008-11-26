@@ -84,7 +84,8 @@ static NSArray *s_icons;
 
    dialogView = [[UIView alloc] initWithFrame:
       CGRectMake(priorityButton.frame.origin.x, priorityButton.frame.origin.y+24, 44*4, 44)];
-   dialogView.backgroundColor = [UIColor blackColor];
+   dialogView.backgroundColor = [UIColor colorWithRed:51.0f/256.0f green:51.0f/256.0f blue:51.0f/256.0f alpha:0.9f];
+   dialogView.opaque = NO;
    dialogView.hidden = YES;
 
    for (int i=0; i<4; i++) {
@@ -92,6 +93,7 @@ static NSArray *s_icons;
       [btn setImage:[[TaskViewController icons] objectAtIndex:i] forState:UIControlStateNormal];
       NSString *selector = [NSString stringWithFormat:@"prioritySelected_%d", i];
       [btn addTarget:self action:NSSelectorFromString(selector) forControlEvents:UIControlEventTouchDown];
+      btn.opaque = NO;
       [dialogView addSubview:btn];
       [btns addObject:btn];
 
@@ -103,6 +105,8 @@ static NSArray *s_icons;
 
    postponed.text = [task.postponed stringValue];
    estimate.text = task.estimate;
+
+   noteView.font = [UIFont systemFontOfSize:12];
 
    [notePages addTarget:self action:@selector(displayNote) forControlEvents:UIControlEventTouchUpInside];
    [self displayNote];

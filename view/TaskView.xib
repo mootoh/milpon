@@ -115,7 +115,7 @@
 					<object class="IBUITextField" id="492188961">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{40, 72}, {93, 24}}</string>
+						<string key="NSFrame">{{20, 72}, {113, 24}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="IBUIBackgroundColor" ref="934518474"/>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -160,7 +160,7 @@
 					<object class="IBUILabel" id="373281632">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{40, 116}, {260, 21}}</string>
+						<string key="NSFrame">{{20, 116}, {280, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">6</int>
@@ -173,9 +173,9 @@
 						</object>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">tags</string>
-						<object class="NSColor" key="IBUITextColor" id="823811718">
+						<object class="NSColor" key="IBUITextColor" id="236137207">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
+							<bytes key="NSRGB">MC4yIDAuMiAwLjIAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -208,34 +208,6 @@
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">ico_recur.gif</string>
-						</object>
-					</object>
-					<object class="IBUIImageView" id="467456722">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 116}, {20, 21}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">ico_tag.gif</string>
-						</object>
-					</object>
-					<object class="IBUIImageView" id="284996758">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 73}, {20, 21}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">ico_calendar.gif</string>
 						</object>
 					</object>
 					<object class="IBUITextField" id="108520310">
@@ -298,7 +270,7 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{126, 244}, {80, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="IBUIBackgroundColor" ref="823811718"/>
+						<reference key="IBUIBackgroundColor" ref="236137207"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
@@ -311,7 +283,6 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="IBUIBackgroundColor" ref="934518474"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 						<bool key="IBUIDelaysContentTouches">NO</bool>
 						<bool key="IBUICanCancelContentTouches">NO</bool>
@@ -426,9 +397,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1017670078"/>
 							<reference ref="492188961"/>
-							<reference ref="284996758"/>
 							<reference ref="373281632"/>
-							<reference ref="467456722"/>
 							<reference ref="214570792"/>
 							<reference ref="975491916"/>
 							<reference ref="579799055"/>
@@ -488,11 +457,6 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">74</int>
-						<reference key="object" ref="284996758"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">24</int>
 						<reference key="object" ref="108520310"/>
 						<reference key="parent" ref="191373211"/>
@@ -500,11 +464,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">75</int>
 						<reference key="object" ref="975491916"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">76</int>
-						<reference key="object" ref="467456722"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -540,9 +499,7 @@
 					<string>65.IBPluginDependency</string>
 					<string>69.IBPluginDependency</string>
 					<string>73.IBPluginDependency</string>
-					<string>74.IBPluginDependency</string>
 					<string>75.IBPluginDependency</string>
-					<string>76.IBPluginDependency</string>
 					<string>80.IBPluginDependency</string>
 					<string>83.IBPluginDependency</string>
 					<string>85.IBPluginDependency</string>
@@ -551,9 +508,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>TaskViewController</string>
 					<string>UIResponder</string>
-					<string>{{631, 172}, {320, 366}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{676, 152}, {320, 366}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
