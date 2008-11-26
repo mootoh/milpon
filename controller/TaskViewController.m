@@ -20,6 +20,7 @@
 
 @implementation TaskViewController
 
+// icons {{{
 static NSArray *s_icons;
 
 + (NSArray *) icons
@@ -38,8 +39,7 @@ static NSArray *s_icons;
    }
    return s_icons;
 }
-
-
+// }}}
 
 @synthesize task;
 
@@ -167,3 +167,4 @@ prioritySelected_N(2);
 prioritySelected_N(3);
 
 @end
+// vim:set fdm=marker:

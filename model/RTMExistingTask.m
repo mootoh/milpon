@@ -8,16 +8,37 @@
 
 #import "RTMDatabase.h"
 #import "RTMExistingTask.h"
+#import "AppDelegate.h"
 #import "logger.h"
+
+@interface RTMExistingTask (Private)
+- (void) flagUpEditBits:(enum task_edit_bits) eb;
+@end
 
 @implementation RTMExistingTask
 
 @synthesize task_series_id;
 
+// XXX: edit bits assumes 32 bit integer.
+enum task_edit_bits {
+   NONE         = 0,
+   DUE          = 1 << 0,
+   COMPLETED    = 1 << 1,
+   DELETED      = 1 << 2,
+   PRIORITY     = 1 << 3,
+   ESTIMATE     = 1 << 4,
+   NAME         = 1 << 5,
+   URL          = 1 << 6,
+   LOCACTION_ID = 1 << 7,
+   LIST_ID      = 1 << 8,
+   RRULE        = 1 << 9,
+};
+
 - (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb 
 {
    if (self = [super initByParams:params inDB:ddb]) {
       self.task_series_id  = [params valueForKey:@"task_series_id"];
+      edit_bits            = [[params valueForKey:@"edit_bits"] retain];
    }
    return self;
 }
@@ -41,8 +62,8 @@
 {
    sqlite3_stmt *stmt = nil;
    static const char *sql = "INSERT INTO task "
-      "(due, completed, priority, postponed, estimate, task_series_id, dirty) "
-      "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      "(due, completed, priority, postponed, estimate, task_series_id, dirty, edit_bits) "
+      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
    if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
       @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
 
@@ -56,6 +77,7 @@
    sqlite3_bind_text(stmt, 5, [[task valueForKey:@"estimate"] UTF8String], -1, SQLITE_TRANSIENT);
    sqlite3_bind_int(stmt,  6, task_series_id);
    sqlite3_bind_int(stmt,  7, 1);
+   sqlite3_bind_int(stmt,  8, 0);
 
    if (SQLITE_ERROR == sqlite3_step(stmt))
       @throw [NSString stringWithFormat:@"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle])];
@@ -68,8 +90,9 @@
    sqlite3_stmt *stmt = nil;
    const char *sql = "INSERT INTO task "
       "(id, due, completed, priority,   postponed, estimate, dirty, "  // task
-      "task_series_id, name, url, location_id, list_id, rrule) " // TaskSeries
-      "VALUES (?,?,?,?,  ?,?,?,?, ?,?,?,?, ?)";
+      "task_series_id, name, url, location_id, list_id, rrule, "// TaskSeries
+      "edit_bits) " 
+      "VALUES (?,?,?,?,  ?,?,?,?, ?,?,?,?, ?,?)";
    if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL)) {
       NSLog(@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle]));
       @throw @"failed in createTask"; // TODO
@@ -94,6 +117,7 @@
    sqlite3_bind_int(stmt, 11, [[task_series valueForKey:@"location_id"] integerValue]);
    sqlite3_bind_int(stmt, 12, [[task_series valueForKey:@"list_id"] integerValue]);
    sqlite3_bind_text(stmt, 13, [[task_series valueForKey:@"rrule"] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_int(stmt, 14, 0); // edit bits
 
    if (SQLITE_ERROR == sqlite3_step(stmt)) {
       NSLog(@"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle]));
@@ -316,6 +340,38 @@
    priority = [pri retain];
 
    // TODO: flag up edit bits
+   [self flagUpEditBits:PRIORITY];
+}
+
+- (void) flagUpEditBits:(enum task_edit_bits) flag
+{
+   int eb = [edit_bits intValue];
+   eb |= flag;
+   self.edit_bits = [NSNumber numberWithInt:eb];
+}
+
+- (NSNumber *) edit_bits
+{
+   return edit_bits;
+}
+
+- (void) setEdit_bits:(NSNumber *)eb
+{
+   if (edit_bits) [edit_bits release];
+   edit_bits = eb;
+
+   sqlite3_stmt *stmt = nil;
+   static const char *sql = "UPDATE task SET edit_bits=? where id=?";
+   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
+      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_bind_int(stmt, 1, [edit_bits intValue]);
+   sqlite3_bind_int(stmt, 2, [iD intValue]);
+
+   if (SQLITE_ERROR == sqlite3_step(stmt))
+      @throw [NSString stringWithFormat:@"failed in update the database: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_finalize(stmt);
 }
 
 @end

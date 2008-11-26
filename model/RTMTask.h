@@ -8,7 +8,7 @@
 
 #import "RTMStorable.h"
 
-#define RTMTASK_SQL_COLUMNS "id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, dirty, task_series_id"
+#define RTMTASK_SQL_COLUMNS "id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, dirty, task_series_id, edit_bits"
 
 @class RTMDatabase;
 

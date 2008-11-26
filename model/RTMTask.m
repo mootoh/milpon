@@ -150,7 +150,7 @@
       NSNumber *list_id   = [NSNumber numberWithInt:sqlite3_column_int(stmt, 9)];
       NSNumber *dirty     = [NSNumber numberWithInt:sqlite3_column_int(stmt, 10)];
       NSNumber *task_series_id  = [NSNumber numberWithInt:sqlite3_column_int(stmt, 11)];
-      NSNumber *edit_bits = [NSNumber numberWithInt:0];
+      NSNumber *edit_bits = [NSNumber numberWithInt:sqlite3_column_int(stmt, 12)];
 
       NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority", @"postponed", @"estimate", @"rrule", @"location_id", @"list_id", @"dirty", @"task_series_id",@"edit_bits", nil];
       NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, dirty, task_series_id, edit_bits, nil];
