@@ -355,8 +355,6 @@ enum task_edit_bits {
    [self flagUpEditBits:PRIORITY];
 }
 
-
-
 - (void) flagUpEditBits:(enum task_edit_bits) flag
 {
    int eb = [edit_bits intValue];

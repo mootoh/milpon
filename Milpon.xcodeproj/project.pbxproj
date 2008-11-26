@@ -317,8 +317,6 @@
 				862C14A90EAB805600AC8FFE /* checkBox.png */,
 				862C14AA0EAB805600AC8FFE /* checkBoxChecked.png */,
 				86FD2E9B0EA249CB004631B0 /* rtm_icon.png */,
-				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
-				86C148000E71739800456F6A /* TaskView.xib */,
 				B98D24120E678C250006D6AF /* rtm.sql */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				B9DD5E900E6901B7007BFC7A /* UnitTest-Info.plist */,
@@ -370,6 +368,8 @@
 				861534830EA24E0900AB3B87 /* RTMTaskCell.m */,
 				867187250EAC7B3B000A9133 /* ProgressView.h */,
 				867187260EAC7B3B000A9133 /* ProgressView.m */,
+				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
+				86C148000E71739800456F6A /* TaskView.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
