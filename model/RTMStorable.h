@@ -8,14 +8,13 @@
 
 @class RTMDatabase;
 
+enum edit_bits_t {
+   EB_SYNCHRONIZED    = 0,
+   EB_CREATED_OFFLINE = 1 << 0
+};
+
 @interface RTMStorable : NSObject
 {
-   enum {
-      SYNCHRONIZED,
-      CREATED_OFFLINE,
-      MODIFIED
-   } state;
-
    RTMDatabase *db;
    NSNumber *iD;
 }

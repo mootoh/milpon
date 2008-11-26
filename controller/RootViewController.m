@@ -145,7 +145,7 @@
    RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithDB:app.db withAuth:app.auth];
 
    [syncer uploadPendingTasks:progressView];
-   [syncer syncCompletedTasks:progressView];
+   [syncer syncModifiedTasks:progressView];
    [syncer syncTasks:progressView];
 
    [syncer release];

@@ -15,6 +15,7 @@
 #import "RTMAPITask.h"
 #import "RTMPendingTask.h"
 #import "ProgressView.h"
+#import "logger.h"
 
 @implementation RTMSynchronizer
 
@@ -178,18 +179,50 @@
 	[api_task release];
 }
 
-- (void) syncCompletedTasks:(ProgressView *)progressView
+- (void) syncModifiedTasks:(ProgressView *)progressView
 {
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-   NSArray *tasks = [RTMTask completedTasks:db];
+   int i=0;
+   NSArray *tasks = [RTMTask modifiedTasks:db];
    for (RTMExistingTask *task in tasks) {
-      progressView.message = [NSString stringWithFormat:@"completing %@...", task.name];
+      progressView.message = [NSString stringWithFormat:@"updating %d/%d, %@...", i,tasks.count, task.name];
+      int edit_bits = [task.edit_bits intValue];
 
-      if ([api_task complete:task]) {
-         [RTMTask remove:task.iD fromDB:db]; // TODO: do not remove, keep it in DB to review completed tasks.
+      if (edit_bits & EB_TASK_DUE) {
+         // TODO
       }
+      if (edit_bits & EB_TASK_COMPLETED) {
+         [task flagDownEditBits:EB_TASK_COMPLETED];
+         if ([api_task complete:task]) {
+            [RTMTask remove:task.iD fromDB:db]; // TODO: do not remove, keep it in DB to review completed tasks.
+            continue;
+         }
+      }
+      if (edit_bits & EB_TASK_DELETED) {
+         // TODO
+      }
+      if (edit_bits & EB_TASK_PRIORITY) {
+         [task flagDownEditBits:EB_TASK_PRIORITY];
+
+         NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"task_series_id", @"task_id", nil];
+         NSArray *vals = [NSArray arrayWithObjects:
+            [NSString stringWithFormat:@"%d", [task.list_id intValue]],
+            [NSString stringWithFormat:@"%d", [task.task_series_id intValue]],
+            [NSString stringWithFormat:@"%d", [task.iD intValue]],
+            nil];
+         NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+
+         if ([api_task setPriority:[NSString stringWithFormat:@"%d", [task.priority intValue]] forIDs:ids]) {
+            LOG(@"setPriority succeeded");
+         }
+      }
+
+      i++;
    }
+
+   [pool release];
    [api_task release];
 }
 

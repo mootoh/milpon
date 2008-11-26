@@ -2,10 +2,11 @@
 #import "RTMDatabase.h"
 #import "RTMExistingTask.h"
 #import "RTMPendingTask.h"
+#import "logger.h"
 
 @implementation RTMTask
 
-@synthesize name, url, due, completed, priority, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits;
+@synthesize name, url, due, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits;
 
 
 - (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb 
@@ -20,7 +21,7 @@
       self.postponed    = [params valueForKey:@"postponed"];
       self.estimate     = [params valueForKey:@"estimate"];
       self.list_id      = [params valueForKey:@"list_id"];
-      self.edit_bits    = [params valueForKey:@"edit_bits"];
+      edit_bits         = [[params valueForKey:@"edit_bits"] retain];
    }
    return self;
 }
@@ -32,16 +33,17 @@
 
 - (void) complete
 {
+   [self flagUpEditBits:EB_TASK_COMPLETED];
+
    sqlite3_stmt *stmt = nil;
-   const char *sql = "UPDATE task SET completed=?, dirty=? where id=?";
+   const char *sql = "UPDATE task SET completed=? where id=?";
    if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
       NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
       return;
    }
 
    sqlite3_bind_text(stmt, 1, "1", -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt, 2, MODIFIED);
-   sqlite3_bind_int(stmt, 3, [iD intValue]);
+   sqlite3_bind_int(stmt, 2, [iD intValue]);
 
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
       NSLog(@"update 'completed' to DB failed.");
@@ -49,21 +51,22 @@
    }
 
    sqlite3_finalize(stmt);
-   completed = @"1";
+   self.completed = @"1";
 }
 
 - (void) uncomplete
 {
+   [self flagUpEditBits:EB_TASK_COMPLETED];
+
    sqlite3_stmt *stmt = nil;
-   const char *sql = "UPDATE task SET completed=?, dirty=? where id=?";
+   const char *sql = "UPDATE task SET completed=? where id=?";
    if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
       NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
       return;
    }
 
    sqlite3_bind_text(stmt, 1, "", -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt, 2, MODIFIED);
-   sqlite3_bind_int(stmt, 3, [iD intValue]);
+   sqlite3_bind_int(stmt, 2, [iD intValue]);
 
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
       NSLog(@"update 'completed' to DB failed.");
@@ -71,7 +74,7 @@
    }
 
    sqlite3_finalize(stmt);
-   completed = @"";
+   self.completed = @"";
 }
 
 
@@ -95,10 +98,10 @@
   return ret;
 }
 
-+ (NSArray *) completedTasks:(RTMDatabase *)db
++ (NSArray *) modifiedTasks:(RTMDatabase *)db
 {
    NSString *sql = [NSString stringWithUTF8String:"SELECT " RTMTASK_SQL_COLUMNS 
-      " from task where completed='1' AND dirty!=0"];
+      " from task where edit_bits>1"];
    return [RTMTask tasksForSQL:sql inDB:db];
 }
 
@@ -148,15 +151,14 @@
       NSString *rrule     = (str && *str != '\0') ? [NSString stringWithUTF8String:str] : @"";
       NSNumber *location_id = [NSNumber numberWithInt:sqlite3_column_int(stmt, 8)];
       NSNumber *list_id   = [NSNumber numberWithInt:sqlite3_column_int(stmt, 9)];
-      NSNumber *dirty     = [NSNumber numberWithInt:sqlite3_column_int(stmt, 10)];
-      NSNumber *task_series_id  = [NSNumber numberWithInt:sqlite3_column_int(stmt, 11)];
-      NSNumber *edit_bits = [NSNumber numberWithInt:sqlite3_column_int(stmt, 12)];
+      NSNumber *task_series_id  = [NSNumber numberWithInt:sqlite3_column_int(stmt, 10)];
+      NSNumber *edit_bits = [NSNumber numberWithInt:sqlite3_column_int(stmt, 11)];
 
-      NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority", @"postponed", @"estimate", @"rrule", @"location_id", @"list_id", @"dirty", @"task_series_id",@"edit_bits", nil];
-      NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, dirty, task_series_id, edit_bits, nil];
+      NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority", @"postponed", @"estimate", @"rrule", @"location_id", @"list_id", @"task_series_id",@"edit_bits", nil];
+      NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, task_series_id, edit_bits, nil];
       NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-      RTMTask *task = ([dirty intValue] == CREATED_OFFLINE) ?
+      RTMTask *task = ([edit_bits intValue] == EB_CREATED_OFFLINE) ?
          [[RTMPendingTask alloc] initByParams:params inDB:db] :
          [[RTMExistingTask alloc] initByParams:params inDB:db];
 
@@ -279,5 +281,71 @@
 
    [super dealloc];
 }
+
+- (void) flagUpEditBits:(enum task_edit_bits_t) flag
+{
+   int eb = [edit_bits intValue];
+   eb |= flag;
+   self.edit_bits = [NSNumber numberWithInt:eb];
+}
+
+- (void) flagDownEditBits:(enum task_edit_bits_t) flag
+{
+   int eb = [edit_bits intValue];
+   eb = eb ^ flag;
+   self.edit_bits = [NSNumber numberWithInt:eb];
+}
+
+
+- (NSNumber *) priority
+{
+   return priority;
+}
+
+- (void) setPriority:(NSNumber *)pri
+{
+   if (priority) [priority release];
+   priority = [pri retain];
+
+   sqlite3_stmt *stmt = nil;
+   static const char *sql = "UPDATE task SET priority=? where id=?";
+   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
+      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_bind_int(stmt, 1, [priority intValue]);
+   sqlite3_bind_int(stmt, 2, [iD intValue]);
+
+   if (SQLITE_ERROR == sqlite3_step(stmt))
+      @throw [NSString stringWithFormat:@"failed in update the database: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_finalize(stmt);
+
+   [self flagUpEditBits:EB_TASK_PRIORITY];
+}
+
+- (NSNumber *) edit_bits
+{
+   return edit_bits;
+}
+
+- (void) setEdit_bits:(NSNumber *)eb
+{
+   if (edit_bits) [edit_bits release];
+   edit_bits = [eb retain];
+
+   sqlite3_stmt *stmt = nil;
+   static const char *sql = "UPDATE task SET edit_bits=? where id=?";
+   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
+      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_bind_int(stmt, 1, [edit_bits intValue]);
+   sqlite3_bind_int(stmt, 2, [iD intValue]);
+
+   if (SQLITE_ERROR == sqlite3_step(stmt))
+      @throw [NSString stringWithFormat:@"failed in update the database: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_finalize(stmt);
+}
+
 
 @end // RTMTask
