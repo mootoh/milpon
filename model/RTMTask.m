@@ -331,21 +331,25 @@
 - (void) setDue:(NSString *)du
 {
    if (due) [due release];
-   due = [du retain];
+   due = [NSString stringWithFormat:@"%@T15:00:00Z", du];
 
    sqlite3_stmt *stmt = nil;
    static const char *sql = "UPDATE task SET due=? where id=?";
    if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
       @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
 
-   sqlite3_bind_text(stmt, 1, "1", -1, SQLITE_TRANSIENT);
-   sqlite3_bind_text(stmt, 1, [[NSString stringWithFormat:@"%@_15:00:00 zzz", due] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_text(stmt, 1, [due UTF8String], -1, SQLITE_TRANSIENT);
    sqlite3_bind_int(stmt, 2, [iD intValue]);
 
    if (SQLITE_ERROR == sqlite3_step(stmt))
       @throw [NSString stringWithFormat:@"failed in update the database: '%s'.", sqlite3_errmsg([db handle])];
 
    sqlite3_finalize(stmt);
+
+   // fixup formats
+   due = [due stringByReplacingOccurrencesOfString:@"T" withString:@"_"];
+   due = [due stringByReplacingOccurrencesOfString:@"Z" withString:@" GMT"];
+   [due retain];
 
    [self flagUpEditBits:EB_TASK_DUE];
 }
