@@ -49,6 +49,7 @@ static NSArray *s_icons;
 
    name.text = task.name;
    name.clearsOnBeginEditing = NO;
+   name.delegate = self;
    url.text = task.url;
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -73,6 +74,7 @@ static NSArray *s_icons;
 
       due.text = dueString;
    }
+   due.delegate = self;
 
    // location.text = [NSString stringWithFormat:@"%d", task.location_id];
    //completed.text = task.completed;
@@ -104,9 +106,12 @@ static NSArray *s_icons;
    [self.view addSubview:dialogView];
 
    postponed.text = [task.postponed stringValue];
+   postponed.delegate = self;
    estimate.text = task.estimate;
+   estimate.delegate = self;
 
    noteView.font = [UIFont systemFontOfSize:12];
+   noteView.delegate = self;
 
    [notePages addTarget:self action:@selector(displayNote) forControlEvents:UIControlEventTouchUpInside];
    [self displayNote];
@@ -174,6 +179,25 @@ prioritySelected_N(0);
 prioritySelected_N(1);
 prioritySelected_N(2);
 prioritySelected_N(3);
+
+/* -------------------------------------------------------------------
+ * UITextFieldDelegate
+ */
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+   LOG(@"textFieldShouldReturn");
+   if (textField == name) {
+   } else if (textField == location) {
+   } else if (textField == repeat) {
+   } else if (textField == estimate) {
+   } else if (textField == due) {
+      task.due = textField.text;
+   } else if (textField == list) {
+   }
+
+   return YES;
+}
 
 @end
 // vim:set fdm=marker:

@@ -6,7 +6,7 @@
 
 @implementation RTMTask
 
-@synthesize name, url, due, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits;
+@synthesize name, url, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits;
 
 
 - (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb 
@@ -14,7 +14,7 @@
    if (self = [super initByID:[params valueForKey:@"id"] inDB:ddb]) {
       self.name         = [params valueForKey:@"name"];
       self.url          = [params valueForKey:@"url"];
-      self.due          = [params valueForKey:@"due"];
+      due               = [[params valueForKey:@"due"] retain];
       self.location_id  = [params valueForKey:@"location_id"];
       self.completed    = [params valueForKey:@"completed"];
       priority          = [[params valueForKey:@"priority"] retain];
@@ -322,6 +322,35 @@
 
    [self flagUpEditBits:EB_TASK_PRIORITY];
 }
+
+- (NSString *) due
+{
+   return due;
+}
+
+- (void) setDue:(NSString *)du
+{
+   if (due) [due release];
+   due = [du retain];
+
+   sqlite3_stmt *stmt = nil;
+   static const char *sql = "UPDATE task SET due=? where id=?";
+   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
+      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_bind_text(stmt, 1, "1", -1, SQLITE_TRANSIENT);
+   sqlite3_bind_text(stmt, 1, [[NSString stringWithFormat:@"%@_15:00:00 zzz", due] UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_int(stmt, 2, [iD intValue]);
+
+   if (SQLITE_ERROR == sqlite3_step(stmt))
+      @throw [NSString stringWithFormat:@"failed in update the database: '%s'.", sqlite3_errmsg([db handle])];
+
+   sqlite3_finalize(stmt);
+
+   [self flagUpEditBits:EB_TASK_DUE];
+}
+
+
 
 - (NSNumber *) edit_bits
 {

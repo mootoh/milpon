@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RTMTask.h"
 
-@interface TaskViewController : UIViewController {
+@interface TaskViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate> {
    RTMTask *task;
    IBOutlet UITextField   *name;
    IBOutlet UITextField   *url;

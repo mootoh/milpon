@@ -191,7 +191,19 @@
       int edit_bits = [task.edit_bits intValue];
 
       if (edit_bits & EB_TASK_DUE) {
-         // TODO
+         [task flagDownEditBits:EB_TASK_DUE];
+
+         NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"task_series_id", @"task_id", nil];
+         NSArray *vals = [NSArray arrayWithObjects:
+            [NSString stringWithFormat:@"%d", [task.list_id intValue]],
+            [NSString stringWithFormat:@"%d", [task.task_series_id intValue]],
+            [NSString stringWithFormat:@"%d", [task.iD intValue]],
+            nil];
+         NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+
+         if ([api_task setDue:task.due forIDs:ids]) {
+            LOG(@"setDue succeeded");
+         }
       }
       if (edit_bits & EB_TASK_COMPLETED) {
          [task flagDownEditBits:EB_TASK_COMPLETED];
