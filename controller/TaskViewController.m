@@ -14,6 +14,7 @@
 
 @interface TaskViewController (Private)
 - (void) setPriorityButton;
+- (void) displayNote;
 @end
 
 
@@ -103,21 +104,8 @@ static NSArray *s_icons;
    postponed.text = [task.postponed stringValue];
    estimate.text = task.estimate;
 
-   CGRect note_view_frame = noteView.frame;
-   NSArray *notes = task.notes;
-   int i=0;
-   for (NSDictionary *note in notes) {
-      int height = note_view_frame.size.height / notes.count;
-      UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height*i, note_view_frame.size.width, height)];
-      noteLabel.font = [UIFont systemFontOfSize:10];
-      noteLabel.lineBreakMode = UILineBreakModeCharacterWrap;
-      noteLabel.text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
-      noteLabel.textAlignment = UITextAlignmentLeft;
-      noteLabel.numberOfLines = 2;
-      [noteView addSubview:noteLabel];
-      [noteLabel release];
-      i++;
-   }
+   [notePages addTarget:self action:@selector(displayNote) forControlEvents:UIControlEventTouchUpInside];
+   [self displayNote];
 }
 
 
@@ -128,14 +116,14 @@ static NSArray *s_icons;
 }
 
 
-- (void)didReceiveMemoryWarning
+- (void) didReceiveMemoryWarning
 {
    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
    // Release anything that's not essential, such as cached data
 }
 
 
-- (void)dealloc
+- (void) dealloc
 {
    if (task) [task release];
    [dialogView release];
@@ -148,6 +136,14 @@ static NSArray *s_icons;
    int priority = [task.priority intValue];
 
    [priorityButton setImage:[[TaskViewController icons] objectAtIndex:priority] forState:UIControlStateNormal];
+}
+
+- (void) displayNote
+{
+   notePages.numberOfPages = task.notes.count;
+   NSDictionary *note = [task.notes objectAtIndex:notePages.currentPage];
+   NSString *text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
+   noteView.text = text;
 }
 
 - (void) togglePriorityView

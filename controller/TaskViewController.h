@@ -11,16 +11,17 @@
 
 @interface TaskViewController : UIViewController {
    RTMTask *task;
-   IBOutlet UITextField *name;
-   IBOutlet UITextField *url;
-   IBOutlet UITextField *location;
-   IBOutlet UITextField *repeat;
-   IBOutlet UITextField *estimate;
-   IBOutlet UITextField *postponed;
-   IBOutlet UITextField *due;
-   IBOutlet UIButton    *priorityButton;
-   IBOutlet UIView      *noteView;
-   IBOutlet UITextField *list;
+   IBOutlet UITextField   *name;
+   IBOutlet UITextField   *url;
+   IBOutlet UITextField   *location;
+   IBOutlet UITextField   *repeat;
+   IBOutlet UITextField   *estimate;
+   IBOutlet UITextField   *postponed;
+   IBOutlet UITextField   *due;
+   IBOutlet UIButton      *priorityButton;
+   IBOutlet UITextField   *list;
+   IBOutlet UITextView    *noteView;
+   IBOutlet UIPageControl *notePages;
 
    UIView  *dialogView;
    NSArray *prioritySelections;
