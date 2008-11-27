@@ -331,7 +331,18 @@
 - (void) setDue:(NSString *)du
 {
    if (due) [due release];
-   due = [NSString stringWithFormat:@"%@T15:00:00Z", du];
+
+   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+   formatter.formatterBehavior = NSDateFormatterBehavior10_4;
+   formatter.dateFormat = @"yyyy-MM-dd";
+   NSDate *dueDate = [formatter dateFromString:du];
+
+   formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+   formatter.dateFormat = @"yyyy-MM-dd_HH:mm:ss";
+   due = [formatter stringFromDate:dueDate];
+   due = [due stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
+   due = [due stringByAppendingString:@"Z"];
+   [due retain];
 
    sqlite3_stmt *stmt = nil;
    static const char *sql = "UPDATE task SET due=? where id=?";
@@ -353,7 +364,6 @@
 
    [self flagUpEditBits:EB_TASK_DUE];
 }
-
 
 
 - (NSNumber *) edit_bits

@@ -196,6 +196,7 @@ prioritySelected_N(3);
    } else if (textField == list) {
    }
 
+   [textField resignFirstResponder];
    return YES;
 }
 
