@@ -67,6 +67,8 @@
 
 + (void) createTask:(NSDictionary *)task inTaskSeries:(NSDictionary *)task_series inDB:(RTMDatabase *)db
 {
+   LOG(@"RTMExistingTask.createTask: id=%@, name=%@", [task valueForKey:@"id"], [task_series valueForKey:@"name"]);
+
    sqlite3_stmt *stmt = nil;
    const char *sql = "INSERT INTO task "
       "(id, due, completed, priority, postponed, estimate, "  // task
@@ -291,8 +293,11 @@
 	
    while (sqlite3_step(stmt) == SQLITE_ROW) {
       NSString *note_id  = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 0)];
-      NSString *title    = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 1)];
-      NSString *text     = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 2)];
+
+      char *str = (char *)sqlite3_column_text(stmt, 1);
+      NSString *title    = str ? [NSString stringWithUTF8String:str] : @"";
+      str = (char *)sqlite3_column_text(stmt, 2);
+      NSString *text     = str ? [NSString stringWithUTF8String:str] : @"";
       NSString *created  = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 3)];
       NSString *modified = [NSString stringWithUTF8String:(char *)sqlite3_column_text(stmt, 4)];
 
