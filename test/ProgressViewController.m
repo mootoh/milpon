@@ -20,17 +20,34 @@
    pv = [[ProgressView alloc] initWithFrame:CGRectMake(32,48, 200,80)];
    [self.view addSubview:pv];
 
-   UIButton *ptbtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-   [self.view addSubview:ptbtn];
-   ptbtn.frame = CGRectMake(320/2-160/2, 200, 160, 40);
+   const int button_width = 80;
+   const int button_height = 32;
+   const int button_count = 7;
+
+   NSArray *titles = [NSArray arrayWithObjects:
+      @"progressBegin", @"progressEnd",
+      @"updateMessage", @"updateMessage:withProgress",
+      @"toggleDisplay",
+      @"progress", @"setMessage", nil];
+
+   for (int i=0; i<button_count; i++) {
+      UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+      btn.frame = CGRectMake(16, 16+button_height*i + 16, button_width, button_height);
+      btn.font = [UIFont systemFontOfSize:10];
+      [btn setTitle:[titles objectAtIndex:i] forState:UIControlStateNormal];
+      [self.view addSubview:btn];
+   }
+
+/*
    [ptbtn addTarget:self action:@selector(progress) forControlEvents:UIControlEventTouchDown];
-   [ptbtn setTitle:@"trigger progress" forState:UIControlStateNormal];
+   [btn setTitle:@"trigger progress" forState:UIControlStateNormal];
 
    UIButton *msbtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
    [self.view addSubview:msbtn];
    msbtn.frame = CGRectMake(320/2-160/2, 260, 160, 40);
    [msbtn addTarget:self action:@selector(setMessage) forControlEvents:UIControlEventTouchDown];
    [msbtn setTitle:@"show message" forState:UIControlStateNormal];
+*/
 }
 
 - (void)dealloc

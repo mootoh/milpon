@@ -135,11 +135,13 @@
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    [app.operationQueue addOperation:ope];
+   [ope release];
 }
 
 - (void) uploadOperation
 {
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+   [progressView progressBegin];
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithDB:app.db withAuth:app.auth];
@@ -152,6 +154,7 @@
 
    [self reload];
 
+   [progressView progressEnd];
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 

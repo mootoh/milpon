@@ -115,8 +115,6 @@
     */
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-   [progressView progressBegin];
-
    int i=0;
    for (NSDictionary *task_series in task_serieses_updated) {
       //[progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, task_serieses_updated.count] withProgress:(float)i/(float)task_serieses_updated.count];
@@ -125,7 +123,6 @@
       [RTMExistingTask createOrUpdate:task_series inDB:db];
       i++;
    }
-   [progressView progressEnd];
 
    [pool release];
 }
@@ -135,9 +132,13 @@
    NSArray *pendings = [RTMPendingTask tasks:db];
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
 
-   [progressView progressBegin];
    //[progressView updateMessage:[NSString stringWithFormat:@"uploading 0/%d tasks", pendings.count]];
    progressView.message = [NSString stringWithFormat:@"uploading 0/%d tasks", pendings.count];
+
+   for (int i=0; i<16; i++) {
+      progressView.message = [NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count];
+      NSLog(@"uploading %d/%d tasks", i, pendings.count);
+   }
 
    int i=1;
    for (RTMPendingTask *task in pendings) {
@@ -175,7 +176,6 @@
    }
 
    //[progressView updateMessage:@"" withProgress:1.0];
-   [progressView progressEnd];
 	[api_task release];
 }
 

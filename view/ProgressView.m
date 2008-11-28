@@ -54,14 +54,14 @@ static const float messageLabelPadding = 16.0f;
 
 - (void) progressBegin
 {
-   //[self toggleDisplay];
+//   [self toggleDisplay];
    [activityIndicator startAnimating];
    progressView.progress = 0.0;
 }
 
 - (void) progressEnd
 {
-   //[self toggleDisplay];
+ //  [self toggleDisplay];
    [activityIndicator stopAnimating];
    progressView.progress = 1.0;
 }
@@ -92,6 +92,7 @@ static const float messageLabelPadding = 16.0f;
 
    if (! inProgress) {
       messageLabel.text = msg;
+      [messageLabel setNeedsDisplay];
    }
 }
 
@@ -107,10 +108,11 @@ static const float messageLabelPadding = 16.0f;
    if (inProgress) {
       progressView.hidden = NO;
       [progressView setNeedsDisplay];
-      messageLabel.center = self.center;
+      //messageLabel.center = self.center;
    } else {
-      //progressView.hidden = YES;
-      messageLabel.frame = messageRect;
+      progressView.hidden = YES;
+      [progressView setNeedsDisplay];
+      //messageLabel.frame = messageRect;
    }
 }
 
