@@ -15,7 +15,6 @@
   NSString *message;
   BOOL inProgress;
   CGRect messageRect;
-
 }
 
 @property (nonatomic,retain) NSString *message;
@@ -23,6 +22,9 @@
 - (void) progressBegin;
 - (void) progressEnd;
 - (void) updateMessage:(NSString *)msg;
+/**
+ * @note should be called in background thread (not main thread)
+ */
 - (void) updateMessage:(NSString *)msg withProgress:(float)pg;
 - (void) toggleDisplay;
 

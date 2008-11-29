@@ -17,37 +17,35 @@
    [super loadView];
    self.view.backgroundColor = [UIColor grayColor];
 
-   pv = [[ProgressView alloc] initWithFrame:CGRectMake(32,48, 200,80)];
-   [self.view addSubview:pv];
-
    const int button_width = 80;
    const int button_height = 32;
-   const int button_count = 7;
 
    NSArray *titles = [NSArray arrayWithObjects:
       @"progressBegin", @"progressEnd",
       @"updateMessage", @"updateMessage:withProgress",
       @"toggleDisplay",
-      @"progress", @"setMessage", nil];
+      @"progress", @"setMessage", @"updateProgress", nil];
+
+   SEL actions[] = {
+      @selector(progressBegin), @selector(progressEnd),
+      @selector(updateMessage), @selector(updateMessageWithProgress),
+      @selector(toggleDisplay),
+      @selector(progress), @selector(setMessage), @selector(updateProgress)};
+
+   const int button_count = titles.count;
 
    for (int i=0; i<button_count; i++) {
       UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
       btn.frame = CGRectMake(16, 16+button_height*i + 16, button_width, button_height);
       btn.font = [UIFont systemFontOfSize:10];
       [btn setTitle:[titles objectAtIndex:i] forState:UIControlStateNormal];
+
+      [btn addTarget:self action:actions[i] forControlEvents:UIControlEventTouchDown];
       [self.view addSubview:btn];
    }
 
-/*
-   [ptbtn addTarget:self action:@selector(progress) forControlEvents:UIControlEventTouchDown];
-   [btn setTitle:@"trigger progress" forState:UIControlStateNormal];
-
-   UIButton *msbtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-   [self.view addSubview:msbtn];
-   msbtn.frame = CGRectMake(320/2-160/2, 260, 160, 40);
-   [msbtn addTarget:self action:@selector(setMessage) forControlEvents:UIControlEventTouchDown];
-   [msbtn setTitle:@"show message" forState:UIControlStateNormal];
-*/
+   pv = [[ProgressView alloc] initWithFrame:CGRectMake(32,320, 180,40)];
+   [self.view addSubview:pv];
 }
 
 - (void)dealloc
@@ -58,12 +56,12 @@
 
 - (IBAction) progress
 {
+   [pv progressBegin];
    [self performSelectorInBackground:@selector(progressInBackground) withObject:nil];
 }
 
 - (void) progressInBackground
 {
-   [pv progressBegin];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    float pg = 0.0;
@@ -88,5 +86,36 @@
    pv.message = [NSString stringWithFormat:@"message set from controller %d", count++];
 }
 
-@end
+- (void) progressBegin
+{
+   [pv progressBegin];
+}
 
+- (void) progressEnd
+{
+   [pv progressEnd];
+}
+
+- (void) updateMessage
+{
+   [pv updateMessage:@"update the message"];
+}
+
+- (void) updateMessageWithProgress
+{
+   [pv updateMessage:@"with progress" withProgress:0.5];
+}
+
+- (void) toggleDisplay
+{
+   [pv toggleDisplay];
+}
+
+- (void) updateProgress
+{
+   static float pg = 0.0f;
+   [pv updateProgress:[NSNumber numberWithFloat:pg]];
+   pg += 0.1f;
+}
+
+@end

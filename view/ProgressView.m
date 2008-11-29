@@ -10,21 +10,23 @@
 
 @implementation ProgressView
 
-static const float messageLabelPadding = 16.0f;
+static const float messageLabelPadding = 18.0f;
 
 - (id)initWithFrame:(CGRect)frame
 {
    if (self = [super initWithFrame:frame]) {
       inProgress = NO;
       self.opaque = NO;
+      self.backgroundColor = [UIColor blackColor];
 
       activityIndicator = [[UIActivityIndicatorView alloc]
          initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-      activityIndicator.frame = CGRectMake(frame.origin.x, frame.origin.y, 16, 16);
+      activityIndicator.frame = CGRectMake(0, frame.size.height/2-16/2, 16, 16);
       activityIndicator.hidesWhenStopped = YES;
       [self addSubview:activityIndicator];
 
-      messageRect = CGRectMake(frame.origin.x+messageLabelPadding, frame.origin.y, frame.size.width-messageLabelPadding*2, 20);
+      messageRect = CGRectMake(messageLabelPadding, 0,
+         frame.size.width-messageLabelPadding, frame.size.height/2);
 
       messageLabel = [[UILabel alloc] initWithFrame:messageRect];
       messageLabel.backgroundColor = [UIColor colorWithRed:1.0f green:0 blue:0 alpha:0.0f];
@@ -36,7 +38,8 @@ static const float messageLabelPadding = 16.0f;
       [self addSubview:messageLabel];
 
       progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-      progressView.frame = CGRectMake(frame.size.width/2-128/2, frame.size.height-10, 128, 6);
+      progressView.frame = CGRectMake(messageLabelPadding, frame.size.height/2+2,
+         frame.size.width-messageLabelPadding, frame.size.height/2);
       progressView.hidden = YES;
       [self addSubview:progressView];
    }
@@ -54,14 +57,14 @@ static const float messageLabelPadding = 16.0f;
 
 - (void) progressBegin
 {
-//   [self toggleDisplay];
+   [self toggleDisplay];
    [activityIndicator startAnimating];
    progressView.progress = 0.0;
 }
 
 - (void) progressEnd
 {
- //  [self toggleDisplay];
+   [self toggleDisplay];
    [activityIndicator stopAnimating];
    progressView.progress = 1.0;
 }
@@ -73,16 +76,14 @@ static const float messageLabelPadding = 16.0f;
 
 - (void) updateMessage:(NSString *)msg withProgress:(float)pg
 {
-   messageLabel.text = msg;
-
-   [self performSelectorInBackground:@selector(updateProgress:) withObject:[NSNumber numberWithFloat:pg]];
+   [self performSelectorOnMainThread:@selector(updateMessage:) withObject:msg waitUntilDone:YES];
+   [self performSelectorInBackground:@selector(updateProgress:)
+                          withObject:[NSNumber numberWithFloat:pg]];
 }
 
-- (void) updateProgress:(NSNumber *)pg
+- (void) updateProgress:(NSNumber *) pg
 {
    progressView.progress = [pg floatValue];
-   //[progressView setNeedsDisplay];
-   [messageLabel setNeedsDisplay];
 }
 
 - (void) setMessage:(NSString *)msg
