@@ -131,6 +131,7 @@
 
 - (IBAction) upload
 {
+   [progressView progressBegin];
    NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -141,7 +142,6 @@
 - (void) uploadOperation
 {
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-   [progressView progressBegin];
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithDB:app.db withAuth:app.auth];
@@ -153,6 +153,8 @@
    [syncer release];
 
    [self reload];
+
+   [progressView updateMessage:@"done"];
 
    [progressView progressEnd];
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -166,6 +168,9 @@
    RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithDB:app.db withAuth:app.auth];
    [syncer replaceLists];
    [syncer replaceTasks];
+   //[syncer replaceLocations];
+   //[syncer replaceNotes];
+   //[syncer replaceTags];
 
    [syncer release];
 

@@ -105,8 +105,6 @@
    if (!task_serieses_updated || 0 == [task_serieses_updated count])
       return;
 
-   [RTMTask updateLastSync:db];
-
    /*
     * sync:
     *   - existing tasks
@@ -117,7 +115,7 @@
 
    int i=0;
    for (NSDictionary *task_series in task_serieses_updated) {
-      //[progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, task_serieses_updated.count] withProgress:(float)i/(float)task_serieses_updated.count];
+      [progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, task_serieses_updated.count] withProgress:(float)i/(float)task_serieses_updated.count];
       progressView.message = [NSString stringWithFormat:@"syncing task %d/%d", i, task_serieses_updated.count];
 
       [RTMExistingTask createOrUpdate:task_series inDB:db];
@@ -125,20 +123,14 @@
    }
 
    [pool release];
+
+   [RTMTask updateLastSync:db];
 }
 
 - (void) uploadPendingTasks:(ProgressView *)progressView
 {
    NSArray *pendings = [RTMPendingTask tasks:db];
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
-
-   //[progressView updateMessage:[NSString stringWithFormat:@"uploading 0/%d tasks", pendings.count]];
-   progressView.message = [NSString stringWithFormat:@"uploading 0/%d tasks", pendings.count];
-
-   for (int i=0; i<16; i++) {
-      progressView.message = [NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count];
-      NSLog(@"uploading %d/%d tasks", i, pendings.count);
-   }
 
    int i=1;
    for (RTMPendingTask *task in pendings) {
@@ -170,12 +162,10 @@
       // remove from DB
       [RTMPendingTask remove:task.iD fromDB:db];
 
-      //[progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/(float)pendings.count];
-      progressView.message = [NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count];
+      [progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/(float)pendings.count];
       i++;
    }
 
-   //[progressView updateMessage:@"" withProgress:1.0];
 	[api_task release];
 }
 
@@ -187,7 +177,7 @@
    int i=0;
    NSArray *tasks = [RTMTask modifiedTasks:db];
    for (RTMExistingTask *task in tasks) {
-      progressView.message = [NSString stringWithFormat:@"updating %d/%d, %@...", i,tasks.count, task.name];
+      [progressView updateMessage:[NSString stringWithFormat:@"updating %d/%d, %@...", i,tasks.count, task.name] withProgress:(float)i/(float)tasks.count];
       int edit_bits = [task.edit_bits intValue];
 
       if (edit_bits & EB_TASK_DUE) {

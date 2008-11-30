@@ -153,7 +153,7 @@
 		86E0212E0E7EAB80001945E7 /* UpdateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateList.m; sourceTree = "<group>"; };
 		86EE1F990E9EED9900C62684 /* RTMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMError.h; path = common/RTMError.h; sourceTree = "<group>"; };
 		86F41FBF0E813AA6006D98F4 /* UpdateTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateTask.m; sourceTree = "<group>"; };
-		86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = others/Entitlements.plist; sourceTree = "<group>"; };
+		86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		86FD2E9B0EA249CB004631B0 /* rtm_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rtm_icon.png; path = resource/rtm_icon.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9204794C0ED6434E0088060C /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = logger.h; path = common/logger.h; sourceTree = "<group>"; };
@@ -904,12 +904,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Motohiro Takayama";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator2.1;
+				PROVISIONING_PROFILE = "19184A2B-01DE-4982-A54F-6F06045073BC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "19184A2B-01DE-4982-A54F-6F06045073BC";
+				SDKROOT = iphoneos2.2;
 			};
 			name = AdHocDistribution;
 		};
@@ -918,6 +923,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Motohiro Takayama";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -925,6 +931,8 @@
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Milpon;
 				PROVISIONING_PROFILE = "76275234-532D-4C8A-8B26-9CF32540D014";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "19184A2B-01DE-4982-A54F-6F06045073BC";
+				SDKROOT = iphonesimulator2.2;
 			};
 			name = AdHocDistribution;
 		};
@@ -1248,7 +1256,10 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DUMP_API_RESPONSE,
+					DEBUG,
+				);
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

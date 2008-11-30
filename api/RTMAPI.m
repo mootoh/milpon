@@ -64,9 +64,9 @@ static NSString *s_token;
 
 #ifdef DUMP_API_RESPONSE
    if (ret) {
-      NSString *dump_path = [NSString stringWithFormat:@"/tmp/%@.xml", method];
-      BOOL wrote = [ret writeToFile:dump_path options:NSAtomicWrite error:nil];
-      NSAssert(wrote, @"dump should be written");
+      //NSString *dump_path = [NSString stringWithFormat:@"/tmp/%@.xml", method];
+      //BOOL wrote = [ret writeToFile:dump_path options:NSAtomicWrite error:nil];
+      //NSAssert(wrote, @"dump should be written");
       NSLog(@"method=%@, response=%@", method, [[[NSString alloc] initWithData:ret encoding:NSUTF8StringEncoding] autorelease]);
    }
 #endif // DUMP_API_RESPONSE

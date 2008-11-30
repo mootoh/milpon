@@ -198,6 +198,7 @@
    if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
       @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
 
+   LOG(@"updateTask: name =%@", [task_series valueForKey:@"name"]);
    sqlite3_bind_text(stmt, 1, [[task_series valueForKey:@"name"] UTF8String], -1, SQLITE_TRANSIENT);
    sqlite3_bind_text(stmt, 2, [[task_series valueForKey:@"url"] UTF8String], -1, SQLITE_TRANSIENT);
    sqlite3_bind_text(stmt, 3, [[task valueForKey:@"due"] UTF8String], -1, SQLITE_TRANSIENT);
@@ -224,7 +225,7 @@
 + (void) updateNote:(NSDictionary *)note inDB:(RTMDatabase *)db inTaskSeries:(NSInteger) task_series_id
 {
    sqlite3_stmt *stmt = nil;
-   static const char *sql = "UPDATE note "
+   const char *sql = "UPDATE note SET "
       "title=?, text=?, created=?, modified=?, task_series_id=? "
       "where id=?";
    if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
