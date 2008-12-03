@@ -98,10 +98,11 @@
 
 - (void) syncTasks:(ProgressView *)progressView
 {
-   RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
+   RTMAPITask *api_task = [[RTMAPITask alloc] init];
    NSString *last_sync = [RTMTask lastSync:db];
 
    NSArray *task_serieses_updated = [api_task getListWithLastSync:last_sync];
+   [api_task release];
    if (!task_serieses_updated || 0 == [task_serieses_updated count])
       return;
 
@@ -116,7 +117,6 @@
    int i=0;
    for (NSDictionary *task_series in task_serieses_updated) {
       [progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, task_serieses_updated.count] withProgress:(float)i/(float)task_serieses_updated.count];
-      progressView.message = [NSString stringWithFormat:@"syncing task %d/%d", i, task_serieses_updated.count];
 
       [RTMExistingTask createOrUpdate:task_series inDB:db];
       i++;
@@ -199,6 +199,7 @@
          [task flagDownEditBits:EB_TASK_COMPLETED];
          if ([api_task complete:task]) {
             [RTMTask remove:task.iD fromDB:db]; // TODO: do not remove, keep it in DB to review completed tasks.
+            i++;
             continue;
          }
       }

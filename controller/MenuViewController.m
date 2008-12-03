@@ -28,7 +28,7 @@
 {
    [super loadView];
 
-   UIBarButtonItem *configButton = [[UIBarButtonItem alloc] initWithTitle:@"debug" style:UIBarButtonItemStylePlain target:self action:@selector(config)];
+   UIBarButtonItem *configButton = [[UIBarButtonItem alloc] initWithTitle:@"Setting" style:UIBarButtonItemStylePlain target:self action:@selector(config)];
    self.navigationItem.leftBarButtonItem = configButton;
    [configButton release];
 }

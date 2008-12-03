@@ -905,15 +905,13 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Motohiro Takayama";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "19184A2B-01DE-4982-A54F-6F06045073BC";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "19184A2B-01DE-4982-A54F-6F06045073BC";
 				SDKROOT = iphoneos2.2;
 			};
 			name = AdHocDistribution;
@@ -930,9 +928,9 @@
 				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Milpon;
-				PROVISIONING_PROFILE = "76275234-532D-4C8A-8B26-9CF32540D014";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "19184A2B-01DE-4982-A54F-6F06045073BC";
-				SDKROOT = iphonesimulator2.2;
+				PROVISIONING_PROFILE = "114F2A0E-F545-4D32-AE04-E26D0261B352";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "114F2A0E-F545-4D32-AE04-E26D0261B352";
+				SDKROOT = iphoneos2.2;
 			};
 			name = AdHocDistribution;
 		};
