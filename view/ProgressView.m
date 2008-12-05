@@ -33,7 +33,7 @@ static const float messageLabelPadding = 18.0f;
       messageLabel.font = [UIFont systemFontOfSize:10];
       messageLabel.textColor = [UIColor whiteColor];
       messageLabel.textAlignment = UITextAlignmentCenter;
-      messageLabel.text = @"message";
+      messageLabel.text = @"";
       [self addSubview:messageLabel];
 
       progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];

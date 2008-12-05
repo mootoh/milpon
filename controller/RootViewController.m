@@ -165,7 +165,7 @@
    [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
 
    NSDate *lu = [formatter dateFromString:lastUpdated];
-   [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+   [formatter setDateFormat:@"MM/dd HH:mm"];
    lastUpdated = [formatter stringFromDate:lu];
 
    [progressView updateMessage:[NSString stringWithFormat:@"Updated: %@", lastUpdated]];

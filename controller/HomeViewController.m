@@ -76,7 +76,7 @@ static const int SECTIONS = 4;
    if (self = [super initWithStyle:style]) {
       self.title = @"Overview";
 
-      self.headers = [NSArray arrayWithObjects:@"Today", @"Tomorrow", @"This Week", @"Outdated", nil];
+      self.headers = [NSArray arrayWithObjects:@"Today", @"Tomorrow", @"7 days", @"Outdated", nil];
       AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
       db = app.db;
 
