@@ -181,8 +181,6 @@
       int edit_bits = [task.edit_bits intValue];
 
       if (edit_bits & EB_TASK_DUE) {
-         [task flagDownEditBits:EB_TASK_DUE];
-
          NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"task_series_id", @"task_id", nil];
          NSArray *vals = [NSArray arrayWithObjects:
             [NSString stringWithFormat:@"%d", [task.list_id intValue]],
@@ -191,8 +189,12 @@
             nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-         if ([api_task setDue:task.due forIDs:ids]) {
+         NSString *due = [task.due stringByReplacingOccurrencesOfString:@" GMT" withString:@"Z"];
+         due = [due stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
+
+         if ([api_task setDue:due forIDs:ids]) {
             LOG(@"setDue succeeded");
+            [task flagDownEditBits:EB_TASK_DUE];
          }
       }
       if (edit_bits & EB_TASK_COMPLETED) {

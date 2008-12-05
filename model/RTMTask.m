@@ -342,7 +342,6 @@
    due = [formatter stringFromDate:dueDate];
    due = [due stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
    due = [due stringByAppendingString:@"Z"];
-   [due retain];
 
    sqlite3_stmt *stmt = nil;
    static const char *sql = "UPDATE task SET due=? where id=?";
