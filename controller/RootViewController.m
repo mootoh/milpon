@@ -15,6 +15,7 @@
 #import "RTMDatabase.h"
 #import "AppDelegate.h"
 #import "AuthViewController.h"
+#import "RTMTask.h"
 #import "RTMAuth.h"
 #import "ProgressView.h"
 #import "ReloadableTableViewController.h"
@@ -154,7 +155,20 @@
 
    [self reload];
 
-   [progressView updateMessage:@"done"];
+
+   NSString *lastUpdated = [RTMTask lastSync:app.db];
+   lastUpdated = [lastUpdated stringByReplacingOccurrencesOfString:@"T" withString:@"_"];
+   lastUpdated = [lastUpdated stringByReplacingOccurrencesOfString:@"Z" withString:@" GMT"];
+
+   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
+
+   NSDate *lu = [formatter dateFromString:lastUpdated];
+   [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+   lastUpdated = [formatter stringFromDate:lu];
+
+   [progressView updateMessage:[NSString stringWithFormat:@"Updated: %@", lastUpdated]];
 
    [progressView progressEnd];
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
