@@ -15,6 +15,7 @@
    IBOutlet UINavigationController *navigationController;
    UIToolbar *bottomBar;
    ProgressView *progressView;
+   UIButton *uploadButton;
 }
 
 @property (nonatomic, retain) UINavigationController *navigationController;

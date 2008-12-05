@@ -30,6 +30,7 @@
 
 - (void)dealloc
 {
+   [uploadButton release];
    [progressView release];
    [bottomBar release];
    [navigationController release];
@@ -59,7 +60,7 @@
    // create a bottom bar.
    UIToolbar *bar = [[UIToolbar alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height-toolbarHeight, appFrame.size.width, toolbarHeight)];
    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTask)];
-   UIBarButtonItem *uploadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(upload)];
+   uploadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(upload)];
 
    ProgressView *pv = [[ProgressView alloc] initWithFrame:CGRectMake(8, 8, 240, 36)];
    UIBarButtonItem *progressIndicator = [[UIBarButtonItem alloc] initWithCustomView:pv];
@@ -67,9 +68,11 @@
    [pv release];
 
    [bar setItems:[NSArray arrayWithObjects:uploadButton, progressIndicator, addButton, nil] animated:NO];
+   [addButton release];
 
    [self.view addSubview:bar];
    self.bottomBar = bar;
+   [bar release];
    menuViewController.bottomBar = self.bottomBar;
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -132,6 +135,7 @@
 
 - (IBAction) upload
 {
+   uploadButton.enabled = NO;
    [progressView progressBegin];
    NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];
 
@@ -172,6 +176,7 @@
 
    [progressView progressEnd];
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+   uploadButton.enabled = YES;
 }
 
 - (void) fetchAll
