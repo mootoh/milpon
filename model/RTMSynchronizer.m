@@ -13,6 +13,7 @@
 #import "RTMAuth.h"
 #import "RTMAPIList.h"
 #import "RTMAPITask.h"
+#import "RTMAPINote.h"
 #import "RTMPendingTask.h"
 #import "ProgressView.h"
 #import "logger.h"
@@ -156,15 +157,26 @@
       if (task.estimate && ![task.estimate isEqualToString:@""]) 
          [api_task setEstimate:task.estimate forIDs:ids];
 
-      // TODO: set tags
-      // TODO: set notes
       /*
-       * - get Note from DB by old Task ID
-       * - API request (rtm.tasks.notes.add) using new Task ID
-       * - remove old Note from DB
+       * TODO: set tags
        */
 
-      // remove from DB
+      /*
+       * TODO: set notes
+       */
+      // get Note from DB by old Task ID
+      RTMAPINote *api_note = [[RTMAPINote alloc] init];
+      NSArray *notes = [RTMPendingTask getNotes:task.iD fromDB:db];
+      for (NSDictionary *note in notes) {
+         // - API request (rtm.tasks.notes.add) using new Task ID
+         [api_note add:[note objectForKey:@"text"] forIDs:ids];
+
+         // remove old Note from DB
+         [RTMPendingTask removeNote:[note objectForKey:@"id"] fromDB:db];
+      }
+      [api_note release];
+
+      // remove old Task from DB
       [RTMPendingTask remove:task.iD fromDB:db];
 
       [progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/(float)pendings.count];

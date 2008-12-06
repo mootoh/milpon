@@ -17,6 +17,8 @@
 }
 
 + (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db;
++ (NSArray *) getNotes:(NSNumber *)task_id fromDB:(RTMDatabase *)db;
++ (void) removeNote:(NSNumber *)note_id fromDB:(RTMDatabase *)db;
 
 @end
 // set vim:ft=objc

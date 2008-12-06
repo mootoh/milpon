@@ -84,7 +84,7 @@
       for (NSString *sql in [self splitSQLs:mig]) {
          NSString *version = [[mig_path componentsSeparatedByString:@"_"] objectAtIndex:1];
          int mig_version = [version integerValue];
-         if (mig_version >= [self  current_migrate_version])
+         if (mig_version <= [self current_migrate_version])
             continue;
          
          [self run_migration_sql:sql];
@@ -145,7 +145,7 @@
       return -1;
    }
 
-   int ret = sqlite3_column_int(stmt, 8);
+   int ret = sqlite3_column_int(stmt, 0);
    sqlite3_finalize(stmt);
    return ret;
 }

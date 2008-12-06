@@ -69,6 +69,7 @@
 		92F166760ED3256D0096EABC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		92F166840ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92F166830ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib */; };
 		92F166910ED326A80096EABC /* FunctionalTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F166900ED326A80096EABC /* FunctionalTestAppDelegate.m */; };
+		92FB1A2B0EEAC3E1004E67EC /* RTMAPINote.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FB1A2A0EEAC3E1004E67EC /* RTMAPINote.m */; };
 		B9134DD10E65F0E1005028DC /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9134DD00E65F0E1005028DC /* RTMAPIAuth.m */; };
 		B91553280E6A2A68004DC85A /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553270E6A2A68004DC85A /* RTMAPIList.m */; };
 		B91553460E6A2E93004DC85A /* RTMSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553450E6A2E93004DC85A /* RTMSynchronizer.m */; };
@@ -157,6 +158,7 @@
 		86FD2E9B0EA249CB004631B0 /* rtm_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rtm_icon.png; path = resource/rtm_icon.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9204794C0ED6434E0088060C /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = logger.h; path = common/logger.h; sourceTree = "<group>"; };
+		92796AEB0EEA634C005E08FC /* migrate_004_add_edit_bits_to_note.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_004_add_edit_bits_to_note.sql; path = db/migrate_004_add_edit_bits_to_note.sql; sourceTree = "<group>"; };
 		92C057E10ED836180019E07B /* ico_clock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_clock.gif; path = resource/ico_clock.gif; sourceTree = "<group>"; };
 		92C057E20ED836190019E07B /* ico_tag.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_tag.gif; path = resource/ico_tag.gif; sourceTree = "<group>"; };
 		92C057E30ED836190019E07B /* ico_globe.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_globe.gif; path = resource/ico_globe.gif; sourceTree = "<group>"; };
@@ -176,6 +178,8 @@
 		92F166830ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FunctionalTestProgressViewWindow.xib; path = ../view/FunctionalTestProgressViewWindow.xib; sourceTree = "<group>"; };
 		92F1668F0ED326A80096EABC /* FunctionalTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionalTestAppDelegate.h; sourceTree = "<group>"; };
 		92F166900ED326A80096EABC /* FunctionalTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionalTestAppDelegate.m; sourceTree = "<group>"; };
+		92FB1A1F0EEAC1B2004E67EC /* RTMAPINote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPINote.h; sourceTree = "<group>"; };
+		92FB1A2A0EEAC3E1004E67EC /* RTMAPINote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPINote.m; sourceTree = "<group>"; };
 		B9134DCF0E65F0E1005028DC /* RTMAPIAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIAuth.h; sourceTree = "<group>"; };
 		B9134DD00E65F0E1005028DC /* RTMAPIAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIAuth.m; sourceTree = "<group>"; };
 		B91553260E6A2A68004DC85A /* RTMAPIList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIList.h; sourceTree = "<group>"; };
@@ -310,6 +314,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				92796AEB0EEA634C005E08FC /* migrate_004_add_edit_bits_to_note.sql */,
 				92C057DB0ED836060019E07B /* icons */,
 				B980E7430ED7E444007E2301 /* sample */,
 				B96D27EA0ED6B98700DE8E66 /* migrate */,
@@ -456,6 +461,8 @@
 		B91553250E6A2A4B004DC85A /* api */ = {
 			isa = PBXGroup;
 			children = (
+				92FB1A2A0EEAC3E1004E67EC /* RTMAPINote.m */,
+				92FB1A1F0EEAC1B2004E67EC /* RTMAPINote.h */,
 				B9F2013C0E690C660093B344 /* RTMAPI.h */,
 				B9F2013D0E690C660093B344 /* RTMAPI.m */,
 				B9134DCF0E65F0E1005028DC /* RTMAPIAuth.h */,
@@ -756,6 +763,7 @@
 				867187C60EAC93C1000A9133 /* ConfigViewController.m in Sources */,
 				8656F00E0EBEC40000230290 /* RTMExistingTask.m in Sources */,
 				92C059090EDAC04C0019E07B /* PriorityImageView.m in Sources */,
+				92FB1A2B0EEAC3E1004E67EC /* RTMAPINote.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
