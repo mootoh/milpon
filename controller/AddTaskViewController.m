@@ -41,13 +41,16 @@ enum {
       self.title = @"Add a Task";
       self.priority = @"0";
       self.tableView.bounces = NO;
+      self.tableView.rowHeight = 40.0f;
 
       self.list = [lists objectAtIndex:0]; // list default: INBOX
 
+/*
       // footer for scroll
       UIView *fotterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
       self.tableView.tableFooterView = fotterView;
       [fotterView release];
+*/
    }
    return self;
 }
@@ -248,6 +251,8 @@ enum {
 {
    [self commitTextFields];
 
+   if (name == nil || [name isEqualToString:@""]) return;
+
    // store it to the DB
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    RTMDatabase *db = app.db;
@@ -258,7 +263,7 @@ enum {
       due_date ? due_date : @"",
       list.iD,
       priority,
-      note,
+      note ? note : @"",
       nil];
    NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
@@ -291,7 +296,7 @@ enum {
 
    // setup priority segment
    NSArray *priority_items = [NSArray arrayWithObjects:@"0", @"1", @"2", @"3", nil];
-   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(32, 6, CGRectGetWidth(self.view.frame)-64, 32)];
+   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(32, 6, CGRectGetWidth(self.view.frame)-64, 28)];
    for (int i=0; i<priority_items.count; i++)
       [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
 
