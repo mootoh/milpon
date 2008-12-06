@@ -44,13 +44,6 @@ enum {
       self.tableView.rowHeight = 40.0f;
 
       self.list = [lists objectAtIndex:0]; // list default: INBOX
-
-/*
-      // footer for scroll
-      UIView *fotterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-      self.tableView.tableFooterView = fotterView;
-      [fotterView release];
-*/
    }
    return self;
 }
@@ -238,7 +231,6 @@ enum {
    [self textFieldShouldReturn:name_field];
    [self textFieldShouldReturn:note_field];
 }
-
 
 /*
  * create RTMTask from given fields

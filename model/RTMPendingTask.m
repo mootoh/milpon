@@ -123,8 +123,6 @@
    return [RTMTask tasksForSQL:sql inDB:db];
 }
 
-
-
 + (NSArray *) getNotes:(NSNumber *)task_id fromDB:(RTMDatabase *)db
 {
    sqlite3_stmt *stmt = nil;

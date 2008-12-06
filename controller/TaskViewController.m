@@ -12,6 +12,8 @@
 #import "RTMList.h"
 #import "logger.h"
 
+#define kNOTE_PLACE_HOLDER @"note..."
+
 @interface TaskViewController (Private)
 - (void) setPriorityButton;
 - (void) displayNote;
@@ -151,7 +153,7 @@ static NSArray *s_icons;
 {
    notePages.numberOfPages = task.notes.count;
    if (0 == task.notes.count) {
-      noteView.text = @"note...";
+      noteView.text = kNOTE_PLACE_HOLDER;
       return;
    }
 
@@ -199,6 +201,42 @@ prioritySelected_N(3);
    [textField resignFirstResponder];
    return YES;
 }
+
+/* -------------------------------------------------------------------
+ * UITextViewDelegate
+ */
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+   if ([textView.text isEqualToString:kNOTE_PLACE_HOLDER])
+      textView.text = @"";
+   return YES;
+}
+
+// TODO: #27
+#if 0
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+   if ([textView.text isEqualToString:kNOTE_PLACE_HOLDER])
+      return;
+
+   if ([task isKindOfClass:[RTMPendingTask class]]) {
+      // TODO
+      return;
+   }
+
+   if (0 == task.notes.count) { // create one
+      [RTMPendingTask createNote:textView.text withID:((RTMExistingTask *)task).task_series_id inDB:db];
+      return;
+   }
+
+   NSInteger page = notePages.currentPage;
+
+   NSDictionary *note = [task.notes objectAtIndex:notePages.currentPage];
+   NSString *text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
+   noteView.text = text;
+}
+#endif // 0
 
 @end
 // vim:set fdm=marker:
