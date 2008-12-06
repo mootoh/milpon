@@ -70,6 +70,14 @@
 
          break;
       }
+      case CONFIG_FEEDBACK: {
+         UIButton *feedbackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+         feedbackButton.frame = CGRectMake(160, 8, 128, 32);
+         [feedbackButton setTitle:@"Send Feedback" forState:UIControlStateNormal];
+         [feedbackButton addTarget:self action:@selector(emailFeedback) forControlEvents:UIControlEventTouchDown];
+         [cell.contentView addSubview:feedbackButton];
+         break;
+      }
       case CONFIG_VERSION:
          cell.text = [NSString stringWithUTF8String:VERSION];
          break;
@@ -101,5 +109,13 @@
    [rootViewController fetchAll];
    [activityIndicator stopAnimating];
 }
+
+- (IBAction) emailFeedback
+{  
+   NSString *subject = @"subject=Milpon Feedback";  
+   NSString *mailto = [NSString stringWithFormat:@"mailto:mootoh@gmail.com?%@", [subject stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+   NSURL *url = [NSURL URLWithString:mailto];  
+   [[UIApplication sharedApplication] openURL:url];  
+}  
 
 @end

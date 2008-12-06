@@ -14,6 +14,7 @@
 {
    enum {
       CONFIG_RELOAD,
+      CONFIG_FEEDBACK,
       CONFIG_VERSION,
       CONFIG_COUNT
    } types;
