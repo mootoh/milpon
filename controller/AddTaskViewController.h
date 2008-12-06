@@ -14,27 +14,19 @@
 {
    NSString *name;
    NSString *priority;
-   NSString *location_id;
    NSString *due_date;
-   NSString *estimate;
 
    NSArray *lists;
    RTMList *list;
 
    UITextField *name_field;
-   UITextField *estimate_field;
    UISegmentedControl *priority_segment;
-
-   UIBarButtonItem *cancelButton;
-   UIBarButtonItem *submitButton;
 }
 
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) RTMList *list;
 @property (nonatomic, retain) NSString *priority;
-@property (nonatomic, retain) NSString *location_id;
 @property (nonatomic, retain) NSString *due_date;
-@property (nonatomic, retain) NSString *estimate;
+@property (nonatomic, retain) RTMList *list;
 
 - (IBAction) save;
 - (void) commitTextFields;

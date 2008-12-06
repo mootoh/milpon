@@ -20,16 +20,13 @@
 
 @implementation AddTaskViewController
 
-@synthesize name, list, priority, location_id, due_date, estimate;
+@synthesize name, list, priority, due_date;
 
 enum {
    CELL_NAME = 0,
    CELL_PRIORITY,
-   CELL_LIST,
-   CELL_LOCATION,
-   CELL_ESTIMATE,
    CELL_DUE,
-   CELL_TAG,
+   CELL_LIST,
    CELL_NOTE,
    CELL_TYPES
 };
@@ -63,13 +60,11 @@ enum {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   // name, (url), due, location_id, list_id, priority, estimate
    return CELL_TYPES;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
    TaskEditCell *cell = (TaskEditCell *)[tableView dequeueReusableCellWithIdentifier:kAddTaskViewController];
    if (cell == nil) {
       cell = [[[TaskEditCell alloc] initWithFrame:CGRectZero reuseIdentifier:kAddTaskViewController] autorelease];
@@ -78,35 +73,21 @@ enum {
    switch (indexPath.row) {
       case CELL_NAME:
          cell.label = @"Name:";
-         if (name) {
+         if (name)
             name_field.text = name;
-         }
          [cell.contentView addSubview:name_field];
          break;
-      case CELL_PRIORITY: {
+      case CELL_PRIORITY:
          cell.label = @"Priority:";
          [cell.contentView addSubview:priority_segment];
          break;
-      }
       case CELL_LIST:
          cell.label = @"List:";
          cell.text = list.name;
          break;
-      case CELL_ESTIMATE: {
-         cell.label = @"Estimate:";
-         [cell.contentView addSubview:estimate_field];
-         break;
-      }
-      case CELL_LOCATION:
-         cell.label = @"Location:";
-         cell.text = location_id ? self.location_id : @"None";
-         break;
       case CELL_DUE:
          cell.label = @"Due:";
          cell.text = due_date ? self.due_date : @"none";
-         break;
-      case CELL_TAG:
-         cell.label = @"Tag:";
          break;
       case CELL_NOTE:
          cell.label = @"Note:";
@@ -121,7 +102,6 @@ enum {
 {
    switch ([indexPath row]) {
       case CELL_NAME:
-         [self textFieldShouldReturn:estimate_field];
          [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
          break;
       case CELL_LIST: {
@@ -129,19 +109,13 @@ enum {
          ctr.parent = self;
 
          [self textFieldShouldReturn:name_field];
-         [self textFieldShouldReturn:estimate_field];
          [[self navigationController] pushViewController:ctr animated:YES];
          break;
        }
       case CELL_PRIORITY: {
          [self textFieldShouldReturn:name_field];
-         [self textFieldShouldReturn:estimate_field];
          break;
       }
-      case CELL_ESTIMATE:
-         [self textFieldShouldReturn:name_field];
-         [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-         break;
       case CELL_DUE: {
          DueDatePickViewController *duePickController = [[DueDatePickViewController alloc] initWithNibName:nil bundle:nil];
          duePickController.parent = self;
@@ -157,15 +131,11 @@ enum {
 - (void) dealloc
 {
    [name release];
-   [location_id release];
    [due_date release];
    [name_field release];
-   [estimate_field release];
    [lists release];
    [list release];
    [priority_segment release];
-   [cancelButton release];
-   [submitButton release];
    [super dealloc];
 }
 
@@ -214,11 +184,8 @@ enum {
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-   if (textField == name_field) {
+   if (textField == name_field)
       self.name = textField.text;
-   } else if (textField == estimate_field) {
-      self.estimate = textField.text;
-   }
 
    [textField resignFirstResponder];
    return YES;
@@ -254,7 +221,6 @@ enum {
 - (void) commitTextFields
 {
    [self textFieldShouldReturn:name_field];
-   [self textFieldShouldReturn:estimate_field];
 }
 
 
@@ -273,14 +239,12 @@ enum {
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    RTMDatabase *db = app.db;
 
-   NSArray *keys = [NSArray arrayWithObjects:@"name", @"due", @"location_id", @"list_id", @"priority", @"estimate", nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"name", @"due", @"list_id", @"priority", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       name,
       due_date ? due_date : @"",
-      location_id ? location_id : @"",
       list.iD,
       priority,
-      estimate ? estimate : @"",
       nil];
    NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
@@ -293,20 +257,18 @@ enum {
 {
    [super loadView];
 
-   cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+   UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
    self.navigationItem.leftBarButtonItem = cancelButton;
-   submitButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
+   [cancelButton release];
+
+   UIBarButtonItem *submitButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
    self.navigationItem.rightBarButtonItem = submitButton;
+   [submitButton release];
 
    name_field = [[UITextField alloc] initWithFrame:CGRectMake(32, 12, CGRectGetWidth(self.view.frame)-32, CGRectGetHeight(self.view.frame)-8)];
    name_field.placeholder = @"...";
    name_field.returnKeyType = UIReturnKeyDone;
    name_field.delegate = self;
-
-   estimate_field = [[UITextField alloc] initWithFrame:CGRectMake(32, 12, CGRectGetWidth(self.view.frame)-32, CGRectGetHeight(self.view.frame)-8)];
-   estimate_field.placeholder = @"...";
-   estimate_field.returnKeyType = UIReturnKeyDone;
-   estimate_field.delegate = self;
 
    // setup priority segment
    NSArray *priority_items = [NSArray arrayWithObjects:@"0", @"1", @"2", @"3", nil];

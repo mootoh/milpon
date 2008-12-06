@@ -105,8 +105,6 @@
 
 - (IBAction) addTask
 {
-   CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
-
    self.bottomBar.hidden = YES;
 
    AddTaskViewController *ctrl = [[AddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -117,6 +115,7 @@
       ctrl.list = ((TaskListViewController *)vc).list;
    }
 
+   CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
    UINavigationController *modalController = [[UINavigationController alloc] initWithRootViewController:ctrl];
    modalController.view.frame = CGRectMake(0, 44, appFrame.size.width, appFrame.size.height-44);
    [self presentModalViewController:modalController animated:YES];
