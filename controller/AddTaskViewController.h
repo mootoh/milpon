@@ -15,17 +15,20 @@
    NSString *name;
    NSString *priority;
    NSString *due_date;
+   NSString *note;
 
    NSArray *lists;
    RTMList *list;
 
    UITextField *name_field;
+   UITextField *note_field;
    UISegmentedControl *priority_segment;
 }
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *priority;
 @property (nonatomic, retain) NSString *due_date;
+@property (nonatomic, retain) NSString *note;
 @property (nonatomic, retain) RTMList *list;
 
 - (IBAction) save;

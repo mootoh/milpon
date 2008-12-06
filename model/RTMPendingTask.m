@@ -18,6 +18,29 @@
    return self;
 }
 
++ (void) createNote:(NSString *)note (NSNumber *)task_series_id inDB:(RTMDatabase *)db
+{
+   sqlite3_stmt *stmt = nil;
+   const char *sql = "INSERT INTO note "
+      "(text, task_series_id, edit_bits) "
+      "VALUES (?, ?, ?)";
+   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL)) {
+      NSAssert1(NO, @"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle]));
+      return;
+   }
+
+   sqlite3_bind_text(stmt, 1, [note UTF8String], -1, SQLITE_TRANSIENT);
+   sqlite3_bind_int(stmt,  2, [task_series_id intValue]);
+   sqlite3_bind_int(stmt,  3, EB_CREATED_OFFLINE);
+
+   if (SQLITE_ERROR == sqlite3_step(stmt)) {
+      NSAssert1(NO, @"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle]));
+      return;
+   }
+
+   sqlite3_finalize(stmt);
+}
+
 // TODO: add tags, notes
 + (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db // {{{
 {
@@ -46,6 +69,12 @@
    }
 
    sqlite3_finalize(stmt);
+
+   NSString *note = [params valueForKey:@"note"];
+   if (note && ! [note isEqualToString:@""]) {
+      [RTMPendingTask createNote:note inDB:db];
+   }
+
 } // }}}
 
 + (NSArray *) tasks:(RTMDatabase *)db

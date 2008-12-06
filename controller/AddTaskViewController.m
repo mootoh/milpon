@@ -20,7 +20,7 @@
 
 @implementation AddTaskViewController
 
-@synthesize name, list, priority, due_date;
+@synthesize name, list, priority, due_date, note;
 
 enum {
    CELL_NAME = 0,
@@ -90,6 +90,9 @@ enum {
          cell.text = due_date ? self.due_date : @"none";
          break;
       case CELL_NOTE:
+         if (note)
+            note_field.text = note;
+         [cell.contentView addSubview:note_field];
          cell.label = @"Note:";
          break;
       default:
@@ -109,11 +112,13 @@ enum {
          ctr.parent = self;
 
          [self textFieldShouldReturn:name_field];
+         [self textFieldShouldReturn:note_field];
          [[self navigationController] pushViewController:ctr animated:YES];
          break;
        }
       case CELL_PRIORITY: {
          [self textFieldShouldReturn:name_field];
+         [self textFieldShouldReturn:note_field];
          break;
       }
       case CELL_DUE: {
@@ -122,6 +127,10 @@ enum {
          [self.navigationController pushViewController:duePickController animated:YES];
          [duePickController release];
          break;
+      }
+      case CELL_NOTE: {
+            [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            break;
       }
       default:
          break;
@@ -133,6 +142,7 @@ enum {
    [name release];
    [due_date release];
    [name_field release];
+   [note_field release];
    [lists release];
    [list release];
    [priority_segment release];
@@ -186,6 +196,8 @@ enum {
 {
    if (textField == name_field)
       self.name = textField.text;
+   else if (textField == note_field)
+      self.note = textField.text;
 
    [textField resignFirstResponder];
    return YES;
@@ -221,6 +233,7 @@ enum {
 - (void) commitTextFields
 {
    [self textFieldShouldReturn:name_field];
+   [self textFieldShouldReturn:note_field];
 }
 
 
@@ -239,12 +252,13 @@ enum {
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    RTMDatabase *db = app.db;
 
-   NSArray *keys = [NSArray arrayWithObjects:@"name", @"due", @"list_id", @"priority", nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"name", @"due", @"list_id", @"priority", @"note", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       name,
       due_date ? due_date : @"",
       list.iD,
       priority,
+      note,
       nil];
    NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
@@ -270,9 +284,14 @@ enum {
    name_field.returnKeyType = UIReturnKeyDone;
    name_field.delegate = self;
 
+   note_field = [[UITextField alloc] initWithFrame:CGRectMake(32, 12, CGRectGetWidth(self.view.frame)-32, CGRectGetHeight(self.view.frame)-8)];
+   note_field.placeholder = @"...";
+   note_field.returnKeyType = UIReturnKeyDone;
+   note_field.delegate = self;
+
    // setup priority segment
    NSArray *priority_items = [NSArray arrayWithObjects:@"0", @"1", @"2", @"3", nil];
-   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(32, 8, CGRectGetWidth(self.view.frame)-96, 28)];
+   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(32, 6, CGRectGetWidth(self.view.frame)-64, 32)];
    for (int i=0; i<priority_items.count; i++)
       [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
 

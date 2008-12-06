@@ -158,6 +158,11 @@
 
       // TODO: set tags
       // TODO: set notes
+      /*
+       * - get Note from DB by old Task ID
+       * - API request (rtm.tasks.notes.add) using new Task ID
+       * - remove old Note from DB
+       */
 
       // remove from DB
       [RTMPendingTask remove:task.iD fromDB:db];
