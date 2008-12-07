@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>rtm_icon.png</string>
+	<string>MilponIconSmall.png</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.deadbeaf.milpon</string>
 	<key>CFBundleInfoDictionaryVersion</key>

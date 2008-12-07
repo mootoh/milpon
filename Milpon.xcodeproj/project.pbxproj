@@ -52,7 +52,10 @@
 		86F41FCA0E813CD7006D98F4 /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */; };
 		86F7E7070EAF4F6C00B122F9 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */; };
 		86FC8D180E9593F100BD30A4 /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */; };
-		86FD2E9C0EA249CC004631B0 /* rtm_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 86FD2E9B0EA249CB004631B0 /* rtm_icon.png */; };
+		92A489320EEBD2700032C419 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A489310EEBD2700032C419 /* Default.png */; };
+		92A489330EEBD2700032C419 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A489310EEBD2700032C419 /* Default.png */; };
+		92A489340EEBD2700032C419 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A489310EEBD2700032C419 /* Default.png */; };
+		92A489350EEBD2700032C419 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A489310EEBD2700032C419 /* Default.png */; };
 		92C057E50ED836190019E07B /* ico_clock.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E10ED836180019E07B /* ico_clock.gif */; };
 		92C057E60ED836190019E07B /* ico_tag.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E20ED836190019E07B /* ico_tag.gif */; };
 		92C057E70ED836190019E07B /* ico_globe.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E30ED836190019E07B /* ico_globe.gif */; };
@@ -64,6 +67,7 @@
 		92C058E90EDAB7F50019E07B /* icon_priority_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C058E50EDAB7F50019E07B /* icon_priority_2.png */; };
 		92C058EA0EDAB7F50019E07B /* icon_priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C058E60EDAB7F50019E07B /* icon_priority_3.png */; };
 		92C059090EDAC04C0019E07B /* PriorityImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C059080EDAC04C0019E07B /* PriorityImageView.m */; };
+		92E029110EEBCB7F006BB575 /* MilponIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 92E029100EEBCB7F006BB575 /* MilponIconSmall.png */; };
 		92F166730ED325370096EABC /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F166720ED325370096EABC /* ProgressViewController.m */; };
 		92F166740ED325560096EABC /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867187260EAC7B3B000A9133 /* ProgressView.m */; };
 		92F166760ED3256D0096EABC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -155,10 +159,10 @@
 		86EE1F990E9EED9900C62684 /* RTMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMError.h; path = common/RTMError.h; sourceTree = "<group>"; };
 		86F41FBF0E813AA6006D98F4 /* UpdateTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateTask.m; sourceTree = "<group>"; };
 		86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
-		86FD2E9B0EA249CB004631B0 /* rtm_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rtm_icon.png; path = resource/rtm_icon.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9204794C0ED6434E0088060C /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = logger.h; path = common/logger.h; sourceTree = "<group>"; };
 		92796AEB0EEA634C005E08FC /* migrate_004_add_edit_bits_to_note.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_004_add_edit_bits_to_note.sql; path = db/migrate_004_add_edit_bits_to_note.sql; sourceTree = "<group>"; };
+		92A489310EEBD2700032C419 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		92C057E10ED836180019E07B /* ico_clock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_clock.gif; path = resource/ico_clock.gif; sourceTree = "<group>"; };
 		92C057E20ED836190019E07B /* ico_tag.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_tag.gif; path = resource/ico_tag.gif; sourceTree = "<group>"; };
 		92C057E30ED836190019E07B /* ico_globe.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_globe.gif; path = resource/ico_globe.gif; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 		92C058E60EDAB7F50019E07B /* icon_priority_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_priority_3.png; path = resource/icon_priority_3.png; sourceTree = "<group>"; };
 		92C059070EDAC04C0019E07B /* PriorityImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PriorityImageView.h; path = view/PriorityImageView.h; sourceTree = "<group>"; };
 		92C059080EDAC04C0019E07B /* PriorityImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PriorityImageView.m; path = view/PriorityImageView.m; sourceTree = "<group>"; };
+		92E029100EEBCB7F006BB575 /* MilponIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MilponIconSmall.png; path = resource/MilponIconSmall.png; sourceTree = "<group>"; };
 		92F166670ED324290096EABC /* ProgressViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgressViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F166690ED324290096EABC /* ProgressViewTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ProgressViewTest-Info.plist"; path = "../ProgressViewTest-Info.plist"; sourceTree = "<group>"; };
 		92F166710ED325370096EABC /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
@@ -314,6 +319,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				92E029100EEBCB7F006BB575 /* MilponIconSmall.png */,
 				92796AEB0EEA634C005E08FC /* migrate_004_add_edit_bits_to_note.sql */,
 				92C057DB0ED836060019E07B /* icons */,
 				B980E7430ED7E444007E2301 /* sample */,
@@ -321,10 +327,10 @@
 				86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */,
 				862C14A90EAB805600AC8FFE /* checkBox.png */,
 				862C14AA0EAB805600AC8FFE /* checkBoxChecked.png */,
-				86FD2E9B0EA249CB004631B0 /* rtm_icon.png */,
 				B98D24120E678C250006D6AF /* rtm.sql */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				B9DD5E900E6901B7007BFC7A /* UnitTest-Info.plist */,
+				92A489310EEBD2700032C419 /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -649,7 +655,6 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				B98D24130E678C250006D6AF /* rtm.sql in Resources */,
 				86C148010E71739800456F6A /* TaskView.xib in Resources */,
-				86FD2E9C0EA249CC004631B0 /* rtm_icon.png in Resources */,
 				862C14AB0EAB805600AC8FFE /* checkBox.png in Resources */,
 				862C14AC0EAB805600AC8FFE /* checkBoxChecked.png in Resources */,
 				86F7E7070EAF4F6C00B122F9 /* Entitlements.plist in Resources */,
@@ -663,6 +668,8 @@
 				92C058E80EDAB7F50019E07B /* icon_priority_1.png in Resources */,
 				92C058E90EDAB7F50019E07B /* icon_priority_2.png in Resources */,
 				92C058EA0EDAB7F50019E07B /* icon_priority_3.png in Resources */,
+				92E029110EEBCB7F006BB575 /* MilponIconSmall.png in Resources */,
+				92A489320EEBD2700032C419 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +680,7 @@
 				86E021190E7EAAD7001945E7 /* rtm.sql in Resources */,
 				B96D27F40ED6B9B400DE8E66 /* migrate_001_edit_bits.sql in Resources */,
 				B96D28580ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */,
+				92A489340EEBD2700032C419 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,6 +690,7 @@
 			files = (
 				92F166840ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib in Resources */,
 				B96D28570ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */,
+				92A489350EEBD2700032C419 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,6 +701,7 @@
 				B91554600E6A3906004DC85A /* rtm.sql in Resources */,
 				B96D27F30ED6B9B300DE8E66 /* migrate_001_edit_bits.sql in Resources */,
 				B96D28560ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */,
+				92A489330EEBD2700032C419 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -998,6 +1008,119 @@
 			};
 			name = AdHocDistribution;
 		};
+		92E0291F0EEBCC67006BB575 /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Motohiro Takayama";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				PROVISIONING_PROFILE = "51805616-A27F-4BB4-9CDB-9403511C2FDB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "51805616-A27F-4BB4-9CDB-9403511C2FDB";
+				SDKROOT = iphoneos2.2;
+			};
+			name = AppStoreRelease;
+		};
+		92E029200EEBCC67006BB575 /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Motohiro Takayama";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = Milpon;
+				PROVISIONING_PROFILE = "51805616-A27F-4BB4-9CDB-9403511C2FDB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "51805616-A27F-4BB4-9CDB-9403511C2FDB";
+				SDKROOT = iphoneos2.2;
+			};
+			name = AppStoreRelease;
+		};
+		92E029210EEBCC67006BB575 /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "UnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = AppStoreRelease;
+		};
+		92E029220EEBCC67006BB575 /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "/Users/moto/prj/iphone/rtm4iphone/UnitTest-Info copy.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = AppStoreRelease;
+		};
+		92E029230EEBCC67006BB575 /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "ProgressViewTest-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ProgressViewTest;
+				SDKROOT = iphoneos2.1;
+			};
+			name = AppStoreRelease;
+		};
 		92F1666A0ED3242A0096EABC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1299,6 +1422,7 @@
 				B903CE4C0ED3FC4300B2FD59 /* Local Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				86F7E6FA0EAF4E4E00B122F9 /* AdHocDistribution */,
+				92E029200EEBCC67006BB575 /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -1310,6 +1434,7 @@
 				B903CE4E0ED3FC4300B2FD59 /* Local Debug */,
 				86E021290E7EAAD7001945E7 /* Release */,
 				86F7E6FC0EAF4E4E00B122F9 /* AdHocDistribution */,
+				92E029220EEBCC67006BB575 /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -1321,6 +1446,7 @@
 				B903CE4F0ED3FC4300B2FD59 /* Local Debug */,
 				92F1666B0ED3242A0096EABC /* Release */,
 				92F1666C0ED3242A0096EABC /* AdHocDistribution */,
+				92E029230EEBCC67006BB575 /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -1332,6 +1458,7 @@
 				B903CE4D0ED3FC4300B2FD59 /* Local Debug */,
 				B9DD5E930E6901B7007BFC7A /* Release */,
 				86F7E6FB0EAF4E4E00B122F9 /* AdHocDistribution */,
+				92E029210EEBCC67006BB575 /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -1343,6 +1470,7 @@
 				B903CE4B0ED3FC4300B2FD59 /* Local Debug */,
 				C01FCF5008A954540054247B /* Release */,
 				86F7E6F90EAF4E4E00B122F9 /* AdHocDistribution */,
+				92E0291F0EEBCC67006BB575 /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
