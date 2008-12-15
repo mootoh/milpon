@@ -10,18 +10,21 @@
 
 @class RootViewController;
 
-@interface MenuViewController : UITableViewController {
-  enum {
-    MENU_OVERVIEW,
-    MENU_LIST,
-    MENU_TAG,
-    MENU_LOCATION,
-    MENU_COUNT
-  } menu_type;
-
-  NSArray *items;
-  UIToolbar *bottomBar;
-  RootViewController *rootViewController;
+@interface MenuViewController : UITableViewController
+{
+   enum {
+      MENU_OVERVIEW,
+      MENU_LIST,
+/*      
+      MENU_TAG,
+      MENU_LOCATION,
+ */
+      MENU_COUNT
+   } menu_type;
+   
+   NSArray *items;
+   UIToolbar *bottomBar;
+   RootViewController *rootViewController;
 }
 
 @property (nonatomic,retain) UIToolbar *bottomBar;
