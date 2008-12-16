@@ -32,7 +32,6 @@
 		86B9BBE90EABFC2A00210FCB /* AuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B9BBE80EABFC2A00210FCB /* AuthWebViewController.m */; };
 		86BF63310EA8C6710055D56B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BF63300EA8C6710055D56B /* RootViewController.m */; };
 		86BF641E0EA9CD1D0055D56B /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E5ED040E90BA2800C3DE94 /* AddTaskViewController.m */; };
-		86BF64CA0EA9F8920055D56B /* DueDatePickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BF64C90EA9F8920055D56B /* DueDatePickViewController.m */; };
 		86C148010E71739800456F6A /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C148000E71739800456F6A /* TaskView.xib */; };
 		86C1480F0E72142100456F6A /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71E10E6A53DE00EF2F9A /* RTMTask.m */; };
 		86C148120E72144300456F6A /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C148110E72144300456F6A /* TaskViewController.m */; };
@@ -58,6 +57,21 @@
 		923243C30EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
 		923243C40EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
 		923243C50EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
+		926E51F10EF72D1500F5C7BD /* UICCalendarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 926E51D40EF72D1500F5C7BD /* UICCalendarPicker.m */; };
+		926E51F30EF72D1500F5C7BD /* UICCalendarPickerDateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 926E51D80EF72D1500F5C7BD /* UICCalendarPickerDateButton.m */; };
+		926E51F80EF72D1500F5C7BD /* uiccalendar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51DF0EF72D1500F5C7BD /* uiccalendar_background.png */; };
+		926E51F90EF72D1500F5C7BD /* uiccalendar_cell_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E00EF72D1500F5C7BD /* uiccalendar_cell_disabled.png */; };
+		926E51FA0EF72D1500F5C7BD /* uiccalendar_cell_holiday.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E10EF72D1500F5C7BD /* uiccalendar_cell_holiday.png */; };
+		926E51FB0EF72D1500F5C7BD /* uiccalendar_cell_monthout.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E20EF72D1500F5C7BD /* uiccalendar_cell_monthout.png */; };
+		926E51FC0EF72D1500F5C7BD /* uiccalendar_cell_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E30EF72D1500F5C7BD /* uiccalendar_cell_normal.png */; };
+		926E51FD0EF72D1500F5C7BD /* uiccalendar_cell_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E40EF72D1500F5C7BD /* uiccalendar_cell_selected.png */; };
+		926E51FE0EF72D1500F5C7BD /* uiccalendar_cell_today.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E50EF72D1500F5C7BD /* uiccalendar_cell_today.png */; };
+		926E51FF0EF72D1500F5C7BD /* uiccalendar_cell_today_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E60EF72D1500F5C7BD /* uiccalendar_cell_today_selected.png */; };
+		926E52000EF72D1500F5C7BD /* uiccalendar_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E70EF72D1500F5C7BD /* uiccalendar_close.png */; };
+		926E52010EF72D1500F5C7BD /* uiccalendar_left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E80EF72D1500F5C7BD /* uiccalendar_left_arrow.png */; };
+		926E52020EF72D1500F5C7BD /* uiccalendar_main.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E90EF72D1500F5C7BD /* uiccalendar_main.png */; };
+		926E52030EF72D1500F5C7BD /* uiccalendar_right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51EA0EF72D1500F5C7BD /* uiccalendar_right_arrow.png */; };
+		926E52040EF72D1500F5C7BD /* uiccalendar_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51EB0EF72D1500F5C7BD /* uiccalendar_title.png */; };
 		92C057E50ED836190019E07B /* ico_clock.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E10ED836180019E07B /* ico_clock.gif */; };
 		92C057E60ED836190019E07B /* ico_tag.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E20ED836190019E07B /* ico_tag.gif */; };
 		92C057E70ED836190019E07B /* ico_globe.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E30ED836190019E07B /* ico_globe.gif */; };
@@ -147,8 +161,6 @@
 		86B9BBE80EABFC2A00210FCB /* AuthWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthWebViewController.m; sourceTree = "<group>"; };
 		86BF632F0EA8C6710055D56B /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		86BF63300EA8C6710055D56B /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		86BF64C80EA9F8920055D56B /* DueDatePickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DueDatePickViewController.h; sourceTree = "<group>"; };
-		86BF64C90EA9F8920055D56B /* DueDatePickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DueDatePickViewController.m; sourceTree = "<group>"; };
 		86C148000E71739800456F6A /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TaskView.xib; path = view/TaskView.xib; sourceTree = "<group>"; };
 		86C148100E72144300456F6A /* TaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskViewController.h; sourceTree = "<group>"; };
 		86C148110E72144300456F6A /* TaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskViewController.m; sourceTree = "<group>"; };
@@ -169,6 +181,25 @@
 		923243C10EF726DE003599A3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		926329C50EF6BC72009E2CD3 /* milk1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = milk1.png; path = resource/milk1.png; sourceTree = "<group>"; };
 		926329C70EF6BC77009E2CD3 /* milpon_logopng24_163_256_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = milpon_logopng24_163_256_6.png; path = resource/milpon_logopng24_163_256_6.png; sourceTree = "<group>"; };
+		926E51D20EF72D1500F5C7BD /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
+		926E51D30EF72D1500F5C7BD /* UICCalendarPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPicker.h; sourceTree = "<group>"; };
+		926E51D40EF72D1500F5C7BD /* UICCalendarPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICCalendarPicker.m; sourceTree = "<group>"; };
+		926E51D70EF72D1500F5C7BD /* UICCalendarPickerDateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPickerDateButton.h; sourceTree = "<group>"; };
+		926E51D80EF72D1500F5C7BD /* UICCalendarPickerDateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICCalendarPickerDateButton.m; sourceTree = "<group>"; };
+		926E51D90EF72D1500F5C7BD /* UICCalendarPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPickerDelegate.h; sourceTree = "<group>"; };
+		926E51DF0EF72D1500F5C7BD /* uiccalendar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_background.png; sourceTree = "<group>"; };
+		926E51E00EF72D1500F5C7BD /* uiccalendar_cell_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_disabled.png; sourceTree = "<group>"; };
+		926E51E10EF72D1500F5C7BD /* uiccalendar_cell_holiday.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_holiday.png; sourceTree = "<group>"; };
+		926E51E20EF72D1500F5C7BD /* uiccalendar_cell_monthout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_monthout.png; sourceTree = "<group>"; };
+		926E51E30EF72D1500F5C7BD /* uiccalendar_cell_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_normal.png; sourceTree = "<group>"; };
+		926E51E40EF72D1500F5C7BD /* uiccalendar_cell_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_selected.png; sourceTree = "<group>"; };
+		926E51E50EF72D1500F5C7BD /* uiccalendar_cell_today.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_today.png; sourceTree = "<group>"; };
+		926E51E60EF72D1500F5C7BD /* uiccalendar_cell_today_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_today_selected.png; sourceTree = "<group>"; };
+		926E51E70EF72D1500F5C7BD /* uiccalendar_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_close.png; sourceTree = "<group>"; };
+		926E51E80EF72D1500F5C7BD /* uiccalendar_left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_left_arrow.png; sourceTree = "<group>"; };
+		926E51E90EF72D1500F5C7BD /* uiccalendar_main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_main.png; sourceTree = "<group>"; };
+		926E51EA0EF72D1500F5C7BD /* uiccalendar_right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_right_arrow.png; sourceTree = "<group>"; };
+		926E51EB0EF72D1500F5C7BD /* uiccalendar_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_title.png; sourceTree = "<group>"; };
 		92796AEB0EEA634C005E08FC /* migrate_004_add_edit_bits_to_note.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_004_add_edit_bits_to_note.sql; path = db/migrate_004_add_edit_bits_to_note.sql; sourceTree = "<group>"; };
 		92C057E10ED836180019E07B /* ico_clock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_clock.gif; path = resource/ico_clock.gif; sourceTree = "<group>"; };
 		92C057E20ED836190019E07B /* ico_tag.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_tag.gif; path = resource/ico_tag.gif; sourceTree = "<group>"; };
@@ -420,8 +451,6 @@
 				861382D20EA770740040B0F6 /* ListSelectViewController.m */,
 				86BF632F0EA8C6710055D56B /* RootViewController.h */,
 				86BF63300EA8C6710055D56B /* RootViewController.m */,
-				86BF64C80EA9F8920055D56B /* DueDatePickViewController.h */,
-				86BF64C90EA9F8920055D56B /* DueDatePickViewController.m */,
 				B9224C5A0E70AECF004F83CE /* AuthViewController.h */,
 				B9224C5B0E70AECF004F83CE /* AuthViewController.m */,
 				86B9BBE70EABFC2A00210FCB /* AuthWebViewController.h */,
@@ -436,10 +465,46 @@
 		9232435D0EF722ED003599A3 /* vendor */ = {
 			isa = PBXGroup;
 			children = (
+				926E51D00EF72D1500F5C7BD /* UICCalendarPicker */,
 				923243640EF722F8003599A3 /* Reachability.h */,
 				923243650EF722F8003599A3 /* Reachability.m */,
 			);
 			name = vendor;
+			sourceTree = "<group>";
+		};
+		926E51D00EF72D1500F5C7BD /* UICCalendarPicker */ = {
+			isa = PBXGroup;
+			children = (
+				926E51D10EF72D1500F5C7BD /* Classes */,
+				926E51DF0EF72D1500F5C7BD /* uiccalendar_background.png */,
+				926E51E00EF72D1500F5C7BD /* uiccalendar_cell_disabled.png */,
+				926E51E10EF72D1500F5C7BD /* uiccalendar_cell_holiday.png */,
+				926E51E20EF72D1500F5C7BD /* uiccalendar_cell_monthout.png */,
+				926E51E30EF72D1500F5C7BD /* uiccalendar_cell_normal.png */,
+				926E51E40EF72D1500F5C7BD /* uiccalendar_cell_selected.png */,
+				926E51E50EF72D1500F5C7BD /* uiccalendar_cell_today.png */,
+				926E51E60EF72D1500F5C7BD /* uiccalendar_cell_today_selected.png */,
+				926E51E70EF72D1500F5C7BD /* uiccalendar_close.png */,
+				926E51E80EF72D1500F5C7BD /* uiccalendar_left_arrow.png */,
+				926E51E90EF72D1500F5C7BD /* uiccalendar_main.png */,
+				926E51EA0EF72D1500F5C7BD /* uiccalendar_right_arrow.png */,
+				926E51EB0EF72D1500F5C7BD /* uiccalendar_title.png */,
+			);
+			name = UICCalendarPicker;
+			path = vendor/UICCalendarPicker;
+			sourceTree = "<group>";
+		};
+		926E51D10EF72D1500F5C7BD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				926E51D20EF72D1500F5C7BD /* Debug.h */,
+				926E51D30EF72D1500F5C7BD /* UICCalendarPicker.h */,
+				926E51D40EF72D1500F5C7BD /* UICCalendarPicker.m */,
+				926E51D70EF72D1500F5C7BD /* UICCalendarPickerDateButton.h */,
+				926E51D80EF72D1500F5C7BD /* UICCalendarPickerDateButton.m */,
+				926E51D90EF72D1500F5C7BD /* UICCalendarPickerDelegate.h */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		92C057DB0ED836060019E07B /* icons */ = {
@@ -691,6 +756,19 @@
 				92C058EA0EDAB7F50019E07B /* icon_priority_3.png in Resources */,
 				92E029110EEBCB7F006BB575 /* MilponIconSmall.png in Resources */,
 				923243C20EF726DE003599A3 /* Default.png in Resources */,
+				926E51F80EF72D1500F5C7BD /* uiccalendar_background.png in Resources */,
+				926E51F90EF72D1500F5C7BD /* uiccalendar_cell_disabled.png in Resources */,
+				926E51FA0EF72D1500F5C7BD /* uiccalendar_cell_holiday.png in Resources */,
+				926E51FB0EF72D1500F5C7BD /* uiccalendar_cell_monthout.png in Resources */,
+				926E51FC0EF72D1500F5C7BD /* uiccalendar_cell_normal.png in Resources */,
+				926E51FD0EF72D1500F5C7BD /* uiccalendar_cell_selected.png in Resources */,
+				926E51FE0EF72D1500F5C7BD /* uiccalendar_cell_today.png in Resources */,
+				926E51FF0EF72D1500F5C7BD /* uiccalendar_cell_today_selected.png in Resources */,
+				926E52000EF72D1500F5C7BD /* uiccalendar_close.png in Resources */,
+				926E52010EF72D1500F5C7BD /* uiccalendar_left_arrow.png in Resources */,
+				926E52020EF72D1500F5C7BD /* uiccalendar_main.png in Resources */,
+				926E52030EF72D1500F5C7BD /* uiccalendar_right_arrow.png in Resources */,
+				926E52040EF72D1500F5C7BD /* uiccalendar_title.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,7 +866,6 @@
 				861382D30EA770740040B0F6 /* ListSelectViewController.m in Sources */,
 				86BF63310EA8C6710055D56B /* RootViewController.m in Sources */,
 				86BF641E0EA9CD1D0055D56B /* AddTaskViewController.m in Sources */,
-				86BF64CA0EA9F8920055D56B /* DueDatePickViewController.m in Sources */,
 				86B9BBE90EABFC2A00210FCB /* AuthWebViewController.m in Sources */,
 				867187270EAC7B3B000A9133 /* ProgressView.m in Sources */,
 				867187C60EAC93C1000A9133 /* ConfigViewController.m in Sources */,
@@ -796,6 +873,8 @@
 				92C059090EDAC04C0019E07B /* PriorityImageView.m in Sources */,
 				92FB1A2B0EEAC3E1004E67EC /* RTMAPINote.m in Sources */,
 				923243660EF722F8003599A3 /* Reachability.m in Sources */,
+				926E51F10EF72D1500F5C7BD /* UICCalendarPicker.m in Sources */,
+				926E51F30EF72D1500F5C7BD /* UICCalendarPickerDateButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,8 @@
 #import "ListSelectViewController.h"
 #import "RTMTask.h"
 #import "RootViewController.h"
-#import "DueDatePickViewController.h"
+#import "UICCalendarPicker.h"
+#import "logger.h"
 
 #define kAddTaskViewController @"AddTaskViewController"
 
@@ -83,7 +84,15 @@ enum {
          break;
       case CELL_DUE:
          cell.label = @"Due:";
-         cell.text = due_date ? self.due_date : @"none";
+         if (due_date) {
+            NSString *dd = [[due_date componentsSeparatedByString:@"T"] objectAtIndex:0];
+            NSArray *da  = [dd componentsSeparatedByString:@"-"];
+
+            cell.text = [NSString stringWithFormat:@"%@/%@",
+               [da objectAtIndex:1], [da objectAtIndex:2]];
+         } else {
+            cell.text = @"...";
+         }
          break;
       case CELL_NOTE:
          if (note)
@@ -118,10 +127,10 @@ enum {
          break;
       }
       case CELL_DUE: {
-         DueDatePickViewController *duePickController = [[DueDatePickViewController alloc] initWithNibName:nil bundle:nil];
-         duePickController.parent = self;
-         [self.navigationController pushViewController:duePickController animated:YES];
-         [duePickController release];
+         UICCalendarPicker *picker = [[UICCalendarPicker alloc] init];
+         [picker setDelegate:self];
+         [picker showInView:self.view];
+         [picker release];
          break;
       }
       case CELL_NOTE: {
@@ -294,6 +303,22 @@ enum {
 
    [priority_segment addTarget:self action:@selector(updatePriority) forControlEvents:UIControlEventValueChanged];
    priority_segment.selectedSegmentIndex = 0;
+}
+
+- (void) picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate
+{
+   LOG(@"picker");
+   NSDate *theDate = [selectedDate objectAtIndex:0];
+
+   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss"];
+   NSString *ret = [formatter stringFromDate:theDate];
+   ret = [ret stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
+   ret = [ret stringByAppendingString:@"Z"];
+   self.due_date = ret;
+
+   [self.tableView reloadData];
 }
 
 @end
