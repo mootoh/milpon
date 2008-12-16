@@ -10,9 +10,45 @@
 #import "RTMDatabase.h"
 #import "AppDelegate.h"
 #import "RTMList.h"
+#import "UICCalendarPicker.h"
 #import "logger.h"
 
 #define kNOTE_PLACE_HOLDER @"note..."
+
+@implementation DueLabel
+- (id) initWithFrame:(CGRect)aRect
+{
+   if (self = [super initWithFrame:aRect]) {
+      toggleCalendarDisplay = NO;
+   }
+   return self;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+   toggleCalendarDisplay = toggleCalendarDisplay ? NO : YES;
+   if (toggleCalendarDisplay) {
+      UICCalendarPicker *picker = [[UICCalendarPicker alloc] init];
+      [picker setDelegate:viewController];
+      [picker showInView:self.superview];
+      [picker release];
+   }
+}
+
+- (void) dealloc
+{
+   [viewController release];
+   [super dealloc];
+}
+
+- (void) setViewController:(UIViewController *)vc
+{
+   viewController = vc;
+   [vc retain];
+}
+
+@end
+
 
 @interface TaskViewController (Private)
 - (void) setPriorityButton;
@@ -48,6 +84,8 @@ static NSArray *s_icons;
 - (void) viewDidLoad
 {
    self.title = task.name;
+   [due setViewController:self];
+   due.userInteractionEnabled = YES;
 
    name.text = task.name;
    name.clearsOnBeginEditing = NO;
@@ -66,17 +104,7 @@ static NSArray *s_icons;
    if (task.rrule && ![task.rrule isEqualToString:@""])
       repeat.text = task.rrule;
 
-   if (task.due && ![task.due isEqualToString:@""]) {
-      NSCalendar *calendar = [NSCalendar currentCalendar];
-      unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-      NSDate *due_date = [formatter dateFromString:task.due];
-      NSDateComponents *comps = [calendar components:unitFlags fromDate:due_date];    
-
-      NSString *dueString = [NSString stringWithFormat:@"%d-%d-%d", [comps year], [comps month], [comps day]];
-
-      due.text = dueString;
-   }
-   due.delegate = self;
+   [self updateDue];
 
    // location.text = [NSString stringWithFormat:@"%d", task.location_id];
    //completed.text = task.completed;
@@ -119,6 +147,23 @@ static NSArray *s_icons;
    [self displayNote];
 }
 
+- (void) updateDue
+{
+   if (task.due && ![task.due isEqualToString:@""]) {
+      NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+      [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+      [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
+
+      NSCalendar *calendar = [NSCalendar currentCalendar];
+      unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+      NSDate *due_date = [formatter dateFromString:task.due];
+      NSDateComponents *comps = [calendar components:unitFlags fromDate:due_date];    
+
+      NSString *dueString = [NSString stringWithFormat:@"%d/%d", [comps month], [comps day]];
+
+      due.text = dueString;
+   }
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -193,8 +238,6 @@ prioritySelected_N(3);
    } else if (textField == location) {
    } else if (textField == repeat) {
    } else if (textField == estimate) {
-   } else if (textField == due) {
-      task.due = textField.text;
    } else if (textField == list) {
    }
 
@@ -237,6 +280,24 @@ prioritySelected_N(3);
    noteView.text = text;
 }
 #endif // 0
+
+- (void) picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate
+{
+   LOG(@"picker");
+   NSDate *theDate = [selectedDate objectAtIndex:0];
+
+   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss"];
+   NSString *ret = [formatter stringFromDate:theDate];
+   ret = [ret stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
+   ret = [ret stringByAppendingString:@"Z"];
+
+   task.due = ret;
+
+   [self updateDue];
+}
+
 
 @end
 // vim:set fdm=marker:

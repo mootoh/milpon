@@ -135,7 +135,6 @@ static const int SECTIONS = 4;
    [super viewWillAppear:animated];
    NSIndexPath *selected = [self.tableView indexPathForSelectedRow];
    [self.tableView deselectRowAtIndexPath:selected animated:NO];
-   //[self.tableView reloadData];
 }
 
 - (void)dealloc

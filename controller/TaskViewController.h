@@ -9,6 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "RTMTask.h"
 
+@class TaskViewController;
+
+@interface DueLabel : UILabel
+{
+   BOOL toggleCalendarDisplay;
+   UIViewController *viewController;
+}
+
+- (void) setViewController:(UIViewController *)vc;
+
+@end
+
+
 @interface TaskViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate> {
    RTMTask *task;
    IBOutlet UITextField   *name;
@@ -17,7 +30,7 @@
    IBOutlet UITextField   *repeat;
    IBOutlet UITextField   *estimate;
    IBOutlet UITextField   *postponed;
-   IBOutlet UITextField   *due;
+   IBOutlet DueLabel      *due;
    IBOutlet UIButton      *priorityButton;
    IBOutlet UITextField   *list;
    IBOutlet UITextView    *noteView;
@@ -28,4 +41,7 @@
 }
 
 @property (nonatomic, retain) RTMTask *task;
+
+- (void) updateDue;
+
 @end
