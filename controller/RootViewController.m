@@ -19,6 +19,7 @@
 #import "RTMAuth.h"
 #import "ProgressView.h"
 #import "ReloadableTableViewController.h"
+#import "Reachability.h"
 #import "logger.h"
 
 /* -------------------------------------------------------------------
@@ -134,6 +135,17 @@
 
 - (IBAction) upload
 {
+   Reachability *reach = [Reachability sharedReachability];
+   reach.hostName = @"api.rememberthemilk.com";
+   NetworkStatus stat =  [reach internetConnectionStatus];
+   reach.networkStatusNotificationsEnabled = NO;
+   if (stat == NotReachable) {
+      LOG(@"not reachable. skip");
+      return;
+   } else {
+      LOG(@"OK");
+   }
+
    uploadButton.enabled = NO;
    [progressView progressBegin];
    NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];

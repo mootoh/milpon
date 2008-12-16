@@ -52,10 +52,12 @@
 		86F41FCA0E813CD7006D98F4 /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */; };
 		86F7E7070EAF4F6C00B122F9 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */; };
 		86FC8D180E9593F100BD30A4 /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */; };
-		92A489320EEBD2700032C419 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A489310EEBD2700032C419 /* Default.png */; };
-		92A489330EEBD2700032C419 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A489310EEBD2700032C419 /* Default.png */; };
-		92A489340EEBD2700032C419 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A489310EEBD2700032C419 /* Default.png */; };
-		92A489350EEBD2700032C419 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A489310EEBD2700032C419 /* Default.png */; };
+		923243660EF722F8003599A3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 923243650EF722F8003599A3 /* Reachability.m */; };
+		923243690EF72360003599A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923243680EF72360003599A3 /* SystemConfiguration.framework */; };
+		923243C20EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
+		923243C30EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
+		923243C40EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
+		923243C50EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
 		92C057E50ED836190019E07B /* ico_clock.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E10ED836180019E07B /* ico_clock.gif */; };
 		92C057E60ED836190019E07B /* ico_tag.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E20ED836190019E07B /* ico_tag.gif */; };
 		92C057E70ED836190019E07B /* ico_globe.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E30ED836190019E07B /* ico_globe.gif */; };
@@ -161,8 +163,13 @@
 		86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9204794C0ED6434E0088060C /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = logger.h; path = common/logger.h; sourceTree = "<group>"; };
+		923243640EF722F8003599A3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = vendor/Reachability.h; sourceTree = "<group>"; };
+		923243650EF722F8003599A3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = vendor/Reachability.m; sourceTree = "<group>"; };
+		923243680EF72360003599A3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
+		923243C10EF726DE003599A3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		926329C50EF6BC72009E2CD3 /* milk1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = milk1.png; path = resource/milk1.png; sourceTree = "<group>"; };
+		926329C70EF6BC77009E2CD3 /* milpon_logopng24_163_256_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = milpon_logopng24_163_256_6.png; path = resource/milpon_logopng24_163_256_6.png; sourceTree = "<group>"; };
 		92796AEB0EEA634C005E08FC /* migrate_004_add_edit_bits_to_note.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_004_add_edit_bits_to_note.sql; path = db/migrate_004_add_edit_bits_to_note.sql; sourceTree = "<group>"; };
-		92A489310EEBD2700032C419 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		92C057E10ED836180019E07B /* ico_clock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_clock.gif; path = resource/ico_clock.gif; sourceTree = "<group>"; };
 		92C057E20ED836190019E07B /* ico_tag.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_tag.gif; path = resource/ico_tag.gif; sourceTree = "<group>"; };
 		92C057E30ED836190019E07B /* ico_globe.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_globe.gif; path = resource/ico_globe.gif; sourceTree = "<group>"; };
@@ -246,6 +253,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				B98D23C10E6784AE0006D6AF /* libsqlite3.dylib in Frameworks */,
 				B9FF72CD0E6A7C5400EF2F9A /* CoreGraphics.framework in Frameworks */,
+				923243690EF72360003599A3 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +302,7 @@
 				B91553250E6A2A4B004DC85A /* api */,
 				B98D23B80E6783DD0006D6AF /* model */,
 				86E01EF00E7E5D42001945E7 /* controller */,
+				9232435D0EF722ED003599A3 /* vendor */,
 				867187240EAC7B04000A9133 /* view */,
 				B9DD5EDC0E690566007BFC7A /* test */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -319,6 +328,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				926329C70EF6BC77009E2CD3 /* milpon_logopng24_163_256_6.png */,
+				926329C50EF6BC72009E2CD3 /* milk1.png */,
 				92E029100EEBCB7F006BB575 /* MilponIconSmall.png */,
 				92796AEB0EEA634C005E08FC /* migrate_004_add_edit_bits_to_note.sql */,
 				92C057DB0ED836060019E07B /* icons */,
@@ -330,7 +341,7 @@
 				B98D24120E678C250006D6AF /* rtm.sql */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				B9DD5E900E6901B7007BFC7A /* UnitTest-Info.plist */,
-				92A489310EEBD2700032C419 /* Default.png */,
+				923243C10EF726DE003599A3 /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -338,6 +349,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				923243680EF72360003599A3 /* SystemConfiguration.framework */,
 				B9DD5E960E6901FC007BFC7A /* SenTestingKit.framework */,
 				B98D23C00E6784AE0006D6AF /* libsqlite3.dylib */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
@@ -419,6 +431,15 @@
 				86B8FB540EAF0D4D006DCB67 /* ReloadableTableViewController.h */,
 			);
 			path = controller;
+			sourceTree = "<group>";
+		};
+		9232435D0EF722ED003599A3 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				923243640EF722F8003599A3 /* Reachability.h */,
+				923243650EF722F8003599A3 /* Reachability.m */,
+			);
+			name = vendor;
 			sourceTree = "<group>";
 		};
 		92C057DB0ED836060019E07B /* icons */ = {
@@ -669,7 +690,7 @@
 				92C058E90EDAB7F50019E07B /* icon_priority_2.png in Resources */,
 				92C058EA0EDAB7F50019E07B /* icon_priority_3.png in Resources */,
 				92E029110EEBCB7F006BB575 /* MilponIconSmall.png in Resources */,
-				92A489320EEBD2700032C419 /* Default.png in Resources */,
+				923243C20EF726DE003599A3 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,7 +701,7 @@
 				86E021190E7EAAD7001945E7 /* rtm.sql in Resources */,
 				B96D27F40ED6B9B400DE8E66 /* migrate_001_edit_bits.sql in Resources */,
 				B96D28580ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */,
-				92A489340EEBD2700032C419 /* Default.png in Resources */,
+				923243C40EF726DE003599A3 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,7 +711,7 @@
 			files = (
 				92F166840ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib in Resources */,
 				B96D28570ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */,
-				92A489350EEBD2700032C419 /* Default.png in Resources */,
+				923243C50EF726DE003599A3 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,7 +722,7 @@
 				B91554600E6A3906004DC85A /* rtm.sql in Resources */,
 				B96D27F30ED6B9B300DE8E66 /* migrate_001_edit_bits.sql in Resources */,
 				B96D28560ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */,
-				92A489330EEBD2700032C419 /* Default.png in Resources */,
+				923243C30EF726DE003599A3 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,6 +795,7 @@
 				8656F00E0EBEC40000230290 /* RTMExistingTask.m in Sources */,
 				92C059090EDAC04C0019E07B /* PriorityImageView.m in Sources */,
 				92FB1A2B0EEAC3E1004E67EC /* RTMAPINote.m in Sources */,
+				923243660EF722F8003599A3 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
