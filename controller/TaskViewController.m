@@ -28,7 +28,7 @@
 {
    toggleCalendarDisplay = toggleCalendarDisplay ? NO : YES;
    if (toggleCalendarDisplay) {
-      UICCalendarPicker *picker = [[UICCalendarPicker alloc] init];
+			UICCalendarPicker *picker = [[UICCalendarPicker alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 204.0f, 234.0f)];
       [picker setDelegate:viewController];
       [picker showInView:self.superview];
       [picker release];

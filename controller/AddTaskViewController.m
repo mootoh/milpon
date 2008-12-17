@@ -7,7 +7,6 @@
 //
 
 #import "AddTaskViewController.h"
-#import "TaskEditCell.h"
 #import "RTMList.h"
 #import "AppDelegate.h"
 #import "RTMDatabase.h"
@@ -17,95 +16,30 @@
 #import "UICCalendarPicker.h"
 #import "logger.h"
 
-#define kAddTaskViewController @"AddTaskViewController"
-
 @implementation AddTaskViewController
+
+enum {
+   TEXTFIELD_NAME,
+   TEXTFIELD_NOTE
+};
 
 @synthesize name, list, priority, due_date, note;
 
-enum {
-   CELL_NAME = 0,
-   CELL_PRIORITY,
-   CELL_DUE,
-   CELL_LIST,
-   CELL_NOTE,
-   CELL_TYPES
-};
-
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
 {
-   if (self = [super initWithStyle:style]) {
+   if (self = [super initWithNibName:nibName bundle:nibBundle]) {
       AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
       RTMDatabase *db = app.db;
       lists = [[RTMList allLists:db] retain];
 
       self.title = @"Add a Task";
       self.priority = @"0";
-      self.tableView.bounces = NO;
-      self.tableView.rowHeight = 40.0f;
-
       self.list = [lists objectAtIndex:0]; // list default: INBOX
    }
    return self;
 }
 
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-   return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-   return CELL_TYPES;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-   TaskEditCell *cell = (TaskEditCell *)[tableView dequeueReusableCellWithIdentifier:kAddTaskViewController];
-   if (cell == nil) {
-      cell = [[[TaskEditCell alloc] initWithFrame:CGRectZero reuseIdentifier:kAddTaskViewController] autorelease];
-   }
-   // Configure the cell
-   switch (indexPath.row) {
-      case CELL_NAME:
-         cell.label = @"Name:";
-         if (name)
-            name_field.text = name;
-         [cell.contentView addSubview:name_field];
-         break;
-      case CELL_PRIORITY:
-         cell.label = @"Priority:";
-         [cell.contentView addSubview:priority_segment];
-         break;
-      case CELL_LIST:
-         cell.label = @"List:";
-         cell.text = list.name;
-         break;
-      case CELL_DUE:
-         cell.label = @"Due:";
-         if (due_date) {
-            NSString *dd = [[due_date componentsSeparatedByString:@"T"] objectAtIndex:0];
-            NSArray *da  = [dd componentsSeparatedByString:@"-"];
-
-            cell.text = [NSString stringWithFormat:@"%@/%@",
-               [da objectAtIndex:1], [da objectAtIndex:2]];
-         } else {
-            cell.text = @"...";
-         }
-         break;
-      case CELL_NOTE:
-         if (note)
-            note_field.text = note;
-         [cell.contentView addSubview:note_field];
-         cell.label = @"Note:";
-         break;
-      default:
-         break;
-   }
-   return cell;
-}
-
+#if 0
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    switch ([indexPath row]) {
@@ -121,13 +55,11 @@ enum {
          [[self navigationController] pushViewController:ctr animated:YES];
          break;
        }
-      case CELL_PRIORITY: {
+      case CELL_PRIORITY_DUE: {
          [self textFieldShouldReturn:name_field];
          [self textFieldShouldReturn:note_field];
-         break;
-      }
-      case CELL_DUE: {
-         UICCalendarPicker *picker = [[UICCalendarPicker alloc] init];
+
+         UICCalendarPicker *picker = [[UICCalendarPicker alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 204.0f, 234.0f)];
          [picker setDelegate:self];
          [picker showInView:self.view];
          [picker release];
@@ -141,35 +73,16 @@ enum {
          break;
    }
 }
+#endif // 0
 
 - (void) dealloc
 {
+   [priority_segment release];
    [name release];
    [due_date release];
-   [name_field release];
-   [note_field release];
    [lists release];
    [list release];
-   [priority_segment release];
    [super dealloc];
-}
-
-- (void) viewWillAppear:(BOOL)animated
-{
-   [super viewWillAppear:animated];
-}
-
-- (void) viewDidAppear:(BOOL)animated
-{
-   [super viewDidAppear:animated];
-}
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-}
-
-- (void) viewDidDisappear:(BOOL)animated
-{
 }
 
 - (void) didReceiveMemoryWarning
@@ -177,42 +90,17 @@ enum {
    [super didReceiveMemoryWarning];
 }
 
-- (CGFloat) pickerView:(UIPickerView *)pickerViewrowHeightForComponent:(NSInteger)component
-{
-   return 2.0;
-}
-
-- (NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-   return @"yey";
-}
-
-- (NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-   return 1;
-}
-
-- (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-   return 1;
-}
-
+/* -------------------------------------------------------------------
+ * TextFieldDelegate
+ */
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-   if (textField == name_field)
+   if (textField.tag == TEXTFIELD_NAME)
       self.name = textField.text;
-   else if (textField == note_field)
+   else if (textField.tag == TEXTFIELD_NOTE)
       self.note = textField.text;
 
    [textField resignFirstResponder];
-   return YES;
-}
-
-- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
-{
-   UITableViewCell *cell = (UITableViewCell *)[[textField superview] superview];
-   NSIndexPath *path = [self.tableView indexPathForCell:cell];
-   [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
    return YES;
 }
 
@@ -237,8 +125,8 @@ enum {
 
 - (void) commitTextFields
 {
-   [self textFieldShouldReturn:name_field];
-   [self textFieldShouldReturn:note_field];
+   [self textFieldShouldReturn:(UITextField *)[self.view viewWithTag:TEXTFIELD_NAME]];
+   [self textFieldShouldReturn:(UITextField *)[self.view viewWithTag:TEXTFIELD_NOTE]];
 }
 
 /*
@@ -285,24 +173,52 @@ enum {
    self.navigationItem.rightBarButtonItem = submitButton;
    [submitButton release];
 
-   name_field = [[UITextField alloc] initWithFrame:CGRectMake(32, 12, CGRectGetWidth(self.view.frame)-32, CGRectGetHeight(self.view.frame)-8)];
-   name_field.placeholder = @"...";
+
+   UITextField *name_field = [[UITextField alloc] initWithFrame:CGRectMake(32, 12, CGRectGetWidth(self.view.frame)-32, CGRectGetHeight(self.view.frame)-8)];
+   name_field.placeholder = @"what...";
    name_field.returnKeyType = UIReturnKeyDone;
    name_field.delegate = self;
+   name_field.tag = TEXTFIELD_NAME;
+   if (name)
+      name_field.text = name;
+   [name_field becomeFirstResponder];
+   [self.view addSubview:name_field];
+   [name_field release];
 
-   note_field = [[UITextField alloc] initWithFrame:CGRectMake(32, 12, CGRectGetWidth(self.view.frame)-32, CGRectGetHeight(self.view.frame)-8)];
+   UITextField *note_field = [[UITextField alloc] initWithFrame:CGRectMake(32, 12, CGRectGetWidth(self.view.frame)-32, CGRectGetHeight(self.view.frame)-8)];
    note_field.placeholder = @"...";
    note_field.returnKeyType = UIReturnKeyDone;
    note_field.delegate = self;
+   name_field.tag = TEXTFIELD_NOTE;
+   [self.view addSubview:note_field];
+   [note_field release];
 
    // setup priority segment
    NSArray *priority_items = [NSArray arrayWithObjects:@"0", @"1", @"2", @"3", nil];
-   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(32, 6, CGRectGetWidth(self.view.frame)-64, 28)];
+   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(32, 6, CGRectGetWidth(self.view.frame)/2-64, 28)];
    for (int i=0; i<priority_items.count; i++)
       [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
 
    [priority_segment addTarget:self action:@selector(updatePriority) forControlEvents:UIControlEventValueChanged];
    priority_segment.selectedSegmentIndex = 0;
+   [self.view addSubview:priority_segment];
+
+#if 0
+   if (due_date) {
+      NSString *dd = [[due_date componentsSeparatedByString:@"T"] objectAtIndex:0];
+      NSArray *da  = [dd componentsSeparatedByString:@"-"];
+
+      cell.text = [NSString stringWithFormat:@"%@/%@",
+         [da objectAtIndex:1], [da objectAtIndex:2]];
+   } else {
+      //cell.text = @"...";
+   }
+#endif // 0
+
+   UILabel *list_label = [[UILabel alloc] init];
+   list_label.text = list.name;
+   [self.view addSubview:list_label];
+   [list_label release];
 }
 
 - (void) picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate
@@ -318,7 +234,8 @@ enum {
    ret = [ret stringByAppendingString:@"Z"];
    self.due_date = ret;
 
-   [self.tableView reloadData];
+   [self.view setNeedsDisplay];
+   //[self.tableView reloadData];
 }
 
 @end

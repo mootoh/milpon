@@ -475,20 +475,8 @@
 		926E51D00EF72D1500F5C7BD /* UICCalendarPicker */ = {
 			isa = PBXGroup;
 			children = (
+				B928C9990EF8B87D0068BFC8 /* Resource */,
 				926E51D10EF72D1500F5C7BD /* Classes */,
-				926E51DF0EF72D1500F5C7BD /* uiccalendar_background.png */,
-				926E51E00EF72D1500F5C7BD /* uiccalendar_cell_disabled.png */,
-				926E51E10EF72D1500F5C7BD /* uiccalendar_cell_holiday.png */,
-				926E51E20EF72D1500F5C7BD /* uiccalendar_cell_monthout.png */,
-				926E51E30EF72D1500F5C7BD /* uiccalendar_cell_normal.png */,
-				926E51E40EF72D1500F5C7BD /* uiccalendar_cell_selected.png */,
-				926E51E50EF72D1500F5C7BD /* uiccalendar_cell_today.png */,
-				926E51E60EF72D1500F5C7BD /* uiccalendar_cell_today_selected.png */,
-				926E51E70EF72D1500F5C7BD /* uiccalendar_close.png */,
-				926E51E80EF72D1500F5C7BD /* uiccalendar_left_arrow.png */,
-				926E51E90EF72D1500F5C7BD /* uiccalendar_main.png */,
-				926E51EA0EF72D1500F5C7BD /* uiccalendar_right_arrow.png */,
-				926E51EB0EF72D1500F5C7BD /* uiccalendar_title.png */,
 			);
 			name = UICCalendarPicker;
 			path = vendor/UICCalendarPicker;
@@ -568,6 +556,26 @@
 			);
 			path = api;
 			sourceTree = SOURCE_ROOT;
+		};
+		B928C9990EF8B87D0068BFC8 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				926E51DF0EF72D1500F5C7BD /* uiccalendar_background.png */,
+				926E51E00EF72D1500F5C7BD /* uiccalendar_cell_disabled.png */,
+				926E51E10EF72D1500F5C7BD /* uiccalendar_cell_holiday.png */,
+				926E51E20EF72D1500F5C7BD /* uiccalendar_cell_monthout.png */,
+				926E51E30EF72D1500F5C7BD /* uiccalendar_cell_normal.png */,
+				926E51E40EF72D1500F5C7BD /* uiccalendar_cell_selected.png */,
+				926E51E50EF72D1500F5C7BD /* uiccalendar_cell_today.png */,
+				926E51E60EF72D1500F5C7BD /* uiccalendar_cell_today_selected.png */,
+				926E51E70EF72D1500F5C7BD /* uiccalendar_close.png */,
+				926E51E80EF72D1500F5C7BD /* uiccalendar_left_arrow.png */,
+				926E51E90EF72D1500F5C7BD /* uiccalendar_main.png */,
+				926E51EA0EF72D1500F5C7BD /* uiccalendar_right_arrow.png */,
+				926E51EB0EF72D1500F5C7BD /* uiccalendar_title.png */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
 		};
 		B96D27EA0ED6B98700DE8E66 /* migrate */ = {
 			isa = PBXGroup;

@@ -108,7 +108,7 @@
 {
    self.bottomBar.hidden = YES;
 
-   AddTaskViewController *ctrl = [[AddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
+   AddTaskViewController *ctrl = [[AddTaskViewController alloc] initWithNibName:nil bundle:nil];
 
    // get current list
    UIViewController *vc = [navigationController topViewController];

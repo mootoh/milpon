@@ -3,8 +3,8 @@
 #import "UICCalendarPickerDelegate.h"
 #import "Debug.h"
 
-#define UICCALENDAR_CONTROL_BUTTON_WIDTH 25.0f
-#define UICCALENDAR_CONTROL_BUTTON_HEIGHT 15.0f
+#define UICCALENDAR_CONTROL_BUTTON_WIDTH 30.0f
+#define UICCALENDAR_CONTROL_BUTTON_HEIGHT 21.0f
 
 #define UICCALENDAR_TITLE_FONT_SIZE 13.0f
 #define UICCALENDAR_TITLE_LABEL_WIDTH 140.0f
@@ -68,8 +68,8 @@ static UIColor *holidayColor;
 	holidayColor = [[UIColor redColor] retain];
 }
 
-- (id)init {
-	if (self = [super initWithFrame:CGRectMake(0.0f, 0.0f, 204.0f, 234.0f)]) {
+- (id)initWithFrame:(CGRect) aRect {
+	if (self = [super initWithFrame:aRect]) {
 		[self setImage:[UIImage imageNamed:@"uiccalendar_background.png"]];
 		[self setUserInteractionEnabled:YES];
 
@@ -132,13 +132,6 @@ static UIColor *holidayColor;
 		today = [[gregorian dateFromComponents:todayComponents] retain];
 		
 		self.pageDate = today;
-    }
-    return self;
-}
-
-- (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-		;
     }
     return self;
 }

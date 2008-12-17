@@ -64,7 +64,8 @@
 {
    RTMList * lst = [lists objectAtIndex:indexPath.row];
    self.parent.list = lst;
-   [self.parent.tableView reloadData];
+   //[self.parent.tableView reloadData];
+   [self.parent.view setNeedsDisplay];
    [self.navigationController popViewControllerAnimated:YES];
 }
 

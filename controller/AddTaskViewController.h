@@ -10,7 +10,7 @@
 
 @class RTMList;
 
-@interface AddTaskViewController : UITableViewController <UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate>
+@interface AddTaskViewController : UIViewController <UITextFieldDelegate>
 {
    NSString *name;
    NSString *priority;
@@ -20,8 +20,6 @@
    NSArray *lists;
    RTMList *list;
 
-   UITextField *name_field;
-   UITextField *note_field;
    UISegmentedControl *priority_segment;
 }
 

@@ -1,3 +1,8 @@
+2008-12-17 mootoh
+	* due date selection:
+		今日、明日、それ以外で選びたいところ。
+		あと、 postpone があるとよいね。
+
 2008-11-25 mootoh
 	* PriorityView:
 		TaskView で、priority を選択するためのパーツとして PriorityView というのを
