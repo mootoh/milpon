@@ -74,7 +74,11 @@ static const int SECTIONS = 4;
 - (id) initWithStyle:(UITableViewStyle)style
 {
    if (self = [super initWithStyle:style]) {
-      self.title = @"Overview";
+		NSDate *today = [NSDate date];
+      NSDateFormatter *formatter = [[NSDateFormatter alloc]
+           initWithDateFormat:@"%1m/%1d (%a)" allowNaturalLanguage:YES];
+      self.title = [formatter stringFromDate:today];
+      [formatter release];
 
       self.headers = [NSArray arrayWithObjects:@"Today", @"Tomorrow", @"7 days", @"Outdated", nil];
       AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -102,7 +106,6 @@ static const int SECTIONS = 4;
    RTMTaskCell *cell = (RTMTaskCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
    if (cell == nil) {
       cell = [[[RTMTaskCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-      //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
    }
 
    RTMTask *task = [[due_tasks objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];

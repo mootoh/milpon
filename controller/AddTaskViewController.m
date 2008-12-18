@@ -23,6 +23,10 @@ enum {
    TEXTFIELD_NOTE
 };
 
+const float margin_top  = 16.0f;
+const float margin_left = 16.0f;
+const float column_height = 40.0f;
+
 @synthesize name, list, priority, due_date, note;
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
@@ -59,11 +63,7 @@ enum {
          [self textFieldShouldReturn:name_field];
          [self textFieldShouldReturn:note_field];
 
-         UICCalendarPicker *picker = [[UICCalendarPicker alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 204.0f, 234.0f)];
-         [picker setDelegate:self];
-         [picker showInView:self.view];
-         [picker release];
-         break;
+        break;
       }
       case CELL_NOTE: {
             [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -165,6 +165,9 @@ enum {
 {
    [super loadView];
 
+   /*
+    * Navigation buttons
+    */
    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
    self.navigationItem.leftBarButtonItem = cancelButton;
    [cancelButton release];
@@ -173,8 +176,9 @@ enum {
    self.navigationItem.rightBarButtonItem = submitButton;
    [submitButton release];
 
-
-   UITextField *name_field = [[UITextField alloc] initWithFrame:CGRectMake(32, 12, CGRectGetWidth(self.view.frame)-32, CGRectGetHeight(self.view.frame)-8)];
+	
+   UITextField *name_field = [[UITextField alloc] initWithFrame:
+      CGRectMake(margin_left, margin_top, CGRectGetWidth(self.view.frame)-margin_left, column_height)];
    name_field.placeholder = @"what...";
    name_field.returnKeyType = UIReturnKeyDone;
    name_field.delegate = self;
@@ -185,8 +189,8 @@ enum {
    [self.view addSubview:name_field];
    [name_field release];
 
-   UITextField *note_field = [[UITextField alloc] initWithFrame:CGRectMake(32, 12, CGRectGetWidth(self.view.frame)-32, CGRectGetHeight(self.view.frame)-8)];
-   note_field.placeholder = @"...";
+   UITextField *note_field = [[UITextField alloc] initWithFrame:CGRectMake(margin_left, margin_top+column_height, CGRectGetWidth(self.view.frame)-margin_left, column_height)];
+   note_field.placeholder = @"note...";
    note_field.returnKeyType = UIReturnKeyDone;
    note_field.delegate = self;
    name_field.tag = TEXTFIELD_NOTE;
@@ -195,13 +199,18 @@ enum {
 
    // setup priority segment
    NSArray *priority_items = [NSArray arrayWithObjects:@"0", @"1", @"2", @"3", nil];
-   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(32, 6, CGRectGetWidth(self.view.frame)/2-64, 28)];
+   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(0, 80, CGRectGetWidth(self.view.frame)/2-64, 40)];
    for (int i=0; i<priority_items.count; i++)
       [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
 
    [priority_segment addTarget:self action:@selector(updatePriority) forControlEvents:UIControlEventValueChanged];
    priority_segment.selectedSegmentIndex = 0;
    [self.view addSubview:priority_segment];
+
+   UICCalendarPicker *picker = [[UICCalendarPicker alloc] initWithFrame:CGRectMake(0.0f, 120, 204.0f, 234.0f)];
+   [picker setDelegate:self];
+   [picker showInView:self.view];
+   [picker release];
 
 #if 0
    if (due_date) {
@@ -215,10 +224,12 @@ enum {
    }
 #endif // 0
 
+   /*
    UILabel *list_label = [[UILabel alloc] init];
    list_label.text = list.name;
    [self.view addSubview:list_label];
    [list_label release];
+   */
 }
 
 - (void) picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate

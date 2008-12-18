@@ -3,6 +3,10 @@
 		今日、明日、それ以外で選びたいところ。
 		あと、 postpone があるとよいね。
 
+	* Localize:
+		iPhone 側の設定で locale 変えるだけだと、曜日とかが日本語にならない。
+		=> なった。設定の書式のとこも日本語に変えたらOKだった。
+
 2008-11-25 mootoh
 	* PriorityView:
 		TaskView で、priority を選択するためのパーツとして PriorityView というのを

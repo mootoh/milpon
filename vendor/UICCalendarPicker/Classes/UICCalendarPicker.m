@@ -179,7 +179,7 @@ static UIColor *holidayColor;
 }
 
 - (void)showInView:(UIView *)aView {
-	[self setCenter:CGPointMake(aView.frame.size.width / 2, self.frame.size.height / 2)];
+	//[self setCenter:CGPointMake(aView.frame.size.width / 2, self.frame.size.height / 2)];
 	[self setUpCalendarWithDate:pageDate];
 	
 	/*if (style == UICCalendarPickerStyleDefault) {
