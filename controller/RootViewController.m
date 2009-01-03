@@ -140,7 +140,15 @@
    NetworkStatus stat =  [reach internetConnectionStatus];
    reach.networkStatusNotificationsEnabled = NO;
    if (stat == NotReachable) {
-      LOG(@"not reachable. skip");
+
+      UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Not Connected"
+         message:@"Not connected to the RTM site. Sync when you are online."
+         delegate:nil
+         cancelButtonTitle:@"OK"
+         otherButtonTitles:nil];
+      [av show];
+      [av release];
+
       return;
    } else {
       LOG(@"OK");
