@@ -54,10 +54,10 @@
 		86FC8D180E9593F100BD30A4 /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */; };
 		923243660EF722F8003599A3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 923243650EF722F8003599A3 /* Reachability.m */; };
 		923243690EF72360003599A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923243680EF72360003599A3 /* SystemConfiguration.framework */; };
-		923243C20EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
-		923243C30EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
-		923243C40EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
-		923243C50EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
+		92AAA11F0F1C025F0096937B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92AAA11E0F1C025F0096937B /* Default.png */; };
+		92AAA1200F1C025F0096937B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92AAA11E0F1C025F0096937B /* Default.png */; };
+		92AAA1210F1C025F0096937B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92AAA11E0F1C025F0096937B /* Default.png */; };
+		92AAA1220F1C025F0096937B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92AAA11E0F1C025F0096937B /* Default.png */; };
 		92C057E50ED836190019E07B /* ico_clock.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E10ED836180019E07B /* ico_clock.gif */; };
 		92C057E60ED836190019E07B /* ico_tag.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E20ED836190019E07B /* ico_tag.gif */; };
 		92C057E70ED836190019E07B /* ico_globe.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92C057E30ED836190019E07B /* ico_globe.gif */; };
@@ -166,10 +166,10 @@
 		923243640EF722F8003599A3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = vendor/Reachability.h; sourceTree = "<group>"; };
 		923243650EF722F8003599A3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = vendor/Reachability.m; sourceTree = "<group>"; };
 		923243680EF72360003599A3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
-		923243C10EF726DE003599A3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		926329C50EF6BC72009E2CD3 /* milk1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = milk1.png; path = resource/milk1.png; sourceTree = "<group>"; };
 		926329C70EF6BC77009E2CD3 /* milpon_logopng24_163_256_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = milpon_logopng24_163_256_6.png; path = resource/milpon_logopng24_163_256_6.png; sourceTree = "<group>"; };
 		92796AEB0EEA634C005E08FC /* migrate_004_add_edit_bits_to_note.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_004_add_edit_bits_to_note.sql; path = db/migrate_004_add_edit_bits_to_note.sql; sourceTree = "<group>"; };
+		92AAA11E0F1C025F0096937B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		92C057E10ED836180019E07B /* ico_clock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_clock.gif; path = resource/ico_clock.gif; sourceTree = "<group>"; };
 		92C057E20ED836190019E07B /* ico_tag.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_tag.gif; path = resource/ico_tag.gif; sourceTree = "<group>"; };
 		92C057E30ED836190019E07B /* ico_globe.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ico_globe.gif; path = resource/ico_globe.gif; sourceTree = "<group>"; };
@@ -341,7 +341,7 @@
 				B98D24120E678C250006D6AF /* rtm.sql */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				B9DD5E900E6901B7007BFC7A /* UnitTest-Info.plist */,
-				923243C10EF726DE003599A3 /* Default.png */,
+				92AAA11E0F1C025F0096937B /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -690,7 +690,7 @@
 				92C058E90EDAB7F50019E07B /* icon_priority_2.png in Resources */,
 				92C058EA0EDAB7F50019E07B /* icon_priority_3.png in Resources */,
 				92E029110EEBCB7F006BB575 /* MilponIconSmall.png in Resources */,
-				923243C20EF726DE003599A3 /* Default.png in Resources */,
+				92AAA11F0F1C025F0096937B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,7 +701,7 @@
 				86E021190E7EAAD7001945E7 /* rtm.sql in Resources */,
 				B96D27F40ED6B9B400DE8E66 /* migrate_001_edit_bits.sql in Resources */,
 				B96D28580ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */,
-				923243C40EF726DE003599A3 /* Default.png in Resources */,
+				92AAA1210F1C025F0096937B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,7 +711,7 @@
 			files = (
 				92F166840ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib in Resources */,
 				B96D28570ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */,
-				923243C50EF726DE003599A3 /* Default.png in Resources */,
+				92AAA1220F1C025F0096937B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,7 +722,7 @@
 				B91554600E6A3906004DC85A /* rtm.sql in Resources */,
 				B96D27F30ED6B9B300DE8E66 /* migrate_001_edit_bits.sql in Resources */,
 				B96D28560ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */,
-				923243C30EF726DE003599A3 /* Default.png in Resources */,
+				92AAA1200F1C025F0096937B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,8 +952,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "712B91C3-2199-4297-BB20-A99A156D306C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "712B91C3-2199-4297-BB20-A99A156D306C";
+				PROVISIONING_PROFILE = "B50027B4-7B6E-434A-BC24-30B0560355D1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B50027B4-7B6E-434A-BC24-30B0560355D1";
 				SDKROOT = iphoneos2.2;
 			};
 			name = AdHocDistribution;
@@ -970,8 +970,8 @@
 				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Milpon;
-				PROVISIONING_PROFILE = "712B91C3-2199-4297-BB20-A99A156D306C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "712B91C3-2199-4297-BB20-A99A156D306C";
+				PROVISIONING_PROFILE = "B50027B4-7B6E-434A-BC24-30B0560355D1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B50027B4-7B6E-434A-BC24-30B0560355D1";
 				SDKROOT = iphoneos2.2;
 			};
 			name = AdHocDistribution;
@@ -1427,7 +1427,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

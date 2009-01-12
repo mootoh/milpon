@@ -10,15 +10,8 @@
 
 @class RootViewController;
 
-@interface ConfigViewController : UITableViewController
+@interface ConfigViewController : UIViewController
 {
-   enum {
-      CONFIG_RELOAD,
-      CONFIG_FEEDBACK,
-      CONFIG_VERSION,
-      CONFIG_COUNT
-   } types;
-
    RootViewController *rootViewController;
    UIActivityIndicatorView *activityIndicator;
 }
