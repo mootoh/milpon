@@ -73,7 +73,9 @@ static NSArray *s_icons;
          [ics addObject:img];
          [img release];
       }
-      s_icons = ics;
+      s_icons = [ics retain];
+      [ics release];
+      first = NO;
    }
    return s_icons;
 }

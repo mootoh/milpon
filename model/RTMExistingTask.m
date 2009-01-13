@@ -290,7 +290,7 @@
 
    sqlite3_bind_int(stmt,  1, [task_series_id intValue]);
 
-   NSMutableArray *ret = [[NSMutableArray alloc] init];
+   NSMutableArray *ret = [[[NSMutableArray alloc] init] autorelease];
 
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
