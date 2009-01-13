@@ -43,38 +43,6 @@ const float column_height = 40.0f;
    return self;
 }
 
-#if 0
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-   switch ([indexPath row]) {
-      case CELL_NAME:
-         [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-         break;
-      case CELL_LIST: {
-         ListSelectViewController *ctr = [[[ListSelectViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-         ctr.parent = self;
-
-         [self textFieldShouldReturn:name_field];
-         [self textFieldShouldReturn:note_field];
-         [[self navigationController] pushViewController:ctr animated:YES];
-         break;
-       }
-      case CELL_PRIORITY_DUE: {
-         [self textFieldShouldReturn:name_field];
-         [self textFieldShouldReturn:note_field];
-
-        break;
-      }
-      case CELL_NOTE: {
-            [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-            break;
-      }
-      default:
-         break;
-   }
-}
-#endif // 0
-
 - (void) dealloc
 {
    [priority_segment release];
@@ -95,10 +63,12 @@ const float column_height = 40.0f;
  */
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-   if (textField.tag == TEXTFIELD_NAME)
-      self.name = textField.text;
-   else if (textField.tag == TEXTFIELD_NOTE)
-      self.note = textField.text;
+   if (textField) {
+      if (textField.tag == TEXTFIELD_NAME)
+         self.name = textField.text;
+      else if (textField.tag == TEXTFIELD_NOTE)
+         self.note = textField.text;
+   }
 
    [textField resignFirstResponder];
    return YES;
@@ -205,31 +175,14 @@ const float column_height = 40.0f;
 
    [priority_segment addTarget:self action:@selector(updatePriority) forControlEvents:UIControlEventValueChanged];
    priority_segment.selectedSegmentIndex = 0;
+   [priority_segment addTarget:self action:@selector(prioritySelected) forControlEvents:UIControlEventValueChanged];
+
    [self.view addSubview:priority_segment];
 
    UICCalendarPicker *picker = [[UICCalendarPicker alloc] initWithFrame:CGRectMake(0.0f, 120, 204.0f, 234.0f)];
    [picker setDelegate:self];
    [picker showInView:self.view];
    [picker release];
-
-#if 0
-   if (due_date) {
-      NSString *dd = [[due_date componentsSeparatedByString:@"T"] objectAtIndex:0];
-      NSArray *da  = [dd componentsSeparatedByString:@"-"];
-
-      cell.text = [NSString stringWithFormat:@"%@/%@",
-         [da objectAtIndex:1], [da objectAtIndex:2]];
-   } else {
-      //cell.text = @"...";
-   }
-#endif // 0
-
-   /*
-   UILabel *list_label = [[UILabel alloc] init];
-   list_label.text = list.name;
-   [self.view addSubview:list_label];
-   [list_label release];
-   */
 }
 
 - (void) picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate
@@ -246,7 +199,11 @@ const float column_height = 40.0f;
    self.due_date = ret;
 
    [self.view setNeedsDisplay];
-   //[self.tableView reloadData];
+}
+
+- (void) prioritySelected
+{
+   [self commitTextFields];
 }
 
 @end
