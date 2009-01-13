@@ -75,8 +75,9 @@ static const int SECTIONS = 4;
 {
    if (self = [super initWithStyle:style]) {
 		NSDate *today = [NSDate date];
-      NSDateFormatter *formatter = [[NSDateFormatter alloc]
-           initWithDateFormat:@"%1m/%1d (%a)" allowNaturalLanguage:YES];
+      NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+      [formatter setDateStyle:NSDateFormatterMediumStyle];
+      formatter.dateFormat = @"M/dd (EEE)";
       self.title = [formatter stringFromDate:today];
       [formatter release];
 
