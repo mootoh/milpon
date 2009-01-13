@@ -140,7 +140,6 @@
    NetworkStatus stat =  [reach internetConnectionStatus];
    reach.networkStatusNotificationsEnabled = NO;
    if (stat == NotReachable) {
-
       UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Not Connected"
          message:@"Not connected to the RTM site. Sync when you are online."
          delegate:nil
@@ -148,7 +147,6 @@
          otherButtonTitles:nil];
       [av show];
       [av release];
-
       return;
    } else {
       LOG(@"OK");

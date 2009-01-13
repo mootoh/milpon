@@ -28,7 +28,7 @@
 {
    [super loadView];
 
-   UIBarButtonItem *configButton = [[UIBarButtonItem alloc] initWithTitle:@"Setting" style:UIBarButtonItemStylePlain target:self action:@selector(config)];
+   UIBarButtonItem *configButton = [[UIBarButtonItem alloc] initWithTitle:@"Info" style:UIBarButtonItemStylePlain target:self action:@selector(config)];
    self.navigationItem.leftBarButtonItem = configButton;
    [configButton release];
 }
@@ -153,6 +153,7 @@
    self.bottomBar.hidden = YES;
 
    ConfigViewController *ctrl = [[ConfigViewController alloc] initWithNibName:nil bundle:nil];
+   ctrl.title = @"Info";
    ctrl.rootViewController = self.rootViewController;
 
    UINavigationController *modalController = [[UINavigationController alloc] initWithRootViewController:ctrl];

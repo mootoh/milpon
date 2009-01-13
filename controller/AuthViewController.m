@@ -43,6 +43,7 @@
        */
       confirmButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
       confirmButton.frame = CGRectMake(appFrame.size.width/2-150/2, 300, 150, 40);
+      [confirmButton retain];
 
       authActivity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
       authActivity.frame = CGRectMake(appFrame.size.width/2-16, appFrame.size.height/2, 32, 32);
@@ -58,6 +59,7 @@
    [greetingLabel release];
    [instructionLabel release];
    [authActivity release];
+   [confirmButton release];
    [super dealloc];
 }
 
@@ -68,7 +70,6 @@
    self.view.backgroundColor = [UIColor whiteColor];
 
    // TODO: add funny image
-
    [self.view addSubview:greetingLabel];
    [self.view addSubview:instructionLabel];
    [self.view addSubview:confirmButton];

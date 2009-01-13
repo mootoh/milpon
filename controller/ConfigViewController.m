@@ -15,9 +15,9 @@
 
 @synthesize rootViewController;
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id) initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
-   if (self = [super initWithStyle:style]) {
+   if (self = [super initWithNibName:nibName bundle:bundle]) {
       CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
 
       activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -36,55 +36,32 @@
    [doneButton release];
 
    [self.view addSubview:activityIndicator];
-}
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-   return 1;
-}
+   UIButton *reloadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+   reloadButton.frame = CGRectMake(20, 32, 280, 32);
+   [reloadButton setTitle:@"refresh all local data (long wait)" forState:UIControlStateNormal];
+   [reloadButton addTarget:self action:@selector(fetchAll) forControlEvents:UIControlEventTouchDown];
+   [self.view addSubview:reloadButton];
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-   return CONFIG_COUNT;
-}
+   UIButton *feedbackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+   feedbackButton.frame = CGRectMake(20, 96, 280, 32);
+   [feedbackButton setTitle:@"Send Feedback" forState:UIControlStateNormal];
+   [feedbackButton addTarget:self action:@selector(emailFeedback) forControlEvents:UIControlEventTouchDown];
+   [self.view addSubview:feedbackButton];
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-   static NSString *CellIdentifier = @"ConfigViewCell";
+   UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+         [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"MilponIconSmall.png"]];
+   UIImageView *iconImageView = [[UIImageView alloc] initWithImage:iconImage];
+   iconImageView.center = CGPointMake(160, 96+32*2+28); // 132, 96+32*2, 57, 57);
+   [self.view addSubview:iconImageView];
+   [iconImage release];
 
-   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-   if (cell == nil) {
-      cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-   }
-   // Configure the cell
-   switch (indexPath.row) {
-      case CONFIG_RELOAD: {
-         cell.text = @"fetch all data from RTM site (long wait)";
-         cell.font = [UIFont systemFontOfSize:12];
+   UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 96+32*2+28+28+12, 280, 32)];
+   versionLabel.font = [UIFont systemFontOfSize:14];
+   versionLabel.text = [NSString stringWithFormat:@"rev %s", VERSION];
+   [self.view addSubview:versionLabel];
+   [versionLabel release];
 
-         UIButton *reloadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-         reloadButton.frame = CGRectMake(240, 8, 72, 32);
-         [reloadButton setTitle:@"fetch all" forState:UIControlStateNormal];
-         [reloadButton addTarget:self action:@selector(fetchAll) forControlEvents:UIControlEventTouchDown];
-         [cell.contentView addSubview:reloadButton];
-
-         break;
-      }
-      case CONFIG_FEEDBACK: {
-         UIButton *feedbackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-         feedbackButton.frame = CGRectMake(160, 8, 128, 32);
-         [feedbackButton setTitle:@"Send Feedback" forState:UIControlStateNormal];
-         [feedbackButton addTarget:self action:@selector(emailFeedback) forControlEvents:UIControlEventTouchDown];
-         [cell.contentView addSubview:feedbackButton];
-         break;
-      }
-      case CONFIG_VERSION:
-         cell.text = [NSString stringWithUTF8String:VERSION];
-         break;
-      default:
-         break;
-   }
-   return cell;
 }
 
 - (void)dealloc
@@ -112,10 +89,10 @@
 
 - (IBAction) emailFeedback
 {  
-   NSString *subject = @"subject=Milpon Feedback";  
+   NSString *subject = [NSString stringWithFormat:@"subject=Milpon Feedback %s", VERSION];
    NSString *mailto = [NSString stringWithFormat:@"mailto:mootoh@gmail.com?%@", [subject stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-   NSURL *url = [NSURL URLWithString:mailto];  
-   [[UIApplication sharedApplication] openURL:url];  
+   NSURL *url = [NSURL URLWithString:mailto];
+   [[UIApplication sharedApplication] openURL:url];
 }  
 
 @end
