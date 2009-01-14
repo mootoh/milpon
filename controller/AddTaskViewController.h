@@ -20,6 +20,7 @@
    NSArray *lists;
    RTMList *list;
 
+   UITextField *name_field, *note_field;
    UISegmentedControl *priority_segment;
 }
 

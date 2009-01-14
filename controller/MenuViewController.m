@@ -18,7 +18,7 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
    if (self = [super initWithStyle:style]) {
-      items = [[NSArray arrayWithObjects:@"Overview", @"List", nil] retain];
+      items = [[NSArray arrayWithObjects:@"Overview", @"List", @"Review", nil] retain];
       self.title = @"Milpon";
    }
    return self;

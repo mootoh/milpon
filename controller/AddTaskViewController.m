@@ -18,11 +18,6 @@
 
 @implementation AddTaskViewController
 
-enum {
-   TEXTFIELD_NAME,
-   TEXTFIELD_NOTE
-};
-
 const float margin_top  = 16.0f;
 const float margin_left = 16.0f;
 const float column_height = 40.0f;
@@ -45,6 +40,8 @@ const float column_height = 40.0f;
 
 - (void) dealloc
 {
+   [name_field release];
+   [note_field release];
    [priority_segment release];
    [name release];
    [due_date release];
@@ -63,12 +60,12 @@ const float column_height = 40.0f;
  */
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-   if (textField) {
-      if (textField.tag == TEXTFIELD_NAME)
-         self.name = textField.text;
-      else if (textField.tag == TEXTFIELD_NOTE)
-         self.note = textField.text;
-   }
+   if (textField == name_field)
+      self.name = textField.text;
+   else if (textField == note_field)
+      self.note = textField.text;
+   else
+      return YES;
 
    [textField resignFirstResponder];
    return YES;
@@ -77,6 +74,7 @@ const float column_height = 40.0f;
 - (void) updatePriority
 {
    self.priority = [NSString stringWithFormat:@"%d", priority_segment.selectedSegmentIndex];
+   [self commitTextFields];
 }
 
 - (void) close
@@ -95,8 +93,8 @@ const float column_height = 40.0f;
 
 - (void) commitTextFields
 {
-   [self textFieldShouldReturn:(UITextField *)[self.view viewWithTag:TEXTFIELD_NAME]];
-   [self textFieldShouldReturn:(UITextField *)[self.view viewWithTag:TEXTFIELD_NOTE]];
+   [self textFieldShouldReturn:name_field];
+   [self textFieldShouldReturn:note_field];
 }
 
 /*
@@ -147,39 +145,33 @@ const float column_height = 40.0f;
    [submitButton release];
 
 	
-   UITextField *name_field = [[UITextField alloc] initWithFrame:
+   name_field = [[UITextField alloc] initWithFrame:
       CGRectMake(margin_left, margin_top, CGRectGetWidth(self.view.frame)-margin_left, column_height)];
    name_field.placeholder = @"what...";
    name_field.returnKeyType = UIReturnKeyDone;
    name_field.delegate = self;
-   name_field.tag = TEXTFIELD_NAME;
-   if (name)
-      name_field.text = name;
    [name_field becomeFirstResponder];
    [self.view addSubview:name_field];
-   [name_field release];
 
-   UITextField *note_field = [[UITextField alloc] initWithFrame:CGRectMake(margin_left, margin_top+column_height, CGRectGetWidth(self.view.frame)-margin_left, column_height)];
+   note_field = [[UITextField alloc] initWithFrame:
+      CGRectMake(margin_left, margin_top+column_height, CGRectGetWidth(self.view.frame)-margin_left, column_height)];
    note_field.placeholder = @"note...";
    note_field.returnKeyType = UIReturnKeyDone;
    note_field.delegate = self;
-   name_field.tag = TEXTFIELD_NOTE;
    [self.view addSubview:note_field];
-   [note_field release];
 
    // setup priority segment
    NSArray *priority_items = [NSArray arrayWithObjects:@"0", @"1", @"2", @"3", nil];
-   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(0, 80, CGRectGetWidth(self.view.frame)/2-64, 40)];
+   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(32, 100, CGRectGetWidth(self.view.frame)-64, 40)];
    for (int i=0; i<priority_items.count; i++)
       [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
 
-   [priority_segment addTarget:self action:@selector(updatePriority) forControlEvents:UIControlEventValueChanged];
    priority_segment.selectedSegmentIndex = 0;
-   [priority_segment addTarget:self action:@selector(prioritySelected) forControlEvents:UIControlEventValueChanged];
+   [priority_segment addTarget:self action:@selector(updatePriority) forControlEvents:UIControlEventValueChanged];
 
    [self.view addSubview:priority_segment];
 
-   UICCalendarPicker *picker = [[UICCalendarPicker alloc] initWithFrame:CGRectMake(0.0f, 120, 204.0f, 234.0f)];
+   UICCalendarPicker *picker = [[UICCalendarPicker alloc] initWithFrame:CGRectMake((320.0f-204.0f)/2.0f, 160, 204.0f, 234.0f)];
    [picker setDelegate:self];
    [picker showInView:self.view];
    [picker release];
@@ -203,7 +195,6 @@ const float column_height = 40.0f;
 
 - (void) prioritySelected
 {
-   [self commitTextFields];
 }
 
 @end
