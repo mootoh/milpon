@@ -1,4 +1,6 @@
 2009-01-15
+	UI から、また手をつけていくといいんじゃないかな。
+
 	- Page Control の Navigation を違和感ないものにする in TaskVIew
 	- Overview を表示するのが遅い
 	- AddTaskView の整理
@@ -8,7 +10,13 @@
 	- 横スクロールで次の日のタスクを見る
 	* list view でも priority, due date を変えられるように
 		2009-01-15: won't fix: UIが複雑になるし。
-
+	- DB migration を自動化する
+	- task attribute を編集後に list view に戻るとソートが変
+	- design the ReviewView
+	- completed task をどう見せるか (Review)
+	- sync Lists modified on the web.
+	- activate URL button
+	- activate recurrence image
 
 2008-11-26
 	+ TaskView の notes を UIPageControl を使って複数表示できるようにする
