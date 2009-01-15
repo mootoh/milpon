@@ -1,3 +1,15 @@
+2009-01-15
+	- Page Control の Navigation を違和感ないものにする in TaskVIew
+	- Overview を表示するのが遅い
+	- AddTaskView の整理
+	- quick add task
+	- sync 中にlist view をスクロールしても死なないように
+	- API call で sleep(1) してるのをやめて、より精密な時間管理をし、レスポンスを速くする
+	- 横スクロールで次の日のタスクを見る
+	* list view でも priority, due date を変えられるように
+		2009-01-15: won't fix: UIが複雑になるし。
+
+
 2008-11-26
 	+ TaskView の notes を UIPageControl を使って複数表示できるようにする
 		> 2008-11-26: done.
@@ -8,7 +20,8 @@
 	                進行中のスレッドを止めてから動かす
 
 2008-11-03
-	- AddTask View を table じゃなくする
+	+ AddTask View を table じゃなくする
+		2009-01-15: done.
 
 2008-11-02
 	- use NSNumber instead of NSInteger
@@ -16,10 +29,8 @@
 		- base64 とかで encode しちゃえばいいんじゃね。
 		- XOR してしまうとか
 
-
 2008-10-30
 	- NSString で int をラップしてるとこを、 NSNumber にする
-
 
 2008-10-22
 	- auth にミスったときのメッセージがまちがってる。 (#7)
@@ -27,10 +38,12 @@
 	! sync したあとに チェックボックスに入ってることがある (#9)
 	+ ConfigView に all reload を入れる
 		> 2008-10-24: 入れた
-	- 要望をすぐメールできるようなフォームを仕込む (#10)
+	+ 要望をすぐメールできるようなフォームを仕込む (#10)
+		2009-01-15: メールを送るためのボタンをつけた
 	+ PendingTask も一覧に出す (#4)
 		> 2008-11-18: 入れた
-	# かわいい牛 or ミルクのアイコンを募集する (#1)
+	+ かわいい牛 or ミルクのアイコンを募集する (#1)
+		2009-01-15: 2件きた。
 	- AutoReleasePool を活用してメモリ消費をへらす (#11)
 	- メモリ消費を計測する (#12)
 	+ チェックボックスがおかしくなる
@@ -190,14 +203,14 @@
 		callback はひとつにまとめられる。
 		単に値をとりだすだけのものならば。
 
-	- task sync:
+	+ task sync
 		offline 時に施した変更を、 bulk update するのに 'dirty' flag のようなものを
 		使うことを想定していた。
 		だけれど、同じエントリに対して name を変え、次に tag をつけ、といった具合に
 		複数の操作をされた場合にはどうしたらいいのだろう。
 		transaction queue のようなものを持てばよいんだろうけど、ちょっと大袈裟だ。
-
 		最初のリリースでは、オフライン操作としてできることを絞っていればよいか。
+		2009-01-15: edit_bits で解決することに。
 
 2008-10-07 mootoh
 	- RTMTask
@@ -235,7 +248,8 @@
 
 
 2008-10-04 mootoh
-	- care about offline HTTP request. (#32)
+	+ care about offline HTTP request. (#32)
+		2009-01-15: done.
 	+ use RTMAuth to wrap secret information.
 		> done (2008-10-06):
 	+ use dictionary to pass many arguments packed.
