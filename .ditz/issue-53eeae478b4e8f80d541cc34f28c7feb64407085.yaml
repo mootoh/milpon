@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: treat database error handling
+desc: "see trac #33 ."
+type: :task
+component: milpon
+release: 
+reporter: mootoh <mootoh@gmail.coom>
+status: :unstarted
+disposition: 
+creation_time: 2009-01-16 01:25:27.115785 Z
+references: []
+
+id: 53eeae478b4e8f80d541cc34f28c7feb64407085
+log_events: 
+- - 2009-01-16 01:25:32.915303 Z
+  - mootoh <mootoh@gmail.coom>
+  - created
+  - ""
