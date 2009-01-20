@@ -99,6 +99,17 @@
 		B915543A0E6A3844004DC85A /* RTMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D23CC0E67875D0006D6AF /* RTMDatabase.m */; };
 		B91554600E6A3906004DC85A /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B98D24120E678C250006D6AF /* rtm.sql */; };
 		B9224C5C0E70AECF004F83CE /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9224C5B0E70AECF004F83CE /* AuthViewController.m */; };
+		B9337B600F25D88200FACDEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		B9337B610F25D88200FACDEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		B9337B630F25D88200FACDEF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		B9337B730F25D92400FACDEF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		B9337B870F25D95500FACDEF /* TrialWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337A9D0F25D41100FACDEF /* TrialWindow.xib */; };
+		B9337B880F25D95B00FACDEF /* TrialAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337ACB0F25D54500FACDEF /* TrialAppDelegate.m */; };
+		B9337C0D0F25DEA200FACDEF /* OverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337C0C0F25DEA200FACDEF /* OverviewView.xib */; };
+		B9337C270F25E0C100FACDEF /* ListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337C260F25E0C100FACDEF /* ListView.xib */; };
+		B9337C2E0F25E2AF00FACDEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B9337C2D0F25E2AF00FACDEF /* Settings.bundle */; };
+		B9337C2F0F25E2AF00FACDEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B9337C2D0F25E2AF00FACDEF /* Settings.bundle */; };
+		B9337C380F25E2ED00FACDEF /* OverviewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337C370F25E2ED00FACDEF /* OverviewTableViewController.m */; };
 		B93A01CC0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */; };
 		B93A01CD0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */; };
 		B96D27F30ED6B9B300DE8E66 /* migrate_001_edit_bits.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */; };
@@ -232,6 +243,16 @@
 		B915536D0E6A328F004DC85A /* RTMSynchronizerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMSynchronizerTest.m; sourceTree = "<group>"; };
 		B9224C5A0E70AECF004F83CE /* AuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthViewController.h; sourceTree = "<group>"; };
 		B9224C5B0E70AECF004F83CE /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
+		B9337A9D0F25D41100FACDEF /* TrialWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrialWindow.xib; path = UITrial/TrialWindow.xib; sourceTree = "<group>"; };
+		B9337AAF0F25D43100FACDEF /* UITrial-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UITrial-Info.plist"; sourceTree = "<group>"; };
+		B9337ACA0F25D54500FACDEF /* TrialAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialAppDelegate.h; path = UITrial/TrialAppDelegate.h; sourceTree = "<group>"; };
+		B9337ACB0F25D54500FACDEF /* TrialAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialAppDelegate.m; path = UITrial/TrialAppDelegate.m; sourceTree = "<group>"; };
+		B9337B6B0F25D88200FACDEF /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9337C0C0F25DEA200FACDEF /* OverviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OverviewView.xib; path = UITrial/OverviewView.xib; sourceTree = "<group>"; };
+		B9337C260F25E0C100FACDEF /* ListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ListView.xib; path = UITrial/ListView.xib; sourceTree = "<group>"; };
+		B9337C2D0F25E2AF00FACDEF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		B9337C360F25E2ED00FACDEF /* OverviewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OverviewTableViewController.h; path = UITrial/OverviewTableViewController.h; sourceTree = "<group>"; };
+		B9337C370F25E2ED00FACDEF /* OverviewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OverviewTableViewController.m; path = UITrial/OverviewTableViewController.m; sourceTree = "<group>"; };
 		B93A01CA0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIXMLParserCallback.h; sourceTree = "<group>"; };
 		B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIXMLParserCallback.m; sourceTree = "<group>"; };
 		B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_001_edit_bits.sql; path = db/migrate_001_edit_bits.sql; sourceTree = "<group>"; };
@@ -304,6 +325,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9337B5F0F25D88200FACDEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9337B600F25D88200FACDEF /* Foundation.framework in Frameworks */,
+				B9337B610F25D88200FACDEF /* UIKit.framework in Frameworks */,
+				B9337B630F25D88200FACDEF /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9DD5E8C0E6901B7007BFC7A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -323,6 +354,7 @@
 				B9DD5E8F0E6901B7007BFC7A /* UnitTest.octest */,
 				86E0212A0E7EAAD7001945E7 /* UnitTest.octest */,
 				92F166670ED324290096EABC /* ProgressViewTest.app */,
+				B9337B6B0F25D88200FACDEF /* Milpon.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -330,6 +362,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				B9337AC80F25D50A00FACDEF /* UITrial */,
 				B91553250E6A2A4B004DC85A /* api */,
 				B98D23B80E6783DD0006D6AF /* model */,
 				86E01EF00E7E5D42001945E7 /* controller */,
@@ -359,6 +392,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B9337C2D0F25E2AF00FACDEF /* Settings.bundle */,
 				926329C70EF6BC77009E2CD3 /* milpon_logopng24_163_256_6.png */,
 				926329C50EF6BC72009E2CD3 /* milk1.png */,
 				92E029100EEBCB7F006BB575 /* MilponIconSmall.png */,
@@ -577,6 +611,21 @@
 			name = Resource;
 			sourceTree = "<group>";
 		};
+		B9337AC80F25D50A00FACDEF /* UITrial */ = {
+			isa = PBXGroup;
+			children = (
+				B9337A9D0F25D41100FACDEF /* TrialWindow.xib */,
+				B9337ACA0F25D54500FACDEF /* TrialAppDelegate.h */,
+				B9337ACB0F25D54500FACDEF /* TrialAppDelegate.m */,
+				B9337AAF0F25D43100FACDEF /* UITrial-Info.plist */,
+				B9337C0C0F25DEA200FACDEF /* OverviewView.xib */,
+				B9337C260F25E0C100FACDEF /* ListView.xib */,
+				B9337C360F25E2ED00FACDEF /* OverviewTableViewController.h */,
+				B9337C370F25E2ED00FACDEF /* OverviewTableViewController.m */,
+			);
+			name = UITrial;
+			sourceTree = "<group>";
+		};
 		B96D27EA0ED6B98700DE8E66 /* migrate */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,6 +745,23 @@
 			productReference = 92F166670ED324290096EABC /* ProgressViewTest.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B9337B1A0F25D88200FACDEF /* UITrial */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9337B650F25D88200FACDEF /* Build configuration list for PBXNativeTarget "UITrial" */;
+			buildPhases = (
+				B9337B1B0F25D88200FACDEF /* Resources */,
+				B9337B3B0F25D88200FACDEF /* Sources */,
+				B9337B5F0F25D88200FACDEF /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UITrial;
+			productName = RTM4iPhone;
+			productReference = B9337B6B0F25D88200FACDEF /* Milpon.app */;
+			productType = "com.apple.product-type.application";
+		};
 		B9DD5E8E0E6901B7007BFC7A /* UnitTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9DD5E940E6901B8007BFC7A /* Build configuration list for PBXNativeTarget "UnitTest" */;
@@ -737,6 +803,7 @@
 				B9DD5E8E0E6901B7007BFC7A /* UnitTest */,
 				86E021170E7EAAD7001945E7 /* UpdateDB */,
 				92F166660ED324290096EABC /* ProgressViewTest */,
+				B9337B1A0F25D88200FACDEF /* UITrial */,
 			);
 		};
 /* End PBXProject section */
@@ -777,6 +844,7 @@
 				926E52020EF72D1500F5C7BD /* uiccalendar_main.png in Resources */,
 				926E52030EF72D1500F5C7BD /* uiccalendar_right_arrow.png in Resources */,
 				926E52040EF72D1500F5C7BD /* uiccalendar_title.png in Resources */,
+				B9337C2F0F25E2AF00FACDEF /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,6 +866,17 @@
 				92F166840ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib in Resources */,
 				B96D28570ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */,
 				923243C50EF726DE003599A3 /* Default.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9337B1B0F25D88200FACDEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9337B870F25D95500FACDEF /* TrialWindow.xib in Resources */,
+				B9337C0D0F25DEA200FACDEF /* OverviewView.xib in Resources */,
+				B9337C270F25E0C100FACDEF /* ListView.xib in Resources */,
+				B9337C2E0F25E2AF00FACDEF /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,6 +991,16 @@
 				92F166740ED325560096EABC /* ProgressView.m in Sources */,
 				92F166760ED3256D0096EABC /* main.m in Sources */,
 				92F166910ED326A80096EABC /* FunctionalTestAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9337B3B0F25D88200FACDEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9337B730F25D92400FACDEF /* main.m in Sources */,
+				B9337B880F25D95B00FACDEF /* TrialAppDelegate.m in Sources */,
+				B9337C380F25E2ED00FACDEF /* OverviewTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1428,6 +1517,86 @@
 			};
 			name = "Local Debug";
 		};
+		B9337B660F25D88200FACDEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
+				INFOPLIST_FILE = "/Users/takayama/prj/iphone/milpon/UITrial-Info.plist";
+				PRODUCT_NAME = Milpon;
+				PROVISIONING_PROFILE = DefaultProfileUuid;
+			};
+			name = Debug;
+		};
+		B9337B670F25D88200FACDEF /* Local Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
+				INFOPLIST_FILE = "/Users/takayama/prj/iphone/milpon/Info copy.plist";
+				PRODUCT_NAME = Milpon;
+				PROVISIONING_PROFILE = DefaultProfileUuid;
+			};
+			name = "Local Debug";
+		};
+		B9337B680F25D88200FACDEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
+				INFOPLIST_FILE = "/Users/takayama/prj/iphone/milpon/Info copy.plist";
+				PRODUCT_NAME = Milpon;
+			};
+			name = Release;
+		};
+		B9337B690F25D88200FACDEF /* AdHocDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Motohiro Takayama";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
+				INFOPLIST_FILE = "/Users/takayama/prj/iphone/milpon/Info copy.plist";
+				PRODUCT_NAME = Milpon;
+				PROVISIONING_PROFILE = "712B91C3-2199-4297-BB20-A99A156D306C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "712B91C3-2199-4297-BB20-A99A156D306C";
+				SDKROOT = iphoneos2.2;
+			};
+			name = AdHocDistribution;
+		};
+		B9337B6A0F25D88200FACDEF /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Motohiro Takayama";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
+				INFOPLIST_FILE = "/Users/takayama/prj/iphone/milpon/Info copy.plist";
+				PRODUCT_NAME = Milpon;
+				PROVISIONING_PROFILE = "C29F2971-2379-4BAD-834C-5A8742018B89";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C29F2971-2379-4BAD-834C-5A8742018B89";
+				SDKROOT = iphoneos2.2;
+			};
+			name = AppStoreRelease;
+		};
 		B9DD5E920E6901B7007BFC7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1558,6 +1727,18 @@
 				92F1666B0ED3242A0096EABC /* Release */,
 				92F1666C0ED3242A0096EABC /* AdHocDistribution */,
 				92E029230EEBCC67006BB575 /* AppStoreRelease */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B9337B650F25D88200FACDEF /* Build configuration list for PBXNativeTarget "UITrial" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9337B660F25D88200FACDEF /* Debug */,
+				B9337B670F25D88200FACDEF /* Local Debug */,
+				B9337B680F25D88200FACDEF /* Release */,
+				B9337B690F25D88200FACDEF /* AdHocDistribution */,
+				B9337B6A0F25D88200FACDEF /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
