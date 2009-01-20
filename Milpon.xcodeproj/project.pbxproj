@@ -99,6 +99,8 @@
 		B915543A0E6A3844004DC85A /* RTMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D23CC0E67875D0006D6AF /* RTMDatabase.m */; };
 		B91554600E6A3906004DC85A /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B98D24120E678C250006D6AF /* rtm.sql */; };
 		B9224C5C0E70AECF004F83CE /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9224C5B0E70AECF004F83CE /* AuthViewController.m */; };
+		B9258A150F25F92B00766966 /* TrialAddTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9258A140F25F92B00766966 /* TrialAddTaskView.xib */; };
+		B9258A180F25F94700766966 /* TrialAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9258A170F25F94700766966 /* TrialAddTaskViewController.m */; };
 		B9337B600F25D88200FACDEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9337B610F25D88200FACDEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		B9337B630F25D88200FACDEF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
@@ -248,6 +250,9 @@
 		B915536D0E6A328F004DC85A /* RTMSynchronizerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMSynchronizerTest.m; sourceTree = "<group>"; };
 		B9224C5A0E70AECF004F83CE /* AuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthViewController.h; sourceTree = "<group>"; };
 		B9224C5B0E70AECF004F83CE /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
+		B9258A140F25F92B00766966 /* TrialAddTaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrialAddTaskView.xib; path = UITrial/TrialAddTaskView.xib; sourceTree = "<group>"; };
+		B9258A160F25F94700766966 /* TrialAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialAddTaskViewController.h; path = UITrial/TrialAddTaskViewController.h; sourceTree = "<group>"; };
+		B9258A170F25F94700766966 /* TrialAddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialAddTaskViewController.m; path = UITrial/TrialAddTaskViewController.m; sourceTree = "<group>"; };
 		B9337A9D0F25D41100FACDEF /* TrialWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrialWindow.xib; path = UITrial/TrialWindow.xib; sourceTree = "<group>"; };
 		B9337AAF0F25D43100FACDEF /* UITrial-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UITrial-Info.plist"; sourceTree = "<group>"; };
 		B9337ACA0F25D54500FACDEF /* TrialAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialAppDelegate.h; path = UITrial/TrialAppDelegate.h; sourceTree = "<group>"; };
@@ -632,17 +637,20 @@
 				B9337ACB0F25D54500FACDEF /* TrialAppDelegate.m */,
 				B9337AAF0F25D43100FACDEF /* UITrial-Info.plist */,
 				B9337C0C0F25DEA200FACDEF /* OverviewView.xib */,
-				B9337C260F25E0C100FACDEF /* ListView.xib */,
 				B9337C360F25E2ED00FACDEF /* OverviewTableViewController.h */,
 				B9337C370F25E2ED00FACDEF /* OverviewTableViewController.m */,
+				B9337C260F25E0C100FACDEF /* ListView.xib */,
 				B9337CC50F25EB9D00FACDEF /* TrialListViewController.h */,
 				B9337CC60F25EB9D00FACDEF /* TrialListViewController.m */,
+				B9337CD00F25EC3A00FACDEF /* TagView.xib */,
 				B9337CCA0F25EBF300FACDEF /* TrialTagViewController.h */,
 				B9337CCB0F25EBF300FACDEF /* TrialTagViewController.m */,
+				B9337CD30F25EC5900FACDEF /* ReviewView.xib */,
 				B9337CCD0F25EC0400FACDEF /* TrialReviewController.h */,
 				B9337CCE0F25EC0400FACDEF /* TrialReviewController.m */,
-				B9337CD00F25EC3A00FACDEF /* TagView.xib */,
-				B9337CD30F25EC5900FACDEF /* ReviewView.xib */,
+				B9258A140F25F92B00766966 /* TrialAddTaskView.xib */,
+				B9258A160F25F94700766966 /* TrialAddTaskViewController.h */,
+				B9258A170F25F94700766966 /* TrialAddTaskViewController.m */,
 			);
 			name = UITrial;
 			sourceTree = "<group>";
@@ -900,6 +908,7 @@
 				B9337C2E0F25E2AF00FACDEF /* Settings.bundle in Resources */,
 				B9337CD10F25EC3A00FACDEF /* TagView.xib in Resources */,
 				B9337CD40F25EC5900FACDEF /* ReviewView.xib in Resources */,
+				B9258A150F25F92B00766966 /* TrialAddTaskView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,6 +1036,7 @@
 				B9337CC70F25EB9D00FACDEF /* TrialListViewController.m in Sources */,
 				B9337CCC0F25EBF300FACDEF /* TrialTagViewController.m in Sources */,
 				B9337CCF0F25EC0400FACDEF /* TrialReviewController.m in Sources */,
+				B9258A180F25F94700766966 /* TrialAddTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

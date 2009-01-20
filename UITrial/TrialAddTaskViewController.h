@@ -1,5 +1,5 @@
 //
-//  OverviewTableViewController.h
+//  TrialAddTaskViewController.h
 //  Milpon
 //
 //  Created by mootoh on 1/20/09.
@@ -9,11 +9,8 @@
 #import <UIKit/UIKit.h>
 
 
-@interface OverviewTableViewController : UITableViewController
-{
+@interface TrialAddTaskViewController : UIViewController {
 
 }
-
-- (IBAction) addTask;
 
 @end

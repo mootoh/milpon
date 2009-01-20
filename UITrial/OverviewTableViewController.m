@@ -7,7 +7,7 @@
 //
 
 #import "OverviewTableViewController.h"
-
+#import "TrialAddTaskViewController.h"
 
 @implementation OverviewTableViewController
 
@@ -20,14 +20,16 @@
 }
 */
 
-/*
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+      target:self action:@selector(addTask)];
+
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = addButton;
+    [addButton release];
 }
-*/
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -144,5 +146,14 @@
 }
 
 
-@end
+- (IBAction) addTask
+{
+   NSLog(@"addTask");
+   self.hidesBottomBarWhenPushed = YES;
+   
+   TrialAddTaskViewController *tavController = [[TrialAddTaskViewController alloc] initWithNibName:nil bundle:nil];
+   [self presentModalViewController:tavController animated:NO];
+   [tavController release];
+}
 
+@end
