@@ -110,6 +110,11 @@
 		B9337C2E0F25E2AF00FACDEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B9337C2D0F25E2AF00FACDEF /* Settings.bundle */; };
 		B9337C2F0F25E2AF00FACDEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B9337C2D0F25E2AF00FACDEF /* Settings.bundle */; };
 		B9337C380F25E2ED00FACDEF /* OverviewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337C370F25E2ED00FACDEF /* OverviewTableViewController.m */; };
+		B9337CC70F25EB9D00FACDEF /* TrialListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337CC60F25EB9D00FACDEF /* TrialListViewController.m */; };
+		B9337CCC0F25EBF300FACDEF /* TrialTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337CCB0F25EBF300FACDEF /* TrialTagViewController.m */; };
+		B9337CCF0F25EC0400FACDEF /* TrialReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337CCE0F25EC0400FACDEF /* TrialReviewController.m */; };
+		B9337CD10F25EC3A00FACDEF /* TagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337CD00F25EC3A00FACDEF /* TagView.xib */; };
+		B9337CD40F25EC5900FACDEF /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337CD30F25EC5900FACDEF /* ReviewView.xib */; };
 		B93A01CC0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */; };
 		B93A01CD0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */; };
 		B96D27F30ED6B9B300DE8E66 /* migrate_001_edit_bits.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */; };
@@ -253,6 +258,14 @@
 		B9337C2D0F25E2AF00FACDEF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B9337C360F25E2ED00FACDEF /* OverviewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OverviewTableViewController.h; path = UITrial/OverviewTableViewController.h; sourceTree = "<group>"; };
 		B9337C370F25E2ED00FACDEF /* OverviewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OverviewTableViewController.m; path = UITrial/OverviewTableViewController.m; sourceTree = "<group>"; };
+		B9337CC50F25EB9D00FACDEF /* TrialListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialListViewController.h; path = UITrial/TrialListViewController.h; sourceTree = "<group>"; };
+		B9337CC60F25EB9D00FACDEF /* TrialListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialListViewController.m; path = UITrial/TrialListViewController.m; sourceTree = "<group>"; };
+		B9337CCA0F25EBF300FACDEF /* TrialTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialTagViewController.h; path = UITrial/TrialTagViewController.h; sourceTree = "<group>"; };
+		B9337CCB0F25EBF300FACDEF /* TrialTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialTagViewController.m; path = UITrial/TrialTagViewController.m; sourceTree = "<group>"; };
+		B9337CCD0F25EC0400FACDEF /* TrialReviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialReviewController.h; path = UITrial/TrialReviewController.h; sourceTree = "<group>"; };
+		B9337CCE0F25EC0400FACDEF /* TrialReviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialReviewController.m; path = UITrial/TrialReviewController.m; sourceTree = "<group>"; };
+		B9337CD00F25EC3A00FACDEF /* TagView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TagView.xib; path = UITrial/TagView.xib; sourceTree = "<group>"; };
+		B9337CD30F25EC5900FACDEF /* ReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReviewView.xib; path = UITrial/ReviewView.xib; sourceTree = "<group>"; };
 		B93A01CA0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIXMLParserCallback.h; sourceTree = "<group>"; };
 		B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIXMLParserCallback.m; sourceTree = "<group>"; };
 		B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_001_edit_bits.sql; path = db/migrate_001_edit_bits.sql; sourceTree = "<group>"; };
@@ -622,6 +635,14 @@
 				B9337C260F25E0C100FACDEF /* ListView.xib */,
 				B9337C360F25E2ED00FACDEF /* OverviewTableViewController.h */,
 				B9337C370F25E2ED00FACDEF /* OverviewTableViewController.m */,
+				B9337CC50F25EB9D00FACDEF /* TrialListViewController.h */,
+				B9337CC60F25EB9D00FACDEF /* TrialListViewController.m */,
+				B9337CCA0F25EBF300FACDEF /* TrialTagViewController.h */,
+				B9337CCB0F25EBF300FACDEF /* TrialTagViewController.m */,
+				B9337CCD0F25EC0400FACDEF /* TrialReviewController.h */,
+				B9337CCE0F25EC0400FACDEF /* TrialReviewController.m */,
+				B9337CD00F25EC3A00FACDEF /* TagView.xib */,
+				B9337CD30F25EC5900FACDEF /* ReviewView.xib */,
 			);
 			name = UITrial;
 			sourceTree = "<group>";
@@ -877,6 +898,8 @@
 				B9337C0D0F25DEA200FACDEF /* OverviewView.xib in Resources */,
 				B9337C270F25E0C100FACDEF /* ListView.xib in Resources */,
 				B9337C2E0F25E2AF00FACDEF /* Settings.bundle in Resources */,
+				B9337CD10F25EC3A00FACDEF /* TagView.xib in Resources */,
+				B9337CD40F25EC5900FACDEF /* ReviewView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,6 +1024,9 @@
 				B9337B730F25D92400FACDEF /* main.m in Sources */,
 				B9337B880F25D95B00FACDEF /* TrialAppDelegate.m in Sources */,
 				B9337C380F25E2ED00FACDEF /* OverviewTableViewController.m in Sources */,
+				B9337CC70F25EB9D00FACDEF /* TrialListViewController.m in Sources */,
+				B9337CCC0F25EBF300FACDEF /* TrialTagViewController.m in Sources */,
+				B9337CCF0F25EC0400FACDEF /* TrialReviewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
