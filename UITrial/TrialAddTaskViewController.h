@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 
 
-@interface TrialAddTaskViewController : UIViewController {
-
+@interface TrialAddTaskViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+   IBOutlet UITableView *theTableView;
 }
+
+@property (nonatomic, retain) UITableView *theTableView;
+
+- (IBAction) cancel;
+- (IBAction) save;
 
 @end
