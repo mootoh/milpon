@@ -8,7 +8,6 @@
 
 #import "TrialAddTaskViewController.h"
 
-
 @implementation TrialAddTaskViewController
 
 enum {
@@ -163,14 +162,19 @@ enum {
  }
  */
 
-
 - (void)dealloc {
    [super dealloc];
 }
 
+- (void) close
+{
+   [self dismissModalViewControllerAnimated:NO];
+}
+
+
 - (IBAction) cancel
 {
-   NSLog(@"cancel");
+   [self close];
 }
 
 - (IBAction) save
