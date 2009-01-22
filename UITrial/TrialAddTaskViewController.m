@@ -98,14 +98,26 @@ enum {
    }
    
    switch (indexPath.row) {
-      case ROW_NAME:
-         cell.text = @"name";
+      case ROW_NAME: {
+         UITextField *text_input = [[[UITextField alloc] initWithFrame:CGRectMake(4, 4, 300, 36)] autorelease];
+         [text_input becomeFirstResponder];
+         text_input.placeholder = @"what to do...";
+         [cell.contentView addSubview:text_input];
          break;
+      }
       case ROW_DUE:
-         cell.text = @"due";
+         cell.text = @"due, priority";
          break;
       case ROW_PRIORITY:
-         cell.text = @"priority";
+         cell.text = @"list, tag";
+         break;
+      case ROW_NOTE:
+         cell.text = @"note";
+         break;
+      case ROW_LIST:
+         break;
+      case ROW_TAG:
+         break;
       default:
          break;
    }
