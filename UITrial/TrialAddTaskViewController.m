@@ -12,15 +12,26 @@
 
 enum {
    ROW_NAME = 0,
-   ROW_DUE,
-   ROW_PRIORITY,
-   ROW_NOTE,
+   ROW_DUE_PRIORITY,
    ROW_LIST,
    ROW_TAG,
+   ROW_NOTE,
    ROW_COUNT
 };
 
 @synthesize theTableView;
+
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
+{
+   if (self = [super initWithNibName:nibName bundle:bundle]) {
+   }
+   return self;
+}
+
+- (void) viewDidLoad
+{
+   theTableView.rowHeight = 40;
+}
 
 /*
  - (id)initWithStyle:(UITableViewStyle)style {
@@ -105,18 +116,18 @@ enum {
          [cell.contentView addSubview:text_input];
          break;
       }
-      case ROW_DUE:
+      case ROW_DUE_PRIORITY:
          cell.text = @"due, priority";
          break;
-      case ROW_PRIORITY:
-         cell.text = @"list, tag";
+         break;
+      case ROW_LIST:
+         cell.text = @"list";
+         break;
+      case ROW_TAG:
+         cell.text = @"tag";
          break;
       case ROW_NOTE:
          cell.text = @"note";
-         break;
-      case ROW_LIST:
-         break;
-      case ROW_TAG:
          break;
       default:
          break;
