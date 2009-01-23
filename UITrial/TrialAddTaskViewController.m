@@ -136,12 +136,15 @@ enum {
          break;
       case ROW_LIST:
          cell.text = @"list";
+         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          break;
       case ROW_TAG:
          cell.text = @"tag";
+         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          break;
       case ROW_NOTE:
          cell.text = @"note";
+         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          break;
       default:
          break;
