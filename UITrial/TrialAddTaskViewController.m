@@ -7,6 +7,7 @@
 //
 
 #import "TrialAddTaskViewController.h"
+#import "TrialNoteEditController.h"
 
 @implementation TrialAddTaskViewController
 
@@ -24,6 +25,7 @@ enum {
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
    if (self = [super initWithNibName:nibName bundle:bundle]) {
+      self.title = @"Add";
    }
    return self;
 }
@@ -31,6 +33,18 @@ enum {
 - (void) viewDidLoad
 {
    theTableView.rowHeight = 40;
+
+   /*
+    * Navigation buttons
+    */
+   UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+   self.navigationItem.leftBarButtonItem = cancelButton;
+   [cancelButton release];
+
+   UIBarButtonItem *submitButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
+   self.navigationItem.rightBarButtonItem = submitButton;
+   [submitButton release];
+
 }
 
 /*
@@ -143,6 +157,16 @@ enum {
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
 	// [self.navigationController pushViewController:anotherViewController];
 	// [anotherViewController release];
+   switch (indexPath.row) {
+      case ROW_NOTE: {
+         TrialNoteEditController *vc = [[TrialNoteEditController alloc] initWithNibName:nil bundle:nil];
+         [self.navigationController pushViewController:vc animated:YES];
+         [vc release];
+         break;
+      }
+      default:
+         break;
+   }
 }
 
 

@@ -152,7 +152,9 @@
    self.hidesBottomBarWhenPushed = YES;
    
    TrialAddTaskViewController *tavController = [[TrialAddTaskViewController alloc] initWithNibName:nil bundle:nil];
-   [self presentModalViewController:tavController animated:NO];
+   UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:tavController];
+   [self presentModalViewController:navc animated:NO];
+   [navc release];
    [tavController release];
 }
 

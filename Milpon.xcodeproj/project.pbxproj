@@ -117,6 +117,8 @@
 		B9337CCF0F25EC0400FACDEF /* TrialReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337CCE0F25EC0400FACDEF /* TrialReviewController.m */; };
 		B9337CD10F25EC3A00FACDEF /* TagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337CD00F25EC3A00FACDEF /* TagView.xib */; };
 		B9337CD40F25EC5900FACDEF /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337CD30F25EC5900FACDEF /* ReviewView.xib */; };
+		B936E9B80F2987B500E8657A /* TrialNoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B936E9B70F2987B500E8657A /* TrialNoteEdit.xib */; };
+		B936E9C10F2988E600E8657A /* TrialNoteEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = B936E9C00F2988E600E8657A /* TrialNoteEditController.m */; };
 		B93A01CC0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */; };
 		B93A01CD0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */; };
 		B96D27F30ED6B9B300DE8E66 /* migrate_001_edit_bits.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */; };
@@ -271,6 +273,9 @@
 		B9337CCE0F25EC0400FACDEF /* TrialReviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialReviewController.m; path = UITrial/TrialReviewController.m; sourceTree = "<group>"; };
 		B9337CD00F25EC3A00FACDEF /* TagView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TagView.xib; path = UITrial/TagView.xib; sourceTree = "<group>"; };
 		B9337CD30F25EC5900FACDEF /* ReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReviewView.xib; path = UITrial/ReviewView.xib; sourceTree = "<group>"; };
+		B936E9B70F2987B500E8657A /* TrialNoteEdit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrialNoteEdit.xib; path = UITrial/TrialNoteEdit.xib; sourceTree = "<group>"; };
+		B936E9BF0F2988E600E8657A /* TrialNoteEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialNoteEditController.h; path = UITrial/TrialNoteEditController.h; sourceTree = "<group>"; };
+		B936E9C00F2988E600E8657A /* TrialNoteEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialNoteEditController.m; path = UITrial/TrialNoteEditController.m; sourceTree = "<group>"; };
 		B93A01CA0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIXMLParserCallback.h; sourceTree = "<group>"; };
 		B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIXMLParserCallback.m; sourceTree = "<group>"; };
 		B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_001_edit_bits.sql; path = db/migrate_001_edit_bits.sql; sourceTree = "<group>"; };
@@ -651,6 +656,9 @@
 				B9258A140F25F92B00766966 /* TrialAddTaskView.xib */,
 				B9258A160F25F94700766966 /* TrialAddTaskViewController.h */,
 				B9258A170F25F94700766966 /* TrialAddTaskViewController.m */,
+				B936E9B70F2987B500E8657A /* TrialNoteEdit.xib */,
+				B936E9BF0F2988E600E8657A /* TrialNoteEditController.h */,
+				B936E9C00F2988E600E8657A /* TrialNoteEditController.m */,
 			);
 			name = UITrial;
 			sourceTree = "<group>";
@@ -909,6 +917,7 @@
 				B9337CD10F25EC3A00FACDEF /* TagView.xib in Resources */,
 				B9337CD40F25EC5900FACDEF /* ReviewView.xib in Resources */,
 				B9258A150F25F92B00766966 /* TrialAddTaskView.xib in Resources */,
+				B936E9B80F2987B500E8657A /* TrialNoteEdit.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1037,6 +1046,7 @@
 				B9337CCC0F25EBF300FACDEF /* TrialTagViewController.m in Sources */,
 				B9337CCF0F25EC0400FACDEF /* TrialReviewController.m in Sources */,
 				B9258A180F25F94700766966 /* TrialAddTaskViewController.m in Sources */,
+				B936E9C10F2988E600E8657A /* TrialNoteEditController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
