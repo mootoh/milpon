@@ -121,6 +121,9 @@
 		B936E9C10F2988E600E8657A /* TrialNoteEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = B936E9C00F2988E600E8657A /* TrialNoteEditController.m */; };
 		B93A01CC0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */; };
 		B93A01CD0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */; };
+		B95DC5940F2DC96B00E127A3 /* TrialListSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5930F2DC96B00E127A3 /* TrialListSelectController.m */; };
+		B95DC5960F2DC98B00E127A3 /* TrialListSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95DC5950F2DC98B00E127A3 /* TrialListSelect.xib */; };
+		B95DC5BD0F2DCAAE00E127A3 /* TrialListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5BC0F2DCAAE00E127A3 /* TrialListProvider.m */; };
 		B96D27F30ED6B9B300DE8E66 /* migrate_001_edit_bits.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */; };
 		B96D27F40ED6B9B400DE8E66 /* migrate_001_edit_bits.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */; };
 		B96D28560ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */; };
@@ -278,6 +281,13 @@
 		B936E9C00F2988E600E8657A /* TrialNoteEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialNoteEditController.m; path = UITrial/TrialNoteEditController.m; sourceTree = "<group>"; };
 		B93A01CA0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIXMLParserCallback.h; sourceTree = "<group>"; };
 		B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIXMLParserCallback.m; sourceTree = "<group>"; };
+		B95DC5920F2DC96B00E127A3 /* TrialListSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialListSelectController.h; path = UITrial/TrialListSelectController.h; sourceTree = "<group>"; };
+		B95DC5930F2DC96B00E127A3 /* TrialListSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialListSelectController.m; path = UITrial/TrialListSelectController.m; sourceTree = "<group>"; };
+		B95DC5950F2DC98B00E127A3 /* TrialListSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrialListSelect.xib; path = UITrial/TrialListSelect.xib; sourceTree = "<group>"; };
+		B95DC5BB0F2DCAAE00E127A3 /* TrialListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialListProvider.h; path = UITrial/TrialListProvider.h; sourceTree = "<group>"; };
+		B95DC5BC0F2DCAAE00E127A3 /* TrialListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialListProvider.m; path = UITrial/TrialListProvider.m; sourceTree = "<group>"; };
+		B95DC5BE0F2DCAFA00E127A3 /* ListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListProvider.h; path = model/ListProvider.h; sourceTree = "<group>"; };
+		B95DC6210F2DCF9000E127A3 /* TagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagProvider.h; path = model/TagProvider.h; sourceTree = "<group>"; };
 		B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_001_edit_bits.sql; path = db/migrate_001_edit_bits.sql; sourceTree = "<group>"; };
 		B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_002_add_version.sql; path = db/migrate_002_add_version.sql; sourceTree = "<group>"; };
 		B97131E90E9AF14C0091057B /* RTMAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuthTest.m; sourceTree = "<group>"; };
@@ -659,6 +669,13 @@
 				B936E9B70F2987B500E8657A /* TrialNoteEdit.xib */,
 				B936E9BF0F2988E600E8657A /* TrialNoteEditController.h */,
 				B936E9C00F2988E600E8657A /* TrialNoteEditController.m */,
+				B95DC5920F2DC96B00E127A3 /* TrialListSelectController.h */,
+				B95DC5930F2DC96B00E127A3 /* TrialListSelectController.m */,
+				B95DC5950F2DC98B00E127A3 /* TrialListSelect.xib */,
+				B95DC5BB0F2DCAAE00E127A3 /* TrialListProvider.h */,
+				B95DC5BC0F2DCAAE00E127A3 /* TrialListProvider.m */,
+				B95DC5BE0F2DCAFA00E127A3 /* ListProvider.h */,
+				B95DC6210F2DCF9000E127A3 /* TagProvider.h */,
 			);
 			name = UITrial;
 			sourceTree = "<group>";
@@ -918,6 +935,7 @@
 				B9337CD40F25EC5900FACDEF /* ReviewView.xib in Resources */,
 				B9258A150F25F92B00766966 /* TrialAddTaskView.xib in Resources */,
 				B936E9B80F2987B500E8657A /* TrialNoteEdit.xib in Resources */,
+				B95DC5960F2DC98B00E127A3 /* TrialListSelect.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1047,6 +1065,8 @@
 				B9337CCF0F25EC0400FACDEF /* TrialReviewController.m in Sources */,
 				B9258A180F25F94700766966 /* TrialAddTaskViewController.m in Sources */,
 				B936E9C10F2988E600E8657A /* TrialNoteEditController.m in Sources */,
+				B95DC5940F2DC96B00E127A3 /* TrialListSelectController.m in Sources */,
+				B95DC5BD0F2DCAAE00E127A3 /* TrialListProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

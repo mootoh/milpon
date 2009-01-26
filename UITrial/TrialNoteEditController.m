@@ -32,7 +32,6 @@
     [super viewDidLoad];
    [note_view becomeFirstResponder];
    note_view.text = @"...";
-
 }
 
 /*

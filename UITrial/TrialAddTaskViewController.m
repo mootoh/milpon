@@ -8,6 +8,7 @@
 
 #import "TrialAddTaskViewController.h"
 #import "TrialNoteEditController.h"
+#import "TrialListSelectController.h"
 
 @implementation TrialAddTaskViewController
 
@@ -20,12 +21,13 @@ enum {
    ROW_COUNT
 };
 
-@synthesize theTableView;
+@synthesize theTableView, list;
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
    if (self = [super initWithNibName:nibName bundle:bundle]) {
       self.title = @"Add";
+      self.list = @"Inbox";
    }
    return self;
 }
@@ -45,6 +47,25 @@ enum {
    self.navigationItem.rightBarButtonItem = submitButton;
    [submitButton release];
 
+   // task name
+   text_input = [[UITextField alloc] initWithFrame:CGRectMake(10, 8, 300, 40)];
+   [text_input setFont:[UIFont systemFontOfSize:20.0f]];
+   text_input.placeholder = @"what to do...";
+   
+   // due button
+   due_button = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+   due_button.frame = CGRectMake(10, 4, 64, 32);
+   due_button.font = [UIFont systemFontOfSize:14];
+   [due_button setTitle:@"due" forState:UIControlStateNormal];
+   [due_button addTarget:self action:@selector(selectDue) forControlEvents:UIControlEventTouchDown];
+   
+   // setup priority segment
+   NSArray *priority_items = [NSArray arrayWithObjects:@"-", @"3", @"2", @"1", nil];
+   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(84, 4, CGRectGetWidth(self.view.frame)-84-10, 32)];
+   for (int i=0; i<priority_items.count; i++)
+      [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
+   
+   priority_segment.selectedSegmentIndex = 0;
 }
 
 /*
@@ -123,34 +144,30 @@ enum {
    }
    
    switch (indexPath.row) {
-      case ROW_NAME: {
-         UITextField *text_input = [[[UITextField alloc] initWithFrame:CGRectMake(4, 4, 300, 36)] autorelease];
+      case ROW_NAME:
          [text_input becomeFirstResponder];
-         text_input.placeholder = @"what to do...";
          [cell.contentView addSubview:text_input];
          break;
-      }
       case ROW_DUE_PRIORITY:
-         cell.text = @"due, priority";
-         break;
+         [cell.contentView addSubview:due_button];
+         [cell.contentView addSubview:priority_segment];
          break;
       case ROW_LIST:
-         cell.text = @"list";
+         cell.text = [NSString stringWithFormat:@"List: %@", list];
          cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          break;
       case ROW_TAG:
-         cell.text = @"tag";
+         cell.text = @"Tag";
          cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          break;
       case ROW_NOTE:
-         cell.text = @"note";
+         cell.text = @"Note";
          cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          break;
       default:
          break;
    }
-   // Set up the cell...
-   
+
    return cell;
 }
 
@@ -161,6 +178,13 @@ enum {
 	// [self.navigationController pushViewController:anotherViewController];
 	// [anotherViewController release];
    switch (indexPath.row) {
+      case ROW_LIST: {
+         TrialListSelectController *vc = [[TrialListSelectController alloc] initWithNibName:nil bundle:nil];
+         vc.parent = self;
+         [self.navigationController pushViewController:vc animated:YES];
+         [vc release];
+         break;
+      }
       case ROW_NOTE: {
          TrialNoteEditController *vc = [[TrialNoteEditController alloc] initWithNibName:nil bundle:nil];
          [self.navigationController pushViewController:vc animated:YES];
@@ -213,6 +237,9 @@ enum {
  */
 
 - (void)dealloc {
+   [priority_segment release];
+   [due_button release];
+   [text_input release];
    [super dealloc];
 }
 
@@ -230,6 +257,11 @@ enum {
 - (IBAction) save
 {
    NSLog(@"save");
+}
+
+- (void) selectDue
+{
+   NSLog(@"selectDue");
 }
 
 @end
