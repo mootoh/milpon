@@ -9,6 +9,7 @@
 #import "TrialAddTaskViewController.h"
 #import "TrialNoteEditController.h"
 #import "TrialListSelectController.h"
+#import "TrialDueDateSelectController.h"
 
 @implementation TrialAddTaskViewController
 
@@ -21,7 +22,7 @@ enum {
    ROW_COUNT
 };
 
-@synthesize theTableView, list;
+@synthesize theTableView, list, due;
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
@@ -261,8 +262,10 @@ enum {
 
 - (void) selectDue
 {
-   NSLog(@"selectDue");
+   TrialDueDateSelectController *vc = [[TrialDueDateSelectController alloc] initWithNibName:nil bundle:nil];
+   vc.parent = self;
+   [self.navigationController pushViewController:vc animated:YES];
+   [vc release];
 }
 
 @end
-

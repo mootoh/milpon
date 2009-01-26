@@ -124,6 +124,23 @@
 		B95DC5940F2DC96B00E127A3 /* TrialListSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5930F2DC96B00E127A3 /* TrialListSelectController.m */; };
 		B95DC5960F2DC98B00E127A3 /* TrialListSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95DC5950F2DC98B00E127A3 /* TrialListSelect.xib */; };
 		B95DC5BD0F2DCAAE00E127A3 /* TrialListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5BC0F2DCAAE00E127A3 /* TrialListProvider.m */; };
+		B9611CE50F2DDA6700D8EF3B /* TrialDueDateSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9611CE40F2DDA6700D8EF3B /* TrialDueDateSelectController.m */; };
+		B9611CEC0F2DDB8600D8EF3B /* TrialDueDateSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9611CEB0F2DDB8600D8EF3B /* TrialDueDateSelect.xib */; };
+		B9611D040F2DDCFC00D8EF3B /* uiccalendar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51DF0EF72D1500F5C7BD /* uiccalendar_background.png */; };
+		B9611D050F2DDCFD00D8EF3B /* uiccalendar_cell_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E00EF72D1500F5C7BD /* uiccalendar_cell_disabled.png */; };
+		B9611D060F2DDCFD00D8EF3B /* uiccalendar_cell_holiday.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E10EF72D1500F5C7BD /* uiccalendar_cell_holiday.png */; };
+		B9611D070F2DDCFE00D8EF3B /* uiccalendar_cell_monthout.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E20EF72D1500F5C7BD /* uiccalendar_cell_monthout.png */; };
+		B9611D080F2DDCFE00D8EF3B /* uiccalendar_cell_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E30EF72D1500F5C7BD /* uiccalendar_cell_normal.png */; };
+		B9611D090F2DDD0100D8EF3B /* UICCalendarPickerDateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 926E51D80EF72D1500F5C7BD /* UICCalendarPickerDateButton.m */; };
+		B9611D0A0F2DDD0200D8EF3B /* UICCalendarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 926E51D40EF72D1500F5C7BD /* UICCalendarPicker.m */; };
+		B9611D0B0F2DDD0300D8EF3B /* uiccalendar_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51EB0EF72D1500F5C7BD /* uiccalendar_title.png */; };
+		B9611D0C0F2DDD0300D8EF3B /* uiccalendar_right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51EA0EF72D1500F5C7BD /* uiccalendar_right_arrow.png */; };
+		B9611D0D0F2DDD0400D8EF3B /* uiccalendar_main.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E90EF72D1500F5C7BD /* uiccalendar_main.png */; };
+		B9611D0E0F2DDD0500D8EF3B /* uiccalendar_left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E80EF72D1500F5C7BD /* uiccalendar_left_arrow.png */; };
+		B9611D0F0F2DDD0600D8EF3B /* uiccalendar_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E70EF72D1500F5C7BD /* uiccalendar_close.png */; };
+		B9611D100F2DDD0600D8EF3B /* uiccalendar_cell_today_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E60EF72D1500F5C7BD /* uiccalendar_cell_today_selected.png */; };
+		B9611D110F2DDD1100D8EF3B /* uiccalendar_cell_today.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E50EF72D1500F5C7BD /* uiccalendar_cell_today.png */; };
+		B9611D120F2DDD1200D8EF3B /* uiccalendar_cell_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51E40EF72D1500F5C7BD /* uiccalendar_cell_selected.png */; };
 		B96D27F30ED6B9B300DE8E66 /* migrate_001_edit_bits.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */; };
 		B96D27F40ED6B9B400DE8E66 /* migrate_001_edit_bits.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */; };
 		B96D28560ED6FC4600DE8E66 /* migrate_002_add_version.sql in Resources */ = {isa = PBXBuildFile; fileRef = B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */; };
@@ -288,6 +305,9 @@
 		B95DC5BC0F2DCAAE00E127A3 /* TrialListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialListProvider.m; path = UITrial/TrialListProvider.m; sourceTree = "<group>"; };
 		B95DC5BE0F2DCAFA00E127A3 /* ListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListProvider.h; path = model/ListProvider.h; sourceTree = "<group>"; };
 		B95DC6210F2DCF9000E127A3 /* TagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagProvider.h; path = model/TagProvider.h; sourceTree = "<group>"; };
+		B9611CE30F2DDA6700D8EF3B /* TrialDueDateSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialDueDateSelectController.h; path = UITrial/TrialDueDateSelectController.h; sourceTree = "<group>"; };
+		B9611CE40F2DDA6700D8EF3B /* TrialDueDateSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialDueDateSelectController.m; path = UITrial/TrialDueDateSelectController.m; sourceTree = "<group>"; };
+		B9611CEB0F2DDB8600D8EF3B /* TrialDueDateSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrialDueDateSelect.xib; path = UITrial/TrialDueDateSelect.xib; sourceTree = "<group>"; };
 		B96D27F10ED6B9A900DE8E66 /* migrate_001_edit_bits.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_001_edit_bits.sql; path = db/migrate_001_edit_bits.sql; sourceTree = "<group>"; };
 		B96D28540ED6FC4600DE8E66 /* migrate_002_add_version.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_002_add_version.sql; path = db/migrate_002_add_version.sql; sourceTree = "<group>"; };
 		B97131E90E9AF14C0091057B /* RTMAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuthTest.m; sourceTree = "<group>"; };
@@ -676,6 +696,9 @@
 				B95DC5BC0F2DCAAE00E127A3 /* TrialListProvider.m */,
 				B95DC5BE0F2DCAFA00E127A3 /* ListProvider.h */,
 				B95DC6210F2DCF9000E127A3 /* TagProvider.h */,
+				B9611CE30F2DDA6700D8EF3B /* TrialDueDateSelectController.h */,
+				B9611CE40F2DDA6700D8EF3B /* TrialDueDateSelectController.m */,
+				B9611CEB0F2DDB8600D8EF3B /* TrialDueDateSelect.xib */,
 			);
 			name = UITrial;
 			sourceTree = "<group>";
@@ -936,6 +959,20 @@
 				B9258A150F25F92B00766966 /* TrialAddTaskView.xib in Resources */,
 				B936E9B80F2987B500E8657A /* TrialNoteEdit.xib in Resources */,
 				B95DC5960F2DC98B00E127A3 /* TrialListSelect.xib in Resources */,
+				B9611CEC0F2DDB8600D8EF3B /* TrialDueDateSelect.xib in Resources */,
+				B9611D040F2DDCFC00D8EF3B /* uiccalendar_background.png in Resources */,
+				B9611D050F2DDCFD00D8EF3B /* uiccalendar_cell_disabled.png in Resources */,
+				B9611D060F2DDCFD00D8EF3B /* uiccalendar_cell_holiday.png in Resources */,
+				B9611D070F2DDCFE00D8EF3B /* uiccalendar_cell_monthout.png in Resources */,
+				B9611D080F2DDCFE00D8EF3B /* uiccalendar_cell_normal.png in Resources */,
+				B9611D0B0F2DDD0300D8EF3B /* uiccalendar_title.png in Resources */,
+				B9611D0C0F2DDD0300D8EF3B /* uiccalendar_right_arrow.png in Resources */,
+				B9611D0D0F2DDD0400D8EF3B /* uiccalendar_main.png in Resources */,
+				B9611D0E0F2DDD0500D8EF3B /* uiccalendar_left_arrow.png in Resources */,
+				B9611D0F0F2DDD0600D8EF3B /* uiccalendar_close.png in Resources */,
+				B9611D100F2DDD0600D8EF3B /* uiccalendar_cell_today_selected.png in Resources */,
+				B9611D110F2DDD1100D8EF3B /* uiccalendar_cell_today.png in Resources */,
+				B9611D120F2DDD1200D8EF3B /* uiccalendar_cell_selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1067,6 +1104,9 @@
 				B936E9C10F2988E600E8657A /* TrialNoteEditController.m in Sources */,
 				B95DC5940F2DC96B00E127A3 /* TrialListSelectController.m in Sources */,
 				B95DC5BD0F2DCAAE00E127A3 /* TrialListProvider.m in Sources */,
+				B9611CE50F2DDA6700D8EF3B /* TrialDueDateSelectController.m in Sources */,
+				B9611D090F2DDD0100D8EF3B /* UICCalendarPickerDateButton.m in Sources */,
+				B9611D0A0F2DDD0200D8EF3B /* UICCalendarPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
