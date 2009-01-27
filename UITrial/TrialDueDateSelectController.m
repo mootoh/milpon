@@ -12,6 +12,12 @@
 
 @implementation TrialDueDateSelectController
 
+enum {
+   ROW_TODAY    = 0,
+   ROW_TOMORROW = 1,
+   ROW_CALENDAR = 2
+};
+
 @synthesize theTableView, parent;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -67,13 +73,13 @@
    }
    
    switch (indexPath.row) {
-      case 0:
+      case ROW_TODAY:
          cell.text = @"Today";
          break;
-      case 1:
+      case ROW_TOMORROW:
          cell.text = @"Tomorrow";
          break;
-      case 2:
+      case ROW_CALENDAR:
          [calendar_picker showInView:cell.contentView];
          //[cell.contentView addSubview:calendar_picker];
          break;
@@ -85,13 +91,28 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   if (indexPath.row == 2) {
-      [tableView deselectRowAtIndexPath:indexPath animated:NO];
-      return;
+   switch (indexPath.row) {
+      case ROW_TODAY:
+         self.parent.due = [NSDate date];
+         break;
+      case ROW_TOMORROW: {
+         NSDate *now = [NSDate date];
+         NSDateComponents *comps = [[NSDateComponents alloc] init];
+         [comps setDay:1];
+         NSDate *date = [[NSCalendar currentCalendar] dateByAddingComponents:comps toDate:now  options:0];
+         [comps release];
+         self.parent.due = date;
+         break;
+      }
+      case ROW_CALENDAR:
+         [tableView deselectRowAtIndexPath:indexPath animated:NO];
+         return;
+      default:
+         break;
    }
-   self.parent.due = [NSDate date];
+         
    [self.navigationController popViewControllerAnimated:YES];
-   [self.parent.theTableView reloadData];
+   [self.parent.theTableView reloadData]; // TODO: should reload due row only.
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

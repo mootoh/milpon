@@ -28,7 +28,7 @@ enum {
 {
    if (self = [super initWithNibName:nibName bundle:bundle]) {
       self.title = @"Add";
-      self.list = @"Inbox";
+      self.list  = @"Inbox";
    }
    return self;
 }
@@ -150,6 +150,14 @@ enum {
          [cell.contentView addSubview:text_input];
          break;
       case ROW_DUE_PRIORITY:
+         if (self.due) {
+            NSDateFormatter *date_formatter = [[NSDateFormatter alloc] init];
+            date_formatter.dateFormat = @"MM/dd";
+
+            NSString *due_string = [date_formatter stringFromDate:self.due];
+            [due_button setTitle:due_string forState:UIControlStateNormal];
+            [date_formatter release];
+         }
          [cell.contentView addSubview:due_button];
          [cell.contentView addSubview:priority_segment];
          break;
@@ -173,12 +181,16 @@ enum {
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
    // Navigation logic may go here. Create and push another view controller.
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
 	// [self.navigationController pushViewController:anotherViewController];
 	// [anotherViewController release];
    switch (indexPath.row) {
+      case ROW_DUE_PRIORITY:
+         [tableView deselectRowAtIndexPath:indexPath animated:NO];
+         break;
       case ROW_LIST: {
          TrialListSelectController *vc = [[TrialListSelectController alloc] initWithNibName:nil bundle:nil];
          vc.parent = self;
