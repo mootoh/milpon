@@ -134,5 +134,12 @@ enum {
     [super dealloc];
 }
 
+- (void) picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate
+{
+   if (selectedDate == nil) return;
+   self.parent.due = [selectedDate objectAtIndex:0];
+   [self.navigationController popViewControllerAnimated:YES];
+   [self.parent.theTableView reloadData]; // TODO: should reload due row only.
+}
 
 @end

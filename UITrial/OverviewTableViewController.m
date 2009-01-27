@@ -148,7 +148,6 @@
 
 - (IBAction) addTask
 {
-   NSLog(@"addTask");
    self.hidesBottomBarWhenPushed = YES;
    
    TrialAddTaskViewController *tavController = [[TrialAddTaskViewController alloc] initWithNibName:nil bundle:nil];
