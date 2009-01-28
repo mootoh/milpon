@@ -10,6 +10,7 @@
 #import "TrialNoteEditController.h"
 #import "TrialListSelectController.h"
 #import "TrialDueDateSelectController.h"
+#import "TrialTagViewController.h"
 
 @implementation TrialAddTaskViewController
 
@@ -166,6 +167,7 @@ enum {
          cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          break;
       case ROW_TAG:
+         // join tags
          cell.text = @"Tag";
          cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          break;
@@ -193,6 +195,13 @@ enum {
          break;
       case ROW_LIST: {
          TrialListSelectController *vc = [[TrialListSelectController alloc] initWithNibName:nil bundle:nil];
+         vc.parent = self;
+         [self.navigationController pushViewController:vc animated:YES];
+         [vc release];
+         break;
+      }
+      case ROW_TAG: {
+         TrialTagViewController *vc = [[TrialTagViewController alloc] initWithNibName:nil bundle:nil];
          vc.parent = self;
          [self.navigationController pushViewController:vc animated:YES];
          [vc release];

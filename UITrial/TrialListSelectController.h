@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class ListProvider;
 @class TrialAddTaskViewController;
 
 @interface TrialListSelectController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
    IBOutlet UITableView *theTableView;
-   ListProvider *list_provider;
+   id list_provider;
    TrialAddTaskViewController *parent;
 }
 

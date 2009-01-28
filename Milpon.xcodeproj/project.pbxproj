@@ -101,6 +101,7 @@
 		B9224C5C0E70AECF004F83CE /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9224C5B0E70AECF004F83CE /* AuthViewController.m */; };
 		B9258A150F25F92B00766966 /* TrialAddTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9258A140F25F92B00766966 /* TrialAddTaskView.xib */; };
 		B9258A180F25F94700766966 /* TrialAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9258A170F25F94700766966 /* TrialAddTaskViewController.m */; };
+		B927A5570F2F68EB00D09A7D /* TrialTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B927A5560F2F68EB00D09A7D /* TrialTagProvider.m */; };
 		B9337B600F25D88200FACDEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9337B610F25D88200FACDEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		B9337B630F25D88200FACDEF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
@@ -275,6 +276,8 @@
 		B9258A140F25F92B00766966 /* TrialAddTaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrialAddTaskView.xib; path = UITrial/TrialAddTaskView.xib; sourceTree = "<group>"; };
 		B9258A160F25F94700766966 /* TrialAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialAddTaskViewController.h; path = UITrial/TrialAddTaskViewController.h; sourceTree = "<group>"; };
 		B9258A170F25F94700766966 /* TrialAddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialAddTaskViewController.m; path = UITrial/TrialAddTaskViewController.m; sourceTree = "<group>"; };
+		B927A5550F2F68EB00D09A7D /* TrialTagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialTagProvider.h; path = UITrial/TrialTagProvider.h; sourceTree = "<group>"; };
+		B927A5560F2F68EB00D09A7D /* TrialTagProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialTagProvider.m; path = UITrial/TrialTagProvider.m; sourceTree = "<group>"; };
 		B9337A9D0F25D41100FACDEF /* TrialWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrialWindow.xib; path = UITrial/TrialWindow.xib; sourceTree = "<group>"; };
 		B9337AAF0F25D43100FACDEF /* UITrial-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UITrial-Info.plist"; sourceTree = "<group>"; };
 		B9337ACA0F25D54500FACDEF /* TrialAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialAppDelegate.h; path = UITrial/TrialAppDelegate.h; sourceTree = "<group>"; };
@@ -699,6 +702,8 @@
 				B9611CE30F2DDA6700D8EF3B /* TrialDueDateSelectController.h */,
 				B9611CE40F2DDA6700D8EF3B /* TrialDueDateSelectController.m */,
 				B9611CEB0F2DDB8600D8EF3B /* TrialDueDateSelect.xib */,
+				B927A5550F2F68EB00D09A7D /* TrialTagProvider.h */,
+				B927A5560F2F68EB00D09A7D /* TrialTagProvider.m */,
 			);
 			name = UITrial;
 			sourceTree = "<group>";
@@ -1107,6 +1112,7 @@
 				B9611CE50F2DDA6700D8EF3B /* TrialDueDateSelectController.m in Sources */,
 				B9611D090F2DDD0100D8EF3B /* UICCalendarPickerDateButton.m in Sources */,
 				B9611D0A0F2DDD0200D8EF3B /* UICCalendarPicker.m in Sources */,
+				B927A5570F2F68EB00D09A7D /* TrialTagProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class TrialAddTaskViewController;
 
-@interface TrialTagViewController : UITableViewController {
-
+@interface TrialTagViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+   IBOutlet UITableView *theTableView;
+   id tag_provider;
+   TrialAddTaskViewController *parent;
 }
+
+@property (nonatomic, retain) UITableView *theTableView;
+@property (nonatomic, retain) TrialAddTaskViewController *parent;
 
 @end
