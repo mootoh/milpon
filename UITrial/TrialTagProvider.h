@@ -11,10 +11,10 @@
 
 @interface TrialTagProvider : NSObject <TagProvider>
 {
-   NSSet *fixed_tags;
+   NSArray *fixed_tags;
 }
 
-- (NSSet *)tags;
+- (NSArray *)tags;
 
 @end
 

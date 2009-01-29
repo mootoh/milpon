@@ -66,7 +66,7 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    // Set up the cell...
+    cell.text = [[tag_provider tags] objectAtIndex:indexPath.row];
 
     return cell;
 }

@@ -14,12 +14,12 @@
 - (id) init
 {
    if (self = [super init]) {
-      fixed_tags = [[NSSet setWithObjects:@"housekeeping", @"doing", nil] retain];
+      fixed_tags = [[NSArray arrayWithObjects:@"housekeeping", @"doing", nil] retain];
    }
    return self;
 }
 
-- (NSSet *) tags
+- (NSArray *) tags
 {
    return fixed_tags;
 }

@@ -116,7 +116,6 @@
 		B9337CC70F25EB9D00FACDEF /* TrialListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337CC60F25EB9D00FACDEF /* TrialListViewController.m */; };
 		B9337CCC0F25EBF300FACDEF /* TrialTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337CCB0F25EBF300FACDEF /* TrialTagViewController.m */; };
 		B9337CCF0F25EC0400FACDEF /* TrialReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337CCE0F25EC0400FACDEF /* TrialReviewController.m */; };
-		B9337CD10F25EC3A00FACDEF /* TagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337CD00F25EC3A00FACDEF /* TagView.xib */; };
 		B9337CD40F25EC5900FACDEF /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337CD30F25EC5900FACDEF /* ReviewView.xib */; };
 		B936E9B80F2987B500E8657A /* TrialNoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B936E9B70F2987B500E8657A /* TrialNoteEdit.xib */; };
 		B936E9C10F2988E600E8657A /* TrialNoteEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = B936E9C00F2988E600E8657A /* TrialNoteEditController.m */; };
@@ -150,6 +149,7 @@
 		B97131EE0E9AF1B70091057B /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B98036BE0E71363B000961EE /* RTMAuth.m */; };
 		B98036BF0E71363B000961EE /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B98036BE0E71363B000961EE /* RTMAuth.m */; };
 		B9835F860ED2955A0012CD3C /* RTMExistingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 8656F00D0EBEC40000230290 /* RTMExistingTask.m */; };
+		B9838CB00F31B02B0050F0FA /* TagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337CD00F25EC3A00FACDEF /* TagView.xib */; };
 		B98D23C10E6784AE0006D6AF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B98D23C00E6784AE0006D6AF /* libsqlite3.dylib */; };
 		B98D23CD0E67875D0006D6AF /* RTMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D23CC0E67875D0006D6AF /* RTMDatabase.m */; };
 		B98D24130E678C250006D6AF /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B98D24120E678C250006D6AF /* rtm.sql */; };
@@ -959,7 +959,6 @@
 				B9337C0D0F25DEA200FACDEF /* OverviewView.xib in Resources */,
 				B9337C270F25E0C100FACDEF /* ListView.xib in Resources */,
 				B9337C2E0F25E2AF00FACDEF /* Settings.bundle in Resources */,
-				B9337CD10F25EC3A00FACDEF /* TagView.xib in Resources */,
 				B9337CD40F25EC5900FACDEF /* ReviewView.xib in Resources */,
 				B9258A150F25F92B00766966 /* TrialAddTaskView.xib in Resources */,
 				B936E9B80F2987B500E8657A /* TrialNoteEdit.xib in Resources */,
@@ -978,6 +977,7 @@
 				B9611D100F2DDD0600D8EF3B /* uiccalendar_cell_today_selected.png in Resources */,
 				B9611D110F2DDD1100D8EF3B /* uiccalendar_cell_today.png in Resources */,
 				B9611D120F2DDD1200D8EF3B /* uiccalendar_cell_selected.png in Resources */,
+				B9838CB00F31B02B0050F0FA /* TagView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

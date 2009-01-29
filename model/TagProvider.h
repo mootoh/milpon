@@ -9,6 +9,6 @@
 
 @protocol TagProvider
 
-- (NSSet *) tags;
+- (NSArray *) tags;
 
 @end

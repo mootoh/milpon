@@ -201,7 +201,7 @@ enum {
          break;
       }
       case ROW_TAG: {
-         TrialTagViewController *vc = [[TrialTagViewController alloc] initWithNibName:nil bundle:nil];
+         TrialTagViewController *vc = [[TrialTagViewController alloc] initWithNibName:@"TagView" bundle:nil];
          vc.parent = self;
          [self.navigationController pushViewController:vc animated:YES];
          [vc release];
@@ -216,6 +216,7 @@ enum {
       default:
          break;
    }
+   [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 
