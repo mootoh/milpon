@@ -8,10 +8,11 @@
 
 #import "TrialTagViewController.h"
 #import "TrialTagProvider.h"
+#import "TrialAddTaskViewController.h"
 
 @implementation TrialTagViewController
 
-@synthesize theTableView, parent;
+@synthesize theTableView, parent, tags;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -67,18 +68,21 @@
     }
     
     cell.text = [[tag_provider tags] objectAtIndex:indexPath.row];
-
     return cell;
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   NSAssert(self.parent, @"parent should be set");
+   [tags addObject:[[tag_provider tags] objectAtIndex:indexPath.row]];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+   [self.parent.theTableView reloadData]; // TODO: should reload only tag row
+	[super viewWillDisappear:animated];
+}
 
 /*
 // Override to support conditional editing of the table view.

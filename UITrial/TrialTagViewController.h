@@ -14,9 +14,12 @@
    IBOutlet UITableView *theTableView;
    id tag_provider;
    TrialAddTaskViewController *parent;
+   NSMutableSet *tags;
 }
 
 @property (nonatomic, retain) UITableView *theTableView;
 @property (nonatomic, retain) TrialAddTaskViewController *parent;
+@property (nonatomic, retain) NSMutableSet *tags;
+
 
 @end

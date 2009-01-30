@@ -23,13 +23,14 @@ enum {
    ROW_COUNT
 };
 
-@synthesize theTableView, list, due;
+@synthesize theTableView, list, due, tags;
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
    if (self = [super initWithNibName:nibName bundle:bundle]) {
       self.title = @"Add";
       self.list  = @"Inbox";
+      self.tags  = [NSMutableSet set];
    }
    return self;
 }
@@ -166,11 +167,17 @@ enum {
          cell.text = [NSString stringWithFormat:@"List: %@", list];
          cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          break;
-      case ROW_TAG:
+      case ROW_TAG: {
          // join tags
-         cell.text = @"Tag";
+         NSString *tags_joined = @"";
+         
+         for (NSString *tag in tags) {
+            tags_joined = [tags_joined stringByAppendingString:tag];
+         }
+         cell.text = [NSString stringWithFormat:@"Tag: %@", tags_joined];
          cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          break;
+      }
       case ROW_NOTE:
          cell.text = @"Note";
          cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -203,6 +210,7 @@ enum {
       case ROW_TAG: {
          TrialTagViewController *vc = [[TrialTagViewController alloc] initWithNibName:@"TagView" bundle:nil];
          vc.parent = self;
+         vc.tags   = self.tags;
          [self.navigationController pushViewController:vc animated:YES];
          [vc release];
          break;

@@ -109,11 +109,9 @@
 		B9337B870F25D95500FACDEF /* TrialWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337A9D0F25D41100FACDEF /* TrialWindow.xib */; };
 		B9337B880F25D95B00FACDEF /* TrialAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337ACB0F25D54500FACDEF /* TrialAppDelegate.m */; };
 		B9337C0D0F25DEA200FACDEF /* OverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337C0C0F25DEA200FACDEF /* OverviewView.xib */; };
-		B9337C270F25E0C100FACDEF /* ListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337C260F25E0C100FACDEF /* ListView.xib */; };
 		B9337C2E0F25E2AF00FACDEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B9337C2D0F25E2AF00FACDEF /* Settings.bundle */; };
 		B9337C2F0F25E2AF00FACDEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B9337C2D0F25E2AF00FACDEF /* Settings.bundle */; };
 		B9337C380F25E2ED00FACDEF /* OverviewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337C370F25E2ED00FACDEF /* OverviewTableViewController.m */; };
-		B9337CC70F25EB9D00FACDEF /* TrialListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337CC60F25EB9D00FACDEF /* TrialListViewController.m */; };
 		B9337CCC0F25EBF300FACDEF /* TrialTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337CCB0F25EBF300FACDEF /* TrialTagViewController.m */; };
 		B9337CCF0F25EC0400FACDEF /* TrialReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337CCE0F25EC0400FACDEF /* TrialReviewController.m */; };
 		B9337CD40F25EC5900FACDEF /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337CD30F25EC5900FACDEF /* ReviewView.xib */; };
@@ -957,7 +955,6 @@
 			files = (
 				B9337B870F25D95500FACDEF /* TrialWindow.xib in Resources */,
 				B9337C0D0F25DEA200FACDEF /* OverviewView.xib in Resources */,
-				B9337C270F25E0C100FACDEF /* ListView.xib in Resources */,
 				B9337C2E0F25E2AF00FACDEF /* Settings.bundle in Resources */,
 				B9337CD40F25EC5900FACDEF /* ReviewView.xib in Resources */,
 				B9258A150F25F92B00766966 /* TrialAddTaskView.xib in Resources */,
@@ -1102,7 +1099,6 @@
 				B9337B730F25D92400FACDEF /* main.m in Sources */,
 				B9337B880F25D95B00FACDEF /* TrialAppDelegate.m in Sources */,
 				B9337C380F25E2ED00FACDEF /* OverviewTableViewController.m in Sources */,
-				B9337CC70F25EB9D00FACDEF /* TrialListViewController.m in Sources */,
 				B9337CCC0F25EBF300FACDEF /* TrialTagViewController.m in Sources */,
 				B9337CCF0F25EC0400FACDEF /* TrialReviewController.m in Sources */,
 				B9258A180F25F94700766966 /* TrialAddTaskViewController.m in Sources */,

@@ -16,11 +16,13 @@
    UISegmentedControl *priority_segment;
    NSString *list;
    NSDate *due;
+   NSMutableSet *tags;
 }
 
 @property (nonatomic, retain) UITableView *theTableView;
 @property (nonatomic, retain) NSString *list;
 @property (nonatomic, retain) NSDate *due;
+@property (nonatomic, retain) NSSet *tags;
 
 - (IBAction) cancel;
 - (IBAction) save;
