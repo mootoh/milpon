@@ -1635,7 +1635,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
-				INFOPLIST_FILE = "/Users/takayama/prj/iphone/milpon/UITrial-Info.plist";
+				INFOPLIST_FILE = "UITrial-Info.plist";
 				PRODUCT_NAME = Milpon;
 				PROVISIONING_PROFILE = DefaultProfileUuid;
 			};
