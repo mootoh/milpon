@@ -13,7 +13,9 @@
 @interface TrialNoteEditController : UIViewController {
    IBOutlet UITextView *note_view;
    TrialAddTaskViewController *parent;
+   NSString *note;
 }
 
 @property (nonatomic,retain) TrialAddTaskViewController *parent;
+@property (nonatomic,retain) NSString *note;
 @end

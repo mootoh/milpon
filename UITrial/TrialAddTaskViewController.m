@@ -272,6 +272,7 @@ enum {
       case ROW_NOTE: {
          TrialNoteEditController *vc = [[TrialNoteEditController alloc] initWithNibName:nil bundle:nil];
          vc.parent = self;
+         vc.note = note;
          [self.navigationController pushViewController:vc animated:YES];
          [vc release];
          break;
