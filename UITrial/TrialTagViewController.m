@@ -12,7 +12,7 @@
 
 @implementation TrialTagViewController
 
-@synthesize theTableView, parent, selected_tags;
+@synthesize parent, selected_tags;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -35,9 +35,9 @@
 
 /*
  // Implement loadView to create a view hierarchy programmatically, without using a nib.
- - (void)loadView {
- }
- */
+- (void)loadView {
+}
+*/
 
 /*
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

@@ -10,8 +10,7 @@
 
 @class TrialAddTaskViewController;
 
-@interface TrialTagViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-   IBOutlet UITableView *theTableView;
+@interface TrialTagViewController : UITableViewController {
    id tag_provider;
    TrialAddTaskViewController *parent;
    NSMutableSet *selected_tags;
@@ -20,7 +19,6 @@
 
 - (void) setTags:(NSMutableSet *) tags;
 
-@property (nonatomic, retain) UITableView *theTableView;
 @property (nonatomic, retain) TrialAddTaskViewController *parent;
 @property (nonatomic, retain) NSMutableSet *selected_tags;
 

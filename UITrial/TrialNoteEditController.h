@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class TrialAddTaskViewController;
 
 @interface TrialNoteEditController : UIViewController {
    IBOutlet UITextView *note_view;
+   TrialAddTaskViewController *parent;
 }
 
+@property (nonatomic,retain) TrialAddTaskViewController *parent;
 @end

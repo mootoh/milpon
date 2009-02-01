@@ -7,10 +7,11 @@
 //
 
 #import "TrialNoteEditController.h"
-
+#import "TrialAddTaskViewController.h"
 
 @implementation TrialNoteEditController
 
+@synthesize parent;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -31,16 +32,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    [note_view becomeFirstResponder];
-   note_view.text = @"...";
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void)viewWillDisappear:(BOOL)animated
+{
+   self.parent.note = note_view.text;
+   [self.parent.theTableView reloadData];
+   [super viewDidAppear:animated];
 }
-*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview

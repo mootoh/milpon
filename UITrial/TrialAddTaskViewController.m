@@ -23,7 +23,7 @@ enum {
    ROW_COUNT
 };
 
-@synthesize theTableView, list, due, tags;
+@synthesize theTableView, list, due, tags, note;
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
@@ -57,14 +57,18 @@ enum {
    
    // due button
    due_button = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-   due_button.frame = CGRectMake(10, 4, 64, 32);
+   due_button.frame = CGRectMake(8, 4, 84, 32);
    due_button.font = [UIFont systemFontOfSize:14];
-   [due_button setTitle:@"due" forState:UIControlStateNormal];
+   
+   UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                         [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_calendar.png"]];
+   [due_button setImage:iconImage forState:UIControlStateNormal];
    [due_button addTarget:self action:@selector(selectDue) forControlEvents:UIControlEventTouchDown];
+   [iconImage release];
    
    // setup priority segment
    NSArray *priority_items = [NSArray arrayWithObjects:@"-", @"3", @"2", @"1", nil];
-   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(84, 4, CGRectGetWidth(self.view.frame)-84-10, 32)];
+   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(104, 4, CGRectGetWidth(self.view.frame)-104-10, 32)];
    for (int i=0; i<priority_items.count; i++)
       [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
    
@@ -154,7 +158,7 @@ enum {
       case ROW_DUE_PRIORITY:
          if (self.due) {
             NSDateFormatter *date_formatter = [[NSDateFormatter alloc] init];
-            date_formatter.dateFormat = @"MM/dd";
+            date_formatter.dateFormat = @" MM/dd";
 
             NSString *due_string = [date_formatter stringFromDate:self.due];
             [due_button setTitle:due_string forState:UIControlStateNormal];
@@ -163,25 +167,67 @@ enum {
          [cell.contentView addSubview:due_button];
          [cell.contentView addSubview:priority_segment];
          break;
-      case ROW_LIST:
-         cell.text = [NSString stringWithFormat:@"List: %@", list];
-         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-         break;
-      case ROW_TAG: {
-         // join tags
-         NSString *tags_joined = @"";
+      case ROW_LIST: {
+         UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                               [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]];
+         UIImageView *iconImageView = [[UIImageView alloc] initWithImage:iconImage];
+         iconImageView.frame = CGRectMake(8, 15, 12, 13);
+         [cell.contentView addSubview:iconImageView];
+         [iconImage release];
          
-         for (NSString *tag in tags) {
-            tags_joined = [tags_joined stringByAppendingString:tag];
-         }
-         cell.text = [NSString stringWithFormat:@"Tag: %@", tags_joined];
+         UILabel *listLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 2, 220, 36)];
+         listLabel.text = list;
+         [cell.contentView addSubview:listLabel];
+         [listLabel release];
+         
          cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          break;
       }
-      case ROW_NOTE:
-         cell.text = @"Note";
+      case ROW_TAG: {
+         UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                               [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]];
+         UIImageView *iconImageView = [[UIImageView alloc] initWithImage:iconImage];
+         iconImageView.frame = CGRectMake(8, 15, 13, 11);
+         [cell.contentView addSubview:iconImageView];
+         [iconImage release];
+         
+         UILabel *tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 2, 220, 36)];
+         tagLabel.font = [UIFont systemFontOfSize:14];
+
+         // join tags
+         NSString *tags_joined = @"";
+         if (tags.count == 0) {
+            tags_joined = @"Tag...";
+         } else {         
+            for (NSString *tag in tags) {
+               tags_joined = [tags_joined stringByAppendingString:[NSString stringWithFormat:@"%@ ", tag]];
+            }
+         }
+
+         tagLabel.text = tags_joined;
+         [cell.contentView addSubview:tagLabel];
+         [tagLabel release];
+
          cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          break;
+      }
+      case ROW_NOTE: {
+         UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                               [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_note.png"]];
+         UIImageView *iconImageView = [[UIImageView alloc] initWithImage:iconImage];
+         iconImageView.frame = CGRectMake(8, 15, 14, 14);
+         [cell.contentView addSubview:iconImageView];
+         [iconImage release];
+         
+         
+         UILabel *listLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 2, 220, 36)];
+         listLabel.text = note ? note : @"Note...";
+         [cell.contentView addSubview:listLabel];
+         [listLabel release];
+
+         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+         break;
+      }
       default:
          break;
    }
@@ -208,7 +254,7 @@ enum {
          break;
       }
       case ROW_TAG: {
-         TrialTagViewController *vc = [[TrialTagViewController alloc] initWithNibName:@"TagView" bundle:nil];
+         TrialTagViewController *vc = [[TrialTagViewController alloc] initWithNibName:nil bundle:nil];
          vc.parent = self;
          [vc setTags:tags];
          [self.navigationController pushViewController:vc animated:YES];
@@ -217,6 +263,7 @@ enum {
       }
       case ROW_NOTE: {
          TrialNoteEditController *vc = [[TrialNoteEditController alloc] initWithNibName:nil bundle:nil];
+         vc.parent = self;
          [self.navigationController pushViewController:vc animated:YES];
          [vc release];
          break;
