@@ -14,6 +14,15 @@
 
 @synthesize parent, selected_tags;
 
+static UIImage *s_checkedIcon = nil;
+
++ (UIImage *)checkedIcon
+{
+   if (s_checkedIcon == nil)
+      s_checkedIcon = [[UIImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_checked.png"]];
+   return s_checkedIcon;
+}
+
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -76,10 +85,19 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
-    
-    cell.text = [[tag_provider tags] objectAtIndex:indexPath.row];
-    // TODO: show accessory that shows current selected status.
-    return cell;
+
+   NSString *tag = [[tag_provider tags] objectAtIndex:indexPath.row];
+   cell.text = tag;
+   
+   if ([[selected_flags objectForKey:tag] boolValue]) {
+      UIImageView *image_view = [[UIImageView alloc] initWithImage:[TrialTagViewController checkedIcon]];
+      cell.accessoryView = image_view;
+      [image_view release];
+   } else {
+      cell.accessoryView = nil;
+   }
+   
+   return cell;
 }
 
 
@@ -94,6 +112,7 @@
       [selected_flags setObject:[NSNumber numberWithBool:YES] forKey:tag];
       [selected_tags addObject:tag];
    }
+   [tableView reloadData]; // TODO: should update only selected row.
 }
 
 - (void)viewWillDisappear:(BOOL)animated

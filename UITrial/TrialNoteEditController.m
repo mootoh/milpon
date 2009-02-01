@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    [note_view becomeFirstResponder];
-}
+ }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
