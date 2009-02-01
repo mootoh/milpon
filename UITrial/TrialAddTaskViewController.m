@@ -51,7 +51,7 @@ enum {
    [submitButton release];
 
    // task name
-   text_input = [[UITextField alloc] initWithFrame:CGRectMake(10, 8, 300, 40)];
+   text_input = [[UITextField alloc] initWithFrame:CGRectMake(30, 8, 300, 40)];
    [text_input setFont:[UIFont systemFontOfSize:20.0f]];
    text_input.placeholder = @"what to do...";
    
@@ -153,6 +153,12 @@ enum {
          cell = [tableView dequeueReusableCellWithIdentifier:NAME_CELL_IDENTIFIER];
          if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:NAME_CELL_IDENTIFIER] autorelease];
+            UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 15, 16, 16)];
+            UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                                  [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_target.png"]];
+            iconImageView.image = iconImage;
+            [cell.contentView addSubview:iconImageView];
+
             [cell.contentView addSubview:text_input];
          }
          [text_input becomeFirstResponder];

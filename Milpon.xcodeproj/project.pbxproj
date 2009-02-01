@@ -57,6 +57,8 @@
 		923243C30EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
 		923243C40EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
 		923243C50EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
+		9245AEBC0F35CE2E00529D48 /* icon_target.png in Resources */ = {isa = PBXBuildFile; fileRef = 9245AEBB0F35CE2E00529D48 /* icon_target.png */; };
+		9245AEBD0F35CE2E00529D48 /* icon_target.png in Resources */ = {isa = PBXBuildFile; fileRef = 9245AEBB0F35CE2E00529D48 /* icon_target.png */; };
 		926E51F10EF72D1500F5C7BD /* UICCalendarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 926E51D40EF72D1500F5C7BD /* UICCalendarPicker.m */; };
 		926E51F30EF72D1500F5C7BD /* UICCalendarPickerDateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 926E51D80EF72D1500F5C7BD /* UICCalendarPickerDateButton.m */; };
 		926E51F80EF72D1500F5C7BD /* uiccalendar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 926E51DF0EF72D1500F5C7BD /* uiccalendar_background.png */; };
@@ -229,6 +231,7 @@
 		923243650EF722F8003599A3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = vendor/Reachability.m; sourceTree = "<group>"; };
 		923243680EF72360003599A3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		923243C10EF726DE003599A3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		9245AEBB0F35CE2E00529D48 /* icon_target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_target.png; path = resource/icon_target.png; sourceTree = "<group>"; };
 		926329C50EF6BC72009E2CD3 /* milk1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = milk1.png; path = resource/milk1.png; sourceTree = "<group>"; };
 		926329C70EF6BC77009E2CD3 /* milpon_logopng24_163_256_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = milpon_logopng24_163_256_6.png; path = resource/milpon_logopng24_163_256_6.png; sourceTree = "<group>"; };
 		926E51D20EF72D1500F5C7BD /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
@@ -463,6 +466,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9245AEBB0F35CE2E00529D48 /* icon_target.png */,
 				92724F010F35BA8C001DAA5D /* icon_checked.png */,
 				92724EBE0F35B49A001DAA5D /* icon_calendar.png */,
 				92724EB40F35B1D5001DAA5D /* icon_note.png */,
@@ -951,6 +955,7 @@
 				92724EB50F35B1D5001DAA5D /* icon_note.png in Resources */,
 				92724EBF0F35B49A001DAA5D /* icon_calendar.png in Resources */,
 				92724F020F35BA8C001DAA5D /* icon_checked.png in Resources */,
+				9245AEBC0F35CE2E00529D48 /* icon_target.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1007,6 +1012,7 @@
 				92724EB60F35B1D5001DAA5D /* icon_note.png in Resources */,
 				92724EC00F35B49A001DAA5D /* icon_calendar.png in Resources */,
 				92724F030F35BA8C001DAA5D /* icon_checked.png in Resources */,
+				9245AEBD0F35CE2E00529D48 /* icon_target.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
