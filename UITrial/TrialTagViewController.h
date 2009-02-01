@@ -14,12 +14,15 @@
    IBOutlet UITableView *theTableView;
    id tag_provider;
    TrialAddTaskViewController *parent;
-   NSMutableSet *tags;
+   NSMutableSet *selected_tags;
+   NSMutableDictionary *selected_flags;
 }
+
+- (void) setTags:(NSMutableSet *) tags;
 
 @property (nonatomic, retain) UITableView *theTableView;
 @property (nonatomic, retain) TrialAddTaskViewController *parent;
-@property (nonatomic, retain) NSMutableSet *tags;
+@property (nonatomic, retain) NSMutableSet *selected_tags;
 
 
 @end

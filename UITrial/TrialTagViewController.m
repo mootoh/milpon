@@ -12,15 +12,25 @@
 
 @implementation TrialTagViewController
 
-@synthesize theTableView, parent, tags;
+@synthesize theTableView, parent, selected_tags;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
       tag_provider = [[TrialTagProvider alloc] init];
       self.title = @"Tag";
+      selected_flags = [[NSMutableDictionary alloc] init];
    }
    return self;
+}
+
+- (void) setTags:(NSMutableSet *) tags
+{
+   self.selected_tags = tags;
+   for (NSString *tag in [tag_provider tags]) {
+      BOOL has = [selected_tags containsObject:tag];
+      [selected_flags setObject:[NSNumber numberWithBool:has] forKey:tag];
+   }      
 }
 
 /*
@@ -68,6 +78,7 @@
     }
     
     cell.text = [[tag_provider tags] objectAtIndex:indexPath.row];
+    // TODO: show accessory that shows current selected status.
     return cell;
 }
 
@@ -75,7 +86,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    NSAssert(self.parent, @"parent should be set");
-   [tags addObject:[[tag_provider tags] objectAtIndex:indexPath.row]];
+   NSString *tag = [[tag_provider tags] objectAtIndex:indexPath.row];
+   if ([[selected_flags objectForKey:tag] boolValue]) {
+      [selected_flags setObject:[NSNumber numberWithBool:NO] forKey:tag];
+      [selected_tags removeObject:tag];
+   } else {
+      [selected_flags setObject:[NSNumber numberWithBool:YES] forKey:tag];
+      [selected_tags addObject:tag];
+   }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -130,10 +148,10 @@
 }
 
 - (void)dealloc {
+   [selected_flags release];
    [tag_provider release];
    [super dealloc];
 }
 
 
 @end
-

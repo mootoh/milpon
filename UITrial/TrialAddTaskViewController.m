@@ -210,7 +210,7 @@ enum {
       case ROW_TAG: {
          TrialTagViewController *vc = [[TrialTagViewController alloc] initWithNibName:@"TagView" bundle:nil];
          vc.parent = self;
-         vc.tags   = self.tags;
+         [vc setTags:tags];
          [self.navigationController pushViewController:vc animated:YES];
          [vc release];
          break;
