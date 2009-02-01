@@ -139,99 +139,107 @@ enum {
    return ROW_COUNT;
 }
 
+#define ICON_TAG 1
+#define LABEL_TAG 2
+#define NAME_CELL_IDENTIFIER @"NameCell"
+#define DUE_PRIORITY_CELL_IDENTIFIER @"DuePriorityCell"
+#define ICON_LABEL_CELL_IDENTIFIER @"IconLabelCell"
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   
-   static NSString *CellIdentifier = @"TrialAddTaskViewCell";
-   
-   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-   if (cell == nil) {
-      cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-   }
-   
+   UITableViewCell *cell;
    switch (indexPath.row) {
-      case ROW_NAME:
+      case ROW_NAME: {
+         cell = [tableView dequeueReusableCellWithIdentifier:NAME_CELL_IDENTIFIER];
+         if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:NAME_CELL_IDENTIFIER] autorelease];
+            [cell.contentView addSubview:text_input];
+         }
          [text_input becomeFirstResponder];
-         [cell.contentView addSubview:text_input];
          break;
-      case ROW_DUE_PRIORITY:
+      }
+      case ROW_DUE_PRIORITY: {
+         cell = [tableView dequeueReusableCellWithIdentifier:DUE_PRIORITY_CELL_IDENTIFIER];
+         if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:DUE_PRIORITY_CELL_IDENTIFIER] autorelease];
+            [cell.contentView addSubview:due_button];
+            [cell.contentView addSubview:priority_segment];
+         }
          if (self.due) {
             NSDateFormatter *date_formatter = [[NSDateFormatter alloc] init];
             date_formatter.dateFormat = @" MM/dd";
-
+            
             NSString *due_string = [date_formatter stringFromDate:self.due];
             [due_button setTitle:due_string forState:UIControlStateNormal];
             [date_formatter release];
-         }
-         [cell.contentView addSubview:due_button];
-         [cell.contentView addSubview:priority_segment];
-         break;
-      case ROW_LIST: {
-         UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
-                               [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]];
-         UIImageView *iconImageView = [[UIImageView alloc] initWithImage:iconImage];
-         iconImageView.frame = CGRectMake(8, 15, 12, 13);
-         [cell.contentView addSubview:iconImageView];
-         [iconImage release];
-         
-         UILabel *listLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 2, 220, 36)];
-         listLabel.text = list;
-         [cell.contentView addSubview:listLabel];
-         [listLabel release];
-         
-         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+         }         
          break;
       }
-      case ROW_TAG: {
-         UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
-                               [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]];
-         UIImageView *iconImageView = [[UIImageView alloc] initWithImage:iconImage];
-         iconImageView.frame = CGRectMake(8, 15, 13, 11);
-         [cell.contentView addSubview:iconImageView];
-         [iconImage release];
-         
-         UILabel *tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 2, 220, 36)];
-         tagLabel.font = [UIFont systemFontOfSize:14];
+      default: {
+         UIImageView *iconImageView = nil;
+         UILabel *label = nil;
+         cell = [tableView dequeueReusableCellWithIdentifier:ICON_LABEL_CELL_IDENTIFIER];
+         if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:ICON_LABEL_CELL_IDENTIFIER] autorelease];
 
-         // join tags
-         NSString *tags_joined = @"";
-         if (tags.count == 0) {
-            tags_joined = @"Tag...";
-         } else {         
-            for (NSString *tag in tags) {
-               tags_joined = [tags_joined stringByAppendingString:[NSString stringWithFormat:@"%@ ", tag]];
+            iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 15, 16, 16)];
+            iconImageView.tag = ICON_TAG;
+            [cell.contentView addSubview:iconImageView];
+            //[iconImageView release];
+            
+            label = [[UILabel alloc] initWithFrame:CGRectMake(30, 2, 220, 36)];
+            label.tag = LABEL_TAG;
+            //label.adjustsFontSizeToFitWidth = YES;
+            [cell.contentView addSubview:label];
+            //[listLabel release];
+            
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
+         } else {
+            iconImageView = (UIImageView *)[cell.contentView viewWithTag:ICON_TAG];
+            label = (UILabel *)[cell.contentView viewWithTag:LABEL_TAG];
+         }
+         
+         switch (indexPath.row) {
+            case ROW_LIST: {
+               UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                                     [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]];
+               iconImageView.image = iconImage;
+               [iconImage release];
+               label.text = list;
+               break;
+            }
+            case ROW_TAG: {
+               UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                                     [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]];
+               iconImageView.image = iconImage;
+               [iconImage release];
+
+               // join tags
+               NSString *tags_joined = @"";
+               if (tags.count == 0) {
+                  tags_joined = @"Tag...";
+               } else {         
+                  for (NSString *tag in tags) {
+                     tags_joined = [tags_joined stringByAppendingString:[NSString stringWithFormat:@"%@ ", tag]];
+                  }
+               }
+               
+               label.text = tags_joined;
+               break;
+            }
+            case ROW_NOTE: {
+               UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                                     [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_note.png"]];
+               iconImageView.image = iconImage;
+               [iconImage release];
+               
+               label.text = note ? note : @"Note...";
+               break;
             }
          }
-
-         tagLabel.text = tags_joined;
-         [cell.contentView addSubview:tagLabel];
-         [tagLabel release];
-
-         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          break;
       }
-      case ROW_NOTE: {
-         UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
-                               [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_note.png"]];
-         UIImageView *iconImageView = [[UIImageView alloc] initWithImage:iconImage];
-         iconImageView.frame = CGRectMake(8, 15, 14, 14);
-         [cell.contentView addSubview:iconImageView];
-         [iconImage release];
-         
-         
-         UILabel *listLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 2, 220, 36)];
-         listLabel.text = note ? note : @"Note...";
-         [cell.contentView addSubview:listLabel];
-         [listLabel release];
-
-         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-         break;
-      }
-      default:
-         break;
    }
-
    return cell;
 }
 

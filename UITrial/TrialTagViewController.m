@@ -27,7 +27,7 @@ static UIImage *s_checkedIcon = nil;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
       tag_provider = [[TrialTagProvider alloc] init];
-      self.title = @"Tag";
+      self.title = @"Pick up Tags";
       selected_flags = [[NSMutableDictionary alloc] init];
    }
    return self;
@@ -113,6 +113,7 @@ static UIImage *s_checkedIcon = nil;
       [selected_tags addObject:tag];
    }
    [tableView reloadData]; // TODO: should update only selected row.
+   [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
