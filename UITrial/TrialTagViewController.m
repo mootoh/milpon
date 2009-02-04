@@ -118,7 +118,7 @@ static UIImage *s_checkedIcon = nil;
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-   [self.parent.theTableView reloadData]; // TODO: should reload only tag row
+   [self.parent.tableView reloadData]; // TODO: should reload only tag row
 	[super viewWillDisappear:animated];
 }
 

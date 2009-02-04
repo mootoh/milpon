@@ -112,7 +112,7 @@ enum {
    }
          
    [self.navigationController popViewControllerAnimated:YES];
-   [self.parent.theTableView reloadData]; // TODO: should reload due row only.
+   [self.parent.tableView reloadData]; // TODO: should reload due row only.
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -139,7 +139,7 @@ enum {
    if (selectedDate == nil) return;
    self.parent.due = [selectedDate objectAtIndex:0];
    [self.navigationController popViewControllerAnimated:YES];
-   [self.parent.theTableView reloadData]; // TODO: should reload due row only.
+   [self.parent.tableView reloadData]; // TODO: should reload due row only.
 }
 
 @end

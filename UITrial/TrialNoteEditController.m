@@ -38,7 +38,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
    self.parent.note = note_view.text;
-   [self.parent.theTableView reloadData];
+   [self.parent.tableView reloadData];
    [super viewDidAppear:animated];
 }
 

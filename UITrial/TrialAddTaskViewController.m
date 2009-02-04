@@ -23,7 +23,7 @@ enum {
    ROW_COUNT
 };
 
-@synthesize theTableView, list, due, tags, note;
+@synthesize list, due, tags, note;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -35,9 +35,17 @@ enum {
    return self;
 }
 
+- (void)dealloc
+{
+   [priority_segment release];
+   [due_button release];
+   [text_input release];
+   [super dealloc];
+}
+
 - (void) viewDidLoad
 {
-   theTableView.rowHeight = 40;
+   self.tableView.rowHeight = 40;
 
    /*
     * Navigation buttons
@@ -289,58 +297,10 @@ enum {
    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- 
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
- }   
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }   
- }
- */
-
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-- (void)dealloc {
-   [priority_segment release];
-   [due_button release];
-   [text_input release];
-   [super dealloc];
-}
-
 - (void) close
 {
-   [self dismissModalViewControllerAnimated:NO];
+   [self dismissModalViewControllerAnimated:YES];
 }
-
 
 - (IBAction) cancel
 {
@@ -349,7 +309,25 @@ enum {
 
 - (IBAction) save
 {
-   NSLog(@"save");
+   NSString *name = text_input.text;
+   if (name == nil || [name isEqualToString:@""])
+      return;
+
+   NSNumber *priority = [NSNumber numberWithInteger:priority_segment.selectedSegmentIndex];
+
+   // create RTMTask and store it in DB.
+   NSArray *keys =  [NSArray arrayWithObjects:@"name", @"list", @"priority", nil];
+   NSArray *vals = [NSArray arrayWithObjects:name, list, priority, nil];
+   
+   NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
+   if (due)
+      [params setObject:due forKey:@"due"];
+   if (note)
+      [params setObject:note forKey:@"note"];
+
+   //[RTMTask createAtOffline:params];
+
+   [self close];
 }
 
 - (void) selectDue

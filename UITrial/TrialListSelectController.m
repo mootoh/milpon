@@ -75,7 +75,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
    self.parent.list = [[list_provider lists] objectAtIndex:indexPath.row];
    [self.navigationController popViewControllerAnimated:YES];
-   [self.parent.theTableView reloadData];
+   [self.parent.tableView reloadData];
 }
 
 

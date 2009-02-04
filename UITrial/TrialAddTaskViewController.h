@@ -10,20 +10,19 @@
 
 @interface TrialAddTaskViewController : UITableViewController
 {
-   IBOutlet UITableView *theTableView;
    UITextField *text_input;
    UIButton *due_button;
    UISegmentedControl *priority_segment;
+
    NSString *list;
    NSDate *due;
    NSMutableSet *tags;
    NSString *note;
 }
 
-@property (nonatomic, retain) UITableView *theTableView;
 @property (nonatomic, retain) NSString *list;
 @property (nonatomic, retain) NSDate *due;
-@property (nonatomic, retain) NSSet *tags;
+@property (nonatomic, retain) NSMutableSet *tags;
 @property (nonatomic, retain) NSString *note;
 
 - (IBAction) cancel;
