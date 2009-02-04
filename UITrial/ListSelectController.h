@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class TrialAddTaskViewController;
+@class AddTaskViewController;
 
-@interface TrialListSelectController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface ListSelectController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
    IBOutlet UITableView *theTableView;
    id list_provider;
-   TrialAddTaskViewController *parent;
+   AddTaskViewController *parent;
 }
 
 @property (nonatomic, retain) UITableView *theTableView;
-@property (nonatomic, retain) TrialAddTaskViewController *parent;
+@property (nonatomic, retain) AddTaskViewController *parent;
 
 @end

@@ -6,10 +6,10 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
-#import "TrialNoteEditController.h"
-#import "TrialAddTaskViewController.h"
+#import "NoteEditController.h"
+#import "AddTaskViewController.h"
 
-@implementation TrialNoteEditController
+@implementation NoteEditController
 
 @synthesize parent, note;
 

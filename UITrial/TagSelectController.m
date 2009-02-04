@@ -6,11 +6,11 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
-#import "TrialTagViewController.h"
+#import "TagSelectController.h"
 #import "TrialTagProvider.h"
-#import "TrialAddTaskViewController.h"
+#import "AddTaskViewController.h"
 
-@implementation TrialTagViewController
+@implementation TagSelectController
 
 @synthesize parent, selected_tags;
 
@@ -90,7 +90,7 @@ static UIImage *s_checkedIcon = nil;
    cell.text = tag;
    
    if ([[selected_flags objectForKey:tag] boolValue]) {
-      UIImageView *image_view = [[UIImageView alloc] initWithImage:[TrialTagViewController checkedIcon]];
+      UIImageView *image_view = [[UIImageView alloc] initWithImage:[TagSelectController checkedIcon]];
       cell.accessoryView = image_view;
       [image_view release];
    } else {

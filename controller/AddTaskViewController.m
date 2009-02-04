@@ -7,10 +7,13 @@
 //
 
 #import "AddTaskViewController.h"
+#import "ListSelectController.h"
+#import "TagSelectController.h"
+#import "NoteEditController.h"
+#import "DueDateSelectController.h"
 #import "RTMList.h"
 #import "AppDelegate.h"
 #import "RTMDatabase.h"
-#import "ListSelectViewController.h"
 #import "RTMTask.h"
 #import "RootViewController.h"
 #import "UICCalendarPicker.h"
@@ -18,120 +21,38 @@
 
 @implementation AddTaskViewController
 
-const float margin_top  = 16.0f;
-const float margin_left = 16.0f;
-const float column_height = 40.0f;
+enum {
+   ROW_NAME = 0,
+   ROW_DUE_PRIORITY,
+   ROW_LIST,
+   ROW_TAG,
+   ROW_NOTE,
+   ROW_COUNT
+};
 
-@synthesize name, list, priority, due_date, note;
+@synthesize list, due, tags, note;
 
-- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
+- (id)initWithStyle:(UITableViewStyle)style
 {
-   if (self = [super initWithNibName:nibName bundle:nibBundle]) {
-      AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-      RTMDatabase *db = app.db;
-      lists = [[RTMList allLists:db] retain];
-
-      self.title = @"Add a Task";
-      self.priority = @"0";
-      self.list = [lists objectAtIndex:0]; // list default: INBOX
+   if (self = [super initWithStyle:style]) {
+      self.title = @"Add";
+      self.list  = @"Inbox";
+      self.tags  = [NSMutableSet set];
    }
    return self;
 }
 
-- (void) dealloc
+- (void)dealloc
 {
-   [name_field release];
-   [note_field release];
    [priority_segment release];
-   [name release];
-   [due_date release];
-   [lists release];
-   [list release];
+   [due_button release];
+   [text_input release];
    [super dealloc];
 }
 
-- (void) didReceiveMemoryWarning
+- (void) viewDidLoad
 {
-   [super didReceiveMemoryWarning];
-}
-
-/* -------------------------------------------------------------------
- * TextFieldDelegate
- */
-- (BOOL) textFieldShouldReturn:(UITextField *)textField
-{
-   if (textField == name_field)
-      self.name = textField.text;
-   else if (textField == note_field)
-      self.note = textField.text;
-   else
-      return YES;
-
-   [textField resignFirstResponder];
-   return YES;
-}
-
-- (void) updatePriority
-{
-   self.priority = [NSString stringWithFormat:@"%d", priority_segment.selectedSegmentIndex];
-   [self commitTextFields];
-}
-
-- (void) close
-{
-   UIViewController *nav = self.parentViewController;;
-   RootViewController *root = (RootViewController *)nav.parentViewController;;
-   root.bottomBar.hidden = NO;
-   [root reload];
-   [self dismissModalViewControllerAnimated:YES];
-}
-
-- (IBAction) cancel
-{
-   [self close];
-}
-
-- (void) commitTextFields
-{
-   [self textFieldShouldReturn:name_field];
-   [self textFieldShouldReturn:note_field];
-}
-
-/*
- * create RTMTask from given fields
- *
- * TODO:
- *  - how to validate the fields ?
- *  - add note, tag, rrule
- */
-- (IBAction) save
-{
-   [self commitTextFields];
-
-   if (name == nil || [name isEqualToString:@""]) return;
-
-   // store it to the DB
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   RTMDatabase *db = app.db;
-
-   NSArray *keys = [NSArray arrayWithObjects:@"name", @"due", @"list_id", @"priority", @"note", nil];
-   NSArray *vals = [NSArray arrayWithObjects:
-      name,
-      due_date ? due_date : @"",
-      list.iD,
-      priority,
-      note ? note : @"",
-      nil];
-   NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-
-   [RTMTask createAtOffline:params inDB:db];
-
-   [self close];
-}
-
-- (void) loadView
-{
-   [super loadView];
+   self.tableView.rowHeight = 40;
 
    /*
     * Navigation buttons
@@ -144,57 +65,250 @@ const float column_height = 40.0f;
    self.navigationItem.rightBarButtonItem = submitButton;
    [submitButton release];
 
-	
-   name_field = [[UITextField alloc] initWithFrame:
-      CGRectMake(margin_left, margin_top, CGRectGetWidth(self.view.frame)-margin_left, column_height)];
-   name_field.placeholder = @"what...";
-   name_field.returnKeyType = UIReturnKeyDone;
-   name_field.delegate = self;
-   [name_field becomeFirstResponder];
-   [self.view addSubview:name_field];
-
-   note_field = [[UITextField alloc] initWithFrame:
-      CGRectMake(margin_left, margin_top+column_height, CGRectGetWidth(self.view.frame)-margin_left, column_height)];
-   note_field.placeholder = @"note...";
-   note_field.returnKeyType = UIReturnKeyDone;
-   note_field.delegate = self;
-   [self.view addSubview:note_field];
-
+   // task name
+   text_input = [[UITextField alloc] initWithFrame:CGRectMake(30, 8, 300, 40)];
+   [text_input setFont:[UIFont systemFontOfSize:20.0f]];
+   text_input.placeholder = @"what to do...";
+   
+   // due button
+   due_button = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+   due_button.frame = CGRectMake(8, 4, 84, 32);
+   due_button.font = [UIFont systemFontOfSize:14];
+   
+   UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                         [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_calendar.png"]];
+   [due_button setImage:iconImage forState:UIControlStateNormal];
+   [due_button addTarget:self action:@selector(selectDue) forControlEvents:UIControlEventTouchDown];
+   [iconImage release];
+   
    // setup priority segment
-   NSArray *priority_items = [NSArray arrayWithObjects:@"0", @"1", @"2", @"3", nil];
-   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(32, 100, CGRectGetWidth(self.view.frame)-64, 40)];
+   NSArray *priority_items = [NSArray arrayWithObjects:@"-", @"3", @"2", @"1", nil];
+   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(104, 4, CGRectGetWidth(self.view.frame)-104-10, 32)];
    for (int i=0; i<priority_items.count; i++)
       [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
-
+   
    priority_segment.selectedSegmentIndex = 0;
-   [priority_segment addTarget:self action:@selector(updatePriority) forControlEvents:UIControlEventValueChanged];
-
-   [self.view addSubview:priority_segment];
-
-   UICCalendarPicker *picker = [[UICCalendarPicker alloc] initWithFrame:CGRectMake((320.0f-204.0f)/2.0f, 160, 204.0f, 234.0f)];
-   [picker setDelegate:self];
-   [picker showInView:self.view];
-   [picker release];
+}
+- (void) didReceiveMemoryWarning
+{
+   [super didReceiveMemoryWarning];
 }
 
-- (void) picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate
-{
-   LOG(@"picker");
-   NSDate *theDate = [selectedDate objectAtIndex:0];
+#pragma mark Table view methods
 
-   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss"];
-   NSString *ret = [formatter stringFromDate:theDate];
-   ret = [ret stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
-   ret = [ret stringByAppendingString:@"Z"];
-   self.due_date = ret;
-
-   [self.view setNeedsDisplay];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+   return 1;
 }
 
-- (void) prioritySelected
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+   return ROW_COUNT;
+}
+
+#define ICON_TAG 1
+#define LABEL_TAG 2
+#define NAME_CELL_IDENTIFIER @"NameCell"
+#define DUE_PRIORITY_CELL_IDENTIFIER @"DuePriorityCell"
+#define ICON_LABEL_CELL_IDENTIFIER @"IconLabelCell"
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+   UITableViewCell *cell;
+   switch (indexPath.row) {
+      case ROW_NAME: {
+         cell = [tableView dequeueReusableCellWithIdentifier:NAME_CELL_IDENTIFIER];
+         if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:NAME_CELL_IDENTIFIER] autorelease];
+            UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 15, 16, 16)];
+            UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                                  [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_target.png"]];
+            iconImageView.image = iconImage;
+            [cell.contentView addSubview:iconImageView];
+
+            [cell.contentView addSubview:text_input];
+         }
+         [text_input becomeFirstResponder];
+         break;
+      }
+      case ROW_DUE_PRIORITY: {
+         cell = [tableView dequeueReusableCellWithIdentifier:DUE_PRIORITY_CELL_IDENTIFIER];
+         if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:DUE_PRIORITY_CELL_IDENTIFIER] autorelease];
+            [cell.contentView addSubview:due_button];
+            [cell.contentView addSubview:priority_segment];
+         }
+         if (self.due) {
+            NSDateFormatter *date_formatter = [[NSDateFormatter alloc] init];
+            date_formatter.dateFormat = @" MM/dd";
+            
+            NSString *due_string = [date_formatter stringFromDate:self.due];
+            [due_button setTitle:due_string forState:UIControlStateNormal];
+            [date_formatter release];
+         }         
+         break;
+      }
+      default: {
+         UIImageView *iconImageView = nil;
+         UILabel *label = nil;
+         cell = [tableView dequeueReusableCellWithIdentifier:ICON_LABEL_CELL_IDENTIFIER];
+         if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:ICON_LABEL_CELL_IDENTIFIER] autorelease];
+
+            iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 15, 16, 16)];
+            iconImageView.tag = ICON_TAG;
+            [cell.contentView addSubview:iconImageView];
+            //[iconImageView release];
+            
+            label = [[UILabel alloc] initWithFrame:CGRectMake(30, 2, 220, 36)];
+            label.tag = LABEL_TAG;
+            //label.adjustsFontSizeToFitWidth = YES;
+            [cell.contentView addSubview:label];
+            //[listLabel release];
+            
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
+         } else {
+            iconImageView = (UIImageView *)[cell.contentView viewWithTag:ICON_TAG];
+            label = (UILabel *)[cell.contentView viewWithTag:LABEL_TAG];
+         }
+         
+         switch (indexPath.row) {
+            case ROW_LIST: {
+               UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                                     [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]];
+               iconImageView.image = iconImage;
+               [iconImage release];
+               label.text = list;
+               break;
+            }
+            case ROW_TAG: {
+               UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                                     [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]];
+               iconImageView.image = iconImage;
+               [iconImage release];
+
+               // join tags
+               NSString *tags_joined = @"";
+               if (tags.count == 0) {
+                  tags_joined = @"Tag...";
+               } else {         
+                  for (NSString *tag in tags) {
+                     tags_joined = [tags_joined stringByAppendingString:[NSString stringWithFormat:@"%@ ", tag]];
+                  }
+               }
+               
+               label.text = tags_joined;
+               break;
+            }
+            case ROW_NOTE: {
+               UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                                     [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_note.png"]];
+               iconImageView.image = iconImage;
+               [iconImage release];
+               
+               label.text = note ? note : @"Note...";
+               break;
+            }
+         }
+         break;
+      }
+   }
+   return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   // Navigation logic may go here. Create and push another view controller.
+	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
+	// [self.navigationController pushViewController:anotherViewController];
+	// [anotherViewController release];
+   switch (indexPath.row) {
+      case ROW_DUE_PRIORITY:
+         [tableView deselectRowAtIndexPath:indexPath animated:NO];
+         break;
+      case ROW_LIST: {
+         ListSelectController *vc = [[ListSelectController alloc] initWithNibName:nil bundle:nil];
+         vc.parent = self;
+         [self.navigationController pushViewController:vc animated:YES];
+         [vc release];
+         break;
+      }
+      case ROW_TAG: {
+         TagSelectController *vc = [[TagSelectController alloc] initWithNibName:nil bundle:nil];
+         vc.parent = self;
+         [vc setTags:tags];
+         [self.navigationController pushViewController:vc animated:YES];
+         [vc release];
+         break;
+      }
+      case ROW_NOTE: {
+         NoteEditController *vc = [[NoteEditController alloc] initWithNibName:nil bundle:nil];
+         vc.parent = self;
+         vc.note = note;
+         [self.navigationController pushViewController:vc animated:YES];
+         [vc release];
+         break;
+      }
+      default:
+         break;
+   }
+   [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+- (void) close
+{
+   [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction) cancel
+{
+   [self close];
+}
+
+/*
+ * create RTMTask from given fields
+ *
+ * TODO:
+ *  - how to validate the fields ?
+ *  - add note, tag, rrule
+ */
+- (IBAction) save
+{
+   NSString *name = text_input.text;
+   if (name == nil || [name isEqualToString:@""])
+      return;
+
+   NSNumber *priority = [NSNumber numberWithInteger:priority_segment.selectedSegmentIndex];
+
+   // create RTMTask and store it in DB.
+   NSArray *keys =  [NSArray arrayWithObjects:@"name", @"list", @"priority", nil];
+   NSArray *vals = [NSArray arrayWithObjects:name, list, priority, nil];
+   
+   NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
+   if (due)
+      [params setObject:due forKey:@"due"];
+   if (note)
+      [params setObject:note forKey:@"note"];
+
+// TODO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+   // store it to the DB
+   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+   RTMDatabase *db = app.db;
+   [RTMTask createAtOffline:params inDB:db];
+// TODO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+   //[RTMTask createAtOffline:params];
+
+   [self close];
+}
+
+- (void) selectDue
+{
+   DueDateSelectController *vc = [[DueDateSelectController alloc] initWithNibName:nil bundle:nil];
+   vc.parent = self;
+   [self.navigationController pushViewController:vc animated:YES];
+   [vc release];
 }
 
 @end

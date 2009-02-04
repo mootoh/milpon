@@ -10,27 +10,24 @@
 
 @class RTMList;
 
-@interface AddTaskViewController : UIViewController <UITextFieldDelegate>
+@interface AddTaskViewController : UITableViewController
 {
-   NSString *name;
-   NSString *priority;
-   NSString *due_date;
-   NSString *note;
-
-   NSArray *lists;
-   RTMList *list;
-
-   UITextField *name_field, *note_field;
+   UITextField *text_input;
+   UIButton *due_button;
    UISegmentedControl *priority_segment;
+
+   NSString *list;
+   NSDate *due;
+   NSMutableSet *tags;
+   NSString *note;
 }
 
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *priority;
-@property (nonatomic, retain) NSString *due_date;
+@property (nonatomic, retain) NSString *list;
+@property (nonatomic, retain) NSDate *due;
+@property (nonatomic, retain) NSMutableSet *tags;
 @property (nonatomic, retain) NSString *note;
-@property (nonatomic, retain) RTMList *list;
 
+- (IBAction) cancel;
 - (IBAction) save;
-- (void) commitTextFields;
 
 @end

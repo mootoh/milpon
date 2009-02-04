@@ -1,30 +1,24 @@
 //
-//  TrialDueDateSelectController.m
+//  TrialListSelectController.m
 //  Milpon
 //
 //  Created by mootoh on 1/26/09.
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
-#import "TrialDueDateSelectController.h"
-#import "TrialAddTaskViewController.h"
-#import "UICCalendarPicker.h"
+#import "ListSelectController.h"
+#import "TrialListProvider.h"
+#import "AddTaskViewController.h"
 
-@implementation TrialDueDateSelectController
-
-enum {
-   ROW_TODAY    = 0,
-   ROW_TOMORROW = 1,
-   ROW_CALENDAR = 2
-};
+@implementation ListSelectController
 
 @synthesize theTableView, parent;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-       calendar_picker = [[UICCalendarPicker alloc] initWithFrame:CGRectMake(58.0f, 52.0f, 204.0f, 234.0f)];
-       calendar_picker.delegate = self;
+       list_provider = [[TrialListProvider alloc] init];
+       self.title = @"List";
     }
     return self;
 }
@@ -59,68 +53,29 @@ enum {
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   return 3;
+   return [list_provider lists].count;
 }
+
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
-   static NSString *CellIdentifier = @"TrialDueDateSelect";
+   static NSString *CellIdentifier = @"TrialListSelect";
    
    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
    if (cell == nil) {
       cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
    }
    
-   switch (indexPath.row) {
-      case ROW_TODAY:
-         cell.text = @"Today";
-         break;
-      case ROW_TOMORROW:
-         cell.text = @"Tomorrow";
-         break;
-      case ROW_CALENDAR:
-         [calendar_picker showInView:cell.contentView];
-         //[cell.contentView addSubview:calendar_picker];
-         break;
-      default:
-         break;
-   }
+   cell.text = [[list_provider lists] objectAtIndex:indexPath.row];
    return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   switch (indexPath.row) {
-      case ROW_TODAY:
-         self.parent.due = [NSDate date];
-         break;
-      case ROW_TOMORROW: {
-         NSDate *now = [NSDate date];
-         NSDateComponents *comps = [[NSDateComponents alloc] init];
-         [comps setDay:1];
-         NSDate *date = [[NSCalendar currentCalendar] dateByAddingComponents:comps toDate:now  options:0];
-         [comps release];
-         self.parent.due = date;
-         break;
-      }
-      case ROW_CALENDAR:
-         [tableView deselectRowAtIndexPath:indexPath animated:NO];
-         return;
-      default:
-         break;
-   }
-         
+   self.parent.list = [[list_provider lists] objectAtIndex:indexPath.row];
    [self.navigationController popViewControllerAnimated:YES];
-   [self.parent.tableView reloadData]; // TODO: should reload due row only.
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-   if (indexPath.row == 2)
-      return 340.0f;
-   else
-      return 44.0f;
+   [self.parent.tableView reloadData];
 }
 
 
@@ -131,15 +86,9 @@ enum {
 
 
 - (void)dealloc {
-    [super dealloc];
+   [list_provider release];
+   [super dealloc];
 }
 
-- (void) picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate
-{
-   if (selectedDate == nil) return;
-   self.parent.due = [selectedDate objectAtIndex:0];
-   [self.navigationController popViewControllerAnimated:YES];
-   [self.parent.tableView reloadData]; // TODO: should reload due row only.
-}
 
 @end

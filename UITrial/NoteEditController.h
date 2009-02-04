@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class TrialAddTaskViewController;
+@class AddTaskViewController;
 
-@interface TrialNoteEditController : UIViewController {
+@interface NoteEditController : UIViewController {
    IBOutlet UITextView *note_view;
-   TrialAddTaskViewController *parent;
+   AddTaskViewController *parent;
    NSString *note;
 }
 
-@property (nonatomic,retain) TrialAddTaskViewController *parent;
+@property (nonatomic,retain) AddTaskViewController *parent;
 @property (nonatomic,retain) NSString *note;
 @end

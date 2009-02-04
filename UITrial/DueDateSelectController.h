@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@class TrialAddTaskViewController;
+@class AddTaskViewController;
 @class UICCalendarPicker;
 
-@interface TrialDueDateSelectController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface DueDateSelectController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
    IBOutlet UITableView *theTableView;
-   TrialAddTaskViewController *parent;
+   AddTaskViewController *parent;
    UICCalendarPicker *calendar_picker;
 }
 
 @property (nonatomic, retain) UITableView *theTableView;
-@property (nonatomic, retain) TrialAddTaskViewController *parent;
+@property (nonatomic, retain) AddTaskViewController *parent;
 
 @end

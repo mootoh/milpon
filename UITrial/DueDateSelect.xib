@@ -125,7 +125,7 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>TrialDueDateSelectController</string>
+					<string>DueDateSelectController</string>
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -156,7 +156,7 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">TrialDueDateSelectController</string>
+					<string key="className">DueDateSelectController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">theTableView</string>
@@ -164,7 +164,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">UITrial/TrialDueDateSelectController.h</string>
+						<string key="minorKey">UITrial/DueDateSelectController.h</string>
 					</object>
 				</object>
 			</object>
