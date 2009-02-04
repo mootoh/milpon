@@ -70,7 +70,7 @@ static const int SECTIONS = 4;
       }
    }
 }
-
+/*
 - (id) initWithStyle:(UITableViewStyle)style
 {
    if (self = [super initWithStyle:style]) {
@@ -88,6 +88,24 @@ static const int SECTIONS = 4;
       [self reloadFromDB];
    }
    return self;
+}
+*/
+- (void)viewDidLoad
+{
+   [super viewDidLoad];
+
+   NSDate *today = [NSDate date];
+   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+   [formatter setDateStyle:NSDateFormatterMediumStyle];
+   formatter.dateFormat = @"M/dd (EEE)";
+   self.title = [formatter stringFromDate:today];
+   [formatter release];
+   
+   self.headers = [NSArray arrayWithObjects:@"Today", @"Tomorrow", @"7 days", @"Outdated", nil];
+   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+   db = app.db;
+   
+   [self reloadFromDB];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

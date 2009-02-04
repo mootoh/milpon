@@ -14,12 +14,14 @@
 @interface AppDelegate : NSObject <UIApplicationDelegate>
 {	
    IBOutlet UIWindow *window;
+   IBOutlet UITabBarController *tabBarController;
    RTMAuth *auth;
    RTMDatabase *db;
    NSOperationQueue *operationQueue;
 }
 
 @property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, retain) UITabBarController *tabBarController;
 @property (nonatomic, retain) RTMAuth *auth;
 @property (nonatomic, readonly) RTMDatabase *db;
 @property (nonatomic, retain) NSOperationQueue *operationQueue;

@@ -15,7 +15,7 @@
 
 @implementation AppDelegate
 
-@synthesize window, auth, db, operationQueue;
+@synthesize window, auth, db, operationQueue, tabBarController;
 
 - (NSString *) authPath
 {
@@ -54,6 +54,7 @@
 
 - (void)dealloc
 {
+   [tabBarController release];
    [operationQueue release];
    [auth release];
    [db release];
@@ -63,8 +64,9 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-   RootViewController *root = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-   [window addSubview:root.view];
+   //RootViewController *root = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+   //[window addSubview:root.view];
+   [window addSubview:tabBarController.view];
    [window makeKeyAndVisible];
 }
 

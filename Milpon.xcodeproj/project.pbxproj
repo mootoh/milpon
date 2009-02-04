@@ -51,7 +51,6 @@
 		86F7E7070EAF4F6C00B122F9 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86F7E7060EAF4F6C00B122F9 /* Entitlements.plist */; };
 		86FC8D180E9593F100BD30A4 /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71D00E6A4AE800EF2F9A /* RTMAPITask.m */; };
 		923243660EF722F8003599A3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 923243650EF722F8003599A3 /* Reachability.m */; };
-		923243690EF72360003599A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923243680EF72360003599A3 /* SystemConfiguration.framework */; };
 		923243C20EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
 		923243C30EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
 		923243C40EF726DE003599A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 923243C10EF726DE003599A3 /* Default.png */; };
@@ -96,6 +95,9 @@
 		92C058E90EDAB7F50019E07B /* icon_priority_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C058E50EDAB7F50019E07B /* icon_priority_2.png */; };
 		92C058EA0EDAB7F50019E07B /* icon_priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 92C058E60EDAB7F50019E07B /* icon_priority_3.png */; };
 		92C059090EDAC04C0019E07B /* PriorityImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C059080EDAC04C0019E07B /* PriorityImageView.m */; };
+		92D634BC0F39BF2900B5CAF5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923243680EF72360003599A3 /* SystemConfiguration.framework */; };
+		92D635030F39C0B000B5CAF5 /* OverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337C0C0F25DEA200FACDEF /* OverviewView.xib */; };
+		92D6353F0F39C26000B5CAF5 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92D6353E0F39C26000B5CAF5 /* HomeView.xib */; };
 		92E029110EEBCB7F006BB575 /* MilponIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 92E029100EEBCB7F006BB575 /* MilponIconSmall.png */; };
 		92F166730ED325370096EABC /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F166720ED325370096EABC /* ProgressViewController.m */; };
 		92F166740ED325560096EABC /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 867187260EAC7B3B000A9133 /* ProgressView.m */; };
@@ -279,8 +281,9 @@
 		92C058E60EDAB7F50019E07B /* icon_priority_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_priority_3.png; path = resource/icon_priority_3.png; sourceTree = "<group>"; };
 		92C059070EDAC04C0019E07B /* PriorityImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PriorityImageView.h; path = view/PriorityImageView.h; sourceTree = "<group>"; };
 		92C059080EDAC04C0019E07B /* PriorityImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PriorityImageView.m; path = view/PriorityImageView.m; sourceTree = "<group>"; };
+		92D6353E0F39C26000B5CAF5 /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HomeView.xib; path = view/HomeView.xib; sourceTree = "<group>"; };
 		92E029100EEBCB7F006BB575 /* MilponIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MilponIconSmall.png; path = resource/MilponIconSmall.png; sourceTree = "<group>"; };
-		92F166670ED324290096EABC /* ProgressViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgressViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92F166670ED324290096EABC /* ProgressViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ProgressViewTest.app; path = "/Users/mootoh/prj/iphone/milpon/build/Debug-iphonesimulator/ProgressViewTest.app"; sourceTree = "<absolute>"; };
 		92F166690ED324290096EABC /* ProgressViewTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ProgressViewTest-Info.plist"; path = "../ProgressViewTest-Info.plist"; sourceTree = "<group>"; };
 		92F166710ED325370096EABC /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
 		92F166720ED325370096EABC /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
@@ -386,7 +389,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				B98D23C10E6784AE0006D6AF /* libsqlite3.dylib in Frameworks */,
 				B9FF72CD0E6A7C5400EF2F9A /* CoreGraphics.framework in Frameworks */,
-				923243690EF72360003599A3 /* SystemConfiguration.framework in Frameworks */,
+				92D634BC0F39BF2900B5CAF5 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,7 +437,6 @@
 				1D6058910D05DD3D006BFB54 /* Milpon.app */,
 				B9DD5E8F0E6901B7007BFC7A /* UnitTest.octest */,
 				86E0212A0E7EAAD7001945E7 /* UnitTest.octest */,
-				92F166670ED324290096EABC /* ProgressViewTest.app */,
 				B9337B6B0F25D88200FACDEF /* Milpon.app */,
 			);
 			name = Products;
@@ -552,6 +554,7 @@
 				867187260EAC7B3B000A9133 /* ProgressView.m */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				86C148000E71739800456F6A /* TaskView.xib */,
+				92D6353E0F39C26000B5CAF5 /* HomeView.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -973,6 +976,8 @@
 				92724F020F35BA8C001DAA5D /* icon_checked.png in Resources */,
 				9245AEBC0F35CE2E00529D48 /* icon_target.png in Resources */,
 				92F4F7DE0F39BAEF00DEE8BC /* DueDateSelect.xib in Resources */,
+				92D635030F39C0B000B5CAF5 /* OverviewView.xib in Resources */,
+				92D6353F0F39C26000B5CAF5 /* HomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
