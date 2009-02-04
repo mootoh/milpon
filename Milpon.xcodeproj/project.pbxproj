@@ -103,6 +103,8 @@
 		92F166760ED3256D0096EABC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		92F166840ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92F166830ED325DA0096EABC /* FunctionalTestProgressViewWindow.xib */; };
 		92F166910ED326A80096EABC /* FunctionalTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F166900ED326A80096EABC /* FunctionalTestAppDelegate.m */; };
+		92F4F7760F39B67B00DEE8BC /* ListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337C260F25E0C100FACDEF /* ListView.xib */; };
+		92F4F77A0F39B68E00DEE8BC /* TagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337CD00F25EC3A00FACDEF /* TagView.xib */; };
 		92FB1A2B0EEAC3E1004E67EC /* RTMAPINote.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FB1A2A0EEAC3E1004E67EC /* RTMAPINote.m */; };
 		B9134DD10E65F0E1005028DC /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9134DD00E65F0E1005028DC /* RTMAPIAuth.m */; };
 		B91553280E6A2A68004DC85A /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553270E6A2A68004DC85A /* RTMAPIList.m */; };
@@ -1013,6 +1015,8 @@
 				92724EC00F35B49A001DAA5D /* icon_calendar.png in Resources */,
 				92724F030F35BA8C001DAA5D /* icon_checked.png in Resources */,
 				9245AEBD0F35CE2E00529D48 /* icon_target.png in Resources */,
+				92F4F7760F39B67B00DEE8BC /* ListView.xib in Resources */,
+				92F4F77A0F39B68E00DEE8BC /* TagView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,14 +11,14 @@
 
 @implementation OverviewTableViewController
 
-/*
+static NSArray *s_header_title = nil;
+
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     if (self = [super initWithStyle:style]) {
     }
     return self;
 }
-*/
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,6 +36,14 @@
 }
 
 #pragma mark Table view methods
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+   if (! s_header_title)
+      s_header_title = [[NSArray arrayWithObjects:@"Today", @"Tomorrow", @"7 days", @"Outdated", nil] retain];
+
+   return [s_header_title objectAtIndex:section];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 4;
