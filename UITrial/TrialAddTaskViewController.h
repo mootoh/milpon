@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-
-@interface TrialAddTaskViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
+@interface TrialAddTaskViewController : UITableViewController
+{
    IBOutlet UITableView *theTableView;
    UITextField *text_input;
    UIButton *due_button;

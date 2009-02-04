@@ -31,38 +31,8 @@
     [addButton release];
 }
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-    // Release anything that's not essential, such as cached data
 }
 
 #pragma mark Table view methods
@@ -94,10 +64,6 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
 }
 
 
@@ -150,7 +116,7 @@
 {
    self.hidesBottomBarWhenPushed = YES;
    
-   TrialAddTaskViewController *tavController = [[TrialAddTaskViewController alloc] initWithNibName:nil bundle:nil];
+   TrialAddTaskViewController *tavController = [[TrialAddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:tavController];
    [self presentModalViewController:navc animated:NO];
    [navc release];

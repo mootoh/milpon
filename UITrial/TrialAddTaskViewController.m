@@ -25,9 +25,9 @@ enum {
 
 @synthesize theTableView, list, due, tags, note;
 
-- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
+- (id)initWithStyle:(UITableViewStyle)style
 {
-   if (self = [super initWithNibName:nibName bundle:bundle]) {
+   if (self = [super initWithStyle:style]) {
       self.title = @"Add";
       self.list  = @"Inbox";
       self.tags  = [NSMutableSet set];
