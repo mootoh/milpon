@@ -11,13 +11,9 @@
 #import "TagSelectController.h"
 #import "NoteEditController.h"
 #import "DueDateSelectController.h"
-#import "RTMList.h"
 #import "AppDelegate.h"
 #import "RTMDatabase.h"
 #import "RTMTask.h"
-#import "RootViewController.h"
-#import "UICCalendarPicker.h"
-#import "logger.h"
 
 @implementation AddTaskViewController
 
@@ -282,8 +278,8 @@ enum {
    NSNumber *priority = [NSNumber numberWithInteger:priority_segment.selectedSegmentIndex];
 
    // create RTMTask and store it in DB.
-   NSArray *keys =  [NSArray arrayWithObjects:@"name", @"list", @"priority", nil];
-   NSArray *vals = [NSArray arrayWithObjects:name, list, priority, nil];
+   NSArray *keys =  [NSArray arrayWithObjects:@"name", @"list", @"priority", "tags", nil];
+   NSArray *vals = [NSArray arrayWithObjects:name, list, priority, tags, nil];
    
    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (due)

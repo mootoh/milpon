@@ -17,21 +17,15 @@
 - (id) initWithStyle:(UITableViewStyle)style
 {
    if (self = [super initWithStyle:style]) {
-      AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-      lists = [[RTMList allLists:app.db] retain];
-      self.title = @"List";
    }
    return self;
 }
 
 - (void)viewDidLoad
 {
-   // Add the following line if you want the list to be editable
-   // self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-   // AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   // app.currentNavigationViewController = [self navigationController];
-
+   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+   lists = [[RTMList allLists:app.db] retain];
+   self.title = @"List";   
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -28,13 +28,11 @@
 		8691FBDA0E9D11F0003BE718 /* RTMStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8691FBD70E9D11F0003BE718 /* RTMStorable.m */; };
 		86A081C50EA6B78400446784 /* TaskEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A081C30EA6B74300446784 /* TaskEditCell.m */; };
 		86B9BBE90EABFC2A00210FCB /* AuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B9BBE80EABFC2A00210FCB /* AuthWebViewController.m */; };
-		86BF63310EA8C6710055D56B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BF63300EA8C6710055D56B /* RootViewController.m */; };
 		86C148010E71739800456F6A /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C148000E71739800456F6A /* TaskView.xib */; };
 		86C1480F0E72142100456F6A /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF71E10E6A53DE00EF2F9A /* RTMTask.m */; };
 		86C148120E72144300456F6A /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C148110E72144300456F6A /* TaskViewController.m */; };
 		86C29EC30E928437006E7C74 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553270E6A2A68004DC85A /* RTMAPIList.m */; };
 		86C29EC80E92846D006E7C74 /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9134DD00E65F0E1005028DC /* RTMAPIAuth.m */; };
-		86DB9B820E97176F00DA4D16 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DB9B810E97176F00DA4D16 /* MenuViewController.m */; };
 		86DB9B8A0E9717D900DA4D16 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DB9B890E9717D900DA4D16 /* HomeViewController.m */; };
 		86E021190E7EAAD7001945E7 /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B98D24120E678C250006D6AF /* rtm.sql */; };
 		86E0211C0E7EAAD7001945E7 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B98D24490E6792F60006D6AF /* RTMList.m */; };
@@ -122,18 +120,16 @@
 		B91554600E6A3906004DC85A /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B98D24120E678C250006D6AF /* rtm.sql */; };
 		B9224C5C0E70AECF004F83CE /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9224C5B0E70AECF004F83CE /* AuthViewController.m */; };
 		B9258A150F25F92B00766966 /* AddTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9258A140F25F92B00766966 /* AddTaskView.xib */; };
-		B9258A180F25F94700766966 /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9258A170F25F94700766966 /* AddTaskViewController.m */; };
 		B927A5570F2F68EB00D09A7D /* TrialTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B927A5560F2F68EB00D09A7D /* TrialTagProvider.m */; };
 		B9337B600F25D88200FACDEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9337B610F25D88200FACDEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		B9337B630F25D88200FACDEF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		B9337B730F25D92400FACDEF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		B9337B870F25D95500FACDEF /* TrialWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337A9D0F25D41100FACDEF /* TrialWindow.xib */; };
 		B9337C0D0F25DEA200FACDEF /* OverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337C0C0F25DEA200FACDEF /* OverviewView.xib */; };
 		B9337C2E0F25E2AF00FACDEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B9337C2D0F25E2AF00FACDEF /* Settings.bundle */; };
 		B9337C2F0F25E2AF00FACDEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B9337C2D0F25E2AF00FACDEF /* Settings.bundle */; };
 		B9337CCC0F25EBF300FACDEF /* TagSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337CCB0F25EBF300FACDEF /* TagSelectController.m */; };
-		B9337CCF0F25EC0400FACDEF /* TrialReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337CCE0F25EC0400FACDEF /* TrialReviewController.m */; };
+		B9337CCF0F25EC0400FACDEF /* ReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9337CCE0F25EC0400FACDEF /* ReviewController.m */; };
 		B9337CD40F25EC5900FACDEF /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337CD30F25EC5900FACDEF /* ReviewView.xib */; };
 		B936E9B80F2987B500E8657A /* NoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B936E9B70F2987B500E8657A /* NoteEdit.xib */; };
 		B936E9C10F2988E600E8657A /* NoteEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = B936E9C00F2988E600E8657A /* NoteEditController.m */; };
@@ -142,8 +138,8 @@
 		B9404CB10F3ED232003DD77D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		B9404CB20F3ED23B003DD77D /* ListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9337C260F25E0C100FACDEF /* ListView.xib */; };
 		B9404CB30F3ED23D003DD77D /* ListSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95DC5950F2DC98B00E127A3 /* ListSelect.xib */; };
-		B9404D070F3ED7F1003DD77D /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9258A170F25F94700766966 /* AddTaskViewController.m */; };
 		B9404D310F3ED88E003DD77D /* NoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B936E9B70F2987B500E8657A /* NoteEdit.xib */; };
+		B9404D3C0F3EDA40003DD77D /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E5ED040E90BA2800C3DE94 /* AddTaskViewController.m */; };
 		B95DC5940F2DC96B00E127A3 /* ListSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5930F2DC96B00E127A3 /* ListSelectController.m */; };
 		B95DC5960F2DC98B00E127A3 /* ListSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95DC5950F2DC98B00E127A3 /* ListSelect.xib */; };
 		B95DC5BD0F2DCAAE00E127A3 /* TrialListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5BC0F2DCAAE00E127A3 /* TrialListProvider.m */; };
@@ -302,21 +298,16 @@
 		B9224C5A0E70AECF004F83CE /* AuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthViewController.h; sourceTree = "<group>"; };
 		B9224C5B0E70AECF004F83CE /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
 		B9258A140F25F92B00766966 /* AddTaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AddTaskView.xib; path = UITrial/AddTaskView.xib; sourceTree = "<group>"; };
-		B9258A160F25F94700766966 /* AddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddTaskViewController.h; path = UITrial/AddTaskViewController.h; sourceTree = "<group>"; };
-		B9258A170F25F94700766966 /* AddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddTaskViewController.m; path = UITrial/AddTaskViewController.m; sourceTree = "<group>"; };
 		B927A5550F2F68EB00D09A7D /* TrialTagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialTagProvider.h; path = ../UITrial/TrialTagProvider.h; sourceTree = "<group>"; };
 		B927A5560F2F68EB00D09A7D /* TrialTagProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialTagProvider.m; path = ../UITrial/TrialTagProvider.m; sourceTree = "<group>"; };
-		B9337A9D0F25D41100FACDEF /* TrialWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrialWindow.xib; path = UITrial/TrialWindow.xib; sourceTree = "<group>"; };
 		B9337B6B0F25D88200FACDEF /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9337C0C0F25DEA200FACDEF /* OverviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OverviewView.xib; path = UITrial/OverviewView.xib; sourceTree = "<group>"; };
 		B9337C260F25E0C100FACDEF /* ListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ListView.xib; path = UITrial/ListView.xib; sourceTree = "<group>"; };
 		B9337C2D0F25E2AF00FACDEF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		B9337CC50F25EB9D00FACDEF /* TrialListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialListViewController.h; path = UITrial/TrialListViewController.h; sourceTree = "<group>"; };
-		B9337CC60F25EB9D00FACDEF /* TrialListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialListViewController.m; path = UITrial/TrialListViewController.m; sourceTree = "<group>"; };
 		B9337CCA0F25EBF300FACDEF /* TagSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagSelectController.h; path = ../UITrial/TagSelectController.h; sourceTree = "<group>"; };
 		B9337CCB0F25EBF300FACDEF /* TagSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagSelectController.m; path = ../UITrial/TagSelectController.m; sourceTree = "<group>"; };
-		B9337CCD0F25EC0400FACDEF /* TrialReviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrialReviewController.h; path = UITrial/TrialReviewController.h; sourceTree = "<group>"; };
-		B9337CCE0F25EC0400FACDEF /* TrialReviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrialReviewController.m; path = UITrial/TrialReviewController.m; sourceTree = "<group>"; };
+		B9337CCD0F25EC0400FACDEF /* ReviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReviewController.h; path = ../UITrial/ReviewController.h; sourceTree = "<group>"; };
+		B9337CCE0F25EC0400FACDEF /* ReviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReviewController.m; path = ../UITrial/ReviewController.m; sourceTree = "<group>"; };
 		B9337CD00F25EC3A00FACDEF /* TagView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TagView.xib; path = UITrial/TagView.xib; sourceTree = "<group>"; };
 		B9337CD30F25EC5900FACDEF /* ReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReviewView.xib; path = UITrial/ReviewView.xib; sourceTree = "<group>"; };
 		B936E9B70F2987B500E8657A /* NoteEdit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NoteEdit.xib; path = UITrial/NoteEdit.xib; sourceTree = "<group>"; };
@@ -324,6 +315,7 @@
 		B936E9C00F2988E600E8657A /* NoteEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoteEditController.m; path = ../UITrial/NoteEditController.m; sourceTree = "<group>"; };
 		B93A01CA0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIXMLParserCallback.h; sourceTree = "<group>"; };
 		B93A01CB0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIXMLParserCallback.m; sourceTree = "<group>"; };
+		B9404D530F3EDA6A003DD77D /* AddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddTaskViewController.h; path = UITrial/AddTaskViewController.h; sourceTree = SOURCE_ROOT; };
 		B9498E0F0F3B2A040015BEF5 /* ProgressViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgressViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95DC5920F2DC96B00E127A3 /* ListSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListSelectController.h; path = ../UITrial/ListSelectController.h; sourceTree = "<group>"; };
 		B95DC5930F2DC96B00E127A3 /* ListSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListSelectController.m; path = ../UITrial/ListSelectController.m; sourceTree = "<group>"; };
@@ -352,8 +344,6 @@
 		B9AB969F0E961A7B00DD5816 /* RTMNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMNote.m; sourceTree = "<group>"; };
 		B9B1C28C0EA571F800CBCA62 /* RTMPendingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMPendingTask.h; sourceTree = "<group>"; };
 		B9B1C28D0EA571F800CBCA62 /* RTMPendingTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMPendingTask.m; sourceTree = "<group>"; };
-		B9C85BED0EA811F000359332 /* LocationSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSelectViewController.h; sourceTree = "<group>"; };
-		B9C85BEE0EA811F000359332 /* LocationSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSelectViewController.m; sourceTree = "<group>"; };
 		B9CBB8100EDD655200971B5E /* migrate_003_set_zero_edit_bits.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = migrate_003_set_zero_edit_bits.sql; path = db/migrate_003_set_zero_edit_bits.sql; sourceTree = "<group>"; };
 		B9DD5E8F0E6901B7007BFC7A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9DD5E900E6901B7007BFC7A /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTest-Info.plist"; path = "others/UnitTest-Info.plist"; sourceTree = "<group>"; };
@@ -441,7 +431,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				B9337AC80F25D50A00FACDEF /* UITrial */,
 				B91553250E6A2A4B004DC85A /* api */,
 				B98D23B80E6783DD0006D6AF /* model */,
 				86E01EF00E7E5D42001945E7 /* controller */,
@@ -533,7 +522,6 @@
 		867187240EAC7B04000A9133 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				B9337A9D0F25D41100FACDEF /* TrialWindow.xib */,
 				B9337C0C0F25DEA200FACDEF /* OverviewView.xib */,
 				B9337C260F25E0C100FACDEF /* ListView.xib */,
 				B9337CD00F25EC3A00FACDEF /* TagView.xib */,
@@ -560,18 +548,13 @@
 		86E01EF00E7E5D42001945E7 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				B9337CCA0F25EBF300FACDEF /* TagSelectController.h */,
-				B9337CCB0F25EBF300FACDEF /* TagSelectController.m */,
-				B95DC5920F2DC96B00E127A3 /* ListSelectController.h */,
-				B95DC5930F2DC96B00E127A3 /* ListSelectController.m */,
-				B936E9BF0F2988E600E8657A /* NoteEditController.h */,
-				B936E9C00F2988E600E8657A /* NoteEditController.m */,
-				B9611CE30F2DDA6700D8EF3B /* DueDateSelectController.h */,
-				B9611CE40F2DDA6700D8EF3B /* DueDateSelectController.m */,
+				B9C539550F3EE22F00621AEF /* add */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
-				B9C85BED0EA811F000359332 /* LocationSelectViewController.h */,
-				B9C85BEE0EA811F000359332 /* LocationSelectViewController.m */,
+				86DB9B880E9717D900DA4D16 /* HomeViewController.h */,
+				86DB9B890E9717D900DA4D16 /* HomeViewController.m */,
+				B9337CCD0F25EC0400FACDEF /* ReviewController.h */,
+				B9337CCE0F25EC0400FACDEF /* ReviewController.m */,
 				28C286DF0D94DF7D0034E888 /* ListViewController.h */,
 				28C286E00D94DF7D0034E888 /* ListViewController.m */,
 				868C3D490E6ED4D20040BA42 /* TaskListViewController.h */,
@@ -580,9 +563,6 @@
 				86C148110E72144300456F6A /* TaskViewController.m */,
 				86DB9B800E97176F00DA4D16 /* MenuViewController.h */,
 				86DB9B810E97176F00DA4D16 /* MenuViewController.m */,
-				86DB9B880E9717D900DA4D16 /* HomeViewController.h */,
-				86DB9B890E9717D900DA4D16 /* HomeViewController.m */,
-				B9E5ED040E90BA2800C3DE94 /* AddTaskViewController.m */,
 				861382D10EA770740040B0F6 /* ListSelectViewController.h */,
 				861382D20EA770740040B0F6 /* ListSelectViewController.m */,
 				86BF632F0EA8C6710055D56B /* RootViewController.h */,
@@ -738,19 +718,6 @@
 			name = Resource;
 			sourceTree = "<group>";
 		};
-		B9337AC80F25D50A00FACDEF /* UITrial */ = {
-			isa = PBXGroup;
-			children = (
-				B9337CC50F25EB9D00FACDEF /* TrialListViewController.h */,
-				B9337CC60F25EB9D00FACDEF /* TrialListViewController.m */,
-				B9337CCD0F25EC0400FACDEF /* TrialReviewController.h */,
-				B9337CCE0F25EC0400FACDEF /* TrialReviewController.m */,
-				B9258A160F25F94700766966 /* AddTaskViewController.h */,
-				B9258A170F25F94700766966 /* AddTaskViewController.m */,
-			);
-			name = UITrial;
-			sourceTree = "<group>";
-		};
 		B96D27EA0ED6B98700DE8E66 /* migrate */ = {
 			isa = PBXGroup;
 			children = (
@@ -783,6 +750,23 @@
 			);
 			path = model;
 			sourceTree = SOURCE_ROOT;
+		};
+		B9C539550F3EE22F00621AEF /* add */ = {
+			isa = PBXGroup;
+			children = (
+				B9404D530F3EDA6A003DD77D /* AddTaskViewController.h */,
+				B9E5ED040E90BA2800C3DE94 /* AddTaskViewController.m */,
+				B9611CE30F2DDA6700D8EF3B /* DueDateSelectController.h */,
+				B9611CE40F2DDA6700D8EF3B /* DueDateSelectController.m */,
+				B95DC5920F2DC96B00E127A3 /* ListSelectController.h */,
+				B95DC5930F2DC96B00E127A3 /* ListSelectController.m */,
+				B9337CCA0F25EBF300FACDEF /* TagSelectController.h */,
+				B9337CCB0F25EBF300FACDEF /* TagSelectController.m */,
+				B936E9BF0F2988E600E8657A /* NoteEditController.h */,
+				B936E9C00F2988E600E8657A /* NoteEditController.m */,
+			);
+			name = add;
+			sourceTree = "<group>";
 		};
 		B9DD5EDC0E690566007BFC7A /* test */ = {
 			isa = PBXGroup;
@@ -999,7 +983,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9337B870F25D95500FACDEF /* TrialWindow.xib in Resources */,
 				B9337C0D0F25DEA200FACDEF /* OverviewView.xib in Resources */,
 				B9337C2E0F25E2AF00FACDEF /* Settings.bundle in Resources */,
 				B9337CD40F25EC5900FACDEF /* ReviewView.xib in Resources */,
@@ -1097,13 +1080,11 @@
 				86C148120E72144300456F6A /* TaskViewController.m in Sources */,
 				B93A01CC0E91B03F00BA26C4 /* RTMAPIXMLParserCallback.m in Sources */,
 				B9AB96A10E961A7B00DD5816 /* RTMNote.m in Sources */,
-				86DB9B820E97176F00DA4D16 /* MenuViewController.m in Sources */,
 				86DB9B8A0E9717D900DA4D16 /* HomeViewController.m in Sources */,
 				8691FBD80E9D11F0003BE718 /* RTMStorable.m in Sources */,
 				861534840EA24E0900AB3B87 /* RTMTaskCell.m in Sources */,
 				B9B1C28F0EA571F800CBCA62 /* RTMPendingTask.m in Sources */,
 				86A081C50EA6B78400446784 /* TaskEditCell.m in Sources */,
-				86BF63310EA8C6710055D56B /* RootViewController.m in Sources */,
 				86B9BBE90EABFC2A00210FCB /* AuthWebViewController.m in Sources */,
 				867187270EAC7B3B000A9133 /* ProgressView.m in Sources */,
 				867187C60EAC93C1000A9133 /* ConfigViewController.m in Sources */,
@@ -1119,7 +1100,7 @@
 				92F4F7AC0F39BA8100DEE8BC /* TrialTagProvider.m in Sources */,
 				92F4F7AE0F39BA8900DEE8BC /* TrialListProvider.m in Sources */,
 				92F4F7B00F39BA9200DEE8BC /* NoteEditController.m in Sources */,
-				B9404D070F3ED7F1003DD77D /* AddTaskViewController.m in Sources */,
+				B9404D3C0F3EDA40003DD77D /* AddTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1158,8 +1139,7 @@
 			files = (
 				B9337B730F25D92400FACDEF /* main.m in Sources */,
 				B9337CCC0F25EBF300FACDEF /* TagSelectController.m in Sources */,
-				B9337CCF0F25EC0400FACDEF /* TrialReviewController.m in Sources */,
-				B9258A180F25F94700766966 /* AddTaskViewController.m in Sources */,
+				B9337CCF0F25EC0400FACDEF /* ReviewController.m in Sources */,
 				B936E9C10F2988E600E8657A /* NoteEditController.m in Sources */,
 				B95DC5940F2DC96B00E127A3 /* ListSelectController.m in Sources */,
 				B95DC5BD0F2DCAAE00E127A3 /* TrialListProvider.m in Sources */,

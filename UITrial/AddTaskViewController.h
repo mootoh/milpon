@@ -14,10 +14,10 @@
    UIButton *due_button;
    UISegmentedControl *priority_segment;
 
-   NSString *list;
-   NSDate *due;
+   NSString     *list;
+   NSDate       *due;
    NSMutableSet *tags;
-   NSString *note;
+   NSString     *note;
 }
 
 @property (nonatomic, retain) NSString *list;
