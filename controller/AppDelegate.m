@@ -12,6 +12,7 @@
 #import "RTMDatabase.h"
 #import "AuthViewController.h"
 #import "RootViewController.h"
+#import "AddTaskViewController.h"
 
 @implementation AppDelegate
 
@@ -96,5 +97,16 @@
 – applicationDidReceiveMemoryWarning:
 – applicationSignificantTimeChange:
 #endif // 0
+
+- (IBAction) addTask
+{
+   //self.hidesBottomBarWhenPushed = YES;
+   
+   AddTaskViewController *atvController = [[AddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
+   UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:atvController];
+   [tabBarController presentModalViewController:navc animated:NO];
+   [navc release];
+   [atvController release];
+}
 
 @end

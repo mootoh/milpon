@@ -26,4 +26,6 @@
 @property (nonatomic, readonly) RTMDatabase *db;
 @property (nonatomic, retain) NSOperationQueue *operationQueue;
 
+- (IBAction) addTask;
+
 @end

@@ -101,7 +101,7 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>TrialListViewController</string>
+					<string>ListSelectViewController</string>
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -132,11 +132,11 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">TrialListViewController</string>
+					<string key="className">ListSelectViewController</string>
 					<string key="superclassName">UITableViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">UITrial/TrialListViewController.h</string>
+						<string key="minorKey">controller/ListSelectViewController.h</string>
 					</object>
 				</object>
 			</object>
