@@ -1,0 +1,20 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: use AutoReleasePool to save memory consumption
+desc: ""
+type: :task
+component: milpon
+release: 
+reporter: mootoh <mootoh@gmail.com>
+status: :unstarted
+disposition: 
+creation_time: 2009-02-19 11:52:52.649699 Z
+references: []
+
+id: 2deb33b20c4ed1890fd90a8cc8d91a30f1b66e9e
+log_events: 
+- - 2009-02-19 11:52:52.650716 Z
+  - mootoh <mootoh@gmail.com>
+  - created
+  - ""
+git_branch: 
+claimer: 

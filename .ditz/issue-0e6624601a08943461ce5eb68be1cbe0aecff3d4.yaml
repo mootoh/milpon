@@ -1,0 +1,20 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: use due time in due date
+desc: ""
+type: :feature
+component: milpon
+release: 
+reporter: mootoh <mootoh@gmail.com>
+status: :unstarted
+disposition: 
+creation_time: 2009-02-19 11:50:01.172381 Z
+references: []
+
+id: 0e6624601a08943461ce5eb68be1cbe0aecff3d4
+log_events: 
+- - 2009-02-19 11:50:01.173622 Z
+  - mootoh <mootoh@gmail.com>
+  - created
+  - ""
+git_branch: 
+claimer: 

@@ -1,0 +1,20 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: support recurrence
+desc: ""
+type: :feature
+component: milpon
+release: 
+reporter: mootoh <mootoh@gmail.com>
+status: :unstarted
+disposition: 
+creation_time: 2009-02-19 11:56:07.995569 Z
+references: []
+
+id: 9c66812360950d8b59ca6702c3ed3b38a7e5480b
+log_events: 
+- - 2009-02-19 11:56:07.996200 Z
+  - mootoh <mootoh@gmail.com>
+  - created
+  - ""
+git_branch: 
+claimer: 

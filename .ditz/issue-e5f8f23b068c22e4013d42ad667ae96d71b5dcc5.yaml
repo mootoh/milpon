@@ -1,0 +1,20 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: integrate Edit and Show task view
+desc: ""
+type: :task
+component: milpon
+release: 
+reporter: mootoh <mootoh@gmail.com>
+status: :unstarted
+disposition: 
+creation_time: 2009-02-19 11:53:09.521367 Z
+references: []
+
+id: e5f8f23b068c22e4013d42ad667ae96d71b5dcc5
+log_events: 
+- - 2009-02-19 11:53:09.522293 Z
+  - mootoh <mootoh@gmail.com>
+  - created
+  - ""
+git_branch: 
+claimer: 
