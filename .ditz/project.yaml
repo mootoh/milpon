@@ -14,3 +14,12 @@ releases:
     - mootoh <mootoh@gmail.com>
     - created
     - UI improvements.
+- !ditz.rubyforge.org,2008-03-06/release 
+  name: revised AddTask view
+  status: :unreleased
+  release_time: 
+  log_events: 
+  - - 2009-02-19 12:41:22.568741 Z
+    - mootoh <mootoh@gmail.com>
+    - created
+    - more user-friendly view for adding a task.
