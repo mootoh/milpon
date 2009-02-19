@@ -278,7 +278,7 @@ enum {
    NSNumber *priority = [NSNumber numberWithInteger:priority_segment.selectedSegmentIndex];
 
    // create RTMTask and store it in DB.
-   NSArray *keys =  [NSArray arrayWithObjects:@"name", @"list", @"priority", "tags", nil];
+   NSArray *keys =  [NSArray arrayWithObjects:@"name", @"list", @"priority", @"tags", nil];
    NSArray *vals = [NSArray arrayWithObjects:name, list, priority, tags, nil];
    
    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
