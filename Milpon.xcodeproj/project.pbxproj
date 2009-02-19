@@ -110,6 +110,7 @@
 		92F4F7B00F39BA9200DEE8BC /* NoteEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = B936E9C00F2988E600E8657A /* NoteEditController.m */; };
 		92F4F7DE0F39BAEF00DEE8BC /* DueDateSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9611CEB0F2DDB8600D8EF3B /* DueDateSelect.xib */; };
 		92FB1A2B0EEAC3E1004E67EC /* RTMAPINote.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FB1A2A0EEAC3E1004E67EC /* RTMAPINote.m */; };
+		B907AA440F4D910000B1978E /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B907AA430F4D910000B1978E /* MilponHelper.m */; };
 		B9134DD10E65F0E1005028DC /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9134DD00E65F0E1005028DC /* RTMAPIAuth.m */; };
 		B91553280E6A2A68004DC85A /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553270E6A2A68004DC85A /* RTMAPIList.m */; };
 		B91553460E6A2E93004DC85A /* RTMSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B91553450E6A2E93004DC85A /* RTMSynchronizer.m */; };
@@ -288,6 +289,8 @@
 		92F166900ED326A80096EABC /* FunctionalTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionalTestAppDelegate.m; sourceTree = "<group>"; };
 		92FB1A1F0EEAC1B2004E67EC /* RTMAPINote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPINote.h; sourceTree = "<group>"; };
 		92FB1A2A0EEAC3E1004E67EC /* RTMAPINote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPINote.m; sourceTree = "<group>"; };
+		B907AA420F4D910000B1978E /* MilponHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MilponHelper.h; path = others/MilponHelper.h; sourceTree = "<group>"; };
+		B907AA430F4D910000B1978E /* MilponHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MilponHelper.m; path = others/MilponHelper.m; sourceTree = "<group>"; };
 		B9134DCF0E65F0E1005028DC /* RTMAPIAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIAuth.h; sourceTree = "<group>"; };
 		B9134DD00E65F0E1005028DC /* RTMAPIAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIAuth.m; sourceTree = "<group>"; };
 		B91553260E6A2A68004DC85A /* RTMAPIList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIList.h; sourceTree = "<group>"; };
@@ -454,6 +457,8 @@
 				86EE1F990E9EED9900C62684 /* RTMError.h */,
 				28A0AAE50D9B0CCF005BE974 /* Milpon_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				B907AA420F4D910000B1978E /* MilponHelper.h */,
+				B907AA430F4D910000B1978E /* MilponHelper.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1101,6 +1106,7 @@
 				92F4F7AE0F39BA8900DEE8BC /* TrialListProvider.m in Sources */,
 				92F4F7B00F39BA9200DEE8BC /* NoteEditController.m in Sources */,
 				B9404D3C0F3EDA40003DD77D /* AddTaskViewController.m in Sources */,
+				B907AA440F4D910000B1978E /* MilponHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
