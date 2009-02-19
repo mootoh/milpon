@@ -16,5 +16,9 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - created
   - ""
+- - 2009-02-19 12:04:27.482745 Z
+  - mootoh <mootoh@gmail.com>
+  - commented
+  - imported all titles of issues from trac, associated tickets& numbers.
 git_branch: 
 claimer: 
