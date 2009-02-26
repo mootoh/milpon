@@ -749,9 +749,9 @@
 				B95DC5BC0F2DCAAE00E127A3 /* TrialListProvider.m */,
 				B927A5550F2F68EB00D09A7D /* TrialTagProvider.h */,
 				B927A5560F2F68EB00D09A7D /* TrialTagProvider.m */,
-				92D634AA0F39BD8F00B5CAF5 /* DB */,
 				B95DC5BE0F2DCAFA00E127A3 /* ListProvider.h */,
 				B95DC6210F2DCF9000E127A3 /* TagProvider.h */,
+				92D634AA0F39BD8F00B5CAF5 /* DB */,
 			);
 			path = model;
 			sourceTree = SOURCE_ROOT;

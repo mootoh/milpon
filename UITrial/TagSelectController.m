@@ -28,7 +28,7 @@ static UIImage *s_checkedIcon = nil;
 {
    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
       tag_provider = [[TrialTagProvider alloc] init];
-      self.title = @"¿Tags";
+      self.title = @"Tags";
       selected_flags = [[NSMutableDictionary alloc] init];
    }
    return self;

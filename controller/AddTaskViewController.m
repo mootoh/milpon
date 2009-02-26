@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import "RTMDatabase.h"
 #import "RTMTask.h"
+#import "ReloadableTableViewController.h"
 
 @implementation AddTaskViewController
 
@@ -254,6 +255,15 @@ enum {
 
 - (void) close
 {
+   
+   UITabBarController *tbc = (UITabBarController *)self.navigationController.parentViewController;
+   UINavigationController *nc = (UINavigationController *)tbc.selectedViewController;
+   UITableViewController *tvc = (UITableViewController *)nc.topViewController;
+   if ([tvc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
+      [(UITableViewController<ReloadableTableViewControllerProtocol> *)tvc reloadFromDB];
+      [tvc.tableView reloadData];
+   }
+   
    [self dismissModalViewControllerAnimated:YES];
 }
 
