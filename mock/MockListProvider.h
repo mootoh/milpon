@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ListProvider.h"
 
-@interface MockListProvider : NSObject <ListProvider>
+@interface MockListProvider : ListProvider
 {
    NSArray *fixed_lists;
 }

@@ -94,6 +94,10 @@
 		B9B77F8E0F56A13E00BF0EF3 /* ListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */; };
 		B9B77F920F56A18600BF0EF3 /* DueDateSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */; };
 		B9B77F930F56A18600BF0EF3 /* ListSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F910F56A18600BF0EF3 /* ListSelect.xib */; };
+		B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		B9D11FAF0F56A56300B5ABA4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
+		B9D11FD80F56A66C00B5ABA4 /* ListProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */; };
+		B9D1200C0F56A97B00B5ABA4 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,8 +119,8 @@
 		B9160EC90F565CEF00473A95 /* RTMAPITask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPITask.m; sourceTree = "<group>"; };
 		B9160ECA0F565CEF00473A95 /* RTMAPIXMLParserCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIXMLParserCallback.h; sourceTree = "<group>"; };
 		B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIXMLParserCallback.m; sourceTree = "<group>"; };
-		B9160ED40F565D0500473A95 /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logger.h; sourceTree = "<group>"; };
-		B9160ED50F565D0500473A95 /* RTMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMError.h; sourceTree = "<group>"; };
+		B9160ED40F565D0500473A95 /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = logger.h; path = ../common/logger.h; sourceTree = "<group>"; };
+		B9160ED50F565D0500473A95 /* RTMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMError.h; path = ../common/RTMError.h; sourceTree = "<group>"; };
 		B9160ED80F565D1500473A95 /* AddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskViewController.h; sourceTree = "<group>"; };
 		B9160ED90F565D1500473A95 /* AddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskViewController.m; sourceTree = "<group>"; };
 		B9160EDA0F565D1500473A95 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -265,6 +269,10 @@
 		B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListView.xib; sourceTree = "<group>"; };
 		B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DueDateSelect.xib; sourceTree = "<group>"; };
 		B9B77F910F56A18600BF0EF3 /* ListSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListSelect.xib; sourceTree = "<group>"; };
+		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9B77FAE0F56A31400BF0EF3 /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTest-Info.plist"; sourceTree = "<group>"; };
+		B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProviderTest.m; sourceTree = "<group>"; };
+		B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +288,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9B77FAA0F56A31400BF0EF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */,
+				B9D11FAF0F56A56300B5ABA4 /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -287,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Milpon.app */,
+				B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -295,17 +313,16 @@
 			isa = PBXGroup;
 			children = (
 				B9160EBF0F565CEF00473A95 /* api */,
-				B9160ED30F565D0500473A95 /* common */,
 				B9160ED60F565D1500473A95 /* controller */,
-				B9160F010F565D3C00473A95 /* db */,
 				B9160F180F565D4C00473A95 /* model */,
 				B9160F360F565D6800473A95 /* others */,
-				B9160F430F565D9300473A95 /* resource */,
-				B9160FD00F565DE000473A95 /* test */,
 				B9160F8C0F565DAB00473A95 /* vendor */,
 				B9160FB60F565DB600473A95 /* view */,
+				B9160F430F565D9300473A95 /* resource */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				B9160FD00F565DE000473A95 /* test */,
+				B9B77FAE0F56A31400BF0EF3 /* UnitTest-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -339,15 +356,6 @@
 				B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */,
 			);
 			path = api;
-			sourceTree = "<group>";
-		};
-		B9160ED30F565D0500473A95 /* common */ = {
-			isa = PBXGroup;
-			children = (
-				B9160ED40F565D0500473A95 /* logger.h */,
-				B9160ED50F565D0500473A95 /* RTMError.h */,
-			);
-			path = common;
 			sourceTree = "<group>";
 		};
 		B9160ED60F565D1500473A95 /* controller */ = {
@@ -402,12 +410,14 @@
 				B9160F0A0F565D3C00473A95 /* rtm.sql */,
 				B9160F0B0F565D3C00473A95 /* schema.sql */,
 			);
-			path = db;
+			name = db;
+			path = ../db;
 			sourceTree = "<group>";
 		};
 		B9160F180F565D4C00473A95 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				B9160F010F565D3C00473A95 /* db */,
 				B91610590F56607600473A95 /* mock */,
 				B9160F190F565D4C00473A95 /* ListProvider.h */,
 				B9160F1A0F565D4C00473A95 /* RTMAuth.h */,
@@ -429,6 +439,7 @@
 				B9160F2A0F565D4C00473A95 /* RTMTask.h */,
 				B9160F2B0F565D4C00473A95 /* RTMTask.m */,
 				B9160F2C0F565D4C00473A95 /* TagProvider.h */,
+				B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -436,6 +447,8 @@
 		B9160F360F565D6800473A95 /* others */ = {
 			isa = PBXGroup;
 			children = (
+				B9160ED40F565D0500473A95 /* logger.h */,
+				B9160ED50F565D0500473A95 /* RTMError.h */,
 				B9160FF70F565E8000473A95 /* Info.plist */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				32CA4F630368D1EE00C91783 /* Milpon_Prefix.pch */,
@@ -563,6 +576,7 @@
 				B9160FE10F565DE000473A95 /* RTMTaskTest.m */,
 				B9160FE20F565DE000473A95 /* UpdateList.m */,
 				B9160FE30F565DE000473A95 /* UpdateTask.m */,
+				B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -598,6 +612,24 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Milpon.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B9B77FAC0F56A31400BF0EF3 /* UnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9B77FB10F56A31500BF0EF3 /* Build configuration list for PBXNativeTarget "UnitTest" */;
+			buildPhases = (
+				B9B77FA80F56A31400BF0EF3 /* Resources */,
+				B9B77FA90F56A31400BF0EF3 /* Sources */,
+				B9B77FAA0F56A31400BF0EF3 /* Frameworks */,
+				B9B77FAB0F56A31400BF0EF3 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UnitTest;
+			productName = UnitTest;
+			productReference = B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -611,6 +643,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Milpon */,
+				B9B77FAC0F56A31400BF0EF3 /* UnitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -663,7 +696,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9B77FA80F56A31400BF0EF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B9B77FAB0F56A31400BF0EF3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -712,6 +768,15 @@
 				B91610180F565F9E00473A95 /* DueDateSelectController.m in Sources */,
 				B916105E0F56607600473A95 /* MockListProvider.m in Sources */,
 				B916105F0F56607600473A95 /* MockTagProvider.m in Sources */,
+				B9D1200C0F56A97B00B5ABA4 /* ListProvider.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9B77FA90F56A31400BF0EF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9D11FD80F56A66C00B5ABA4 /* ListProviderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,6 +806,62 @@
 				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Milpon;
+			};
+			name = Release;
+		};
+		B9B77FAF0F56A31500BF0EF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "UnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		B9B77FB00F56A31500BF0EF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "UnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -779,6 +900,15 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9B77FB10F56A31500BF0EF3 /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9B77FAF0F56A31500BF0EF3 /* Debug */,
+				B9B77FB00F56A31500BF0EF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

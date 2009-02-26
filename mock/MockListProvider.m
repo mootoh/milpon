@@ -29,4 +29,13 @@
    return fixed_lists;
 }
 
+static MockListProvider *s_mock_list_provider = nil;
+
++ (ListProvider *) sharedListProvider
+{
+   if (nil == s_mock_list_provider) {
+      s_mock_list_provider = [[MockListProvider alloc] init];
+   }
+   return s_mock_list_provider;
+}
 @end
