@@ -1,15 +1,14 @@
 //
-//  TrialTagProvider.m
+//  MockTagProvider.m
 //  Milpon
 //
 //  Created by mootoh on 1/28/09.
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
-#import "TrialTagProvider.h"
+#import "MockTagProvider.h"
 
-
-@implementation TrialTagProvider
+@implementation MockTagProvider
 
 - (id) init
 {

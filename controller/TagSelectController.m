@@ -7,7 +7,7 @@
 //
 
 #import "TagSelectController.h"
-#import "TrialTagProvider.h"
+#import "MockTagProvider.h"
 #import "AddTaskViewController.h"
 
 @implementation TagSelectController
@@ -27,7 +27,7 @@ static UIImage *s_checkedIcon = nil;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-      tag_provider = [[TrialTagProvider alloc] init];
+      tag_provider = [[MockTagProvider alloc] init];
       self.title = @"Tags";
       selected_flags = [[NSMutableDictionary alloc] init];
    }

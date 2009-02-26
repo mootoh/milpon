@@ -7,7 +7,7 @@
 //
 
 #import "ListSelectController.h"
-#import "TrialListProvider.h"
+#import "MockListProvider.h"
 #import "AddTaskViewController.h"
 
 @implementation ListSelectController
@@ -17,7 +17,7 @@
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-       list_provider = [[TrialListProvider alloc] init];
+       list_provider = [[MockListProvider alloc] init];
        self.title = @"List";
     }
     return self;

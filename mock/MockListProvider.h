@@ -1,5 +1,5 @@
 //
-//  TrialListProvider.h
+//  MockListProvider.h
 //  Milpon
 //
 //  Created by mootoh on 1/26/09.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ListProvider.h"
 
-@interface TrialListProvider : NSObject <ListProvider>
+@interface MockListProvider : NSObject <ListProvider>
 {
    NSArray *fixed_lists;
 }

@@ -1,5 +1,5 @@
 //
-//  TrialTagProvider.h
+//  MockTagProvider.h
 //  Milpon
 //
 //  Created by mootoh on 1/28/09.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TagProvider.h"
 
-@interface TrialTagProvider : NSObject <TagProvider>
+@interface MockTagProvider : NSObject <TagProvider>
 {
    NSArray *fixed_tags;
 }

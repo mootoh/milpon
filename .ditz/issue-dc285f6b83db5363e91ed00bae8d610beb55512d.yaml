@@ -1,0 +1,28 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: "re-create xcode project file "
+desc: current project file seems to be collapsed.
+type: :bugfix
+component: milpon
+release: beta7
+reporter: mootoh <mootoh@gmail.com>
+status: :in_progress
+disposition: 
+creation_time: 2009-02-26 04:28:36.248607 Z
+references: []
+
+id: dc285f6b83db5363e91ed00bae8d610beb55512d
+log_events: 
+- - 2009-02-26 04:28:36.249692 Z
+  - mootoh <mootoh@gmail.com>
+  - created
+  - ""
+- - 2009-02-26 05:06:54.134659 Z
+  - mootoh <mootoh@gmail.com>
+  - changed status from unstarted to in_progress
+  - start it
+- - 2009-02-26 05:07:08.176404 Z
+  - mootoh <mootoh@gmail.com>
+  - issue claimed
+  - ""
+git_branch: 
+claimer: mootoh <mootoh@gmail.com>
