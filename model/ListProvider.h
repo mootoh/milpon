@@ -7,10 +7,9 @@
  *
  */
 
-@interface ListProvider
+@interface ListProvider : NSObject
 
 - (NSArray *) lists;
++ (ListProvider *) sharedListProvider;
 
 @end
-
-(ListProvider *) sharedListProvider;

@@ -20,6 +20,7 @@
 - (void) testCreate
 {
    ListProvider *lp = [ListProvider sharedListProvider];
+   NSAssert(lp, @"should not be nil");
 }
 
 @end

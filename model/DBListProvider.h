@@ -1,22 +1,24 @@
 //
-//  MockListProvider.h
+//  DBListProvider.h
 //  Milpon
 //
-//  Created by mootoh on 1/26/09.
+//  Created by mootoh on 2/27/09.
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
 #import "ListProvider.h"
 
-@interface ListProvider (Mock)
+@interface ListProvider (DB)
 
 + (ListProvider *) sharedListProvider;
 
 @end
 
-@interface MockListProvider : ListProvider
+@class RTMDatabase;
+
+@interface DBListProvider : ListProvider
 {
-   NSArray *fixed_lists;
+   RTMDatabase *db;
 }
 
 - (NSArray *) lists;

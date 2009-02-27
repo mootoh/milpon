@@ -96,8 +96,11 @@
 		B9B77F930F56A18600BF0EF3 /* ListSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F910F56A18600BF0EF3 /* ListSelect.xib */; };
 		B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9D11FAF0F56A56300B5ABA4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
-		B9D11FD80F56A66C00B5ABA4 /* ListProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */; };
 		B9D1200C0F56A97B00B5ABA4 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
+		B9D120A40F5763DB00B5ABA4 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
+		B9D120AE0F57649C00B5ABA4 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
+		B9D120AF0F57649E00B5ABA4 /* ListProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */; };
+		B9D120B30F5764CC00B5ABA4 /* MockListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B916105B0F56607600473A95 /* MockListProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -273,6 +276,8 @@
 		B9B77FAE0F56A31400BF0EF3 /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProviderTest.m; sourceTree = "<group>"; };
 		B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProvider.m; sourceTree = "<group>"; };
+		B9D120A20F5763DB00B5ABA4 /* DBListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBListProvider.h; sourceTree = "<group>"; };
+		B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBListProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -440,6 +445,8 @@
 				B9160F2B0F565D4C00473A95 /* RTMTask.m */,
 				B9160F2C0F565D4C00473A95 /* TagProvider.h */,
 				B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */,
+				B9D120A20F5763DB00B5ABA4 /* DBListProvider.h */,
+				B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -769,6 +776,7 @@
 				B916105E0F56607600473A95 /* MockListProvider.m in Sources */,
 				B916105F0F56607600473A95 /* MockTagProvider.m in Sources */,
 				B9D1200C0F56A97B00B5ABA4 /* ListProvider.m in Sources */,
+				B9D120A40F5763DB00B5ABA4 /* DBListProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,7 +784,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9D11FD80F56A66C00B5ABA4 /* ListProviderTest.m in Sources */,
+				B9D120AE0F57649C00B5ABA4 /* ListProvider.m in Sources */,
+				B9D120AF0F57649E00B5ABA4 /* ListProviderTest.m in Sources */,
+				B9D120B30F5764CC00B5ABA4 /* MockListProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

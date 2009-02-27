@@ -29,6 +29,10 @@
    return fixed_lists;
 }
 
+@end // MockListProvider
+
+@implementation ListProvider (Mock)
+
 static MockListProvider *s_mock_list_provider = nil;
 
 + (ListProvider *) sharedListProvider
@@ -36,6 +40,7 @@ static MockListProvider *s_mock_list_provider = nil;
    if (nil == s_mock_list_provider) {
       s_mock_list_provider = [[MockListProvider alloc] init];
    }
-   return s_mock_list_provider;
+   return s_mock_list_provider;   
 }
-@end
+
+@end // ListProvider (Mock)
