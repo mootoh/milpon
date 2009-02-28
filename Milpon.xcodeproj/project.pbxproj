@@ -223,9 +223,9 @@
 		B9160FA20F565DAB00473A95 /* uiccalendar_main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_main.png; sourceTree = "<group>"; };
 		B9160FA30F565DAB00473A95 /* uiccalendar_right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_right_arrow.png; sourceTree = "<group>"; };
 		B9160FA40F565DAB00473A95 /* uiccalendar_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_title.png; sourceTree = "<group>"; };
-		B9160FB70F565DB600473A95 /* FunctionalTestProgressViewWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FunctionalTestProgressViewWindow.xib; sourceTree = "<group>"; };
+		B9160FB70F565DB600473A95 /* FunctionalTestProgressViewWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FunctionalTestProgressViewWindow.xib; path = ../ui/FunctionalTestProgressViewWindow.xib; sourceTree = "<group>"; };
 		B9160FB80F565DB600473A95 /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
-		B9160FB90F565DB600473A95 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		B9160FB90F565DB600473A95 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = ui/MainWindow.xib; sourceTree = "<group>"; };
 		B9160FBA0F565DB600473A95 /* PriorityImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityImageView.h; sourceTree = "<group>"; };
 		B9160FBB0F565DB600473A95 /* PriorityImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityImageView.m; sourceTree = "<group>"; };
 		B9160FBC0F565DB600473A95 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
@@ -320,9 +320,9 @@
 			isa = PBXGroup;
 			children = (
 				B9160EBF0F565CEF00473A95 /* api */,
-				B9160ED60F565D1500473A95 /* controller */,
+				B9160ED60F565D1500473A95 /* ui */,
+				B9160FB90F565DB600473A95 /* MainWindow.xib */,
 				B9160F180F565D4C00473A95 /* model */,
-				B9160FB60F565DB600473A95 /* view */,
 				B9160F360F565D6800473A95 /* others */,
 				B9160F8C0F565DAB00473A95 /* vendor */,
 				B9160F430F565D9300473A95 /* resource */,
@@ -364,31 +364,22 @@
 			path = api;
 			sourceTree = "<group>";
 		};
-		B9160ED60F565D1500473A95 /* controller */ = {
+		B9160ED60F565D1500473A95 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				B91610160F565F9E00473A95 /* DueDateSelectController.h */,
-				B91610170F565F9E00473A95 /* DueDateSelectController.m */,
-				B916100F0F565F8A00473A95 /* NoteEditController.h */,
-				B91610100F565F8A00473A95 /* NoteEditController.m */,
-				B91610110F565F8A00473A95 /* TagSelectController.h */,
-				B91610120F565F8A00473A95 /* TagSelectController.m */,
-				B916100C0F565F6500473A95 /* ListSelectController.h */,
-				B916100D0F565F6500473A95 /* ListSelectController.m */,
-				B9160ED80F565D1500473A95 /* AddTaskViewController.h */,
-				B9160ED90F565D1500473A95 /* AddTaskViewController.m */,
+				B9CBAFF80F5991710025216C /* add */,
+				B9CBAFF90F5991B80025216C /* auth */,
 				B9160EDA0F565D1500473A95 /* AppDelegate.h */,
 				B9160EDB0F565D1500473A95 /* AppDelegate.m */,
-				B9160EDC0F565D1500473A95 /* AuthViewController.h */,
-				B9160EDD0F565D1500473A95 /* AuthViewController.m */,
-				B9160EDE0F565D1500473A95 /* AuthWebViewController.h */,
-				B9160EDF0F565D1500473A95 /* AuthWebViewController.m */,
 				B9160EE00F565D1500473A95 /* ConfigViewController.h */,
 				B9160EE10F565D1500473A95 /* ConfigViewController.m */,
+				B9160FB80F565DB600473A95 /* HomeView.xib */,
 				B9160EE20F565D1500473A95 /* HomeViewController.h */,
 				B9160EE30F565D1500473A95 /* HomeViewController.m */,
+				B9B77F910F56A18600BF0EF3 /* ListSelect.xib */,
 				B9160EE40F565D1500473A95 /* ListSelectViewController.h */,
 				B9160EE50F565D1500473A95 /* ListSelectViewController.m */,
+				B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */,
 				B9160EE60F565D1500473A95 /* ListViewController.h */,
 				B9160EE70F565D1500473A95 /* ListViewController.m */,
 				B9160EEA0F565D1500473A95 /* MenuViewController.h */,
@@ -398,10 +389,19 @@
 				B9160EEE0F565D1500473A95 /* RootViewController.m */,
 				B9160EEF0F565D1500473A95 /* TaskListViewController.h */,
 				B9160EF00F565D1500473A95 /* TaskListViewController.m */,
+				B9160FC20F565DB600473A95 /* TaskView.xib */,
 				B9160EF10F565D1500473A95 /* TaskViewController.h */,
 				B9160EF20F565D1500473A95 /* TaskViewController.m */,
+				B9160FBA0F565DB600473A95 /* PriorityImageView.h */,
+				B9160FBB0F565DB600473A95 /* PriorityImageView.m */,
+				B9160FBC0F565DB600473A95 /* ProgressView.h */,
+				B9160FBD0F565DB600473A95 /* ProgressView.m */,
+				B9160FBE0F565DB600473A95 /* RTMTaskCell.h */,
+				B9160FBF0F565DB600473A95 /* RTMTaskCell.m */,
+				B9160FC00F565DB600473A95 /* TaskEditCell.h */,
+				B9160FC10F565DB600473A95 /* TaskEditCell.m */,
 			);
-			path = controller;
+			path = ui;
 			sourceTree = "<group>";
 		};
 		B9160F010F565D3C00473A95 /* db */ = {
@@ -523,32 +523,11 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		B9160FB60F565DB600473A95 /* view */ = {
-			isa = PBXGroup;
-			children = (
-				B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */,
-				B9B77F910F56A18600BF0EF3 /* ListSelect.xib */,
-				B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */,
-				B9160FB70F565DB600473A95 /* FunctionalTestProgressViewWindow.xib */,
-				B9160FB80F565DB600473A95 /* HomeView.xib */,
-				B9160FB90F565DB600473A95 /* MainWindow.xib */,
-				B9160FBA0F565DB600473A95 /* PriorityImageView.h */,
-				B9160FBB0F565DB600473A95 /* PriorityImageView.m */,
-				B9160FBC0F565DB600473A95 /* ProgressView.h */,
-				B9160FBD0F565DB600473A95 /* ProgressView.m */,
-				B9160FBE0F565DB600473A95 /* RTMTaskCell.h */,
-				B9160FBF0F565DB600473A95 /* RTMTaskCell.m */,
-				B9160FC00F565DB600473A95 /* TaskEditCell.h */,
-				B9160FC10F565DB600473A95 /* TaskEditCell.m */,
-				B9160FC20F565DB600473A95 /* TaskView.xib */,
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
 		B9160FD00F565DE000473A95 /* test */ = {
 			isa = PBXGroup;
 			children = (
 				B91610590F56607600473A95 /* mock */,
+				B9160FB70F565DB600473A95 /* FunctionalTestProgressViewWindow.xib */,
 				B9160FD10F565DE000473A95 /* FunctionalTestAppDelegate.h */,
 				B9160FD20F565DE000473A95 /* FunctionalTestAppDelegate.m */,
 				B9160FD30F565DE000473A95 /* MockRTMAPI.h */,
@@ -607,6 +586,35 @@
 				B9160F5D0F565D9300473A95 /* icon_target.png */,
 			);
 			name = icons;
+			sourceTree = "<group>";
+		};
+		B9CBAFF80F5991710025216C /* add */ = {
+			isa = PBXGroup;
+			children = (
+				B9160ED80F565D1500473A95 /* AddTaskViewController.h */,
+				B9160ED90F565D1500473A95 /* AddTaskViewController.m */,
+				B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */,
+				B91610160F565F9E00473A95 /* DueDateSelectController.h */,
+				B91610170F565F9E00473A95 /* DueDateSelectController.m */,
+				B916100F0F565F8A00473A95 /* NoteEditController.h */,
+				B91610100F565F8A00473A95 /* NoteEditController.m */,
+				B91610110F565F8A00473A95 /* TagSelectController.h */,
+				B91610120F565F8A00473A95 /* TagSelectController.m */,
+				B916100C0F565F6500473A95 /* ListSelectController.h */,
+				B916100D0F565F6500473A95 /* ListSelectController.m */,
+			);
+			name = add;
+			sourceTree = "<group>";
+		};
+		B9CBAFF90F5991B80025216C /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				B9160EDC0F565D1500473A95 /* AuthViewController.h */,
+				B9160EDD0F565D1500473A95 /* AuthViewController.m */,
+				B9160EDE0F565D1500473A95 /* AuthWebViewController.h */,
+				B9160EDF0F565D1500473A95 /* AuthWebViewController.m */,
+			);
+			name = auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
