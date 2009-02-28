@@ -225,7 +225,7 @@
 		B9160FA40F565DAB00473A95 /* uiccalendar_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_title.png; sourceTree = "<group>"; };
 		B9160FB70F565DB600473A95 /* FunctionalTestProgressViewWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FunctionalTestProgressViewWindow.xib; path = ../ui/FunctionalTestProgressViewWindow.xib; sourceTree = "<group>"; };
 		B9160FB80F565DB600473A95 /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
-		B9160FB90F565DB600473A95 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = ui/MainWindow.xib; sourceTree = "<group>"; };
+		B9160FB90F565DB600473A95 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		B9160FBA0F565DB600473A95 /* PriorityImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityImageView.h; sourceTree = "<group>"; };
 		B9160FBB0F565DB600473A95 /* PriorityImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityImageView.m; sourceTree = "<group>"; };
 		B9160FBC0F565DB600473A95 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
@@ -321,7 +321,6 @@
 			children = (
 				B9160EBF0F565CEF00473A95 /* api */,
 				B9160ED60F565D1500473A95 /* ui */,
-				B9160FB90F565DB600473A95 /* MainWindow.xib */,
 				B9160F180F565D4C00473A95 /* model */,
 				B9160F360F565D6800473A95 /* others */,
 				B9160F8C0F565DAB00473A95 /* vendor */,
@@ -400,6 +399,7 @@
 				B9160FBF0F565DB600473A95 /* RTMTaskCell.m */,
 				B9160FC00F565DB600473A95 /* TaskEditCell.h */,
 				B9160FC10F565DB600473A95 /* TaskEditCell.m */,
+				B9160FB90F565DB600473A95 /* MainWindow.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -833,7 +833,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Milpon;
 			};
@@ -907,7 +907,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator2.2.1;
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = Debug;
 		};
@@ -917,6 +917,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;

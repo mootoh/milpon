@@ -65,9 +65,9 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-   //RootViewController *root = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-   //[window addSubview:root.view];
-   [window addSubview:tabBarController.view];
+   RootViewController *root = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+   [window addSubview:root.view];
+   ///[window addSubview:tabBarController.view];
    [window makeKeyAndVisible];
 }
 
