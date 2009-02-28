@@ -15,10 +15,13 @@
    return nil;
 }
 
+- (void) add:(NSString *)elm
+{
+}
+
 + (ListProvider *) sharedListProvider
 {
    return nil;
 }
    
-
 @end

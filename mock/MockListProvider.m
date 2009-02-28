@@ -13,20 +13,25 @@
 - (id) init
 {
    if (self = [super init]) {
-      fixed_lists = [[NSArray arrayWithObjects:@"Inbox", @"Action", @"Project", nil] retain];
+      lists_ = [[NSMutableArray arrayWithObjects:@"Inbox", @"Action", @"Project", nil] retain];
    }
    return self;
 }
 
 - (void) dealloc
 {
-   [fixed_lists release];
+   [lists_ release];
    [super dealloc];
 }
 
 - (NSArray *) lists
 {
-   return fixed_lists;
+   return lists_;
+}
+
+- (void) add:(NSString *)elm
+{
+   [lists_ addObject:elm];
 }
 
 @end // MockListProvider

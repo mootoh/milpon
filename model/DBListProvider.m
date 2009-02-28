@@ -7,25 +7,27 @@
 //
 
 #import "DBListProvider.h"
-
+#import "RTMList.h"
 
 @implementation DBListProvider
 
 - (id) init
 {
    if (self = [super init]) {
+      lists_ = [RTMList allLists:db_];
    }
    return self;
 }
 
 - (void) dealloc
 {
+   [lists_ release];
    [super dealloc];
 }
 
 - (NSArray *) lists
 {
-   return nil;
+   return lists_;
 }
 
 @end

@@ -11,16 +11,38 @@
 
 @interface ListProviderTest : SenTestCase
 {   
+   ListProvider *lp;
 }
 
 @end
 
 @implementation ListProviderTest
 
-- (void) testCreate
+- (void) setUp
 {
-   ListProvider *lp = [ListProvider sharedListProvider];
-   NSAssert(lp, @"should not be nil");
+   lp = [[ListProvider sharedListProvider] retain];
 }
 
+- (void) tearDown
+{
+   [lp release];
+}
+
+- (void) testCreate
+{
+   STAssertNotNil(lp, @"should not be nil");
+}
+
+- (void) testLists
+{
+   STAssertTrue(lp.lists.count > 0, @"should have some list elements.");
+}
+
+- (void) testAdd
+{
+   int before = lp.lists.count;
+   [lp add:@"another element"];
+   int after = lp.lists.count;
+   STAssertEquals(before+1, after, @"1 element should be added");
+}
 @end

@@ -16,9 +16,7 @@
 
 @interface MockListProvider : ListProvider
 {
-   NSArray *fixed_lists;
+   NSMutableArray *lists_;
 }
-
-- (NSArray *) lists;
 
 @end

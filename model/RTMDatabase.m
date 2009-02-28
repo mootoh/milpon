@@ -150,4 +150,17 @@
    return ret;
 }
 
+@end // RTMDatabase
+
+@implementation Database (RTM)
+
+static RTMDatabase *s_rtm_database = nil;
+
++ (Database *) sharedDatabase
+{
+   if (s_rtm_database == nil) {
+      s_rtm_database = [[RTMDatabase alloc] init];
+   }
+   return s_rtm_database;
+}
 @end

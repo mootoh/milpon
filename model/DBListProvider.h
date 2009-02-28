@@ -18,7 +18,8 @@
 
 @interface DBListProvider : ListProvider
 {
-   RTMDatabase *db;
+   RTMDatabase *db_;
+   NSArray *lists_;
 }
 
 - (NSArray *) lists;

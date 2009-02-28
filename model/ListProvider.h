@@ -10,6 +10,8 @@
 @interface ListProvider : NSObject
 
 - (NSArray *) lists;
+- (void) add:(NSString *)elm;
+
 + (ListProvider *) sharedListProvider;
 
 @end

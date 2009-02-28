@@ -91,6 +91,8 @@
 		B916105F0F56607600473A95 /* MockTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B916105D0F56607600473A95 /* MockTagProvider.m */; };
 		B916108A0F56618400473A95 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B916108D0F56686600473A95 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
+		B95C5BE20F59714E00A368DC /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = B95C5BE10F59714E00A368DC /* Database.m */; };
+		B95C5BE30F59714E00A368DC /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = B95C5BE10F59714E00A368DC /* Database.m */; };
 		B9B77F8E0F56A13E00BF0EF3 /* ListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */; };
 		B9B77F920F56A18600BF0EF3 /* DueDateSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */; };
 		B9B77F930F56A18600BF0EF3 /* ListSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F910F56A18600BF0EF3 /* ListSelect.xib */; };
@@ -155,7 +157,6 @@
 		B9160F050F565D3C00473A95 /* migrate_002_add_version.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_002_add_version.sql; sourceTree = "<group>"; };
 		B9160F060F565D3C00473A95 /* migrate_003_set_zero_edit_bits.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_003_set_zero_edit_bits.sql; sourceTree = "<group>"; };
 		B9160F070F565D3C00473A95 /* migrate_004_add_edit_bits_to_note.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_004_add_edit_bits_to_note.sql; sourceTree = "<group>"; };
-		B9160F0A0F565D3C00473A95 /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = rtm.sql; sourceTree = "<group>"; };
 		B9160F0B0F565D3C00473A95 /* schema.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
 		B9160F190F565D4C00473A95 /* ListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProvider.h; sourceTree = "<group>"; };
 		B9160F1A0F565D4C00473A95 /* RTMAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAuth.h; sourceTree = "<group>"; };
@@ -269,11 +270,12 @@
 		B916105D0F56607600473A95 /* MockTagProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockTagProvider.m; sourceTree = "<group>"; };
 		B91610890F56618400473A95 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B916108C0F56686600473A95 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
+		B95C5BE00F59714E00A368DC /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		B95C5BE10F59714E00A368DC /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListView.xib; sourceTree = "<group>"; };
 		B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DueDateSelect.xib; sourceTree = "<group>"; };
 		B9B77F910F56A18600BF0EF3 /* ListSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListSelect.xib; sourceTree = "<group>"; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9B77FAE0F56A31400BF0EF3 /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProviderTest.m; sourceTree = "<group>"; };
 		B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProvider.m; sourceTree = "<group>"; };
 		B9D120A20F5763DB00B5ABA4 /* DBListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBListProvider.h; sourceTree = "<group>"; };
@@ -327,7 +329,6 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				B9160FD00F565DE000473A95 /* test */,
-				B9B77FAE0F56A31400BF0EF3 /* UnitTest-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -412,7 +413,6 @@
 				B9160F050F565D3C00473A95 /* migrate_002_add_version.sql */,
 				B9160F060F565D3C00473A95 /* migrate_003_set_zero_edit_bits.sql */,
 				B9160F070F565D3C00473A95 /* migrate_004_add_edit_bits_to_note.sql */,
-				B9160F0A0F565D3C00473A95 /* rtm.sql */,
 				B9160F0B0F565D3C00473A95 /* schema.sql */,
 			);
 			name = db;
@@ -422,6 +422,8 @@
 		B9160F180F565D4C00473A95 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				B95C5BE00F59714E00A368DC /* Database.h */,
+				B95C5BE10F59714E00A368DC /* Database.m */,
 				B9160F010F565D3C00473A95 /* db */,
 				B91610590F56607600473A95 /* mock */,
 				B9160F190F565D4C00473A95 /* ListProvider.h */,
@@ -777,6 +779,7 @@
 				B916105F0F56607600473A95 /* MockTagProvider.m in Sources */,
 				B9D1200C0F56A97B00B5ABA4 /* ListProvider.m in Sources */,
 				B9D120A40F5763DB00B5ABA4 /* DBListProvider.m in Sources */,
+				B95C5BE20F59714E00A368DC /* Database.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,6 +790,7 @@
 				B9D120AE0F57649C00B5ABA4 /* ListProvider.m in Sources */,
 				B9D120AF0F57649E00B5ABA4 /* ListProviderTest.m in Sources */,
 				B9D120B30F5764CC00B5ABA4 /* MockListProvider.m in Sources */,
+				B95C5BE30F59714E00A368DC /* Database.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -879,13 +883,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphonesimulator2.2.1;
 			};
 			name = Debug;
 		};
