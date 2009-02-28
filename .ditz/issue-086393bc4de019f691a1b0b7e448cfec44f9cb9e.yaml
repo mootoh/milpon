@@ -3,7 +3,7 @@ title: support Tag
 desc: "in trac #28"
 type: :task
 component: milpon
-release: 
+release: beta7
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -15,6 +15,10 @@ log_events:
 - - 2009-02-19 11:43:36.657544 Z
   - mootoh <mootoh@gmail.com>
   - created
+  - ""
+- - 2009-02-28 13:23:26.125399 Z
+  - mootoh <mootoh@gmail.com>
+  - assigned to release beta7 from unassigned
   - ""
 git_branch: 
 claimer: 
