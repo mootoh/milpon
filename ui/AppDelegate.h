@@ -25,5 +25,6 @@
 @property (nonatomic, retain) NSOperationQueue *operationQueue;
 
 - (IBAction) addTask;
-
+- (IBAction) saveAuth;
+- (IBAction) authDone;
 @end

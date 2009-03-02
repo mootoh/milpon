@@ -26,22 +26,29 @@
    return path;
 }
 
+- (void) authInit:(NSString *)path
+{
+   NSFileManager *fm = [NSFileManager defaultManager];
+   if ([fm fileExistsAtPath:path]) {
+      NSMutableData *data = [NSMutableData dataWithContentsOfFile:path];
+      NSKeyedUnarchiver *decoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+      self.auth = [decoder decodeObjectForKey:@"auth"];
+      [decoder finishDecoding];
+      [decoder release];
+   } else {
+      self.auth = [[RTMAuth alloc] init];
+   }
+}
+
+/**
+  * init DB and authorization info
+  */
 - (id) init
 {
    if (self = [super init]) {
       db = [[RTMDatabase alloc] init];
 
-      NSString *path = [self authPath];
-      NSFileManager *fm = [NSFileManager defaultManager];
-      if ([fm fileExistsAtPath:path]) {
-         NSMutableData *data = [NSMutableData dataWithContentsOfFile:path];
-         NSKeyedUnarchiver *decoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-         self.auth = [decoder decodeObjectForKey:@"auth"];
-         [decoder finishDecoding];
-         [decoder release];
-      } else {
-         self.auth = [[RTMAuth alloc] init];
-      }
+      [self authInit:[self authPath]];
 
       [RTMAPI setApiKey:auth.api_key];
       [RTMAPI setSecret:auth.shared_secret];
@@ -65,15 +72,34 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-   RootViewController *root = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-   [window addSubview:root.view];
-   ///[window addSubview:tabBarController.view];
+#ifdef USE_AUTH
+   if (!auth.token || [auth.token isEqualToString:@""]) {
+      AuthViewController *avc = [[AuthViewController alloc] initWithNibName:nil bundle:nil];
+
+      avc.navigationItem.hidesBackButton = YES;
+      [window addSubview:avc.view];
+   } else {
+#endif // USE_AUTH
+      //RootViewController *root = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+      //[window addSubview:root.view];
+      [window addSubview:tabBarController.view];
+#ifdef USE_AUTH
+   }
+#endif // USE_AUTH
    [window makeKeyAndVisible];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
+- (IBAction) addTask
 {
-   // Save data if appropriate
+   AddTaskViewController *atvController = [[AddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
+   UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:atvController];
+   [tabBarController presentModalViewController:navc animated:NO];
+   [navc release];
+   [atvController release];
+}
+
+- (IBAction) saveAuth
+{
    NSMutableData *theData = [NSMutableData data];
    NSKeyedArchiver *encoder = [[NSKeyedArchiver alloc] initForWritingWithMutableData:theData];
 
@@ -84,29 +110,13 @@
    [encoder release];
 }
 
-/*
- * UIApplicationDelegate methods
- */
-#if 0
-– application:willChangeStatusBarOrientation:duration:
-– application:didChangeStatusBarOrientation:
-– applicationWillResignActive:
-– applicationDidBecomeActive:
-– application:willChangeStatusBarFrame:
-– application:didChangeStatusBarFrame:
-– applicationDidReceiveMemoryWarning:
-– applicationSignificantTimeChange:
-#endif // 0
-
-- (IBAction) addTask
+- (IBAction) authDone
 {
-   //self.hidesBottomBarWhenPushed = YES;
-   
-   AddTaskViewController *atvController = [[AddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
-   UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:atvController];
-   [tabBarController presentModalViewController:navc animated:NO];
-   [navc release];
-   [atvController release];
+   NSArray *svs = window.subviews;
+   NSAssert(svs.count == 1, @"should be only avc");
+   [window addSubview:tabBarController.view];
+   [window bringSubviewToFront:tabBarController.view];
+   [[svs objectAtIndex:0] removeFromSuperview];
 }
 
 @end
