@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class RootViewController;
-
 @interface AuthViewController : UIViewController
 {
    enum {
@@ -23,12 +21,9 @@
    UIActivityIndicatorView *authActivity;
    UIButton *confirmButton;
    UIToolbar *bottomBar;
-
-   RootViewController *rootViewController;
 }
 
 @property (nonatomic, retain) UIToolbar *bottomBar;
-@property (nonatomic, retain) RootViewController *rootViewController;
 
 - (IBAction) auth;
 - (IBAction) getToken;

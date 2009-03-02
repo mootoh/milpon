@@ -79,7 +79,6 @@
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    if (!app.auth.token || [app.auth.token isEqualToString:@""]) {
       AuthViewController *avc = [[AuthViewController alloc] initWithNibName:nil bundle:nil];
-      avc.rootViewController = self;
 
       avc.navigationItem.hidesBackButton = YES;
       avc.bottomBar = bottomBar;
@@ -131,69 +130,6 @@
       [(UITableViewController<ReloadableTableViewControllerProtocol> *)tvc reloadFromDB];
       [((UITableViewController *)tvc).tableView reloadData];
    }
-}
-
-- (IBAction) upload
-{
-   Reachability *reach = [Reachability sharedReachability];
-   reach.hostName = @"api.rememberthemilk.com";
-   NetworkStatus stat =  [reach internetConnectionStatus];
-   reach.networkStatusNotificationsEnabled = NO;
-   if (stat == NotReachable) {
-      UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Not Connected"
-         message:@"Not connected to the RTM site. Sync when you are online."
-         delegate:nil
-         cancelButtonTitle:@"OK"
-         otherButtonTitles:nil];
-      [av show];
-      [av release];
-      return;
-   } else {
-      LOG(@"OK");
-   }
-
-   uploadButton.enabled = NO;
-   [progressView progressBegin];
-   NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];
-
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   [app.operationQueue addOperation:ope];
-   [ope release];
-}
-
-- (void) uploadOperation
-{
-   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithDB:app.db withAuth:app.auth];
-
-   [syncer uploadPendingTasks:progressView];
-   [syncer syncModifiedTasks:progressView];
-   [syncer syncTasks:progressView];
-
-   [syncer release];
-
-   [self reload];
-
-
-   NSString *lastUpdated = [RTMTask lastSync:app.db];
-   lastUpdated = [lastUpdated stringByReplacingOccurrencesOfString:@"T" withString:@"_"];
-   lastUpdated = [lastUpdated stringByReplacingOccurrencesOfString:@"Z" withString:@" GMT"];
-
-   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
-
-   NSDate *lu = [formatter dateFromString:lastUpdated];
-   [formatter setDateFormat:@"MM/dd HH:mm"];
-   lastUpdated = [formatter stringFromDate:lu];
-
-   [progressView updateMessage:[NSString stringWithFormat:@"Updated: %@", lastUpdated]];
-
-   [progressView progressEnd];
-   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-   uploadButton.enabled = YES;
 }
 
 - (void) fetchAll

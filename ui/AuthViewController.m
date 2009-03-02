@@ -5,11 +5,10 @@
 #import "AppDelegate.h"
 #import "AuthWebViewController.h"
 #import "RTMAPI.h"
-#import "RootViewController.h"
 
 @implementation AuthViewController
 
-@synthesize bottomBar, rootViewController;
+@synthesize bottomBar;
 
 #define GREETING_LABEL_WIDTH 156
 #define INSTRUCTION_LABEL_WIDTH 284
@@ -193,11 +192,11 @@
    if (state != STATE_JUMPED)
       return;
 
-   [self.rootViewController fetchAll];
+   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+   [app fetchAll];
 
    instructionLabel.text = @"DONE !\n\nEnjoy :)";
 
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    NSTimer *timer;
    timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(done:) userInfo:nil repeats:NO];
 }

@@ -9,10 +9,14 @@
 #import "AppDelegate.h"
 #import "RTMAPI.h"
 #import "RTMAuth.h"
+#import "RTMTask.h"
 #import "RTMDatabase.h"
 #import "AuthViewController.h"
 #import "RootViewController.h"
 #import "AddTaskViewController.h"
+#import "RTMSynchronizer.h"
+#import "Reachability.h"
+#import "logger.h"
 
 @implementation AppDelegate
 
@@ -121,6 +125,89 @@
    [window addSubview:tabBarController.view];
    [window bringSubviewToFront:tabBarController.view];
    [[svs objectAtIndex:0] removeFromSuperview];
+}
+
+- (IBAction) fetchAll
+{
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+   RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithDB:db withAuth:auth];
+   [syncer replaceLists];
+   [syncer replaceTasks];
+   //[syncer replaceLocations];
+   //[syncer replaceNotes];
+   //[syncer replaceTags];
+
+   [syncer release];
+
+   //[self reload];
+
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+- (IBAction) refresh
+{
+   Reachability *reach = [Reachability sharedReachability];
+   reach.hostName = @"api.rememberthemilk.com";
+   NetworkStatus stat =  [reach internetConnectionStatus];
+   reach.networkStatusNotificationsEnabled = NO;
+   if (stat == NotReachable) {
+      UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Not Connected"
+         message:@"Not connected to the RTM site. Sync when you are online."
+         delegate:nil
+         cancelButtonTitle:@"OK"
+         otherButtonTitles:nil];
+      [av show];
+      [av release];
+      return;
+   } else {
+      LOG(@"OK");
+   }
+
+   //refreshButton.enabled = NO;
+   //[progressView progressBegin];
+   NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];
+
+   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+   [app.operationQueue addOperation:ope];
+   [ope release];
+}
+
+- (void) uploadOperation
+{
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
+   RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithDB:db withAuth:auth];
+
+   /*
+   [syncer uploadPendingTasks:progressView];
+   [syncer syncModifiedTasks:progressView];
+   [syncer syncTasks:progressView];
+   */
+   [syncer uploadPendingTasks:nil];
+   [syncer syncModifiedTasks:nil];
+   [syncer syncTasks:nil];
+
+   [syncer release];
+
+   //[self reload];
+
+   NSString *lastUpdated = [RTMTask lastSync:db];
+   lastUpdated = [lastUpdated stringByReplacingOccurrencesOfString:@"T" withString:@"_"];
+   lastUpdated = [lastUpdated stringByReplacingOccurrencesOfString:@"Z" withString:@" GMT"];
+
+   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
+
+   NSDate *lu = [formatter dateFromString:lastUpdated];
+   [formatter setDateFormat:@"MM/dd HH:mm"];
+   lastUpdated = [formatter stringFromDate:lu];
+
+   //[progressView updateMessage:[NSString stringWithFormat:@"Updated: %@", lastUpdated]];
+
+   //[progressView progressEnd];
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+   //refreshButton.enabled = YES;
 }
 
 @end

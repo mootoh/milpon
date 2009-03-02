@@ -27,4 +27,7 @@
 - (IBAction) addTask;
 - (IBAction) saveAuth;
 - (IBAction) authDone;
+- (IBAction) fetchAll;
+- (IBAction) refresh;
+
 @end
