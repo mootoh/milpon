@@ -49,6 +49,16 @@
       authActivity.frame = CGRectMake(appFrame.size.width/2-16, appFrame.size.height/2, 32, 32);
       authActivity.hidesWhenStopped = YES;
 
+#ifdef DEBUG
+      UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+      doneButton.frame = CGRectMake(appFrame.size.width/2-150/2, 350, 150, 40);
+      [doneButton setTitle:@"done" forState:UIControlStateNormal];
+      [doneButton addTarget:self action:@selector(done:) forControlEvents:UIControlEventTouchDown];
+      doneButton.enabled = YES;
+      doneButton.hidden = NO;
+      [self.view addSubview:doneButton];
+#endif // DEBUG
+
       [self greet];
    }
    return self;
@@ -155,7 +165,9 @@
 - (void) done:(NSTimer*)theTimer
 {
    state = STATE_DONE;
-   [self.navigationController popViewControllerAnimated:YES];
+   NSLog(@"navc = %p", self.navigationController);
+   //[self.navigationController popViewControllerAnimated:YES];
+   [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -72,20 +72,24 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
+#define USE_AUTH
 #ifdef USE_AUTH
+   [window addSubview:tabBarController.view];
+
    if (!auth.token || [auth.token isEqualToString:@""]) {
       AuthViewController *avc = [[AuthViewController alloc] initWithNibName:nil bundle:nil];
-
       avc.navigationItem.hidesBackButton = YES;
-      [window addSubview:avc.view];
-   } else {
-#endif // USE_AUTH
-      //RootViewController *root = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-      //[window addSubview:root.view];
-      [window addSubview:tabBarController.view];
-#ifdef USE_AUTH
+
+      UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:avc];
+      NSLog(@"nc = %p", nc);
+      [tabBarController presentModalViewController:nc animated:NO];
+      [nc release];
    }
+#else // USE_AUTH
+      RootViewController *root = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+      [window addSubview:root.view];
 #endif // USE_AUTH
+
    [window makeKeyAndVisible];
 }
 
