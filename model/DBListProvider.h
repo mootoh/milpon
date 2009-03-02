@@ -7,6 +7,7 @@
 //
 
 #import "ListProvider.h"
+@class Database;
 
 @interface ListProvider (DB)
 
@@ -18,7 +19,7 @@
 
 @interface DBListProvider : ListProvider
 {
-   RTMDatabase *db_;
+   Database *db_;
    NSArray *lists_;
 }
 

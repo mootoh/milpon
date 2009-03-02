@@ -10,4 +10,6 @@
 {
 }
 
++ (Database *) sharedDatabase;
+
 @end

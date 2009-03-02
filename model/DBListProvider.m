@@ -8,12 +8,14 @@
 
 #import "DBListProvider.h"
 #import "RTMList.h"
+#import "Database.h"
 
 @implementation DBListProvider
 
 - (id) init
 {
    if (self = [super init]) {
+      db_ = [Database sharedDatabase];
       lists_ = [RTMList allLists:db_];
    }
    return self;

@@ -199,7 +199,7 @@
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    NSTimer *timer;
-   timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:app selector:@selector(authDone:) userInfo:nil repeats:NO];
+   timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(done:) userInfo:nil repeats:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

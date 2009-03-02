@@ -24,7 +24,7 @@
 - (void)viewDidLoad
 {
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   lists = [[RTMList allLists:app.db] retain];
+   lists = [[RTMList allLists] retain];
    self.title = @"List";   
 }
 
