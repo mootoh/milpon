@@ -172,6 +172,40 @@
    return ret;
 }
 
+- (NSArray *) select:(NSDictionary *)dict from:(NSString *)table
+{
+   sqlite3_stmt *stmt = nil;
+
+   NSString *keys = @"";
+   for (NSString *key in dict)
+      keys = [keys stringByAppendingFormat:@"%@, ", key];
+
+   keys = [keys substringToIndex:keys.length-2];
+   NSString *sql = [NSString stringWithFormat:@"SELECT %@ from %@", keys, table];
+   NSLog(@"sql = %@", sql);
+
+   if (sqlite3_prepare_v2(handle, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle));
+   }
+
+   NSMutableArray *results = [NSMutableArray array];
+   while (sqlite3_step(stmt) == SQLITE_ROW) {
+      NSMutableDictionary *result = [NSMutableDictionary dictionary];
+      int i = 0;
+
+      for (NSString *key in dict) {
+         Class klass = [dict objectForKey:key];
+         if (klass == [NSNumber class]) {
+            NSNumber *num = [NSNumber numberWithInt:sqlite3_column_int(stmt, i)];
+            [result setObject:num forKey:key];
+         }
+         i++;
+      }
+      [results addObject:result];
+   }
+   return [results retain];
+}
+
 @end // RTMDatabase
 
 @implementation Database (RTM)

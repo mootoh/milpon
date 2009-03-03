@@ -16,16 +16,27 @@
 
 - (void) testSingleton
 {
-   RTMDatabase *db_wrapper = [[[RTMDatabase alloc] init] autorelease];
-   STAssertNotNil(db_wrapper, @"singleton instance should not be nil");
+   RTMDatabase *db = (RTMDatabase *)[RTMDatabase sharedDatabase];
+   STAssertNotNil(db, @"instance should not be nil");
 }
 
 - (void) testPath
 {
-   RTMDatabase *db = [[[RTMDatabase alloc] init] autorelease];
+   RTMDatabase *db = (RTMDatabase *)[RTMDatabase sharedDatabase];
    NSString *path = [db path];
-   NSLog(@"db path = %@", path);
    STAssertTrue([path isEqualToString:@"/tmp/rtm.sql"], @"check path");
+}
+
+- (void) testSelect
+{
+   RTMDatabase *db = (RTMDatabase *)[RTMDatabase sharedDatabase];
+   NSArray *keys  = [NSArray arrayWithObjects:@"id", nil];
+   NSArray *types = [NSArray arrayWithObjects:[NSNumber class], nil];
+   NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
+   NSArray *results = [db select:dict from:@"task"];
+   for (NSDictionary *dict in results) {
+      NSLog(@"%d", [[dict objectForKey:@"id"] intValue]);
+   }
 }
 
 @end

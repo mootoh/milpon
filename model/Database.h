@@ -8,7 +8,7 @@
 
 @interface Database : NSObject
 
-- (void) select:(NSDictionary *)dict from:(NSString *)table;
+- (NSArray *) select:(NSDictionary *)dict from:(NSString *)table;
 + (Database *) sharedDatabase;
 
 @end

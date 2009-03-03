@@ -10,4 +10,16 @@
 
 @implementation Database
 
+- (NSArray *) select:(NSDictionary *)dict from:(NSString *)table
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
++ (Database *) sharedDatabase
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 @end
