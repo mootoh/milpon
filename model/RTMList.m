@@ -44,33 +44,6 @@
    return count;
 }
 
-+ (NSArray *) allLists:(RTMDatabase *)db
-{
-   NSMutableArray *lists = [NSMutableArray array];
-
-   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
-   sqlite3_stmt *stmt = nil;
-   char *sql = "SELECT id,name from list";
-   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
-   }
-   while (sqlite3_step(stmt) == SQLITE_ROW) {
-      NSString *i = [NSString stringWithFormat:@"%d", sqlite3_column_int(stmt, 0)];
-      NSString *n = [NSString stringWithUTF8String:(char *)sqlite3_column_text (stmt, 1)];
-
-      NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", nil];
-      NSArray *vals = [NSArray arrayWithObjects:i, n, nil];
-      NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-
-      RTMList *lst = [[[RTMList alloc] initByParams:params inDB:db] autorelease];
-      [lists addObject:lst];
-   }
-   sqlite3_finalize(stmt);
-   [pool release];
-   return lists;
-}
-
 + (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db
 {
    sqlite3_stmt *stmt = nil;

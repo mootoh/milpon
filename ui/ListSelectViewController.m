@@ -7,10 +7,11 @@
 //
 
 #import "ListSelectViewController.h"
-#import "RTMDatabase.h"
 #import "AppDelegate.h"
 #import "RTMList.h"
 #import "AddTaskViewController.h"
+#import "Database.h"
+#import "ListProvider.h"
 
 @implementation ListSelectViewController
 
@@ -19,9 +20,7 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
    if (self = [super initWithStyle:style]) {
-      AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-      RTMDatabase *db = app.db;
-      lists = [[RTMList allLists:db] retain];
+      lists = [[[ListProvider sharedListProvider] lists] retain];
    }
    return self;
 }

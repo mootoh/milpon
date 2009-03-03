@@ -15,8 +15,8 @@
  */
 @interface RTMDatabase : Database
 {
-	sqlite3  *handle;
-  NSString *path;
+   sqlite3  *handle;
+   NSString *path;
 }
 
 @property (nonatomic, readonly) sqlite3 *handle;

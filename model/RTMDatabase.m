@@ -43,33 +43,55 @@
 
 - (NSString *) databasePath
 {
-   NSFileManager *fileManager = [NSFileManager defaultManager];
+   NSFileManager *fm = [NSFileManager defaultManager];
+
 #ifdef UNIT_TEST
-   NSString *documentsDirectory = @"/tmp";
-#else // UNIT_TEST
-   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-   NSString *documentsDirectory = [paths objectAtIndex:0];
-#endif // UNIT_TEST
-   NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"rtm.sql"];
+
+   // db path
+   NSString *doc_dir = @"/tmp";
+   NSString *db_path = [doc_dir stringByAppendingPathComponent:@"rtm.sql"];
 
    NSError *error;
-   if ([fileManager fileExistsAtPath:writableDBPath]) {
-#ifdef UNIT_TEST
-      if (! [fileManager removeItemAtPath:writableDBPath error:&error])
-         NSAssert2(0, @"Failed to remove existing database file with message '%@' path=%@.", [error localizedDescription], writableDBPath);
-      NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"rtm.sql"];
-      if (! [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error]) {
-         NSAssert3(0, @"Failed to create writable database file with message '%@', from=%@, to=%@.", [error localizedDescription], defaultDBPath, writableDBPath);
-      }
-#endif // UNIT_TEST
-   } else {
-      // The writable database does not exist, so copy the default to the appropriate location.
-      NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"rtm.sql"];
-      if (! [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error]) {
-         NSAssert3(0, @"Failed to create writable database file with message '%@', from=%@, to=%@.", [error localizedDescription], defaultDBPath, writableDBPath);
-      }
+   if ([fm fileExistsAtPath:db_path] && ! [fm removeItemAtPath:db_path error:&error]) {
+      [[NSException
+         exceptionWithName:@"file exception"
+         reason:[NSString stringWithFormat:@"Failed to remove existing database file with message '%@' path=%@.", [error localizedDescription], db_path]
+         userInfo:nil] raise];
    }
-   return writableDBPath;
+
+   // from path
+   NSString *from_path = [[fm currentDirectoryPath] stringByAppendingPathComponent:@"/db/rtm.sql"];
+
+   if (! [fm copyItemAtPath:from_path toPath:db_path error:&error])
+      [[NSException
+         exceptionWithName:@"file exception"
+         reason:[NSString stringWithFormat:@"Failed to create writable database file with message '%@', from=%@, to=%@.", [error localizedDescription], from_path, db_path]
+         userInfo:nil] raise];
+
+   return db_path;
+
+#else // UNIT_TEST
+
+   // db path
+   NSString *doc_dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+   NSString *db_path = [doc_dir stringByAppendingPathComponent:@"rtm.sql"];
+
+   NSError *error;
+   if ([fm fileExistsAtPath:db_path])
+      return db_path;
+
+   // The writable database does not exist, so copy the default to the appropriate location.
+   // from path
+   NSString *from_path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"rtm.sql"];
+
+   if (! [fm copyItemAtPath:from_path toPath:db_path error:&error])
+      [[NSException
+         exceptionWithName:@"file exception"
+         reason:[NSString stringWithFormat:@"Failed to create writable database file with message '%@', from=%@, to=%@.", [error localizedDescription], from_path, db_path]
+         userInfo:nil] raise];
+
+   return db_path;
+#endif // UNIT_TEST
 }
 
 - (void) migrate

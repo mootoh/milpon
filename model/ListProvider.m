@@ -12,15 +12,30 @@
 
 - (NSArray *) lists
 {
+   NSAssert(NO, @"not reach here");
    return nil;
 }
 
 - (void) add:(NSString *)elm
 {
+   NSAssert(NO, @"not reach here");
 }
+
+- (void) create:(NSDictionary *)params
+{
+   NSAssert(NO, @"not reach here");
+}
+
+- (NSString *) nameForListID:(NSNumber *) lid
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 
 + (ListProvider *) sharedListProvider
 {
+   NSAssert(NO, @"not reach here");
    return nil;
 }
    
