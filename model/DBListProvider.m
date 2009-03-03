@@ -16,7 +16,7 @@
 {
    if (self = [super init]) {
       db_ = [Database sharedDatabase];
-      lists_ = [RTMList allLists:db_];
+      lists_ = [[RTMList allLists:db_] retain];
    }
    return self;
 }

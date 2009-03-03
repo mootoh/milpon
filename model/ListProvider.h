@@ -12,6 +12,10 @@
 - (NSArray *) lists;
 - (void) add:(NSString *)elm;
 
+- (void) create:(NSDictionary *)params;
+- (NSArray *) allLists:(Database *)db;
+- (NSString *) nameForListID:(NSNumber *) lid fromDB:(Database *)db;
+
 + (ListProvider *) sharedListProvider;
 
 @end
