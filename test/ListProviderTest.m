@@ -10,36 +10,26 @@
 #import "ListProvider.h"
 
 @interface ListProviderTest : SenTestCase
-{   
-   ListProvider *lp;
-}
 
 @end
 
 @implementation ListProviderTest
 
-- (void) setUp
-{
-   lp = [[ListProvider sharedListProvider] retain];
-}
-
-- (void) tearDown
-{
-   [lp release];
-}
-
 - (void) testCreate
 {
+   ListProvider *lp = [ListProvider sharedListProvider];
    STAssertNotNil(lp, @"should not be nil");
 }
 
 - (void) testLists
 {
+   ListProvider *lp = [ListProvider sharedListProvider];
    STAssertTrue(lp.lists.count > 0, @"should have some list elements.");
 }
 
 - (void) testAdd
 {
+   ListProvider *lp = [ListProvider sharedListProvider];
    int before = lp.lists.count;
    [lp add:@"another element"];
    int after = lp.lists.count;
