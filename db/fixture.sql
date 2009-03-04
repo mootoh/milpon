@@ -10,4 +10,7 @@ INSERT into list
 INSERT into list
   (name) VALUES ('Someday');
 
+INSERT into task
+  (name, list_id) VALUES ('task one', 1);
+
 INSERT into last_sync (sync_date) VALUES ('1990-01-01');

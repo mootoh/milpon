@@ -30,13 +30,13 @@
 - (void) testSelect
 {
    RTMDatabase *db = (RTMDatabase *)[RTMDatabase sharedDatabase];
-   NSArray *keys  = [NSArray arrayWithObjects:@"id", nil];
-   NSArray *types = [NSArray arrayWithObjects:[NSNumber class], nil];
+   NSArray *keys  = [NSArray arrayWithObjects:@"id", @"name", nil];
+   NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], nil];
    NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
    NSArray *results = [db select:dict from:@"task"];
-   for (NSDictionary *dict in results) {
-      NSLog(@"%d", [[dict objectForKey:@"id"] intValue]);
-   }
+   NSDictionary *result = [results objectAtIndex:0];
+   STAssertEquals([NSNumber numberWithInt:1], [result objectForKey:@"id"], @"id check");
+   STAssertTrue([[result objectForKey:@"name"] isEqualToString:@"task one"], @"name check");
 }
 
 @end

@@ -182,7 +182,6 @@
 
    keys = [keys substringToIndex:keys.length-2];
    NSString *sql = [NSString stringWithFormat:@"SELECT %@ from %@", keys, table];
-   NSLog(@"sql = %@", sql);
 
    if (sqlite3_prepare_v2(handle, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
       NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle));
@@ -198,6 +197,12 @@
          if (klass == [NSNumber class]) {
             NSNumber *num = [NSNumber numberWithInt:sqlite3_column_int(stmt, i)];
             [result setObject:num forKey:key];
+         } else if (klass == [NSString class]) {
+            char *chs = (char *)sqlite3_column_text(stmt, i);
+            NSString *str = chs ? [NSString stringWithUTF8String:chs] : @"";
+            [result setObject:str forKey:key];
+         } else {
+            NSAssert(NO, @"not reach here!");
          }
          i++;
       }
