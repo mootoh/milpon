@@ -7,6 +7,8 @@
  *
  */
 
+@class RTMList;
+
 @interface ListProvider : NSObject
 
 - (NSArray *) lists;
@@ -14,6 +16,7 @@
 
 - (void) create:(NSDictionary *)params;
 - (NSString *) nameForListID:(NSNumber *) lid;
+- (NSArray *) tasksInList:(RTMList *)list;
 
 + (ListProvider *) sharedListProvider;
 

@@ -6,18 +6,17 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import "RTMStorable.h"
-
-@interface RTMList : RTMStorable
+@interface RTMList : NSObject
 {
+   NSNumber *iD;
    NSString *name;
 }
 
+@property (nonatomic, retain) NSNumber *iD;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, readonly) NSArray *tasks;
 
-- (id) initByParams:(NSDictionary *)params;
-- (NSInteger) taskCount;
+- (id) initWithID:(NSNumber *)id_ forName:(NSString *)name;
 
 @end
 // vim:set ft=objc:

@@ -11,6 +11,11 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		B914B2D00F5E7D5F009C19BE /* RTMListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDD0F565DE000473A95 /* RTMListTest.m */; };
+		B914B2D70F5E7D6E009C19BE /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
+		B914B2FD0F5EB9B3009C19BE /* RTMDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDC0F565DE000473A95 /* RTMDatabaseTest.m */; };
+		B914B30F0F5EBAC6009C19BE /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
+		B914B31A0F5EBAEA009C19BE /* MockListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B916105B0F56607600473A95 /* MockListProvider.m */; };
 		B9160ECC0F565CEF00473A95 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
 		B9160ECD0F565CEF00473A95 /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPIAuth.m */; };
 		B9160ECE0F565CEF00473A95 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
@@ -93,7 +98,6 @@
 		B95C5C080F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B95C5C090F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B95C5C180F59901700A368DC /* MockTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B916105D0F56607600473A95 /* MockTagProvider.m */; };
-		B971DBD20F5CC9BB00513D03 /* RTMDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDC0F565DE000473A95 /* RTMDatabaseTest.m */; };
 		B971DBDE0F5CCA3000513D03 /* RTMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* RTMDatabase.m */; };
 		B9B77F8E0F56A13E00BF0EF3 /* ListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */; };
 		B9B77F920F56A18600BF0EF3 /* DueDateSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */; };
@@ -803,8 +807,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B95C5BE30F59714E00A368DC /* Database.m in Sources */,
-				B971DBD20F5CC9BB00513D03 /* RTMDatabaseTest.m in Sources */,
 				B971DBDE0F5CCA3000513D03 /* RTMDatabase.m in Sources */,
+				B914B2D00F5E7D5F009C19BE /* RTMListTest.m in Sources */,
+				B914B2D70F5E7D6E009C19BE /* RTMList.m in Sources */,
+				B914B2FD0F5EB9B3009C19BE /* RTMDatabaseTest.m in Sources */,
+				B914B30F0F5EBAC6009C19BE /* ListProvider.m in Sources */,
+				B914B31A0F5EBAEA009C19BE /* MockListProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

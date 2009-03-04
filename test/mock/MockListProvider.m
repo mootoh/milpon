@@ -34,6 +34,11 @@
    [lists_ addObject:elm];
 }
 
+- (NSArray *) tasksInList:(RTMList *)list
+{
+   return [NSArray arrayWithObjects:@"one", @"two", @"three", nil];
+}
+
 @end // MockListProvider
 
 @implementation ListProvider (Mock)

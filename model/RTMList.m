@@ -6,27 +6,36 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import <sqlite3.h>
 #import "RTMList.h"
 #import "RTMTask.h"
-#import "RTMDatabase.h"
+#import "ListProvider.h"
 
 @implementation RTMList
-@synthesize name;
 
-- (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb
+@synthesize iD, name;
+
+- (id) initWithID:(NSNumber *)id_ forName:(NSString *)name_
 {
-   if (self = [super initByID:[params valueForKey:@"id"] inDB:ddb]) {
-      self.name = [params valueForKey:@"name"];
+   if (self = [super init]) {
+      self.iD   = id_;
+      self.name = name_;
    }
    return self;
 }
 
-- (NSArray *)tasks
+- (void) dealloc
 {
-   return [RTMTask tasksInList:self.iD inDB:db];
+   if (iD) [iD release];
+   if (name) [name release];
+   [super dealloc];
 }
 
+- (NSArray *)tasks
+{
+   return [[ListProvider sharedListProvider] tasksInList:self];
+}
+
+#if 0
 - (NSInteger) taskCount
 {
    sqlite3_stmt *stmt = nil;
@@ -43,7 +52,9 @@
    sqlite3_finalize(stmt);
    return count;
 }
+#endif // 0
 
+#if 0
 + (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db
 {
    sqlite3_stmt *stmt = nil;
@@ -90,12 +101,6 @@
    sqlite3_finalize(stmt);
 }
 
-- (void) dealloc
-{
-   if (name) [name release];
-   [super dealloc];
-}
-
 + (NSString *) nameForListID:(NSNumber *) lid fromDB:(RTMDatabase *)db
 {
    sqlite3_stmt *stmt = nil;
@@ -115,5 +120,5 @@
 
    return ret;
 }
-
+#endif // 0
 @end
