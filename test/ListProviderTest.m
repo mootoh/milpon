@@ -26,6 +26,7 @@
    STAssertTrue(lp.lists.count > 0, @"should have some list elements.");
 }
 
+#if 0
 - (void) testAdd
 {
    ListProvider *lp = [ListProvider sharedListProvider];
@@ -34,4 +35,5 @@
    int after = lp.lists.count;
    STAssertEquals(before+1, after, @"1 element should be added");
 }
+#endif // 0
 @end

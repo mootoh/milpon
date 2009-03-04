@@ -32,6 +32,11 @@
    return nil;
 }
 
+- (NSArray *) tasksInList:(RTMList *)list
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
 
 + (ListProvider *) sharedListProvider
 {

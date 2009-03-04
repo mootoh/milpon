@@ -31,22 +31,19 @@
 - (NSArray *) lists
 {
    NSMutableArray *lists = [NSMutableArray array];
-   
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-   
-   sqlite3_stmt *stmt = nil;
-   char *sql = "SELECT id,name from list";
-   if (sqlite3_prepare_v2([local_cache_ handle_], sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([local_cache_ handle_]));
-   }
-   while (sqlite3_step(stmt) == SQLITE_ROW) {
-      NSNumber *i = [NSNumber numberWithInt:sqlite3_column_int(stmt, 0)];
-      NSString *n = [NSString stringWithUTF8String:(char *)sqlite3_column_text (stmt, 1)];
-            
-      RTMList *lst = [[[RTMList alloc] initWithID:i forName:n] autorelease];
+
+   NSArray *keys  = [NSArray arrayWithObjects:@"id", @"name", nil];
+   NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], nil];
+   NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
+
+   NSArray *list_arr = [local_cache_ select:dict from:@"list"];
+   for (NSDictionary *dict in list_arr) {
+      RTMList *lst = [[[RTMList alloc]
+         initWithID:[dict objectForKey:@"id"]
+         forName:[dict objectForKey:@"name"]] autorelease];
       [lists addObject:lst];
    }
-   sqlite3_finalize(stmt);
    [pool release];
    return lists;
 }

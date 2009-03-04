@@ -23,6 +23,7 @@
 		B914B3480F5EBDA6009C19BE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B914B3530F5EBE77009C19BE /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
 		B914B3770F5EC14D009C19BE /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
+		B914B3F50F5EC86A009C19BE /* ListProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */; };
 		B9160ECC0F565CEF00473A95 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
 		B9160ECD0F565CEF00473A95 /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPIAuth.m */; };
 		B9160ECE0F565CEF00473A95 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
@@ -871,6 +872,7 @@
 				B914B3430F5EBDA6009C19BE /* ListProvider.m in Sources */,
 				B914B3530F5EBE77009C19BE /* DBListProvider.m in Sources */,
 				B914B3770F5EC14D009C19BE /* LocalCache.m in Sources */,
+				B914B3F50F5EC86A009C19BE /* ListProviderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
