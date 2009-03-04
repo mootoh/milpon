@@ -135,7 +135,80 @@
    if (SQLITE_ERROR == sqlite3_step(stmt)) {
       [[NSException
          exceptionWithName:@"LocalCacheException"
-         reason:[NSString stringWithFormat:@"Failed to insert into LocalCache: msg='%s'", sqlite3_errmsg(handle_)]
+         reason:[NSString stringWithFormat:@"Failed to INSERT INTO LocalCache: msg='%s'", sqlite3_errmsg(handle_)]
+         userInfo:nil] raise];
+   }
+   sqlite3_finalize(stmt);
+}
+
+- (void) update:(NSDictionary *)dict table:(NSString *)table condition:(NSString *)cond
+{
+   sqlite3_stmt *stmt = nil;
+
+   NSString *sets = @"";
+
+   for (NSString *key in dict) {
+      id v = [dict objectForKey:key];
+      NSString *val = nil;
+      if ([v isKindOfClass:[NSString class]]) {
+         val = [NSString stringWithFormat:@"'%@'", (NSString *)v];
+      } else if ([v isKindOfClass:[NSNumber class]]) {
+         val = [(NSNumber *)v stringValue];
+      } else {
+         NSAssert(NO, @"not reach here");
+      }
+      sets = [sets stringByAppendingFormat:@"%@=%@, ", key, val];
+   }
+
+   // cut last ', '
+   sets = [sets substringToIndex:sets.length-2];
+
+   NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET %@", table, sets];
+   sql = [sql stringByAppendingFormat:@" %@;", cond ? cond : @""];
+
+   NSLog(@"update sql = %@", sql);
+
+   if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
+   }
+
+   int i = 1;
+   for (NSString *key in dict) {
+      id v = [dict objectForKey:key];
+      if ([v isKindOfClass:[NSString class]]) {
+         sqlite3_bind_text(stmt, i, [(NSString *)v UTF8String], -1, SQLITE_TRANSIENT);
+      } else if ([v isKindOfClass:[NSNumber class]]) {
+         sqlite3_bind_int(stmt,  i, [(NSNumber *)v intValue]);
+      } else {
+         NSAssert(NO, @"not reach here");
+      }
+      i++;
+   }
+
+   if (SQLITE_ERROR == sqlite3_step(stmt)) {
+      [[NSException
+         exceptionWithName:@"LocalCacheException"
+         reason:[NSString stringWithFormat:@"Failed to UPDATE LocalCache: msg='%s'", sqlite3_errmsg(handle_)]
+         userInfo:nil] raise];
+   }
+   sqlite3_finalize(stmt);
+}
+
+- (void) delete:(NSString *)table condition:(NSString *)cond
+{
+   sqlite3_stmt *stmt = nil;
+
+   NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ %@;", table, cond ? cond : @""];
+   NSLog(@"delete sql = %@", sql);
+
+   if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
+   }
+
+   if (SQLITE_ERROR == sqlite3_step(stmt)) {
+      [[NSException
+         exceptionWithName:@"LocalCacheException"
+         reason:[NSString stringWithFormat:@"Failed to DELETE FROM LocalCache: msg='%s'", sqlite3_errmsg(handle_)]
          userInfo:nil] raise];
    }
    sqlite3_finalize(stmt);

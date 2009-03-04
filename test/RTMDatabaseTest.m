@@ -40,4 +40,19 @@
    [db insert:dict into:@"task"];
 }
 
+- (void) testUpdate
+{
+   LocalCache *db = (LocalCache *)[LocalCache sharedLocalCache];
+   NSArray *keys  = [NSArray arrayWithObjects:@"id", @"name", nil];
+   NSArray *types = [NSArray arrayWithObjects:[NSNumber numberWithInt:3], @"updated name", nil];
+   NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
+   [db update:dict table:@"task" condition:@"WHERE id=1"];
+}
+
+- (void) testDelete
+{
+   LocalCache *db = (LocalCache *)[LocalCache sharedLocalCache];
+   [db delete:@"task" condition:@"WHERE id=2"];
+}
+
 @end
