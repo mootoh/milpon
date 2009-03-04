@@ -10,7 +10,6 @@
 #import "AppDelegate.h"
 #import "RTMList.h"
 #import "AddTaskViewController.h"
-#import "Database.h"
 #import "ListProvider.h"
 
 @implementation ListSelectViewController
@@ -62,7 +61,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    RTMList * lst = [lists objectAtIndex:indexPath.row];
-   self.parent.list = lst;
+   self.parent.list = lst.name;
    //[self.parent.tableView reloadData];
    [self.parent.view setNeedsDisplay];
    [self.navigationController popViewControllerAnimated:YES];

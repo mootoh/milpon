@@ -12,7 +12,7 @@
 #import "AddTaskViewController.h"
 #import "TaskListViewController.h"
 #import "RTMSynchronizer.h"
-#import "RTMDatabase.h"
+#import "LocalCache.h"
 #import "AppDelegate.h"
 #import "AuthViewController.h"
 #import "RTMTask.h"

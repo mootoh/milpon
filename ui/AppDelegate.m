@@ -10,7 +10,7 @@
 #import "RTMAPI.h"
 #import "RTMAuth.h"
 #import "RTMTask.h"
-#import "RTMDatabase.h"
+#import "LocalCache.h"
 #import "AuthViewController.h"
 #import "RootViewController.h"
 #import "AddTaskViewController.h"
@@ -50,7 +50,7 @@
 - (id) init
 {
    if (self = [super init]) {
-      db = [[RTMDatabase alloc] init];
+      db = [[LocalCache sharedLocalCache] retain];
 
       [self authInit:[self authPath]];
 

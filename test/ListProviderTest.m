@@ -9,8 +9,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "ListProvider.h"
 
-@interface ListProviderTest : SenTestCase
-@end
+@interface ListProviderTest : SenTestCase; @end
 
 @implementation ListProviderTest
 
@@ -25,6 +24,9 @@
    ListProvider *lp = [ListProvider sharedListProvider];
    STAssertTrue(lp.lists.count > 0, @"should have some list elements.");
 }
+
+// - (void) testTasksInList
+// - (void) testSync
 
 #if 0
 - (void) testAdd

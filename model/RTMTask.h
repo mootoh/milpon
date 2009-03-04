@@ -8,24 +8,6 @@
 
 #import "RTMStorable.h"
 
-#define RTMTASK_SQL_COLUMNS "id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, task_series_id, edit_bits"
-
-@class RTMDatabase;
-
-// XXX: edit bits assumes 32 bit integer.
-enum task_edit_bits_t {
-   EB_TASK_DUE           = 1 << 1,
-   EB_TASK_COMPLETED     = 1 << 2,
-   EB_TASK_DELETED       = 1 << 3,
-   EB_TASK_PRIORITY      = 1 << 4,
-   EB_TASK_ESTIMATE      = 1 << 5,
-   EB_TASK_NAME          = 1 << 6,
-   EB_TASK_URL           = 1 << 7,
-   EB_TASK_LOCACTION_ID  = 1 << 8,
-   EB_TASK_LIST_ID       = 1 << 9,
-   EB_TASK_RRULE         = 1 << 10
-};
-
 @interface RTMTask : RTMStorable
 {
    NSString *name;
@@ -57,7 +39,7 @@ enum task_edit_bits_t {
 @property (nonatomic, retain) NSNumber *location_id;
 @property (nonatomic, retain) NSNumber *edit_bits;
 
-- (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb;
+- (id) initByParams:(NSDictionary *)params;
 
 - (void) complete;
 - (void) uncomplete;
@@ -65,17 +47,6 @@ enum task_edit_bits_t {
 
 - (void) flagUpEditBits:(enum task_edit_bits_t) flag;
 - (void) flagDownEditBits:(enum task_edit_bits_t) flag;
-
-
-+ (NSArray *) tasks:(RTMDatabase *)db;
-+ (NSArray *) tasksInList:(NSNumber *)list_id inDB:(RTMDatabase *)db;
-+ (NSArray *) modifiedTasks:(RTMDatabase *)db;
-
-+ (NSArray *) tasksForSQL:(NSString *)sql inDB:(RTMDatabase *)db;
-
-// TODO: lastSync should be moved to somewhere not here.
-+ (NSString *) lastSync:(RTMDatabase *)db;
-+ (void) updateLastSync:(RTMDatabase *)db;
 
 @end
 // set vim:ft=objc

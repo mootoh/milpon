@@ -21,4 +21,4 @@
 
 + (ListProvider *) sharedListProvider;
 
-@end
+@end // ListProvider

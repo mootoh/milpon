@@ -6,7 +6,7 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import "RTMDatabase.h"
+#import "LocalCache.h"
 #import "RTMExistingTask.h"
 #import "AppDelegate.h"
 #import "logger.h"
@@ -45,7 +45,7 @@
    static const char *sql = "INSERT INTO task "
       "(due, completed, priority, postponed, estimate, task_series_id, edit_bits) "
       "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
+   if (SQLITE_OK != sqlite3_prepare_v2([db handle_], sql, -1, &stmt, NULL))
       @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
 
    sqlite3_bind_text(stmt, 1, [[task valueForKey:@"due"] UTF8String], -1, SQLITE_TRANSIENT);
