@@ -25,9 +25,13 @@
 {
    if (self = [super init]) {
       path_ = [[self databasePath] retain];
-      if (SQLITE_OK == sqlite3_open([path_ UTF8String], &handle_)) {
-         [self migrate];
-      }
+      if (SQLITE_OK != sqlite3_open([path_ UTF8String], &handle_))
+         [[NSException
+            exceptionWithName:@"LocalCacheException"
+            reason:[NSString stringWithFormat:@"Failed to open sqlite file: path=%@, msg='%s'", path_, sqlite3_errmsg(handle_)]
+            userInfo:nil] raise];
+
+      [self migrate];
    }
    return self;
 }
