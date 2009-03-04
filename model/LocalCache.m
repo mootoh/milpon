@@ -1,15 +1,16 @@
 //
-//  RTMDatabase.m
+//  LocalCache.m
 //  Milpon
 //
 //  Created by mootoh on 8/29/08.
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import "RTMDatabase.h"
+#import <sqlite3.h>
+#import "LocalCache.h"
 #import "logger.h"
 
-@interface RTMDatabase (Private)
+@interface LocalCache (Private)
 - (NSString *) databasePath;
 - (NSArray *) splitSQLs:(NSString *)migrations;
 - (void) run_migration_sql:(NSString *)sql;
@@ -18,16 +19,14 @@
 - (int) current_migrate_version;
 @end
 
-
-@implementation RTMDatabase
-
-@synthesize handle, path;
+@implementation LocalCache
+@synthesize handle_;
 
 -(id) init
 {
    if (self = [super init]) {
-      path = [[self databasePath] retain];
-      if (SQLITE_OK == sqlite3_open([path UTF8String], &handle)) {
+      path_ = [[self databasePath] retain];
+      if (SQLITE_OK == sqlite3_open([path_ UTF8String], &handle_)) {
          [self migrate];
       }
    }
@@ -36,8 +35,8 @@
 
 - (void) dealloc
 {
-   [path release];
-   sqlite3_close(handle);
+   [path_ release];
+   sqlite3_close(handle_);
    [super dealloc];
 }
 
@@ -49,7 +48,7 @@
 
    // db path
    NSString *doc_dir = @"/tmp";
-   NSString *db_path = [doc_dir stringByAppendingPathComponent:@"rtm.sql"];
+   NSString *db_path = [doc_dir stringByAppendingPathComponent:@"test.sql"];
 
    NSError *error;
    if ([fm fileExistsAtPath:db_path] && ! [fm removeItemAtPath:db_path error:&error]) {
@@ -60,7 +59,7 @@
    }
 
    // from path
-   NSString *from_path = [[fm currentDirectoryPath] stringByAppendingPathComponent:@"/db/rtm.sql"];
+   NSString *from_path = [[fm currentDirectoryPath] stringByAppendingPathComponent:@"/db/test.sql"];
 
    if (! [fm copyItemAtPath:from_path toPath:db_path error:&error])
       [[NSException
@@ -138,12 +137,12 @@
 
    sqlite3_stmt *stmt = nil;
    const char *sql = [sql_str UTF8String];
-   if (sqlite3_prepare_v2(handle, sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle));
+   if (sqlite3_prepare_v2(handle_, sql, -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
       return;
    }
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      NSAssert1(0, @"Error: failed to exec sql with message '%s'.", sqlite3_errmsg(handle));
+      NSAssert1(0, @"Error: failed to exec sql with message '%s'.", sqlite3_errmsg(handle_));
       return;
    }
    sqlite3_finalize(stmt);
@@ -158,12 +157,12 @@
 {
    sqlite3_stmt *stmt = nil;
    const char *sql = "select version from migrate_version";
-   if (sqlite3_prepare_v2(handle, sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle));
+   if (sqlite3_prepare_v2(handle_, sql, -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
       return - 1;
    }
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      NSAssert1(0, @"Error: failed to exec sql with message '%s'.", sqlite3_errmsg(handle));
+      NSAssert1(0, @"Error: failed to exec sql with message '%s'.", sqlite3_errmsg(handle_));
       return -1;
    }
 
@@ -174,6 +173,11 @@
 
 - (NSArray *) select:(NSDictionary *)dict from:(NSString *)table
 {
+   return [self select:dict from:table option:nil];
+}
+
+- (NSArray *) select:(NSDictionary *)dict from:(NSString *)table option:(NSDictionary *)option
+{
    sqlite3_stmt *stmt = nil;
 
    NSString *keys = @"";
@@ -183,8 +187,12 @@
    keys = [keys substringToIndex:keys.length-2];
    NSString *sql = [NSString stringWithFormat:@"SELECT %@ from %@", keys, table];
 
-   if (sqlite3_prepare_v2(handle, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle));
+   if (option) {
+      // TODO
+   }
+
+   if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
    }
 
    NSMutableArray *results = [NSMutableArray array];
@@ -211,17 +219,14 @@
    return [results retain];
 }
 
-@end // RTMDatabase
+static LocalCache *s_local_cache = nil;
 
-@implementation Database (RTM)
-
-static RTMDatabase *s_rtm_database = nil;
-
-+ (Database *) sharedDatabase
++ (LocalCache *) sharedLocalCache
 {
-   if (s_rtm_database == nil) {
-      s_rtm_database = [[RTMDatabase alloc] init];
+   if (s_local_cache == nil) {
+      s_local_cache = [[LocalCache alloc] init];
    }
-   return s_rtm_database;
+   return s_local_cache;
 }
-@end
+
+@end // LocalCache

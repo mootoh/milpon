@@ -10,7 +10,6 @@
 #import "ListProvider.h"
 
 @interface ListProviderTest : SenTestCase
-
 @end
 
 @implementation ListProviderTest

@@ -7,22 +7,17 @@
 //
 
 #import "ListProvider.h"
-@class Database;
 
 @interface ListProvider (DB)
-
 + (ListProvider *) sharedListProvider;
-
 @end
 
-@class RTMDatabase;
+@class LocalCache;
 
 @interface DBListProvider : ListProvider
 {
-   Database *db_;
+   LocalCache *local_cache_;
    NSArray *lists_;
 }
-
-- (NSArray *) lists;
 
 @end
