@@ -20,7 +20,6 @@
 @end
 
 @implementation LocalCache
-@synthesize handle_;
 
 -(id) init
 {
@@ -39,6 +38,122 @@
    sqlite3_close(handle_);
    [super dealloc];
 }
+
+- (NSArray *) select:(NSDictionary *)dict from:(NSString *)table
+{
+   return [self select:dict from:table option:nil];
+}
+
+- (NSArray *) select:(NSDictionary *)dict from:(NSString *)table option:(NSDictionary *)option
+{
+   sqlite3_stmt *stmt = nil;
+
+   NSString *keys = @"";
+   for (NSString *key in dict)
+      keys = [keys stringByAppendingFormat:@"%@, ", key];
+
+   keys = [keys substringToIndex:keys.length-2]; // cut last ', '
+
+   NSString *sql = [NSString stringWithFormat:@"SELECT %@ from %@", keys, table];
+
+   if (option) {
+      // TODO
+   }
+
+   if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
+   }
+
+   NSMutableArray *results = [NSMutableArray array];
+   while (sqlite3_step(stmt) == SQLITE_ROW) {
+      NSMutableDictionary *result = [NSMutableDictionary dictionary];
+      int i = 0;
+
+      for (NSString *key in dict) {
+         Class klass = [dict objectForKey:key];
+         if (klass == [NSNumber class]) {
+            NSNumber *num = [NSNumber numberWithInt:sqlite3_column_int(stmt, i)];
+            [result setObject:num forKey:key];
+         } else if (klass == [NSString class]) {
+            char *chs = (char *)sqlite3_column_text(stmt, i);
+            NSString *str = chs ? [NSString stringWithUTF8String:chs] : @"";
+            [result setObject:str forKey:key];
+         } else {
+            NSAssert(NO, @"not reach here!");
+         }
+         i++;
+      }
+      [results addObject:result];
+   }
+   return [results retain];
+}
+
+- (void) insert:(NSDictionary *)dict into:(NSString *)table
+{
+   sqlite3_stmt *stmt = nil;
+
+   NSString *keys = @"";
+   NSString *vals = @"";
+
+   for (NSString *key in dict) {
+      keys = [keys stringByAppendingFormat:@"%@, ", key];
+      id v = [dict objectForKey:key];
+      NSString *val = nil;
+      if ([v isKindOfClass:[NSString class]]) {
+         val = [NSString stringWithFormat:@"'%@'", (NSString *)v];
+      } else if ([v isKindOfClass:[NSNumber class]]) {
+         val = [(NSNumber *)v stringValue];
+      } else {
+         NSAssert(NO, @"not reach here");
+      }
+      vals = [vals stringByAppendingFormat:@"%@, ", val];
+   }
+
+   // cut last ', '
+   keys = [keys substringToIndex:keys.length-2];
+   vals = [vals substringToIndex:vals.length-2];
+
+   NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (%@) VALUES (%@);", table, keys, vals];
+
+   if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
+      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
+   }
+
+   int i = 1;
+   for (NSString *key in dict) {
+      id v = [dict objectForKey:key];
+      if ([v isKindOfClass:[NSString class]]) {
+         sqlite3_bind_text(stmt, i, [(NSString *)v UTF8String], -1, SQLITE_TRANSIENT);
+      } else if ([v isKindOfClass:[NSNumber class]]) {
+         sqlite3_bind_int(stmt,  i, [(NSNumber *)v intValue]);
+      } else {
+         NSAssert(NO, @"not reach here");
+      }
+      i++;
+   }
+
+   if (SQLITE_ERROR == sqlite3_step(stmt)) {
+      [[NSException
+         exceptionWithName:@"LocalCacheException"
+         reason:[NSString stringWithFormat:@"Failed to insert into LocalCache: msg='%s'", sqlite3_errmsg(handle_)]
+         userInfo:nil] raise];
+   }
+   sqlite3_finalize(stmt);
+}
+
+static LocalCache *s_local_cache = nil;
+
++ (LocalCache *) sharedLocalCache
+{
+   if (s_local_cache == nil) {
+      s_local_cache = [[LocalCache alloc] init];
+   }
+   return s_local_cache;
+}
+
+@end // LocalCache
+
+@implementation LocalCache (Private)
 
 - (NSString *) databasePath
 {
@@ -169,64 +284,6 @@
    int ret = sqlite3_column_int(stmt, 0);
    sqlite3_finalize(stmt);
    return ret;
-}
-
-- (NSArray *) select:(NSDictionary *)dict from:(NSString *)table
-{
-   return [self select:dict from:table option:nil];
-}
-
-- (NSArray *) select:(NSDictionary *)dict from:(NSString *)table option:(NSDictionary *)option
-{
-   sqlite3_stmt *stmt = nil;
-
-   NSString *keys = @"";
-   for (NSString *key in dict)
-      keys = [keys stringByAppendingFormat:@"%@, ", key];
-
-   keys = [keys substringToIndex:keys.length-2];
-   NSString *sql = [NSString stringWithFormat:@"SELECT %@ from %@", keys, table];
-
-   if (option) {
-      // TODO
-   }
-
-   if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
-   }
-
-   NSMutableArray *results = [NSMutableArray array];
-   while (sqlite3_step(stmt) == SQLITE_ROW) {
-      NSMutableDictionary *result = [NSMutableDictionary dictionary];
-      int i = 0;
-
-      for (NSString *key in dict) {
-         Class klass = [dict objectForKey:key];
-         if (klass == [NSNumber class]) {
-            NSNumber *num = [NSNumber numberWithInt:sqlite3_column_int(stmt, i)];
-            [result setObject:num forKey:key];
-         } else if (klass == [NSString class]) {
-            char *chs = (char *)sqlite3_column_text(stmt, i);
-            NSString *str = chs ? [NSString stringWithUTF8String:chs] : @"";
-            [result setObject:str forKey:key];
-         } else {
-            NSAssert(NO, @"not reach here!");
-         }
-         i++;
-      }
-      [results addObject:result];
-   }
-   return [results retain];
-}
-
-static LocalCache *s_local_cache = nil;
-
-+ (LocalCache *) sharedLocalCache
-{
-   if (s_local_cache == nil) {
-      s_local_cache = [[LocalCache alloc] init];
-   }
-   return s_local_cache;
 }
 
 @end // LocalCache

@@ -13,6 +13,7 @@
 
 - (NSArray *) lists;
 - (void) add:(NSString *)elm;
+- (void) sync;
 
 - (void) create:(NSDictionary *)params;
 - (NSString *) nameForListID:(NSNumber *) lid;

@@ -1,5 +1,5 @@
 //
-//  RTMDatabaseTest.m
+//  LocalCache.m
 //  Milpon
 //
 //  Created by mootoh on 9/29/08.
@@ -7,29 +7,21 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "RTMDatabase.h"
+#import "LocalCache.h"
 
-@interface RTMDatabaseTest : SenTestCase
-@end
+@interface LocalCacheTest : SenTestCase; @end
 
-@implementation RTMDatabaseTest
+@implementation LocalCacheTest
 
 - (void) testSingleton
 {
-   RTMDatabase *db = (RTMDatabase *)[RTMDatabase sharedDatabase];
-   STAssertNotNil(db, @"instance should not be nil");
-}
-
-- (void) testPath
-{
-   RTMDatabase *db = (RTMDatabase *)[RTMDatabase sharedDatabase];
-   NSString *path = [db path];
-   STAssertTrue([path isEqualToString:@"/tmp/rtm.sql"], @"check path");
+   LocalCache *local_cache = (LocalCache *)[LocalCache sharedLocalCache];
+   STAssertNotNil(local_cache, @"instance should not be nil");
 }
 
 - (void) testSelect
 {
-   RTMDatabase *db = (RTMDatabase *)[RTMDatabase sharedDatabase];
+   LocalCache *db = (LocalCache *)[LocalCache sharedLocalCache];
    NSArray *keys  = [NSArray arrayWithObjects:@"id", @"name", nil];
    NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], nil];
    NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
@@ -37,6 +29,15 @@
    NSDictionary *result = [results objectAtIndex:0];
    STAssertEquals([NSNumber numberWithInt:1], [result objectForKey:@"id"], @"id check");
    STAssertTrue([[result objectForKey:@"name"] isEqualToString:@"task one"], @"name check");
+}
+
+- (void) testInsert
+{
+   LocalCache *db = (LocalCache *)[LocalCache sharedLocalCache];
+   NSArray *keys  = [NSArray arrayWithObjects:@"id", @"name", nil];
+   NSArray *types = [NSArray arrayWithObjects:[NSNumber numberWithInt:7], @"some name", nil];
+   NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
+   [db insert:dict into:@"task"];
 }
 
 @end

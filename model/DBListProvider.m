@@ -9,7 +9,6 @@
 #import "DBListProvider.h"
 #import "RTMList.h"
 #import "LocalCache.h"
-#import <sqlite3.h>
 
 @implementation DBListProvider
 
@@ -40,8 +39,9 @@
    NSArray *list_arr = [local_cache_ select:dict from:@"list"];
    for (NSDictionary *dict in list_arr) {
       RTMList *lst = [[[RTMList alloc]
-         initWithID:[dict objectForKey:@"id"]
-         forName:[dict objectForKey:@"name"]] autorelease];
+            initWithID:[dict objectForKey:@"id"]
+            forName:[dict objectForKey:@"name"]]
+         autorelease];
       [lists addObject:lst];
    }
    [pool release];
@@ -50,6 +50,7 @@
 
 - (NSArray *) tasksInList:(RTMList *)list
 {
+   //TaskProvider *task_provider = [TaskProvider sharedTaskProvider];
    return nil;
 }
 
@@ -61,9 +62,8 @@ static DBListProvider *s_db_list_provider = nil;
 
 + (ListProvider *) sharedListProvider
 {
-   if (nil == s_db_list_provider) {
+   if (nil == s_db_list_provider)
       s_db_list_provider = [[DBListProvider alloc] init];
-   }
    return s_db_list_provider; 
 }
 
