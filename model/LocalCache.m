@@ -47,24 +47,28 @@
 - (NSArray *) select:(NSDictionary *)dict from:(NSString *)table option:(NSDictionary *)option
 {
    sqlite3_stmt *stmt = nil;
+   NSMutableArray *results = [NSMutableArray array];
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
+   // construct the query.
    NSString *keys = @"";
    for (NSString *key in dict)
       keys = [keys stringByAppendingFormat:@"%@, ", key];
 
    keys = [keys substringToIndex:keys.length-2]; // cut last ', '
 
-   NSString *sql = [NSString stringWithFormat:@"SELECT %@ from %@", keys, table];
+   NSString *sql = [NSString stringWithFormat:@"SELECT %@ FROM %@", keys, table];
 
    if (option) {
       // TODO
    }
 
-   if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
-   }
+   if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK)
+      [[NSException
+        exceptionWithName:@"LocalCacheException"
+        reason:[NSString stringWithFormat:@"Failed to prepare statement: msg='%s'", sqlite3_errmsg(handle_)]
+        userInfo:nil] raise];
 
-   NSMutableArray *results = [NSMutableArray array];
    while (sqlite3_step(stmt) == SQLITE_ROW) {
       NSMutableDictionary *result = [NSMutableDictionary dictionary];
       int i = 0;
@@ -79,18 +83,24 @@
             NSString *str = chs ? [NSString stringWithUTF8String:chs] : @"";
             [result setObject:str forKey:key];
          } else {
-            NSAssert(NO, @"not reach here!");
+            [[NSException
+              exceptionWithName:@"LocalCacheException"
+              reason:[NSString stringWithFormat:@"should not reach here"]
+              userInfo:nil] raise];
          }
          i++;
       }
       [results addObject:result];
    }
-   return [results retain];
+
+   [pool release];
+   return results;
 }
 
 - (void) insert:(NSDictionary *)dict into:(NSString *)table
 {
    sqlite3_stmt *stmt = nil;
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    NSString *keys = @"";
    NSString *vals = @"";
@@ -104,7 +114,10 @@
       } else if ([v isKindOfClass:[NSNumber class]]) {
          val = [(NSNumber *)v stringValue];
       } else {
-         NSAssert(NO, @"not reach here");
+         [[NSException
+           exceptionWithName:@"LocalCacheException"
+           reason:[NSString stringWithFormat:@"should not reach here"]
+           userInfo:nil] raise];
       }
       vals = [vals stringByAppendingFormat:@"%@, ", val];
    }
@@ -116,7 +129,10 @@
    NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (%@) VALUES (%@);", table, keys, vals];
 
    if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
+      [[NSException
+        exceptionWithName:@"LocalCacheException"
+        reason:[NSString stringWithFormat:@"Failed to prepare statement: msg='%s'", sqlite3_errmsg(handle_)]
+        userInfo:nil] raise];
    }
 
    int i = 1;
@@ -127,7 +143,10 @@
       } else if ([v isKindOfClass:[NSNumber class]]) {
          sqlite3_bind_int(stmt,  i, [(NSNumber *)v intValue]);
       } else {
-         NSAssert(NO, @"not reach here");
+         [[NSException
+           exceptionWithName:@"LocalCacheException"
+           reason:[NSString stringWithFormat:@"should not reach here"]
+           userInfo:nil] raise];
       }
       i++;
    }
@@ -139,11 +158,13 @@
          userInfo:nil] raise];
    }
    sqlite3_finalize(stmt);
+   [pool release];
 }
 
 - (void) update:(NSDictionary *)dict table:(NSString *)table condition:(NSString *)cond
 {
    sqlite3_stmt *stmt = nil;
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    NSString *sets = @"";
 
@@ -155,7 +176,10 @@
       } else if ([v isKindOfClass:[NSNumber class]]) {
          val = [(NSNumber *)v stringValue];
       } else {
-         NSAssert(NO, @"not reach here");
+         [[NSException
+           exceptionWithName:@"LocalCacheException"
+           reason:[NSString stringWithFormat:@"should not reach here"]
+           userInfo:nil] raise];
       }
       sets = [sets stringByAppendingFormat:@"%@=%@, ", key, val];
    }
@@ -169,7 +193,10 @@
    NSLog(@"update sql = %@", sql);
 
    if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
+      [[NSException
+        exceptionWithName:@"LocalCacheException"
+        reason:[NSString stringWithFormat:@"Failed to prepare statement: msg='%s'", sqlite3_errmsg(handle_)]
+        userInfo:nil] raise];
    }
 
    int i = 1;
@@ -180,7 +207,10 @@
       } else if ([v isKindOfClass:[NSNumber class]]) {
          sqlite3_bind_int(stmt,  i, [(NSNumber *)v intValue]);
       } else {
-         NSAssert(NO, @"not reach here");
+         [[NSException
+           exceptionWithName:@"LocalCacheException"
+           reason:[NSString stringWithFormat:@"should not reach here"]
+           userInfo:nil] raise];
       }
       i++;
    }
@@ -192,17 +222,22 @@
          userInfo:nil] raise];
    }
    sqlite3_finalize(stmt);
+   [pool release];
 }
 
 - (void) delete:(NSString *)table condition:(NSString *)cond
 {
    sqlite3_stmt *stmt = nil;
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ %@;", table, cond ? cond : @""];
    NSLog(@"delete sql = %@", sql);
 
    if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
+      [[NSException
+        exceptionWithName:@"LocalCacheException"
+        reason:[NSString stringWithFormat:@"Failed to prepare statement: msg='%s'", sqlite3_errmsg(handle_)]
+        userInfo:nil] raise];
    }
 
    if (SQLITE_ERROR == sqlite3_step(stmt)) {
@@ -212,15 +247,15 @@
          userInfo:nil] raise];
    }
    sqlite3_finalize(stmt);
+   [pool release];
 }
 
 static LocalCache *s_local_cache = nil;
 
 + (LocalCache *) sharedLocalCache
 {
-   if (s_local_cache == nil) {
+   if (s_local_cache == nil)
       s_local_cache = [[LocalCache alloc] init];
-   }
    return s_local_cache;
 }
 
