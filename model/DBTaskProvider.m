@@ -16,7 +16,7 @@
 {
    if (self = [super init]) {
       local_cache_ = [LocalCache sharedLocalCache];
-      tasks_ = [self tasks];
+      //tasks_ = [self tasks];
    }
    return self;
 }
@@ -27,6 +27,7 @@
    [super dealloc];
 }
 
+#if 0
 - (NSArray *) tasks
 {
    NSMutableArray *tasks = [NSMutableArray array];
@@ -47,16 +48,19 @@
    [pool release];
    return tasks;
 }
+#endif // 0
 
-- (NSArray *) tasksInTask:(RTMTask *)list
+- (void) complete:(RTMTask *)task
 {
-   //TaskProvider *task_provider = [TaskProvider sharedTaskProvider];
-   return nil;
+   [task flagUpEditBits:EB_TASK_COMPLETED];
+
+   NSDictionary *dict = [NSDictionary dictionaryWithObject:@"1" forKey:@"completed"];
+   [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"where id=%d", [task.iD intValue]]];
 }
 
-@end
+@end // DBTaskProvider
 
-@implementation TaskProvider (DB)
+@implementation TaskProvider (DB) // {{{
 
 static DBTaskProvider *s_db_list_provider = nil;
 
@@ -67,4 +71,4 @@ static DBTaskProvider *s_db_list_provider = nil;
    return s_db_list_provider; 
 }
 
-@end // TaskProvider (Mock)
+@end // TaskProvider (DB) // }}}

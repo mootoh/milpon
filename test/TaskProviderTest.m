@@ -8,6 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "TaskProvider.h"
+#import "RTMTask.h"
 
 @interface TaskProviderTest : SenTestCase; @end
 
@@ -19,11 +20,21 @@
    STAssertNotNil(tp, @"should not be nil");
 }
 
+- (void) testComplete
+{
+   TaskProvider *tp = [TaskProvider sharedTaskProvider];
+   RTMTask *task = [[RTMTask alloc] init];
+   [tp complete:task];
+   [task release];
+}
+
+#if 0
 - (void) testTasks
 {
    TaskProvider *tp = [TaskProvider sharedTaskProvider];
    STAssertTrue(tp.tasks.count > 0, @"should have some list elements.");
 }
+#endif // 0
 
 // - (void) testTasksInTask
 // - (void) testSync
