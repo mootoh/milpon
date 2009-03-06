@@ -57,9 +57,9 @@
    // construct the query.
    NSString *keys = @"";
    for (NSString *key in dict)
-      keys = [keys stringByAppendingFormat:@"%@, ", key];
+      keys = [keys stringByAppendingFormat:@"%@,", key];
 
-   keys = [keys substringToIndex:keys.length-2]; // cut last ', '
+   keys = [keys substringToIndex:keys.length-1]; // cut last ', '
 
    NSString *sql = [NSString stringWithFormat:@"SELECT %@ FROM %@", keys, table];
 
@@ -71,7 +71,7 @@
       }
    }
 
-   NSLog(@"sql select: %@", sql);
+   LOG(@"sql select: %@", sql);
 
    if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK)
       [[NSException
@@ -200,7 +200,7 @@
    NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET %@", table, sets];
    sql = [sql stringByAppendingFormat:@" %@;", cond ? cond : @""];
 
-   NSLog(@"update sql = %@", sql);
+   LOG(@"update sql = %@", sql);
 
    if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
       [[NSException
@@ -241,7 +241,7 @@
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ %@;", table, cond ? cond : @""];
-   NSLog(@"delete sql = %@", sql);
+   LOG(@"delete sql = %@", sql);
 
    if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
       [[NSException

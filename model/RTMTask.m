@@ -6,7 +6,6 @@
 
 @synthesize iD, name, url, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits, priority, due, edit_bits;
 
-
 - (id) initByParams:(NSDictionary *)params
 {
    if (self = [super init]) {
@@ -23,11 +22,6 @@
       self.rrule        = [params valueForKey:@"rrule"];
    }
    return self;
-}
-
-- (BOOL) is_completed
-{
-   return (completed && ![completed isEqualToString:@""]);
 }
 
 - (void) complete
@@ -59,7 +53,14 @@
    sqlite3_finalize(stmt);
    self.completed = @"";
 }
+#endif // 0
 
+- (BOOL) is_completed
+{
+   return (completed && ![completed isEqualToString:@""]);
+}
+
+#if 0
 
 + (NSArray *) tasks:(RTMDatabase *)db
 {

@@ -8,7 +8,6 @@
 
 #import "RTMStorable.h"
 
-
 @interface RTMTask : NSObject
 {
    NSNumber *iD;
@@ -50,7 +49,6 @@
 
 - (void) flagUpEditBits:(enum task_edit_bits_t) flag;
 - (void) flagDownEditBits:(enum task_edit_bits_t) flag;
-
 
 // XXX: edit bits assumes 32 bit integer.
 enum task_edit_bits_t {
