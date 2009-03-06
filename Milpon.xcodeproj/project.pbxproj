@@ -100,6 +100,7 @@
 		B91610180F565F9E00473A95 /* DueDateSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610170F565F9E00473A95 /* DueDateSelectController.m */; };
 		B916108A0F56618400473A95 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B916108D0F56686600473A95 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
+		B91996780F612AA300D631D1 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
 		B94A03600F5FEC0500A43BCA /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
 		B95C5C080F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B95C5C090F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
@@ -1033,6 +1034,7 @@
 				B914B3530F5EBE77009C19BE /* DBListProvider.m in Sources */,
 				B914B3770F5EC14D009C19BE /* LocalCache.m in Sources */,
 				B914B41E0F5ED23F009C19BE /* LocalCacheTest.m in Sources */,
+				B91996780F612AA300D631D1 /* TaskProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

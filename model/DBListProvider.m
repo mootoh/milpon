@@ -10,25 +10,40 @@
 #import "RTMList.h"
 #import "LocalCache.h"
 
+@interface DBListProvider (Private);
+- (NSArray *) loadLists:(NSDictionary *)option;
+- (NSArray *) loadLists;
+@end // DBListProvider (Private)
+
 @implementation DBListProvider
 
 - (id) init
 {
    if (self = [super init]) {
       local_cache_ = [LocalCache sharedLocalCache];
-      lists_ = [self lists];
    }
    return self;
 }
 
 - (void) dealloc
 {
-   [lists_ release];
+   if (lists_) [lists_ release];
    [super dealloc];
 }
 
+- (NSArray *) lists
+{
+   if (! lists_)
+      [self loadLists];
+   return lists_;
+}
+
+@end // DBListProvider
+
+@implementation DBListProvider (Private)
+
 // TODO: should cache the result
-- (NSArray *) lists:(NSDictionary *)option
+- (NSArray *) loadLists:(NSDictionary *)option
 {
    NSMutableArray *lists = [NSMutableArray array];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -42,22 +57,23 @@
       [local_cache_ select:dict from:@"list" option:option];
 
    for (NSDictionary *dict in list_arr) {
-      RTMList *lst = [[[RTMList alloc]
-            initWithID:[dict objectForKey:@"id"]
-            forName:[dict objectForKey:@"name"]]
-         autorelease];
+      RTMList *lst = [[RTMList alloc]
+         initWithID:[dict objectForKey:@"id"]
+         forName:[dict objectForKey:@"name"]];
       [lists addObject:lst];
+      [lst release];
    }
    [pool release];
    return lists;
 }
 
-- (NSArray *) lists
+- (NSArray *) loadLists
 {
-   return [self lists:nil];
+   return [self loadLists:nil];
 }
 
-@end
+@end // DBListProvider (Private)
+
 
 @implementation ListProvider (DB)
 

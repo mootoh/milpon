@@ -12,12 +12,8 @@
 @interface ListProvider : NSObject
 
 - (NSArray *) lists;
-- (void) add:(NSString *)elm;
+//- (NSArray *) smartLists;
 - (void) sync;
-
-- (void) create:(NSDictionary *)params;
-- (NSString *) nameForListID:(NSNumber *) lid;
-- (NSArray *) tasksInList:(RTMList *)list;
 
 + (ListProvider *) sharedListProvider;
 

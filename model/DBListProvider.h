@@ -8,10 +8,6 @@
 
 #import "ListProvider.h"
 
-@interface ListProvider (DB)
-+ (ListProvider *) sharedListProvider;
-@end
-
 @class LocalCache;
 
 @interface DBListProvider : ListProvider
@@ -19,5 +15,8 @@
    LocalCache *local_cache_;
    NSArray *lists_;
 }
+@end
 
+@interface ListProvider (DB)
++ (ListProvider *) sharedListProvider;
 @end
