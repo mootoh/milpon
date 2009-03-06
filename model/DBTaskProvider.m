@@ -8,6 +8,7 @@
 
 #import "DBTaskProvider.h"
 #import "RTMTask.h"
+#import "RTMList.h"
 #import "LocalCache.h"
 
 @implementation DBTaskProvider
@@ -27,28 +28,59 @@
    [super dealloc];
 }
 
-#if 0
-- (NSArray *) tasks
+- (NSArray *) tasks:(NSDictionary *)conditions
 {
    NSMutableArray *tasks = [NSMutableArray array];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-   NSArray *keys  = [NSArray arrayWithObjects:@"id", @"name", nil];
-   NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority",
+      @"postponed", @"estimate", @"rrule", @"location_id", @"list_id",
+      @"task_series_id", @"edit_bits", nil];
+   NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], [NSString class], [NSString class],
+     [NSNumber class], [NSNumber class], [NSString class], [NSString class],
+     [NSNumber class], [NSNumber class], [NSNumber class], [NSNumber class], nil];
    NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
 
-   NSArray *list_arr = [local_cache_ select:dict from:@"list"];
-   for (NSDictionary *dict in list_arr) {
-      RTMTask *lst = [[[RTMTask alloc]
-            initWithID:[dict objectForKey:@"id"]
-            forName:[dict objectForKey:@"name"]]
-         autorelease];
-      [tasks addObject:lst];
+   NSArray *task_arr = conditions ?
+      [local_cache_ select:dict from:@"task" option:conditions] : 
+      [local_cache_ select:dict from:@"task"];
+
+   for (NSDictionary *dict in task_arr) {
+      RTMTask *task = [[[RTMTask alloc] initByParams:dict] autorelease];
+      [tasks addObject:task];
    }
+
    [pool release];
    return tasks;
-}
+#if 0
+      " from task where completed='' OR completed is NULL"
+      " ORDER BY due IS NULL ASC, due ASC, priority=0 ASC, priority ASC"];
+   return [RTMTask tasksForSQL:sql inDB:db];
 #endif // 0
+}
+
+- (NSArray *) tasks
+{
+   return [self tasks:nil];
+}
+
+- (NSArray *) tasksInList:(RTMList *)list
+{
+   NSArray *keys = [NSArray arrayWithObjects:@"where", @"ORDER", nil];
+   NSArray *vals = [NSArray arrayWithObjects:
+      [NSString stringWithFormat:@"list_id=%d", [list.iD intValue]],
+      [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
+      nil];
+
+   NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+
+#if 0
+      "where list_id=%d AND (completed='' OR completed is NULL) "
+      "ORDER BY priority=0 ASC,priority ASC, due IS NULL ASC, due ASC",
+#endif // 0
+
+   return [self tasks:cond];
+}
 
 - (void) complete:(RTMTask *)task
 {
@@ -57,6 +89,7 @@
    NSDictionary *dict = [NSDictionary dictionaryWithObject:@"1" forKey:@"completed"];
    [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"where id=%d", [task.iD intValue]]];
 }
+
 
 @end // DBTaskProvider
 

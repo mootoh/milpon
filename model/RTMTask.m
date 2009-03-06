@@ -4,22 +4,23 @@
 
 @implementation RTMTask
 
-@synthesize iD, name, url, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits;
+@synthesize iD, name, url, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits, priority, due, edit_bits;
 
 
-- (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb 
+- (id) initByParams:(NSDictionary *)params
 {
    if (self = [super init]) {
       self.name         = [params valueForKey:@"name"];
       self.url          = [params valueForKey:@"url"];
-      due               = [[params valueForKey:@"due"] retain];
+      self.due          = [params valueForKey:@"due"];
       self.location_id  = [params valueForKey:@"location_id"];
       self.completed    = [params valueForKey:@"completed"];
-      priority          = [[params valueForKey:@"priority"] retain];
+      self.priority     = [params valueForKey:@"priority"];
       self.postponed    = [params valueForKey:@"postponed"];
       self.estimate     = [params valueForKey:@"estimate"];
       self.list_id      = [params valueForKey:@"list_id"];
-      edit_bits         = [[params valueForKey:@"edit_bits"] retain];
+      self.edit_bits    = [params valueForKey:@"edit_bits"];
+      self.rrule        = [params valueForKey:@"rrule"];
    }
    return self;
 }
@@ -374,4 +375,19 @@
 }
 
 #endif // 0
+
+- (void) dump
+{
+   NSLog(@"RTMTask attrs:(id, name, url, due, completed, priority, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits) = (%d, %@, %@, %@, %@, %d, %d, %@, %@, %p, %p, %d, %d, %d)",
+      [self.iD intValue],
+      self.name, self.url, self.due, self.completed, 
+      [self.priority intValue],
+      [self.postponed intValue],
+      self.estimate, self.rrule,
+      self.tags, self.notes,
+      [self.list_id intValue],
+      [self.location_id intValue],
+      [self.edit_bits intValue]);
+}
+
 @end // RTMTask

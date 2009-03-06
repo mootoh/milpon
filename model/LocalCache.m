@@ -63,9 +63,15 @@
 
    NSString *sql = [NSString stringWithFormat:@"SELECT %@ FROM %@", keys, table];
 
-   if (option) {
-      // TODO
+   for (NSString *opt in option) {
+      if ([opt isEqualToString:@"where"]) {
+         sql = [sql stringByAppendingFormat:@" WHERE %@", [option valueForKey:opt]];
+      } else if ([opt isEqualToString:@"order"]) {
+         sql = [sql stringByAppendingFormat:@" ORDER BY %@", [option valueForKey:opt]];
+      }
    }
+
+   NSLog(@"sql select: %@", sql);
 
    if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK)
       [[NSException
