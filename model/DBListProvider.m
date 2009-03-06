@@ -9,10 +9,13 @@
 #import "DBListProvider.h"
 #import "RTMList.h"
 #import "LocalCache.h"
+#import "RTMAPIList.h"
 
 @interface DBListProvider (Private);
 - (NSArray *) loadLists:(NSDictionary *)option;
 - (NSArray *) loadLists;
+- (void) erase; // remove all lists from DB.
+- (void) create:(NSDictionary *)params;
 @end // DBListProvider (Private)
 
 @implementation DBListProvider
@@ -38,11 +41,27 @@
    return lists_;
 }
 
+- (void) sync
+{
+   [self erase];
+
+   RTMAPIList *api_list = [[RTMAPIList alloc] init];
+   NSArray *lists = [api_list getList];
+   [api_list release];
+
+   for (NSDictionary *list in lists)
+      [self create:list];
+
+   // TODO : broadcast the lists are no longer valid.
+   [lists_ release];
+   lists_ = nil;
+   [self loadLists];
+}
+
 @end // DBListProvider
 
 @implementation DBListProvider (Private)
 
-// TODO: should cache the result
 - (NSArray *) loadLists:(NSDictionary *)option
 {
    NSMutableArray *lists = [NSMutableArray array];
@@ -72,8 +91,21 @@
    return [self loadLists:nil];
 }
 
-@end // DBListProvider (Private)
+- (void) erase
+{
+}
 
+- (void) create:(NSDictionary *)params
+{
+   NSNumber *iD = [NSNumber numberWithInt:[[params objectForKey:@"iD"] intValue]];
+
+   NSArray *keys = [NSArray arrayWithObjects:@"id", @"name"];
+   NSArray *vals = [NSArray arrayWithObjects:iD, [params objectForKey:@"name"]];
+   NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   [local_cache_ insert:attrs into:@"lists"];
+}
+
+@end // DBListProvider (Private)
 
 @implementation ListProvider (DB)
 

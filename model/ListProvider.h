@@ -13,6 +13,10 @@
 
 - (NSArray *) lists;
 //- (NSArray *) smartLists;
+
+/**
+ * replace all local lists with lists on the web.
+ */
 - (void) sync;
 
 + (ListProvider *) sharedListProvider;
