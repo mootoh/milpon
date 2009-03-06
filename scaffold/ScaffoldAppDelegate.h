@@ -15,6 +15,7 @@
 
    IBOutlet UIWindow *window;
    IBOutlet ScaffoldListViewController *slvc;
+   IBOutlet UITabBarController *tabBarController;
 }
 
 @property (nonatomic, retain) UIWindow *window;

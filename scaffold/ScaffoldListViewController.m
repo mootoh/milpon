@@ -86,7 +86,7 @@
    }
 
    RTMList *list = (RTMList *)[[lp lists] objectAtIndex:indexPath.row];
-   cell.text = list.name;
+   cell.text = [NSString stringWithFormat:@"%d: %@ (%d)", [list.iD intValue], list.name, list.tasks.count];
 
    return cell;
 }

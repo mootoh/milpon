@@ -9,6 +9,7 @@
 #import "RTMList.h"
 #import "RTMTask.h"
 #import "ListProvider.h"
+#import "TaskProvider.h"
 
 @implementation RTMList
 
@@ -32,7 +33,7 @@
 
 - (NSArray *)tasks
 {
-   return [[ListProvider sharedListProvider] tasksInList:self];
+   return [[TaskProvider sharedTaskProvider] tasksInList:self];
 }
 
 #if 0

@@ -25,15 +25,15 @@
 - (void)dealloc
 {
    [local_cache_ release];
-   [slvc release];
+   //[slvc release];
    [window release];
    [super dealloc];
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-   slvc = [[ScaffoldListViewController alloc] initWithStyle:UITableViewStylePlain];
-   [window addSubview:slvc.view];
+   //slvc = [[ScaffoldListViewController alloc] initWithStyle:UITableViewStylePlain];
+   [window addSubview:tabBarController.view];
    [window makeKeyAndVisible];
 }
 

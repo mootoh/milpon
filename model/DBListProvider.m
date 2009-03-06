@@ -27,7 +27,8 @@
    [super dealloc];
 }
 
-- (NSArray *) lists
+// TODO: should cache the result
+- (NSArray *) lists:(NSDictionary *)option
 {
    NSMutableArray *lists = [NSMutableArray array];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -36,7 +37,10 @@
    NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], nil];
    NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
 
-   NSArray *list_arr = [local_cache_ select:dict from:@"list"];
+   NSArray *list_arr = option ?
+      [local_cache_ select:dict from:@"list"] :
+      [local_cache_ select:dict from:@"list" option:option];
+
    for (NSDictionary *dict in list_arr) {
       RTMList *lst = [[[RTMList alloc]
             initWithID:[dict objectForKey:@"id"]
@@ -48,10 +52,9 @@
    return lists;
 }
 
-- (NSArray *) tasksInList:(RTMList *)list
+- (NSArray *) lists
 {
-   //TaskProvider *task_provider = [TaskProvider sharedTaskProvider];
-   return nil;
+   return [self lists:nil];
 }
 
 @end
