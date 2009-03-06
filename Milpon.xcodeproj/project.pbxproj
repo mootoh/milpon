@@ -108,10 +108,32 @@
 		B985AAC20F60F308004A1B54 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
 		B985AAC70F60F332004A1B54 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
 		B985AAC90F60F34B004A1B54 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
+		B985AB530F6108A8004A1B54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		B985AB540F6108A8004A1B54 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
+		B985AB550F6108A8004A1B54 /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPIAuth.m */; };
+		B985AB560F6108A8004A1B54 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
+		B985AB570F6108A8004A1B54 /* RTMAPINote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPINote.m */; };
+		B985AB580F6108A8004A1B54 /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPITask.m */; };
+		B985AB590F6108A8004A1B54 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
+		B985AB670F6108A8004A1B54 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
+		B985AB690F6108A8004A1B54 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
+		B985AB6C0F6108A8004A1B54 /* RTMStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F270F565D4C00473A95 /* RTMStorable.m */; };
+		B985AB6E0F6108A8004A1B54 /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F2B0F565D4C00473A95 /* RTMTask.m */; };
+		B985AB6F0F6108A8004A1B54 /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
+		B985AB7B0F6108A8004A1B54 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
+		B985AB7C0F6108A8004A1B54 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
+		B985AB7E0F6108A8004A1B54 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
+		B985AB7F0F6108A8004A1B54 /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
+		B985AB810F6108A8004A1B54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		B985AB820F6108A8004A1B54 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		B985AB830F6108A8004A1B54 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		B985AB840F6108A8004A1B54 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9B77F8E0F56A13E00BF0EF3 /* ListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */; };
 		B9B77F920F56A18600BF0EF3 /* DueDateSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */; };
 		B9B77F930F56A18600BF0EF3 /* ListSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F910F56A18600BF0EF3 /* ListSelect.xib */; };
 		B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		B9C648930F610B3100A47F4F /* ScaffoldMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */; };
+		B9C648980F610B6600A47F4F /* ScaffoldAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */; };
 		B9D043180F5F477400641E61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9D043190F5F477400641E61 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9D043380F5F48C800641E61 /* TaskProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043370F5F48C800641E61 /* TaskProviderTest.m */; };
@@ -123,6 +145,9 @@
 		B9D11FAF0F56A56300B5ABA4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9D1200C0F56A97B00B5ABA4 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
 		B9D120A40F5763DB00B5ABA4 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
+		B9E6E65B0F610E0300472142 /* ScaffoldListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9E6E65A0F610E0300472142 /* ScaffoldListView.xib */; };
+		B9E6E65F0F610E2600472142 /* ScaffoldListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E6E65E0F610E2600472142 /* ScaffoldListViewController.m */; };
+		B9E6E69C0F6110EB00472142 /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -291,10 +316,16 @@
 		B91610890F56618400473A95 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B916108C0F56686600473A95 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		B95C5C070F598C8400A368DC /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = rtm.sql; sourceTree = "<group>"; };
+		B985AB890F6108A8004A1B54 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B985AB8B0F6108A8004A1B54 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = SOURCE_ROOT; };
 		B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListView.xib; sourceTree = "<group>"; };
 		B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DueDateSelect.xib; sourceTree = "<group>"; };
 		B9B77F910F56A18600BF0EF3 /* ListSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListSelect.xib; sourceTree = "<group>"; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScaffoldMainWindow.xib; path = scaffold/ScaffoldMainWindow.xib; sourceTree = "<group>"; };
+		B9C648960F610B6600A47F4F /* ScaffoldAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldAppDelegate.h; path = scaffold/ScaffoldAppDelegate.h; sourceTree = "<group>"; };
+		B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldAppDelegate.m; path = scaffold/ScaffoldAppDelegate.m; sourceTree = "<group>"; };
+		B9C648A10F610BB300A47F4F /* Scaffold-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Scaffold-Info.plist"; sourceTree = "<group>"; };
 		B9D0430C0F5F470100641E61 /* TaskProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskProvider.h; sourceTree = "<group>"; };
 		B9D0431E0F5F477400641E61 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9D0431F0F5F477400641E61 /* TaskUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TaskUnitTest-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -306,6 +337,9 @@
 		B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProvider.m; sourceTree = "<group>"; };
 		B9D120A20F5763DB00B5ABA4 /* DBListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBListProvider.h; sourceTree = "<group>"; };
 		B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBListProvider.m; sourceTree = "<group>"; };
+		B9E6E65A0F610E0300472142 /* ScaffoldListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScaffoldListView.xib; path = scaffold/ScaffoldListView.xib; sourceTree = "<group>"; };
+		B9E6E65D0F610E2600472142 /* ScaffoldListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldListViewController.h; path = scaffold/ScaffoldListViewController.h; sourceTree = "<group>"; };
+		B9E6E65E0F610E2600472142 /* ScaffoldListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldListViewController.m; path = scaffold/ScaffoldListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +361,17 @@
 			files = (
 				B914B3470F5EBDA6009C19BE /* Foundation.framework in Frameworks */,
 				B914B3480F5EBDA6009C19BE /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B985AB800F6108A8004A1B54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B985AB810F6108A8004A1B54 /* Foundation.framework in Frameworks */,
+				B985AB820F6108A8004A1B54 /* UIKit.framework in Frameworks */,
+				B985AB830F6108A8004A1B54 /* CoreGraphics.framework in Frameworks */,
+				B985AB840F6108A8004A1B54 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +403,7 @@
 				B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */,
 				B914B34D0F5EBDA6009C19BE /* UnitTest.octest */,
 				B9D0431E0F5F477400641E61 /* UnitTest.octest */,
+				B985AB890F6108A8004A1B54 /* Scaffold.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -374,6 +420,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				B9160FD00F565DE000473A95 /* test */,
+				B985AB8E0F6108F6004A1B54 /* scaffold */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -523,6 +570,7 @@
 				B9160FF70F565E8000473A95 /* Info.plist */,
 				B914B34E0F5EBDA6009C19BE /* ListUnitTest-Info.plist */,
 				B9D0431F0F5F477400641E61 /* TaskUnitTest-Info.plist */,
+				B985AB8B0F6108A8004A1B54 /* Info copy.plist */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -638,6 +686,20 @@
 			name = icons;
 			sourceTree = "<group>";
 		};
+		B985AB8E0F6108F6004A1B54 /* scaffold */ = {
+			isa = PBXGroup;
+			children = (
+				B9C648A10F610BB300A47F4F /* Scaffold-Info.plist */,
+				B9C648960F610B6600A47F4F /* ScaffoldAppDelegate.h */,
+				B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */,
+				B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */,
+				B9E6E65A0F610E0300472142 /* ScaffoldListView.xib */,
+				B9E6E65D0F610E2600472142 /* ScaffoldListViewController.h */,
+				B9E6E65E0F610E2600472142 /* ScaffoldListViewController.m */,
+			);
+			name = scaffold;
+			sourceTree = "<group>";
+		};
 		B9CBAFF80F5991710025216C /* add */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,6 +767,23 @@
 			productReference = B914B34D0F5EBDA6009C19BE /* UnitTest.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		B985AB280F6108A8004A1B54 /* Scaffold */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B985AB860F6108A8004A1B54 /* Build configuration list for PBXNativeTarget "Scaffold" */;
+			buildPhases = (
+				B985AB290F6108A8004A1B54 /* Resources */,
+				B985AB520F6108A8004A1B54 /* Sources */,
+				B985AB800F6108A8004A1B54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Scaffold;
+			productName = Milpon;
+			productReference = B985AB890F6108A8004A1B54 /* Scaffold.app */;
+			productType = "com.apple.product-type.application";
+		};
 		B9B77FAC0F56A31400BF0EF3 /* UnitTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9B77FB10F56A31500BF0EF3 /* Build configuration list for PBXNativeTarget "UnitTest" */;
@@ -757,6 +836,7 @@
 				B9B77FAC0F56A31400BF0EF3 /* UnitTest */,
 				B914B33A0F5EBDA6009C19BE /* ListUnitTest */,
 				B9D0430E0F5F477400641E61 /* TaskUnitTest */,
+				B985AB280F6108A8004A1B54 /* Scaffold */,
 			);
 		};
 /* End PBXProject section */
@@ -814,6 +894,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B914B33C0F5EBDA6009C19BE /* rtm.sql in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B985AB290F6108A8004A1B54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9C648930F610B3100A47F4F /* ScaffoldMainWindow.xib in Resources */,
+				B9E6E65B0F610E0300472142 /* ScaffoldListView.xib in Resources */,
+				B9E6E69C0F6110EB00472142 /* rtm.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,6 +1031,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B985AB520F6108A8004A1B54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B985AB530F6108A8004A1B54 /* main.m in Sources */,
+				B985AB540F6108A8004A1B54 /* RTMAPI.m in Sources */,
+				B985AB550F6108A8004A1B54 /* RTMAPIAuth.m in Sources */,
+				B985AB560F6108A8004A1B54 /* RTMAPIList.m in Sources */,
+				B985AB570F6108A8004A1B54 /* RTMAPINote.m in Sources */,
+				B985AB580F6108A8004A1B54 /* RTMAPITask.m in Sources */,
+				B985AB590F6108A8004A1B54 /* RTMAPIXMLParserCallback.m in Sources */,
+				B985AB670F6108A8004A1B54 /* LocalCache.m in Sources */,
+				B985AB690F6108A8004A1B54 /* RTMList.m in Sources */,
+				B985AB6C0F6108A8004A1B54 /* RTMStorable.m in Sources */,
+				B985AB6E0F6108A8004A1B54 /* RTMTask.m in Sources */,
+				B985AB6F0F6108A8004A1B54 /* MilponHelper.m in Sources */,
+				B985AB7B0F6108A8004A1B54 /* ListProvider.m in Sources */,
+				B985AB7C0F6108A8004A1B54 /* DBListProvider.m in Sources */,
+				B985AB7E0F6108A8004A1B54 /* TaskProvider.m in Sources */,
+				B985AB7F0F6108A8004A1B54 /* DBTaskProvider.m in Sources */,
+				B9C648980F610B6600A47F4F /* ScaffoldAppDelegate.m in Sources */,
+				B9E6E65F0F610E2600472142 /* ScaffoldListViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9B77FA90F56A31400BF0EF3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1054,6 +1169,34 @@
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		B985AB870F6108A8004A1B54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/Scaffold-Info.plist";
+				PRODUCT_NAME = Scaffold;
+				SDKROOT = iphonesimulator2.2.1;
+			};
+			name = Debug;
+		};
+		B985AB880F6108A8004A1B54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/Info copy.plist";
+				PRODUCT_NAME = Milpon;
 			};
 			name = Release;
 		};
@@ -1220,6 +1363,15 @@
 			buildConfigurations = (
 				B914B34B0F5EBDA6009C19BE /* Debug */,
 				B914B34C0F5EBDA6009C19BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B985AB860F6108A8004A1B54 /* Build configuration list for PBXNativeTarget "Scaffold" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B985AB870F6108A8004A1B54 /* Debug */,
+				B985AB880F6108A8004A1B54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
