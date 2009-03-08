@@ -13,12 +13,11 @@
 
 @implementation ListSelectController
 
-@synthesize theTableView, parent;
+@synthesize parent;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-       list_provider = [ListProvider sharedListProvider];
        self.title = @"List";
     }
     return self;
@@ -54,7 +53,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   return [list_provider lists].count;
+   return [[ListProvider sharedListProvider] lists].count;
 }
 
 
@@ -68,14 +67,14 @@
       cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
    }
    
-   RTMList *list = [[list_provider lists] objectAtIndex:indexPath.row];
+   RTMList *list = [[[ListProvider sharedListProvider] lists] objectAtIndex:indexPath.row];
    cell.text = list.name;
    return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   self.parent.list = [[list_provider lists] objectAtIndex:indexPath.row];
+   self.parent.list = [[[ListProvider sharedListProvider] lists] objectAtIndex:indexPath.row];
    [self.navigationController popViewControllerAnimated:YES];
    [self.parent.tableView reloadData];
 }
@@ -88,7 +87,6 @@
 
 
 - (void)dealloc {
-   [list_provider release];
    [super dealloc];
 }
 

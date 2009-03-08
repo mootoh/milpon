@@ -39,8 +39,8 @@ static MilponHelper *the_milpon_helper;
 - (NSString *) dateToString:(NSDate *) date
 {
    NSString *ret = [the_formatter stringFromDate:date];
-   ret = [ret stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
-   return [ret stringByAppendingString:@"Z"];
+   ret = [ret stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+   return ret; // [ret stringByAppendingString:@"Z"];
 }
 
 @end

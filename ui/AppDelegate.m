@@ -85,7 +85,6 @@
       avc.navigationItem.hidesBackButton = YES;
 
       UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:avc];
-      NSLog(@"nc = %p", nc);
       [tabBarController presentModalViewController:nc animated:NO];
       [nc release];
    }

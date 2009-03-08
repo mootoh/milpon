@@ -99,7 +99,8 @@ static NSArray *s_priorityColors;
 
       NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
       [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-      [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
+      //[formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
+      [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 
       NSCalendar *calendar = [NSCalendar currentCalendar];
       unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;

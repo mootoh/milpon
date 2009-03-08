@@ -10,13 +10,11 @@
 
 @class AddTaskViewController;
 
-@interface ListSelectController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-   IBOutlet UITableView *theTableView;
-   id list_provider;
+@interface ListSelectController : UITableViewController
+{
    AddTaskViewController *parent;
 }
 
-@property (nonatomic, retain) UITableView *theTableView;
 @property (nonatomic, retain) AddTaskViewController *parent;
 
 @end
