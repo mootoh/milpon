@@ -57,7 +57,6 @@
 
    // TODO : broadcast the lists are no longer valid.
    [lists_ release];
-   lists_ = nil;
    [self loadLists];
 }
 

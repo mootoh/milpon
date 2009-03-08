@@ -24,9 +24,14 @@
    ListProvider *lp = [ListProvider sharedListProvider];
    STAssertTrue(lp.lists.count > 0, @"should have some list elements.");
 }
-// - (void) testTasksInList
-// - (void) testSync
-//
+
+#if 0
+- (void) testSync
+{
+   ListProvider *lp = [ListProvider sharedListProvider];
+   [lp sync];
+}
+#endif // 0
 
 - (void) testErase
 {
