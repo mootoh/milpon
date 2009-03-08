@@ -10,6 +10,10 @@
 
 @interface ScaffoldTaskViewController : UITableViewController {
    TaskProvider *tp;
+   BOOL editing_;
 }
+
+- (IBAction) add;
+- (IBAction) toggleEdit;
 
 @end

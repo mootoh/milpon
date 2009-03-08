@@ -17,6 +17,7 @@
 {
    if (self = [super init]) {
       local_cache_ = [LocalCache sharedLocalCache];
+      dirty_ = NO;
       //tasks_ = [self tasks];
    }
    return self;
@@ -90,6 +91,24 @@
    [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"where id=%d", [task.iD intValue]]];
 }
 
+- (void) createAtOffline:(NSDictionary *)params
+{
+   NSNumber *edit_bits = [NSNumber numberWithInt:EB_CREATED_OFFLINE];
+   NSArray *keys = [NSArray arrayWithObjects:@"name", @"edit_bits",  nil];
+   NSArray *vals = [NSArray arrayWithObjects:[params objectForKey:@"name"], edit_bits, nil];
+   NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+
+   [local_cache_ insert:attrs into:@"task"];
+   dirty_ = YES;
+}
+
+- (void) remove:(RTMTask *) task
+{
+   NSString *cond = [NSString stringWithFormat:@"WHERE id = %@",
+      [[task iD] stringValue]];
+   [local_cache_ delete:@"task" condition:cond];
+   dirty_ = YES;
+}
 
 @end // DBTaskProvider
 

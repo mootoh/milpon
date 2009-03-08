@@ -16,6 +16,9 @@
 - (NSArray *) tasksInList:(RTMList *)list;
 - (NSArray *) modifiedTasks;
 
+
+- (void) createAtOffline:(NSDictionary *)params;
+
 - (void) sync;
 
 - (void) complete:(RTMTask *)task;

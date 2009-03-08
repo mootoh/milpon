@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     tp = [[TaskProvider sharedTaskProvider] retain];
+   editing_ = NO;
 }
 
 /*
@@ -114,19 +115,19 @@ return YES;
 */
 
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 
-if (editingStyle == UITableViewCellEditingStyleDelete) {
-// Delete the row from the data source
-[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-}   
-else if (editingStyle == UITableViewCellEditingStyleInsert) {
-// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-}   
+   if (editingStyle == UITableViewCellEditingStyleDelete) {
+      RTMTask *task = (RTMTask *)[[tp tasks] objectAtIndex:indexPath.row];
+      [tp remove:task];
+      // Delete the row from the data source
+      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+   }   
+   else if (editingStyle == UITableViewCellEditingStyleInsert) {
+      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+   }   
 }
-*/
 
 
 /*
@@ -149,6 +150,25 @@ return YES;
    [super dealloc];
 }
 
+- (IBAction) add
+{
+   NSLog(@"add");
+   NSDictionary *param = [NSDictionary dictionaryWithObject:@"added task" forKey:@"name"];
+   [tp createAtOffline:param];
+   
+   NSArray *indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+   [tp tasks];
+
+   [self.tableView beginUpdates];
+   [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:NO];
+   [self.tableView reloadData];
+   [self.tableView endUpdates];
+}
+
+- (IBAction) toggleEdit
+{
+   editing_ = ! editing_;
+   [self setEditing:editing_ animated:YES];
+}
 
 @end
-

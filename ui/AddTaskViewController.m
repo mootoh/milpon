@@ -300,8 +300,8 @@ enum {
 
 // TODO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
    // store it to the DB
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   RTMDatabase *db = app.db;
+   TaskProvider *tp = [TaskProvider sharedTaskProvider];
+   [tp create:
    [RTMTask createAtOffline:params inDB:db];
 // TODO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 

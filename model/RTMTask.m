@@ -9,6 +9,7 @@
 - (id) initByParams:(NSDictionary *)params
 {
    if (self = [super init]) {
+      self.iD           = [params valueForKey:@"id"];
       self.name         = [params valueForKey:@"name"];
       self.url          = [params valueForKey:@"url"];
       self.due          = [params valueForKey:@"due"];

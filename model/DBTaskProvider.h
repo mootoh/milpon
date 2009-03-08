@@ -18,6 +18,7 @@
 {
    LocalCache *local_cache_;
    NSArray *tasks_;
+   BOOL dirty_;
 }
 
 @end

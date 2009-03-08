@@ -14,5 +14,6 @@
 }
 
 - (IBAction) toggleEdit;
+- (IBAction) add;
 
 @end

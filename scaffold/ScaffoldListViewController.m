@@ -150,4 +150,15 @@
    [self setEditing:editing_ animated:YES];
 }
 
+- (IBAction) add
+{
+   NSLog(@"add");
+   NSArray *indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+
+   [self.tableView beginUpdates];
+   [self.tableView reloadData];
+   [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:YES];
+   [self.tableView endUpdates];
+}
+
 @end
