@@ -7,6 +7,7 @@
 //
 
 #import "ScaffoldTaskViewController.h"
+#import "ScaffoldTaskEditViewController.h"
 #import "TaskProvider.h"
 #import "RTMTask.h"
 #import "logger.h"
@@ -94,9 +95,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
    // Navigation logic may go here. Create and push another view controller.
-   // AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-   // [self.navigationController pushViewController:anotherViewController];
-   // [anotherViewController release];
+   ScaffoldTaskEditViewController *stevc = [[ScaffoldTaskEditViewController alloc] initWithNibName:nil bundle:nil];
+   [self.navigationController pushViewController:stevc animated:YES];
+
+   RTMTask *task = (RTMTask *)[[tp tasks] objectAtIndex:indexPath.row];
+   stevc.task = task;
+
+   [stevc release];
 }
 
 

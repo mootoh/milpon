@@ -50,7 +50,6 @@
    STAssertEquals(tasks.count, 1U, @"should have some list elements.");
 }
 
-
 #if 0
 - (void) testComplete
 {

@@ -10,6 +10,9 @@
 
 @interface ScaffoldListViewController : UITableViewController {
    ListProvider *lp;
+   BOOL editing_;
 }
+
+- (IBAction) toggleEdit;
 
 @end

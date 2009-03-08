@@ -40,6 +40,12 @@
 
 - (void) erase
 {
+   NSAssert(NO, @"not reach here");
+}
+
+- (void) remove:(RTMList *)list
+{
+   NSAssert(NO, @"not reach here");
 }
 
 + (ListProvider *) sharedListProvider

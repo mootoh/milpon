@@ -92,6 +92,7 @@
    return lists;
 }
 
+
 - (NSArray *) loadLists
 {
    return [self loadLists:nil];
@@ -100,6 +101,14 @@
 - (void) erase
 {
    [local_cache_ delete:@"list" condition:nil];
+   dirty_ = YES;
+}
+
+- (void) remove:(RTMList *) list
+{
+   NSString *cond = [NSString stringWithFormat:@"WHERE id = %@",
+      [[list iD] stringValue]];
+   [local_cache_ delete:@"list" condition:cond];
    dirty_ = YES;
 }
 

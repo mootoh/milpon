@@ -109,6 +109,10 @@
 		B95C5C090F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B95C5C180F59901700A368DC /* MockTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B916105D0F56607600473A95 /* MockTagProvider.m */; };
 		B970A78D0F636AC5004467E9 /* ListProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */; };
+		B970A7EC0F637D71004467E9 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
+		B970A7EF0F637D82004467E9 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
+		B970A7F00F637D84004467E9 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
+		B970A8170F637F71004467E9 /* ScaffoldTaskEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B970A8160F637F71004467E9 /* ScaffoldTaskEditViewController.m */; };
 		B971DBDE0F5CCA3000513D03 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
 		B985AAC20F60F308004A1B54 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
 		B985AAC70F60F332004A1B54 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
@@ -150,7 +154,6 @@
 		B9D11FAF0F56A56300B5ABA4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9D1200C0F56A97B00B5ABA4 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
 		B9D120A40F5763DB00B5ABA4 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
-		B9E6E65B0F610E0300472142 /* ScaffoldListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9E6E65A0F610E0300472142 /* ScaffoldListView.xib */; };
 		B9E6E65F0F610E2600472142 /* ScaffoldListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E6E65E0F610E2600472142 /* ScaffoldListViewController.m */; };
 		B9E6E69C0F6110EB00472142 /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B9E6E6F70F611D3900472142 /* ScaffoldTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E6E6F60F611D3900472142 /* ScaffoldTaskViewController.m */; };
@@ -322,6 +325,8 @@
 		B91610890F56618400473A95 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B916108C0F56686600473A95 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		B95C5C070F598C8400A368DC /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = rtm.sql; sourceTree = "<group>"; };
+		B970A8150F637F71004467E9 /* ScaffoldTaskEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldTaskEditViewController.h; path = scaffold/ScaffoldTaskEditViewController.h; sourceTree = "<group>"; };
+		B970A8160F637F71004467E9 /* ScaffoldTaskEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldTaskEditViewController.m; path = scaffold/ScaffoldTaskEditViewController.m; sourceTree = "<group>"; };
 		B985AB890F6108A8004A1B54 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B985AB8B0F6108A8004A1B54 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = SOURCE_ROOT; };
 		B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListView.xib; sourceTree = "<group>"; };
@@ -343,7 +348,6 @@
 		B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProvider.m; sourceTree = "<group>"; };
 		B9D120A20F5763DB00B5ABA4 /* DBListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBListProvider.h; sourceTree = "<group>"; };
 		B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBListProvider.m; sourceTree = "<group>"; };
-		B9E6E65A0F610E0300472142 /* ScaffoldListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScaffoldListView.xib; path = scaffold/ScaffoldListView.xib; sourceTree = "<group>"; };
 		B9E6E65D0F610E2600472142 /* ScaffoldListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldListViewController.h; path = scaffold/ScaffoldListViewController.h; sourceTree = "<group>"; };
 		B9E6E65E0F610E2600472142 /* ScaffoldListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldListViewController.m; path = scaffold/ScaffoldListViewController.m; sourceTree = "<group>"; };
 		B9E6E6F50F611D3900472142 /* ScaffoldTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldTaskViewController.h; path = scaffold/ScaffoldTaskViewController.h; sourceTree = "<group>"; };
@@ -701,11 +705,12 @@
 				B9C648960F610B6600A47F4F /* ScaffoldAppDelegate.h */,
 				B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */,
 				B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */,
-				B9E6E65A0F610E0300472142 /* ScaffoldListView.xib */,
 				B9E6E65D0F610E2600472142 /* ScaffoldListViewController.h */,
 				B9E6E65E0F610E2600472142 /* ScaffoldListViewController.m */,
 				B9E6E6F50F611D3900472142 /* ScaffoldTaskViewController.h */,
 				B9E6E6F60F611D3900472142 /* ScaffoldTaskViewController.m */,
+				B970A8150F637F71004467E9 /* ScaffoldTaskEditViewController.h */,
+				B970A8160F637F71004467E9 /* ScaffoldTaskEditViewController.m */,
 			);
 			name = scaffold;
 			sourceTree = "<group>";
@@ -912,7 +917,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9C648930F610B3100A47F4F /* ScaffoldMainWindow.xib in Resources */,
-				B9E6E65B0F610E0300472142 /* ScaffoldListView.xib in Resources */,
 				B9E6E69C0F6110EB00472142 /* rtm.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1069,6 +1073,7 @@
 				B9C648980F610B6600A47F4F /* ScaffoldAppDelegate.m in Sources */,
 				B9E6E65F0F610E2600472142 /* ScaffoldListViewController.m in Sources */,
 				B9E6E6F70F611D3900472142 /* ScaffoldTaskViewController.m in Sources */,
+				B970A8170F637F71004467E9 /* ScaffoldTaskEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1096,6 +1101,9 @@
 				B985AAC20F60F308004A1B54 /* RTMList.m in Sources */,
 				B985AAC70F60F332004A1B54 /* DBListProvider.m in Sources */,
 				B985AAC90F60F34B004A1B54 /* ListProvider.m in Sources */,
+				B970A7EC0F637D71004467E9 /* RTMAPIList.m in Sources */,
+				B970A7EF0F637D82004467E9 /* RTMAPIXMLParserCallback.m in Sources */,
+				B970A7F00F637D84004467E9 /* RTMAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

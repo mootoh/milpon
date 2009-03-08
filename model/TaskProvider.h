@@ -18,7 +18,6 @@
 
 - (void) sync;
 
-- (void) add:(NSString *)elm;
 - (void) complete:(RTMTask *)task;
 
 // TODO: lastSync should be moved to somewhere not here.
