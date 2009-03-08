@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="49"/>
+			<integer value="58"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -49,13 +49,13 @@
 			<object class="IBUITabBarController" id="254614245">
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<object class="IBUINavigationController" key="IBUISelectedViewController" id="221818091">
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="207897373">
-						<string key="IBUITitle">Tag</string>
+				<object class="IBUINavigationController" key="IBUISelectedViewController" id="38486331">
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="358933442">
+						<string key="IBUITitle">List</string>
 						<reference key="IBUITabBar"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="254614245"/>
-					<object class="IBUINavigationBar" key="IBUINavigationBar" id="250859219">
+					<object class="IBUINavigationBar" key="IBUINavigationBar" id="962689732">
 						<nil key="NSNextResponder"/>
 						<int key="NSvFlags">256</int>
 						<string key="NSFrameSize">{320, 44}</string>
@@ -65,21 +65,20 @@
 					</object>
 					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="IBUIViewController" id="448474617">
-							<object class="IBUINavigationItem" key="IBUINavigationItem" id="292303683">
+						<object class="IBUIViewController" id="309206831">
+							<object class="IBUINavigationItem" key="IBUINavigationItem" id="320194515">
 								<reference key="IBUINavigationBar"/>
-								<string key="IBUITitle">Tag</string>
-								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="683613689">
+								<string key="IBUITitle">List</string>
+								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="1071703276">
 									<int key="IBUIStyle">1</int>
 									<int key="IBUISystemItemIdentifier">13</int>
 								</object>
-								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="513835853">
+								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="872773919">
 									<int key="IBUIStyle">1</int>
 									<int key="IBUISystemItemIdentifier">4</int>
 								</object>
 							</object>
-							<reference key="IBUIParentViewController" ref="221818091"/>
-							<string key="IBUINibName">TagView</string>
+							<reference key="IBUIParentViewController" ref="38486331"/>
 						</object>
 					</object>
 				</object>
@@ -117,13 +116,14 @@
 							</object>
 						</object>
 					</object>
-					<object class="IBUINavigationController" id="38486331">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="358933442">
-							<string key="IBUITitle">List</string>
+					<reference ref="38486331"/>
+					<object class="IBUINavigationController" id="221818091">
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="207897373">
+							<string key="IBUITitle">Tag</string>
 							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="254614245"/>
-						<object class="IBUINavigationBar" key="IBUINavigationBar" id="962689732">
+						<object class="IBUINavigationBar" key="IBUINavigationBar" id="250859219">
 							<nil key="NSNextResponder"/>
 							<int key="NSvFlags">256</int>
 							<string key="NSFrameSize">{320, 44}</string>
@@ -133,27 +133,23 @@
 						</object>
 						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIViewController" id="309206831">
-								<string key="IBUITitle">List</string>
-								<object class="IBUINavigationItem" key="IBUINavigationItem" id="320194515">
-									<string key="IBUITitle">List</string>
-									<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="1071703276">
+							<object class="IBUIViewController" id="448474617">
+								<object class="IBUINavigationItem" key="IBUINavigationItem" id="292303683">
+									<string key="IBUITitle">Tag</string>
+									<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="683613689">
 										<int key="IBUIStyle">1</int>
 										<int key="IBUISystemItemIdentifier">13</int>
 									</object>
-									<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="872773919">
+									<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="513835853">
 										<int key="IBUIStyle">1</int>
 										<int key="IBUISystemItemIdentifier">4</int>
 									</object>
 								</object>
-								<reference key="IBUIParentViewController" ref="38486331"/>
-								<string key="IBUINibName">ListView</string>
+								<reference key="IBUIParentViewController" ref="221818091"/>
 							</object>
 						</object>
 					</object>
-					<reference ref="221818091"/>
 					<object class="IBUINavigationController" id="758959439">
-						<string key="IBUITitle">Review</string>
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="1032672752">
 							<string key="IBUITitle">Review</string>
 							<reference key="IBUITabBar"/>
@@ -182,7 +178,6 @@
 									</object>
 								</object>
 								<reference key="IBUIParentViewController" ref="758959439"/>
-								<string key="IBUINibName">ReviewView</string>
 							</object>
 						</object>
 					</object>

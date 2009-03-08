@@ -87,7 +87,6 @@
 		B9160FB30F565DAB00473A95 /* uiccalendar_main.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA20F565DAB00473A95 /* uiccalendar_main.png */; };
 		B9160FB40F565DAB00473A95 /* uiccalendar_right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA30F565DAB00473A95 /* uiccalendar_right_arrow.png */; };
 		B9160FB50F565DAB00473A95 /* uiccalendar_title.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA40F565DAB00473A95 /* uiccalendar_title.png */; };
-		B9160FC40F565DB600473A95 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9160FB80F565DB600473A95 /* HomeView.xib */; };
 		B9160FC50F565DB600473A95 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9160FB90F565DB600473A95 /* MainWindow.xib */; };
 		B9160FC60F565DB700473A95 /* PriorityImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBB0F565DB600473A95 /* PriorityImageView.m */; };
 		B9160FC70F565DB700473A95 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBD0F565DB600473A95 /* ProgressView.m */; };
@@ -139,7 +138,6 @@
 		B985AB840F6108A8004A1B54 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9B77F8E0F56A13E00BF0EF3 /* ListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */; };
 		B9B77F920F56A18600BF0EF3 /* DueDateSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */; };
-		B9B77F930F56A18600BF0EF3 /* ListSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F910F56A18600BF0EF3 /* ListSelect.xib */; };
 		B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9C648930F610B3100A47F4F /* ScaffoldMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */; };
 		B9C648980F610B6600A47F4F /* ScaffoldAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */; };
@@ -279,7 +277,6 @@
 		B9160FA30F565DAB00473A95 /* uiccalendar_right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_right_arrow.png; sourceTree = "<group>"; };
 		B9160FA40F565DAB00473A95 /* uiccalendar_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_title.png; sourceTree = "<group>"; };
 		B9160FB70F565DB600473A95 /* FunctionalTestProgressViewWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FunctionalTestProgressViewWindow.xib; path = ../ui/FunctionalTestProgressViewWindow.xib; sourceTree = "<group>"; };
-		B9160FB80F565DB600473A95 /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
 		B9160FB90F565DB600473A95 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		B9160FBA0F565DB600473A95 /* PriorityImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityImageView.h; sourceTree = "<group>"; };
 		B9160FBB0F565DB600473A95 /* PriorityImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityImageView.m; sourceTree = "<group>"; };
@@ -331,7 +328,6 @@
 		B985AB8B0F6108A8004A1B54 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = SOURCE_ROOT; };
 		B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListView.xib; sourceTree = "<group>"; };
 		B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DueDateSelect.xib; sourceTree = "<group>"; };
-		B9B77F910F56A18600BF0EF3 /* ListSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListSelect.xib; sourceTree = "<group>"; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScaffoldMainWindow.xib; path = scaffold/ScaffoldMainWindow.xib; sourceTree = "<group>"; };
 		B9C648960F610B6600A47F4F /* ScaffoldAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldAppDelegate.h; path = scaffold/ScaffoldAppDelegate.h; sourceTree = "<group>"; };
@@ -477,10 +473,8 @@
 				B9160EDB0F565D1500473A95 /* AppDelegate.m */,
 				B9160EE00F565D1500473A95 /* ConfigViewController.h */,
 				B9160EE10F565D1500473A95 /* ConfigViewController.m */,
-				B9160FB80F565DB600473A95 /* HomeView.xib */,
 				B9160EE20F565D1500473A95 /* HomeViewController.h */,
 				B9160EE30F565D1500473A95 /* HomeViewController.m */,
-				B9B77F910F56A18600BF0EF3 /* ListSelect.xib */,
 				B9160EE40F565D1500473A95 /* ListSelectViewController.h */,
 				B9160EE50F565D1500473A95 /* ListSelectViewController.m */,
 				B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */,
@@ -894,12 +888,10 @@
 				B9160FB30F565DAB00473A95 /* uiccalendar_main.png in Resources */,
 				B9160FB40F565DAB00473A95 /* uiccalendar_right_arrow.png in Resources */,
 				B9160FB50F565DAB00473A95 /* uiccalendar_title.png in Resources */,
-				B9160FC40F565DB600473A95 /* HomeView.xib in Resources */,
 				B9160FC50F565DB600473A95 /* MainWindow.xib in Resources */,
 				B9160FCA0F565DB700473A95 /* TaskView.xib in Resources */,
 				B9B77F8E0F56A13E00BF0EF3 /* ListView.xib in Resources */,
 				B9B77F920F56A18600BF0EF3 /* DueDateSelect.xib in Resources */,
-				B9B77F930F56A18600BF0EF3 /* ListSelect.xib in Resources */,
 				B95C5C080F598C8400A368DC /* rtm.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
