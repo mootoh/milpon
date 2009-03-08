@@ -6,20 +6,21 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import "RTMDatabase.h"
+#import "LocalCache.h"
 #import "RTMPendingTask.h"
 #import "MilponHelper.h"
 #import "logger.h"
 
 @implementation RTMPendingTask
 
-- (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb
+- (id) initByParams:(NSDictionary *)params
 {
-   if (self = [super initByParams:params inDB:ddb]) {
+   if (self = [super initByParams:params]) {
    }
    return self;
 }
 
+#if 0
 + (void) createTask:(NSDictionary *)params inDB:(RTMDatabase *)db // {{{
 {
    sqlite3_stmt *stmt = nil;
@@ -185,6 +186,6 @@
    }
    sqlite3_finalize(stmt);
 }
-
+#endif // 0
 @end
 // vim:set ft=objc fdm=marker:

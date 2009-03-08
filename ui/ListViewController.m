@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import "RTMList.h"
 #import "TaskListViewController.h"
+#import "ListProvider.h"
+#import "TaskProvider.h"
 
 @implementation ListViewController
 
@@ -23,8 +25,7 @@
 
 - (void)viewDidLoad
 {
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   lists = [[RTMList allLists] retain];
+   lists = [[[ListProvider sharedListProvider] lists] retain];
    self.title = @"List";   
 }
 
@@ -67,7 +68,7 @@
    RTMList *lst = [lists objectAtIndex:indexPath.row];
    cell.text = lst.name;
 
-   task_count.text = [NSString stringWithFormat:@"%d", [lst taskCount]];
+   task_count.text = [NSString stringWithFormat:@"%d", [[TaskProvider sharedTaskProvider] tasksInList:lst].count];
    [cell setNeedsDisplay];
    return cell;
 }

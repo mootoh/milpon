@@ -36,11 +36,9 @@
 - (NSArray *) lists
 {
    if (dirty_ || ! lists_) {
-      NSLog(@"init lists");
       [self loadLists];
       dirty_ = NO;
    }
-   NSLog(@"lists initilaized");
    return lists_;
 }
 
@@ -114,15 +112,27 @@
 
 - (void) create:(NSDictionary *)params
 {
-   NSNumber *iD = [NSNumber numberWithInt:[[params objectForKey:@"iD"] intValue]];
+   NSString *name = [params objectForKey:@"name"];
+   NSMutableDictionary *attrs = [NSDictionary dictionaryWithObject:name forKey:@"name"];
 
-   NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", nil];
-   NSArray *vals = [NSArray arrayWithObjects:iD, [params objectForKey:@"name"], nil];
-   NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   if ([params objectForKey:@"iD"]) {
+      NSNumber *iD = [NSNumber numberWithInt:[[params objectForKey:@"iD"] intValue]];
+      [attrs setObject:iD forKey:@"id"];
+   }
 
    [local_cache_ insert:attrs into:@"list"];
    dirty_ = YES;
 }
+
+- (NSString *)nameForListID:(NSNumber *)list_id {
+   for (RTMList *lst in lists_) {
+      if ([lst.iD isEqualToNumber:list_id])
+         return lst.name;
+   }
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 
 @end // DBListProvider (Private)
 

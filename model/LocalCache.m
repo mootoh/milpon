@@ -9,6 +9,7 @@
 #import <sqlite3.h>
 #import "LocalCache.h"
 #import "logger.h"
+#import "MilponHelper.h"
 
 @interface LocalCache (Private)
 - (NSString *) databasePath;
@@ -71,7 +72,7 @@
       }
    }
 
-   LOG(@"sql select: %@", sql);
+   LOG(@"SQL SELECT: %@", sql);
 
    if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK)
       [[NSException
@@ -123,10 +124,12 @@
          val = [NSString stringWithFormat:@"'%@'", (NSString *)v];
       } else if ([v isKindOfClass:[NSNumber class]]) {
          val = [(NSNumber *)v stringValue];
+      } else if ([v isKindOfClass:[NSDate class]]) {
+         val = [NSString stringWithFormat:@"'%@'", [[MilponHelper sharedHelper] dateToString:v]];
       } else {
          [[NSException
            exceptionWithName:@"LocalCacheException"
-           reason:[NSString stringWithFormat:@"should not reach here"]
+           reason:[NSString stringWithFormat:@"unknown type: %s", object_getClassName(v)]
            userInfo:nil] raise];
       }
       vals = [vals stringByAppendingFormat:@"%@, ", val];
@@ -137,6 +140,8 @@
    vals = [vals substringToIndex:vals.length-2];
 
    NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (%@) VALUES (%@);", table, keys, vals];
+   LOG(@"SQL INSERT: %@", sql);
+   
 
    if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
       [[NSException
@@ -152,6 +157,10 @@
          sqlite3_bind_text(stmt, i, [(NSString *)v UTF8String], -1, SQLITE_TRANSIENT);
       } else if ([v isKindOfClass:[NSNumber class]]) {
          sqlite3_bind_int(stmt,  i, [(NSNumber *)v intValue]);
+      } else if ([v isKindOfClass:[NSDate class]]) {
+         v = [[MilponHelper sharedHelper] dateToString:v];
+         sqlite3_bind_text(stmt, i, [(NSString *)v UTF8String], -1, SQLITE_TRANSIENT);
+
       } else {
          [[NSException
            exceptionWithName:@"LocalCacheException"
@@ -258,6 +267,13 @@
    }
    sqlite3_finalize(stmt);
    [pool release];
+}
+
+- (NSString *) lastSync
+{
+   NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSString class] forKey:@"sync_date"];
+   NSString *result = [[self select:dict from:@"last_sync"] objectAtIndex:0];
+   return result;
 }
 
 static LocalCache *s_local_cache = nil;

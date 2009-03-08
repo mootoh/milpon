@@ -16,13 +16,13 @@
    UIButton *due_button;
    UISegmentedControl *priority_segment;
 
-   NSString *list;
+   RTMList *list;
    NSDate *due;
    NSMutableSet *tags;
    NSString *note;
 }
 
-@property (nonatomic, retain) NSString *list;
+@property (nonatomic, retain) RTMList *list;
 @property (nonatomic, retain) NSDate *due;
 @property (nonatomic, retain) NSMutableSet *tags;
 @property (nonatomic, retain) NSString *note;

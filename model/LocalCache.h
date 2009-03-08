@@ -43,6 +43,8 @@
  */
 - (void) delete:(NSString *)table condition:(NSString *)cond;
 
+- (NSString *) lastSync;
+
 /**
  * get singleton instance.
  */

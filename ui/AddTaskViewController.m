@@ -13,7 +13,10 @@
 #import "DueDateSelectController.h"
 #import "AppDelegate.h"
 #import "RTMTask.h"
+#import "RTMList.h"
+#import "TaskProvider.h"
 #import "ReloadableTableViewController.h"
+#import "ListProvider.h"
 
 @implementation AddTaskViewController
 
@@ -32,7 +35,7 @@ enum {
 {
    if (self = [super initWithStyle:style]) {
       self.title = @"Add";
-      self.list  = @"Inbox";
+      self.list  = [[[ListProvider sharedListProvider] lists] objectAtIndex:0];
       self.tags  = [NSMutableSet set];
    }
    return self;
@@ -174,7 +177,7 @@ enum {
                                      [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]];
                iconImageView.image = iconImage;
                [iconImage release];
-               label.text = list;
+               label.text = list.name;
                break;
             }
             case ROW_TAG: {
@@ -287,8 +290,8 @@ enum {
    NSNumber *priority = [NSNumber numberWithInteger:priority_segment.selectedSegmentIndex];
 
    // create RTMTask and store it in DB.
-   NSArray *keys =  [NSArray arrayWithObjects:@"name", @"list", @"priority", nil];
-   NSArray *vals = [NSArray arrayWithObjects:name, list, priority, nil];
+   NSArray *keys =  [NSArray arrayWithObjects:@"name", @"list_id", @"priority", nil];
+   NSArray *vals = [NSArray arrayWithObjects:name, list.iD, priority, nil];
    
    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (due)
@@ -301,8 +304,7 @@ enum {
 // TODO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
    // store it to the DB
    TaskProvider *tp = [TaskProvider sharedTaskProvider];
-   [tp create:
-   [RTMTask createAtOffline:params inDB:db];
+   [tp createAtOffline:params];
 // TODO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
    //[RTMTask createAtOffline:params];

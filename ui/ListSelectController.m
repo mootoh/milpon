@@ -1,5 +1,5 @@
 //
-//  TrialListSelectController.m
+//  ListSelectController.m
 //  Milpon
 //
 //  Created by mootoh on 1/26/09.
@@ -9,6 +9,7 @@
 #import "ListSelectController.h"
 #import "ListProvider.h"
 #import "AddTaskViewController.h"
+#import "RTMList.h"
 
 @implementation ListSelectController
 
@@ -67,7 +68,8 @@
       cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
    }
    
-   cell.text = [[list_provider lists] objectAtIndex:indexPath.row];
+   RTMList *list = [[list_provider lists] objectAtIndex:indexPath.row];
+   cell.text = list.name;
    return cell;
 }
 

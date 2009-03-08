@@ -144,21 +144,22 @@
    [super dealloc];
 }
 
+- (IBAction) add
+{
+   NSDictionary *param = [NSDictionary dictionaryWithObject:@"added list" forKey:@"name"];
+   [lp create:param];
+
+   NSArray *indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+
+   [self.tableView beginUpdates];
+   //[self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+   [self.tableView endUpdates];
+}
+
 - (IBAction) toggleEdit
 {
    editing_ = ! editing_;
    [self setEditing:editing_ animated:YES];
-}
-
-- (IBAction) add
-{
-   NSLog(@"add");
-   NSArray *indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
-
-   [self.tableView beginUpdates];
-   [self.tableView reloadData];
-   [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:YES];
-   [self.tableView endUpdates];
 }
 
 @end

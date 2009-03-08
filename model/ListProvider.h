@@ -17,6 +17,7 @@
 - (void) create:(NSDictionary *)params;
 - (void) remove:(RTMList *) list;
 - (void) erase; // remove all lists from DB.
+- (NSString *)nameForListID:(NSNumber *)list_id;
 /**
  * replace all local lists with lists on the web.
  */

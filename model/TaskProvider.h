@@ -15,13 +15,13 @@
 - (NSArray *) tasks;
 - (NSArray *) tasksInList:(RTMList *)list;
 - (NSArray *) modifiedTasks;
+- (NSArray *) existingTasks;
 
 
 - (void) createAtOffline:(NSDictionary *)params;
-
 - (void) sync;
-
 - (void) complete:(RTMTask *)task;
+- (void) remove:(RTMTask *) task;
 
 // TODO: lastSync should be moved to somewhere not here.
 //- (NSString *) lastSync;

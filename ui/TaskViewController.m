@@ -12,6 +12,7 @@
 #import "RTMList.h"
 #import "UICCalendarPicker.h"
 #import "logger.h"
+#import "ListProvider.h"
 
 #define kNOTE_PLACE_HOLDER @"note..."
 
@@ -94,10 +95,7 @@ static NSArray *s_icons;
    name.delegate = self;
    url.text = task.url;
 
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   RTMDatabase *db = app.db;
-
-   list.text = [RTMList nameForListID:task.list_id fromDB:db];
+   list.text = [[ListProvider sharedListProvider] nameForListID:task.list_id];
 
    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
    [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];

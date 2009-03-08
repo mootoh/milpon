@@ -121,7 +121,7 @@ return YES;
    if (editingStyle == UITableViewCellEditingStyleDelete) {
       RTMTask *task = (RTMTask *)[[tp tasks] objectAtIndex:indexPath.row];
       [tp remove:task];
-      // Delete the row from the data source
+         // Delete the row from the data source
       [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
    }   
    else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -152,16 +152,13 @@ return YES;
 
 - (IBAction) add
 {
-   NSLog(@"add");
    NSDictionary *param = [NSDictionary dictionaryWithObject:@"added task" forKey:@"name"];
    [tp createAtOffline:param];
-   
-   NSArray *indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
-   [tp tasks];
+ 
+   NSArray *indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:[tp tasks].count-1 inSection:0]];
 
    [self.tableView beginUpdates];
-   [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:NO];
-   [self.tableView reloadData];
+   [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
    [self.tableView endUpdates];
 }
 

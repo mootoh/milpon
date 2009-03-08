@@ -53,7 +53,7 @@
       cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
    }
    // Configure the cell
-   RTMList * lst = [lists objectAtIndex:indexPath.row];
+   RTMList *lst = [lists objectAtIndex:indexPath.row];
    cell.text = lst.name;
    return cell;
 }
@@ -61,7 +61,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    RTMList * lst = [lists objectAtIndex:indexPath.row];
-   self.parent.list = lst.name;
+   self.parent.list = lst;
    //[self.parent.tableView reloadData];
    [self.parent.view setNeedsDisplay];
    [self.navigationController popViewControllerAnimated:YES];

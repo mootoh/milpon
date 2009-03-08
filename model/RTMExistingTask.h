@@ -19,8 +19,6 @@
 @property (nonatomic, retain) NSNumber *task_series_id;
 
 + (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db;
-+ (void) create:(NSDictionary *)params inDB:(RTMDatabase *)db;
-
 
 @end
 // set vim:ft=objc

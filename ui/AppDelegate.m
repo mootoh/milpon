@@ -191,7 +191,7 @@
 
    //[self reload];
 
-   NSString *lastUpdated = [RTMTask lastSync:db];
+   NSString *lastUpdated = [[LocalCache sharedLocalCache] lastSync];
    lastUpdated = [lastUpdated stringByReplacingOccurrencesOfString:@"T" withString:@"_"];
    lastUpdated = [lastUpdated stringByReplacingOccurrencesOfString:@"Z" withString:@" GMT"];
 

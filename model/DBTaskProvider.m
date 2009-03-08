@@ -83,6 +83,18 @@
    return [self tasks:cond];
 }
 
+- (NSArray *) existingTasks
+{
+   NSArray *keys = [NSArray arrayWithObjects:@"where", @"ORDER", nil];
+   NSArray *vals = [NSArray arrayWithObjects:
+      [NSString stringWithFormat:@"completed='' OR completed is NULL"],
+      [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
+      nil];
+
+   NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   return [self tasks:cond];
+}
+
 - (void) complete:(RTMTask *)task
 {
    [task flagUpEditBits:EB_TASK_COMPLETED];
@@ -93,10 +105,9 @@
 
 - (void) createAtOffline:(NSDictionary *)params
 {
+   NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:params];
    NSNumber *edit_bits = [NSNumber numberWithInt:EB_CREATED_OFFLINE];
-   NSArray *keys = [NSArray arrayWithObjects:@"name", @"edit_bits",  nil];
-   NSArray *vals = [NSArray arrayWithObjects:[params objectForKey:@"name"], edit_bits, nil];
-   NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   [attrs setObject:edit_bits forKey:@"edit_bits"];
 
    [local_cache_ insert:attrs into:@"task"];
    dirty_ = YES;

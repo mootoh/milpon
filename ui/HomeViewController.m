@@ -11,6 +11,7 @@
 #import "RTMTask.h"
 #import "RTMTaskCell.h"
 #import "TaskViewController.h"
+#import "TaskProvider.h"
 
 @implementation HomeViewController
 
@@ -31,7 +32,7 @@ static const int SECTIONS = 4;
    /*
     * load
     */
-   tasks = [[RTMTask tasks:db] retain];
+   tasks = [[[TaskProvider sharedTaskProvider] tasks] retain];
    due_tasks = [[NSMutableArray alloc] init];
    for (int i=0; i<SECTIONS; i++)
       [due_tasks addObject:[NSMutableArray array]];

@@ -16,9 +16,9 @@
 @synthesize task_series_id;
 
 
-- (id) initByParams:(NSDictionary *)params inDB:(RTMDatabase *)ddb 
+- (id) initByParams:(NSDictionary *)params
 {
-   if (self = [super initByParams:params inDB:ddb]) {
+   if (self = [super initByParams:params]) {
       self.task_series_id  = [params valueForKey:@"task_series_id"];
    }
    return self;
@@ -30,15 +30,7 @@
    [super dealloc];
 }
 
-
-+ (NSArray *) tasks:(RTMDatabase *)db
-{
-   NSString *sql = [NSString stringWithUTF8String:"SELECT " RTMTASK_SQL_COLUMNS 
-      " from task where completed='' OR completed is NULL"
-      "ORDER BY due IS NULL ASC, due ASC, priority=0 ASC, priority ASC"];
-   return [RTMTask tasksForSQL:sql inDB:db];
-}
-
+#if 0
 + (void) createPendingTask:(NSDictionary *)task inDB:(RTMDatabase *)db inTaskSeries:(NSInteger)task_series_id
 {
    sqlite3_stmt *stmt = nil;
@@ -315,5 +307,6 @@
 
    return ret;
 }
+#endif // 0
 
 @end

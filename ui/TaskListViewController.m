@@ -12,6 +12,7 @@
 #import "RTMList.h"
 #import "RTMTask.h"
 #import "RTMTaskCell.h"
+#import "TaskProvider.h"
 
 @implementation TaskListViewController
 
@@ -21,7 +22,7 @@
 {
    [tasks release];
    tasks = nil;
-   tasks = [[RTMTask tasksInList:list.iD inDB:db] retain];
+   tasks = [[[TaskProvider sharedTaskProvider] tasksInList:list] retain];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style withList:(RTMList *)lst
@@ -44,7 +45,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   return [list taskCount];
+   return [[TaskProvider sharedTaskProvider] tasksInList:list].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
