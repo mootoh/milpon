@@ -92,7 +92,6 @@
 		B9160FC70F565DB700473A95 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBD0F565DB600473A95 /* ProgressView.m */; };
 		B9160FC80F565DB700473A95 /* RTMTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBF0F565DB600473A95 /* RTMTaskCell.m */; };
 		B9160FC90F565DB700473A95 /* TaskEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FC10F565DB600473A95 /* TaskEditCell.m */; };
-		B9160FCA0F565DB700473A95 /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9160FC20F565DB600473A95 /* TaskView.xib */; };
 		B916100E0F565F6500473A95 /* ListSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916100D0F565F6500473A95 /* ListSelectController.m */; };
 		B91610130F565F8A00473A95 /* NoteEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610100F565F8A00473A95 /* NoteEditController.m */; };
 		B91610140F565F8A00473A95 /* TagSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610120F565F8A00473A95 /* TagSelectController.m */; };
@@ -112,6 +111,7 @@
 		B970A7EF0F637D82004467E9 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
 		B970A7F00F637D84004467E9 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
 		B970A8170F637F71004467E9 /* ScaffoldTaskEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B970A8160F637F71004467E9 /* ScaffoldTaskEditViewController.m */; };
+		B970AC060F6416A1004467E9 /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B970AC050F6416A1004467E9 /* TaskView.xib */; };
 		B971DBDE0F5CCA3000513D03 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
 		B985AAC20F60F308004A1B54 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
 		B985AAC70F60F332004A1B54 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
@@ -136,7 +136,6 @@
 		B985AB820F6108A8004A1B54 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		B985AB830F6108A8004A1B54 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		B985AB840F6108A8004A1B54 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
-		B9B77F8E0F56A13E00BF0EF3 /* ListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */; };
 		B9B77F920F56A18600BF0EF3 /* DueDateSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */; };
 		B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9C648930F610B3100A47F4F /* ScaffoldMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */; };
@@ -286,7 +285,6 @@
 		B9160FBF0F565DB600473A95 /* RTMTaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMTaskCell.m; sourceTree = "<group>"; };
 		B9160FC00F565DB600473A95 /* TaskEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditCell.h; sourceTree = "<group>"; };
 		B9160FC10F565DB600473A95 /* TaskEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditCell.m; sourceTree = "<group>"; };
-		B9160FC20F565DB600473A95 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
 		B9160FD10F565DE000473A95 /* FunctionalTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionalTestAppDelegate.h; sourceTree = "<group>"; };
 		B9160FD20F565DE000473A95 /* FunctionalTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionalTestAppDelegate.m; sourceTree = "<group>"; };
 		B9160FD30F565DE000473A95 /* MockRTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockRTMAPI.h; sourceTree = "<group>"; };
@@ -324,9 +322,9 @@
 		B95C5C070F598C8400A368DC /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = rtm.sql; sourceTree = "<group>"; };
 		B970A8150F637F71004467E9 /* ScaffoldTaskEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldTaskEditViewController.h; path = scaffold/ScaffoldTaskEditViewController.h; sourceTree = "<group>"; };
 		B970A8160F637F71004467E9 /* ScaffoldTaskEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldTaskEditViewController.m; path = scaffold/ScaffoldTaskEditViewController.m; sourceTree = "<group>"; };
+		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
 		B985AB890F6108A8004A1B54 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B985AB8B0F6108A8004A1B54 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = SOURCE_ROOT; };
-		B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListView.xib; sourceTree = "<group>"; };
 		B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DueDateSelect.xib; sourceTree = "<group>"; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScaffoldMainWindow.xib; path = scaffold/ScaffoldMainWindow.xib; sourceTree = "<group>"; };
@@ -477,7 +475,6 @@
 				B9160EE30F565D1500473A95 /* HomeViewController.m */,
 				B9160EE40F565D1500473A95 /* ListSelectViewController.h */,
 				B9160EE50F565D1500473A95 /* ListSelectViewController.m */,
-				B9B77F8D0F56A13E00BF0EF3 /* ListView.xib */,
 				B9160EE60F565D1500473A95 /* ListViewController.h */,
 				B9160EE70F565D1500473A95 /* ListViewController.m */,
 				B9160EEA0F565D1500473A95 /* MenuViewController.h */,
@@ -487,7 +484,6 @@
 				B9160EEE0F565D1500473A95 /* RootViewController.m */,
 				B9160EEF0F565D1500473A95 /* TaskListViewController.h */,
 				B9160EF00F565D1500473A95 /* TaskListViewController.m */,
-				B9160FC20F565DB600473A95 /* TaskView.xib */,
 				B9160EF10F565D1500473A95 /* TaskViewController.h */,
 				B9160EF20F565D1500473A95 /* TaskViewController.m */,
 				B9160FBA0F565DB600473A95 /* PriorityImageView.h */,
@@ -499,6 +495,7 @@
 				B9160FC00F565DB600473A95 /* TaskEditCell.h */,
 				B9160FC10F565DB600473A95 /* TaskEditCell.m */,
 				B9160FB90F565DB600473A95 /* MainWindow.xib */,
+				B970AC050F6416A1004467E9 /* TaskView.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -889,10 +886,9 @@
 				B9160FB40F565DAB00473A95 /* uiccalendar_right_arrow.png in Resources */,
 				B9160FB50F565DAB00473A95 /* uiccalendar_title.png in Resources */,
 				B9160FC50F565DB600473A95 /* MainWindow.xib in Resources */,
-				B9160FCA0F565DB700473A95 /* TaskView.xib in Resources */,
-				B9B77F8E0F56A13E00BF0EF3 /* ListView.xib in Resources */,
 				B9B77F920F56A18600BF0EF3 /* DueDateSelect.xib in Resources */,
 				B95C5C080F598C8400A368DC /* rtm.sql in Resources */,
+				B970AC060F6416A1004467E9 /* TaskView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
