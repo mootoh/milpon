@@ -14,6 +14,8 @@
 - (NSArray *) lists;
 //- (NSArray *) smartLists;
 
+- (void) create:(NSDictionary *)params;
+- (void) erase; // remove all lists from DB.
 /**
  * replace all local lists with lists on the web.
  */

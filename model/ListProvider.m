@@ -16,11 +16,6 @@
    return nil;
 }
 
-- (void) add:(NSString *)elm
-{
-   NSAssert(NO, @"not reach here");
-}
-
 - (void) create:(NSDictionary *)params
 {
    NSAssert(NO, @"not reach here");
@@ -36,6 +31,15 @@
 {
    NSAssert(NO, @"not reach here");
    return nil;
+}
+
+- (void) sync
+{
+   NSAssert(NO, @"not reach here");
+}
+
+- (void) erase
+{
 }
 
 + (ListProvider *) sharedListProvider

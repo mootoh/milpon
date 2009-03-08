@@ -108,6 +108,7 @@
 		B95C5C080F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B95C5C090F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B95C5C180F59901700A368DC /* MockTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B916105D0F56607600473A95 /* MockTagProvider.m */; };
+		B970A78D0F636AC5004467E9 /* ListProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */; };
 		B971DBDE0F5CCA3000513D03 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
 		B985AAC20F60F308004A1B54 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
 		B985AAC70F60F332004A1B54 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
@@ -1041,6 +1042,7 @@
 				B919969B0F612CB200D631D1 /* RTMAPIList.m in Sources */,
 				B919969D0F612CB800D631D1 /* RTMAPIXMLParserCallback.m in Sources */,
 				B919969F0F612CBD00D631D1 /* RTMAPI.m in Sources */,
+				B970A78D0F636AC5004467E9 /* ListProviderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

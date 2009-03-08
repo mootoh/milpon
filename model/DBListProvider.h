@@ -14,6 +14,7 @@
 {
    LocalCache *local_cache_;
    NSArray *lists_;
+   BOOL dirty_;
 }
 @end
 

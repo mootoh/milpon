@@ -14,8 +14,6 @@
 @interface DBListProvider (Private);
 - (NSArray *) loadLists:(NSDictionary *)option;
 - (NSArray *) loadLists;
-- (void) erase; // remove all lists from DB.
-- (void) create:(NSDictionary *)params;
 @end // DBListProvider (Private)
 
 @implementation DBListProvider
@@ -24,6 +22,7 @@
 {
    if (self = [super init]) {
       local_cache_ = [LocalCache sharedLocalCache];
+      dirty_ = NO;
    }
    return self;
 }
@@ -36,8 +35,12 @@
 
 - (NSArray *) lists
 {
-   if (! lists_)
+   if (dirty_ || ! lists_) {
+      NSLog(@"init lists");
       [self loadLists];
+      dirty_ = NO;
+   }
+   NSLog(@"lists initilaized");
    return lists_;
 }
 
@@ -83,6 +86,10 @@
       [lst release];
    }
    [pool release];
+
+   if (lists_)
+      [lists_ release];
+   lists_ = [lists retain];
    return lists;
 }
 
@@ -93,16 +100,20 @@
 
 - (void) erase
 {
+   [local_cache_ delete:@"list" condition:nil];
+   dirty_ = YES;
 }
 
 - (void) create:(NSDictionary *)params
 {
    NSNumber *iD = [NSNumber numberWithInt:[[params objectForKey:@"iD"] intValue]];
 
-   NSArray *keys = [NSArray arrayWithObjects:@"id", @"name"];
-   NSArray *vals = [NSArray arrayWithObjects:iD, [params objectForKey:@"name"]];
+   NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", nil];
+   NSArray *vals = [NSArray arrayWithObjects:iD, [params objectForKey:@"name"], nil];
    NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-   [local_cache_ insert:attrs into:@"lists"];
+
+   [local_cache_ insert:attrs into:@"list"];
+   dirty_ = YES;
 }
 
 @end // DBListProvider (Private)
