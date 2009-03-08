@@ -37,7 +37,7 @@
    NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority",
       @"postponed", @"estimate", @"rrule", @"location_id", @"list_id",
       @"task_series_id", @"edit_bits", nil];
-   NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], [NSString class], [NSString class],
+   NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], [NSString class], [NSDate class],
      [NSNumber class], [NSNumber class], [NSString class], [NSString class],
      [NSNumber class], [NSNumber class], [NSNumber class], [NSNumber class], nil];
    NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];

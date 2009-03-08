@@ -13,6 +13,7 @@
 #import "UICCalendarPicker.h"
 #import "logger.h"
 #import "ListProvider.h"
+#import "MilponHelper.h"
 
 #define kNOTE_PLACE_HOLDER @"note..."
 
@@ -149,15 +150,10 @@ static NSArray *s_icons;
 
 - (void) updateDue
 {
-   if (task.due && ![task.due isEqualToString:@""]) {
-      NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-      [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-      [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
-
+   if (task.due && task.due != [MilponHelper sharedHelper].invalidDate) {
       NSCalendar *calendar = [NSCalendar currentCalendar];
       unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-      NSDate *due_date = [formatter dateFromString:task.due];
-      NSDateComponents *comps = [calendar components:unitFlags fromDate:due_date];    
+      NSDateComponents *comps = [calendar components:unitFlags fromDate:task.due];
 
       NSString *dueString = [NSString stringWithFormat:@"%d/%d", [comps month], [comps day]];
 
@@ -285,15 +281,7 @@ prioritySelected_N(3);
 {
    LOG(@"picker");
    NSDate *theDate = [selectedDate objectAtIndex:0];
-
-   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss"];
-   NSString *ret = [formatter stringFromDate:theDate];
-   ret = [ret stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
-   ret = [ret stringByAppendingString:@"Z"];
-
-   task.due = ret;
+   task.due = theDate;
 
    [self updateDue];
 }

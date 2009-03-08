@@ -12,6 +12,7 @@
 #import "RTMTaskCell.h"
 #import "TaskViewController.h"
 #import "TaskProvider.h"
+#import "MilponHelper.h"
 
 @implementation HomeViewController
 
@@ -25,9 +26,7 @@ static const int SECTIONS = 4;
     * cleanup old data
     */
    [tasks release];
-   tasks = nil;
    [due_tasks release];
-   due_tasks = nil;
 
    /*
     * load
@@ -52,11 +51,9 @@ static const int SECTIONS = 4;
    //[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
 
    for (RTMTask *task in tasks) {
-      NSString *due = task.due;
-      if ([due isEqualToString:@""]) continue;
-      NSDate *due_date = [formatter dateFromString:due];
-      NSDateComponents *comp_due = [calendar components:unitFlags fromDate:due_date];
-      due_date = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
+      if (!task.due || task.due == [MilponHelper sharedHelper].invalidDate) continue;
+      NSDateComponents *comp_due = [calendar components:unitFlags fromDate:task.due];
+      NSDate *due_date = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
                [comp_due year], [comp_due month], [comp_due day]]];
 
       NSTimeInterval interval = [due_date timeIntervalSinceDate:today];

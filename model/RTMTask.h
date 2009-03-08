@@ -13,7 +13,7 @@
    NSNumber *iD;
    NSString *name;
    NSString *url;
-   NSString *due;
+   NSDate   *due;
    NSString *completed;
    NSNumber *priority;
    NSNumber *postponed;
@@ -29,7 +29,7 @@
 @property (nonatomic, retain) NSNumber *iD;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *url;
-@property (nonatomic, retain) NSString *due;
+@property (nonatomic, retain) NSDate   *due;
 @property (nonatomic, retain) NSString *completed;
 @property (nonatomic, retain) NSNumber *priority;
 @property (nonatomic, retain) NSNumber *postponed;

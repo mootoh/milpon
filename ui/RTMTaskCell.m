@@ -8,6 +8,7 @@
 
 #import "RTMTaskCell.h"
 #import "RTMTask.h"
+#import "MilponHelper.h"
 
 @implementation RTMTaskCell
 
@@ -92,11 +93,11 @@ static NSArray *s_priorityColors;
    CGContextAddLineToPoint(context, 8.0, self.frame.size.height);
    CGContextStrokePath(context);
 
-   if ([task.due isEqualToString:@""]) {
+   if (task.due == [MilponHelper sharedHelper].invalidDate) {
       //dueLabel.hidden = YES;
    } else {
       //dueLabel.hidden = NO;
-
+#if 0
       NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
       [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
       //[formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
@@ -105,7 +106,10 @@ static NSArray *s_priorityColors;
       NSCalendar *calendar = [NSCalendar currentCalendar];
       unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
       NSDate *due_date = [formatter dateFromString:task.due];
-      NSDateComponents *comps = [calendar components:unitFlags fromDate:due_date];    
+#endif // 0
+      NSCalendar *calendar = [NSCalendar currentCalendar];
+      unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+      NSDateComponents *comps = [calendar components:unitFlags fromDate:task.due];
 
       NSString *due = [NSString stringWithFormat:@"%d/%d", [comps month], [comps day]];
       //dueLabel.text = due;
