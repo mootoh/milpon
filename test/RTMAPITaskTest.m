@@ -52,7 +52,6 @@
    STAssertTrue([[api_task getListForList:@"977050"] count] > 0, @"tasks in Inbox should be one or more.");
 }
 
-#if 0
 - (void) testGetListWithLastSync
 {
    RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
@@ -66,7 +65,7 @@
 
    NSArray *tasks = [api_task getListWithLastSync:last_sync];
    STAssertNotNil(tasks, @"task getListWithLastSync should not be nil");		
-   STAssertTrue([tasks count] == 0, @"tasks should be zero");
+   //STAssertTrue([tasks count] == 0, @"tasks should be zero");
 }
 
 - (void) testAdd_and_Delete
@@ -88,5 +87,5 @@
 
    STAssertTrue([api_task delete:[ids valueForKey:@"task_id"] inTaskSeries:[ids valueForKey:@"task_series_id"] inList:[ids valueForKey:@"list_id"]], @"check delete");
 }
-#endif // 0
+
 @end

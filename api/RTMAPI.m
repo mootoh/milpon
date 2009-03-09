@@ -66,7 +66,7 @@ static NSString *s_token;
          reason:[NSString stringWithFormat:@"Failed to copy xml file with message '%@', from=%@, to=%@.", [error localizedDescription], path, db_path]
          userInfo:nil] raise];
 
-   NSLog(@"path = %@", path);
+   NSLog(@"resultXMLPath = %@", path);
    return path;
 }
 #endif // LOCAL_DEBUG
