@@ -68,6 +68,21 @@
    //STAssertTrue([tasks count] == 0, @"tasks should be zero");
 }
 
+- (void) testTags
+{
+   RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
+   NSArray *tasks = [api_task getList];
+   BOOL tag_found = NO;
+   for (NSDictionary *taskseries in tasks) { // iterate in taskseries
+      NSArray *tags = [taskseries objectForKey:@"tags"];
+      if (tags) {
+         tag_found = YES;
+         break;
+      }
+   }
+   STAssertTrue(tag_found, @"at least one tag should be found.");
+}
+
 - (void) testAdd_and_Delete
 {
    RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
