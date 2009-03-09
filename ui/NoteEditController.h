@@ -10,7 +10,8 @@
 
 @class AddTaskViewController;
 
-@interface NoteEditController : UIViewController {
+@interface NoteEditController : UIViewController
+{
    IBOutlet UITextView *note_view;
    AddTaskViewController *parent;
    NSString *note;

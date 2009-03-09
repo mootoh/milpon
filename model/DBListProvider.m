@@ -125,7 +125,7 @@
 }
 
 - (NSString *)nameForListID:(NSNumber *)list_id {
-   for (RTMList *lst in lists_) {
+   for (RTMList *lst in [self lists]) {
       if ([lst.iD isEqualToNumber:list_id])
          return lst.name;
    }

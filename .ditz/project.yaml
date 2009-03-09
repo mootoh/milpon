@@ -23,3 +23,12 @@ releases:
     - mootoh <mootoh@gmail.com>
     - created
     - more user-friendly view for adding a task.
+- !ditz.rubyforge.org,2008-03-06/release 
+  name: new ui
+  status: :unreleased
+  release_time: 
+  log_events: 
+  - - 2009-03-09 01:10:27.308850 Z
+    - mootoh <mootoh@gmail.com>
+    - created
+    - UI renewal
