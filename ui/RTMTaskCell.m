@@ -162,18 +162,17 @@ static NSArray *s_check_box_images;
 
 - (IBAction) toggle
 {
-   if ([task is_completed]) {
+   if ([task is_completed])
       [task uncomplete];
-   } else {
+   else
       [task complete];
-   }
    [self setNeedsDisplay];
 }
 
 - (void) renderWithStatus
 {
    if ([task is_completed]) {
-      [completeButton setImage:[UIImage imageNamed:@"checkBoxChecked.png"] forState:UIControlStateNormal]; 
+      [completeButton setImage:[[RTMTaskCell check_box_images] objectAtIndex:1] forState:UIControlStateNormal]; 
 
       CGContextRef context = UIGraphicsGetCurrentContext();
       CGContextSetRGBStrokeColor(context, 0.941, 0.464, 0.460, 1.0);
@@ -181,14 +180,8 @@ static NSArray *s_check_box_images;
       CGContextMoveToPoint(context, 42.0, 22.0);
       CGContextAddLineToPoint(context, 42+212, 22.0);
       CGContextStrokePath(context);
-
-      //self.backgroundColor = [UIColor grayColor];
-      //nameLabel.textColor = [UIColor grayColor];
-
    } else {
-      [completeButton setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
-      //self.backgroundColor = [UIColor whiteColor];
-      //nameLabel.textColor = self.selected ?  [UIColor whiteColor] : [UIColor blackColor];
+      [completeButton setImage:[[RTMTaskCell check_box_images] objectAtIndex:0] forState:UIControlStateNormal];
    }
 }
 
