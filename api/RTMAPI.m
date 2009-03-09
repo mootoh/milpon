@@ -41,8 +41,42 @@ static NSString *s_token;
    [super dealloc];
 }
 
+#ifdef LOCAL_DEBUG
+- (NSString *)resultXMLPath:(NSString *)method
+{
+   NSString *filename = [method stringByAppendingFormat:@".xml"];
+   NSFileManager *fm = [NSFileManager defaultManager];
+   NSString *doc_dir = @"/tmp";
+   NSString *db_path = [doc_dir stringByAppendingPathComponent:filename];
+
+   NSError *error;
+   if ([fm fileExistsAtPath:db_path] && ! [fm removeItemAtPath:db_path error:&error]) {
+      [[NSException
+         exceptionWithName:@"file exception"
+         reason:[NSString stringWithFormat:@"Failed to remove existing xml file with message '%@' path=%@.", [error localizedDescription], db_path]
+         userInfo:nil] raise];
+   }
+
+   // path
+   NSString *path = [[fm currentDirectoryPath] stringByAppendingPathComponent:
+      [NSString stringWithFormat:@"/sample/%@", filename]];
+   if (! [fm copyItemAtPath:path toPath:db_path error:&error])
+      [[NSException
+         exceptionWithName:@"file exception"
+         reason:[NSString stringWithFormat:@"Failed to copy xml file with message '%@', from=%@, to=%@.", [error localizedDescription], path, db_path]
+         userInfo:nil] raise];
+
+   NSLog(@"path = %@", path);
+   return path;
+}
+#endif // LOCAL_DEBUG
+
 - (NSData *) call:(NSString *)method withArgs:(NSDictionary *)args
 {
+#ifdef LOCAL_DEBUG
+   NSString *path = [self resultXMLPath:method];
+   return [NSData dataWithContentsOfFile:path];
+#else // LOCAL_DEBUG
    sleep(1);
    NSString *url = [self path:method withArgs:args];
    NSURLRequest *req = [NSURLRequest
@@ -70,8 +104,8 @@ static NSString *s_token;
       NSLog(@"method=%@, response=%@", method, [[[NSString alloc] initWithData:ret encoding:NSUTF8StringEncoding] autorelease]);
    }
 #endif // DUMP_API_RESPONSE
-
    return ret;
+#endif // LOCAL_DEBUG
 }
 
 - (NSString *) path:(NSString *)method withArgs:(NSDictionary *)args
@@ -148,8 +182,16 @@ static NSString *s_token;
    return ret;
 }
 
+#ifdef LOCAL_DEBUG
+const static NSString *s_fake_timeline = @"fake timeline";
+#endif // LOCAL_DEBUG
+
 - (NSString *) createTimeline
 {
+#ifdef LOCAL_DEBUG
+   return (NSString *)s_fake_timeline;
+#endif // LOCAL_DEBUG
+
    NSData *response = [self call:@"rtm.timelines.create" withArgs:nil];
    if (! response) return nil;
 

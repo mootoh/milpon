@@ -168,14 +168,12 @@
 
 - (NSArray *) getList_internal:(NSDictionary *)args
 {
-#ifdef LOCAL_DEBUG
-   NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"rtm.tasks.getList.xml"];
-   NSData *response = [NSData dataWithContentsOfFile:path];
-#else // LOCAL_DEBUG
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSData *response = [api call:@"rtm.tasks.getList" withArgs:args];
-#endif // LOCAL_DEBUG
-   if (! response) return nil;
+   if (! response) {
+      NSLog(@"failed");
+      return nil;
+   }
 
    method = TASKS_GETLIST;
    NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
@@ -220,6 +218,10 @@
    NSString *timeline = [api createTimeline];
    if (! timeline) return nil;
 
+#ifdef LOCAL_DEBUG
+   NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"rtm.tasks.add.xml"];
+   NSData *response = [NSData dataWithContentsOfFile:path];
+#else // LOCAL_DEBUG
    NSArray *keys = [NSArray arrayWithObjects:@"name", @"timeline", nil];
    NSArray *vals = [NSArray arrayWithObjects:name, timeline, nil];
    NSMutableDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
@@ -227,6 +229,7 @@
       [args setObject:list_id forKey:@"list_id"];
 
    NSData *response = [api call:@"rtm.tasks.add" withArgs:args];
+#endif // LOCAL_DEBUG
    if (! response) return nil;
 
    NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];

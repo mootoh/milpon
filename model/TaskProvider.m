@@ -28,12 +28,33 @@
    return nil;
 }
 
+- (NSArray *) existingTasks;
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
+- (void) createAtOffline:(NSDictionary *)params;
+{
+   NSAssert(NO, @"not reach here");
+}
+
 - (void) sync
 {
    NSAssert(NO, @"not reach here");
 }
 
 - (void) complete:(RTMTask *)task
+{
+   NSAssert(NO, @"not reach here");
+}
+
+- (void) uncomplete:(RTMTask *)task;
+{
+   NSAssert(NO, @"not reach here");
+}
+
+- (void) remove:(RTMTask *) task;
 {
    NSAssert(NO, @"not reach here");
 }

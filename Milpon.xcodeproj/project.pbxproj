@@ -11,10 +11,8 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		B914B2D00F5E7D5F009C19BE /* RTMListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDD0F565DE000473A95 /* RTMListTest.m */; };
 		B914B2D70F5E7D6E009C19BE /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
 		B914B30F0F5EBAC6009C19BE /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
-		B914B3350F5EBCF6009C19BE /* ListProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */; };
 		B914B33C0F5EBDA6009C19BE /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B914B3410F5EBDA6009C19BE /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
 		B914B3430F5EBDA6009C19BE /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
@@ -138,6 +136,26 @@
 		B985AB840F6108A8004A1B54 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9B77F920F56A18600BF0EF3 /* DueDateSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */; };
 		B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		B9B9561E0F65D15E0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
+		B9B956210F65D17C0046712A /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
+		B9B956230F65D1990046712A /* RTMAPITaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */; };
+		B9B9562D0F65D1FC0046712A /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPITask.m */; };
+		B9B9562E0F65D1FF0046712A /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
+		B9B956300F65D2130046712A /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1B0F565D4C00473A95 /* RTMAuth.m */; };
+		B9B956320F65D21E0046712A /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
+		B9B956430F65D2720046712A /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
+		B9B956450F65D2720046712A /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
+		B9B956460F65D2720046712A /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
+		B9B956470F65D2720046712A /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
+		B9B956480F65D2720046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
+		B9B956490F65D2720046712A /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
+		B9B9564A0F65D2720046712A /* RTMAPITaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */; };
+		B9B9564B0F65D2720046712A /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPITask.m */; };
+		B9B9564C0F65D2720046712A /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
+		B9B9564D0F65D2720046712A /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1B0F565D4C00473A95 /* RTMAuth.m */; };
+		B9B9564E0F65D2720046712A /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
+		B9B956500F65D2720046712A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		B9B956510F65D2720046712A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9C648930F610B3100A47F4F /* ScaffoldMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */; };
 		B9C648980F610B6600A47F4F /* ScaffoldAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */; };
 		B9D043180F5F477400641E61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -327,6 +345,8 @@
 		B985AB8B0F6108A8004A1B54 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = SOURCE_ROOT; };
 		B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DueDateSelect.xib; sourceTree = "<group>"; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9B956560F65D2720046712A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "APILocalTest-Info.plist"; path = "../APILocalTest-Info.plist"; sourceTree = "<group>"; };
 		B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScaffoldMainWindow.xib; path = scaffold/ScaffoldMainWindow.xib; sourceTree = "<group>"; };
 		B9C648960F610B6600A47F4F /* ScaffoldAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldAppDelegate.h; path = scaffold/ScaffoldAppDelegate.h; sourceTree = "<group>"; };
 		B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldAppDelegate.m; path = scaffold/ScaffoldAppDelegate.m; sourceTree = "<group>"; };
@@ -390,6 +410,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9B9564F0F65D2720046712A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9B956500F65D2720046712A /* Foundation.framework in Frameworks */,
+				B9B956510F65D2720046712A /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9D043170F5F477400641E61 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,6 +439,7 @@
 				B914B34D0F5EBDA6009C19BE /* UnitTest.octest */,
 				B9D0431E0F5F477400641E61 /* UnitTest.octest */,
 				B985AB890F6108A8004A1B54 /* Scaffold.app */,
+				B9B956560F65D2720046712A /* UnitTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -567,6 +597,7 @@
 		B9160F430F565D9300473A95 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */,
 				B9160F010F565D3C00473A95 /* db */,
 				B95C5C160F598F9C00A368DC /* icons */,
 				B9160F650F565D9300473A95 /* MilponIconSmall.png */,
@@ -808,6 +839,24 @@
 			productReference = B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		B9B956410F65D2720046712A /* APILocalTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9B956530F65D2720046712A /* Build configuration list for PBXNativeTarget "APILocalTest" */;
+			buildPhases = (
+				B9B956420F65D2720046712A /* Resources */,
+				B9B956440F65D2720046712A /* Sources */,
+				B9B9564F0F65D2720046712A /* Frameworks */,
+				B9B956520F65D2720046712A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = APILocalTest;
+			productName = UnitTest;
+			productReference = B9B956560F65D2720046712A /* UnitTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		B9D0430E0F5F477400641E61 /* TaskUnitTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9D0431B0F5F477400641E61 /* Build configuration list for PBXNativeTarget "TaskUnitTest" */;
@@ -843,6 +892,7 @@
 				B914B33A0F5EBDA6009C19BE /* ListUnitTest */,
 				B9D0430E0F5F477400641E61 /* TaskUnitTest */,
 				B985AB280F6108A8004A1B54 /* Scaffold */,
+				B9B956410F65D2720046712A /* APILocalTest */,
 			);
 		};
 /* End PBXProject section */
@@ -917,6 +967,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9B956420F65D2720046712A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9B956430F65D2720046712A /* rtm.sql in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9D0430F0F5F477400641E61 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -941,6 +999,19 @@
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		B9B77FAB0F56A31400BF0EF3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		B9B956520F65D2720046712A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1070,10 +1141,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				B971DBDE0F5CCA3000513D03 /* LocalCache.m in Sources */,
-				B914B2D00F5E7D5F009C19BE /* RTMListTest.m in Sources */,
 				B914B2D70F5E7D6E009C19BE /* RTMList.m in Sources */,
 				B914B30F0F5EBAC6009C19BE /* ListProvider.m in Sources */,
-				B914B3350F5EBCF6009C19BE /* ListProviderTest.m in Sources */,
+				B9B9561E0F65D15E0046712A /* MilponHelper.m in Sources */,
+				B9B956210F65D17C0046712A /* TaskProvider.m in Sources */,
+				B9B956230F65D1990046712A /* RTMAPITaskTest.m in Sources */,
+				B9B9562D0F65D1FC0046712A /* RTMAPITask.m in Sources */,
+				B9B9562E0F65D1FF0046712A /* RTMAPI.m in Sources */,
+				B9B956300F65D2130046712A /* RTMAuth.m in Sources */,
+				B9B956320F65D21E0046712A /* RTMAPIXMLParserCallback.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9B956440F65D2720046712A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9B956450F65D2720046712A /* LocalCache.m in Sources */,
+				B9B956460F65D2720046712A /* RTMList.m in Sources */,
+				B9B956470F65D2720046712A /* ListProvider.m in Sources */,
+				B9B956480F65D2720046712A /* MilponHelper.m in Sources */,
+				B9B956490F65D2720046712A /* TaskProvider.m in Sources */,
+				B9B9564A0F65D2720046712A /* RTMAPITaskTest.m in Sources */,
+				B9B9564B0F65D2720046712A /* RTMAPITask.m in Sources */,
+				B9B9564C0F65D2720046712A /* RTMAPI.m in Sources */,
+				B9B9564D0F65D2720046712A /* RTMAuth.m in Sources */,
+				B9B9564E0F65D2720046712A /* RTMAPIXMLParserCallback.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1270,6 +1363,67 @@
 			};
 			name = Release;
 		};
+		B9B956540F65D2720046712A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					LOCAL_DEBUG,
+					UNIT_TEST,
+				);
+				INFOPLIST_FILE = "APILocalTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		B9B956550F65D2720046712A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "APILocalTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		B9D0431C0F5F477400641E61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1393,6 +1547,15 @@
 			buildConfigurations = (
 				B9B77FAF0F56A31500BF0EF3 /* Debug */,
 				B9B77FB00F56A31500BF0EF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9B956530F65D2720046712A /* Build configuration list for PBXNativeTarget "APILocalTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9B956540F65D2720046712A /* Debug */,
+				B9B956550F65D2720046712A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

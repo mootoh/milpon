@@ -48,7 +48,7 @@ static MilponHelper *the_milpon_helper;
 
 - (NSDate *) stringToDate:(NSString *) str
 {
-   NSString *ret = [the_formatter dateFromString:str];
+   NSDate *ret = [the_formatter dateFromString:str];
    return ret;
 }
 
