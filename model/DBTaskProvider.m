@@ -103,6 +103,14 @@
    [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"where id=%d", [task.iD intValue]]];
 }
 
+- (void) uncomplete:(RTMTask *)task
+{
+   [task flagUpEditBits:EB_TASK_COMPLETED];
+
+   NSDictionary *dict = [NSDictionary dictionaryWithObject:@"" forKey:@"completed"];
+   [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"where id=%d", [task.iD intValue]]];
+}
+
 - (void) createAtOffline:(NSDictionary *)params
 {
    NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:params];

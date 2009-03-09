@@ -31,30 +31,11 @@
    self.completed = @"1";
 }
 
-#if 0
 - (void) uncomplete
 {
-   [self flagUpEditBits:EB_TASK_COMPLETED];
-
-   sqlite3_stmt *stmt = nil;
-   const char *sql = "UPDATE task SET completed=? where id=?";
-   if (sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
-      return;
-   }
-
-   sqlite3_bind_text(stmt, 1, "", -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt, 2, [iD intValue]);
-
-   if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      NSLog(@"update 'completed' to DB failed.");
-      return;
-   }
-
-   sqlite3_finalize(stmt);
+   [[TaskProvider sharedTaskProvider] uncomplete:self];
    self.completed = @"";
 }
-#endif // 0
 
 - (BOOL) is_completed
 {

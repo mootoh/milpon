@@ -15,6 +15,7 @@
 @synthesize task;
 
 static NSArray *s_priorityColors;
+static NSArray *s_check_box_images;
 
 + (NSArray *)priorityColors
 {
@@ -27,6 +28,18 @@ static NSArray *s_priorityColors;
       [s_priorityColors retain];
    }
    return s_priorityColors;
+}
+
++ (NSArray *) check_box_images
+{
+   if (nil == s_check_box_images) {
+      s_check_box_images = [NSArray arrayWithObjects:
+         [UIImage imageNamed:@"checkBox.png"],
+         [UIImage imageNamed:@"checkBoxChecked.png"],
+         nil];
+      [s_check_box_images retain];
+   }
+   return s_check_box_images;
 }
 
 - (void) prepareForReuse
@@ -42,9 +55,10 @@ static NSArray *s_priorityColors;
       //self.backgroundColor = [UIColor whiteColor];
       self.userInteractionEnabled = YES;
 
-      completeButton = [[UIButton alloc] initWithFrame:CGRectMake(14, 10, 24, 24)];
-      [completeButton setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
-      [completeButton setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateHighlighted];
+      completeButton = [[UIButton alloc] initWithFrame:CGRectMake(8, 1, 42, 42)];
+      [completeButton setImage:[[RTMTaskCell check_box_images] objectAtIndex:0] forState:UIControlStateNormal];
+      [completeButton setImage:[[RTMTaskCell check_box_images] objectAtIndex:0] forState:UIControlStateHighlighted];
+      completeButton.opaque = YES;
       [completeButton addTarget:self action:@selector(toggle) forControlEvents:UIControlEventTouchDown];  
       [self.contentView addSubview:completeButton];
    }
@@ -66,7 +80,7 @@ static NSArray *s_priorityColors;
    CGContextSetFillColorWithColor(context, textColor);
 
    //[task.name drawInRect:CGRectMake(0, 2, 212, 100)
-   [task.name drawInRect:CGRectMake(42, 14, 212, 14)
+   [task.name drawInRect:CGRectMake(52, 14, 202, 14)
       withFont:[UIFont systemFontOfSize:14]
       lineBreakMode:UILineBreakModeTailTruncation];
 
@@ -89,8 +103,8 @@ static NSArray *s_priorityColors;
    CGContextSetLineWidth(context, 8.0);
 
    // Draw a single line from left to right
-   CGContextMoveToPoint(context, 8.0, 0.0);
-   CGContextAddLineToPoint(context, 8.0, self.frame.size.height);
+   CGContextMoveToPoint(context, 4.0f, 0.0);
+   CGContextAddLineToPoint(context, 4.0f, self.frame.size.height);
    CGContextStrokePath(context);
 
    if (task.due == [MilponHelper sharedHelper].invalidDate) {

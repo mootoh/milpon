@@ -21,6 +21,7 @@
 - (void) createAtOffline:(NSDictionary *)params;
 - (void) sync;
 - (void) complete:(RTMTask *)task;
+- (void) uncomplete:(RTMTask *)task;
 - (void) remove:(RTMTask *) task;
 
 // TODO: lastSync should be moved to somewhere not here.
