@@ -352,8 +352,10 @@ static LocalCache *s_local_cache = nil;
       NSError *error;
       NSString *mig = [NSString stringWithContentsOfFile:mig_path encoding:NSUTF8StringEncoding error:&error];
       if (! mig) {
-         NSAssert2(0, @"failed to read migration file: %@, error=%@", mig_path, [error localizedDescription]);
-         return;
+         [[NSException
+            exceptionWithName:@"LocalCacheException"
+            reason:[NSString stringWithFormat:@"failed to read migration file: %@, error=%@", mig_path, [error localizedDescription]]
+            userInfo:nil] raise];
       }
       for (NSString *sql in [self splitSQLs:mig]) {
          NSString *version = [[mig_path componentsSeparatedByString:@"_"] objectAtIndex:1];
@@ -365,8 +367,10 @@ static LocalCache *s_local_cache = nil;
       }
 
       if (! [[NSFileManager defaultManager] removeItemAtPath:mig_path error:&error]) {
-         NSAssert1(0, @"Failed to remove used migration: %@", mig_path);
-         return;
+         [[NSException
+            exceptionWithName:@"LocalCacheException"
+            reason:[NSString stringWithFormat:@"Failed to remove used migration: %@, error=%@", mig_path, [error localizedDescription]]
+            userInfo:nil] raise];
       }
    }
 }
@@ -391,12 +395,16 @@ static LocalCache *s_local_cache = nil;
    sqlite3_stmt *stmt = nil;
    const char *sql = [sql_str UTF8String];
    if (sqlite3_prepare_v2(handle_, sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
-      return;
+      [[NSException
+         exceptionWithName:@"LocalCacheException"
+         reason:[NSString stringWithFormat:@"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_)]
+         userInfo:nil] raise];
    }
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      NSAssert1(0, @"Error: failed to exec sql with message '%s'.", sqlite3_errmsg(handle_));
-      return;
+      [[NSException
+         exceptionWithName:@"LocalCacheException"
+         reason:[NSString stringWithFormat:@"Error: failed to exec sql with message '%s'.", sqlite3_errmsg(handle_)]
+         userInfo:nil] raise];
    }
    sqlite3_finalize(stmt);
 }
@@ -411,12 +419,16 @@ static LocalCache *s_local_cache = nil;
    sqlite3_stmt *stmt = nil;
    const char *sql = "select version from migrate_version";
    if (sqlite3_prepare_v2(handle_, sql, -1, &stmt, NULL) != SQLITE_OK) {
-      NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_));
-      return - 1;
+      [[NSException
+         exceptionWithName:@"LocalCacheException"
+         reason:[NSString stringWithFormat:@"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_)]
+         userInfo:nil] raise];
    }
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      NSAssert1(0, @"Error: failed to exec sql with message '%s'.", sqlite3_errmsg(handle_));
-      return -1;
+      [[NSException
+         exceptionWithName:@"LocalCacheException"
+         reason:[NSString stringWithFormat:@"Error: failed to exec sql with message '%s'.", sqlite3_errmsg(handle_)]
+         userInfo:nil] raise];
    }
 
    int ret = sqlite3_column_int(stmt, 0);
