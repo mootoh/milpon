@@ -112,11 +112,11 @@
 - (NSArray *) tasksInTag:(RTMTag *)tag
 {
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
-   NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"task.task_series_id=task_tag.task_series_id", nil];
+   NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"task.id=task_tag.task_series_id OR task.task_series_id=task_tag.task_series_id", nil]; // TODO: fix this
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", @"JOIN", @"GROUP", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [NSString stringWithFormat:@"task_tag.tag_id=%d", [tag.iD intValue]],
-      [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
+      [NSString stringWithFormat:@"task.priority=0 ASC, task.priority ASC, task.due IS NULL ASC, task.due ASC"],
       [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys],
       @"task_tag.task_series_id",
       nil];
