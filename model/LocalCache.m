@@ -130,6 +130,8 @@
          val = [(NSNumber *)v stringValue];
       } else if ([v isKindOfClass:[NSDate class]]) {
          val = [NSString stringWithFormat:@"'%@'", [[MilponHelper sharedHelper] dateToString:v]];
+      } else if ([v isKindOfClass:[NSArray class]]) {
+         // fall through
       } else {
          [[NSException
            exceptionWithName:@"LocalCacheException"
@@ -164,7 +166,8 @@
       } else if ([v isKindOfClass:[NSDate class]]) {
          v = [[MilponHelper sharedHelper] dateToString:v];
          sqlite3_bind_text(stmt, i, [(NSString *)v UTF8String], -1, SQLITE_TRANSIENT);
-
+      } else if ([v isKindOfClass:[NSArray class]]) {
+         // fall through
       } else {
          [[NSException
            exceptionWithName:@"LocalCacheException"

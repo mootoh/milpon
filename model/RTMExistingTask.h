@@ -13,7 +13,7 @@
 
 @interface RTMExistingTask : RTMTask
 {
-   NSNumber *task_series_id;
+   //NSNumber *task_series_id;
 }
 
 @property (nonatomic, retain) NSNumber *task_series_id;

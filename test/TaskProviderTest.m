@@ -25,21 +25,25 @@
 {
    TaskProvider *tp = [TaskProvider sharedTaskProvider];
    NSArray *tasks = [tp tasks];
-   STAssertEquals(tasks.count, 2U, @"should have some list elements.");
+   STAssertEquals(tasks.count, 1U, @"should have some list elements.");
 
    RTMTask *first_task = [tasks objectAtIndex:0];
 
-   STAssertEquals([first_task.iD intValue], 0, @"check attr");
+   STAssertEquals([first_task.iD intValue], 1, @"check attr");
    STAssertTrue([first_task.name isEqualToString:@"task one"], @"check attr");
    STAssertTrue([first_task.url isEqualToString:@"http://localhost/"], @"check attr");
-   STAssertTrue([first_task.due isEqualToString:@"20090331"], @"check attr");
+   //STAssertTrue([first_task.due isEqualToDate:@"20090331"], @"check attr");
    STAssertEquals([first_task.priority intValue], 1, @"check attr");
    STAssertEquals([first_task.postponed intValue], 3, @"check attr");
    STAssertTrue([first_task.estimate isEqualToString:@"30m"], @"check attr");
-   STAssertTrue([first_task.rrule isEqualToString:@"every month"], @"check attr");
+   STAssertTrue([first_task.rrule isEqualToString:@""], @"check attr");
    STAssertEquals([first_task.list_id intValue], 1, @"check attr");
    STAssertEquals([first_task.location_id intValue], 1, @"check attr");
-   STAssertEquals([first_task.edit_bits intValue], 7, @"check attr");
+   STAssertEquals([first_task.edit_bits intValue], 0, @"check attr");
+
+   STAssertTrue(first_task.tags.count > 0, @"check tags");
+   for (NSString *tag in first_task.tags)
+      NSLog(@"tag : %@", tag);
 }
 
 - (void) testTasksInList

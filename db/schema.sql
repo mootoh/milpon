@@ -43,7 +43,7 @@ CREATE TABLE note (
 
 CREATE TABLE tag (
   'id'             INTEGER PRIMARY KEY,
-  'name'           TEXT
+  'name'           TEXT,
   'task_series_id' INTEGER
 );
 

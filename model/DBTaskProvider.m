@@ -18,7 +18,6 @@
    if (self = [super init]) {
       local_cache_ = [LocalCache sharedLocalCache];
       dirty_ = NO;
-      //tasks_ = [self tasks];
    }
    return self;
 }
@@ -48,6 +47,16 @@
 
    for (NSDictionary *dict in task_arr) {
       RTMTask *task = [[[RTMTask alloc] initByParams:dict] autorelease];
+
+      // collect tags
+      NSDictionary *tag_dict = [NSDictionary dictionaryWithObject:[NSString class] forKey:@"name"];
+      NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_series_id=%d", [task.task_series_id intValue]] forKey:@"WHERE"];
+      NSArray *tags_dict = [local_cache_ select:tag_dict from:@"tag" option:where];
+      NSMutableArray *tags = [NSMutableArray array];
+      for (NSDictionary *tag in tags_dict)
+         [tags addObject:[tag objectForKey:@"name"]];
+      task.tags = tags;
+
       [tasks addObject:task];
    }
 
@@ -115,6 +124,16 @@
 {
    NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:params];
    NSNumber *edit_bits = [NSNumber numberWithInt:EB_CREATED_OFFLINE];
+   [attrs setObject:edit_bits forKey:@"edit_bits"];
+
+   [local_cache_ insert:attrs into:@"task"];
+   dirty_ = YES;
+}
+
+- (void) createAtOnline:(NSDictionary *)params
+{
+   NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:params];
+   NSNumber *edit_bits = [NSNumber numberWithInt:0];
    [attrs setObject:edit_bits forKey:@"edit_bits"];
 
    [local_cache_ insert:attrs into:@"task"];

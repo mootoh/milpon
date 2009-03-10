@@ -156,6 +156,7 @@
 		B9B9564E0F65D2720046712A /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
 		B9B956500F65D2720046712A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9B956510F65D2720046712A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
+		B9B956E00F6609FA0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9C648930F610B3100A47F4F /* ScaffoldMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */; };
 		B9C648980F610B6600A47F4F /* ScaffoldAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */; };
 		B9D043180F5F477400641E61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -1185,6 +1186,7 @@
 				B970A7EC0F637D71004467E9 /* RTMAPIList.m in Sources */,
 				B970A7EF0F637D82004467E9 /* RTMAPIXMLParserCallback.m in Sources */,
 				B970A7F00F637D84004467E9 /* RTMAPI.m in Sources */,
+				B9B956E00F6609FA0046712A /* MilponHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1437,7 +1439,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = UNIT_TEST;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					UNIT_TEST,
+				);
 				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/TaskUnitTest-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (

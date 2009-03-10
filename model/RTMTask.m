@@ -4,23 +4,24 @@
 
 @implementation RTMTask
 
-@synthesize iD, name, url, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits, priority, due, edit_bits;
+@synthesize iD, name, url, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits, priority, due, task_series_id, edit_bits;
 
 - (id) initByParams:(NSDictionary *)params
 {
    if (self = [super init]) {
-      self.iD           = [params valueForKey:@"id"];
-      self.name         = [params valueForKey:@"name"];
-      self.url          = [params valueForKey:@"url"];
-      self.due          = [params valueForKey:@"due"];
-      self.location_id  = [params valueForKey:@"location_id"];
-      self.completed    = [params valueForKey:@"completed"];
-      self.priority     = [params valueForKey:@"priority"];
-      self.postponed    = [params valueForKey:@"postponed"];
-      self.estimate     = [params valueForKey:@"estimate"];
-      self.list_id      = [params valueForKey:@"list_id"];
-      self.edit_bits    = [params valueForKey:@"edit_bits"];
-      self.rrule        = [params valueForKey:@"rrule"];
+      self.iD              = [params valueForKey:@"id"];
+      self.name            = [params valueForKey:@"name"];
+      self.url             = [params valueForKey:@"url"];
+      self.due             = [params valueForKey:@"due"];
+      self.completed       = [params valueForKey:@"completed"];
+      self.priority        = [params valueForKey:@"priority"];
+      self.postponed       = [params valueForKey:@"postponed"];
+      self.estimate        = [params valueForKey:@"estimate"];
+      self.rrule           = [params valueForKey:@"rrule"];
+      self.location_id     = [params valueForKey:@"location_id"];
+      self.list_id         = [params valueForKey:@"list_id"];
+      self.task_series_id  = [params valueForKey:@"task_series_id"];
+      self.edit_bits       = [params valueForKey:@"edit_bits"];
    }
    return self;
 }
