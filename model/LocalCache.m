@@ -64,13 +64,22 @@
 
    NSString *sql = [NSString stringWithFormat:@"SELECT %@ FROM %@", keys, table];
 
-   for (NSString *opt in option) {
-      if ([opt isEqualToString:@"where"]) {
-         sql = [sql stringByAppendingFormat:@" WHERE %@", [option valueForKey:opt]];
-      } else if ([opt isEqualToString:@"order"]) {
-         sql = [sql stringByAppendingFormat:@" ORDER BY %@", [option valueForKey:opt]];
-      }
-   }
+   NSDictionary *join = [option objectForKey:@"JOIN"];
+   if (join)
+      sql = [sql stringByAppendingFormat:@" JOIN %@ ON %@ ",
+         [join objectForKey:@"table"], [join objectForKey:@"condition"]];
+
+   NSString *where = [option objectForKey:@"WHERE"];
+   if (where)
+      sql = [sql stringByAppendingFormat:@" WHERE %@", where];
+
+   NSString *group = [option objectForKey:@"GROUP"];
+   if (group)
+      sql = [sql stringByAppendingFormat:@" GROUP BY %@", group];
+
+   NSString *order = [option objectForKey:@"ORDER"];
+   if (order)
+      sql = [sql stringByAppendingFormat:@" ORDER BY %@", order];
 
    LOG(@"SQL SELECT: %@", sql);
 

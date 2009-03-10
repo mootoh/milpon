@@ -31,7 +31,7 @@
    [super dealloc];
 }
 
-- (NSArray *)tasks
+- (NSArray *) tasks
 {
    return [[TaskProvider sharedTaskProvider] tasksInList:self];
 }

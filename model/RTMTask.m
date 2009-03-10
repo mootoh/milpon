@@ -9,8 +9,8 @@
 - (id) initByParams:(NSDictionary *)params
 {
    if (self = [super init]) {
-      self.iD              = [params valueForKey:@"id"];
-      self.name            = [params valueForKey:@"name"];
+      self.iD              = [params valueForKey:@"task.id"];
+      self.name            = [params valueForKey:@"task.name"];
       self.url             = [params valueForKey:@"url"];
       self.due             = [params valueForKey:@"due"];
       self.completed       = [params valueForKey:@"completed"];
@@ -20,7 +20,7 @@
       self.rrule           = [params valueForKey:@"rrule"];
       self.location_id     = [params valueForKey:@"location_id"];
       self.list_id         = [params valueForKey:@"list_id"];
-      self.task_series_id  = [params valueForKey:@"task_series_id"];
+      self.task_series_id  = [params valueForKey:@"task.task_series_id"];
       self.edit_bits       = [params valueForKey:@"edit_bits"];
    }
    return self;

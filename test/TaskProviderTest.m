@@ -10,6 +10,7 @@
 #import "TaskProvider.h"
 #import "RTMTask.h"
 #import "RTMList.h"
+#import "RTMTag.h"
 
 @interface TaskProviderTest : SenTestCase; @end
 
@@ -51,6 +52,14 @@
    TaskProvider *tp = [TaskProvider sharedTaskProvider];
    RTMList *list = [[RTMList alloc] initWithID:[NSNumber numberWithInt:1] forName:@"list"];
    NSArray *tasks = [tp tasksInList:list];
+   STAssertEquals(tasks.count, 1U, @"should have some list elements.");
+}
+
+- (void) testTasksInTags
+{
+   TaskProvider *tp = [TaskProvider sharedTaskProvider];
+   RTMTag *tag = [[RTMTag alloc] initWithID:[NSNumber numberWithInt:1] forName:@"tag"];
+   NSArray *tasks = [tp tasksInTag:tag];
    STAssertEquals(tasks.count, 1U, @"should have some list elements.");
 }
 

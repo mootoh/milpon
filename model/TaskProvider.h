@@ -9,11 +9,13 @@
 
 @class RTMTask;
 @class RTMList;
+@class RTMTag;
 
 @interface TaskProvider : NSObject
 
 - (NSArray *) tasks;
 - (NSArray *) tasksInList:(RTMList *)list;
+- (NSArray *) tasksInTag:(RTMTag *)tag;
 - (NSArray *) modifiedTasks;
 - (NSArray *) existingTasks;
 

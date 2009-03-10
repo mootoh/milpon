@@ -9,6 +9,7 @@
 #import "DBTaskProvider.h"
 #import "RTMTask.h"
 #import "RTMList.h"
+#import "RTMTag.h"
 #import "LocalCache.h"
 
 @implementation DBTaskProvider
@@ -33,9 +34,9 @@
    NSMutableArray *tasks = [NSMutableArray array];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-   NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority",
+   NSArray *keys = [NSArray arrayWithObjects:@"task.id", @"task.name", @"url", @"due", @"priority",
       @"postponed", @"estimate", @"rrule", @"location_id", @"list_id",
-      @"task_series_id", @"edit_bits", nil];
+      @"task.task_series_id", @"edit_bits", nil];
    NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], [NSString class], [NSDate class],
      [NSNumber class], [NSNumber class], [NSString class], [NSString class],
      [NSNumber class], [NSNumber class], [NSNumber class], [NSNumber class], nil];
@@ -76,7 +77,7 @@
 
 - (NSArray *) tasksInList:(RTMList *)list
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"where", @"ORDER", nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [NSString stringWithFormat:@"list_id=%d", [list.iD intValue]],
       [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
@@ -89,6 +90,22 @@
       "ORDER BY priority=0 ASC,priority ASC, due IS NULL ASC, due ASC",
 #endif // 0
 
+   return [self tasks:cond];
+}
+
+- (NSArray *) tasksInTag:(RTMTag *)tag
+{
+   NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
+   NSArray *join_vals = [NSArray arrayWithObjects:@"tag", @"task.task_series_id=tag.task_series_id", nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", @"JOIN", @"GROUP", nil];
+   NSArray *vals = [NSArray arrayWithObjects:
+      [NSString stringWithFormat:@"list_id=%d", [tag.iD intValue]],
+      [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
+      [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys],
+      @"task.id",
+      nil];
+
+   NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    return [self tasks:cond];
 }
 
