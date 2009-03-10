@@ -1,5 +1,5 @@
 //
-//  TagProviderTest.m
+//  ListProviderTest.m
 //  Milpon
 //
 //  Created by mootoh on 2/26/09.
@@ -7,53 +7,53 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "TagProvider.h"
+#import "ListProvider.h"
 
-@interface TagProviderTest : SenTestCase; @end
+@interface ListProviderTest : SenTestCase; @end
 
-@implementation TagProviderTest
+@implementation ListProviderTest
 
 - (void) test00Singleton
 {
-   TagProvider *tp = [TagProvider sharedTagProvider];
-   STAssertNotNil(tp, @"should not be nil");
+   ListProvider *lp = [ListProvider sharedListProvider];
+   STAssertNotNil(lp, @"should not be nil");
 }
 
-- (void) test01Tags
+- (void) test01Lists
 {
-   TagProvider *tp = [TagProvider sharedTagProvider];
-   STAssertTrue(tp.tags.count > 0, @"should have some tag elements.");
+   ListProvider *lp = [ListProvider sharedListProvider];
+   STAssertTrue(lp.lists.count > 0, @"should have some list elements.");
 }
 
 #if 0
 - (void) testSync
 {
-   TagProvider *tp = [TagProvider sharedTagProvider];
-   [tp sync];
+   ListProvider *lp = [ListProvider sharedListProvider];
+   [lp sync];
 }
 #endif // 0
 
 - (void) testErase
 {
-   TagProvider *tp = [TagProvider sharedTagProvider];
-   [tp erase];
-   STAssertEquals(tp.tags.count, 0U, @"tags should be erased to zero.");
+   ListProvider *lp = [ListProvider sharedListProvider];
+   [lp erase];
+   STAssertEquals(lp.lists.count, 0U, @"lists should be erased to zero.");
 }
 
 - (void) testCreate
 {
-   TagProvider *tp = [TagProvider sharedTagProvider];
+   ListProvider *lp = [ListProvider sharedListProvider];
 
-   [tp erase];
-   int before = tp.tags.count;
+   [lp erase];
+   int before = lp.lists.count;
 
-   NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"iD", @"name", nil];
    NSArray *vals = [NSArray arrayWithObjects:[NSNumber numberWithInt:77], @"lucky seven", nil];
    NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   [tp create:params];
+   [lp create:params];
 
-   int after = tp.tags.count;
+   int after = lp.lists.count;
    STAssertEquals(after, before+1, @"1 element should be added");
 }
 @end
