@@ -183,6 +183,7 @@
 		B9B957780F662F380046712A /* TaskProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043370F5F48C800641E61 /* TaskProviderTest.m */; };
 		B9B957B30F6632C30046712A /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
 		B9B957B70F6632DB0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
+		B9B957F70F6636530046712A /* ScaffoldTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957F60F6636530046712A /* ScaffoldTagViewController.m */; };
 		B9C648930F610B3100A47F4F /* ScaffoldMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */; };
 		B9C648980F610B6600A47F4F /* ScaffoldAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */; };
 		B9D043180F5F477400641E61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -381,6 +382,8 @@
 		B9B957530F6617670046712A /* RTMTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMTag.h; sourceTree = "<group>"; };
 		B9B957540F6617670046712A /* RTMTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMTag.m; sourceTree = "<group>"; };
 		B9B957630F662E780046712A /* TagProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagProvider.m; sourceTree = "<group>"; };
+		B9B957F50F6636530046712A /* ScaffoldTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldTagViewController.h; path = scaffold/ScaffoldTagViewController.h; sourceTree = "<group>"; };
+		B9B957F60F6636530046712A /* ScaffoldTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldTagViewController.m; path = scaffold/ScaffoldTagViewController.m; sourceTree = "<group>"; };
 		B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScaffoldMainWindow.xib; path = scaffold/ScaffoldMainWindow.xib; sourceTree = "<group>"; };
 		B9C648960F610B6600A47F4F /* ScaffoldAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldAppDelegate.h; path = scaffold/ScaffoldAppDelegate.h; sourceTree = "<group>"; };
 		B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldAppDelegate.m; path = scaffold/ScaffoldAppDelegate.m; sourceTree = "<group>"; };
@@ -783,6 +786,8 @@
 				B9E6E6F60F611D3900472142 /* ScaffoldTaskViewController.m */,
 				B970A8150F637F71004467E9 /* ScaffoldTaskEditViewController.h */,
 				B970A8160F637F71004467E9 /* ScaffoldTaskEditViewController.m */,
+				B9B957F50F6636530046712A /* ScaffoldTagViewController.h */,
+				B9B957F60F6636530046712A /* ScaffoldTagViewController.m */,
 			);
 			name = scaffold;
 			sourceTree = "<group>";
@@ -1230,6 +1235,7 @@
 				B9B957100F6615880046712A /* DBTagProvider.m in Sources */,
 				B9B957570F6617670046712A /* RTMTag.m in Sources */,
 				B9B957660F662E780046712A /* TagProvider.m in Sources */,
+				B9B957F70F6636530046712A /* ScaffoldTagViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

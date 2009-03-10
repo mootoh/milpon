@@ -1,18 +1,17 @@
 //
-//  ScaffoldTaskEditViewController.m
+//  ScaffoldTagViewController.m
 //  Milpon
 //
-//  Created by mootoh on 3/8/09.
+//  Created by mootoh on 3/10/09.
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
-#import "ScaffoldTaskEditViewController.h"
-#import "RTMTask.h"
-#import "MilponHelper.h"
+#import "ScaffoldTagViewController.h"
+#import "TagProvider.h"
+#import "RTMTag.h"
+#import "logger.h"
 
-@implementation ScaffoldTaskEditViewController
-
-@synthesize task;
+@implementation ScaffoldTagViewController
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -23,14 +22,11 @@
 }
 */
 
-/*
 - (void)viewDidLoad {
-    [super viewDidLoad];
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+   [super viewDidLoad];
+   editing_ = NO;
+   tp = [[TagProvider sharedTagProvider] retain];
 }
-*/
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,52 +71,28 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 14;
+   LOG(@"tp tags count = %d", [tp tags].count);
+   return [tp tags].count;
 }
-
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ScaffoldTaskEditViewCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-   switch (indexPath.row) {
-      case 0:
-         cell.text = [task.iD stringValue];
-         break;
-      case 1:
-         cell.text = task.name;
-         break;
-      case 2:
-         cell.text = task.url;
-         break;
-      case 3:
-         cell.text = [[MilponHelper sharedHelper] dateToString:task.due];
-         break;
-      case 4:
-         cell.text = task.completed;
-         break;
-      case 5: {
-         NSString *tags = @"tag: ";
-         for (NSString *tag in task.tags)
-            tags = [tags stringByAppendingFormat:@"%@, ", tag];
-         cell.text = tags;
-         break;
-      }
-      default:
-         break;
+   static NSString *CellIdentifier = @"ScaffoldTagViewCell";
+
+   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+   if (cell == nil) {
+      cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
    }
-   
+
+   RTMTag *tag = (RTMTag *)[[tp tags] objectAtIndex:indexPath.row];
+   cell.text = [NSString stringWithFormat:@"%d: %@ (%d)", [tag.iD intValue], tag.name, tag.tasks.count];
+
    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   // Navigation logic may go here. Create and push another view controller.
+    // Navigation logic may go here. Create and push another view controller.
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
 	// [self.navigationController pushViewController:anotherViewController];
 	// [anotherViewController release];
@@ -168,9 +140,26 @@
 
 
 - (void)dealloc {
-    [super dealloc];
+   [tp release];
+   [super dealloc];
 }
 
+- (IBAction) add
+{
+   NSDictionary *param = [NSDictionary dictionaryWithObject:@"added tag" forKey:@"name"];
+   [tp create:param];
+   
+   NSArray *indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+   
+   [self.tableView beginUpdates];
+   //[self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+   [self.tableView endUpdates];
+}
+
+- (IBAction) toggleEdit
+{
+   editing_ = ! editing_;
+   [self setEditing:editing_ animated:YES];
+}
 
 @end
-
