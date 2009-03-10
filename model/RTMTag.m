@@ -37,4 +37,9 @@
    return [[TaskProvider sharedTaskProvider] tasksInTag:self];
 }
 
+- (id) copyWithZone:(NSZone *)zone
+{
+   return [self retain];
+}
+
 @end

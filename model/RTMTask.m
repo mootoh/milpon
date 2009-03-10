@@ -11,17 +11,17 @@
    if (self = [super init]) {
       self.iD              = [params valueForKey:@"task.id"];
       self.name            = [params valueForKey:@"task.name"];
-      self.url             = [params valueForKey:@"url"];
-      self.due             = [params valueForKey:@"due"];
-      self.completed       = [params valueForKey:@"completed"];
-      self.priority        = [params valueForKey:@"priority"];
-      self.postponed       = [params valueForKey:@"postponed"];
-      self.estimate        = [params valueForKey:@"estimate"];
-      self.rrule           = [params valueForKey:@"rrule"];
-      self.location_id     = [params valueForKey:@"location_id"];
-      self.list_id         = [params valueForKey:@"list_id"];
+      self.url             = [params valueForKey:@"task.url"];
+      self.due             = [params valueForKey:@"task.due"];
+      self.completed       = [params valueForKey:@"task.completed"];
+      self.priority        = [params valueForKey:@"task.priority"];
+      self.postponed       = [params valueForKey:@"task.postponed"];
+      self.estimate        = [params valueForKey:@"task.estimate"];
+      self.rrule           = [params valueForKey:@"task.rrule"];
+      self.location_id     = [params valueForKey:@"task.location_id"];
+      self.list_id         = [params valueForKey:@"task.list_id"];
       self.task_series_id  = [params valueForKey:@"task.task_series_id"];
-      self.edit_bits       = [params valueForKey:@"edit_bits"];
+      self.edit_bits       = [params valueForKey:@"task.edit_bits"];
    }
    return self;
 }

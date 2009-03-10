@@ -21,6 +21,11 @@
    NSAssert(NO, @"not reach here");
 }
 
+- (void) createRelation:(NSNumber *)task_id tag_id:(NSNumber *)tag_id
+{
+   NSAssert(NO, @"not reach here");
+}
+
 - (NSString *) nameForTagID:(NSNumber *) lid
 {
    NSAssert(NO, @"not reach here");

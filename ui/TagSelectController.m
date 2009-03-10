@@ -47,8 +47,8 @@ static UIImage *s_checkedIcon = nil;
 {
    self.selected_tags = tags;
    for (RTMTag *tag in [tag_provider tags]) {
-      BOOL has = [selected_tags containsObject:tag.name];
-      [selected_flags setObject:[NSNumber numberWithBool:has] forKey:tag.name];
+      BOOL has = [selected_tags containsObject:tag];
+      [selected_flags setObject:[NSNumber numberWithBool:has] forKey:tag];
    }      
 }
 
@@ -77,7 +77,7 @@ static UIImage *s_checkedIcon = nil;
    RTMTag *tag = [[tag_provider tags] objectAtIndex:indexPath.row];
    cell.text = tag.name;
    
-   if ([[selected_flags objectForKey:tag.name] boolValue]) {
+   if ([[selected_flags objectForKey:tag] boolValue]) {
       UIImageView *image_view = [[UIImageView alloc] initWithImage:[TagSelectController checkedIcon]];
       cell.accessoryView = image_view;
       [image_view release];
@@ -93,12 +93,12 @@ static UIImage *s_checkedIcon = nil;
 {
    NSAssert(self.parent, @"parent should be set");
    RTMTag *tag = [[tag_provider tags] objectAtIndex:indexPath.row];
-   if ([[selected_flags objectForKey:tag.name] boolValue]) {
-      [selected_flags setObject:[NSNumber numberWithBool:NO] forKey:tag.name];
-      [selected_tags removeObject:tag.name];
+   if ([[selected_flags objectForKey:tag] boolValue]) {
+      [selected_flags setObject:[NSNumber numberWithBool:NO] forKey:tag];
+      [selected_tags removeObject:tag];
    } else {
-      [selected_flags setObject:[NSNumber numberWithBool:YES] forKey:tag.name];
-      [selected_tags addObject:tag.name];
+      [selected_flags setObject:[NSNumber numberWithBool:YES] forKey:tag];
+      [selected_tags addObject:tag];
    }
    [tableView reloadData]; // TODO: should update only selected row.
    [tableView deselectRowAtIndexPath:indexPath animated:YES];

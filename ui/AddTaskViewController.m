@@ -303,11 +303,8 @@ enum {
    TaskProvider *tp = [TaskProvider sharedTaskProvider];
    NSNumber *tid = [tp createAtOffline:params];
 
-   for (NSString *tag in tags) {
-      NSArray *keys = [NSArray arrayWithObjects:@"name", @"task_series_id", nil];
-      NSArray *vals = [NSArray arrayWithObjects:tag, tid, nil];
-      NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-      [[TagProvider sharedTagProvider] create:params];
+   for (RTMTag *tag in tags) {
+      [[TagProvider sharedTagProvider] createRelation:tid tag_id:tag.iD];
    }
 
    // TODO

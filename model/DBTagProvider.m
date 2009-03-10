@@ -148,6 +148,17 @@
    dirty_ = YES;
 }
 
+- (void) createRelation:(NSNumber *)task_id tag_id:(NSNumber *)tag_id
+{
+   NSArray *keys = [NSArray arrayWithObjects:@"task_series_id", @"tag_id", nil];
+   NSArray *vals = [NSArray arrayWithObjects:task_id, tag_id, nil];
+   NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+
+   [local_cache_ insert:attrs into:@"task_tag"];
+
+   dirty_ = YES;
+}
+
 - (NSString *)nameForTagID:(NSNumber *)tag_id {
    for (RTMTag *lst in [self tags]) {
       if ([lst.iD isEqualToNumber:tag_id])

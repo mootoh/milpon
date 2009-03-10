@@ -38,7 +38,8 @@
       @"task.id", @"task.name", @"task.url", @"task.due", @"task.priority",
       @"task.postponed", @"task.estimate", @"task.rrule", @"task.location_id", @"task.list_id",
       @"task.task_series_id", @"task.edit_bits", nil];
-   NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], [NSString class], [NSDate class],
+   NSArray *types = [NSArray arrayWithObjects:
+     [NSNumber class], [NSString class], [NSString class], [NSDate class],
      [NSNumber class], [NSNumber class], [NSString class], [NSString class],
      [NSNumber class], [NSNumber class], [NSNumber class], [NSNumber class], nil];
    NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
@@ -62,7 +63,7 @@
 
       NSArray *tag_keys = [NSArray arrayWithObjects:@"WHERE", @"JOIN", nil];
       NSArray *tag_vals = [NSArray arrayWithObjects:
-         [NSString stringWithFormat:@"task_tag.tag_id=%d", tid],
+         [NSString stringWithFormat:@"task_tag.task_series_id=%d", tid],
          join_dict,
          nil];
       NSDictionary *tag_opts = [NSDictionary dictionaryWithObjects:tag_vals forKeys:tag_keys];
