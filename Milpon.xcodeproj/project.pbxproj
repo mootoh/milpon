@@ -157,6 +157,25 @@
 		B9B956500F65D2720046712A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9B956510F65D2720046712A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9B956E00F6609FA0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
+		B9B957100F6615880046712A /* DBTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B9570F0F6615880046712A /* DBTagProvider.m */; };
+		B9B957110F6615880046712A /* DBTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B9570F0F6615880046712A /* DBTagProvider.m */; };
+		B9B957140F6615930046712A /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
+		B9B957160F6615930046712A /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
+		B9B957170F6615930046712A /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
+		B9B957180F6615930046712A /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
+		B9B957190F6615930046712A /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
+		B9B9571A0F6615930046712A /* LocalCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDC0F565DE000473A95 /* LocalCacheTest.m */; };
+		B9B9571C0F6615930046712A /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
+		B9B9571D0F6615930046712A /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
+		B9B9571E0F6615930046712A /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
+		B9B957210F6615930046712A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		B9B957220F6615930046712A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
+		B9B9572B0F6615E30046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
+		B9B957320F66160B0046712A /* TagProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957310F66160B0046712A /* TagProviderTest.m */; };
+		B9B9574A0F66170D0046712A /* DBTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B9570F0F6615880046712A /* DBTagProvider.m */; };
+		B9B957550F6617670046712A /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
+		B9B957560F6617670046712A /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
+		B9B957570F6617670046712A /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
 		B9C648930F610B3100A47F4F /* ScaffoldMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */; };
 		B9C648980F610B6600A47F4F /* ScaffoldAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */; };
 		B9D043180F5F477400641E61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -343,11 +362,17 @@
 		B970A8160F637F71004467E9 /* ScaffoldTaskEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldTaskEditViewController.m; path = scaffold/ScaffoldTaskEditViewController.m; sourceTree = "<group>"; };
 		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
 		B985AB890F6108A8004A1B54 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B985AB8B0F6108A8004A1B54 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = SOURCE_ROOT; };
 		B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DueDateSelect.xib; sourceTree = "<group>"; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B956560F65D2720046712A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "APILocalTest-Info.plist"; path = "../APILocalTest-Info.plist"; sourceTree = "<group>"; };
+		B9B9570E0F6615880046712A /* DBTagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTagProvider.h; sourceTree = "<group>"; };
+		B9B9570F0F6615880046712A /* DBTagProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBTagProvider.m; sourceTree = "<group>"; };
+		B9B957270F6615930046712A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9B957280F6615930046712A /* TagUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TagUnitTest-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B9B957310F66160B0046712A /* TagProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagProviderTest.m; sourceTree = "<group>"; };
+		B9B957530F6617670046712A /* RTMTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMTag.h; sourceTree = "<group>"; };
+		B9B957540F6617670046712A /* RTMTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMTag.m; sourceTree = "<group>"; };
 		B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScaffoldMainWindow.xib; path = scaffold/ScaffoldMainWindow.xib; sourceTree = "<group>"; };
 		B9C648960F610B6600A47F4F /* ScaffoldAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldAppDelegate.h; path = scaffold/ScaffoldAppDelegate.h; sourceTree = "<group>"; };
 		B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldAppDelegate.m; path = scaffold/ScaffoldAppDelegate.m; sourceTree = "<group>"; };
@@ -420,6 +445,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9B957200F6615930046712A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9B957210F6615930046712A /* Foundation.framework in Frameworks */,
+				B9B957220F6615930046712A /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9D043170F5F477400641E61 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -441,6 +475,7 @@
 				B9D0431E0F5F477400641E61 /* UnitTest.octest */,
 				B985AB890F6108A8004A1B54 /* Scaffold.app */,
 				B9B956560F65D2720046712A /* UnitTest.octest */,
+				B9B957270F6615930046712A /* UnitTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -550,6 +585,8 @@
 		B9160F180F565D4C00473A95 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				B9B9570E0F6615880046712A /* DBTagProvider.h */,
+				B9B9570F0F6615880046712A /* DBTagProvider.m */,
 				B9D043410F5F49A900641E61 /* DBTaskProvider.h */,
 				B9D043420F5F49A900641E61 /* DBTaskProvider.m */,
 				B9D0433C0F5F493E00641E61 /* TaskProvider.m */,
@@ -577,6 +614,8 @@
 				B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */,
 				B9D120A20F5763DB00B5ABA4 /* DBListProvider.h */,
 				B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */,
+				B9B957530F6617670046712A /* RTMTag.h */,
+				B9B957540F6617670046712A /* RTMTag.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -605,7 +644,7 @@
 				B9160FF70F565E8000473A95 /* Info.plist */,
 				B914B34E0F5EBDA6009C19BE /* ListUnitTest-Info.plist */,
 				B9D0431F0F5F477400641E61 /* TaskUnitTest-Info.plist */,
-				B985AB8B0F6108A8004A1B54 /* Info copy.plist */,
+				B9B957280F6615930046712A /* TagUnitTest-Info.plist */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -658,6 +697,7 @@
 		B9160FD00F565DE000473A95 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				B9B957310F66160B0046712A /* TagProviderTest.m */,
 				B9D043370F5F48C800641E61 /* TaskProviderTest.m */,
 				B91610590F56607600473A95 /* mock */,
 				B9160FB70F565DB600473A95 /* FunctionalTestProgressViewWindow.xib */,
@@ -858,6 +898,24 @@
 			productReference = B9B956560F65D2720046712A /* UnitTest.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		B9B957120F6615930046712A /* TagUnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9B957240F6615930046712A /* Build configuration list for PBXNativeTarget "TagUnitTest" */;
+			buildPhases = (
+				B9B957130F6615930046712A /* Resources */,
+				B9B957150F6615930046712A /* Sources */,
+				B9B957200F6615930046712A /* Frameworks */,
+				B9B957230F6615930046712A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TagUnitTest;
+			productName = UnitTest;
+			productReference = B9B957270F6615930046712A /* UnitTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		B9D0430E0F5F477400641E61 /* TaskUnitTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9D0431B0F5F477400641E61 /* Build configuration list for PBXNativeTarget "TaskUnitTest" */;
@@ -894,6 +952,7 @@
 				B9D0430E0F5F477400641E61 /* TaskUnitTest */,
 				B985AB280F6108A8004A1B54 /* Scaffold */,
 				B9B956410F65D2720046712A /* APILocalTest */,
+				B9B957120F6615930046712A /* TagUnitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -976,6 +1035,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9B957130F6615930046712A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9B957140F6615930046712A /* rtm.sql in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9D0430F0F5F477400641E61 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1013,6 +1080,19 @@
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		B9B956520F65D2720046712A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		B9B957230F6615930046712A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1090,6 +1170,8 @@
 				B95C5C180F59901700A368DC /* MockTagProvider.m in Sources */,
 				B9D0433E0F5F493E00641E61 /* TaskProvider.m in Sources */,
 				B9D043440F5F49A900641E61 /* DBTaskProvider.m in Sources */,
+				B9B957110F6615880046712A /* DBTagProvider.m in Sources */,
+				B9B957560F6617670046712A /* RTMTag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1134,6 +1216,8 @@
 				B9E6E65F0F610E2600472142 /* ScaffoldListViewController.m in Sources */,
 				B9E6E6F70F611D3900472142 /* ScaffoldTaskViewController.m in Sources */,
 				B970A8170F637F71004467E9 /* ScaffoldTaskEditViewController.m in Sources */,
+				B9B957100F6615880046712A /* DBTagProvider.m in Sources */,
+				B9B957570F6617670046712A /* RTMTag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1168,6 +1252,25 @@
 				B9B9564C0F65D2720046712A /* RTMAPI.m in Sources */,
 				B9B9564D0F65D2720046712A /* RTMAuth.m in Sources */,
 				B9B9564E0F65D2720046712A /* RTMAPIXMLParserCallback.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9B957150F6615930046712A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9B957160F6615930046712A /* RTMList.m in Sources */,
+				B9B957170F6615930046712A /* ListProvider.m in Sources */,
+				B9B957180F6615930046712A /* DBListProvider.m in Sources */,
+				B9B957190F6615930046712A /* LocalCache.m in Sources */,
+				B9B9571A0F6615930046712A /* LocalCacheTest.m in Sources */,
+				B9B9571C0F6615930046712A /* RTMAPIList.m in Sources */,
+				B9B9571D0F6615930046712A /* RTMAPIXMLParserCallback.m in Sources */,
+				B9B9571E0F6615930046712A /* RTMAPI.m in Sources */,
+				B9B9572B0F6615E30046712A /* MilponHelper.m in Sources */,
+				B9B957320F66160B0046712A /* TagProviderTest.m in Sources */,
+				B9B9574A0F66170D0046712A /* DBTagProvider.m in Sources */,
+				B9B957550F6617670046712A /* RTMTag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1426,6 +1529,64 @@
 			};
 			name = Release;
 		};
+		B9B957250F6615930046712A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = UNIT_TEST;
+				INFOPLIST_FILE = "TagUnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		B9B957260F6615930046712A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "TagUnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		B9D0431C0F5F477400641E61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1561,6 +1722,15 @@
 			buildConfigurations = (
 				B9B956540F65D2720046712A /* Debug */,
 				B9B956550F65D2720046712A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9B957240F6615930046712A /* Build configuration list for PBXNativeTarget "TagUnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9B957250F6615930046712A /* Debug */,
+				B9B957260F6615930046712A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
