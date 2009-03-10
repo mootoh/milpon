@@ -19,6 +19,14 @@
 - (void) erase; // remove all tags from DB.
 
 /**
+ * task_series_id is set temporal task_id for offline created task.
+ * so it needs to be updated when task is going to be synced on the web.
+ *
+ * should be called while syncing.
+ */
+- (void) updateTaskSeriesID:(RTMTag *)tag tid:(NSNumber *)tid;
+
+/**
  * replace all local tags with tags on the web.
  */
 - (void) sync;

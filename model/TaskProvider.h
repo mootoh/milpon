@@ -19,7 +19,10 @@
 - (NSArray *) modifiedTasks;
 - (NSArray *) existingTasks;
 
-- (void) createAtOffline:(NSDictionary *)params;
+/**
+ * @return created task id
+ */
+- (NSNumber *) createAtOffline:(NSDictionary *)params;
 - (void) sync;
 - (void) complete:(RTMTask *)task;
 - (void) uncomplete:(RTMTask *)task;

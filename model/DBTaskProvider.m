@@ -34,9 +34,10 @@
    NSMutableArray *tasks = [NSMutableArray array];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-   NSArray *keys = [NSArray arrayWithObjects:@"task.id", @"task.name", @"url", @"due", @"priority",
-      @"postponed", @"estimate", @"rrule", @"location_id", @"list_id",
-      @"task.task_series_id", @"edit_bits", nil];
+   NSArray *keys = [NSArray arrayWithObjects:
+      @"task.id", @"task.name", @"task.url", @"task.due", @"task.priority",
+      @"task.postponed", @"task.estimate", @"task.rrule", @"task.location_id", @"task.list_id",
+      @"task.task_series_id", @"task.edit_bits", nil];
    NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], [NSString class], [NSDate class],
      [NSNumber class], [NSNumber class], [NSString class], [NSString class],
      [NSNumber class], [NSNumber class], [NSNumber class], [NSNumber class], nil];
@@ -51,8 +52,22 @@
 
       // collect tags
       NSDictionary *tag_dict = [NSDictionary dictionaryWithObject:[NSString class] forKey:@"name"];
-      NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_series_id=%d", [task.task_series_id intValue]] forKey:@"WHERE"];
-      NSArray *tags_dict = [local_cache_ select:tag_dict from:@"tag" option:where];
+      NSLog(@"task.edit_bits = %d", [task.edit_bits intValue]);
+      int tid = ([task.edit_bits intValue] & EB_CREATED_OFFLINE) ?
+         [task.iD intValue] :
+         [task.task_series_id intValue];
+      NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
+      NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"tag.id=task_tag.tag_id", nil];
+      NSDictionary *join_dict = [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys];
+
+      NSArray *tag_keys = [NSArray arrayWithObjects:@"WHERE", @"JOIN", nil];
+      NSArray *tag_vals = [NSArray arrayWithObjects:
+         [NSString stringWithFormat:@"task_tag.tag_id=%d", tid],
+         join_dict,
+         nil];
+      NSDictionary *tag_opts = [NSDictionary dictionaryWithObjects:tag_vals forKeys:tag_keys];
+
+      NSArray *tags_dict = [local_cache_ select:tag_dict from:@"tag" option:tag_opts];
       NSMutableArray *tags = [NSMutableArray array];
       for (NSDictionary *tag in tags_dict)
          [tags addObject:[tag objectForKey:@"name"]];
@@ -96,13 +111,13 @@
 - (NSArray *) tasksInTag:(RTMTag *)tag
 {
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
-   NSArray *join_vals = [NSArray arrayWithObjects:@"tag", @"task.task_series_id=tag.task_series_id", nil];
+   NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"task.task_series_id=task_tag.task_series_id", nil];
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", @"JOIN", @"GROUP", nil];
    NSArray *vals = [NSArray arrayWithObjects:
-      [NSString stringWithFormat:@"list_id=%d", [tag.iD intValue]],
+      [NSString stringWithFormat:@"task_tag.tag_id=%d", [tag.iD intValue]],
       [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
       [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys],
-      @"task.id",
+      @"task_tag.task_series_id",
       nil];
 
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
@@ -137,7 +152,7 @@
    [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"where id=%d", [task.iD intValue]]];
 }
 
-- (void) createAtOffline:(NSDictionary *)params
+- (NSNumber *) createAtOffline:(NSDictionary *)params
 {
    NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:params];
    NSNumber *edit_bits = [NSNumber numberWithInt:EB_CREATED_OFFLINE];
@@ -145,6 +160,13 @@
 
    [local_cache_ insert:attrs into:@"task"];
    dirty_ = YES;
+
+   NSDictionary *iid = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
+   NSDictionary *order = [NSDictionary dictionaryWithObject:@"id DESC LIMIT 1" forKey:@"ORDER"]; // TODO: ad-hoc LIMIT
+   NSArray *ret = [local_cache_ select:iid from:@"task" option:order];
+   NSNumber *retn = [[ret objectAtIndex:0] objectForKey:@"id"];
+   NSLog(@"retn = %d", [retn intValue]);
+   return retn;
 }
 
 - (void) createAtOnline:(NSDictionary *)params

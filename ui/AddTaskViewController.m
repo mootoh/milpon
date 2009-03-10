@@ -14,9 +14,11 @@
 #import "AppDelegate.h"
 #import "RTMTask.h"
 #import "RTMList.h"
+#import "RTMTag.h"
 #import "TaskProvider.h"
 #import "ReloadableTableViewController.h"
 #import "ListProvider.h"
+#import "TagProvider.h"
 
 @implementation AddTaskViewController
 
@@ -296,18 +298,23 @@ enum {
    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (due)
       [params setObject:due forKey:@"due"];
+
+
+   TaskProvider *tp = [TaskProvider sharedTaskProvider];
+   NSNumber *tid = [tp createAtOffline:params];
+
+   for (NSString *tag in tags) {
+      NSArray *keys = [NSArray arrayWithObjects:@"name", @"task_series_id", nil];
+      NSArray *vals = [NSArray arrayWithObjects:tag, tid, nil];
+      NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+      [[TagProvider sharedTagProvider] create:params];
+   }
+
+   // TODO
+#if 0
    if (note)
       [params setObject:note forKey:@"note"];
-   if (tags && tags.count > 0)
-      [params setObject:tags forKey:@"tags"];
-
-// TODO <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-   // store it to the DB
-   TaskProvider *tp = [TaskProvider sharedTaskProvider];
-   [tp createAtOffline:params];
-// TODO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-   //[RTMTask createAtOffline:params];
+#endif // 0
 
    [self close];
 }

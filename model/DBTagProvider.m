@@ -42,6 +42,15 @@
    return tags_;
 }
 
+- (void) updateTaskSeriesID:(RTMTag *)tag tid:(NSNumber *)tid 
+{
+   NSDictionary *param = [NSDictionary dictionaryWithObject:tid forKey:@"task_series_id"];
+   NSString *cond = [NSString stringWithFormat:@"id=%d",
+      [tag.iD intValue]];
+      
+   [local_cache_ update:param table:@"tag" condition:cond];
+}
+
 #if 0
 - (void) sync
 {
@@ -77,11 +86,11 @@
       [local_cache_ select:dict from:@"tag"];
 
    for (NSDictionary *dict in tag_arr) {
-      RTMTag *lst = [[RTMTag alloc]
+      RTMTag *tag = [[RTMTag alloc]
          initWithID:[dict objectForKey:@"id"]
          forName:[dict objectForKey:@"name"]];
-      [tags addObject:lst];
-      [lst release];
+      [tags addObject:tag];
+      [tag release];
    }
    [pool release];
 
@@ -113,15 +122,29 @@
 
 - (void) create:(NSDictionary *)params
 {
-   NSString *name = [params objectForKey:@"name"];
-   NSMutableDictionary *attrs = [NSDictionary dictionaryWithObject:name forKey:@"name"];
-
+   NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithObject:
+      [params objectForKey:@"name"] forKey:@"name"];
    if ([params objectForKey:@"iD"]) {
       NSNumber *iD = [NSNumber numberWithInt:[[params objectForKey:@"iD"] intValue]];
       [attrs setObject:iD forKey:@"id"];
    }
 
    [local_cache_ insert:attrs into:@"tag"];
+
+   // obtain tag_id created
+   NSDictionary *iid = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
+   NSDictionary *order = [NSDictionary dictionaryWithObject:@"id DESC LIMIT 1" forKey:@"ORDER"]; // TODO: ad-hoc LIMIT
+   NSArray *ret = [local_cache_ select:iid from:@"tag" option:order];
+   NSNumber *tag_id = [[ret objectAtIndex:0] objectForKey:@"id"];
+   NSLog(@"tag_id = %d", [tag_id intValue]);
+
+   // insert into task_tag table
+   NSArray *keys = [NSArray arrayWithObjects:@"task_series_id", @"tag_id", nil];
+   NSArray *vals = [NSArray arrayWithObjects:[params objectForKey:@"task_series_id"], tag_id, nil];
+   NSMutableDictionary *task_tag = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+
+   [local_cache_ insert:task_tag into:@"task_tag"];
+
    dirty_ = YES;
 }
 

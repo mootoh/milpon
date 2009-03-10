@@ -40,7 +40,7 @@
    return nil;
 }
 
-- (void) createAtOffline:(NSDictionary *)params;
+- (NSNumber *) createAtOffline:(NSDictionary *)params
 {
    NSAssert(NO, @"not reach here");
 }

@@ -161,9 +161,6 @@
        * TODO: set tags
        */
 
-      /*
-       * TODO: set notes
-       */
       // get Note from DB by old Task ID
       RTMAPINote *api_note = [[RTMAPINote alloc] init];
       NSArray *notes = [RTMPendingTask getNotes:task.iD fromDB:db];

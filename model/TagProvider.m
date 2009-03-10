@@ -48,6 +48,11 @@
    NSAssert(NO, @"not reach here");
 }
 
+- (void) updateTaskSeriesID:(NSNumber *)tid;
+{
+   NSAssert(NO, @"not reach here");
+}
+
 + (TagProvider *) sharedTagProvider
 {
    NSAssert(NO, @"not reach here");
