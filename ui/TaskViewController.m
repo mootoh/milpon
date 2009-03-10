@@ -95,9 +95,13 @@ static NSArray *s_icons;
    name.clearsOnBeginEditing = NO;
    name.delegate = self;
    url.text = task.url;
-
    list.text = [[ListProvider sharedListProvider] nameForListID:task.list_id];
 
+   NSString *tag_label = @"";
+   for (NSString *tag in task.tags)
+      tag_label = [tag_label stringByAppendingFormat:@"%@ ", tag];
+   tags.text = tag_label;
+   
    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
    [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
    [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];

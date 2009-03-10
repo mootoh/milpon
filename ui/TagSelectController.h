@@ -1,17 +1,16 @@
 //
-//  TrialTagViewController.h
+//  TagSelectController.h
 //  Milpon
 //
 //  Created by mootoh on 1/20/09.
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @class AddTaskViewController;
+@class TagProvider;
 
 @interface TagSelectController : UITableViewController {
-   id tag_provider;
+   TagProvider *tag_provider;
    AddTaskViewController *parent;
    NSMutableSet *selected_tags;
    NSMutableDictionary *selected_flags;

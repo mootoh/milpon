@@ -35,7 +35,7 @@
    IBOutlet UITextField   *list;
    IBOutlet UITextView    *noteView;
    IBOutlet UIPageControl *notePages;
-
+   IBOutlet UILabel       *tags;
    UIView  *dialogView;
    NSArray *prioritySelections;
 }

@@ -72,8 +72,8 @@
    NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
 
    NSArray *list_arr = option ?
-      [local_cache_ select:dict from:@"list"] :
-      [local_cache_ select:dict from:@"list" option:option];
+      [local_cache_ select:dict from:@"list" option:option] :
+      [local_cache_ select:dict from:@"list"];
 
    for (NSDictionary *dict in list_arr) {
       RTMList *lst = [[RTMList alloc]

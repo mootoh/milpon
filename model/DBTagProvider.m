@@ -73,8 +73,8 @@
    NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
 
    NSArray *tag_arr = option ?
-      [local_cache_ select:dict from:@"tag"] :
-      [local_cache_ select:dict from:@"tag" option:option];
+      [local_cache_ select:dict from:@"tag" option:option] :
+      [local_cache_ select:dict from:@"tag"];
 
    for (NSDictionary *dict in tag_arr) {
       RTMTag *lst = [[RTMTag alloc]

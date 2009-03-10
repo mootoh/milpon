@@ -20,5 +20,17 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - assigned to release beta7 from unassigned
   - ""
+- - 2009-03-10 07:21:01.183989 Z
+  - mootoh <mootoh@gmail.com>
+  - commented
+  - |-
+    implemented followings:
+    
+    - list up all tags.
+    - shows all tags related to the specific task.
+    
+    yet:
+    
+    - assign tags while adding a task.
 git_branch: 
 claimer: 

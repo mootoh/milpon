@@ -1,5 +1,5 @@
 //
-//  TrialTagViewController.m
+//  TagSelectController.m
 //  Milpon
 //
 //  Created by mootoh on 1/20/09.
@@ -7,8 +7,9 @@
 //
 
 #import "TagSelectController.h"
-#import "MockTagProvider.h"
+#import "TagProvider.h"
 #import "AddTaskViewController.h"
+#import "RTMTag.h"
 
 @implementation TagSelectController
 
@@ -27,7 +28,7 @@ static UIImage *s_checkedIcon = nil;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-      tag_provider = [[MockTagProvider alloc] init];
+      tag_provider = [[TagProvider sharedTagProvider] retain];
       self.title = @"Tags";
       selected_flags = [[NSMutableDictionary alloc] init];
    }
@@ -45,9 +46,9 @@ static UIImage *s_checkedIcon = nil;
 - (void) setTags:(NSMutableSet *) tags
 {
    self.selected_tags = tags;
-   for (NSString *tag in [tag_provider tags]) {
-      BOOL has = [selected_tags containsObject:tag];
-      [selected_flags setObject:[NSNumber numberWithBool:has] forKey:tag];
+   for (RTMTag *tag in [tag_provider tags]) {
+      BOOL has = [selected_tags containsObject:tag.name];
+      [selected_flags setObject:[NSNumber numberWithBool:has] forKey:tag.name];
    }      
 }
 
@@ -73,10 +74,10 @@ static UIImage *s_checkedIcon = nil;
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
 
-   NSString *tag = [[tag_provider tags] objectAtIndex:indexPath.row];
-   cell.text = tag;
+   RTMTag *tag = [[tag_provider tags] objectAtIndex:indexPath.row];
+   cell.text = tag.name;
    
-   if ([[selected_flags objectForKey:tag] boolValue]) {
+   if ([[selected_flags objectForKey:tag.name] boolValue]) {
       UIImageView *image_view = [[UIImageView alloc] initWithImage:[TagSelectController checkedIcon]];
       cell.accessoryView = image_view;
       [image_view release];
@@ -91,13 +92,13 @@ static UIImage *s_checkedIcon = nil;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    NSAssert(self.parent, @"parent should be set");
-   NSString *tag = [[tag_provider tags] objectAtIndex:indexPath.row];
-   if ([[selected_flags objectForKey:tag] boolValue]) {
-      [selected_flags setObject:[NSNumber numberWithBool:NO] forKey:tag];
-      [selected_tags removeObject:tag];
+   RTMTag *tag = [[tag_provider tags] objectAtIndex:indexPath.row];
+   if ([[selected_flags objectForKey:tag.name] boolValue]) {
+      [selected_flags setObject:[NSNumber numberWithBool:NO] forKey:tag.name];
+      [selected_tags removeObject:tag.name];
    } else {
-      [selected_flags setObject:[NSNumber numberWithBool:YES] forKey:tag];
-      [selected_tags addObject:tag];
+      [selected_flags setObject:[NSNumber numberWithBool:YES] forKey:tag.name];
+      [selected_tags addObject:tag.name];
    }
    [tableView reloadData]; // TODO: should update only selected row.
    [tableView deselectRowAtIndexPath:indexPath animated:YES];
