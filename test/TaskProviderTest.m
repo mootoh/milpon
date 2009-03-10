@@ -11,6 +11,7 @@
 #import "RTMTask.h"
 #import "RTMList.h"
 #import "RTMTag.h"
+#import "MilponHelper.h"
 
 @interface TaskProviderTest : SenTestCase; @end
 
@@ -33,7 +34,7 @@
    STAssertEquals([first_task.iD intValue], 1, @"check attr");
    STAssertTrue([first_task.name isEqualToString:@"task one"], @"check attr");
    STAssertTrue([first_task.url isEqualToString:@"http://localhost/"], @"check attr");
-   //STAssertTrue([first_task.due isEqualToDate:@"20090331"], @"check attr");
+   STAssertTrue([first_task.due isEqualToDate:[[MilponHelper sharedHelper] stringToDate:@"2009-03-31 13:00:00"]], @"check attr");
    STAssertEquals([first_task.priority intValue], 1, @"check attr");
    STAssertEquals([first_task.postponed intValue], 3, @"check attr");
    STAssertTrue([first_task.estimate isEqualToString:@"30m"], @"check attr");
@@ -43,8 +44,10 @@
    STAssertEquals([first_task.edit_bits intValue], 0, @"check attr");
 
    STAssertTrue(first_task.tags.count > 0, @"check tags");
+   NSString *tags = @"tag: ";
    for (NSString *tag in first_task.tags)
-      NSLog(@"tag : %@", tag);
+      tags = [tags stringByAppendingFormat:@"%@, ", tag];
+   NSLog(tags);
 }
 
 - (void) testTasksInList
