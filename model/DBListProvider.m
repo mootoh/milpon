@@ -113,10 +113,10 @@
 - (void) create:(NSDictionary *)params
 {
    NSString *name = [params objectForKey:@"name"];
-   NSMutableDictionary *attrs = [NSDictionary dictionaryWithObject:name forKey:@"name"];
+   NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithObject:name forKey:@"name"];
 
    if ([params objectForKey:@"iD"]) {
-      NSNumber *iD = [NSNumber numberWithInt:[[params objectForKey:@"iD"] intValue]];
+      NSNumber *iD = [params objectForKey:@"iD"];
       [attrs setObject:iD forKey:@"id"];
    }
 
