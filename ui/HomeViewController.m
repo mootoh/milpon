@@ -100,8 +100,6 @@ static const int SECTIONS = 4;
    [formatter release];
    
    self.headers = [NSArray arrayWithObjects:@"Today", @"Tomorrow", @"7 days", @"Outdated", nil];
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   db = app.db;
    
    [self reloadFromDB];
 }

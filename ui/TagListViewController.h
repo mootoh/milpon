@@ -6,11 +6,19 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ReloadableTableViewController.h"
 
+@class RTMTag;
 
-@interface TagListViewController : UITableViewController {
-
+@interface TagListViewController : UITableViewController <ReloadableTableViewControllerProtocol>
+{
+   RTMTag *tag;
+   NSArray *tasks;
 }
+
+- (id)initWithStyle:(UITableViewStyle)style tag:(RTMTag *)tag;
+
+@property (nonatomic, retain) RTMTag *tag;
+@property (nonatomic, retain) NSArray *tasks;
 
 @end

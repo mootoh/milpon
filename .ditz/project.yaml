@@ -16,13 +16,17 @@ releases:
     - UI improvements.
 - !ditz.rubyforge.org,2008-03-06/release 
   name: revised AddTask view
-  status: :unreleased
-  release_time: 
+  status: :released
+  release_time: 2009-03-11 07:49:13.989073 Z
   log_events: 
   - - 2009-02-19 12:41:22.568741 Z
     - mootoh <mootoh@gmail.com>
     - created
     - more user-friendly view for adding a task.
+  - - 2009-03-11 07:49:13.989109 Z
+    - mootoh <mootoh@gmail.com>
+    - released
+    - finished!
 - !ditz.rubyforge.org,2008-03-06/release 
   name: new ui
   status: :unreleased

@@ -6,10 +6,7 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "ReloadableTableViewController.h"
-
-@class RTMDatabase;
 
 @interface HomeViewController : UITableViewController <ReloadableTableViewControllerProtocol>
 {
@@ -20,7 +17,6 @@
       OVERDUE
    } section_type;
 
-   RTMDatabase *db;
    NSArray *headers;
    NSArray *tasks;
    NSMutableArray *due_tasks;

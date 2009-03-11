@@ -21,16 +21,12 @@
 - (void) reloadFromDB
 {
    [tasks release];
-   tasks = nil;
    tasks = [[[TaskProvider sharedTaskProvider] tasksInList:list] retain];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style withList:(RTMList *)lst
 {
    if (self = [super initWithStyle:style]) {
-      AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-      db = app.db;
-
       self.list = lst;
       self.title = lst.name;
       [self reloadFromDB];

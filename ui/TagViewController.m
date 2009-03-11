@@ -10,6 +10,7 @@
 #import "TagProvider.h"
 #import "RTMTag.h"
 #import "logger.h"
+#import "TagListViewController.h"
 
 @implementation TagViewController
 
@@ -91,11 +92,16 @@
    return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   RTMTag *tg = [[tp tags] objectAtIndex:indexPath.row];
+
+   // Navigation logic
+   TagListViewController *ctrl = [[TagListViewController alloc] initWithStyle:UITableViewStylePlain tag:tg];
+
+   // Push the detail view controller
+   [[self navigationController] pushViewController:ctrl animated:YES];
+   [ctrl release];
 }
 
 
