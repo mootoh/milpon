@@ -210,10 +210,13 @@
          val = [NSString stringWithFormat:@"'%@'", (NSString *)v];
       } else if ([v isKindOfClass:[NSNumber class]]) {
          val = [(NSNumber *)v stringValue];
+      } else if ([v isKindOfClass:[NSDate class]]) {
+         val = [NSString stringWithFormat:@"'%@'",
+            [[MilponHelper sharedHelper] dateToString:(NSDate *)v]];
       } else {
          [[NSException
            exceptionWithName:@"LocalCacheException"
-           reason:[NSString stringWithFormat:@"should not reach here"]
+           reason:[NSString stringWithFormat:@"should not reach here: key=%@", key]
            userInfo:nil] raise];
       }
       sets = [sets stringByAppendingFormat:@"%@=%@, ", key, val];
@@ -241,10 +244,13 @@
          sqlite3_bind_text(stmt, i, [(NSString *)v UTF8String], -1, SQLITE_TRANSIENT);
       } else if ([v isKindOfClass:[NSNumber class]]) {
          sqlite3_bind_int(stmt,  i, [(NSNumber *)v intValue]);
+      } else if ([v isKindOfClass:[NSDate class]]) {
+         NSString *date_str = [[MilponHelper sharedHelper] dateToString:(NSDate *)v];
+         sqlite3_bind_text(stmt, i, [date_str UTF8String], -1, SQLITE_TRANSIENT);
       } else {
          [[NSException
            exceptionWithName:@"LocalCacheException"
-           reason:[NSString stringWithFormat:@"should not reach here"]
+           reason:[NSString stringWithFormat:@"should not reach here 2"]
            userInfo:nil] raise];
       }
       i++;

@@ -6,20 +6,25 @@
 
 @implementation RTMTask
 
-@synthesize iD, name, url, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits, due, taskseries_id, edit_bits, task_id, taskseries_id, has_due_time;
+@synthesize iD, name, url, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, taskseries_id, task_id, taskseries_id, has_due_time;
 
+//
+// note: I use [object retain] instead of property assignment,
+//       because I implemented custom assignment function to store value into DB.
+//       initByParams should be called from DB.
+//
 - (id) initByParams:(NSDictionary *)params
 {
    if (self = [super init]) {
       self.iD              = [params objectForKey:@"task.id"];
-      self.edit_bits       = [params objectForKey:@"task.edit_bits"];
+      edit_bits            = [[params objectForKey:@"task.edit_bits"] retain];
 
       self.task_id         = [params objectForKey:@"task.task_id"];
       if (! [[[MilponHelper sharedHelper] invalidDate] isEqualToDate:[params objectForKey:@"task.due"]])
-         self.due             = [params objectForKey:@"task.due"];
+         due               = [[params objectForKey:@"task.due"] retain];
       if (! [[[MilponHelper sharedHelper] invalidDate] isEqualToDate:[params objectForKey:@"task.completed"]])
-         self.completed       = [params objectForKey:@"task.completed"];
-      self.priority        = [params objectForKey:@"task.priority"];
+         completed         = [[params objectForKey:@"task.completed"] retain];
+      priority             = [[params objectForKey:@"task.priority"] retain];
       self.postponed       = [params objectForKey:@"task.postponed"];
       self.estimate        = [params objectForKey:@"task.estimate"];
       self.has_due_time    = [params objectForKey:@"task.has_due_time"];
@@ -107,50 +112,22 @@
    [self flagUpEditBits:EB_TASK_PRIORITY];
 }
 
-#if 0
-
-
-- (NSString *) due
+- (NSDate *) due
 {
    return due;
 }
 
-- (void) setDue:(NSString *)du
+- (void) setDue:(NSDate *)du
 {
-   if (due) [due release];
+   [due release];
+   due = [du retain];
 
-   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-   formatter.formatterBehavior = NSDateFormatterBehavior10_4;
-   formatter.dateFormat = @"yyyy-MM-dd";
-   NSDate *dueDate = [formatter dateFromString:du];
-
-   formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-   formatter.dateFormat = @"yyyy-MM-dd_HH:mm:ss";
-   due = [formatter stringFromDate:dueDate];
-   due = [due stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
-   due = [due stringByAppendingString:@"Z"];
-
-   sqlite3_stmt *stmt = nil;
-   static const char *sql = "UPDATE task SET due=? where id=?";
-   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
-      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
-
-   sqlite3_bind_text(stmt, 1, [due UTF8String], -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt, 2, [iD intValue]);
-
-   if (SQLITE_ERROR == sqlite3_step(stmt))
-      @throw [NSString stringWithFormat:@"failed in update the database: '%s'.", sqlite3_errmsg([db handle])];
-
-   sqlite3_finalize(stmt);
-
-   // fixup formats
-   due = [due stringByReplacingOccurrencesOfString:@"T" withString:@"_"];
-   due = [due stringByReplacingOccurrencesOfString:@"Z" withString:@" GMT"];
-   [due retain];
+   NSDictionary *dict = [NSDictionary dictionaryWithObject:du forKey:@"due"];
+   NSString *where = [NSString stringWithFormat:@"WHERE id=%d", [iD intValue]];
+   [[LocalCache sharedLocalCache] update:dict table:@"task" condition:where];
 
    [self flagUpEditBits:EB_TASK_DUE];
 }
-
 
 - (NSNumber *) edit_bits
 {
@@ -159,30 +136,21 @@
 
 - (void) setEdit_bits:(NSNumber *)eb
 {
-   if (edit_bits) [edit_bits release];
+   [edit_bits release];
    edit_bits = [eb retain];
 
-   sqlite3_stmt *stmt = nil;
-   static const char *sql = "UPDATE task SET edit_bits=? where id=?";
-   if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL))
-      @throw [NSString stringWithFormat:@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle])];
-
-   sqlite3_bind_int(stmt, 1, [edit_bits intValue]);
-   sqlite3_bind_int(stmt, 2, [iD intValue]);
-
-   if (SQLITE_ERROR == sqlite3_step(stmt))
-      @throw [NSString stringWithFormat:@"failed in update the database: '%s'.", sqlite3_errmsg([db handle])];
-
-   sqlite3_finalize(stmt);
+   NSDictionary *dict = [NSDictionary dictionaryWithObject:eb forKey:@"edit_bits"];
+   NSString *where = [NSString stringWithFormat:@"WHERE id=%d", [iD intValue]];
+   [[LocalCache sharedLocalCache] update:dict table:@"task" condition:where];
 }
 
+#if 0
 + (NSArray *) modifiedTasks:(RTMDatabase *)db
 {
    NSString *sql = [NSString stringWithUTF8String:"SELECT " RTMTASK_SQL_COLUMNS 
       " from task where edit_bits>1"];
    return [RTMTask tasksForSQL:sql inDB:db];
 }
-
 #endif // 0
 
 - (void) dump
