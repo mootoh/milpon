@@ -51,12 +51,6 @@
 		B9160F3C0F565D6800473A95 /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9160F680F565D9300473A95 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F440F565D9300473A95 /* checkBox.png */; };
 		B9160F6A0F565D9300473A95 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F460F565D9300473A95 /* checkBoxChecked.png */; };
-		B9160F6C0F565D9300473A95 /* ico_calendar.gif in Resources */ = {isa = PBXBuildFile; fileRef = B9160F480F565D9300473A95 /* ico_calendar.gif */; };
-		B9160F6D0F565D9300473A95 /* ico_clock.gif in Resources */ = {isa = PBXBuildFile; fileRef = B9160F490F565D9300473A95 /* ico_clock.gif */; };
-		B9160F6E0F565D9300473A95 /* ico_globe.gif in Resources */ = {isa = PBXBuildFile; fileRef = B9160F4A0F565D9300473A95 /* ico_globe.gif */; };
-		B9160F6F0F565D9300473A95 /* ico_link_gry.gif in Resources */ = {isa = PBXBuildFile; fileRef = B9160F4B0F565D9300473A95 /* ico_link_gry.gif */; };
-		B9160F700F565D9300473A95 /* ico_recur.gif in Resources */ = {isa = PBXBuildFile; fileRef = B9160F4C0F565D9300473A95 /* ico_recur.gif */; };
-		B9160F710F565D9300473A95 /* ico_tag.gif in Resources */ = {isa = PBXBuildFile; fileRef = B9160F4D0F565D9300473A95 /* ico_tag.gif */; };
 		B9160F720F565D9300473A95 /* icon_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F4E0F565D9300473A95 /* icon_calendar.png */; };
 		B9160F740F565D9300473A95 /* icon_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F500F565D9300473A95 /* icon_checked.png */; };
 		B9160F760F565D9300473A95 /* icon_list.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F520F565D9300473A95 /* icon_list.png */; };
@@ -254,7 +248,6 @@
 		B9160EF10F565D1500473A95 /* TaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskViewController.h; sourceTree = "<group>"; };
 		B9160EF20F565D1500473A95 /* TaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskViewController.m; sourceTree = "<group>"; };
 		B9160F020F565D3C00473A95 /* fixture.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixture.sql; sourceTree = "<group>"; };
-		B9160F030F565D3C00473A95 /* fixture_auth.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixture_auth.sql; sourceTree = "<group>"; };
 		B9160F190F565D4C00473A95 /* ListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProvider.h; sourceTree = "<group>"; };
 		B9160F1A0F565D4C00473A95 /* RTMAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAuth.h; sourceTree = "<group>"; };
 		B9160F1B0F565D4C00473A95 /* RTMAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuth.m; sourceTree = "<group>"; };
@@ -280,12 +273,6 @@
 		B9160F390F565D6800473A95 /* PrivateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateInfo.h; sourceTree = "<group>"; };
 		B9160F440F565D9300473A95 /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBox.png; sourceTree = "<group>"; };
 		B9160F460F565D9300473A95 /* checkBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBoxChecked.png; sourceTree = "<group>"; };
-		B9160F480F565D9300473A95 /* ico_calendar.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ico_calendar.gif; sourceTree = "<group>"; };
-		B9160F490F565D9300473A95 /* ico_clock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ico_clock.gif; sourceTree = "<group>"; };
-		B9160F4A0F565D9300473A95 /* ico_globe.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ico_globe.gif; sourceTree = "<group>"; };
-		B9160F4B0F565D9300473A95 /* ico_link_gry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ico_link_gry.gif; sourceTree = "<group>"; };
-		B9160F4C0F565D9300473A95 /* ico_recur.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ico_recur.gif; sourceTree = "<group>"; };
-		B9160F4D0F565D9300473A95 /* ico_tag.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ico_tag.gif; sourceTree = "<group>"; };
 		B9160F4E0F565D9300473A95 /* icon_calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_calendar.png; sourceTree = "<group>"; };
 		B9160F500F565D9300473A95 /* icon_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_checked.png; sourceTree = "<group>"; };
 		B9160F520F565D9300473A95 /* icon_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_list.png; sourceTree = "<group>"; };
@@ -594,7 +581,6 @@
 			children = (
 				B95C5C070F598C8400A368DC /* rtm.sql */,
 				B9160F020F565D3C00473A95 /* fixture.sql */,
-				B9160F030F565D3C00473A95 /* fixture_auth.sql */,
 			);
 			name = db;
 			path = ../db;
@@ -761,12 +747,6 @@
 			children = (
 				B9160F440F565D9300473A95 /* checkBox.png */,
 				B9160F460F565D9300473A95 /* checkBoxChecked.png */,
-				B9160F480F565D9300473A95 /* ico_calendar.gif */,
-				B9160F490F565D9300473A95 /* ico_clock.gif */,
-				B9160F4A0F565D9300473A95 /* ico_globe.gif */,
-				B9160F4B0F565D9300473A95 /* ico_link_gry.gif */,
-				B9160F4C0F565D9300473A95 /* ico_recur.gif */,
-				B9160F4D0F565D9300473A95 /* ico_tag.gif */,
 				B9160F4E0F565D9300473A95 /* icon_calendar.png */,
 				B9160F500F565D9300473A95 /* icon_checked.png */,
 				B9160F520F565D9300473A95 /* icon_list.png */,
@@ -985,12 +965,6 @@
 			files = (
 				B9160F680F565D9300473A95 /* checkBox.png in Resources */,
 				B9160F6A0F565D9300473A95 /* checkBoxChecked.png in Resources */,
-				B9160F6C0F565D9300473A95 /* ico_calendar.gif in Resources */,
-				B9160F6D0F565D9300473A95 /* ico_clock.gif in Resources */,
-				B9160F6E0F565D9300473A95 /* ico_globe.gif in Resources */,
-				B9160F6F0F565D9300473A95 /* ico_link_gry.gif in Resources */,
-				B9160F700F565D9300473A95 /* ico_recur.gif in Resources */,
-				B9160F710F565D9300473A95 /* ico_tag.gif in Resources */,
 				B9160F720F565D9300473A95 /* icon_calendar.png in Resources */,
 				B9160F740F565D9300473A95 /* icon_checked.png in Resources */,
 				B9160F760F565D9300473A95 /* icon_list.png in Resources */,
