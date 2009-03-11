@@ -28,5 +28,9 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - issue claimed
   - it's mine!
+- - 2009-03-11 03:44:44.547793 Z
+  - mootoh <mootoh@gmail.com>
+  - commented
+  - implemented adding tags to new created Task at offline.
 git_branch: 
 claimer: mootoh <mootoh@gmail.com>
