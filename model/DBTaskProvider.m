@@ -11,6 +11,7 @@
 #import "RTMList.h"
 #import "RTMTag.h"
 #import "LocalCache.h"
+#import "logger.h"
 
 @implementation DBTaskProvider
 
@@ -35,13 +36,13 @@
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    NSArray *keys = [NSArray arrayWithObjects:
-      @"task.id", @"task.name", @"task.url", @"task.due", @"task.priority",
-      @"task.postponed", @"task.estimate", @"task.rrule", @"task.location_id", @"task.list_id",
-      @"task.taskseries_id", @"task.edit_bits", nil];
+      @"task.id", @"task.edit_bits",
+      @"task.task_id", @"task.due", @"task.completed", @"task.priority", @"task.postponed", @"task.estimate", @"task.has_due_time",
+      @"task.taskseries_id", @"task.name", @"task.url", @"task.location_id", @"task.list_id", @"task.rrule", nil];
    NSArray *types = [NSArray arrayWithObjects:
-     [NSNumber class], [NSString class], [NSString class], [NSDate class],
-     [NSNumber class], [NSNumber class], [NSString class], [NSString class],
-     [NSNumber class], [NSNumber class], [NSNumber class], [NSNumber class], nil];
+     [NSNumber class], [NSNumber class],
+     [NSNumber class], [NSDate class], [NSDate class], [NSNumber class], [NSNumber class], [NSString class],[NSNumber class], 
+     [NSNumber class], [NSString class], [NSString class], [NSNumber class], [NSNumber class], [NSString class], nil];
    NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
 
    NSArray *task_arr = conditions ?
@@ -53,7 +54,7 @@
 
       // collect tags
       NSDictionary *tag_dict = [NSDictionary dictionaryWithObject:[NSString class] forKey:@"name"];
-      NSLog(@"task.edit_bits = %d", [task.edit_bits intValue]);
+      LOG(@"task.edit_bits = %d", [task.edit_bits intValue]);
       int tid = ([task.edit_bits intValue] & EB_CREATED_OFFLINE) ?
          [task.iD intValue] :
          [task.taskseries_id intValue];
@@ -63,7 +64,7 @@
 
       NSArray *tag_keys = [NSArray arrayWithObjects:@"WHERE", @"JOIN", nil];
       NSArray *tag_vals = [NSArray arrayWithObjects:
-         [NSString stringWithFormat:@"task_tag.taskseries_id=%d", tid],
+         [NSString stringWithFormat:@"task_tag.task_id=%d", tid],
          join_dict,
          nil];
       NSDictionary *tag_opts = [NSDictionary dictionaryWithObjects:tag_vals forKeys:tag_keys];
@@ -112,13 +113,13 @@
 - (NSArray *) tasksInTag:(RTMTag *)tag
 {
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
-   NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"task.id=task_tag.taskseries_id OR task.taskseries_id=task_tag.taskseries_id", nil]; // TODO: fix this
+   NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"(task.taskseries_id IS NULL AND task.id=task_tag.task_id) OR (task.taskseries_id IS NOT NULL AND task.taskseries_id=task_tag.task_id)", nil];
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", @"JOIN", @"GROUP", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [NSString stringWithFormat:@"task_tag.tag_id=%d", [tag.iD intValue]],
       [NSString stringWithFormat:@"task.priority=0 ASC, task.priority ASC, task.due IS NULL ASC, task.due ASC"],
       [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys],
-      @"task_tag.taskseries_id",
+      @"task_tag.task_id",
       nil];
 
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];

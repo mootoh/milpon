@@ -17,7 +17,7 @@ INSERT INTO task (
     taskseries_id, name, url, location_id, list_id, rrule)
   VALUES (
     1, 0,
-    1, '', '', 0, 0, '', 0,
+    1, NULL, NULL, 0, 0, '', 0,
     1, 'task one', '', 1, 1, '');
 
 --------------------------------------------------------------------

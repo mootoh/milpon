@@ -53,7 +53,7 @@
    NSAssert(NO, @"not reach here");
 }
 
-- (void) updateTaskSeriesID:(NSNumber *)tid;
+- (void) updateTaskSeriesID:(RTMTag *)tag tid:(NSNumber *)tid;
 {
    NSAssert(NO, @"not reach here");
 }

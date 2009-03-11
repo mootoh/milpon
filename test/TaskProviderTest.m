@@ -33,11 +33,11 @@
 
    STAssertEquals([first_task.iD intValue], 1, @"check attr");
    STAssertTrue([first_task.name isEqualToString:@"task one"], @"check attr");
-   STAssertTrue([first_task.url isEqualToString:@"http://localhost/"], @"check attr");
-   STAssertTrue([first_task.due isEqualToDate:[[MilponHelper sharedHelper] stringToDate:@"2009-03-31 13:00:00"]], @"check attr");
-   STAssertEquals([first_task.priority intValue], 1, @"check attr");
-   STAssertEquals([first_task.postponed intValue], 3, @"check attr");
-   STAssertTrue([first_task.estimate isEqualToString:@"30m"], @"check attr");
+   STAssertTrue([first_task.url isEqualToString:@""], @"check attr");
+   //STAssertTrue([first_task.due isEqualToDate:[[MilponHelper sharedHelper] stringToDate:@"2009-03-31 13:00:00"]], @"check attr");
+   STAssertEquals([first_task.priority intValue], 0, @"check attr");
+   STAssertEquals([first_task.postponed intValue], 0, @"check attr");
+   STAssertTrue([first_task.estimate isEqualToString:@""], @"check attr");
    STAssertTrue([first_task.rrule isEqualToString:@""], @"check attr");
    STAssertEquals([first_task.list_id intValue], 1, @"check attr");
    STAssertEquals([first_task.location_id intValue], 1, @"check attr");
@@ -63,7 +63,7 @@
    TaskProvider *tp = [TaskProvider sharedTaskProvider];
    RTMTag *tag = [[RTMTag alloc] initWithID:[NSNumber numberWithInt:1] forName:@"tag"];
    NSArray *tasks = [tp tasksInTag:tag];
-   STAssertEquals(tasks.count, 1U, @"should have some list elements.");
+   STAssertEquals(tasks.count, 1U, @"should have some task elements in a index tag #1");
 }
 
 #if 0

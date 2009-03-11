@@ -8,8 +8,8 @@ CREATE TABLE task (
   edit_bits      INTEGER DEFAULT 0,
 -- Task begin
   task_id        INTEGER,
-  due            CHAR(24) DEFAULT '', -- date
-  completed      CHAR(24) DEFAULT '', -- date
+  due            CHAR(24), -- date
+  completed      CHAR(24), -- date
   priority       INTEGER DEFAULT 0,
   postponed      INTEGER DEFAULT 0,
   estimate       CHAR(24) DEFAULT '',
