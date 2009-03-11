@@ -100,6 +100,9 @@
 		B919969B0F612CB200D631D1 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
 		B919969D0F612CB800D631D1 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
 		B919969F0F612CBD00D631D1 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
+		B926C44C0F67812F0014DB7D /* AttributeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B926C44B0F67812F0014DB7D /* AttributeView.m */; };
+		B926C4BF0F67991B0014DB7D /* icon_url.png in Resources */ = {isa = PBXBuildFile; fileRef = B926C4BE0F67991B0014DB7D /* icon_url.png */; };
+		B926C4F60F67A0AD0014DB7D /* TagListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B926C4F50F67A0AD0014DB7D /* TagListViewController.m */; };
 		B94A03600F5FEC0500A43BCA /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
 		B95C5C080F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B95C5C090F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
@@ -133,7 +136,6 @@
 		B985AB820F6108A8004A1B54 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		B985AB830F6108A8004A1B54 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		B985AB840F6108A8004A1B54 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
-		B9B77F920F56A18600BF0EF3 /* DueDateSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */; };
 		B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9B9561E0F65D15E0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B956210F65D17C0046712A /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
@@ -253,7 +255,6 @@
 		B9160EF20F565D1500473A95 /* TaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskViewController.m; sourceTree = "<group>"; };
 		B9160F020F565D3C00473A95 /* fixture.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixture.sql; sourceTree = "<group>"; };
 		B9160F030F565D3C00473A95 /* fixture_auth.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixture_auth.sql; sourceTree = "<group>"; };
-		B9160F0B0F565D3C00473A95 /* schema.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
 		B9160F190F565D4C00473A95 /* ListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProvider.h; sourceTree = "<group>"; };
 		B9160F1A0F565D4C00473A95 /* RTMAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAuth.h; sourceTree = "<group>"; };
 		B9160F1B0F565D4C00473A95 /* RTMAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuth.m; sourceTree = "<group>"; };
@@ -362,12 +363,16 @@
 		B916105D0F56607600473A95 /* MockTagProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockTagProvider.m; sourceTree = "<group>"; };
 		B91610890F56618400473A95 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B916108C0F56686600473A95 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
+		B926C44A0F67812F0014DB7D /* AttributeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeView.h; sourceTree = "<group>"; };
+		B926C44B0F67812F0014DB7D /* AttributeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeView.m; sourceTree = "<group>"; };
+		B926C4BE0F67991B0014DB7D /* icon_url.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_url.png; sourceTree = "<group>"; };
+		B926C4F40F67A0AD0014DB7D /* TagListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagListViewController.h; sourceTree = "<group>"; };
+		B926C4F50F67A0AD0014DB7D /* TagListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagListViewController.m; sourceTree = "<group>"; };
 		B95C5C070F598C8400A368DC /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = rtm.sql; sourceTree = "<group>"; };
 		B970A8150F637F71004467E9 /* ScaffoldTaskEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldTaskEditViewController.h; path = scaffold/ScaffoldTaskEditViewController.h; sourceTree = "<group>"; };
 		B970A8160F637F71004467E9 /* ScaffoldTaskEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldTaskEditViewController.m; path = scaffold/ScaffoldTaskEditViewController.m; sourceTree = "<group>"; };
 		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
 		B985AB890F6108A8004A1B54 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DueDateSelect.xib; sourceTree = "<group>"; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B956560F65D2720046712A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "APILocalTest-Info.plist"; path = "../APILocalTest-Info.plist"; sourceTree = "<group>"; };
@@ -576,6 +581,10 @@
 				B9B959100F664B780046712A /* TagViewController.m */,
 				B9160FB90F565DB600473A95 /* MainWindow.xib */,
 				B970AC050F6416A1004467E9 /* TaskView.xib */,
+				B926C44A0F67812F0014DB7D /* AttributeView.h */,
+				B926C44B0F67812F0014DB7D /* AttributeView.m */,
+				B926C4F40F67A0AD0014DB7D /* TagListViewController.h */,
+				B926C4F50F67A0AD0014DB7D /* TagListViewController.m */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -586,7 +595,6 @@
 				B95C5C070F598C8400A368DC /* rtm.sql */,
 				B9160F020F565D3C00473A95 /* fixture.sql */,
 				B9160F030F565D3C00473A95 /* fixture_auth.sql */,
-				B9160F0B0F565D3C00473A95 /* schema.sql */,
 			);
 			name = db;
 			path = ../db;
@@ -648,6 +656,7 @@
 		B9160F430F565D9300473A95 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				B926C4BE0F67991B0014DB7D /* icon_url.png */,
 				B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */,
 				B9160F010F565D3C00473A95 /* db */,
 				B95C5C160F598F9C00A368DC /* icons */,
@@ -796,7 +805,6 @@
 			children = (
 				B9160ED80F565D1500473A95 /* AddTaskViewController.h */,
 				B9160ED90F565D1500473A95 /* AddTaskViewController.m */,
-				B9B77F900F56A18600BF0EF3 /* DueDateSelect.xib */,
 				B91610160F565F9E00473A95 /* DueDateSelectController.h */,
 				B91610170F565F9E00473A95 /* DueDateSelectController.m */,
 				B916100F0F565F8A00473A95 /* NoteEditController.h */,
@@ -1009,10 +1017,10 @@
 				B9160FB40F565DAB00473A95 /* uiccalendar_right_arrow.png in Resources */,
 				B9160FB50F565DAB00473A95 /* uiccalendar_title.png in Resources */,
 				B9160FC50F565DB600473A95 /* MainWindow.xib in Resources */,
-				B9B77F920F56A18600BF0EF3 /* DueDateSelect.xib in Resources */,
 				B95C5C080F598C8400A368DC /* rtm.sql in Resources */,
 				B970AC060F6416A1004467E9 /* TaskView.xib in Resources */,
 				B9B95CA70F6767BE0046712A /* NoteEdit.xib in Resources */,
+				B926C4BF0F67991B0014DB7D /* icon_url.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1187,6 +1195,8 @@
 				B9B957560F6617670046712A /* RTMTag.m in Sources */,
 				B9B957650F662E780046712A /* TagProvider.m in Sources */,
 				B9B959110F664B780046712A /* TagViewController.m in Sources */,
+				B926C44C0F67812F0014DB7D /* AttributeView.m in Sources */,
+				B926C4F60F67A0AD0014DB7D /* TagListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

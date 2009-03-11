@@ -10,6 +10,7 @@
 #import "RTMTask.h"
 
 @class TaskViewController;
+@class AttributeView;
 
 @interface DueLabel : UILabel
 {
@@ -22,20 +23,13 @@
 @end
 
 
-@interface TaskViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate> {
+@interface TaskViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate>
+{
    RTMTask *task;
-   IBOutlet UITextField   *name;
-   IBOutlet UITextField   *url;
-   IBOutlet UITextField   *location;
-   IBOutlet UITextField   *repeat;
-   IBOutlet UITextField   *estimate;
-   IBOutlet UITextField   *postponed;
    IBOutlet DueLabel      *due;
    IBOutlet UIButton      *priorityButton;
-   IBOutlet UITextField   *list;
-   IBOutlet UITextView    *noteView;
    IBOutlet UIPageControl *notePages;
-   IBOutlet UILabel       *tags;
+   IBOutlet AttributeView *note_field;
    UIView  *dialogView;
    NSArray *prioritySelections;
 }

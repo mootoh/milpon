@@ -14,6 +14,7 @@
 #import "logger.h"
 #import "ListProvider.h"
 #import "MilponHelper.h"
+#import "AttributeView.h"
 
 #define kNOTE_PLACE_HOLDER @"note..."
 
@@ -92,28 +93,55 @@ static NSArray *s_icons;
    [due setViewController:self];
    due.userInteractionEnabled = YES;
 
+/*
    name.text = task.name;
    name.clearsOnBeginEditing = NO;
    name.delegate = self;
-   url.text = task.url;
-   list.text = [[ListProvider sharedListProvider] nameForListID:task.list_id];
+*/
 
-   NSString *tag_label = @"";
+   AttributeView *name_field = [[AttributeView alloc] initWithFrame:CGRectMake(14, 20, 320-14*2, 20)];
+   name_field.text = task.name;
+   name_field.icon = [[[UIImage alloc] initWithContentsOfFile:
+      [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_target.png"]] autorelease];
+   name_field.line_width = 2.0f;
+   [self.view addSubview:name_field];
+   [name_field release];
+
+   AttributeView *due_field = [[AttributeView alloc] initWithFrame:CGRectMake(14, 60, (320-14*2)/3, 20)];
+
+   if (task.due) {
+      NSCalendar *calendar = [NSCalendar currentCalendar];
+      unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+      NSDateComponents *comps = [calendar components:unitFlags fromDate:task.due];
+
+      NSString *dueString = [NSString stringWithFormat:@"%d/%d", [comps month], [comps day]];
+
+      due_field.text = dueString;
+   }
+   due_field.icon = [[[UIImage alloc] initWithContentsOfFile:
+      [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_calendar.png"]] autorelease];
+   [self.view addSubview:due_field];
+   [due_field release];
+
+   AttributeView *list_field = [[AttributeView alloc] initWithFrame:CGRectMake(14, 100, (320-14*2)/3, 20)];
+   list_field.text = [[ListProvider sharedListProvider] nameForListID:task.list_id];
+   list_field.icon = [[[UIImage alloc] initWithContentsOfFile:
+      [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]] autorelease];
+   [self.view addSubview:list_field];
+   [list_field release];
+
+   AttributeView *tag_field = [[AttributeView alloc] initWithFrame:CGRectMake(14, 140, 320-14*2, 20)];
+   NSString *tag_str = @"";
    for (NSString *tag in task.tags)
-      tag_label = [tag_label stringByAppendingFormat:@"%@ ", tag];
-   tags.text = tag_label;
+      tag_str = [tag_str stringByAppendingFormat:@"%@ ", tag];
+   tag_field.text = tag_str;
    
-   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
-
-   if (task.rrule && ![task.rrule isEqualToString:@""])
-      repeat.text = task.rrule;
+   tag_field.icon = [[[UIImage alloc] initWithContentsOfFile:
+      [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]] autorelease];
+   [self.view addSubview:tag_field];
+   [tag_field release];
 
    [self updateDue];
-
-   // location.text = [NSString stringWithFormat:@"%d", task.location_id];
-   //completed.text = task.completed;
 
    [self setPriorityButton];
    [priorityButton addTarget:self action:@selector(togglePriorityView) forControlEvents:UIControlEventTouchDown];
@@ -141,13 +169,17 @@ static NSArray *s_icons;
    prioritySelections = btns;
    [self.view addSubview:dialogView];
 
-   postponed.text = [task.postponed stringValue];
-   postponed.delegate = self;
-   estimate.text = task.estimate;
-   estimate.delegate = self;
+   note_field = [[AttributeView alloc] initWithFrame:CGRectMake(14, 180, 320-14*2, 150)];
+   note_field.text = task.name;
+   note_field.icon = [[[UIImage alloc] initWithContentsOfFile:
+      [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_note.png"]] autorelease];
+   note_field.line_width = 1.0f;
+   [self.view addSubview:note_field];
 
+   /*
    noteView.font = [UIFont systemFontOfSize:12];
    noteView.delegate = self;
+   */
 
    [notePages addTarget:self action:@selector(displayNote) forControlEvents:UIControlEventTouchUpInside];
    [self displayNote];
@@ -182,7 +214,9 @@ static NSArray *s_icons;
 
 - (void) dealloc
 {
-   if (task) [task release];
+   [due release];
+   [task release];
+   [note_field release];
    [dialogView release];
    [prioritySelections release];
    [super dealloc];
@@ -199,13 +233,13 @@ static NSArray *s_icons;
 {
    notePages.numberOfPages = task.notes.count;
    if (0 == task.notes.count) {
-      noteView.text = kNOTE_PLACE_HOLDER;
+      note_field.text = kNOTE_PLACE_HOLDER;
       return;
    }
 
    NSDictionary *note = [task.notes objectAtIndex:notePages.currentPage];
    NSString *text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
-   noteView.text = text;
+   note_field.text = text;
 }
 
 - (void) togglePriorityView
@@ -234,6 +268,7 @@ prioritySelected_N(3);
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+#if 0
    LOG(@"textFieldShouldReturn");
    if (textField == name) {
    } else if (textField == location) {
@@ -243,44 +278,9 @@ prioritySelected_N(3);
    }
 
    [textField resignFirstResponder];
-   return YES;
-}
-
-/* -------------------------------------------------------------------
- * UITextViewDelegate
- */
-
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-   if ([textView.text isEqualToString:kNOTE_PLACE_HOLDER])
-      textView.text = @"";
-   return YES;
-}
-
-// TODO: #27
-#if 0
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-   if ([textView.text isEqualToString:kNOTE_PLACE_HOLDER])
-      return;
-
-   if ([task isKindOfClass:[RTMPendingTask class]]) {
-      // TODO
-      return;
-   }
-
-   if (0 == task.notes.count) { // create one
-      [RTMPendingTask createNote:textView.text withID:((RTMExistingTask *)task).taskseries_id inDB:db];
-      return;
-   }
-
-   NSInteger page = notePages.currentPage;
-
-   NSDictionary *note = [task.notes objectAtIndex:notePages.currentPage];
-   NSString *text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
-   noteView.text = text;
-}
 #endif // 0
+   return YES;
+}
 
 - (void) picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate
 {
@@ -290,7 +290,6 @@ prioritySelected_N(3);
 
    [self updateDue];
 }
-
 
 @end
 // vim:set fdm=marker:

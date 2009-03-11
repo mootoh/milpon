@@ -6,13 +6,11 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @class RTMList;
 
 @interface AddTaskViewController : UITableViewController
 {
-   UITextField *text_input;
+   UITextField *name_field;
    UIButton *due_button;
    UISegmentedControl *priority_segment;
 
@@ -28,6 +26,11 @@
 @property (nonatomic, retain) NSString *note;
 
 - (IBAction) cancel;
+
+/**
+ * @brief create RTMTask from given fields, then close the view.
+ * @todo: add rrule
+ */
 - (IBAction) save;
 
 @end

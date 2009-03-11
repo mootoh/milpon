@@ -143,7 +143,7 @@
 {
    [task flagUpEditBits:EB_TASK_COMPLETED];
 
-   NSDictionary *dict = [NSDictionary dictionaryWithObject:@"1" forKey:@"completed"];
+   NSDictionary *dict = [NSDictionary dictionaryWithObject:task.completed forKey:@"completed"];
    [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"where id=%d", [task.iD intValue]]];
 }
 

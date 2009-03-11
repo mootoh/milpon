@@ -47,7 +47,7 @@ enum {
 {
    [priority_segment release];
    [due_button release];
-   [text_input release];
+   [name_field release];
    [super dealloc];
 }
 
@@ -67,9 +67,9 @@ enum {
    [submitButton release];
 
    // task name
-   text_input = [[UITextField alloc] initWithFrame:CGRectMake(30, 8, 300, 40)];
-   [text_input setFont:[UIFont systemFontOfSize:20.0f]];
-   text_input.placeholder = @"what to do...";
+   name_field = [[UITextField alloc] initWithFrame:CGRectMake(30, 8, 300, 40)];
+   [name_field setFont:[UIFont systemFontOfSize:20.0f]];
+   name_field.placeholder = @"what to do...";
    
    // due button
    due_button = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
@@ -127,9 +127,9 @@ enum {
             iconImageView.image = iconImage;
             [cell.contentView addSubview:iconImageView];
 
-            [cell.contentView addSubview:text_input];
+            [cell.contentView addSubview:name_field];
          }
-         [text_input becomeFirstResponder];
+         [name_field becomeFirstResponder];
          break;
       }
       case ROW_DUE_PRIORITY: {
@@ -271,30 +271,17 @@ enum {
    [self dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction) cancel
-{
-   [self close];
-}
-
-/*
- * create RTMTask from given fields
- *
- * TODO:
- *  - how to validate the fields ?
- *  - add rrule
- */
 - (IBAction) save
 {
-   NSString *name = text_input.text;
-   if (name == nil || [name isEqualToString:@""])
+   NSString *name = name_field.text;
+   if (name == nil || [name isEqualToString:@""]) // validate name_field
       return;
 
    NSNumber *priority = [NSNumber numberWithInteger:priority_segment.selectedSegmentIndex];
 
    // create RTMTask and store it in DB.
-   NSArray *keys =  [NSArray arrayWithObjects:@"name", @"list_id", @"priority", nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"name", @"list_id", @"priority", nil];
    NSArray *vals = [NSArray arrayWithObjects:name, list.iD, priority, nil];
-   
    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (due)
       [params setObject:due forKey:@"due"];
@@ -317,6 +304,11 @@ enum {
    vc.parent = self;
    [self.navigationController pushViewController:vc animated:YES];
    [vc release];
+}
+
+- (IBAction) cancel
+{
+   [self close];
 }
 
 @end

@@ -11,14 +11,12 @@
 @class AddTaskViewController;
 @class UICCalendarPicker;
 
-@interface DueDateSelectController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface DueDateSelectController : UITableViewController
 {
-   IBOutlet UITableView *theTableView;
    AddTaskViewController *parent;
    UICCalendarPicker *calendar_picker;
 }
 
-@property (nonatomic, retain) UITableView *theTableView;
 @property (nonatomic, retain) AddTaskViewController *parent;
 
 @end

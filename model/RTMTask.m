@@ -66,8 +66,8 @@
 }
 - (void) complete
 {
-   [[TaskProvider sharedTaskProvider] complete:self];
    self.completed = [NSDate date];
+   [[TaskProvider sharedTaskProvider] complete:self];
 }
 
 - (void) uncomplete
