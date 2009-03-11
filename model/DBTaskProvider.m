@@ -52,28 +52,40 @@
    for (NSDictionary *dict in task_arr) {
       RTMTask *task = [[[RTMTask alloc] initByParams:dict] autorelease];
 
-      // collect tags
-      NSDictionary *tag_dict = [NSDictionary dictionaryWithObject:[NSString class] forKey:@"name"];
-      LOG(@"task.edit_bits = %d", [task.edit_bits intValue]);
       int tid = ([task.edit_bits intValue] & EB_CREATED_OFFLINE) ?
          [task.iD intValue] :
          [task.taskseries_id intValue];
-      NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
-      NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"tag.id=task_tag.tag_id", nil];
-      NSDictionary *join_dict = [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys];
 
-      NSArray *tag_keys = [NSArray arrayWithObjects:@"WHERE", @"JOIN", nil];
-      NSArray *tag_vals = [NSArray arrayWithObjects:
-         [NSString stringWithFormat:@"task_tag.task_id=%d", tid],
-         join_dict,
-         nil];
-      NSDictionary *tag_opts = [NSDictionary dictionaryWithObjects:tag_vals forKeys:tag_keys];
+      { // collect tags
+         NSDictionary *tag_dict = [NSDictionary dictionaryWithObject:[NSString class] forKey:@"name"];
+         NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
+         NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"tag.id=task_tag.tag_id", nil];
+         NSDictionary *join_dict = [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys];
 
-      NSArray *tags_dict = [local_cache_ select:tag_dict from:@"tag" option:tag_opts];
-      NSMutableArray *tags = [NSMutableArray array];
-      for (NSDictionary *tag in tags_dict)
-         [tags addObject:[tag objectForKey:@"name"]];
-      task.tags = tags;
+         NSArray *tag_keys = [NSArray arrayWithObjects:@"WHERE", @"JOIN", nil];
+         NSArray *tag_vals = [NSArray arrayWithObjects:
+            [NSString stringWithFormat:@"task_tag.task_id=%d", tid],
+            join_dict,
+            nil];
+         NSDictionary *tag_opts = [NSDictionary dictionaryWithObjects:tag_vals forKeys:tag_keys];
+
+         NSArray *tags_dict = [local_cache_ select:tag_dict from:@"tag" option:tag_opts];
+         NSMutableArray *tags = [NSMutableArray array];
+         for (NSDictionary *tag in tags_dict)
+            [tags addObject:[tag objectForKey:@"name"]];
+         task.tags = tags;
+      }
+      { // collect notes
+         NSArray *note_keys = [NSArray arrayWithObjects:@"title", @"text", nil];
+         NSArray *note_vals = [NSArray arrayWithObjects:[NSString class], [NSString class], nil];
+         NSDictionary *note_dict = [NSDictionary dictionaryWithObjects:note_vals forKeys:note_keys];
+
+         NSDictionary *note_opts = [NSDictionary dictionaryWithObject:
+            [NSString stringWithFormat:@"task_id=%d", tid] forKey:@"WHERE"];
+
+         NSArray *notes = [local_cache_ select:note_dict from:@"note" option:note_opts];
+         task.notes = notes;
+      }
 
       [tasks addObject:task];
    }
@@ -222,6 +234,14 @@
    [local_cache_ delete:@"tag" condition:nil];
    [local_cache_ delete:@"location" condition:nil];
    dirty_ = YES;
+}
+
+- (void) createNote:(NSString *)note task_id:(NSNumber *)tid
+{
+   NSArray *keys = [NSArray arrayWithObjects:@"text", @"task_id", @"edit_bits", nil];
+   NSArray *vals = [NSArray arrayWithObjects:note, tid, [NSNumber numberWithInt:EB_CREATED_OFFLINE], nil];
+   NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   [local_cache_ insert:attrs into:@"note"];
 }
 
 @end // DBTaskProvider

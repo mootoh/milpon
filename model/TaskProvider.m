@@ -76,6 +76,11 @@
    NSAssert(NO, @"not reach here");
 }
 
+- (void) createNote:(NSString *)note task_id:(NSNumber *)tid
+{
+   NSAssert(NO, @"not reach here");
+}
+
 + (TaskProvider *) sharedTaskProvider
 {
    NSAssert(NO, @"not reach here");

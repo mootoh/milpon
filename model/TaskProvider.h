@@ -30,6 +30,8 @@
 - (void) uncomplete:(RTMTask *)task;
 - (void) remove:(RTMTask *) task;
 
+- (void) createNote:(NSString *)note task_id:(NSNumber *)tid;
+
 // TODO: lastSync should be moved to somewhere not here.
 //- (NSString *) lastSync;
 //- (void) updateLastSync;

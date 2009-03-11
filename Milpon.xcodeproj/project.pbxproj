@@ -184,6 +184,7 @@
 		B9B957B70F6632DB0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B957F70F6636530046712A /* ScaffoldTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957F60F6636530046712A /* ScaffoldTagViewController.m */; };
 		B9B959110F664B780046712A /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B959100F664B780046712A /* TagViewController.m */; };
+		B9B95CA70F6767BE0046712A /* NoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B95CA60F6767BE0046712A /* NoteEdit.xib */; };
 		B9C648930F610B3100A47F4F /* ScaffoldMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */; };
 		B9C648980F610B6600A47F4F /* ScaffoldAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */; };
 		B9D043180F5F477400641E61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -252,10 +253,6 @@
 		B9160EF20F565D1500473A95 /* TaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskViewController.m; sourceTree = "<group>"; };
 		B9160F020F565D3C00473A95 /* fixture.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixture.sql; sourceTree = "<group>"; };
 		B9160F030F565D3C00473A95 /* fixture_auth.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixture_auth.sql; sourceTree = "<group>"; };
-		B9160F040F565D3C00473A95 /* migrate_001_edit_bits.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_001_edit_bits.sql; sourceTree = "<group>"; };
-		B9160F050F565D3C00473A95 /* migrate_002_add_version.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_002_add_version.sql; sourceTree = "<group>"; };
-		B9160F060F565D3C00473A95 /* migrate_003_set_zero_edit_bits.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_003_set_zero_edit_bits.sql; sourceTree = "<group>"; };
-		B9160F070F565D3C00473A95 /* migrate_004_add_edit_bits_to_note.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_004_add_edit_bits_to_note.sql; sourceTree = "<group>"; };
 		B9160F0B0F565D3C00473A95 /* schema.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
 		B9160F190F565D4C00473A95 /* ListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProvider.h; sourceTree = "<group>"; };
 		B9160F1A0F565D4C00473A95 /* RTMAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAuth.h; sourceTree = "<group>"; };
@@ -386,6 +383,7 @@
 		B9B957F60F6636530046712A /* ScaffoldTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldTagViewController.m; path = scaffold/ScaffoldTagViewController.m; sourceTree = "<group>"; };
 		B9B9590F0F664B780046712A /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
 		B9B959100F664B780046712A /* TagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagViewController.m; sourceTree = "<group>"; };
+		B9B95CA60F6767BE0046712A /* NoteEdit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteEdit.xib; sourceTree = "<group>"; };
 		B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScaffoldMainWindow.xib; path = scaffold/ScaffoldMainWindow.xib; sourceTree = "<group>"; };
 		B9C648960F610B6600A47F4F /* ScaffoldAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldAppDelegate.h; path = scaffold/ScaffoldAppDelegate.h; sourceTree = "<group>"; };
 		B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldAppDelegate.m; path = scaffold/ScaffoldAppDelegate.m; sourceTree = "<group>"; };
@@ -544,6 +542,7 @@
 		B9160ED60F565D1500473A95 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				B9B95CA60F6767BE0046712A /* NoteEdit.xib */,
 				B9CBAFF80F5991710025216C /* add */,
 				B9CBAFF90F5991B80025216C /* auth */,
 				B9160EDA0F565D1500473A95 /* AppDelegate.h */,
@@ -587,10 +586,6 @@
 				B95C5C070F598C8400A368DC /* rtm.sql */,
 				B9160F020F565D3C00473A95 /* fixture.sql */,
 				B9160F030F565D3C00473A95 /* fixture_auth.sql */,
-				B9160F040F565D3C00473A95 /* migrate_001_edit_bits.sql */,
-				B9160F050F565D3C00473A95 /* migrate_002_add_version.sql */,
-				B9160F060F565D3C00473A95 /* migrate_003_set_zero_edit_bits.sql */,
-				B9160F070F565D3C00473A95 /* migrate_004_add_edit_bits_to_note.sql */,
 				B9160F0B0F565D3C00473A95 /* schema.sql */,
 			);
 			name = db;
@@ -1017,6 +1012,7 @@
 				B9B77F920F56A18600BF0EF3 /* DueDateSelect.xib in Resources */,
 				B95C5C080F598C8400A368DC /* rtm.sql in Resources */,
 				B970AC060F6416A1004467E9 /* TaskView.xib in Resources */,
+				B9B95CA70F6767BE0046712A /* NoteEdit.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -176,7 +176,7 @@ enum {
          switch (indexPath.row) {
             case ROW_LIST: {
                UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
-                                     [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]];
+                  [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]];
                iconImageView.image = iconImage;
                [iconImage release];
                label.text = list.name;
@@ -184,7 +184,7 @@ enum {
             }
             case ROW_TAG: {
                UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
-                                     [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]];
+                  [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]];
                iconImageView.image = iconImage;
                [iconImage release];
 
@@ -193,8 +193,8 @@ enum {
                if (tags.count == 0) {
                   tags_joined = @"Tag...";
                } else {         
-                  for (NSString *tag in tags) {
-                     tags_joined = [tags_joined stringByAppendingString:[NSString stringWithFormat:@"%@ ", tag]];
+                  for (RTMTag *tag in tags) {
+                     tags_joined = [tags_joined stringByAppendingString:[NSString stringWithFormat:@"%@ ", tag.name]];
                   }
                }
                
@@ -302,15 +302,11 @@ enum {
    TaskProvider *tp = [TaskProvider sharedTaskProvider];
    NSNumber *tid = [tp createAtOffline:params];
 
-   for (RTMTag *tag in tags) {
+   for (RTMTag *tag in tags)
       [[TagProvider sharedTagProvider] createRelation:tid tag_id:tag.iD];
-   }
 
-   // TODO
-#if 0
    if (note)
-      [params setObject:note forKey:@"note"];
-#endif // 0
+      [tp createNote:note task_id:tid];
 
    [self close];
 }
