@@ -3,4 +3,8 @@ migrate:
 	for i in migrate_*.sql; do \
 		sqlite3 rtm.sql < $$i; \
 		sqlite3 test.sql < $$i; \
+	done; \
+	for i in fixture*.sql; do \
+		sqlite3 rtm.sql < $$i; \
+		sqlite3 test.sql < $$i; \
 	done
