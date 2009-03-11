@@ -56,11 +56,11 @@
    sqlite3_finalize(stmt);
 } // }}}
 
-+ (void) createNote:(NSString *)note withID:(NSNumber *)task_series_id inDB:(RTMDatabase *)db
++ (void) createNote:(NSString *)note withID:(NSNumber *)taskseries_id inDB:(RTMDatabase *)db
 {
    sqlite3_stmt *stmt = nil;
    const char *sql = "INSERT INTO note "
-      "(text, task_series_id, edit_bits) "
+      "(text, taskseries_id, edit_bits) "
       "VALUES (?, ?, ?)";
    if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL)) {
       NSAssert1(NO, @"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle]));
@@ -68,7 +68,7 @@
    }
 
    sqlite3_bind_text(stmt, 1, [note UTF8String], -1, SQLITE_TRANSIENT);
-   sqlite3_bind_int(stmt,  2, [task_series_id intValue]);
+   sqlite3_bind_int(stmt,  2, [taskseries_id intValue]);
    sqlite3_bind_int(stmt,  3, EB_CREATED_OFFLINE);
 
    if (SQLITE_ERROR == sqlite3_step(stmt)) {
@@ -115,10 +115,10 @@
 
    NSString *note = [params valueForKey:@"note"];
    if (note && ! [note isEqualToString:@""]) {
-      NSNumber *task_series_id = [RTMPendingTask getID:params inDB:db];
-      if (! task_series_id) // TODO: should treat error
+      NSNumber *taskseries_id = [RTMPendingTask getID:params inDB:db];
+      if (! taskseries_id) // TODO: should treat error
          return;
-      [RTMPendingTask createNote:note withID:task_series_id inDB:db];
+      [RTMPendingTask createNote:note withID:taskseries_id inDB:db];
    }
 
 } // }}}
@@ -136,7 +136,7 @@
    sqlite3_stmt *stmt = nil;
    const char *sql = "SELECT "
       "id, text from note "
-      "WHERE task_series_id=?";
+      "WHERE taskseries_id=?";
    if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL)) {
       LOG(@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle]));
       return nil;

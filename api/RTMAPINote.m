@@ -19,7 +19,7 @@
    if (! timeline) return NO;
 
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"note_title", @"note_text", @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:[ids objectForKey:@"list_id"], [ids objectForKey:@"task_series_id"], [ids objectForKey:@"task_id"], @"", text, timeline, nil];
+   NSArray *vals = [NSArray arrayWithObjects:[ids objectForKey:@"list_id"], [ids objectForKey:@"taskseries_id"], [ids objectForKey:@"task_id"], @"", text, timeline, nil];
    NSDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
 
    NSData *response = [api call:@"rtm.tasks.notes.add" withArgs:args];

@@ -23,7 +23,7 @@
    NSArray  *notes;
    NSNumber *list_id;
    NSNumber *location_id;
-   NSNumber *task_series_id;
+   NSNumber *taskseries_id;
    NSNumber *edit_bits;
 }
 
@@ -40,7 +40,7 @@
 @property (nonatomic, retain) NSArray  *notes;
 @property (nonatomic, retain) NSNumber *list_id;
 @property (nonatomic, retain) NSNumber *location_id;
-@property (nonatomic, retain) NSNumber *task_series_id;
+@property (nonatomic, retain) NSNumber *taskseries_id;
 @property (nonatomic, retain) NSNumber *edit_bits;
 
 - (id) initByParams:(NSDictionary *)params;

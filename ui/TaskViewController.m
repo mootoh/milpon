@@ -269,7 +269,7 @@ prioritySelected_N(3);
    }
 
    if (0 == task.notes.count) { // create one
-      [RTMPendingTask createNote:textView.text withID:((RTMExistingTask *)task).task_series_id inDB:db];
+      [RTMPendingTask createNote:textView.text withID:((RTMExistingTask *)task).taskseries_id inDB:db];
       return;
    }
 

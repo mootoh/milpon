@@ -4,7 +4,7 @@
 
 @implementation RTMTask
 
-@synthesize iD, name, url, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits, priority, due, task_series_id, edit_bits;
+@synthesize iD, name, url, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits, priority, due, taskseries_id, edit_bits;
 
 - (id) initByParams:(NSDictionary *)params
 {
@@ -20,7 +20,7 @@
       self.rrule           = [params valueForKey:@"task.rrule"];
       self.location_id     = [params valueForKey:@"task.location_id"];
       self.list_id         = [params valueForKey:@"task.list_id"];
-      self.task_series_id  = [params valueForKey:@"task.task_series_id"];
+      self.taskseries_id  = [params valueForKey:@"task.taskseries_id"];
       self.edit_bits       = [params valueForKey:@"task.edit_bits"];
    }
    return self;
@@ -118,11 +118,11 @@
       NSString *rrule     = (str && *str != '\0') ? [NSString stringWithUTF8String:str] : @"";
       NSNumber *location_id = [NSNumber numberWithInt:sqlite3_column_int(stmt, 8)];
       NSNumber *list_id   = [NSNumber numberWithInt:sqlite3_column_int(stmt, 9)];
-      NSNumber *task_series_id  = [NSNumber numberWithInt:sqlite3_column_int(stmt, 10)];
+      NSNumber *taskseries_id  = [NSNumber numberWithInt:sqlite3_column_int(stmt, 10)];
       NSNumber *edit_bits = [NSNumber numberWithInt:sqlite3_column_int(stmt, 11)];
 
-      NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority", @"postponed", @"estimate", @"rrule", @"location_id", @"list_id", @"task_series_id",@"edit_bits", nil];
-      NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, task_series_id, edit_bits, nil];
+      NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"url", @"due", @"priority", @"postponed", @"estimate", @"rrule", @"location_id", @"list_id", @"taskseries_id",@"edit_bits", nil];
+      NSArray *vals = [NSArray arrayWithObjects:task_id, name, url, due, priority, postponed, estimate, rrule, location_id, list_id, taskseries_id, edit_bits, nil];
       NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
       RTMTask *task = ([edit_bits intValue] == EB_CREATED_OFFLINE) ?
@@ -195,7 +195,6 @@
    self.edit_bits = [NSNumber numberWithInt:eb];
 }
 
-#if 0
 - (void) flagDownEditBits:(enum task_edit_bits_t) flag
 {
    int eb = [edit_bits intValue];
@@ -203,6 +202,7 @@
    self.edit_bits = [NSNumber numberWithInt:eb];
 }
 
+#if 0
 
 - (NSNumber *) priority
 {

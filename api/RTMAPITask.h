@@ -37,10 +37,10 @@
 - (NSArray *) getListWithLastSync:(NSString *)last_sync;
 - (NSArray *) getListForList:(NSString *)list_id withLastSync:(NSString *)last_sync;
 /**
- * @return [task_series_id, task_id]
+ * @return [taskseries_id, task_id]
  */
 - (NSDictionary *) add:(NSString *)name inList:(NSString *)list_id;
-- (BOOL) delete:(NSString *)task_id inTaskSeries:(NSString *)task_series_id inList:(NSString *)list_id;
+- (BOOL) delete:(NSString *)task_id inTaskSeries:(NSString *)taskseries_id inList:(NSString *)list_id;
 
 - (BOOL) setDue:(NSString *)due forIDs:(NSDictionary *)ids;
 - (BOOL) setLocation:(NSString *)location_id forIDs:(NSDictionary *)ids;

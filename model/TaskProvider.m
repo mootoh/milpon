@@ -43,6 +43,7 @@
 - (NSNumber *) createAtOffline:(NSDictionary *)params
 {
    NSAssert(NO, @"not reach here");
+   return nil;
 }
 
 - (void) createAtOnline:(NSDictionary *)params;

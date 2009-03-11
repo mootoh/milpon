@@ -30,7 +30,7 @@
    NSMutableArray *notes;
    NSMutableArray *task_entries;
    NSMutableDictionary *note;
-   NSMutableDictionary *task_series;
+   NSMutableDictionary *taskseries;
 }
 @end
 
@@ -42,7 +42,7 @@
 }
 
 /*
- * construct task_series array of NSStrings.
+ * construct taskseries array of NSStrings.
  */
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
 {
@@ -53,34 +53,34 @@
    } else if ([elementName isEqualToString:@"list"]) {
       list_id = [attributeDict valueForKey:@"id"];
    } else  if ([elementName isEqualToString:@"taskseries"]) {
-      task_series = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
-      [task_series setObject:list_id forKey:@"list_id"];
+      taskseries = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
+      [taskseries setObject:list_id forKey:@"list_id"];
       task_entries = [NSMutableArray array];
-      [task_series setObject:task_entries forKey:@"tasks"];
-      [tasks addObject:task_series];
+      [taskseries setObject:task_entries forKey:@"tasks"];
+      [tasks addObject:taskseries];
    } else if ([elementName isEqualToString:@"tags"]) {
-      NSAssert(task_series, @"should be in taskseries element");
+      NSAssert(taskseries, @"should be in taskseries element");
       tags = [NSMutableArray array];
-      [task_series setObject:tags forKey:@"tags"];
+      [taskseries setObject:tags forKey:@"tags"];
    } else if ([elementName isEqualToString:@"tag"]) {
-      NSAssert(task_series, @"should be in taskseries element");
+      NSAssert(taskseries, @"should be in taskseries element");
       NSAssert(tags, @"should be in tags element");
       mode = TAG;
    } else if ([elementName isEqualToString:@"notes"]) {
-      NSAssert(task_series, @"should be in taskseries element");
+      NSAssert(taskseries, @"should be in taskseries element");
       notes = [NSMutableArray array];
-      [task_series setObject:notes forKey:@"notes"];
+      [taskseries setObject:notes forKey:@"notes"];
    } else if ([elementName isEqualToString:@"note"]) {
-      NSAssert(task_series, @"should be in taskseries element");
+      NSAssert(taskseries, @"should be in taskseries element");
       NSAssert(notes, @"should be in notes element");
       mode = NOTE;
       note = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
       [notes addObject:note];
    } else if ([elementName isEqualToString:@"rrule"]) {
-      NSAssert(task_series, @"should be in taskseries element");
+      NSAssert(taskseries, @"should be in taskseries element");
       mode = RRULE;
    } else if ([elementName isEqualToString:@"task"]) {
-      NSAssert(task_series, @"should be in taskseries element");
+      NSAssert(taskseries, @"should be in taskseries element");
       NSAssert(task_entries, @"should be in taskseries element");
       [task_entries addObject:attributeDict];
    }
@@ -89,7 +89,7 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
    if ([elementName isEqualToString:@"taskseries"]) {
-      task_series = nil;
+      taskseries = nil;
       task_entries = nil;
    } else if ([elementName isEqualToString:@"tags"]) {
       tags = nil;
@@ -120,7 +120,7 @@
          [note setObject:chars forKey:@"text"];
          break;
       case RRULE:
-         [task_series setObject:chars forKey:@"rrule"];
+         [taskseries setObject:chars forKey:@"rrule"];
          break;
       default:
          NSAssert(NO, @"should not reach here");
@@ -154,7 +154,7 @@
       ids = [NSMutableDictionary dictionary];
       [ids setObject:[attributeDict valueForKey:@"id"] forKey:@"list_id"];
    } else if ([elementName isEqualToString:@"taskseries"]) {
-      [ids setObject:[attributeDict valueForKey:@"id"] forKey:@"task_series_id"];
+      [ids setObject:[attributeDict valueForKey:@"id"] forKey:@"taskseries_id"];
    } else if ([elementName isEqualToString:@"task"]) {
       [ids setObject:[attributeDict valueForKey:@"id"] forKey:@"task_id"];
    }
@@ -235,14 +235,14 @@
    return [cb ids];
 }
 
-- (BOOL) delete:(NSString *)task_id inTaskSeries:(NSString *)task_series_id inList:(NSString *)list_id
+- (BOOL) delete:(NSString *)task_id inTaskSeries:(NSString *)taskseries_id inList:(NSString *)list_id
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSString *timeline = [api createTimeline];
    if (! timeline) return NO;
 
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:list_id, task_series_id, task_id, timeline, nil];
+   NSArray *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
    NSData *response = [api call:@"rtm.tasks.delete" withArgs:args];
@@ -268,7 +268,7 @@
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"due", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [ids objectForKey:@"list_id"],
-      [ids objectForKey:@"task_series_id"],
+      [ids objectForKey:@"taskseries_id"],
       [ids objectForKey:@"task_id"],
       timeline,
       due,
@@ -298,7 +298,7 @@
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"location_id", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [ids objectForKey:@"list_id"],
-      [ids objectForKey:@"task_series_id"],
+      [ids objectForKey:@"taskseries_id"],
       [ids objectForKey:@"task_id"],
       timeline,
       location_id,
@@ -328,7 +328,7 @@
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"priority", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [ids objectForKey:@"list_id"],
-      [ids objectForKey:@"task_series_id"],
+      [ids objectForKey:@"taskseries_id"],
       [ids objectForKey:@"task_id"],
       timeline,
       priority,
@@ -358,7 +358,7 @@
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"estimate", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [ids objectForKey:@"list_id"],
-      [ids objectForKey:@"task_series_id"],
+      [ids objectForKey:@"taskseries_id"],
       [ids objectForKey:@"task_id"],
       timeline,
       estimate,
@@ -388,7 +388,7 @@
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [task.list_id stringValue],
-      [task.task_series_id stringValue],
+      [task.taskseries_id stringValue],
       [task.iD stringValue],
       timeline,
       nil];

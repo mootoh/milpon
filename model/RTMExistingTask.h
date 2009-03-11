@@ -13,12 +13,12 @@
 
 @interface RTMExistingTask : RTMTask
 {
-   //NSNumber *task_series_id;
+   //NSNumber *taskseries_id;
 }
 
-@property (nonatomic, retain) NSNumber *task_series_id;
+@property (nonatomic, retain) NSNumber *taskseries_id;
 
-+ (void) createOrUpdate:(NSDictionary *)task_series inDB:(RTMDatabase *)db;
++ (void) createOrUpdate:(NSDictionary *)taskseries inDB:(RTMDatabase *)db;
 
 @end
 // set vim:ft=objc

@@ -37,7 +37,7 @@
    NSArray *keys = [NSArray arrayWithObjects:
       @"task.id", @"task.name", @"task.url", @"task.due", @"task.priority",
       @"task.postponed", @"task.estimate", @"task.rrule", @"task.location_id", @"task.list_id",
-      @"task.task_series_id", @"task.edit_bits", nil];
+      @"task.taskseries_id", @"task.edit_bits", nil];
    NSArray *types = [NSArray arrayWithObjects:
      [NSNumber class], [NSString class], [NSString class], [NSDate class],
      [NSNumber class], [NSNumber class], [NSString class], [NSString class],
@@ -56,14 +56,14 @@
       NSLog(@"task.edit_bits = %d", [task.edit_bits intValue]);
       int tid = ([task.edit_bits intValue] & EB_CREATED_OFFLINE) ?
          [task.iD intValue] :
-         [task.task_series_id intValue];
+         [task.taskseries_id intValue];
       NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
       NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"tag.id=task_tag.tag_id", nil];
       NSDictionary *join_dict = [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys];
 
       NSArray *tag_keys = [NSArray arrayWithObjects:@"WHERE", @"JOIN", nil];
       NSArray *tag_vals = [NSArray arrayWithObjects:
-         [NSString stringWithFormat:@"task_tag.task_series_id=%d", tid],
+         [NSString stringWithFormat:@"task_tag.taskseries_id=%d", tid],
          join_dict,
          nil];
       NSDictionary *tag_opts = [NSDictionary dictionaryWithObjects:tag_vals forKeys:tag_keys];
@@ -112,13 +112,13 @@
 - (NSArray *) tasksInTag:(RTMTag *)tag
 {
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
-   NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"task.id=task_tag.task_series_id OR task.task_series_id=task_tag.task_series_id", nil]; // TODO: fix this
+   NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"task.id=task_tag.taskseries_id OR task.taskseries_id=task_tag.taskseries_id", nil]; // TODO: fix this
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", @"JOIN", @"GROUP", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [NSString stringWithFormat:@"task_tag.tag_id=%d", [tag.iD intValue]],
       [NSString stringWithFormat:@"task.priority=0 ASC, task.priority ASC, task.due IS NULL ASC, task.due ASC"],
       [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys],
-      @"task_tag.task_series_id",
+      @"task_tag.taskseries_id",
       nil];
 
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
@@ -175,15 +175,15 @@
    NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:params];
    NSNumber *edit_bits = [NSNumber numberWithInt:0];
    [attrs setObject:edit_bits forKey:@"edit_bits"];
-   [attrs setObject:[params objectForKey:@"id" forKey:@"task_series_id"]];
+   [attrs setObject:[params objectForKey:@"id"] forKey:@"taskseries_id"];
 
    [attrs removeObjectForKey:@"created"];
    [attrs removeObjectForKey:@"modified"];
    [attrs removeObjectForKey:@"source"];
 
    NSArray *tasks = [attrs objectForKey:@"tasks"];
-   NSArray *notes = [attrs objectForKey:@"notes"];
-   NSArray *notes = [attrs objectForKey:@"tags"];
+   //NSArray *notes = [attrs objectForKey:@"notes"]; // TODO: enable this
+   //NSArray *tags = [attrs objectForKey:@"tags"]; // TODO: enable this
 
    [attrs removeObjectForKey:@"tasks"];
    [attrs removeObjectForKey:@"notes"];
@@ -192,14 +192,14 @@
    for (NSDictionary *task in tasks) {
       // TODO
       NSMutableDictionary *task_attrs = [NSMutableDictionary dictionaryWithDictionary:attrs];
-      [task_attrs setObject:[task objectForKey:@"id" forKey:@"id"];
-      [task_attrs setObject:[task objectForKey:@"due" forKey:@"due"];
-      [task_attrs setObject:[task objectForKey:@"completed" forKey:@"completed"];
-      [task_attrs setObject:[task objectForKey:@"deleted" forKey:@"deleted"];
-      [task_attrs setObject:[task objectForKey:@"priority" forKey:@"priority"];
-      [task_attrs setObject:[task objectForKey:@"priority" forKey:@"priority"];
-      [task_attrs setObject:[task objectForKey:@"postponed" forKey:@"postponed"];
-      [task_attrs setObject:[task objectForKey:@"estimate" forKey:@"estimate"];
+      [task_attrs setObject:[task objectForKey:@"id"] forKey:@"id"];
+      [task_attrs setObject:[task objectForKey:@"due"] forKey:@"due"];
+      [task_attrs setObject:[task objectForKey:@"completed"] forKey:@"completed"];
+      [task_attrs setObject:[task objectForKey:@"deleted"] forKey:@"deleted"];
+      [task_attrs setObject:[task objectForKey:@"priority"] forKey:@"priority"];
+      [task_attrs setObject:[task objectForKey:@"priority"] forKey:@"priority"];
+      [task_attrs setObject:[task objectForKey:@"postponed"] forKey:@"postponed"];
+      [task_attrs setObject:[task objectForKey:@"estimate"] forKey:@"estimate"];
 
       [local_cache_ insert:task_attrs into:@"task"];
    }

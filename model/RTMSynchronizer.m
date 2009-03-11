@@ -96,8 +96,8 @@
    if (tasks)
       [[LocalCache sharedLocalCache] updateLastSync];
 
-   for (NSDictionary *task_series in tasks)
-      [tp createAtOnline:task_series];
+   for (NSDictionary *taskseries in tasks)
+      [tp createAtOnline:taskseries];
 
    [api_task release];
 }
@@ -107,9 +107,9 @@
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
    NSString *last_sync = [[LocalCache sharedLocalCache] lastSync];
 
-   NSArray *task_serieses_updated = [api_task getListWithLastSync:last_sync];
+   NSArray *taskserieses_updated = [api_task getListWithLastSync:last_sync];
    [api_task release];
-   if (!task_serieses_updated || 0 == [task_serieses_updated count])
+   if (!taskserieses_updated || 0 == [taskserieses_updated count])
       return;
 
    /*
@@ -121,10 +121,10 @@
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    int i=0;
-   for (NSDictionary *task_series in task_serieses_updated) {
-      [progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, task_serieses_updated.count] withProgress:(float)i/(float)task_serieses_updated.count];
+   for (NSDictionary *taskseries in taskserieses_updated) {
+      [progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, taskserieses_updated.count] withProgress:(float)i/(float)taskserieses_updated.count];
 
-      [RTMExistingTask createOrUpdate:task_series inDB:db];
+      [RTMExistingTask createOrUpdate:taskseries inDB:db];
       i++;
    }
 
@@ -200,10 +200,10 @@
       int edit_bits = [task.edit_bits intValue];
 
       if (edit_bits & EB_TASK_DUE) {
-         NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"task_series_id", @"task_id", nil];
+         NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", nil];
          NSArray *vals = [NSArray arrayWithObjects:
             [NSString stringWithFormat:@"%d", [task.list_id intValue]],
-            [NSString stringWithFormat:@"%d", [task.task_series_id intValue]],
+            [NSString stringWithFormat:@"%d", [task.taskseries_id intValue]],
             [NSString stringWithFormat:@"%d", [task.iD intValue]],
             nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
@@ -230,10 +230,10 @@
       if (edit_bits & EB_TASK_PRIORITY) {
          [task flagDownEditBits:EB_TASK_PRIORITY];
 
-         NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"task_series_id", @"task_id", nil];
+         NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", nil];
          NSArray *vals = [NSArray arrayWithObjects:
             [NSString stringWithFormat:@"%d", [task.list_id intValue]],
-            [NSString stringWithFormat:@"%d", [task.task_series_id intValue]],
+            [NSString stringWithFormat:@"%d", [task.taskseries_id intValue]],
             [NSString stringWithFormat:@"%d", [task.iD intValue]],
             nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];

@@ -44,7 +44,7 @@
 
 - (void) updateTaskSeriesID:(RTMTag *)tag tid:(NSNumber *)tid 
 {
-   NSDictionary *param = [NSDictionary dictionaryWithObject:tid forKey:@"task_series_id"];
+   NSDictionary *param = [NSDictionary dictionaryWithObject:tid forKey:@"taskseries_id"];
    NSString *cond = [NSString stringWithFormat:@"id=%d",
       [tag.iD intValue]];
       
@@ -139,8 +139,8 @@
    NSLog(@"tag_id = %d", [tag_id intValue]);
 
    // insert into task_tag table
-   NSArray *keys = [NSArray arrayWithObjects:@"task_series_id", @"tag_id", nil];
-   NSArray *vals = [NSArray arrayWithObjects:[params objectForKey:@"task_series_id"], tag_id, nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"taskseries_id", @"tag_id", nil];
+   NSArray *vals = [NSArray arrayWithObjects:[params objectForKey:@"taskseries_id"], tag_id, nil];
    NSMutableDictionary *task_tag = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
    [local_cache_ insert:task_tag into:@"task_tag"];
@@ -150,7 +150,7 @@
 
 - (void) createRelation:(NSNumber *)task_id tag_id:(NSNumber *)tag_id
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"task_series_id", @"tag_id", nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"taskseries_id", @"tag_id", nil];
    NSArray *vals = [NSArray arrayWithObjects:task_id, tag_id, nil];
    NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
