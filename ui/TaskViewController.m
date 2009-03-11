@@ -154,7 +154,7 @@ static NSArray *s_icons;
 
 - (void) updateDue
 {
-   if (task.due && task.due != [MilponHelper sharedHelper].invalidDate) {
+   if (task.due) {
       NSCalendar *calendar = [NSCalendar currentCalendar];
       unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
       NSDateComponents *comps = [calendar components:unitFlags fromDate:task.due];

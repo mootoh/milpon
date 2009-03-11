@@ -51,23 +51,6 @@
    [local_cache_ update:param table:@"tag" condition:cond];
 }
 
-#if 0
-- (void) sync
-{
-   [self erase];
-
-   RTMAPITag *api_tag = [[RTMAPITag alloc] init];
-   NSArray *tags = [api_tag getTag];
-   [api_tag release];
-
-   for (NSDictionary *tag in tags)
-      [self create:tag];
-
-   // TODO : broadcast the tags are no longer valid.
-   [tags_ release];
-   [self loadTags];
-}
-#endif // 0
 @end // DBTagProvider
 
 @implementation DBTagProvider (Private)
@@ -150,7 +133,7 @@
 
 - (void) createRelation:(NSNumber *)task_id tag_id:(NSNumber *)tag_id
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"taskseries_id", @"tag_id", nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"task_id", @"tag_id", nil];
    NSArray *vals = [NSArray arrayWithObjects:task_id, tag_id, nil];
    NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 

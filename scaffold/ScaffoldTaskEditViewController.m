@@ -97,13 +97,13 @@
          cell.text = task.name;
          break;
       case 2:
-         cell.text = task.url;
+         cell.text = [NSString stringWithFormat:@"URL: %@", task.url];
          break;
       case 3:
-         cell.text = [[MilponHelper sharedHelper] dateToString:task.due];
+         cell.text = [NSString stringWithFormat:@"due: %@", [[MilponHelper sharedHelper] dateToString:task.due]];
          break;
       case 4:
-         cell.text = task.completed;
+         cell.text = [NSString stringWithFormat:@"completed: %@", [[MilponHelper sharedHelper] dateToString:task.completed]];
          break;
       case 5: {
          NSString *tags = @"tag: ";

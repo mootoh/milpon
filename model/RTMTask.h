@@ -11,37 +11,47 @@
 @interface RTMTask : NSObject
 {
    NSNumber *iD;
-   NSString *name;
-   NSString *url;
+   NSNumber *edit_bits;
+   // Task
+   NSNumber *task_id;
    NSDate   *due;
-   NSString *completed;
+   NSDate   *completed;
    NSNumber *priority;
    NSNumber *postponed;
    NSString *estimate;
+   NSNumber *has_due_time;
+   // TaskSeries
+   NSNumber *taskseries_id;
+   NSString *name;
+   NSString *url;
+   NSNumber *location_id;
+   NSNumber *list_id;
    NSString *rrule;
+
    NSArray  *tags;
    NSArray  *notes;
-   NSNumber *list_id;
-   NSNumber *location_id;
-   NSNumber *taskseries_id;
-   NSNumber *edit_bits;
 }
 
 @property (nonatomic, retain) NSNumber *iD;
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *url;
+@property (nonatomic, retain) NSNumber *edit_bits;
+
+@property (nonatomic, retain) NSNumber *task_id;
 @property (nonatomic, retain) NSDate   *due;
-@property (nonatomic, retain) NSString *completed;
+@property (nonatomic, retain) NSDate   *completed;
 @property (nonatomic, retain) NSNumber *priority;
 @property (nonatomic, retain) NSNumber *postponed;
 @property (nonatomic, retain) NSString *estimate;
+@property (nonatomic, retain) NSNumber *has_due_time;
+
+@property (nonatomic, retain) NSNumber *taskseries_id;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *url;
+@property (nonatomic, retain) NSNumber *location_id;
+@property (nonatomic, retain) NSNumber *list_id;
 @property (nonatomic, retain) NSString *rrule;
+
 @property (nonatomic, retain) NSArray  *tags;
 @property (nonatomic, retain) NSArray  *notes;
-@property (nonatomic, retain) NSNumber *list_id;
-@property (nonatomic, retain) NSNumber *location_id;
-@property (nonatomic, retain) NSNumber *taskseries_id;
-@property (nonatomic, retain) NSNumber *edit_bits;
 
 - (id) initByParams:(NSDictionary *)params;
 

@@ -281,7 +281,7 @@ enum {
  *
  * TODO:
  *  - how to validate the fields ?
- *  - add note, tag, rrule
+ *  - add rrule
  */
 - (IBAction) save
 {
@@ -298,7 +298,6 @@ enum {
    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (due)
       [params setObject:due forKey:@"due"];
-
 
    TaskProvider *tp = [TaskProvider sharedTaskProvider];
    NSNumber *tid = [tp createAtOffline:params];

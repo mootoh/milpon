@@ -107,20 +107,8 @@ static NSArray *s_check_box_images;
    CGContextAddLineToPoint(context, 4.0f, self.frame.size.height);
    CGContextStrokePath(context);
 
-   if (task.due == [MilponHelper sharedHelper].invalidDate) {
-      //dueLabel.hidden = YES;
-   } else {
-      //dueLabel.hidden = NO;
-#if 0
-      NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-      [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-      //[formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
-      [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-
-      NSCalendar *calendar = [NSCalendar currentCalendar];
-      unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-      NSDate *due_date = [formatter dateFromString:task.due];
-#endif // 0
+   if (task.due) {
+      dueLabel.hidden = NO;
       NSCalendar *calendar = [NSCalendar currentCalendar];
       unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
       NSDateComponents *comps = [calendar components:unitFlags fromDate:task.due];
@@ -138,7 +126,10 @@ static NSArray *s_check_box_images;
          [task.estimate drawInRect:CGRectMake(262, rect.size.height-16, 25, 14)
             withFont:[UIFont systemFontOfSize:10]];
       }
+   } else {
+      dueLabel.hidden = YES;
    }
+
 	[pool release];
 }
 
