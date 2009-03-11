@@ -18,6 +18,7 @@
 #define kNOTE_PLACE_HOLDER @"note..."
 
 @implementation DueLabel
+
 - (id) initWithFrame:(CGRect)aRect
 {
    if (self = [super initWithFrame:aRect]) {

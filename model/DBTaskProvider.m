@@ -40,9 +40,9 @@
       @"task.task_id", @"task.due", @"task.completed", @"task.priority", @"task.postponed", @"task.estimate", @"task.has_due_time",
       @"task.taskseries_id", @"task.name", @"task.url", @"task.location_id", @"task.list_id", @"task.rrule", nil];
    NSArray *types = [NSArray arrayWithObjects:
-     [NSNumber class], [NSNumber class],
-     [NSNumber class], [NSDate class], [NSDate class], [NSNumber class], [NSNumber class], [NSString class],[NSNumber class], 
-     [NSNumber class], [NSString class], [NSString class], [NSNumber class], [NSNumber class], [NSString class], nil];
+      [NSNumber class], [NSNumber class],
+      [NSNumber class], [NSDate class], [NSDate class], [NSNumber class], [NSNumber class], [NSString class],[NSNumber class], 
+      [NSNumber class], [NSString class], [NSString class], [NSNumber class], [NSNumber class], [NSString class], nil];
    NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
 
    NSArray *task_arr = conditions ?
@@ -92,11 +92,6 @@
 
    [pool release];
    return tasks;
-#if 0
-      " from task where completed='' OR completed is NULL"
-      " ORDER BY due IS NULL ASC, due ASC, priority=0 ASC, priority ASC"];
-   return [RTMTask tasksForSQL:sql inDB:db];
-#endif // 0
 }
 
 - (NSArray *) tasks
@@ -113,12 +108,6 @@
       nil];
 
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-
-#if 0
-      "where list_id=%d AND (completed='' OR completed is NULL) "
-      "ORDER BY priority=0 ASC,priority ASC, due IS NULL ASC, due ASC",
-#endif // 0
-
    return [self tasks:cond];
 }
 
@@ -203,7 +192,7 @@
    [attrs removeObjectForKey:@"tags"];
 
    for (NSDictionary *task in tasks) {
-      // TODO
+      // TODO: setup correctly
       NSMutableDictionary *task_attrs = [NSMutableDictionary dictionaryWithDictionary:attrs];
       [task_attrs setObject:[task objectForKey:@"id"] forKey:@"id"];
       [task_attrs setObject:[task objectForKey:@"due"] forKey:@"due"];
@@ -221,8 +210,7 @@
 
 - (void) remove:(RTMTask *) task
 {
-   NSString *cond = [NSString stringWithFormat:@"WHERE id = %@",
-      [[task iD] stringValue]];
+   NSString *cond = [NSString stringWithFormat:@"WHERE id = %@", [[task iD] stringValue]];
    [local_cache_ delete:@"task" condition:cond];
    dirty_ = YES;
 }
