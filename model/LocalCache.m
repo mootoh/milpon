@@ -104,7 +104,7 @@
             [result setObject:str forKey:key];
          } else if (klass == [NSDate class]) {
             char *chs = (char *)sqlite3_column_text(stmt, i);
-            NSDate *date = chs ? [[MilponHelper sharedHelper] stringToDate:[NSString stringWithUTF8String:chs]] : [[MilponHelper sharedHelper].invalidDate retain];
+            NSDate *date = (chs && chs[0] != '\0') ? [[MilponHelper sharedHelper] stringToDate:[NSString stringWithUTF8String:chs]] : [[MilponHelper sharedHelper].invalidDate retain];
             [result setObject:date forKey:key];
          } else {
             [[NSException

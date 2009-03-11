@@ -164,7 +164,6 @@
 - (void) done:(NSTimer*)theTimer
 {
    state = STATE_DONE;
-   NSLog(@"navc = %p", self.navigationController);
    //[self.navigationController popViewControllerAnimated:YES];
    [self dismissModalViewControllerAnimated:YES];
 }

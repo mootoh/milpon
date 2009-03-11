@@ -87,7 +87,7 @@
    }
 
    RTMTag *tag = (RTMTag *)[[tp tags] objectAtIndex:indexPath.row];
-   cell.text = [NSString stringWithFormat:@"%d: %@ (%d)", [tag.iD intValue], tag.name, tag.tasks.count];
+   cell.text = [NSString stringWithFormat:@"%@ (%d)", tag.name, tag.tasks.count];
 
    return cell;
 }

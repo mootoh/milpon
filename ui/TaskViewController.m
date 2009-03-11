@@ -149,7 +149,7 @@ static NSArray *s_icons;
    NSMutableArray *btns = [[NSMutableArray alloc] init];
 
    dialogView = [[UIView alloc] initWithFrame:
-      CGRectMake(priorityButton.frame.origin.x, priorityButton.frame.origin.y+24, 44*4, 44)];
+      CGRectMake(priorityButton.frame.origin.x-44*3, priorityButton.frame.origin.y+24, 44*4, 44)];
    dialogView.backgroundColor = [UIColor colorWithRed:51.0f/256.0f green:51.0f/256.0f blue:51.0f/256.0f alpha:0.9f];
    dialogView.opaque = NO;
    dialogView.hidden = YES;
