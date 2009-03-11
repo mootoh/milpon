@@ -292,6 +292,16 @@
    return result;
 }
 
+- (void) updateLastSync
+{
+   NSDate *now = [NSDate date];
+   NSString *last_sync = [[MilponHelper sharedHelper] dateToString:now];
+
+   NSDictionary *dict = [NSDictionary dictionaryWithObject:last_sync forKey:@"sync_date"];
+   [self update:dict table:@"last_sync" condition:nil];
+}
+
+
 static LocalCache *s_local_cache = nil;
 
 + (LocalCache *) sharedLocalCache

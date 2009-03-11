@@ -175,8 +175,34 @@
    NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:params];
    NSNumber *edit_bits = [NSNumber numberWithInt:0];
    [attrs setObject:edit_bits forKey:@"edit_bits"];
+   [attrs setObject:[params objectForKey:@"id" forKey:@"task_series_id"]];
 
-   [local_cache_ insert:attrs into:@"task"];
+   [attrs removeObjectForKey:@"created"];
+   [attrs removeObjectForKey:@"modified"];
+   [attrs removeObjectForKey:@"source"];
+
+   NSArray *tasks = [attrs objectForKey:@"tasks"];
+   NSArray *notes = [attrs objectForKey:@"notes"];
+   NSArray *notes = [attrs objectForKey:@"tags"];
+
+   [attrs removeObjectForKey:@"tasks"];
+   [attrs removeObjectForKey:@"notes"];
+   [attrs removeObjectForKey:@"tags"];
+
+   for (NSDictionary *task in tasks) {
+      // TODO
+      NSMutableDictionary *task_attrs = [NSMutableDictionary dictionaryWithDictionary:attrs];
+      [task_attrs setObject:[task objectForKey:@"id" forKey:@"id"];
+      [task_attrs setObject:[task objectForKey:@"due" forKey:@"due"];
+      [task_attrs setObject:[task objectForKey:@"completed" forKey:@"completed"];
+      [task_attrs setObject:[task objectForKey:@"deleted" forKey:@"deleted"];
+      [task_attrs setObject:[task objectForKey:@"priority" forKey:@"priority"];
+      [task_attrs setObject:[task objectForKey:@"priority" forKey:@"priority"];
+      [task_attrs setObject:[task objectForKey:@"postponed" forKey:@"postponed"];
+      [task_attrs setObject:[task objectForKey:@"estimate" forKey:@"estimate"];
+
+      [local_cache_ insert:task_attrs into:@"task"];
+   }
    dirty_ = YES;
 }
 
@@ -185,6 +211,15 @@
    NSString *cond = [NSString stringWithFormat:@"WHERE id = %@",
       [[task iD] stringValue]];
    [local_cache_ delete:@"task" condition:cond];
+   dirty_ = YES;
+}
+
+- (void) erase
+{
+   [local_cache_ delete:@"task" condition:nil];
+   [local_cache_ delete:@"note" condition:nil];
+   [local_cache_ delete:@"tag" condition:nil];
+   [local_cache_ delete:@"location" condition:nil];
    dirty_ = YES;
 }
 

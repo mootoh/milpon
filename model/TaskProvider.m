@@ -45,6 +45,11 @@
    NSAssert(NO, @"not reach here");
 }
 
+- (void) createAtOnline:(NSDictionary *)params;
+{
+   NSAssert(NO, @"not reach here");
+}
+
 - (void) sync
 {
    NSAssert(NO, @"not reach here");
@@ -61,6 +66,11 @@
 }
 
 - (void) remove:(RTMTask *) task;
+{
+   NSAssert(NO, @"not reach here");
+}
+
+- (void) erase
 {
    NSAssert(NO, @"not reach here");
 }

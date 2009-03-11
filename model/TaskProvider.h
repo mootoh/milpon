@@ -23,7 +23,9 @@
  * @return created task id
  */
 - (NSNumber *) createAtOffline:(NSDictionary *)params;
+- (void) createAtOnline:(NSDictionary *)params;
 - (void) sync;
+- (void) erase;
 - (void) complete:(RTMTask *)task;
 - (void) uncomplete:(RTMTask *)task;
 - (void) remove:(RTMTask *) task;

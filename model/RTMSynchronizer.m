@@ -17,6 +17,9 @@
 #import "RTMPendingTask.h"
 #import "ProgressView.h"
 #import "logger.h"
+#import "ListProvider.h"
+#import "TaskProvider.h"
+#import "LocalCache.h"
 
 @implementation RTMSynchronizer
 
@@ -36,14 +39,15 @@
 
 - (void) replaceLists
 {
-   [RTMList erase:db];
+   ListProvider *lp = [ListProvider sharedListProvider];
+   [lp erase];
 
    RTMAPIList *api_list = [[[RTMAPIList alloc] init] autorelease];
    NSArray *lists = [api_list getList];
 
    NSDictionary *list;
    for (list in lists)
-      [RTMList create:list inDB:db];
+      [lp create:list];
 }
 
 - (void) syncLists
@@ -84,15 +88,16 @@
 
 - (void) replaceTasks
 {
-   [RTMTask erase:db];
+   TaskProvider *tp = [TaskProvider sharedTaskProvider];
+   [tp erase];
 
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
    NSArray *tasks = [api_task getList];
    if (tasks)
-      [RTMTask updateLastSync:db];
+      [[LocalCache sharedLocalCache] updateLastSync];
 
    for (NSDictionary *task_series in tasks)
-      [RTMTask createAtOnline:task_series inDB:db];
+      [tp createAtOnline:task_series];
 
    [api_task release];
 }
@@ -100,7 +105,7 @@
 - (void) syncTasks:(ProgressView *)progressView
 {
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
-   NSString *last_sync = [RTMTask lastSync:db];
+   NSString *last_sync = [[LocalCache sharedLocalCache] lastSync];
 
    NSArray *task_serieses_updated = [api_task getListWithLastSync:last_sync];
    [api_task release];
