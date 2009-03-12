@@ -22,4 +22,7 @@
 - (NSString *) dateToString:(NSDate *) date;
 - (NSDate *) stringToDate:(NSString *) str;
 
+- (NSString *) dateToRtmString:(NSDate *) date;
+- (NSDate *) rtmStringToDate:(NSString *) str;
+
 @end

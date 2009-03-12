@@ -9,16 +9,14 @@
 #import "RTMStorable.h"
 #import "RTMTask.h"
 
-@class RTMDatabase;
-
 @interface RTMExistingTask : RTMTask
 {
-   //NSNumber *taskseries_id;
+   //NSNumber *taskseries_id; // TODO
 }
 
 @property (nonatomic, retain) NSNumber *taskseries_id;
 
-+ (void) createOrUpdate:(NSDictionary *)taskseries inDB:(RTMDatabase *)db;
++ (void) createOrUpdate:(NSDictionary *)taskseries;
 
 @end
 // set vim:ft=objc

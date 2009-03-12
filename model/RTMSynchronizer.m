@@ -20,13 +20,13 @@
 #import "ListProvider.h"
 #import "TaskProvider.h"
 #import "LocalCache.h"
+#import "MilponHelper.h"
 
 @implementation RTMSynchronizer
 
-- (id) initWithDB:(RTMDatabase *)ddb withAuth:aauth
+- (id) init:(RTMAuth *)aauth
 {
    if (self = [super init]) {
-      db   = ddb;
       auth = aauth;
    }
    return self;
@@ -54,7 +54,7 @@
 {
    RTMAPIList *api_list = [[[RTMAPIList alloc] init] autorelease];
    NSArray *new_lists = [api_list getList];
-   NSArray *old_lists = [RTMList allLists:db];
+   NSArray *old_lists = [[ListProvider sharedListProvider] lists];
 
    // remove only existing in olds
    RTMList *old;
@@ -68,11 +68,11 @@
          }
       }
       if (! found)
-         [RTMList remove:old.iD fromDB:db];
+         [[ListProvider sharedListProvider] remove:old];
    }
 
    // insert only existing in news
-   old_lists = [RTMList allLists:db];
+   old_lists = [[ListProvider sharedListProvider] lists];
    for (new in new_lists) {
       BOOL found = NO;
       for (old in old_lists) {
@@ -82,7 +82,7 @@
          }
       }
       if (! found)
-         [RTMList create:new inDB:db];
+         [[ListProvider sharedListProvider] create:new];
    }
 }
 
@@ -124,18 +124,18 @@
    for (NSDictionary *taskseries in taskserieses_updated) {
       [progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, taskserieses_updated.count] withProgress:(float)i/(float)taskserieses_updated.count];
 
-      [RTMExistingTask createOrUpdate:taskseries inDB:db];
+      [RTMExistingTask createOrUpdate:taskseries];
       i++;
    }
 
    [pool release];
 
-   [RTMTask updateLastSync:db];
+   [[LocalCache sharedLocalCache] updateLastSync];
 }
 
 - (void) uploadPendingTasks:(ProgressView *)progressView
 {
-   NSArray *pendings = [RTMPendingTask tasks:db];
+   NSArray *pendings = [[TaskProvider sharedTaskProvider] pendingTasks];
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
 
    int i=1;
@@ -147,8 +147,8 @@
       NSMutableDictionary *ids = [NSMutableDictionary dictionaryWithDictionary:task_ret];
       [ids setObject:list_id forKey:@"list_id"];
 
-      if (task.due && ![task.due isEqualToString:@""]) {
-         NSString *due = [task.due stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
+      if (task.due && ![task.due isEqualToDate:[[MilponHelper sharedHelper] invalidDate]]) {
+         NSString *due = [[[MilponHelper sharedHelper] dateToString:task.due]stringByReplacingOccurrencesOfString:@" " withString:@"T"];
          due = [due stringByReplacingOccurrencesOfString:@" GMT" withString:@"Z"];
          [api_task setDue:due forIDs:ids];
       }
@@ -168,18 +168,18 @@
 
       // get Note from DB by old Task ID
       RTMAPINote *api_note = [[RTMAPINote alloc] init];
-      NSArray *notes = [RTMPendingTask getNotes:task.iD fromDB:db];
+      NSArray *notes = [RTMPendingTask getNotes:task.iD fromDB:nil]; // TODO
       for (NSDictionary *note in notes) {
          // - API request (rtm.tasks.notes.add) using new Task ID
          [api_note add:[note objectForKey:@"text"] forIDs:ids];
 
          // remove old Note from DB
-         [RTMPendingTask removeNote:[note objectForKey:@"id"] fromDB:db];
+         [RTMPendingTask removeNote:[note objectForKey:@"id"] fromDB:nil];
       }
       [api_note release];
 
       // remove old Task from DB
-      [RTMPendingTask remove:task.iD fromDB:db];
+      // [RTMPendingTask remove:task.iD fromDB:db]; TODO: update IDs instead of removing
 
       [progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/(float)pendings.count];
       i++;
@@ -194,7 +194,7 @@
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    int i=0;
-   NSArray *tasks = [RTMTask modifiedTasks:db];
+   NSArray *tasks = [[TaskProvider sharedTaskProvider] modifiedTasks];
    for (RTMExistingTask *task in tasks) {
       [progressView updateMessage:[NSString stringWithFormat:@"updating %d/%d, %@...", i,tasks.count, task.name] withProgress:(float)i/(float)tasks.count];
       int edit_bits = [task.edit_bits intValue];
@@ -208,7 +208,7 @@
             nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-         NSString *due = [task.due stringByReplacingOccurrencesOfString:@" GMT" withString:@"Z"];
+         NSString *due = [[[MilponHelper sharedHelper] dateToString:task.due] stringByAppendingString:@"Z"];
          due = [due stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
 
          if ([api_task setDue:due forIDs:ids]) {
@@ -219,7 +219,7 @@
       if (edit_bits & EB_TASK_COMPLETED) {
          [task flagDownEditBits:EB_TASK_COMPLETED];
          if ([api_task complete:task]) {
-            [RTMTask remove:task.iD fromDB:db]; // TODO: do not remove, keep it in DB to review completed tasks.
+            [[TaskProvider sharedTaskProvider] remove:task]; // TODO: do not remove, keep it in DB to review completed tasks.
             i++;
             continue;
          }

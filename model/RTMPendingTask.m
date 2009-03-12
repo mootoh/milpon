@@ -50,14 +50,6 @@
    return [NSNumber numberWithInt:ret];
 }
 
-+ (NSArray *) tasks:(RTMDatabase *)db
-{
-   NSString *sql = [NSString stringWithUTF8String:"SELECT " RTMTASK_SQL_COLUMNS 
-      " from task where edit_bits & 1 AND (completed='' OR completed is NULL)"
-      " ORDER BY due IS NULL ASC, due ASC, priority=0 ASC, priority ASC"];
-   return [RTMTask tasksForSQL:sql inDB:db];
-}
-
 + (NSArray *) getNotes:(NSNumber *)task_id fromDB:(RTMDatabase *)db
 {
    sqlite3_stmt *stmt = nil;

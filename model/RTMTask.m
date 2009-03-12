@@ -144,15 +144,6 @@
    [[LocalCache sharedLocalCache] update:dict table:@"task" condition:where];
 }
 
-#if 0
-+ (NSArray *) modifiedTasks:(RTMDatabase *)db
-{
-   NSString *sql = [NSString stringWithUTF8String:"SELECT " RTMTASK_SQL_COLUMNS 
-      " from task where edit_bits>1"];
-   return [RTMTask tasksForSQL:sql inDB:db];
-}
-#endif // 0
-
 - (void) dump
 {
    NSLog(@"RTMTask attrs:(id, name, url, due, completed, priority, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits) = (%d, %@, %@, %@, %@, %d, %d, %@, %@, %p, %p, %d, %d, %d)",

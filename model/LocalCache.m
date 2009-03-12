@@ -134,7 +134,7 @@
       id v = [dict objectForKey:key];
       NSString *val = nil;
       if ([v isKindOfClass:[NSString class]]) {
-         val = [NSString stringWithFormat:@"'%@'", (NSString *)v];
+         val = [NSString stringWithFormat:@"'%@'", [(NSString *)v stringByReplacingOccurrencesOfString:@"'" withString:@"''"]];
       } else if ([v isKindOfClass:[NSNumber class]]) {
          val = [(NSNumber *)v stringValue];
       } else if ([v isKindOfClass:[NSDate class]]) {

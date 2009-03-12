@@ -6,16 +6,14 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-@class RTMDatabase;
 @class RTMAuth;
 @class ProgressView;
 
 @interface RTMSynchronizer : NSObject {
-  RTMDatabase *db;
   RTMAuth *auth;
 }
 
-- (id) initWithDB:(RTMDatabase *)ddb withAuth:aauth;
+- (id) init:(RTMAuth *)aauth;
 
 - (void) replaceLists;
 /**

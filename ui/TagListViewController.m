@@ -14,12 +14,10 @@
 
 @implementation TagListViewController
 
-@synthesize tag, tasks;
+@synthesize tag;
 
 - (void) reloadFromDB
 {
-   [tasks release];
-   tasks = [[[TaskProvider sharedTaskProvider] tasksInTag:tag] retain];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style tag:(RTMTag *)tg
@@ -55,7 +53,7 @@
       cell = [[[RTMTaskCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
    }
 
-   RTMTask *tsk = [tasks objectAtIndex:indexPath.row];
+   RTMTask *tsk = [[[TaskProvider sharedTaskProvider] tasks] objectAtIndex:indexPath.row];
    NSAssert(tsk, @"task should not be nil");
    cell.task = tsk;
    [cell setNeedsDisplay]; // TODO: causes slow
@@ -67,7 +65,7 @@
 {
    // Navigation logic
    TaskViewController *ctrl = [[TaskViewController alloc] initWithNibName:@"TaskView" bundle:nil];
-   RTMTask *tsk = [tasks objectAtIndex:indexPath.row];
+   RTMTask *tsk = [[[TaskProvider sharedTaskProvider] tasks] objectAtIndex:indexPath.row];
    ctrl.task = tsk;
 
    // Push the detail view controller
@@ -118,7 +116,6 @@ return YES;
 
 - (void)dealloc {
    [tag release];
-   [tasks release];
    [super dealloc];
 }
 

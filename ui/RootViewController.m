@@ -137,7 +137,7 @@
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithDB:app.db withAuth:app.auth];
+   RTMSynchronizer *syncer = [[RTMSynchronizer alloc] init:app.auth];
    [syncer replaceLists];
    [syncer replaceTasks];
    //[syncer replaceLocations];

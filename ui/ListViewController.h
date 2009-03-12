@@ -6,11 +6,8 @@
 //  Copyright deadbeaf.org 2008. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface ListViewController : UITableViewController
 {
-   NSArray *lists;
 }
 
 @end

@@ -115,8 +115,8 @@
    NSString *name = [params objectForKey:@"name"];
    NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithObject:name forKey:@"name"];
 
-   if ([params objectForKey:@"iD"]) {
-      NSNumber *iD = [params objectForKey:@"iD"];
+   if ([params objectForKey:@"id"]) {
+      NSNumber *iD = [params objectForKey:@"id"];
       [attrs setObject:iD forKey:@"id"];
    }
 

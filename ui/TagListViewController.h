@@ -13,12 +13,10 @@
 @interface TagListViewController : UITableViewController <ReloadableTableViewControllerProtocol>
 {
    RTMTag *tag;
-   NSArray *tasks;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style tag:(RTMTag *)tag;
 
 @property (nonatomic, retain) RTMTag *tag;
-@property (nonatomic, retain) NSArray *tasks;
 
 @end

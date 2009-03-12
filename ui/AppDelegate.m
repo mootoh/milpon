@@ -20,7 +20,7 @@
 
 @implementation AppDelegate
 
-@synthesize window, auth, db, operationQueue, tabBarController;
+@synthesize window, auth, operationQueue, tabBarController;
 
 - (NSString *) authPath
 {
@@ -50,8 +50,6 @@
 - (id) init
 {
    if (self = [super init]) {
-      db = [[LocalCache sharedLocalCache] retain];
-
       [self authInit:[self authPath]];
 
       [RTMAPI setApiKey:auth.api_key];
@@ -69,7 +67,6 @@
    [tabBarController release];
    [operationQueue release];
    [auth release];
-   [db release];
    [window release];
    [super dealloc];
 }
@@ -129,7 +126,7 @@
 - (IBAction) fetchAll
 {
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-   RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithDB:db withAuth:auth];
+   RTMSynchronizer *syncer = [[RTMSynchronizer alloc] init:auth];
    [syncer replaceLists];
    [syncer replaceTasks];
    //[syncer replaceLocations];
@@ -175,7 +172,7 @@
 {
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
-   RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithDB:db withAuth:auth];
+   RTMSynchronizer *syncer = [[RTMSynchronizer alloc] init:auth];
 
    /*
    [syncer uploadPendingTasks:progressView];

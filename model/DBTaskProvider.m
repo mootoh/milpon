@@ -12,6 +12,7 @@
 #import "RTMTag.h"
 #import "LocalCache.h"
 #import "logger.h"
+#import "MilponHelper.h"
 
 @implementation DBTaskProvider
 
@@ -139,6 +140,30 @@
    return [self tasks:cond];
 }
 
+- (NSArray *) modifiedTasks
+{
+   NSArray *keys = [NSArray arrayWithObjects:@"where", @"ORDER", nil];
+   NSArray *vals = [NSArray arrayWithObjects:
+      [NSString stringWithFormat:@"(completed='' OR completed is NULL) AND edit_bits>1"],
+      [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
+      nil];
+
+   NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   return [self tasks:cond];
+}
+
+- (NSArray *) pendingTasks
+{
+   NSArray *keys = [NSArray arrayWithObjects:@"where", @"ORDER", nil];
+   NSArray *vals = [NSArray arrayWithObjects:
+      [NSString stringWithFormat:@"(completed='' OR completed is NULL) AND edit_bits & 1"],
+      [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
+      nil];
+
+   NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   return [self tasks:cond];
+}
+
 - (void) complete:(RTMTask *)task
 {
    [task flagUpEditBits:EB_TASK_COMPLETED];
@@ -192,15 +217,29 @@
    [attrs removeObjectForKey:@"tags"];
 
    for (NSDictionary *task in tasks) {
-      // TODO: setup correctly
       NSMutableDictionary *task_attrs = [NSMutableDictionary dictionaryWithDictionary:attrs];
-      [task_attrs setObject:[task objectForKey:@"id"] forKey:@"id"];
-      [task_attrs setObject:[task objectForKey:@"due"] forKey:@"due"];
-      [task_attrs setObject:[task objectForKey:@"completed"] forKey:@"completed"];
-      [task_attrs setObject:[task objectForKey:@"deleted"] forKey:@"deleted"];
-      [task_attrs setObject:[task objectForKey:@"priority"] forKey:@"priority"];
-      [task_attrs setObject:[task objectForKey:@"priority"] forKey:@"priority"];
-      [task_attrs setObject:[task objectForKey:@"postponed"] forKey:@"postponed"];
+      [task_attrs setObject:[task objectForKey:@"id"] forKey:@"task_id"];
+
+      NSString *due_str = [task objectForKey:@"due"];
+      if (due_str && ! [due_str isEqualToString:@""])
+         [task_attrs setObject:
+            [[MilponHelper sharedHelper] rtmStringToDate:
+               [task objectForKey:@"due"]] forKey:@"due"];
+
+      NSString *completed_str = [task objectForKey:@"completed"];
+      if (completed_str && ! [completed_str isEqualToString:@""])
+         [task_attrs setObject:
+            [[MilponHelper sharedHelper] rtmStringToDate:
+               [task objectForKey:@"completed"]] forKey:@"completed"];
+
+      // [task_attrs setObject:[task objectForKey:@"deleted"] forKey:@"deleted"]; // TODO: care about deleted task (not sync it, maybe)
+      NSString *priority_str = [task objectForKey:@"priority"];
+      NSNumber *pri = [NSNumber numberWithInt: [priority_str isEqualToString:@"N"] ?
+         0 :
+         [priority_str intValue]];
+      [task_attrs setObject:pri forKey:@"priority"];
+
+      [task_attrs setObject:[NSNumber numberWithInt:[[task objectForKey:@"postponed"] intValue]] forKey:@"postponed"];
       [task_attrs setObject:[task objectForKey:@"estimate"] forKey:@"estimate"];
 
       [local_cache_ insert:task_attrs into:@"task"];

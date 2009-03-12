@@ -20,6 +20,7 @@ static MilponHelper *the_milpon_helper;
       the_formatter = [[NSDateFormatter alloc] init];
       [the_formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
       [the_formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+
       invalidDate = [NSDate dateWithTimeIntervalSince1970:0];
    }
    return self;
@@ -42,14 +43,26 @@ static MilponHelper *the_milpon_helper;
 - (NSString *) dateToString:(NSDate *) date
 {
    NSString *ret = [the_formatter stringFromDate:date];
-   //ret = [ret stringByReplacingOccurrencesOfString:@"_" withString:@" "];
-   return ret; // [ret stringByAppendingString:@"Z"];
+   return ret;
 }
 
 - (NSDate *) stringToDate:(NSString *) str
 {
-   NSDate *ret = [the_formatter dateFromString:str];
-   return ret;
+   return [the_formatter dateFromString:str];
+}
+
+- (NSString *) dateToRtmString:(NSDate *) date
+{
+   NSString *ret = [the_formatter stringFromDate:date];
+   ret = [ret stringByReplacingOccurrencesOfString:@" " withString:@"T"];
+   return [ret stringByAppendingString:@"Z"];
+}
+
+- (NSDate *) rtmStringToDate:(NSString *) str
+{
+   str = [str stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+   str = [str substringToIndex:str.length-1]; // trim last 'Z'
+   return [the_formatter dateFromString:str];
 }
 
 @end

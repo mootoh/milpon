@@ -9,12 +9,12 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "RTMSynchronizer.h"
 #import "RTMAPI.h"
-#import "RTMDatabase.h"
 #import "RTMAuth.h"
 #import "RTMList.h"
+#import "LocalCache.h"
 
 @interface RTMSynchronizerTest : SenTestCase {
-   RTMDatabase *db;
+   LocalCache *db;
    RTMAuth *auth;
 }
 @end
@@ -23,7 +23,7 @@
 
 - (void) setUp
 {
-   db   = [[RTMDatabase alloc] init];
+   db   = [[LocalCache sharedLocalCache] retain];
    auth = [[RTMAuth alloc] initWithDB:db];
    [RTMAPI setApiKey:auth.api_key];
    [RTMAPI setSecret:auth.shared_secret];
