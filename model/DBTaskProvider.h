@@ -17,8 +17,8 @@
 @interface DBTaskProvider : TaskProvider
 {
    LocalCache *local_cache_;
-   NSArray *tasks_;
-   BOOL dirty_;
+   NSArray *all_tasks_;
+   BOOL dirty_all_tasks_;
 }
 
 @end
