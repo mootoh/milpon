@@ -137,6 +137,94 @@
 		B9AE526F0F6B48640076D258 /* RTMAuthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDB0F565DE000473A95 /* RTMAuthTest.m */; };
 		B9AE527C0F6B490D0076D258 /* RTMAPIAuthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD70F565DE000473A95 /* RTMAPIAuthTest.m */; };
 		B9AE52810F6B492B0076D258 /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPIAuth.m */; };
+		B9AE52A30F6B4AE50076D258 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F440F565D9300473A95 /* checkBox.png */; };
+		B9AE52A40F6B4AE50076D258 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F460F565D9300473A95 /* checkBoxChecked.png */; };
+		B9AE52A50F6B4AE50076D258 /* icon_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F4E0F565D9300473A95 /* icon_calendar.png */; };
+		B9AE52A60F6B4AE50076D258 /* icon_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F500F565D9300473A95 /* icon_checked.png */; };
+		B9AE52A70F6B4AE50076D258 /* icon_list.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F520F565D9300473A95 /* icon_list.png */; };
+		B9AE52A80F6B4AE50076D258 /* icon_note.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F540F565D9300473A95 /* icon_note.png */; };
+		B9AE52A90F6B4AE50076D258 /* icon_priority_0.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F570F565D9300473A95 /* icon_priority_0.png */; };
+		B9AE52AA0F6B4AE50076D258 /* icon_priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F580F565D9300473A95 /* icon_priority_1.png */; };
+		B9AE52AB0F6B4AE50076D258 /* icon_priority_2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F590F565D9300473A95 /* icon_priority_2.png */; };
+		B9AE52AC0F6B4AE50076D258 /* icon_priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5A0F565D9300473A95 /* icon_priority_3.png */; };
+		B9AE52AD0F6B4AE50076D258 /* icon_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5B0F565D9300473A95 /* icon_tag.png */; };
+		B9AE52AE0F6B4AE50076D258 /* icon_target.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5D0F565D9300473A95 /* icon_target.png */; };
+		B9AE52AF0F6B4AE50076D258 /* MilponIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F650F565D9300473A95 /* MilponIconSmall.png */; };
+		B9AE52B00F6B4AE50076D258 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = B9160F8F0F565DAB00473A95 /* README.txt */; };
+		B9AE52B10F6B4AE50076D258 /* uiccalendar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F980F565DAB00473A95 /* uiccalendar_background.png */; };
+		B9AE52B20F6B4AE50076D258 /* uiccalendar_cell_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F990F565DAB00473A95 /* uiccalendar_cell_disabled.png */; };
+		B9AE52B30F6B4AE50076D258 /* uiccalendar_cell_holiday.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F9A0F565DAB00473A95 /* uiccalendar_cell_holiday.png */; };
+		B9AE52B40F6B4AE50076D258 /* uiccalendar_cell_monthout.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F9B0F565DAB00473A95 /* uiccalendar_cell_monthout.png */; };
+		B9AE52B50F6B4AE50076D258 /* uiccalendar_cell_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F9C0F565DAB00473A95 /* uiccalendar_cell_normal.png */; };
+		B9AE52B60F6B4AE50076D258 /* uiccalendar_cell_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F9D0F565DAB00473A95 /* uiccalendar_cell_selected.png */; };
+		B9AE52B70F6B4AE50076D258 /* uiccalendar_cell_today.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F9E0F565DAB00473A95 /* uiccalendar_cell_today.png */; };
+		B9AE52B80F6B4AE50076D258 /* uiccalendar_cell_today_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F9F0F565DAB00473A95 /* uiccalendar_cell_today_selected.png */; };
+		B9AE52B90F6B4AE50076D258 /* uiccalendar_close.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA00F565DAB00473A95 /* uiccalendar_close.png */; };
+		B9AE52BA0F6B4AE50076D258 /* uiccalendar_left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA10F565DAB00473A95 /* uiccalendar_left_arrow.png */; };
+		B9AE52BB0F6B4AE50076D258 /* uiccalendar_main.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA20F565DAB00473A95 /* uiccalendar_main.png */; };
+		B9AE52BC0F6B4AE50076D258 /* uiccalendar_right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA30F565DAB00473A95 /* uiccalendar_right_arrow.png */; };
+		B9AE52BD0F6B4AE50076D258 /* uiccalendar_title.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA40F565DAB00473A95 /* uiccalendar_title.png */; };
+		B9AE52BE0F6B4AE50076D258 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9160FB90F565DB600473A95 /* MainWindow.xib */; };
+		B9AE52BF0F6B4AE50076D258 /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
+		B9AE52C00F6B4AE50076D258 /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B970AC050F6416A1004467E9 /* TaskView.xib */; };
+		B9AE52C10F6B4AE50076D258 /* NoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B95CA60F6767BE0046712A /* NoteEdit.xib */; };
+		B9AE52C20F6B4AE50076D258 /* icon_url.png in Resources */ = {isa = PBXBuildFile; fileRef = B926C4BE0F67991B0014DB7D /* icon_url.png */; };
+		B9AE52C40F6B4AE50076D258 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		B9AE52C50F6B4AE50076D258 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
+		B9AE52C60F6B4AE50076D258 /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPIAuth.m */; };
+		B9AE52C70F6B4AE50076D258 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
+		B9AE52C80F6B4AE50076D258 /* RTMAPINote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPINote.m */; };
+		B9AE52C90F6B4AE50076D258 /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPITask.m */; };
+		B9AE52CA0F6B4AE50076D258 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
+		B9AE52CB0F6B4AE50076D258 /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ED90F565D1500473A95 /* AddTaskViewController.m */; };
+		B9AE52CC0F6B4AE50076D258 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EDB0F565D1500473A95 /* AppDelegate.m */; };
+		B9AE52CD0F6B4AE50076D258 /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EDD0F565D1500473A95 /* AuthViewController.m */; };
+		B9AE52CE0F6B4AE50076D258 /* AuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EDF0F565D1500473A95 /* AuthWebViewController.m */; };
+		B9AE52CF0F6B4AE50076D258 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EE10F565D1500473A95 /* ConfigViewController.m */; };
+		B9AE52D00F6B4AE50076D258 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EE30F565D1500473A95 /* HomeViewController.m */; };
+		B9AE52D10F6B4AE50076D258 /* ListSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EE50F565D1500473A95 /* ListSelectViewController.m */; };
+		B9AE52D20F6B4AE50076D258 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EE70F565D1500473A95 /* ListViewController.m */; };
+		B9AE52D30F6B4AE50076D258 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EEB0F565D1500473A95 /* MenuViewController.m */; };
+		B9AE52D40F6B4AE50076D258 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EEE0F565D1500473A95 /* RootViewController.m */; };
+		B9AE52D50F6B4AE50076D258 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EF00F565D1500473A95 /* TaskListViewController.m */; };
+		B9AE52D60F6B4AE50076D258 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EF20F565D1500473A95 /* TaskViewController.m */; };
+		B9AE52D70F6B4AE50076D258 /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1B0F565D4C00473A95 /* RTMAuth.m */; };
+		B9AE52D80F6B4AE50076D258 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
+		B9AE52D90F6B4AE50076D258 /* RTMExistingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1F0F565D4C00473A95 /* RTMExistingTask.m */; };
+		B9AE52DA0F6B4AE50076D258 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
+		B9AE52DB0F6B4AE50076D258 /* RTMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F230F565D4C00473A95 /* RTMNote.m */; };
+		B9AE52DC0F6B4AE50076D258 /* RTMPendingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F250F565D4C00473A95 /* RTMPendingTask.m */; };
+		B9AE52DD0F6B4AE50076D258 /* RTMStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F270F565D4C00473A95 /* RTMStorable.m */; };
+		B9AE52DE0F6B4AE50076D258 /* RTMSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F290F565D4C00473A95 /* RTMSynchronizer.m */; };
+		B9AE52DF0F6B4AE50076D258 /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F2B0F565D4C00473A95 /* RTMTask.m */; };
+		B9AE52E00F6B4AE50076D258 /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
+		B9AE52E10F6B4AE50076D258 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F8E0F565DAB00473A95 /* Reachability.m */; };
+		B9AE52E20F6B4AE50076D258 /* UICCalendarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F940F565DAB00473A95 /* UICCalendarPicker.m */; };
+		B9AE52E30F6B4AE50076D258 /* UICCalendarPickerDateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F960F565DAB00473A95 /* UICCalendarPickerDateButton.m */; };
+		B9AE52E40F6B4AE50076D258 /* PriorityImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBB0F565DB600473A95 /* PriorityImageView.m */; };
+		B9AE52E50F6B4AE50076D258 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBD0F565DB600473A95 /* ProgressView.m */; };
+		B9AE52E60F6B4AE50076D258 /* RTMTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBF0F565DB600473A95 /* RTMTaskCell.m */; };
+		B9AE52E70F6B4AE50076D258 /* TaskEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FC10F565DB600473A95 /* TaskEditCell.m */; };
+		B9AE52E80F6B4AE50076D258 /* ListSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916100D0F565F6500473A95 /* ListSelectController.m */; };
+		B9AE52E90F6B4AE50076D258 /* NoteEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610100F565F8A00473A95 /* NoteEditController.m */; };
+		B9AE52EA0F6B4AE50076D258 /* TagSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610120F565F8A00473A95 /* TagSelectController.m */; };
+		B9AE52EB0F6B4AE50076D258 /* DueDateSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610170F565F9E00473A95 /* DueDateSelectController.m */; };
+		B9AE52EC0F6B4AE50076D258 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
+		B9AE52ED0F6B4AE50076D258 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
+		B9AE52EE0F6B4AE50076D258 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
+		B9AE52EF0F6B4AE50076D258 /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
+		B9AE52F00F6B4AE50076D258 /* DBTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B9570F0F6615880046712A /* DBTagProvider.m */; };
+		B9AE52F10F6B4AE50076D258 /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
+		B9AE52F20F6B4AE50076D258 /* TagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957630F662E780046712A /* TagProvider.m */; };
+		B9AE52F30F6B4AE50076D258 /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B959100F664B780046712A /* TagViewController.m */; };
+		B9AE52F40F6B4AE50076D258 /* AttributeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B926C44B0F67812F0014DB7D /* AttributeView.m */; };
+		B9AE52F50F6B4AE50076D258 /* TagListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B926C4F50F67A0AD0014DB7D /* TagListViewController.m */; };
+		B9AE52F70F6B4AE50076D258 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		B9AE52F80F6B4AE50076D258 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		B9AE52F90F6B4AE50076D258 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		B9AE52FA0F6B4AE50076D258 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
+		B9AE52FB0F6B4AE50076D258 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
+		B9AE53180F6B4C5C0076D258 /* MilponBetaIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */; };
 		B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9B9561E0F65D15E0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B956210F65D17C0046712A /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
@@ -366,6 +454,9 @@
 		B970A8160F637F71004467E9 /* ScaffoldTaskEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldTaskEditViewController.m; path = scaffold/ScaffoldTaskEditViewController.m; sourceTree = "<group>"; };
 		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
 		B985AB890F6108A8004A1B54 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MilponBetaIconSmall.png; sourceTree = "<group>"; };
+		B9AE53190F6B4C6A0076D258 /* Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Beta.plist; sourceTree = SOURCE_ROOT; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B956560F65D2720046712A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "APILocalTest-Info.plist"; path = "../APILocalTest-Info.plist"; sourceTree = "<group>"; };
@@ -436,6 +527,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9AE52F60F6B4AE50076D258 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9AE52F70F6B4AE50076D258 /* Foundation.framework in Frameworks */,
+				B9AE52F80F6B4AE50076D258 /* UIKit.framework in Frameworks */,
+				B9AE52F90F6B4AE50076D258 /* CoreGraphics.framework in Frameworks */,
+				B9AE52FA0F6B4AE50076D258 /* libsqlite3.dylib in Frameworks */,
+				B9AE52FB0F6B4AE50076D258 /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9B77FAA0F56A31400BF0EF3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -485,6 +588,7 @@
 				B985AB890F6108A8004A1B54 /* Scaffold.app */,
 				B9B956560F65D2720046712A /* UnitTest.octest */,
 				B9B957270F6615930046712A /* UnitTest.octest */,
+				B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -648,6 +752,8 @@
 		B9160F430F565D9300473A95 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				B9AE53190F6B4C6A0076D258 /* Beta.plist */,
+				B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */,
 				B926C4BE0F67991B0014DB7D /* icon_url.png */,
 				B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */,
 				B9160F010F565D3C00473A95 /* db */,
@@ -877,6 +983,23 @@
 			productReference = B985AB890F6108A8004A1B54 /* Scaffold.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B9AE52A10F6B4AE50076D258 /* Milpon Beta */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9AE52FC0F6B4AE50076D258 /* Build configuration list for PBXNativeTarget "Milpon Beta" */;
+			buildPhases = (
+				B9AE52A20F6B4AE50076D258 /* Resources */,
+				B9AE52C30F6B4AE50076D258 /* Sources */,
+				B9AE52F60F6B4AE50076D258 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Milpon Beta";
+			productName = Milpon;
+			productReference = B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */;
+			productType = "com.apple.product-type.application";
+		};
 		B9B77FAC0F56A31400BF0EF3 /* UnitTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9B77FB10F56A31500BF0EF3 /* Build configuration list for PBXNativeTarget "UnitTest" */;
@@ -968,6 +1091,7 @@
 				B985AB280F6108A8004A1B54 /* Scaffold */,
 				B9B956410F65D2720046712A /* APILocalTest */,
 				B9B957120F6615930046712A /* TagUnitTest */,
+				B9AE52A10F6B4AE50076D258 /* Milpon Beta */,
 			);
 		};
 /* End PBXProject section */
@@ -1026,6 +1150,46 @@
 			files = (
 				B9C648930F610B3100A47F4F /* ScaffoldMainWindow.xib in Resources */,
 				B9E6E69C0F6110EB00472142 /* rtm.sql in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9AE52A20F6B4AE50076D258 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9AE52A30F6B4AE50076D258 /* checkBox.png in Resources */,
+				B9AE52A40F6B4AE50076D258 /* checkBoxChecked.png in Resources */,
+				B9AE52A50F6B4AE50076D258 /* icon_calendar.png in Resources */,
+				B9AE52A60F6B4AE50076D258 /* icon_checked.png in Resources */,
+				B9AE52A70F6B4AE50076D258 /* icon_list.png in Resources */,
+				B9AE52A80F6B4AE50076D258 /* icon_note.png in Resources */,
+				B9AE52A90F6B4AE50076D258 /* icon_priority_0.png in Resources */,
+				B9AE52AA0F6B4AE50076D258 /* icon_priority_1.png in Resources */,
+				B9AE52AB0F6B4AE50076D258 /* icon_priority_2.png in Resources */,
+				B9AE52AC0F6B4AE50076D258 /* icon_priority_3.png in Resources */,
+				B9AE52AD0F6B4AE50076D258 /* icon_tag.png in Resources */,
+				B9AE52AE0F6B4AE50076D258 /* icon_target.png in Resources */,
+				B9AE52AF0F6B4AE50076D258 /* MilponIconSmall.png in Resources */,
+				B9AE52B00F6B4AE50076D258 /* README.txt in Resources */,
+				B9AE52B10F6B4AE50076D258 /* uiccalendar_background.png in Resources */,
+				B9AE52B20F6B4AE50076D258 /* uiccalendar_cell_disabled.png in Resources */,
+				B9AE52B30F6B4AE50076D258 /* uiccalendar_cell_holiday.png in Resources */,
+				B9AE52B40F6B4AE50076D258 /* uiccalendar_cell_monthout.png in Resources */,
+				B9AE52B50F6B4AE50076D258 /* uiccalendar_cell_normal.png in Resources */,
+				B9AE52B60F6B4AE50076D258 /* uiccalendar_cell_selected.png in Resources */,
+				B9AE52B70F6B4AE50076D258 /* uiccalendar_cell_today.png in Resources */,
+				B9AE52B80F6B4AE50076D258 /* uiccalendar_cell_today_selected.png in Resources */,
+				B9AE52B90F6B4AE50076D258 /* uiccalendar_close.png in Resources */,
+				B9AE52BA0F6B4AE50076D258 /* uiccalendar_left_arrow.png in Resources */,
+				B9AE52BB0F6B4AE50076D258 /* uiccalendar_main.png in Resources */,
+				B9AE52BC0F6B4AE50076D258 /* uiccalendar_right_arrow.png in Resources */,
+				B9AE52BD0F6B4AE50076D258 /* uiccalendar_title.png in Resources */,
+				B9AE52BE0F6B4AE50076D258 /* MainWindow.xib in Resources */,
+				B9AE52BF0F6B4AE50076D258 /* rtm.sql in Resources */,
+				B9AE52C00F6B4AE50076D258 /* TaskView.xib in Resources */,
+				B9AE52C10F6B4AE50076D258 /* NoteEdit.xib in Resources */,
+				B9AE52C20F6B4AE50076D258 /* icon_url.png in Resources */,
+				B9AE53180F6B4C5C0076D258 /* MilponBetaIconSmall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1237,6 +1401,63 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9AE52C30F6B4AE50076D258 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9AE52C40F6B4AE50076D258 /* main.m in Sources */,
+				B9AE52C50F6B4AE50076D258 /* RTMAPI.m in Sources */,
+				B9AE52C60F6B4AE50076D258 /* RTMAPIAuth.m in Sources */,
+				B9AE52C70F6B4AE50076D258 /* RTMAPIList.m in Sources */,
+				B9AE52C80F6B4AE50076D258 /* RTMAPINote.m in Sources */,
+				B9AE52C90F6B4AE50076D258 /* RTMAPITask.m in Sources */,
+				B9AE52CA0F6B4AE50076D258 /* RTMAPIXMLParserCallback.m in Sources */,
+				B9AE52CB0F6B4AE50076D258 /* AddTaskViewController.m in Sources */,
+				B9AE52CC0F6B4AE50076D258 /* AppDelegate.m in Sources */,
+				B9AE52CD0F6B4AE50076D258 /* AuthViewController.m in Sources */,
+				B9AE52CE0F6B4AE50076D258 /* AuthWebViewController.m in Sources */,
+				B9AE52CF0F6B4AE50076D258 /* ConfigViewController.m in Sources */,
+				B9AE52D00F6B4AE50076D258 /* HomeViewController.m in Sources */,
+				B9AE52D10F6B4AE50076D258 /* ListSelectViewController.m in Sources */,
+				B9AE52D20F6B4AE50076D258 /* ListViewController.m in Sources */,
+				B9AE52D30F6B4AE50076D258 /* MenuViewController.m in Sources */,
+				B9AE52D40F6B4AE50076D258 /* RootViewController.m in Sources */,
+				B9AE52D50F6B4AE50076D258 /* TaskListViewController.m in Sources */,
+				B9AE52D60F6B4AE50076D258 /* TaskViewController.m in Sources */,
+				B9AE52D70F6B4AE50076D258 /* RTMAuth.m in Sources */,
+				B9AE52D80F6B4AE50076D258 /* LocalCache.m in Sources */,
+				B9AE52D90F6B4AE50076D258 /* RTMExistingTask.m in Sources */,
+				B9AE52DA0F6B4AE50076D258 /* RTMList.m in Sources */,
+				B9AE52DB0F6B4AE50076D258 /* RTMNote.m in Sources */,
+				B9AE52DC0F6B4AE50076D258 /* RTMPendingTask.m in Sources */,
+				B9AE52DD0F6B4AE50076D258 /* RTMStorable.m in Sources */,
+				B9AE52DE0F6B4AE50076D258 /* RTMSynchronizer.m in Sources */,
+				B9AE52DF0F6B4AE50076D258 /* RTMTask.m in Sources */,
+				B9AE52E00F6B4AE50076D258 /* MilponHelper.m in Sources */,
+				B9AE52E10F6B4AE50076D258 /* Reachability.m in Sources */,
+				B9AE52E20F6B4AE50076D258 /* UICCalendarPicker.m in Sources */,
+				B9AE52E30F6B4AE50076D258 /* UICCalendarPickerDateButton.m in Sources */,
+				B9AE52E40F6B4AE50076D258 /* PriorityImageView.m in Sources */,
+				B9AE52E50F6B4AE50076D258 /* ProgressView.m in Sources */,
+				B9AE52E60F6B4AE50076D258 /* RTMTaskCell.m in Sources */,
+				B9AE52E70F6B4AE50076D258 /* TaskEditCell.m in Sources */,
+				B9AE52E80F6B4AE50076D258 /* ListSelectController.m in Sources */,
+				B9AE52E90F6B4AE50076D258 /* NoteEditController.m in Sources */,
+				B9AE52EA0F6B4AE50076D258 /* TagSelectController.m in Sources */,
+				B9AE52EB0F6B4AE50076D258 /* DueDateSelectController.m in Sources */,
+				B9AE52EC0F6B4AE50076D258 /* ListProvider.m in Sources */,
+				B9AE52ED0F6B4AE50076D258 /* DBListProvider.m in Sources */,
+				B9AE52EE0F6B4AE50076D258 /* TaskProvider.m in Sources */,
+				B9AE52EF0F6B4AE50076D258 /* DBTaskProvider.m in Sources */,
+				B9AE52F00F6B4AE50076D258 /* DBTagProvider.m in Sources */,
+				B9AE52F10F6B4AE50076D258 /* RTMTag.m in Sources */,
+				B9AE52F20F6B4AE50076D258 /* TagProvider.m in Sources */,
+				B9AE52F30F6B4AE50076D258 /* TagViewController.m in Sources */,
+				B9AE52F40F6B4AE50076D258 /* AttributeView.m in Sources */,
+				B9AE52F50F6B4AE50076D258 /* TagListViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9B77FA90F56A31400BF0EF3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1428,6 +1649,34 @@
 			name = Debug;
 		};
 		B985AB880F6108A8004A1B54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/Info copy.plist";
+				PRODUCT_NAME = Milpon;
+			};
+			name = Release;
+		};
+		B9AE52FD0F6B4AE50076D258 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				INFOPLIST_FILE = /Users/takayama/prj/iphone/Milpon/Beta.plist;
+				PRODUCT_NAME = "Milpon Beta";
+				SDKROOT = iphonesimulator2.2.1;
+			};
+			name = Debug;
+		};
+		B9AE52FE0F6B4AE50076D258 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1737,6 +1986,15 @@
 			buildConfigurations = (
 				B985AB870F6108A8004A1B54 /* Debug */,
 				B985AB880F6108A8004A1B54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9AE52FC0F6B4AE50076D258 /* Build configuration list for PBXNativeTarget "Milpon Beta" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9AE52FD0F6B4AE50076D258 /* Debug */,
+				B9AE52FE0F6B4AE50076D258 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

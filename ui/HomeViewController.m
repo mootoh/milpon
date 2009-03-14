@@ -13,6 +13,7 @@
 #import "TaskViewController.h"
 #import "TaskProvider.h"
 #import "MilponHelper.h"
+#import "logger.h"
 
 @implementation HomeViewController
 
@@ -25,8 +26,8 @@ static const int SECTIONS = 4;
    /*
     * cleanup old data
     */
-   [tasks release];
-   [due_tasks release];
+   if (tasks) [tasks release];
+   if (due_tasks) [due_tasks release];
 
    /*
     * load
@@ -91,6 +92,9 @@ static const int SECTIONS = 4;
 - (void)viewDidLoad
 {
    [super viewDidLoad];
+
+   tasks = nil;
+   due_tasks = nil;
 
    NSDate *today = [NSDate date];
    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

@@ -100,10 +100,10 @@
 - (NSArray *) tasks
 {
    if (dirty_all_tasks_) {
-      [all_tasks_ release];
+      //[all_tasks_ release];
       //NSDictionary *cond = [NSDictionary dictionaryWithObject:@"deleted is NULL" forKey:@"WHERE"];
       NSDictionary *cond = [NSDictionary dictionaryWithObject:@"completed is NULL" forKey:@"WHERE"];
-      all_tasks_ = [self tasks:cond];
+      all_tasks_ = [[self tasks:cond] retain];
       dirty_all_tasks_ = NO;
    }
    return all_tasks_;
@@ -203,7 +203,6 @@
    NSDictionary *order = [NSDictionary dictionaryWithObject:@"id DESC LIMIT 1" forKey:@"ORDER"]; // TODO: ad-hoc LIMIT
    NSArray *ret = [local_cache_ select:iid from:@"task" option:order];
    NSNumber *retn = [[ret objectAtIndex:0] objectForKey:@"id"];
-   NSLog(@"retn = %d", [retn intValue]);
    return retn;
 }
 
@@ -262,7 +261,10 @@
       NSArray *ret = [local_cache_ select:iid from:@"task" option:order];
       NSNumber *retn = [[ret objectAtIndex:0] objectForKey:@"id"];
 
-      [self createNoteAtOnline:[task objectForKey:@"text"] title:[task objectForKey:@"title"] task_id:retn];
+      // add notes
+      for (NSDictionary *note in [task objectForKey:@"notes"]) {
+         [self createNoteAtOnline:[note objectForKey:@"text"] title:[note objectForKey:@"title"] task_id:retn];
+      }
    }
    dirty_all_tasks_ = YES;
 }

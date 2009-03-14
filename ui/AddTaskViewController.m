@@ -259,7 +259,6 @@ enum {
 
 - (void) close
 {
-   
    UITabBarController *tbc = (UITabBarController *)self.navigationController.parentViewController;
    UINavigationController *nc = (UINavigationController *)tbc.selectedViewController;
    UITableViewController *tvc = (UITableViewController *)nc.topViewController;

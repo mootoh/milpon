@@ -20,7 +20,7 @@
 
 - (void) reloadFromDB
 {
-   [tasks release];
+   if (tasks) [tasks release];
    tasks = [[[TaskProvider sharedTaskProvider] tasksInList:list] retain];
 }
 
