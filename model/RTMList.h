@@ -10,13 +10,17 @@
 {
    NSNumber *iD;
    NSString *name;
+   NSString *filter;
 }
 
 @property (nonatomic, retain) NSNumber *iD;
 @property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *filter;
 @property (nonatomic, readonly) NSArray *tasks;
 
-- (id) initWithID:(NSNumber *)id_ forName:(NSString *)name;
+- (id) initWithID:(NSNumber *)id_ forName:(NSString *)nm;
+- (id) initWithID:(NSNumber *)id_ forName:(NSString *)nm withFilter:(NSString *)filt;
+- (BOOL) isSmart;
 
 @end
 // vim:set ft=objc:

@@ -14,7 +14,8 @@
 /* -------------------------------------------------------------------
  * ListGetCallback
  */
-@interface ListGetCallback : RTMAPIXMLParserCallback {
+@interface ListGetCallback : RTMAPIXMLParserCallback
+{
    enum {
       LIST,
       FILTER
@@ -27,7 +28,7 @@
 
 - (NSArray *)lists;
 
-@end
+@end // ListGetCallback
 
 @implementation ListGetCallback
 
@@ -40,15 +41,13 @@
 {
    [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict];
 
-   if ([elementName isEqualToString:@"lists"]) {
+   if ([elementName isEqualToString:@"lists"]) { // start to parse
       lists = [NSMutableArray array];
       skip = NO;
    } else if ([elementName isEqualToString:@"list"]) {
       mode = LIST;
       // some filtering
-      if (
-            [[attributeDict valueForKey:@"name"] isEqualToString:@"Sent"] ||
-            [[attributeDict valueForKey:@"smart"] isEqualToString:@"1"]) {
+      if ([[attributeDict valueForKey:@"name"] isEqualToString:@"Sent"]) {
          skip = YES;
       } else {
          skip = NO;
@@ -68,32 +67,32 @@
       if (! isspace(str[i])) break;
    if (i == len) return;
 
-
-   if (FILTER != mode)
-      @throw @"characters should be found in <filter>";
+   NSAssert2(mode == FILTER, @"characters should be found in <filter> but in %@, chars=%@", mode, chars);
    [params setObject:chars forKey:@"filter"];
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-   if ([elementName isEqualToString:@"list"] && !skip) {
+   if ([elementName isEqualToString:@"list"] && !skip)
       [lists addObject:params];
-   } else if ([elementName isEqualToString:@"filter"]) {
+   else if ([elementName isEqualToString:@"filter"])
       mode = LIST;
-   }
 }
-@end
+@end // ListGetCallback
 
 /* -------------------------------------------------------------------
  * ListAddCallback
  */
-@interface ListAddCallback : RTMAPIXMLParserCallback {
+@interface ListAddCallback : RTMAPIXMLParserCallback
+{
    NSString * iD;
 }
+
 @property (nonatomic, readonly) NSString * iD;
-@end
+@end // ListAddCallback
 
 @implementation ListAddCallback
+
 @synthesize iD;
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
@@ -106,13 +105,12 @@
    }
 }
 
-@end
+@end // ListAddCallback
 
 /* -------------------------------------------------------------------
- * ListAddCallback
+ * ListDeleteCallback
  */
-@interface ListDeleteCallback : RTMAPIXMLParserCallback
-@end
+@interface ListDeleteCallback : RTMAPIXMLParserCallback; @end
 
 @implementation ListDeleteCallback
 
@@ -135,13 +133,8 @@
 
 - (NSArray *) getList
 {
-#ifdef LOCAL_DEBUG
-   NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"rtm.lists.getList.xml"];
-   NSData *response = [NSData dataWithContentsOfFile:path];
-#else // LOCAL_DEBUG
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSData *response = [api call:@"rtm.lists.getList" withArgs:nil];
-#endif // LOCAL_DEBUG
    if (! response) return nil;
 
    method = LISTS_GETLIST;

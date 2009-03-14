@@ -32,7 +32,7 @@
    NSMutableDictionary *note;
    NSMutableDictionary *taskseries;
 }
-@end
+@end // TaskGetListCallback
 
 @implementation TaskGetListCallback
 

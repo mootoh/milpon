@@ -9,7 +9,6 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "RTMAPI.h"
 #import "MockRTMAPI.h"
-#import "RTMDatabase.h"
 #import "RTMAuth.h"
 #import "RTMAPIXMLParserCallback.h"
 
@@ -19,7 +18,6 @@
  * RTMAPITest
  */
 @interface RTMAPITest : SenTestCase {
-   RTMDatabase *db;
    RTMAuth *auth;
    RTMAPI *api;
 }
@@ -29,8 +27,7 @@
 
 - (void) setUp
 {
-   db   = [[RTMDatabase alloc] init];
-   auth = [[RTMAuth alloc] initWithDB:db];
+   auth = [[RTMAuth alloc] init];
    api  = [[RTMAPI alloc] init];
    [RTMAPI setApiKey:auth.api_key];
    [RTMAPI setSecret:auth.shared_secret];
@@ -41,7 +38,6 @@
 {
    [api release];
    [auth release];
-   [db release];
 }
 
 - (void) testCall
@@ -61,7 +57,7 @@
    STAssertNil(callback.error, @"check call");
 }
 
-- (void) testError
+- (void) _testError
 {
    NSArray *keys = [NSArray arrayWithObjects:@"one", @"two", nil];
    NSArray *vals = [NSArray arrayWithObjects:@"1", @"2", nil];

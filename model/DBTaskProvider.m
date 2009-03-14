@@ -58,7 +58,6 @@
          [task.iD intValue] :
          [task.taskseries_id intValue];
 
-#if 0
       { // collect tags
          NSDictionary *tag_dict = [NSDictionary dictionaryWithObject:[NSString class] forKey:@"name"];
          NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
@@ -78,8 +77,6 @@
             [tags addObject:[tag objectForKey:@"name"]];
          task.tags = tags;
       }
-#endif // 0
-#if 0
       { // collect notes
          NSArray *note_keys = [NSArray arrayWithObjects:@"title", @"text", nil];
          NSArray *note_vals = [NSArray arrayWithObjects:[NSString class], [NSString class], nil];
@@ -91,7 +88,6 @@
          NSArray *notes = [local_cache_ select:note_dict from:@"note" option:note_opts];
          task.notes = notes;
       }
-#endif // 0
 
       [tasks addObject:task];
       [task release];
@@ -223,7 +219,7 @@
    [attrs removeObjectForKey:@"source"];
 
    NSArray *tasks = [attrs objectForKey:@"tasks"];
-   //NSArray *notes = [attrs objectForKey:@"notes"]; // TODO: enable this
+   NSArray *notes = [attrs objectForKey:@"notes"]; // TODO: enable this
    //NSArray *tags = [attrs objectForKey:@"tags"]; // TODO: enable this
 
    [attrs removeObjectForKey:@"tasks"];
@@ -231,6 +227,10 @@
    [attrs removeObjectForKey:@"tags"];
 
    for (NSDictionary *task in tasks) {
+      NSString *deleted_str = [task objectForKey:@"deleted"];
+      if (deleted_str && ! [deleted_str isEqualToString:@""])
+         continue;
+
       NSMutableDictionary *task_attrs = [NSMutableDictionary dictionaryWithDictionary:attrs];
       [task_attrs setObject:[task objectForKey:@"id"] forKey:@"task_id"];
 
@@ -246,7 +246,6 @@
             [[MilponHelper sharedHelper] rtmStringToDate:
                [task objectForKey:@"completed"]] forKey:@"completed"];
 
-      // [task_attrs setObject:[task objectForKey:@"deleted"] forKey:@"deleted"]; // TODO: care about deleted task (not sync it, maybe)
       NSString *priority_str = [task objectForKey:@"priority"];
       NSNumber *pri = [NSNumber numberWithInt: [priority_str isEqualToString:@"N"] ?
          0 :
@@ -257,6 +256,13 @@
       [task_attrs setObject:[task objectForKey:@"estimate"] forKey:@"estimate"];
 
       [local_cache_ insert:task_attrs into:@"task"];
+
+      NSDictionary *iid = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
+      NSDictionary *order = [NSDictionary dictionaryWithObject:@"id DESC LIMIT 1" forKey:@"ORDER"]; // TODO: ad-hoc LIMIT
+      NSArray *ret = [local_cache_ select:iid from:@"task" option:order];
+      NSNumber *retn = [[ret objectAtIndex:0] objectForKey:@"id"];
+
+      [self createNoteAtOnline:[task objectForKey:@"text"] title:[task objectForKey:@"title"] task_id:retn];
    }
    dirty_all_tasks_ = YES;
 }
@@ -283,6 +289,14 @@
 {
    NSArray *keys = [NSArray arrayWithObjects:@"text", @"task_id", @"edit_bits", nil];
    NSArray *vals = [NSArray arrayWithObjects:note, tid, [NSNumber numberWithInt:EB_CREATED_OFFLINE], nil];
+   NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   [local_cache_ insert:attrs into:@"note"];
+}
+
+- (void) createNoteAtOnline:(NSString *)note title:(NSString *)title task_id:(NSNumber *)tid
+{
+   NSArray *keys = [NSArray arrayWithObjects:@"title", @"text", @"task_id", @"edit_bits", nil];
+   NSArray *vals = [NSArray arrayWithObjects:title, note, tid, [NSNumber numberWithInt:EB_CREATED_OFFLINE], nil];
    NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    [local_cache_ insert:attrs into:@"note"];
 }

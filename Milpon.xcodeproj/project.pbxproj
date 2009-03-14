@@ -130,6 +130,10 @@
 		B985AB820F6108A8004A1B54 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		B985AB830F6108A8004A1B54 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		B985AB840F6108A8004A1B54 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
+		B9AE52080F6B407B0076D258 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
+		B9AE521A0F6B415C0076D258 /* RTMAPIListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD80F565DE000473A95 /* RTMAPIListTest.m */; };
+		B9AE52600F6B45970076D258 /* RTMAPITaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */; };
+		B9AE52650F6B47110076D258 /* RTMAPITest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDA0F565DE000473A95 /* RTMAPITest.m */; };
 		B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9B9561E0F65D15E0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B956210F65D17C0046712A /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
@@ -144,7 +148,6 @@
 		B9B956470F65D2720046712A /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
 		B9B956480F65D2720046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B956490F65D2720046712A /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
-		B9B9564A0F65D2720046712A /* RTMAPITaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */; };
 		B9B9564B0F65D2720046712A /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPITask.m */; };
 		B9B9564C0F65D2720046712A /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
 		B9B9564D0F65D2720046712A /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1B0F565D4C00473A95 /* RTMAuth.m */; };
@@ -318,8 +321,8 @@
 		B9160FC10F565DB600473A95 /* TaskEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditCell.m; sourceTree = "<group>"; };
 		B9160FD10F565DE000473A95 /* FunctionalTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionalTestAppDelegate.h; sourceTree = "<group>"; };
 		B9160FD20F565DE000473A95 /* FunctionalTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionalTestAppDelegate.m; sourceTree = "<group>"; };
-		B9160FD30F565DE000473A95 /* MockRTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockRTMAPI.h; sourceTree = "<group>"; };
-		B9160FD40F565DE000473A95 /* MockRTMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockRTMAPI.m; sourceTree = "<group>"; };
+		B9160FD30F565DE000473A95 /* MockRTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MockRTMAPI.h; path = ../MockRTMAPI.h; sourceTree = "<group>"; };
+		B9160FD40F565DE000473A95 /* MockRTMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MockRTMAPI.m; path = ../MockRTMAPI.m; sourceTree = "<group>"; };
 		B9160FD50F565DE000473A95 /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
 		B9160FD60F565DE000473A95 /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
 		B9160FD70F565DE000473A95 /* RTMAPIAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIAuthTest.m; sourceTree = "<group>"; };
@@ -703,21 +706,15 @@
 		B9160FD00F565DE000473A95 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				B9AE52090F6B408A0076D258 /* api */,
+				B91610590F56607600473A95 /* mock */,
 				B9B957310F66160B0046712A /* TagProviderTest.m */,
 				B9D043370F5F48C800641E61 /* TaskProviderTest.m */,
-				B91610590F56607600473A95 /* mock */,
 				B9160FB70F565DB600473A95 /* FunctionalTestProgressViewWindow.xib */,
 				B9160FD10F565DE000473A95 /* FunctionalTestAppDelegate.h */,
 				B9160FD20F565DE000473A95 /* FunctionalTestAppDelegate.m */,
-				B9160FD30F565DE000473A95 /* MockRTMAPI.h */,
-				B9160FD40F565DE000473A95 /* MockRTMAPI.m */,
 				B9160FD50F565DE000473A95 /* ProgressViewController.h */,
 				B9160FD60F565DE000473A95 /* ProgressViewController.m */,
-				B9160FD70F565DE000473A95 /* RTMAPIAuthTest.m */,
-				B9160FD80F565DE000473A95 /* RTMAPIListTest.m */,
-				B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */,
-				B9160FDA0F565DE000473A95 /* RTMAPITest.m */,
-				B9160FDB0F565DE000473A95 /* RTMAuthTest.m */,
 				B9160FDC0F565DE000473A95 /* LocalCacheTest.m */,
 				B9160FDD0F565DE000473A95 /* RTMListTest.m */,
 				B9160FDE0F565DE000473A95 /* RTMPendingTaskTest.m */,
@@ -734,6 +731,8 @@
 		B91610590F56607600473A95 /* mock */ = {
 			isa = PBXGroup;
 			children = (
+				B9160FD30F565DE000473A95 /* MockRTMAPI.h */,
+				B9160FD40F565DE000473A95 /* MockRTMAPI.m */,
 				B916105A0F56607600473A95 /* MockListProvider.h */,
 				B916105B0F56607600473A95 /* MockListProvider.m */,
 				B916105C0F56607600473A95 /* MockTagProvider.h */,
@@ -778,6 +777,18 @@
 				B9B957F60F6636530046712A /* ScaffoldTagViewController.m */,
 			);
 			name = scaffold;
+			sourceTree = "<group>";
+		};
+		B9AE52090F6B408A0076D258 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				B9160FD70F565DE000473A95 /* RTMAPIAuthTest.m */,
+				B9160FD80F565DE000473A95 /* RTMAPIListTest.m */,
+				B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */,
+				B9160FDA0F565DE000473A95 /* RTMAPITest.m */,
+				B9160FDB0F565DE000473A95 /* RTMAuthTest.m */,
+			);
+			name = api;
 			sourceTree = "<group>";
 		};
 		B9CBAFF80F5991710025216C /* add */ = {
@@ -1249,11 +1260,14 @@
 				B9B956470F65D2720046712A /* ListProvider.m in Sources */,
 				B9B956480F65D2720046712A /* MilponHelper.m in Sources */,
 				B9B956490F65D2720046712A /* TaskProvider.m in Sources */,
-				B9B9564A0F65D2720046712A /* RTMAPITaskTest.m in Sources */,
 				B9B9564B0F65D2720046712A /* RTMAPITask.m in Sources */,
 				B9B9564C0F65D2720046712A /* RTMAPI.m in Sources */,
 				B9B9564D0F65D2720046712A /* RTMAuth.m in Sources */,
 				B9B9564E0F65D2720046712A /* RTMAPIXMLParserCallback.m in Sources */,
+				B9AE52080F6B407B0076D258 /* RTMAPIList.m in Sources */,
+				B9AE521A0F6B415C0076D258 /* RTMAPIListTest.m in Sources */,
+				B9AE52600F6B45970076D258 /* RTMAPITaskTest.m in Sources */,
+				B9AE52650F6B47110076D258 /* RTMAPITest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1491,6 +1505,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
 					LOCAL_DEBUG,
 					UNIT_TEST,
 				);

@@ -21,4 +21,6 @@
    BOOL dirty_all_tasks_;
 }
 
+- (void) createNoteAtOnline:(NSString *)note title:(NSString *)title task_id:(NSNumber *)tid;
+
 @end

@@ -9,11 +9,10 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "RTMAPIList.h"
 #import "RTMAPI.h"
-#import "RTMDatabase.h"
 #import "RTMAuth.h"
 
-@interface RTMAPIListTest : SenTestCase {
-  RTMDatabase *db;
+@interface RTMAPIListTest : SenTestCase
+{
   RTMAuth *auth;
   RTMAPI *api;
 }
@@ -23,8 +22,7 @@
 
 - (void) setUp
 {
-  db   = [[RTMDatabase alloc] init];
-  auth = [[RTMAuth alloc] initWithDB:db];
+  auth = [[RTMAuth alloc] init];
   api  = [[RTMAPI alloc] init];
   [RTMAPI setApiKey:auth.api_key];
   [RTMAPI setSecret:auth.shared_secret];
@@ -35,7 +33,6 @@
 {
   [api release];
   [auth release];
-  [db release];
 }
 
 - (void) testGetList
@@ -44,7 +41,7 @@
 	STAssertTrue([[list_api getList] count] > 0, @"lists should be one or more.");
 }
 
-- (void) testAddDelete
+- (void) _testAddDelete
 {
 	RTMAPIList *list_api = [[[RTMAPIList alloc] init] autorelease];
 

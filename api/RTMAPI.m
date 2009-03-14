@@ -96,6 +96,7 @@ static NSString *s_token;
       LOG(@"API call succeeded for url=%@", url);
    }
 
+#define DUMP_API_RESPONSE
 #ifdef DUMP_API_RESPONSE
    if (ret) {
       //NSString *dump_path = [NSString stringWithFormat:@"/tmp/%@.xml", method];
