@@ -9,6 +9,7 @@
 #import "RTMAPI.h"
 #import "RTMAPIAuth.h"
 #import "RTMAPIXMLParserCallback.h"
+#import "logger.h"
 
 /* -------------------------------------------------------------------
  * CheckTokenCallback
@@ -84,10 +85,14 @@
   [parser setDelegate:cb];
   [parser parse];
   if (! cb.succeeded) {
-    NSLog(@"checkToken failed : %@", [cb.error localizedDescription]);
+    LOG(@"checkToken failed : %@", [cb.error localizedDescription]);
     return NO;
   }
+#ifdef LOCAL_DEBUG
+  return YES;
+#else // LOCAL_DEBUG
   return [token isEqualToString:cb.token];
+#endif // LOCAL_DEBUG
 }
 
 - (NSString *) getFrob

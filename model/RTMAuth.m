@@ -19,10 +19,11 @@
   if (self = [super init]) {
      self.api_key = API_KEY;
      self.shared_secret = SHARED_SECRET;
-     frob = nil;
 #ifdef LOCAL_DEBUG
+     self.frob  = FROB;
      self.token = TOKEN;
 #else // LOCAL_DEBUG
+     frob = nil;
      token = nil;
 #endif // LOCAL_DEBUG
   }

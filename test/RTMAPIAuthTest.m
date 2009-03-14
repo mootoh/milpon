@@ -9,13 +9,11 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "RTMAPIAuth.h"
 #import "RTMAPI.h"
-#import "RTMDatabase.h"
 #import "RTMAuth.h"
 
 #define TEST_FROB @"ec1d083b2e10b554e6c90487328d65ba9312d6e5"
 
 @interface RTMAPIAuthTest : SenTestCase {
-  RTMDatabase *db;
   RTMAuth *auth;
   RTMAPI *api;
 }
@@ -25,8 +23,7 @@
 
 - (void) setUp
 {
-  db   = [[RTMDatabase alloc] init];
-  auth = [[RTMAuth alloc] initWithDB:db];
+  auth = [[RTMAuth alloc] init];
   api  = [[RTMAPI alloc] init];
   [RTMAPI setApiKey:auth.api_key];
   [RTMAPI setSecret:auth.shared_secret];
@@ -37,7 +34,6 @@
 {
   [api release];
   [auth release];
-  [db release];
 }
 
 - (void) testCheckToken

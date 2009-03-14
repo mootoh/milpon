@@ -134,6 +134,9 @@
 		B9AE521A0F6B415C0076D258 /* RTMAPIListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD80F565DE000473A95 /* RTMAPIListTest.m */; };
 		B9AE52600F6B45970076D258 /* RTMAPITaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */; };
 		B9AE52650F6B47110076D258 /* RTMAPITest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDA0F565DE000473A95 /* RTMAPITest.m */; };
+		B9AE526F0F6B48640076D258 /* RTMAuthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDB0F565DE000473A95 /* RTMAuthTest.m */; };
+		B9AE527C0F6B490D0076D258 /* RTMAPIAuthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD70F565DE000473A95 /* RTMAPIAuthTest.m */; };
+		B9AE52810F6B492B0076D258 /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPIAuth.m */; };
 		B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9B9561E0F65D15E0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B956210F65D17C0046712A /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
@@ -1268,6 +1271,9 @@
 				B9AE521A0F6B415C0076D258 /* RTMAPIListTest.m in Sources */,
 				B9AE52600F6B45970076D258 /* RTMAPITaskTest.m in Sources */,
 				B9AE52650F6B47110076D258 /* RTMAPITest.m in Sources */,
+				B9AE526F0F6B48640076D258 /* RTMAuthTest.m in Sources */,
+				B9AE527C0F6B490D0076D258 /* RTMAPIAuthTest.m in Sources */,
+				B9AE52810F6B492B0076D258 /* RTMAPIAuth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
