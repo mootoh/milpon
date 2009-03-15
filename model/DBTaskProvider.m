@@ -13,6 +13,7 @@
 #import "LocalCache.h"
 #import "logger.h"
 #import "MilponHelper.h"
+#import "TagProvider.h"
 
 @implementation DBTaskProvider
 
@@ -54,9 +55,7 @@
    for (NSDictionary *dict in task_arr) {
       RTMTask *task = [[RTMTask alloc] initByParams:dict];
 
-      int tid = ([task.edit_bits intValue] & EB_CREATED_OFFLINE) ?
-         [task.iD intValue] :
-         [task.taskseries_id intValue];
+      int tid = [task.iD intValue];
 
       { // collect tags
          NSDictionary *tag_dict = [NSDictionary dictionaryWithObject:[NSString class] forKey:@"name"];
@@ -125,7 +124,7 @@
 - (NSArray *) tasksInTag:(RTMTag *)tag
 {
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
-   NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"(task.taskseries_id IS NULL AND task.id=task_tag.task_id) OR (task.taskseries_id IS NOT NULL AND task.taskseries_id=task_tag.task_id)", nil];
+   NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"task.id=task_tag.task_id", nil];
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", @"JOIN", @"GROUP", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [NSString stringWithFormat:@"task_tag.tag_id=%d", [tag.iD intValue]],
@@ -186,7 +185,7 @@
 {
    [task flagUpEditBits:EB_TASK_COMPLETED];
 
-   NSDictionary *dict = [NSDictionary dictionaryWithObject:@"" forKey:@"completed"];
+   NSDictionary *dict = [NSDictionary dictionaryWithObject:[[MilponHelper sharedHelper] invalidDate] forKey:@"completed"];
    [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"where id=%d", [task.iD intValue]]];
 }
 
@@ -213,13 +212,14 @@
    [attrs setObject:edit_bits forKey:@"edit_bits"];
    [attrs setObject:[params objectForKey:@"id"] forKey:@"taskseries_id"];
 
+   [attrs removeObjectForKey:@"id"];
    [attrs removeObjectForKey:@"created"];
    [attrs removeObjectForKey:@"modified"];
    [attrs removeObjectForKey:@"source"];
 
    NSArray *tasks = [attrs objectForKey:@"tasks"];
    NSArray *notes = [attrs objectForKey:@"notes"]; // TODO: enable this
-   //NSArray *tags = [attrs objectForKey:@"tags"]; // TODO: enable this
+   NSArray *tags = [attrs objectForKey:@"tags"]; // TODO: enable this
 
    [attrs removeObjectForKey:@"tasks"];
    [attrs removeObjectForKey:@"notes"];
@@ -258,12 +258,31 @@
 
       NSDictionary *iid = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
       NSDictionary *order = [NSDictionary dictionaryWithObject:@"id DESC LIMIT 1" forKey:@"ORDER"]; // TODO: ad-hoc LIMIT
+      LOG(@"task select enter");
       NSArray *ret = [local_cache_ select:iid from:@"task" option:order];
+      LOG(@"task select leave");
       NSNumber *retn = [[ret objectAtIndex:0] objectForKey:@"id"];
 
       // add notes
-      for (NSDictionary *note in [task objectForKey:@"notes"]) {
+      for (NSDictionary *note in notes) {
          [self createNoteAtOnline:[note objectForKey:@"text"] title:[note objectForKey:@"title"] task_id:retn];
+      }
+
+      // add tags
+      for (NSString *tag in tags) {
+         LOG(@"tag %@ enter", tag);
+         NSNumber *tag_id = [[TagProvider sharedTagProvider] find:tag];
+         if (tag_id) {
+            LOG(@"tag_id %@ enter", tag);
+            [[TagProvider sharedTagProvider] createRelation:retn tag_id:tag_id];
+            LOG(@"tag_id %@ leaving", tag);
+         } else {
+            NSArray *tag_keys = [NSArray arrayWithObjects:@"name", @"task_id", nil];
+            NSArray *tag_vals = [NSArray arrayWithObjects:tag, retn, nil];
+            NSDictionary *tag_param = [NSDictionary dictionaryWithObjects:tag_vals forKeys:tag_keys];
+            [[TagProvider sharedTagProvider] create:tag_param];
+         }
+         LOG(@"tag %@ leave", tag);
       }
    }
    dirty_all_tasks_ = YES;
@@ -297,10 +316,23 @@
 
 - (void) createNoteAtOnline:(NSString *)note title:(NSString *)title task_id:(NSNumber *)tid
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"title", @"text", @"task_id", @"edit_bits", nil];
-   NSArray *vals = [NSArray arrayWithObjects:title, note, tid, [NSNumber numberWithInt:EB_CREATED_OFFLINE], nil];
+   LOG(@"createNoteAtOnline enter");
+   NSMutableArray *keys = [NSMutableArray arrayWithObjects:@"task_id", @"edit_bits", nil];
+   NSMutableArray *vals = [NSMutableArray arrayWithObjects:tid, [NSNumber numberWithInt:EB_CREATED_OFFLINE], nil];
+
+   if (title && ! [title isEqualToString:@""]) {
+      [keys addObject:@"title"];
+      [vals addObject:title];
+   }
+
+   if (note && ! [note isEqualToString:@""]) {
+      [keys addObject:@"text"];
+      [vals addObject:note];
+   }
+
    NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    [local_cache_ insert:attrs into:@"note"];
+   LOG(@"createNoteAtOnline leave");
 }
 
 @end // DBTaskProvider

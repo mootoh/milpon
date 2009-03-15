@@ -57,9 +57,16 @@ static NSString *s_token;
          userInfo:nil] raise];
    }
 
+#ifdef TEST
    // path
-   NSString *path = [[fm currentDirectoryPath] stringByAppendingPathComponent:
-      [NSString stringWithFormat:@"/sample/%@", filename]];
+   NSString *base_path = [fm currentDirectoryPath];
+   NSString *path = [base_path stringByAppendingPathComponent:
+                     [NSString stringWithFormat:@"/sample/%@", filename]];
+#else // TEST
+   NSString *base_path = [[NSBundle mainBundle] resourcePath];
+   NSString *path = [base_path stringByAppendingPathComponent:
+      [NSString stringWithFormat:@"/%@", filename]];
+#endif // TEST
    if (! [fm copyItemAtPath:path toPath:db_path error:&error])
       [[NSException
          exceptionWithName:@"file exception"
@@ -96,7 +103,7 @@ static NSString *s_token;
       LOG(@"API call succeeded for url=%@", url);
    }
 
-#define DUMP_API_RESPONSE
+//#define DUMP_API_RESPONSE
 #ifdef DUMP_API_RESPONSE
    if (ret) {
       //NSString *dump_path = [NSString stringWithFormat:@"/tmp/%@.xml", method];

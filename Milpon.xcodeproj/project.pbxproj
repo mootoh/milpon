@@ -225,6 +225,15 @@
 		B9AE52FA0F6B4AE50076D258 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9AE52FB0F6B4AE50076D258 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
 		B9AE53180F6B4C5C0076D258 /* MilponBetaIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */; };
+		B9AE550E0F6CEF610076D258 /* rtm.auth.checkToken.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE54FE0F6CEF610076D258 /* rtm.auth.checkToken.xml */; };
+		B9AE550F0F6CEF610076D258 /* rtm.auth.getFrob.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE54FF0F6CEF610076D258 /* rtm.auth.getFrob.xml */; };
+		B9AE55100F6CEF610076D258 /* rtm.auth.getToken.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55000F6CEF610076D258 /* rtm.auth.getToken.xml */; };
+		B9AE55120F6CEF610076D258 /* rtm.lists.getList.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55020F6CEF610076D258 /* rtm.lists.getList.xml */; };
+		B9AE55130F6CEF610076D258 /* rtm.tasks.add.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55030F6CEF610076D258 /* rtm.tasks.add.xml */; };
+		B9AE55140F6CEF610076D258 /* rtm.tasks.delete.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55040F6CEF610076D258 /* rtm.tasks.delete.xml */; };
+		B9AE55160F6CEF610076D258 /* rtm.tasks.getList.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55060F6CEF610076D258 /* rtm.tasks.getList.xml */; };
+		B9AE55170F6CEF610076D258 /* rtm.test.echo.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55070F6CEF610076D258 /* rtm.test.echo.xml */; };
+		B9AE55180F6CEF610076D258 /* tasks.getList.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55080F6CEF610076D258 /* tasks.getList.xml */; };
 		B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9B9561E0F65D15E0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B956210F65D17C0046712A /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
@@ -457,6 +466,15 @@
 		B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MilponBetaIconSmall.png; sourceTree = "<group>"; };
 		B9AE53190F6B4C6A0076D258 /* Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Beta.plist; sourceTree = SOURCE_ROOT; };
+		B9AE54FE0F6CEF610076D258 /* rtm.auth.checkToken.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.auth.checkToken.xml; path = sample/rtm.auth.checkToken.xml; sourceTree = SOURCE_ROOT; };
+		B9AE54FF0F6CEF610076D258 /* rtm.auth.getFrob.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.auth.getFrob.xml; path = sample/rtm.auth.getFrob.xml; sourceTree = SOURCE_ROOT; };
+		B9AE55000F6CEF610076D258 /* rtm.auth.getToken.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.auth.getToken.xml; path = sample/rtm.auth.getToken.xml; sourceTree = SOURCE_ROOT; };
+		B9AE55020F6CEF610076D258 /* rtm.lists.getList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.lists.getList.xml; path = sample/rtm.lists.getList.xml; sourceTree = SOURCE_ROOT; };
+		B9AE55030F6CEF610076D258 /* rtm.tasks.add.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.tasks.add.xml; path = sample/rtm.tasks.add.xml; sourceTree = SOURCE_ROOT; };
+		B9AE55040F6CEF610076D258 /* rtm.tasks.delete.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.tasks.delete.xml; path = sample/rtm.tasks.delete.xml; sourceTree = SOURCE_ROOT; };
+		B9AE55060F6CEF610076D258 /* rtm.tasks.getList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.tasks.getList.xml; path = sample/rtm.tasks.getList.xml; sourceTree = SOURCE_ROOT; };
+		B9AE55070F6CEF610076D258 /* rtm.test.echo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.test.echo.xml; path = sample/rtm.test.echo.xml; sourceTree = SOURCE_ROOT; };
+		B9AE55080F6CEF610076D258 /* tasks.getList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = tasks.getList.xml; path = sample/tasks.getList.xml; sourceTree = SOURCE_ROOT; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B956560F65D2720046712A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "APILocalTest-Info.plist"; path = "../APILocalTest-Info.plist"; sourceTree = "<group>"; };
@@ -752,6 +770,7 @@
 		B9160F430F565D9300473A95 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				B9AE54F80F6CEF4A0076D258 /* sample */,
 				B9AE53190F6B4C6A0076D258 /* Beta.plist */,
 				B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */,
 				B926C4BE0F67991B0014DB7D /* icon_url.png */,
@@ -898,6 +917,22 @@
 				B9160FDB0F565DE000473A95 /* RTMAuthTest.m */,
 			);
 			name = api;
+			sourceTree = "<group>";
+		};
+		B9AE54F80F6CEF4A0076D258 /* sample */ = {
+			isa = PBXGroup;
+			children = (
+				B9AE54FE0F6CEF610076D258 /* rtm.auth.checkToken.xml */,
+				B9AE54FF0F6CEF610076D258 /* rtm.auth.getFrob.xml */,
+				B9AE55000F6CEF610076D258 /* rtm.auth.getToken.xml */,
+				B9AE55020F6CEF610076D258 /* rtm.lists.getList.xml */,
+				B9AE55030F6CEF610076D258 /* rtm.tasks.add.xml */,
+				B9AE55040F6CEF610076D258 /* rtm.tasks.delete.xml */,
+				B9AE55060F6CEF610076D258 /* rtm.tasks.getList.xml */,
+				B9AE55070F6CEF610076D258 /* rtm.test.echo.xml */,
+				B9AE55080F6CEF610076D258 /* tasks.getList.xml */,
+			);
+			name = sample;
 			sourceTree = "<group>";
 		};
 		B9CBAFF80F5991710025216C /* add */ = {
@@ -1190,6 +1225,15 @@
 				B9AE52C10F6B4AE50076D258 /* NoteEdit.xib in Resources */,
 				B9AE52C20F6B4AE50076D258 /* icon_url.png in Resources */,
 				B9AE53180F6B4C5C0076D258 /* MilponBetaIconSmall.png in Resources */,
+				B9AE550E0F6CEF610076D258 /* rtm.auth.checkToken.xml in Resources */,
+				B9AE550F0F6CEF610076D258 /* rtm.auth.getFrob.xml in Resources */,
+				B9AE55100F6CEF610076D258 /* rtm.auth.getToken.xml in Resources */,
+				B9AE55120F6CEF610076D258 /* rtm.lists.getList.xml in Resources */,
+				B9AE55130F6CEF610076D258 /* rtm.tasks.add.xml in Resources */,
+				B9AE55140F6CEF610076D258 /* rtm.tasks.delete.xml in Resources */,
+				B9AE55160F6CEF610076D258 /* rtm.tasks.getList.xml in Resources */,
+				B9AE55170F6CEF610076D258 /* rtm.test.echo.xml in Resources */,
+				B9AE55180F6CEF610076D258 /* tasks.getList.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1669,7 +1713,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"LOCAL_DEBUG=1",
+					"DEBUG=1",
+				);
 				INFOPLIST_FILE = /Users/takayama/prj/iphone/Milpon/Beta.plist;
 				PRODUCT_NAME = "Milpon Beta";
 				SDKROOT = iphonesimulator2.2.1;

@@ -9,6 +9,7 @@
 #import "DBTagProvider.h"
 #import "RTMTag.h"
 #import "LocalCache.h"
+#import "logger.h"
 //#import "RTMAPITag.h"
 
 @interface DBTagProvider (Private);
@@ -49,6 +50,17 @@
       [tag.iD intValue]];
       
    [local_cache_ update:param table:@"tag" condition:cond];
+}
+
+- (NSNumber *) find:(NSString *)tag_name
+{
+   LOG(@"find %@ enter", tag_name);
+   NSDictionary *query = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
+   NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"name='%@'", tag_name] forKey:@"WHERE"];
+   NSArray *results = [local_cache_ select:query from:@"tag" option:where];
+   LOG(@"find %@ leaving", tag_name);
+   return results.count == 1 ?
+      [[results objectAtIndex:0] objectForKey:@"id"] : nil;
 }
 
 @end // DBTagProvider
@@ -122,8 +134,8 @@
    NSLog(@"tag_id = %d", [tag_id intValue]);
 
    // insert into task_tag table
-   NSArray *keys = [NSArray arrayWithObjects:@"taskseries_id", @"tag_id", nil];
-   NSArray *vals = [NSArray arrayWithObjects:[params objectForKey:@"taskseries_id"], tag_id, nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"task_id", @"tag_id", nil];
+   NSArray *vals = [NSArray arrayWithObjects:[params objectForKey:@"task_id"], tag_id, nil];
    NSMutableDictionary *task_tag = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
    [local_cache_ insert:task_tag into:@"task_tag"];
@@ -133,6 +145,7 @@
 
 - (void) createRelation:(NSNumber *)task_id tag_id:(NSNumber *)tag_id
 {
+   LOG(@"createRelation enter");
    NSArray *keys = [NSArray arrayWithObjects:@"task_id", @"tag_id", nil];
    NSArray *vals = [NSArray arrayWithObjects:task_id, tag_id, nil];
    NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
@@ -140,6 +153,7 @@
    [local_cache_ insert:attrs into:@"task_tag"];
 
    dirty_ = YES;
+   LOG(@"createRelation leave");
 }
 
 - (NSString *)nameForTagID:(NSNumber *)tag_id {
@@ -150,7 +164,6 @@
    NSAssert(NO, @"not reach here");
    return nil;
 }
-
 
 @end // DBTagProvider (Private)
 

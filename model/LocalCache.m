@@ -29,7 +29,7 @@
       if (SQLITE_OK != sqlite3_open([path_ UTF8String], &handle_))
          [[NSException
             exceptionWithName:@"LocalCacheException"
-            reason:[NSString stringWithFormat:@"Failed to open sqlite file: path=%@, msg='%s'", path_, sqlite3_errmsg(handle_)]
+            reason:[NSString stringWithFormat:@"Failed to open sqlite file: path=%@, msg='%s LINE=%d'", path_, sqlite3_errmsg(handle_), __LINE__]
             userInfo:nil] raise];
 
       [self migrate];
@@ -86,7 +86,7 @@
    if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK)
       [[NSException
         exceptionWithName:@"LocalCacheException"
-        reason:[NSString stringWithFormat:@"Failed to prepare statement: msg='%s'", sqlite3_errmsg(handle_)]
+        reason:[NSString stringWithFormat:@"Failed to prepare statement: msg='%s, LINE=%d'", sqlite3_errmsg(handle_), __LINE__]
         userInfo:nil] raise];
 
    while (sqlite3_step(stmt) == SQLITE_ROW) {
@@ -109,7 +109,7 @@
          } else {
             [[NSException
               exceptionWithName:@"LocalCacheException"
-              reason:[NSString stringWithFormat:@"should not reach here"]
+              reason:[NSString stringWithFormat:@"should not reach here, LINE=%d", __LINE__]
               userInfo:nil] raise];
          }
          i++;
@@ -138,13 +138,15 @@
       } else if ([v isKindOfClass:[NSNumber class]]) {
          val = [(NSNumber *)v stringValue];
       } else if ([v isKindOfClass:[NSDate class]]) {
-         val = [NSString stringWithFormat:@"'%@'", [[MilponHelper sharedHelper] dateToString:v]];
+         val = ([[[MilponHelper sharedHelper] invalidDate] isEqualToDate:v]) ?
+            @"NULL" :
+            [NSString stringWithFormat:@"'%@'", [[MilponHelper sharedHelper] dateToString:v]];
       } else if ([v isKindOfClass:[NSArray class]]) {
          // fall through
       } else {
          [[NSException
            exceptionWithName:@"LocalCacheException"
-           reason:[NSString stringWithFormat:@"unknown type: %s", object_getClassName(v)]
+           reason:[NSString stringWithFormat:@"unknown typ %s for key %@, LINE=%d", object_getClassName(v), key, __LINE__]
            userInfo:nil] raise];
       }
       vals = [vals stringByAppendingFormat:@"%@, ", val];
@@ -161,7 +163,7 @@
    if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
       [[NSException
         exceptionWithName:@"LocalCacheException"
-        reason:[NSString stringWithFormat:@"Failed to prepare statement: msg='%s'", sqlite3_errmsg(handle_)]
+        reason:[NSString stringWithFormat:@"Failed to prepare statement: msg='%s, LINE=%d'", sqlite3_errmsg(handle_), __LINE__]
         userInfo:nil] raise];
    }
 
@@ -180,7 +182,7 @@
       } else {
          [[NSException
            exceptionWithName:@"LocalCacheException"
-           reason:[NSString stringWithFormat:@"should not reach here"]
+           reason:[NSString stringWithFormat:@"should not reach here, LINE=%d", __LINE__]
            userInfo:nil] raise];
       }
       i++;
@@ -189,7 +191,7 @@
    if (SQLITE_ERROR == sqlite3_step(stmt)) {
       [[NSException
          exceptionWithName:@"LocalCacheException"
-         reason:[NSString stringWithFormat:@"Failed to INSERT INTO LocalCache: msg='%s'", sqlite3_errmsg(handle_)]
+         reason:[NSString stringWithFormat:@"Failed to INSERT INTO LocalCache: msg='%s', LINE=%d", sqlite3_errmsg(handle_), __LINE__]
          userInfo:nil] raise];
    }
    sqlite3_finalize(stmt);
@@ -211,12 +213,15 @@
       } else if ([v isKindOfClass:[NSNumber class]]) {
          val = [(NSNumber *)v stringValue];
       } else if ([v isKindOfClass:[NSDate class]]) {
-         val = [NSString stringWithFormat:@"'%@'",
-            [[MilponHelper sharedHelper] dateToString:(NSDate *)v]];
+         val = ([[[MilponHelper sharedHelper] invalidDate] isEqualToDate:v]) ?
+            @"NULL" :
+            [NSString stringWithFormat:@"'%@'", [[MilponHelper sharedHelper] dateToString:v]];
+      } else if (v == nil) {
+         val = @"NULL";
       } else {
          [[NSException
            exceptionWithName:@"LocalCacheException"
-           reason:[NSString stringWithFormat:@"should not reach here: key=%@", key]
+           reason:[NSString stringWithFormat:@"should not reach here: key=%@, LINE=%d", key, __LINE__]
            userInfo:nil] raise];
       }
       sets = [sets stringByAppendingFormat:@"%@=%@, ", key, val];
@@ -233,7 +238,7 @@
    if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
       [[NSException
         exceptionWithName:@"LocalCacheException"
-        reason:[NSString stringWithFormat:@"Failed to prepare statement: msg='%s'", sqlite3_errmsg(handle_)]
+        reason:[NSString stringWithFormat:@"Failed to prepare statement: msg='%s', LINE=%d", sqlite3_errmsg(handle_), __LINE__]
         userInfo:nil] raise];
    }
 
@@ -250,7 +255,7 @@
       } else {
          [[NSException
            exceptionWithName:@"LocalCacheException"
-           reason:[NSString stringWithFormat:@"should not reach here 2"]
+           reason:[NSString stringWithFormat:@"should not reach here 2, LINE=%d", __LINE__]
            userInfo:nil] raise];
       }
       i++;
@@ -259,7 +264,7 @@
    if (SQLITE_ERROR == sqlite3_step(stmt)) {
       [[NSException
          exceptionWithName:@"LocalCacheException"
-         reason:[NSString stringWithFormat:@"Failed to UPDATE LocalCache: msg='%s'", sqlite3_errmsg(handle_)]
+         reason:[NSString stringWithFormat:@"Failed to UPDATE LocalCache: msg='%s, LINE=%d'", sqlite3_errmsg(handle_), __LINE__]
          userInfo:nil] raise];
    }
    sqlite3_finalize(stmt);
@@ -277,14 +282,14 @@
    if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
       [[NSException
         exceptionWithName:@"LocalCacheException"
-        reason:[NSString stringWithFormat:@"Failed to prepare statement: msg='%s'", sqlite3_errmsg(handle_)]
+        reason:[NSString stringWithFormat:@"Failed to prepare statement: msg='%s', LINE=%d", sqlite3_errmsg(handle_), __LINE__]
         userInfo:nil] raise];
    }
 
    if (SQLITE_ERROR == sqlite3_step(stmt)) {
       [[NSException
          exceptionWithName:@"LocalCacheException"
-         reason:[NSString stringWithFormat:@"Failed to DELETE FROM LocalCache: msg='%s'", sqlite3_errmsg(handle_)]
+         reason:[NSString stringWithFormat:@"Failed to DELETE FROM LocalCache: msg='%s', LINE=%d", sqlite3_errmsg(handle_), __LINE__]
          userInfo:nil] raise];
    }
    sqlite3_finalize(stmt);
@@ -335,7 +340,7 @@ static LocalCache *s_local_cache = nil;
    if ([fm fileExistsAtPath:db_path] && ! [fm removeItemAtPath:db_path error:&error]) {
       [[NSException
          exceptionWithName:@"file exception"
-         reason:[NSString stringWithFormat:@"Failed to remove existing database file with message '%@' path=%@.", [error localizedDescription], db_path]
+         reason:[NSString stringWithFormat:@"Failed to remove existing database file with message '%@' path=%@, LINE=%d", [error localizedDescription], db_path, __LINE__]
          userInfo:nil] raise];
    }
 
@@ -345,7 +350,7 @@ static LocalCache *s_local_cache = nil;
    if (! [fm copyItemAtPath:from_path toPath:db_path error:&error])
       [[NSException
          exceptionWithName:@"file exception"
-         reason:[NSString stringWithFormat:@"Failed to create writable database file with message '%@', from=%@, to=%@.", [error localizedDescription], from_path, db_path]
+         reason:[NSString stringWithFormat:@"Failed to create writable database file with message '%@', from=%@, to=%@, LINE=%d", [error localizedDescription], from_path, db_path, __LINE__]
          userInfo:nil] raise];
 
    return db_path;

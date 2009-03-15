@@ -58,11 +58,17 @@
    NSAssert(NO, @"not reach here");
 }
 
+- (NSNumber *) find:(NSString *)tag_name
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 + (TagProvider *) sharedTagProvider
 {
    NSAssert(NO, @"not reach here");
    return nil;
 }
-   
+
 @end
 

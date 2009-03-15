@@ -18,6 +18,7 @@
 - (void) createRelation:(NSNumber *)task_id tag_id:(NSNumber *)tag_id;
 - (void) remove:(RTMTag *) tag;
 - (void) erase; // remove all tags from DB.
+- (NSNumber *) find:(NSString *)tag_name;
 
 /**
  * taskseries_id is set temporal task_id for offline created task.

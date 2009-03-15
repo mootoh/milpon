@@ -53,7 +53,7 @@
       cell = [[[RTMTaskCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
    }
 
-   RTMTask *tsk = [[[TaskProvider sharedTaskProvider] tasks] objectAtIndex:indexPath.row];
+   RTMTask *tsk = [[[TaskProvider sharedTaskProvider] tasksInTag:tag] objectAtIndex:indexPath.row];
    NSAssert(tsk, @"task should not be nil");
    cell.task = tsk;
    [cell setNeedsDisplay]; // TODO: causes slow
@@ -65,7 +65,7 @@
 {
    // Navigation logic
    TaskViewController *ctrl = [[TaskViewController alloc] initWithNibName:@"TaskView" bundle:nil];
-   RTMTask *tsk = [[[TaskProvider sharedTaskProvider] tasks] objectAtIndex:indexPath.row];
+   RTMTask *tsk = [[[TaskProvider sharedTaskProvider] tasksInTag:tag] objectAtIndex:indexPath.row];
    ctrl.task = tsk;
 
    // Push the detail view controller

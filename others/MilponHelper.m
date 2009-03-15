@@ -21,13 +21,14 @@ static MilponHelper *the_milpon_helper;
       [the_formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
       [the_formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 
-      invalidDate = [NSDate dateWithTimeIntervalSince1970:0];
+      invalidDate = [[NSDate dateWithTimeIntervalSince1970:0] retain];
    }
    return self;
 }
 
 - (void) dealloc
 {
+   [invalidDate release];
    [the_formatter release];
    [super dealloc];
 }

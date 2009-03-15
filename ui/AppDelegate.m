@@ -142,6 +142,7 @@
 
 - (IBAction) refresh
 {
+#ifndef LOCAL_DEBUG
    Reachability *reach = [Reachability sharedReachability];
    reach.hostName = @"api.rememberthemilk.com";
    NetworkStatus stat =  [reach internetConnectionStatus];
@@ -158,14 +159,23 @@
    } else {
       LOG(@"OK");
    }
-
+#endif // 0
    //refreshButton.enabled = NO;
    //[progressView progressBegin];
-   NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];
+   //NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];
+   NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(replaceAll) object:nil];
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    [app.operationQueue addOperation:ope];
    [ope release];
+}
+
+- (void) replaceAll
+{
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+   [app fetchAll];
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 - (void) uploadOperation
@@ -179,7 +189,7 @@
    [syncer syncModifiedTasks:progressView];
    [syncer syncTasks:progressView];
    */
-   [syncer uploadPendingTasks:nil];
+   //[syncer uploadPendingTasks:nil];
    [syncer syncModifiedTasks:nil];
    [syncer syncTasks:nil];
 
@@ -187,6 +197,7 @@
 
    //[self reload];
 
+#if 0
    NSString *lastUpdated = [[LocalCache sharedLocalCache] lastSync];
    lastUpdated = [lastUpdated stringByReplacingOccurrencesOfString:@"T" withString:@"_"];
    lastUpdated = [lastUpdated stringByReplacingOccurrencesOfString:@"Z" withString:@" GMT"];
@@ -199,7 +210,8 @@
    [formatter setDateFormat:@"MM/dd HH:mm"];
    lastUpdated = [formatter stringFromDate:lu];
 
-   //[progressView updateMessage:[NSString stringWithFormat:@"Updated: %@", lastUpdated]];
+   [progressView updateMessage:[NSString stringWithFormat:@"Updated: %@", lastUpdated]];
+#endif // 0
 
    //[progressView progressEnd];
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
