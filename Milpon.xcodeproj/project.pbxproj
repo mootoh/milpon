@@ -1730,7 +1730,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/Info copy.plist";
+				INFOPLIST_FILE = /Users/takayama/prj/iphone/Milpon/Beta.plist;
 				PRODUCT_NAME = Milpon;
 			};
 			name = Release;

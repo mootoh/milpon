@@ -73,7 +73,7 @@ static NSString *s_token;
          reason:[NSString stringWithFormat:@"Failed to copy xml file with message '%@', from=%@, to=%@.", [error localizedDescription], path, db_path]
          userInfo:nil] raise];
 
-   NSLog(@"resultXMLPath = %@", path);
+   LOG(@"resultXMLPath = %@", path);
    return path;
 }
 #endif // LOCAL_DEBUG
@@ -109,7 +109,7 @@ static NSString *s_token;
       //NSString *dump_path = [NSString stringWithFormat:@"/tmp/%@.xml", method];
       //BOOL wrote = [ret writeToFile:dump_path options:NSAtomicWrite error:nil];
       //NSAssert(wrote, @"dump should be written");
-      NSLog(@"method=%@, response=%@", method, [[[NSString alloc] initWithData:ret encoding:NSUTF8StringEncoding] autorelease]);
+      LOG(@"method=%@, response=%@", method, [[[NSString alloc] initWithData:ret encoding:NSUTF8StringEncoding] autorelease]);
    }
 #endif // DUMP_API_RESPONSE
    return ret;

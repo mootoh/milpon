@@ -301,6 +301,7 @@
    [local_cache_ delete:@"task" condition:nil];
    [local_cache_ delete:@"note" condition:nil];
    [local_cache_ delete:@"tag" condition:nil];
+   [local_cache_ delete:@"task_tag" condition:nil];
    [local_cache_ delete:@"location" condition:nil];
 
    dirty_all_tasks_ = YES;

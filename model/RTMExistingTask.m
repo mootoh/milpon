@@ -68,7 +68,7 @@
       "edit_bits) " 
       "VALUES (?,?,?,?,  ?,?,?,?, ?,?,?,?, ?)";
    if (SQLITE_OK != sqlite3_prepare_v2([db handle], sql, -1, &stmt, NULL)) {
-      NSLog(@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle]));
+      LOG(@"failed in preparing sqlite statement: '%s'.", sqlite3_errmsg([db handle]));
       @throw @"failed in createTask"; // TODO
       return;
    }
@@ -93,7 +93,7 @@
    sqlite3_bind_int(stmt,  13, EB_SYNCHRONIZED); 
 
    if (SQLITE_ERROR == sqlite3_step(stmt)) {
-      NSLog(@"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle]));
+      LOG(@"failed in inserting into the database: '%s'.", sqlite3_errmsg([db handle]));
       @throw @"failed in inserting into the database";
       return;
    }
@@ -155,14 +155,14 @@
    sqlite3_stmt *stmt = nil;
    if (sqlite3_prepare_v2([db handle], [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
       // TODO: use Error.
-      NSLog(@"failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
+      LOG(@"failed to prepare statement with message '%s'.", sqlite3_errmsg([db handle]));
       return YES;
    }
 
    sqlite3_bind_int(stmt, 1, [iD integerValue]);
 
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      NSLog(@"failed in counting %d from %@.", iD), table;
+      LOG(@"failed in counting %d from %@.", iD), table;
       return YES;
    }
 

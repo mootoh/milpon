@@ -12,6 +12,7 @@
 #import "RTMExistingTask.h"
 #import "RTMNote.h"
 #import "RTMAPIXMLParserCallback.h"
+#import "logger.h"
 
 /* -------------------------------------------------------------------
  * TaskGetListCallback
@@ -30,11 +31,27 @@
    NSMutableArray *notes;
    NSMutableArray *task_entries;
    NSMutableDictionary *note;
+   NSString *note_str;
    NSMutableDictionary *taskseries;
 }
 @end // TaskGetListCallback
 
 @implementation TaskGetListCallback
+
+- (id) init
+{
+   if (self = [super init]) {
+      list_id = nil;
+      tasks = nil;
+      tags = nil;
+      notes = nil;
+      task_entries = nil;
+      note = nil;
+      note_str = nil;
+      taskseries = nil;
+   }
+   return self;
+}
 
 - (NSArray *) tasks
 {
@@ -75,6 +92,7 @@
       NSAssert(notes, @"should be in notes element");
       mode = NOTE;
       note = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
+      note_str = @"";
       [notes addObject:note];
    } else if ([elementName isEqualToString:@"rrule"]) {
       NSAssert(taskseries, @"should be in taskseries element");
@@ -96,7 +114,10 @@
    } else if ([elementName isEqualToString:@"notes"]) {
       notes = nil;
    } else if ([elementName isEqualToString:@"note"]) {
+      if (! [note_str isEqualToString:@""])
+         [note setObject:note_str forKey:@"text"];
       note = nil;
+      note_str = nil;
    }
 }
 
@@ -117,7 +138,7 @@
       case NOTE:
          NSAssert(notes, @"should be in notes");
          NSAssert(note, @"should be in note");
-         [note setObject:chars forKey:@"text"];
+         note_str = [note_str stringByAppendingString:chars];
          break;
       case RRULE:
          [taskseries setObject:chars forKey:@"rrule"];
@@ -178,7 +199,7 @@
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
-      NSLog(@"getList failed : %@", [cb.error localizedDescription]);
+      LOG(@"getList failed : %@", [cb.error localizedDescription]);
       return nil;
    }
    return [cb tasks];
@@ -229,7 +250,7 @@
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
-      NSLog(@"add failed : %@", [cb.error localizedDescription]);
+      LOG(@"add failed : %@", [cb.error localizedDescription]);
       return nil;
    }
    return [cb ids];
@@ -253,7 +274,7 @@
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
-      NSLog(@"delete failed : %@", [cb.error localizedDescription]);
+      LOG(@"delete failed : %@", [cb.error localizedDescription]);
       return NO;
    }
    return YES;
@@ -283,7 +304,7 @@
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
-      NSLog(@"setDueDate failed : %@", [cb.error localizedDescription]);
+      LOG(@"setDueDate failed : %@", [cb.error localizedDescription]);
       return NO;
    }
    return YES;
@@ -313,7 +334,7 @@
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
-      NSLog(@"setLocation failed : %@", [cb.error localizedDescription]);
+      LOG(@"setLocation failed : %@", [cb.error localizedDescription]);
       return NO;
    }
    return YES;
@@ -343,7 +364,7 @@
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
-      NSLog(@"setPriority failed : %@", [cb.error localizedDescription]);
+      LOG(@"setPriority failed : %@", [cb.error localizedDescription]);
       return NO;
    }
    return YES;
@@ -373,7 +394,7 @@
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
-      NSLog(@"setEstimate failed : %@", [cb.error localizedDescription]);
+      LOG(@"setEstimate failed : %@", [cb.error localizedDescription]);
       return NO;
    }
    return YES;
@@ -402,7 +423,7 @@
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
-      NSLog(@"complete failed : %@", [cb.error localizedDescription]);
+      LOG(@"complete failed : %@", [cb.error localizedDescription]);
       return NO;
    }
    return YES;

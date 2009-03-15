@@ -9,6 +9,7 @@
 #import "RTMAPINote.h"
 #import "RTMAPI.h"
 #import "RTMAPIXMLParserCallback.h"
+#import "logger.h"
 
 @implementation RTMAPINote
 
@@ -30,7 +31,7 @@
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
-      NSLog(@"add failed : %@", [cb.error localizedDescription]);
+      LOG(@"add failed : %@", [cb.error localizedDescription]);
       return NO;
    }
    return YES;
@@ -53,7 +54,7 @@
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
-      NSLog(@"delete failed : %@", [cb.error localizedDescription]);
+      LOG(@"delete failed : %@", [cb.error localizedDescription]);
       return NO;
    }
    return YES;

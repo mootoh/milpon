@@ -100,7 +100,7 @@
    sqlite3_bind_int(stmt, 1, [note_id intValue]);
 
    if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      NSLog(@"failed in removing %d from task.", [note_id intValue]);
+      LOG(@"failed in removing %d from task.", [note_id intValue]);
       return;
    }
    sqlite3_finalize(stmt);

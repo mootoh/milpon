@@ -184,12 +184,12 @@ static NSArray *s_check_box_images;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-   NSLog(@"first ? %d", [self isFirstResponder]);
-   NSLog(@"can become first ? %d", [self canBecomeFirstResponder]);
-   NSLog(@"become %d", [self becomeFirstResponder]);
+   LOG(@"first ? %d", [self isFirstResponder]);
+   LOG(@"can become first ? %d", [self canBecomeFirstResponder]);
+   LOG(@"become %d", [self becomeFirstResponder]);
    CGPoint pt = [[touches anyObject] locationInView:self];
    startLocation = pt;
-   NSLog(@"touchesBegan: (%f, %f)", pt.x, pt.y);
+   LOG(@"touchesBegan: (%f, %f)", pt.x, pt.y);
 
    UITableView *parent = (UITableView *)self.superview;
    parent.scrollEnabled = NO;
@@ -201,7 +201,7 @@ static NSArray *s_check_box_images;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
    CGPoint pt = [[touches anyObject] locationInView:self];
-   NSLog(@"touchesEnded: (%f, %f) moved =(%f, %f)", pt.x, pt.y,
+   LOG(@"touchesEnded: (%f, %f) moved =(%f, %f)", pt.x, pt.y,
          startLocation.x-pt.x, startLocation.y-pt.y);
 
    UITableView *parent = (UITableView *)self.superview;
@@ -212,7 +212,7 @@ static NSArray *s_check_box_images;
 - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
    CGPoint pt = [[touches anyObject] locationInView:self];
-   NSLog(@"touchesMoved: (%f, %f) moved =(%f, %f)", pt.x, pt.y,
+   LOG(@"touchesMoved: (%f, %f) moved =(%f, %f)", pt.x, pt.y,
    startLocation.x-pt.x, startLocation.y-pt.y);
 }  
 */

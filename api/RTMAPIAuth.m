@@ -106,7 +106,7 @@
   [parser setDelegate:cb];
   [parser parse];
   if (! cb.succeeded) {
-    NSLog(@"getFrob failed : %@", [cb.error localizedDescription]);
+    LOG(@"getFrob failed : %@", [cb.error localizedDescription]);
     return nil;
   }
   return cb.frob;
@@ -124,7 +124,7 @@
   [parser setDelegate:cb];
   [parser parse];
   if (! cb.succeeded) {
-    NSLog(@"getToken failed : %@", [cb.error localizedDescription]);
+    LOG(@"getToken failed : %@", [cb.error localizedDescription]);
     return nil;
   }
   return cb.token;

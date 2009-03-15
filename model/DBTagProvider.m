@@ -54,11 +54,9 @@
 
 - (NSNumber *) find:(NSString *)tag_name
 {
-   LOG(@"find %@ enter", tag_name);
    NSDictionary *query = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
    NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"name='%@'", tag_name] forKey:@"WHERE"];
    NSArray *results = [local_cache_ select:query from:@"tag" option:where];
-   LOG(@"find %@ leaving", tag_name);
    return results.count == 1 ?
       [[results objectAtIndex:0] objectForKey:@"id"] : nil;
 }
@@ -131,7 +129,7 @@
    NSDictionary *order = [NSDictionary dictionaryWithObject:@"id DESC LIMIT 1" forKey:@"ORDER"]; // TODO: ad-hoc LIMIT
    NSArray *ret = [local_cache_ select:iid from:@"tag" option:order];
    NSNumber *tag_id = [[ret objectAtIndex:0] objectForKey:@"id"];
-   NSLog(@"tag_id = %d", [tag_id intValue]);
+   LOG(@"tag_id = %d", [tag_id intValue]);
 
    // insert into task_tag table
    NSArray *keys = [NSArray arrayWithObjects:@"task_id", @"tag_id", nil];
@@ -145,15 +143,12 @@
 
 - (void) createRelation:(NSNumber *)task_id tag_id:(NSNumber *)tag_id
 {
-   LOG(@"createRelation enter");
    NSArray *keys = [NSArray arrayWithObjects:@"task_id", @"tag_id", nil];
    NSArray *vals = [NSArray arrayWithObjects:task_id, tag_id, nil];
    NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
    [local_cache_ insert:attrs into:@"task_tag"];
-
    dirty_ = YES;
-   LOG(@"createRelation leave");
 }
 
 - (NSString *)nameForTagID:(NSNumber *)tag_id {
