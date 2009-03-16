@@ -190,10 +190,8 @@
 		B9AE52D60F6B4AE50076D258 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EF20F565D1500473A95 /* TaskViewController.m */; };
 		B9AE52D70F6B4AE50076D258 /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1B0F565D4C00473A95 /* RTMAuth.m */; };
 		B9AE52D80F6B4AE50076D258 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
-		B9AE52D90F6B4AE50076D258 /* RTMExistingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1F0F565D4C00473A95 /* RTMExistingTask.m */; };
 		B9AE52DA0F6B4AE50076D258 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
 		B9AE52DB0F6B4AE50076D258 /* RTMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F230F565D4C00473A95 /* RTMNote.m */; };
-		B9AE52DC0F6B4AE50076D258 /* RTMPendingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F250F565D4C00473A95 /* RTMPendingTask.m */; };
 		B9AE52DD0F6B4AE50076D258 /* RTMStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F270F565D4C00473A95 /* RTMStorable.m */; };
 		B9AE52DE0F6B4AE50076D258 /* RTMSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F290F565D4C00473A95 /* RTMSynchronizer.m */; };
 		B9AE52DF0F6B4AE50076D258 /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F2B0F565D4C00473A95 /* RTMTask.m */; };
@@ -1470,10 +1468,8 @@
 				B9AE52D60F6B4AE50076D258 /* TaskViewController.m in Sources */,
 				B9AE52D70F6B4AE50076D258 /* RTMAuth.m in Sources */,
 				B9AE52D80F6B4AE50076D258 /* LocalCache.m in Sources */,
-				B9AE52D90F6B4AE50076D258 /* RTMExistingTask.m in Sources */,
 				B9AE52DA0F6B4AE50076D258 /* RTMList.m in Sources */,
 				B9AE52DB0F6B4AE50076D258 /* RTMNote.m in Sources */,
-				B9AE52DC0F6B4AE50076D258 /* RTMPendingTask.m in Sources */,
 				B9AE52DD0F6B4AE50076D258 /* RTMStorable.m in Sources */,
 				B9AE52DE0F6B4AE50076D258 /* RTMSynchronizer.m in Sources */,
 				B9AE52DF0F6B4AE50076D258 /* RTMTask.m in Sources */,
@@ -1731,7 +1727,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
 				INFOPLIST_FILE = /Users/takayama/prj/iphone/Milpon/Beta.plist;
-				PRODUCT_NAME = Milpon;
+				PRODUCT_NAME = "Milpon Beta";
 			};
 			name = Release;
 		};

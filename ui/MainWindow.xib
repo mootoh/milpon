@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="10"/>
+			<integer value="48"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -52,6 +52,10 @@
 				<object class="IBUINavigationController" key="IBUISelectedViewController" id="221818091">
 					<object class="IBUITabBarItem" key="IBUITabBarItem" id="207897373">
 						<string key="IBUITitle">Tag</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">icon_tag.png</string>
+						</object>
 						<reference key="IBUITabBar"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="254614245"/>
@@ -83,6 +87,10 @@
 					<object class="IBUINavigationController" id="932586721">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="930437095">
 							<string key="IBUITitle">Overview</string>
+							<object class="NSCustomResource" key="IBUIImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">icon_calendar.png</string>
+							</object>
 							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="254614245"/>
@@ -115,6 +123,10 @@
 					<object class="IBUINavigationController" id="38486331">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="358933442">
 							<string key="IBUITitle">List</string>
+							<object class="NSCustomResource" key="IBUIImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">icon_list.png</string>
+							</object>
 							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="254614245"/>

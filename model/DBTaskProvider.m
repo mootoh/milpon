@@ -218,8 +218,8 @@
    [attrs removeObjectForKey:@"source"];
 
    NSArray *tasks = [attrs objectForKey:@"tasks"];
-   NSArray *notes = [attrs objectForKey:@"notes"]; // TODO: enable this
-   NSArray *tags = [attrs objectForKey:@"tags"]; // TODO: enable this
+   NSArray *notes = [attrs objectForKey:@"notes"];
+   NSArray *tags = [attrs objectForKey:@"tags"];
 
    [attrs removeObjectForKey:@"tasks"];
    [attrs removeObjectForKey:@"notes"];
@@ -288,6 +288,38 @@
    dirty_all_tasks_ = YES;
 }
 
+// TODO: FIXME
+- (void) createOrUpdate:(NSDictionary *)params
+{
+   // Tasks
+   NSArray *tasks = [params valueForKey:@"tasks"];
+   for (NSDictionary *task in tasks) {
+      NSString *deleted = [task valueForKey:@"deleted"];
+      if ([self taskExist:[task valueForKey:@"task_id"]]) {
+         if (deleted && ! [deleted isEqualToString:@""]) {
+            [self removeForID:[task valueForKey:@"task_id"]];
+         } else {
+            [self updateTask:task inTaskSeries:params];
+         }
+      } else {
+         if (! deleted || [deleted isEqualToString:@""]) {
+            [self createAtOnline:params];
+         }
+      }
+   }
+
+   NSInteger taskseries_id = [[params valueForKey:@"id"] integerValue];
+   // notes
+   NSArray *notes = [params valueForKey:@"notes"];
+   for (NSDictionary *note in notes) {
+      if ([self noteExist:[note valueForKey:@"id"]]) {
+         [self updateNote:note inTaskSeries:params];
+      } else {
+         [self createNote:note inTaskSeries:taskseries_id];
+      }
+   }
+}
+
 - (void) remove:(RTMTask *) task
 {
    NSString *cond = [NSString stringWithFormat:@"WHERE id = %@", [[task iD] stringValue]];
@@ -334,6 +366,21 @@
    NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    [local_cache_ insert:attrs into:@"note"];
    LOG(@"createNoteAtOnline leave");
+}
+
+- (BOOL) taskExist:(NSNumber *)idd
+{
+   NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d", [idd intValue]] forKey:@"WHERE"];
+   NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
+   NSArray *tasks = [local_cache_ select:dict from:@"taask" option:where];
+   return tasks.count == 1;
+}
+
+- (void) removeForID:(NSNumber *) task_id
+{
+   NSString *cond = [NSString stringWithFormat:@"WHERE task_id = %d", [task_id intValue]];
+   [local_cache_ delete:@"task" condition:cond];
+   dirty_all_tasks_ = YES;
 }
 
 @end // DBTaskProvider

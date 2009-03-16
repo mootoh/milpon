@@ -93,7 +93,8 @@
 
 - (NSArray *) loadLists
 {
-   return [self loadLists:nil];
+   NSDictionary *opts = [NSDictionary dictionaryWithObject:@"filter is NULL" forKey:@"WHERE"];
+   return [self loadLists:opts];
 }
 
 - (void) erase
@@ -115,10 +116,11 @@
    NSString *name = [params objectForKey:@"name"];
    NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithObject:name forKey:@"name"];
 
-   if ([params objectForKey:@"id"]) {
-      NSNumber *iD = [params objectForKey:@"id"];
-      [attrs setObject:iD forKey:@"id"];
-   }
+   if ([params objectForKey:@"id"])
+      [attrs setObject:[params objectForKey:@"id"] forKey:@"id"];
+
+   if ([params objectForKey:@"filter"])
+      [attrs setObject:[params objectForKey:@"filter"] forKey:@"filter"];
 
    [local_cache_ insert:attrs into:@"list"];
    dirty_ = YES;

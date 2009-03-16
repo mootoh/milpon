@@ -3,7 +3,7 @@ title: support Smart List
 desc: ""
 type: :feature
 component: milpon
-release: 
+release: SmartList
 reporter: mootoh <mootoh@gmail.com>
 status: :in_progress
 disposition: 
@@ -19,6 +19,10 @@ log_events:
 - - 2009-03-14 01:20:34.781892 Z
   - mootoh <mootoh@gmail.com>
   - changed status from unstarted to in_progress
+  - ""
+- - 2009-03-16 03:52:22.229811 Z
+  - mootoh <mootoh@gmail.com>
+  - assigned to release SmartList from unassigned
   - ""
 git_branch: 
 claimer: 

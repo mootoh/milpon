@@ -9,12 +9,11 @@
 #import "RTMSynchronizer.h"
 #import "RTMList.h"
 #import "RTMTask.h"
-#import "RTMExistingTask.h"
 #import "RTMAuth.h"
 #import "RTMAPIList.h"
 #import "RTMAPITask.h"
 #import "RTMAPINote.h"
-#import "RTMPendingTask.h"
+//#import "RTMPendingTask.h"
 #import "ProgressView.h"
 #import "logger.h"
 #import "ListProvider.h"
@@ -124,7 +123,7 @@
    for (NSDictionary *taskseries in taskserieses_updated) {
       [progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, taskserieses_updated.count] withProgress:(float)i/(float)taskserieses_updated.count];
 
-      [RTMExistingTask createOrUpdate:taskseries];
+      [[TaskProvider sharedTaskProvider] createOrUpdate:taskseries];
       i++;
    }
 
@@ -135,6 +134,7 @@
 
 - (void) uploadPendingTasks:(ProgressView *)progressView
 {
+#if 0
    NSArray *pendings = [[TaskProvider sharedTaskProvider] pendingTasks];
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
 
@@ -186,10 +186,12 @@
    }
 
 	[api_task release];
+#endif // 0
 }
 
 - (void) syncModifiedTasks:(ProgressView *)progressView
 {
+#if 0
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
@@ -248,6 +250,7 @@
 
    [pool release];
    [api_task release];
+#endif // 0
 }
 
 @end

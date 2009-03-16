@@ -25,11 +25,15 @@
  */
 - (NSNumber *) createAtOffline:(NSDictionary *)params;
 - (void) createAtOnline:(NSDictionary *)params;
+- (void) createOrUpdate:(NSDictionary *)params;
 - (void) sync;
 - (void) erase;
 - (void) complete:(RTMTask *)task;
 - (void) uncomplete:(RTMTask *)task;
 - (void) remove:(RTMTask *) task;
+- (void) removeForID:(NSNumber *) task_id;
+- (BOOL) taskExist:(NSNumber *)idd;
+- (void) updateTask:(NSDictionary *)task inTaskSeries:(NSDictionary *)taskseries;
 
 - (void) createNote:(NSString *)note task_id:(NSNumber *)tid;
 
