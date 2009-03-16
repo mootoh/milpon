@@ -13,6 +13,7 @@
 #import "RTMTask.h"
 #import "RTMTaskCell.h"
 #import "TaskProvider.h"
+#import "AddTaskViewController.h"
 
 @implementation TaskListViewController
 
@@ -30,6 +31,10 @@
       self.list = lst;
       self.title = lst.name;
       [self reloadFromDB];
+
+      UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTaskInList)];
+      self.navigationItem.rightBarButtonItem = addButton;
+      [addButton release];
    }
    return self;
 }
@@ -132,6 +137,17 @@
 - (void)didReceiveMemoryWarning
 {
    [super didReceiveMemoryWarning];
+}
+
+- (IBAction) addTaskInList
+{
+   AddTaskViewController *atvController = [[AddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
+   atvController.list = self.list;
+
+   UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:atvController];
+   [self presentModalViewController:navc animated:NO];
+   [navc release];
+   [atvController release];
 }
 
 @end

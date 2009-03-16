@@ -21,4 +21,6 @@
 @property (nonatomic, retain) RTMList *list;
 @property (nonatomic, retain) NSArray *tasks;
 
+- (IBAction) addTaskInList;
+
 @end
