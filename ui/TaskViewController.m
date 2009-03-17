@@ -240,6 +240,7 @@ static NSArray *s_icons;
    NSDictionary *note = [task.notes objectAtIndex:notePages.currentPage];
    NSString *text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
    note_field.text = text;
+   [note_field setNeedsDisplay];
 }
 
 - (void) togglePriorityView
