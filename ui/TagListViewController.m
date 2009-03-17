@@ -11,6 +11,7 @@
 #import "RTMTag.h"
 #import "RTMTaskCell.h"
 #import "TaskViewController.h"
+#import "AddTaskViewController.h"
 
 @implementation TagListViewController
 
@@ -25,6 +26,10 @@
    if (self = [super initWithStyle:style]) {
       self.tag = tg;
       self.title = tag.name;
+
+      UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTaskInTag)];
+      self.navigationItem.rightBarButtonItem = addButton;
+
       [self reloadFromDB];
    }
    return self;
@@ -117,6 +122,17 @@ return YES;
 - (void)dealloc {
    [tag release];
    [super dealloc];
+}
+
+- (IBAction) addTaskInTag
+{
+   AddTaskViewController *atvController = [[AddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
+   [atvController.tags addObject:self.tag];
+
+   UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:atvController];
+   [self presentModalViewController:navc animated:NO];
+   [navc release];
+   [atvController release];
 }
 
 @end

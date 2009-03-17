@@ -19,4 +19,6 @@
 
 @property (nonatomic, retain) RTMTag *tag;
 
+- (IBAction) addTaskInTag;
+
 @end
