@@ -36,17 +36,17 @@
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIView" id="502212339">
+					<object class="IBUIView" id="16372503">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIPageControl" id="305327297">
-								<reference key="NSNextResponder" ref="502212339"/>
+								<reference key="NSNextResponder" ref="16372503"/>
 								<int key="NSvFlags">1316</int>
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
-								<string key="NSFrame">{{120, 0}, {80, 36}}</string>
-								<reference key="NSSuperview" ref="502212339"/>
+								<string key="NSFrame">{{122, 0}, {80, 36}}</string>
+								<reference key="NSSuperview" ref="16372503"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwLjIgMC40MDAwMDAwMQA</bytes>
@@ -58,7 +58,7 @@
 								<int key="IBUINumberOfPages">2</int>
 							</object>
 						</object>
-						<string key="NSFrame">{{0, 337}, {320, 29}}</string>
+						<string key="NSFrame">{{0, 342}, {320, 29}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -166,7 +166,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="614617216"/>
 							<reference ref="214570792"/>
-							<reference ref="502212339"/>
+							<reference ref="16372503"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -193,7 +193,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">95</int>
-						<reference key="object" ref="502212339"/>
+						<reference key="object" ref="16372503"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="305327297"/>
@@ -203,7 +203,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">83</int>
 						<reference key="object" ref="305327297"/>
-						<reference key="parent" ref="502212339"/>
+						<reference key="parent" ref="16372503"/>
 					</object>
 				</object>
 			</object>

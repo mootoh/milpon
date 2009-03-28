@@ -33,4 +33,6 @@
  */
 - (IBAction) save;
 
+- (void) updateView;
+
 @end

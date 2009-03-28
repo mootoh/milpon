@@ -15,6 +15,7 @@
 #import "ListProvider.h"
 #import "MilponHelper.h"
 #import "AttributeView.h"
+#import "DueDateSelectController.h"
 
 #define kNOTE_PLACE_HOLDER @"note..."
 
@@ -87,6 +88,12 @@ static NSArray *s_icons;
 
 @synthesize task;
 
+enum {
+   TAG_NAME = 1,
+   TAG_DUE,
+   TAG_LIST,
+};
+
 - (void) viewDidLoad
 {
    self.title = task.name;
@@ -104,10 +111,13 @@ static NSArray *s_icons;
    name_field.icon = [[[UIImage alloc] initWithContentsOfFile:
       [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_target.png"]] autorelease];
    name_field.line_width = 2.0f;
+   [name_field setDelegate:self asAction:@selector(edit_name)];
    [self.view addSubview:name_field];
+   name_field.tag = TAG_NAME;
    [name_field release];
 
    AttributeView *due_field = [[AttributeView alloc] initWithFrame:CGRectMake(14, 60, (320-14*2)/3, 20)];
+   [due_field setDelegate:self asAction:@selector(edit_due)];
 
    if (task.due) {
       NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -290,6 +300,46 @@ prioritySelected_N(3);
    task.due = theDate;
 
    [self updateDue];
+}
+
+- (void) edit_name
+{
+   AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_NAME];
+   av.in_editing = YES;
+   [av drawRect:av.frame];
+
+   UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(24, 0, av.frame.size.width-24, av.frame.size.height-av.line_width)];
+   tf.placeholder = av.text;
+   tf.opaque = YES;
+   tf.backgroundColor = [UIColor whiteColor];
+   [av addSubview:tf];
+   [tf becomeFirstResponder];
+}
+
+- (void) edit_due
+{
+   AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_DUE];
+   av.in_editing = YES;
+   [av drawRect:av.frame];
+
+   DueDateSelectController *vc = [[DueDateSelectController alloc] initWithNibName:nil bundle:nil];
+   vc.parent = self;
+   [self.navigationController pushViewController:vc animated:YES];
+   [vc release];
+}
+
+- (void) setDue:(NSDate *)date
+{
+   task.due = date;
+}
+
+- (void) setList:(RTMList *)list
+{
+}
+
+- (void) updateView
+{
+   // TODO
 }
 
 @end

@@ -11,6 +11,7 @@
 
 @class TaskViewController;
 @class AttributeView;
+@class RTMList;
 
 @interface DueLabel : UILabel
 {
@@ -37,5 +38,11 @@
 @property (nonatomic, retain) RTMTask *task;
 
 - (void) updateDue;
+- (void) edit_name;
+- (void) edit_due;
+- (void) setDue:(NSDate *)date;
+- (void) setList:(RTMList *)list;
+
+- (void) updateView;
 
 @end

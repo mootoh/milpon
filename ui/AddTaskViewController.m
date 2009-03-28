@@ -310,4 +310,8 @@ enum {
    [self close];
 }
 
+- (void) updateView
+{
+   [self.tableView reloadData]; // TODO: should reload due row only.
+}
 @end
