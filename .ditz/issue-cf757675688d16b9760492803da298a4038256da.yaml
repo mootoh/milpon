@@ -16,5 +16,9 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - created
   - ""
+- - 2009-03-28 22:07:01.284572 Z
+  - mootoh <mootoh@gmail.com>
+  - commented
+  - should list up completed tasks and check them to uncomplete.
 git_branch: 
 claimer: 

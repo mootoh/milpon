@@ -16,5 +16,12 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - created
   - ""
+- - 2009-03-28 22:05:21.768601 Z
+  - mootoh <mootoh@gmail.com>
+  - commented
+  - |-
+    investigated.
+    after completed a recurrent task, rtm.tasks.getList returns all the tasks associated with it, including completed ones before.
+    fmmmm...
 git_branch: 
 claimer: 

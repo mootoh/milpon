@@ -16,5 +16,9 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - created
   - ""
+- - 2009-03-28 22:05:52.405274 Z
+  - mootoh <mootoh@gmail.com>
+  - commented
+  - displays time remained in addition to the due date and the estimated time,
 git_branch: 
 claimer: 
