@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rsp stat="ok">
+   <auth>
+      <token>6410bde19b6dfb474fec71f186bc715831ea6842</token>
+      <perms>delete</perms>
+      <user id="987654321" username="bob" fullname="Bob T. Monkey" />
+   </auth>
+</rsp>
