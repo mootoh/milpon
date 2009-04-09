@@ -157,10 +157,7 @@ static const int SECTIONS = 4;
    [super viewWillAppear:animated];
    NSIndexPath *selected = [self.tableView indexPathForSelectedRow];
    [self.tableView deselectRowAtIndexPath:selected animated:NO];
-}
 
-- (void) viewDidAppear:(BOOL)animated
-{
    if ([[due_tasks objectAtIndex:TODAY] count] > 0) {
       NSUInteger ints[2] = {TODAY, 0};
       NSIndexPath* indexPath = [NSIndexPath indexPathWithIndexes:ints length:2];

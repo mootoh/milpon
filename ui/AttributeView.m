@@ -47,7 +47,6 @@
 
 - (void)dealloc
 {
-   [edit_delegate release];
    [icon release];
    [text release];
    [super dealloc];
