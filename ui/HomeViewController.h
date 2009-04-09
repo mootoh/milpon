@@ -11,10 +11,10 @@
 @interface HomeViewController : UITableViewController <ReloadableTableViewControllerProtocol>
 {
    enum {
+      OVERDUE,
       TODAY,
       TOMORROW,
-      THIS_WEEK,
-      OVERDUE
+      THIS_WEEK
    } section_type;
 
    NSArray *headers;
