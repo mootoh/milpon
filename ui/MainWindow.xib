@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="94"/>
+			<integer value="96"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -64,11 +64,11 @@
 							<string key="IBUITitle">Navigation Item</string>
 							<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="445500266">
 								<int key="IBUIStyle">1</int>
-								<int key="IBUISystemItemIdentifier">13</int>
+								<int key="IBUISystemItemIdentifier">10</int>
 							</object>
 							<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="761038426">
 								<int key="IBUIStyle">1</int>
-								<int key="IBUISystemItemIdentifier">4</int>
+								<int key="IBUISystemItemIdentifier">9</int>
 							</object>
 						</object>
 						<reference key="IBUIParentViewController" ref="478952737"/>
@@ -105,19 +105,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">addTask</string>
+						<string key="label">toggleReview</string>
 						<reference key="source" ref="761038426"/>
 						<reference key="destination" ref="65427297"/>
 					</object>
-					<int key="connectionID">103</int>
+					<int key="connectionID">112</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">refresh</string>
+						<string key="label">changeSource</string>
 						<reference key="source" ref="445500266"/>
 						<reference key="destination" ref="65427297"/>
 					</object>
-					<int key="connectionID">104</int>
+					<int key="connectionID">113</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -243,7 +243,7 @@
 					<integer value="1"/>
 					<string>AppDelegate</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{344, 489}, {320, 480}}</string>
+					<string>{{344, 276}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>HomeViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -271,7 +271,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">111</int>
+			<int key="maxID">113</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -285,12 +285,16 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addTask</string>
 							<string>authDone</string>
+							<string>changeSource</string>
 							<string>fetchAll</string>
 							<string>refresh</string>
 							<string>saveAuth</string>
+							<string>toggleReview</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -302,11 +306,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>bottomBar</string>
 							<string>navigationController</string>
 							<string>window</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIToolbar</string>
 							<string>UINavigationController</string>
 							<string>UIWindow</string>
 						</object>

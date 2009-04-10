@@ -20,7 +20,7 @@
 
 @implementation AppDelegate
 
-@synthesize window, auth, operationQueue, navigationController;
+@synthesize window, auth, operationQueue, navigationController, bottomBar;
 
 - (NSString *) authPath
 {
@@ -65,6 +65,7 @@
 - (void)dealloc
 {
    [navigationController release];
+   [bottomBar release];
    [operationQueue release];
    [auth release];
    [window release];
@@ -89,6 +90,12 @@
       RootViewController *root = [[RootViewController alloc] initWithNibName:nil bundle:nil];
       [window addSubview:root.view];
 #endif // USE_AUTH
+
+   // create a bottom bar.
+   CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+   const CGFloat toolbarHeight = 44;   
+   self.bottomBar = [[UIToolbar alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height-toolbarHeight, appFrame.size.width, toolbarHeight)];
+   [self.navigationController.view addSubview:bottomBar];
 
    [window makeKeyAndVisible];
 }
@@ -216,6 +223,16 @@
    //[progressView progressEnd];
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
    //refreshButton.enabled = YES;
+}
+
+- (IBAction) changeSource
+{
+   UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"source" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Overview", @"List", @"Tag", nil];
+   [as showInView:navigationController.view];
+}
+
+- (IBAction) toggleReview
+{
 }
 
 @end

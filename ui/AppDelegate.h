@@ -8,16 +8,18 @@
 
 @class RTMAuth;
 
-@interface AppDelegate : NSObject <UIApplicationDelegate>
+@interface AppDelegate : NSObject <UIApplicationDelegate, UIActionSheetDelegate>
 {	
-   IBOutlet UIWindow           *window;
+   IBOutlet UIWindow               *window;
    IBOutlet UINavigationController *navigationController;
-   RTMAuth                     *auth;
-   NSOperationQueue            *operationQueue;
+   IBOutlet UIToolbar              *bottomBar;
+   RTMAuth                         *auth;
+   NSOperationQueue                *operationQueue;
 }
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UINavigationController *navigationController;
+@property (nonatomic, retain) UIToolbar *bottomBar;
 @property (nonatomic, retain) RTMAuth *auth;
 @property (nonatomic, retain) NSOperationQueue *operationQueue;
 
@@ -26,5 +28,7 @@
 - (IBAction) authDone;
 - (IBAction) fetchAll;
 - (IBAction) refresh;
+- (IBAction) changeSource;
+- (IBAction) toggleReview;
 
 @end
