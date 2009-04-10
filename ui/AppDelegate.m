@@ -20,7 +20,7 @@
 
 @implementation AppDelegate
 
-@synthesize window, auth, operationQueue, tabBarController;
+@synthesize window, auth, operationQueue, navigationController;
 
 - (NSString *) authPath
 {
@@ -64,7 +64,7 @@
 
 - (void)dealloc
 {
-   [tabBarController release];
+   [navigationController release];
    [operationQueue release];
    [auth release];
    [window release];
@@ -75,14 +75,14 @@
 {
 #define USE_AUTH
 #ifdef USE_AUTH
-   [window addSubview:tabBarController.view];
+   [window addSubview:navigationController.view];
 
    if (!auth.token || [auth.token isEqualToString:@""]) {
       AuthViewController *avc = [[AuthViewController alloc] initWithNibName:nil bundle:nil];
       avc.navigationItem.hidesBackButton = YES;
 
       UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:avc];
-      [tabBarController presentModalViewController:nc animated:NO];
+      [navigationController presentModalViewController:nc animated:NO];
       [nc release];
    }
 #else // USE_AUTH
@@ -97,7 +97,7 @@
 {
    AddTaskViewController *atvController = [[AddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:atvController];
-   [tabBarController presentModalViewController:navc animated:NO];
+   [navigationController presentModalViewController:navc animated:NO];
    [navc release];
    [atvController release];
 }
@@ -118,8 +118,8 @@
 {
    NSArray *svs = window.subviews;
    NSAssert(svs.count == 1, @"should be only avc");
-   [window addSubview:tabBarController.view];
-   [window bringSubviewToFront:tabBarController.view];
+   [window addSubview:navigationController.view];
+   [window bringSubviewToFront:navigationController.view];
    [[svs objectAtIndex:0] removeFromSuperview];
 }
 

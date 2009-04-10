@@ -104,7 +104,21 @@ static const int SECTIONS = 4;
    [formatter release];
    
    self.headers = [NSArray arrayWithObjects:@"Outdated", @"Today", @"Tomorrow", @"7 days", nil];
+
+   CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+   const CGFloat toolbarHeight = 44;   
    
+   // create a bottom bar.
+   UIToolbar *bottomBar = [[UIToolbar alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height-toolbarHeight, appFrame.size.width, toolbarHeight)];
+   //UIToolbar *bottomBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 300, 40)];
+   UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTask)];
+   UIBarButtonItem *uploadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(upload)];
+   [bottomBar setItems:[NSArray arrayWithObjects:uploadButton, addButton, nil] animated:NO];
+   [self.navigationController.view addSubview:bottomBar];
+   [addButton release];
+   [uploadButton release];
+   [bottomBar release];
+
    [self reloadFromDB];
 }
 

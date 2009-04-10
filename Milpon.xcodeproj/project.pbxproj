@@ -1713,7 +1713,7 @@
 					"LOCAL_DEBUG=1",
 					"DEBUG=1",
 				);
-				INFOPLIST_FILE = /Users/takayama/prj/iphone/Milpon/Beta.plist;
+				INFOPLIST_FILE = Beta.plist;
 				PRODUCT_NAME = "Milpon Beta";
 				SDKROOT = iphonesimulator2.2.1;
 			};

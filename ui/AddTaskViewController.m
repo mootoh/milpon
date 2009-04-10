@@ -259,9 +259,8 @@ enum {
 
 - (void) close
 {
-   UITabBarController *tbc = (UITabBarController *)self.navigationController.parentViewController;
-   UINavigationController *nc = (UINavigationController *)tbc.selectedViewController;
-   UITableViewController *tvc = (UITableViewController *)nc.topViewController;
+   UINavigationController *tbc = (UINavigationController *)self.navigationController.parentViewController;
+   UITableViewController *tvc = (UITableViewController *)tbc.topViewController;
    if ([tvc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
       [(UITableViewController<ReloadableTableViewControllerProtocol> *)tvc reloadFromDB];
       [tvc.tableView reloadData];

@@ -11,13 +11,13 @@
 @interface AppDelegate : NSObject <UIApplicationDelegate>
 {	
    IBOutlet UIWindow           *window;
-   IBOutlet UITabBarController *tabBarController;
+   IBOutlet UINavigationController *navigationController;
    RTMAuth                     *auth;
    NSOperationQueue            *operationQueue;
 }
 
 @property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) UITabBarController *tabBarController;
+@property (nonatomic, retain) UINavigationController *navigationController;
 @property (nonatomic, retain) RTMAuth *auth;
 @property (nonatomic, retain) NSOperationQueue *operationQueue;
 
