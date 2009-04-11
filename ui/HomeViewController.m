@@ -14,6 +14,7 @@
 #import "TaskProvider.h"
 #import "MilponHelper.h"
 #import "logger.h"
+#import "ProgressView.h"
 
 @implementation HomeViewController
 
@@ -115,7 +116,11 @@ static const int SECTIONS = 4;
    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:app action:@selector(addTask)];
    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:app action:@selector(refresh)];
 
-   [app.bottomBar setItems:[NSArray arrayWithObjects:addButton, refreshButton, nil] animated:YES];
+   ProgressView *pv = [[ProgressView alloc] initWithFrame:CGRectMake(8, 8, 240, 36)];
+   UIBarButtonItem *progressIndicator = [[UIBarButtonItem alloc] initWithCustomView:pv];
+   [pv release];
+   
+   [app.bottomBar setItems:[NSArray arrayWithObjects:refreshButton, progressIndicator, addButton, nil] animated:YES];
 
    [addButton release];
    [refreshButton release];
