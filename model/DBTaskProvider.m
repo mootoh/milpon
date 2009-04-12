@@ -124,7 +124,7 @@
 - (NSArray *) tasksInTag:(RTMTag *)tag
 {
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
-   NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"task.id=task_tag.task_id", nil];
+   NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"task.id=task_tag.task_id AND task.completed IS NULL", nil];
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", @"JOIN", @"GROUP", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [NSString stringWithFormat:@"task_tag.tag_id=%d", [tag.iD intValue]],

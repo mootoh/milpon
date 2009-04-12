@@ -7,6 +7,7 @@
 //
 
 #import "TagListViewController.h"
+#import "TagProvider.h"
 #import "TaskProvider.h"
 #import "RTMTag.h"
 #import "RTMTaskCell.h"
@@ -15,10 +16,12 @@
 
 @implementation TagListViewController
 
-@synthesize tag;
+@synthesize tag, tasks;
 
 - (void) reloadFromDB
 {
+   if (tasks) [tasks release];
+   tasks = [[[TaskProvider sharedTaskProvider] tasksInTag:tag] retain];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style tag:(RTMTag *)tg
@@ -44,9 +47,8 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   return [[TaskProvider sharedTaskProvider] tasksInTag:tag].count;
+   return [[TagProvider sharedTagProvider] taskCountInTag:tag];
 }
-
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -58,7 +60,7 @@
       cell = [[[RTMTaskCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
    }
 
-   RTMTask *tsk = [[[TaskProvider sharedTaskProvider] tasksInTag:tag] objectAtIndex:indexPath.row];
+   RTMTask *tsk = [tasks objectAtIndex:indexPath.row];
    NSAssert(tsk, @"task should not be nil");
    cell.task = tsk;
    [cell setNeedsDisplay]; // TODO: causes slow
