@@ -13,26 +13,27 @@
 #import "TaskViewController.h"
 #import "TaskProvider.h"
 #import "MilponHelper.h"
-#import "logger.h"
-#import "ProgressView.h"
 
 @implementation OverviewViewController
 
 @synthesize headers;
 
+enum {
+   OVERDUE,
+   TODAY,
+   TOMORROW,
+   THIS_WEEK
+} section_type;
+
 static const int SECTIONS = 4;
 
 - (void) reloadFromDB
 {
-   /*
-    * cleanup old data
-    */
+   // cleanup old data
    if (tasks) [tasks release];
    if (due_tasks) [due_tasks release];
 
-   /*
-    * load
-    */
+   // load
    tasks = [[[TaskProvider sharedTaskProvider] tasks] retain];
    due_tasks = [[NSMutableArray alloc] init];
    for (int i=0; i<SECTIONS; i++)
@@ -49,8 +50,6 @@ static const int SECTIONS = 4;
 
    NSDate *today = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
           [comps year], [comps month], [comps day]]];
-
-   //[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
 
    for (RTMTask *task in tasks) {
       if (!task.due || task.due == [MilponHelper sharedHelper].invalidDate) continue;
@@ -70,10 +69,16 @@ static const int SECTIONS = 4;
       }
    }
 }
-/*
+
 - (id) initWithStyle:(UITableViewStyle)style
 {
    if (self = [super initWithStyle:style]) {
+      needs_scroll_to_today = YES;
+      tasks = nil;
+      due_tasks = nil;
+
+      self.headers = [NSArray arrayWithObjects:@"Outdated", @"Today", @"Tomorrow", @"7 days", nil];
+
 		NSDate *today = [NSDate date];
       NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
       [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -81,47 +86,19 @@ static const int SECTIONS = 4;
       self.title = [formatter stringFromDate:today];
       [formatter release];
 
-      self.headers = [NSArray arrayWithObjects:@"Today", @"Tomorrow", @"7 days", @"Outdated", nil];
-      AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-      db = app.db;
-
       [self reloadFromDB];
    }
    return self;
 }
-*/
+
 - (void)viewDidLoad
 {
    [super viewDidLoad];
-
-   tasks = nil;
-   due_tasks = nil;
-
-   NSDate *today = [NSDate date];
-   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-   [formatter setDateStyle:NSDateFormatterMediumStyle];
-   formatter.dateFormat = @"M/d (EEE)";
-   self.title = [formatter stringFromDate:today];
-   [formatter release];
-   
-   self.headers = [NSArray arrayWithObjects:@"Outdated", @"Today", @"Tomorrow", @"7 days", nil];
-
-   [self reloadFromDB];
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:app action:@selector(addTask)];
    self.navigationItem.rightBarButtonItem = addButton;
    [addButton release];
-}
-
-- (void) addButtons
-{
-#if 0
-   ProgressView *pv = [[ProgressView alloc] initWithFrame:CGRectMake(8, 8, 240, 36)];
-   UIBarButtonItem *progressIndicator = [[UIBarButtonItem alloc] initWithCustomView:pv];
-   [pv release];
-   //[app.bottomBar setItems:[NSArray arrayWithObjects:refreshButton, progressIndicator, addButton, nil] animated:YES];
-#endif // 0
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -163,7 +140,6 @@ static const int SECTIONS = 4;
    RTMTask *task = [[due_tasks objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
    ctrl.task = task;
 
-   // Push the detail view controller
    [[self navigationController] pushViewController:ctrl animated:YES];
    [ctrl release];
 }
@@ -171,13 +147,12 @@ static const int SECTIONS = 4;
 - (void)viewWillAppear:(BOOL)animated
 {
    [super viewWillAppear:animated];
-   NSIndexPath *selected = [self.tableView indexPathForSelectedRow];
-   [self.tableView deselectRowAtIndexPath:selected animated:NO];
 
-   if ([[due_tasks objectAtIndex:TODAY] count] > 0) {
+   if (needs_scroll_to_today && [[due_tasks objectAtIndex:TODAY] count] > 0) {
       NSUInteger ints[2] = {TODAY, 0};
       NSIndexPath* indexPath = [NSIndexPath indexPathWithIndexes:ints length:2];
       [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+      needs_scroll_to_today = NO;
    }
 }
 

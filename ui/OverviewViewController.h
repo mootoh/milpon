@@ -10,16 +10,10 @@
 
 @interface OverviewViewController : UITableViewController <ReloadableTableViewControllerProtocol>
 {
-   enum {
-      OVERDUE,
-      TODAY,
-      TOMORROW,
-      THIS_WEEK
-   } section_type;
-
    NSArray *headers;
    NSArray *tasks;
    NSMutableArray *due_tasks;
+   BOOL needs_scroll_to_today;
 }
 
 @property (nonatomic, retain) NSArray *headers;
