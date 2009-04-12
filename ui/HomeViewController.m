@@ -107,23 +107,21 @@ static const int SECTIONS = 4;
    self.headers = [NSArray arrayWithObjects:@"Outdated", @"Today", @"Tomorrow", @"7 days", nil];
 
    [self reloadFromDB];
+
+   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+   UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:app action:@selector(addTask)];
+   self.navigationItem.rightBarButtonItem = addButton;
+   [addButton release];
 }
 
 - (void) addButtons
 {
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-
-   UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:app action:@selector(addTask)];
-   UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:app action:@selector(refresh)];
-
+#if 0
    ProgressView *pv = [[ProgressView alloc] initWithFrame:CGRectMake(8, 8, 240, 36)];
    UIBarButtonItem *progressIndicator = [[UIBarButtonItem alloc] initWithCustomView:pv];
    [pv release];
-   
-   [app.bottomBar setItems:[NSArray arrayWithObjects:refreshButton, progressIndicator, addButton, nil] animated:YES];
-
-   [addButton release];
-   [refreshButton release];
+   //[app.bottomBar setItems:[NSArray arrayWithObjects:refreshButton, progressIndicator, addButton, nil] animated:YES];
+#endif // 0
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -181,8 +179,6 @@ static const int SECTIONS = 4;
       NSIndexPath* indexPath = [NSIndexPath indexPathWithIndexes:ints length:2];
       [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
    }
-
-   [self addButtons];
 }
 
 - (void)dealloc

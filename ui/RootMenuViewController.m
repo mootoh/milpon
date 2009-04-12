@@ -10,6 +10,9 @@
 #import "HomeViewController.h"
 #import "ListViewController.h"
 #import "TagViewController.h"
+#import "AppDelegate.h"
+#import "ReviewViewController.h"
+#import "ConfigViewController.h"
 
 @implementation RootMenuViewController
 
@@ -37,8 +40,21 @@ enum sec_one {
    [super viewDidLoad];
    self.title = @"Milpon";
 
-// Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-// self.navigationItem.rightBarButtonItem = self.editButtonItem;
+   UILabel *taskLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+   taskLabel.text = @"Task";
+   self.tableView.tableHeaderView = taskLabel;
+   [taskLabel release];
+
+   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
+   UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:app action:@selector(addTask)];
+   UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:app action:@selector(refresh)];
+
+   self.navigationItem.rightBarButtonItem = addButton;
+   self.navigationItem.leftBarButtonItem  = refreshButton;
+
+   [addButton release];
+   [refreshButton release];
 }
 /*
    - (void)viewWillAppear:(BOOL)animated {
@@ -146,43 +162,39 @@ return (interfaceOrientation == UIInterfaceOrientationPortrait);
    // [self.navigationController pushViewController:anotherViewController];
    // [anotherViewController release];
 
+   UIViewController *vc = nil;
+
    if (indexPath.section == 0) {
       switch (indexPath.row) {
-      case SEC_ZERO_OVERVIEW: {
-         HomeViewController *hvc = [[HomeViewController alloc] initWithStyle:UITableViewStylePlain];
-         [self.navigationController pushViewController:hvc animated:YES];
-         [hvc release];
+      case SEC_ZERO_OVERVIEW:
+         vc = [[HomeViewController alloc] initWithStyle:UITableViewStylePlain];
          break;
-      }
-      case SEC_ZERO_LIST: {
-         ListViewController *lsvc = [[ListViewController alloc] initWithStyle:UITableViewStylePlain];
-         [self.navigationController pushViewController:lsvc animated:YES];
-         [lsvc release];
+      case SEC_ZERO_LIST:
+         vc = [[ListViewController alloc] initWithStyle:UITableViewStylePlain];
          break;
-      }
-      case SEC_ZERO_TAG: {
-         TagViewController *tlvc = [[TagViewController alloc] initWithStyle:UITableViewStylePlain];
-         [self.navigationController pushViewController:tlvc animated:YES];
-         [tlvc release];
+      case SEC_ZERO_TAG:
+         vc = [[TagViewController alloc] initWithStyle:UITableViewStylePlain];
          break;
-      }
       default:
          break;
       }
    } else {
-#if 0
       switch (indexPath.row) {
       case SEC_ONE_REVIEW:
-         cell.text = @"Review";
+         vc = [[ReviewViewController alloc] initWithStyle:UITableViewStylePlain];
          break;
       case SEC_ONE_SETTING:
-         cell.text = @"Setting";
+         vc = [[ConfigViewController alloc] initWithNibName:nil bundle:nil];
          break;
       default:
          break;
       }
-#endif // 0
    }
+
+   NSAssert(vc != nil, @"should be set some ViewController.");
+
+   [self.navigationController pushViewController:vc animated:YES];
+   [vc release];
 }
 
 
@@ -225,6 +237,11 @@ return YES;
 }
 */
 
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+   return section == 0 ? @"Task" : nil;
+}
 
 - (void)dealloc {
    [super dealloc];

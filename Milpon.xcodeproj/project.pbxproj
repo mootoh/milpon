@@ -97,6 +97,8 @@
 		B926C44C0F67812F0014DB7D /* AttributeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B926C44B0F67812F0014DB7D /* AttributeView.m */; };
 		B926C4BF0F67991B0014DB7D /* icon_url.png in Resources */ = {isa = PBXBuildFile; fileRef = B926C4BE0F67991B0014DB7D /* icon_url.png */; };
 		B926C4F60F67A0AD0014DB7D /* TagListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B926C4F50F67A0AD0014DB7D /* TagListViewController.m */; };
+		B93A12570F9212AA00C0A9AB /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12560F9212AA00C0A9AB /* ReviewViewController.m */; };
+		B93A12580F9212AA00C0A9AB /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12560F9212AA00C0A9AB /* ReviewViewController.m */; };
 		B94A03600F5FEC0500A43BCA /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
 		B95C5C080F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B95C5C090F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
@@ -458,11 +460,13 @@
 		B926C4BE0F67991B0014DB7D /* icon_url.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_url.png; sourceTree = "<group>"; };
 		B926C4F40F67A0AD0014DB7D /* TagListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagListViewController.h; sourceTree = "<group>"; };
 		B926C4F50F67A0AD0014DB7D /* TagListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagListViewController.m; sourceTree = "<group>"; };
+		B93A12550F9212AA00C0A9AB /* ReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
+		B93A12560F9212AA00C0A9AB /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
 		B95C5C070F598C8400A368DC /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = rtm.sql; sourceTree = "<group>"; };
 		B970A8150F637F71004467E9 /* ScaffoldTaskEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldTaskEditViewController.h; path = scaffold/ScaffoldTaskEditViewController.h; sourceTree = "<group>"; };
 		B970A8160F637F71004467E9 /* ScaffoldTaskEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldTaskEditViewController.m; path = scaffold/ScaffoldTaskEditViewController.m; sourceTree = "<group>"; };
 		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
-		B985AB890F6108A8004A1B54 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B985AB890F6108A8004A1B54 /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MilponBetaIconSmall.png; sourceTree = "<group>"; };
 		B9AE53190F6B4C6A0076D258 /* Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Beta.plist; sourceTree = SOURCE_ROOT; };
@@ -605,7 +609,7 @@
 				B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */,
 				B914B34D0F5EBDA6009C19BE /* UnitTest.octest */,
 				B9D0431E0F5F477400641E61 /* UnitTest.octest */,
-				B985AB890F6108A8004A1B54 /* Scaffold.app */,
+				B985AB890F6108A8004A1B54 /* Milpon.app */,
 				B9B956560F65D2720046712A /* UnitTest.octest */,
 				B9B957270F6615930046712A /* UnitTest.octest */,
 				B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */,
@@ -704,6 +708,8 @@
 				B926C4F50F67A0AD0014DB7D /* TagListViewController.m */,
 				B9C9A8670F91D0070078DC79 /* RootMenuViewController.h */,
 				B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */,
+				B93A12550F9212AA00C0A9AB /* ReviewViewController.h */,
+				B93A12560F9212AA00C0A9AB /* ReviewViewController.m */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -1019,7 +1025,7 @@
 			);
 			name = Scaffold;
 			productName = Milpon;
-			productReference = B985AB890F6108A8004A1B54 /* Scaffold.app */;
+			productReference = B985AB890F6108A8004A1B54 /* Milpon.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B9AE52A10F6B4AE50076D258 /* Milpon Beta */ = {
@@ -1398,6 +1404,7 @@
 				B926C44C0F67812F0014DB7D /* AttributeView.m in Sources */,
 				B926C4F60F67A0AD0014DB7D /* TagListViewController.m in Sources */,
 				B9C9A86A0F91D0080078DC79 /* RootMenuViewController.m in Sources */,
+				B93A12580F9212AA00C0A9AB /* ReviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1503,6 +1510,7 @@
 				B9AE52F40F6B4AE50076D258 /* AttributeView.m in Sources */,
 				B9AE52F50F6B4AE50076D258 /* TagListViewController.m in Sources */,
 				B9C9A8690F91D0070078DC79 /* RootMenuViewController.m in Sources */,
+				B93A12570F9212AA00C0A9AB /* ReviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

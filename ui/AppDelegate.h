@@ -19,7 +19,7 @@
 
 @property (nonatomic, retain) UIWindow *window;
 //@property (nonatomic, retain) UINavigationController *navigationController;
-@property (nonatomic, retain) UIToolbar *bottomBar;
+//@property (nonatomic, retain) UIToolbar *bottomBar;
 @property (nonatomic, retain) RTMAuth *auth;
 @property (nonatomic, retain) NSOperationQueue *operationQueue;
 

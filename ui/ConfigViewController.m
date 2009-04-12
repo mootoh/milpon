@@ -32,9 +32,6 @@
 - (void)viewDidLoad
 {
    [super viewDidLoad];
-   UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
-   self.navigationItem.leftBarButtonItem = doneButton;
-   [doneButton release];
 
    [self.view addSubview:activityIndicator];
 
@@ -69,16 +66,6 @@
 {
    [activityIndicator release];
    [super dealloc];
-}
-
-- (void) close
-{
-   [self dismissModalViewControllerAnimated:YES];
-}
-
-- (IBAction) done
-{
-   [self close];
 }
 
 - (void) fetchAll
