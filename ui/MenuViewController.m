@@ -13,7 +13,7 @@
 
 @implementation MenuViewController
 
-@synthesize bottomBar, rootViewController;
+@synthesize bottomBar;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -146,20 +146,6 @@
 {
    [items release];
    [super dealloc];
-}
-
-- (IBAction) config
-{
-   self.bottomBar.hidden = YES;
-
-   ConfigViewController *ctrl = [[ConfigViewController alloc] initWithNibName:nil bundle:nil];
-   ctrl.title = @"Info";
-   ctrl.rootViewController = self.rootViewController;
-
-   UINavigationController *modalController = [[UINavigationController alloc] initWithRootViewController:ctrl];
-   [self.navigationController presentModalViewController:modalController animated:YES];
-   [modalController release];
-   [ctrl release];
 }
 
 @end

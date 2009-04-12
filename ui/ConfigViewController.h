@@ -8,14 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class RootViewController;
-
 @interface ConfigViewController : UIViewController
 {
-   RootViewController *rootViewController;
    UIActivityIndicatorView *activityIndicator;
 }
-
-@property (nonatomic, retain) RootViewController *rootViewController;
 
 @end

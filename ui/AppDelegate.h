@@ -28,7 +28,5 @@
 - (IBAction) authDone;
 - (IBAction) fetchAll;
 - (IBAction) refresh;
-- (IBAction) changeSource;
-- (IBAction) toggleReview;
 
 @end

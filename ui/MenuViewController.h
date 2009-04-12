@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class RootViewController;
-
 @interface MenuViewController : UITableViewController
 {
    enum {
@@ -24,9 +22,7 @@
    
    NSArray *items;
    UIToolbar *bottomBar;
-   RootViewController *rootViewController;
 }
 
 @property (nonatomic,retain) UIToolbar *bottomBar;
-@property (nonatomic, retain) RootViewController *rootViewController;
 @end

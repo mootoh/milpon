@@ -250,14 +250,4 @@
    //refreshButton.enabled = YES;
 }
 
-- (IBAction) changeSource
-{
-   UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"source" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Overview", @"List", @"Tag", nil];
-   [as showInView:navigationController.view];
-}
-
-- (IBAction) toggleReview
-{
-}
-
 @end

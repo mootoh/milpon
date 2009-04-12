@@ -7,14 +7,12 @@
 //
 
 #import "ConfigViewController.h"
-#import "RootViewController.h"
 #import "MenuViewController.h"
+#import "AppDelegate.h"
 
 #define VERSION "$Id: 02fde4fcd53dd4fe2d8017c9b6ef7073a168c471 $"
 
 @implementation ConfigViewController
-
-@synthesize rootViewController;
 
 - (id) initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
@@ -38,7 +36,9 @@
    UIButton *reloadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
    reloadButton.frame = CGRectMake(20, 32, 280, 32);
    [reloadButton setTitle:@"refresh all local data (long wait)" forState:UIControlStateNormal];
-   [reloadButton addTarget:self action:@selector(fetchAll) forControlEvents:UIControlEventTouchDown];
+
+   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+   [reloadButton addTarget:app action:@selector(refresh) forControlEvents:UIControlEventTouchDown];
    [self.view addSubview:reloadButton];
 
    UIButton *feedbackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -66,13 +66,6 @@
 {
    [activityIndicator release];
    [super dealloc];
-}
-
-- (void) fetchAll
-{
-   [activityIndicator startAnimating];
-   [rootViewController fetchAll];
-   [activityIndicator stopAnimating];
 }
 
 - (IBAction) emailFeedback

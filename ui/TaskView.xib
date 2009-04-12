@@ -58,7 +58,7 @@
 								<int key="IBUINumberOfPages">2</int>
 							</object>
 						</object>
-						<string key="NSFrame">{{0, 342}, {320, 29}}</string>
+						<string key="NSFrame">{{0, 387}, {320, 29}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -115,7 +115,7 @@
 						<reference key="IBUINormalImage" ref="610094352"/>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 366}</string>
+				<string key="NSFrameSize">{320, 416}</string>
 				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="934518474"/>
 			</object>
@@ -224,7 +224,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>TaskViewController</string>
 					<string>UIResponder</string>
-					<string>{{628, 152}, {320, 366}}</string>
+					<string>{{244, 157}, {320, 416}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -252,7 +252,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">95</int>
+			<int key="maxID">96</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
