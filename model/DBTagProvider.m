@@ -61,6 +61,26 @@
       [[results objectAtIndex:0] objectForKey:@"id"] : nil;
 }
 
+- (NSInteger)taskCountInTag:(RTMTag *) tag
+{
+   NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
+   NSArray *join_vals = [NSArray arrayWithObjects:@"task", @"task.id=task_tag.task_id", nil];
+   NSDictionary *join_dict = [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys];
+
+   NSArray *tag_keys = [NSArray arrayWithObjects:@"WHERE", @"JOIN", nil];
+   NSArray *tag_vals = [NSArray arrayWithObjects:
+      [NSString stringWithFormat:@"task_tag.tag_id=%d AND task.completed is NULL", [tag.iD intValue]],
+      join_dict,
+      nil];
+   NSDictionary *cond = [NSDictionary dictionaryWithObjects:tag_vals forKeys:tag_keys];
+
+   NSDictionary *query = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"count()"];
+   NSArray *counts = [local_cache_ select:query from:@"task_tag" option:cond];
+   NSDictionary *count = (NSDictionary *)[counts objectAtIndex:0];
+   NSNumber *count_num = [count objectForKey:@"count()"];
+   return count_num.integerValue;
+}
+
 @end // DBTagProvider
 
 @implementation DBTagProvider (Private)

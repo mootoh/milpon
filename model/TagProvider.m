@@ -64,6 +64,12 @@
    return nil;
 }
 
+- (NSInteger)taskCountInTag:(RTMTag *) tag
+{
+   NSAssert(NO, @"not reach here");
+   return 0;
+}
+
 + (TagProvider *) sharedTagProvider
 {
    NSAssert(NO, @"not reach here");
