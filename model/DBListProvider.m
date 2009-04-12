@@ -58,6 +58,20 @@
    [self loadLists];
 }
 
+- (NSInteger)taskCountInList:(RTMList *) list
+{
+   NSDictionary *cond = [NSDictionary dictionaryWithObject:
+      [NSString stringWithFormat:@"list_id=%d AND completed is NULL", [list.iD intValue]]
+      forKey:@"WHERE"];
+
+   NSDictionary *query = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"count()"];
+   NSArray *counts = [local_cache_ select:query from:@"task" option:cond];
+   NSDictionary *count = (NSDictionary *)[counts objectAtIndex:0];
+   NSNumber *count_num = [count objectForKey:@"count()"];
+   return count_num.integerValue;
+}
+
+
 @end // DBListProvider
 
 @implementation DBListProvider (Private)
@@ -134,7 +148,6 @@
    NSAssert(NO, @"not reach here");
    return nil;
 }
-
 
 @end // DBListProvider (Private)
 

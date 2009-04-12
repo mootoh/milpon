@@ -29,11 +29,13 @@ enum sec_one {
    SEC_ONE_COUNT
 };
 
+/*
 - (id)initWithStyle:(UITableViewStyle)style {
    if (self = [super initWithStyle:style]) {
    }
    return self;
 }
+*/
 
 - (void)viewDidLoad {
    [super viewDidLoad];

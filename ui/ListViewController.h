@@ -7,7 +7,4 @@
 //
 
 @interface ListViewController : UITableViewController
-{
-}
-
 @end

@@ -14,12 +14,14 @@
 
 @implementation ListViewController
 
+/*
 - (id) initWithStyle:(UITableViewStyle)style
 {
    if (self = [super initWithStyle:style]) {
    }
    return self;
 }
+*/
 
 - (void)viewDidLoad
 {
@@ -68,7 +70,7 @@
    RTMList *lst = [lists objectAtIndex:indexPath.row];
    cell.text = lst.name;
 
-   task_count.text = [NSString stringWithFormat:@"%d", [[TaskProvider sharedTaskProvider] tasksInList:lst].count];
+   task_count.text = [NSString stringWithFormat:@"%d", [[ListProvider sharedListProvider] taskCountInList:lst]];
    [cell setNeedsDisplay];
    return cell;
 }
@@ -87,23 +89,23 @@
 }
 
 /*
-   Override if you support editing the list
-   - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+Override if you support editing the list
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 
    if (editingStyle == UITableViewCellEditingStyleDelete) {
-// Delete the row from the data source
-[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-}	
-if (editingStyle == UITableViewCellEditingStyleInsert) {
-// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-}	
+      // Delete the row from the data source
+      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+   }	
+   if (editingStyle == UITableViewCellEditingStyleInsert) {
+      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+   }	
 }
 */
 
 
 /*
-   Override if you support conditional editing of the list
-   - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+Override if you support conditional editing of the list
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 // Return NO if you do not want the specified item to be editable.
 return YES;
 }
@@ -126,6 +128,7 @@ return YES;
 */ 
 
 
+#if 0
 - (void)viewWillAppear:(BOOL)animated
 {
    [super viewWillAppear:animated];
@@ -143,8 +146,9 @@ return YES;
 - (void)viewDidDisappear:(BOOL)animated
 {
 }
+#endif // 0
 
-
+#if 0
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
    // Return YES for supported orientations
@@ -157,6 +161,7 @@ return YES;
    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
    // Release anything that's not essential, such as cached data
 }
+#endif // 0
 
 
 - (void)dealloc
