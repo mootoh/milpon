@@ -8,7 +8,7 @@
 
 #import "MenuViewController.h"
 #import "ListViewController.h"
-#import "HomeViewController.h"
+#import "OverviewViewController.h"
 #import "ConfigViewController.h"
 
 @implementation MenuViewController
@@ -67,7 +67,7 @@
 {
    switch (indexPath.row) {
       case MENU_OVERVIEW: {
-         HomeViewController *ctr = [[HomeViewController alloc] initWithStyle:UITableViewStylePlain];
+         OverviewViewController *ctr = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];
          [[self navigationController] pushViewController:ctr animated:YES];
          [ctr release];
          break;

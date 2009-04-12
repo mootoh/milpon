@@ -1,12 +1,12 @@
 //
-//  HomeViewController.m
+//  OverviewViewController.m
 //  Milpon
 //
 //  Created by mootoh on 10/4/08.
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import "HomeViewController.h"
+#import "OverviewViewController.h"
 #import "AppDelegate.h"
 #import "RTMTask.h"
 #import "RTMTaskCell.h"
@@ -16,7 +16,7 @@
 #import "logger.h"
 #import "ProgressView.h"
 
-@implementation HomeViewController
+@implementation OverviewViewController
 
 @synthesize headers;
 

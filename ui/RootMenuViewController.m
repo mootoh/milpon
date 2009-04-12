@@ -7,7 +7,7 @@
 //
 
 #import "RootMenuViewController.h"
-#import "HomeViewController.h"
+#import "OverviewViewController.h"
 #import "ListViewController.h"
 #import "TagViewController.h"
 #import "AppDelegate.h"
@@ -166,7 +166,7 @@ enum sec_one {
    if (indexPath.section == 0) {
       switch (indexPath.row) {
       case SEC_ZERO_OVERVIEW:
-         vc = [[HomeViewController alloc] initWithStyle:UITableViewStylePlain];
+         vc = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];
          break;
       case SEC_ZERO_LIST:
          vc = [[ListViewController alloc] initWithStyle:UITableViewStylePlain];

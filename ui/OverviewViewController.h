@@ -1,5 +1,5 @@
 //
-//  HomeViewController.h
+//  OverviewViewController.h
 //  Milpon
 //
 //  Created by mootoh on 10/4/08.
@@ -8,7 +8,7 @@
 
 #import "ReloadableTableViewController.h"
 
-@interface HomeViewController : UITableViewController <ReloadableTableViewControllerProtocol>
+@interface OverviewViewController : UITableViewController <ReloadableTableViewControllerProtocol>
 {
    enum {
       OVERDUE,

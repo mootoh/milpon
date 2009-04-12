@@ -14,7 +14,7 @@
 #import "AuthViewController.h"
 #import "AddTaskViewController.h"
 #import "RootMenuViewController.h"
-#import "HomeViewController.h"
+#import "OverviewViewController.h"
 #import "RTMSynchronizer.h"
 #import "Reachability.h"
 #import "logger.h"
@@ -62,7 +62,7 @@
 - (void) recoverView
 {
    // determine which view to be recovered
-   HomeViewController *hvc = [[HomeViewController alloc] initWithStyle:UITableViewStylePlain];
+   OverviewViewController *hvc = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];
 
    // recover it
    [navigationController pushViewController:hvc animated:NO];
