@@ -30,7 +30,6 @@ enum sec_one {
 };
 
 - (id)initWithStyle:(UITableViewStyle)style {
-   // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
    if (self = [super initWithStyle:style]) {
    }
    return self;
@@ -57,31 +56,31 @@ enum sec_one {
    [refreshButton release];
 }
 /*
-   - (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
    [super viewWillAppear:animated];
-   }
-   */
+}
+*/
 /*
-   - (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
    [super viewDidAppear:animated];
    }
-   */
+*/
 /*
-   - (void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
    [super viewWillDisappear:animated];
-   }
-   */
+}
+*/
 /*
-   - (void)viewDidDisappear:(BOOL)animated {
+- (void)viewDidDisappear:(BOOL)animated {
    [super viewDidDisappear:animated];
-   }
-   */
+}
+*/
 
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-// Return YES for supported orientations
-return (interfaceOrientation == UIInterfaceOrientationPortrait);
+   // Return YES for supported orientations
+   return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
 
@@ -99,7 +98,6 @@ return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
 
-
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -107,17 +105,17 @@ return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 // Customize the number of rows in the table view.
-   - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-      if (section == 0)
-         return SEC_ZERO_COUNT;
-      if (section == 1)
-         return SEC_ONE_COUNT;
-      return 0;
-   }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+   if (section == 0)
+      return SEC_ZERO_COUNT;
+   if (section == 1)
+      return SEC_ONE_COUNT;
+   return 0;
+}
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
    static NSString *CellIdentifier = @"RootMenuCell";
 
    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -156,7 +154,8 @@ return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
    // Navigation logic may go here. Create and push another view controller.
    // AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
    // [self.navigationController pushViewController:anotherViewController];
@@ -243,10 +242,9 @@ return YES;
    return section == 0 ? @"Task" : nil;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
    [super dealloc];
 }
 
-
 @end
-
