@@ -139,7 +139,7 @@
 
 - (NSArray *) existingTasks
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"where", @"ORDER", nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [NSString stringWithFormat:@"completed='' OR completed is NULL"],
       [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
@@ -151,9 +151,9 @@
 
 - (NSArray *) modifiedTasks
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"where", @"ORDER", nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
    NSArray *vals = [NSArray arrayWithObjects:
-      [NSString stringWithFormat:@"(completed='' OR completed is NULL) AND edit_bits>1"],
+      [NSString stringWithFormat:@"edit_bits>1"],
       [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
       nil];
 
@@ -163,7 +163,7 @@
 
 - (NSArray *) pendingTasks
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"where", @"ORDER", nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [NSString stringWithFormat:@"(completed='' OR completed is NULL) AND edit_bits & 1"],
       [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
@@ -178,7 +178,7 @@
    [task flagUpEditBits:EB_TASK_COMPLETED];
 
    NSDictionary *dict = [NSDictionary dictionaryWithObject:task.completed forKey:@"completed"];
-   [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"where id=%d", [task.iD intValue]]];
+   [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"WHERE id=%d", [task.iD intValue]]];
 }
 
 - (void) uncomplete:(RTMTask *)task
@@ -186,7 +186,7 @@
    [task flagUpEditBits:EB_TASK_COMPLETED];
 
    NSDictionary *dict = [NSDictionary dictionaryWithObject:[[MilponHelper sharedHelper] invalidDate] forKey:@"completed"];
-   [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"where id=%d", [task.iD intValue]]];
+   [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"WHERE id=%d", [task.iD intValue]]];
 }
 
 - (NSNumber *) createAtOffline:(NSDictionary *)params
@@ -372,7 +372,7 @@
 {
    NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d", [idd intValue]] forKey:@"WHERE"];
    NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
-   NSArray *tasks = [local_cache_ select:dict from:@"taask" option:where];
+   NSArray *tasks = [local_cache_ select:dict from:@"task" option:where];
    return tasks.count == 1;
 }
 

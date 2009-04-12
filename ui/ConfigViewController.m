@@ -38,7 +38,7 @@
    [reloadButton setTitle:@"refresh all local data (long wait)" forState:UIControlStateNormal];
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   [reloadButton addTarget:app action:@selector(refresh) forControlEvents:UIControlEventTouchDown];
+   [reloadButton addTarget:app action:@selector(fetchAll) forControlEvents:UIControlEventTouchDown];
    [self.view addSubview:reloadButton];
 
    UIButton *feedbackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];

@@ -400,7 +400,7 @@
    return YES;
 }
 
-- (BOOL) complete:(RTMExistingTask *)task
+- (BOOL) complete:(RTMTask *)task
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSString *timeline = [api createTimeline];
@@ -410,7 +410,7 @@
    NSArray *vals = [NSArray arrayWithObjects:
       [task.list_id stringValue],
       [task.taskseries_id stringValue],
-      [task.iD stringValue],
+      [task.task_id stringValue],
       timeline,
       nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];

@@ -194,8 +194,8 @@
 #endif // 0
    //refreshButton.enabled = NO;
    //[progressView progressBegin];
-   //NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];
-   NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(replaceAll) object:nil];
+   NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];
+   //NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(replaceAll) object:nil];
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    [app.operationQueue addOperation:ope];
@@ -216,11 +216,10 @@
 
    RTMSynchronizer *syncer = [[RTMSynchronizer alloc] init:auth];
 
-   /*
-   [syncer uploadPendingTasks:progressView];
-   [syncer syncModifiedTasks:progressView];
-   [syncer syncTasks:progressView];
-   */
+   //[syncer uploadPendingTasks:progressView];
+   //[syncer syncModifiedTasks:progressView];
+   //[syncer syncTasks:progressView];
+
    //[syncer uploadPendingTasks:nil];
    [syncer syncModifiedTasks:nil];
    [syncer syncTasks:nil];

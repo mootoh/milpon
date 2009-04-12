@@ -121,7 +121,8 @@
 
    int i=0;
    for (NSDictionary *taskseries in taskserieses_updated) {
-      [progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, taskserieses_updated.count] withProgress:(float)i/(float)taskserieses_updated.count];
+      if (progressView)
+         [progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, taskserieses_updated.count] withProgress:(float)i/(float)taskserieses_updated.count];
 
       [[TaskProvider sharedTaskProvider] createOrUpdate:taskseries];
       i++;
@@ -168,7 +169,7 @@
 
       // get Note from DB by old Task ID
       RTMAPINote *api_note = [[RTMAPINote alloc] init];
-      NSArray *notes = [RTMPendingTask getNotes:task.iD fromDB:nil]; // TODO
+      NSArray *notes = [RTMPendingTask getNotes:task.task_id fromDB:nil]; // TODO
       for (NSDictionary *note in notes) {
          // - API request (rtm.tasks.notes.add) using new Task ID
          [api_note add:[note objectForKey:@"text"] forIDs:ids];
@@ -179,7 +180,7 @@
       [api_note release];
 
       // remove old Task from DB
-      // [RTMPendingTask remove:task.iD fromDB:db]; TODO: update IDs instead of removing
+      // [RTMPendingTask remove:task.task_id fromDB:db]; TODO: update IDs instead of removing
 
       [progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/(float)pendings.count];
       i++;
@@ -191,14 +192,15 @@
 
 - (void) syncModifiedTasks:(ProgressView *)progressView
 {
-#if 0
+#if 1
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    int i=0;
    NSArray *tasks = [[TaskProvider sharedTaskProvider] modifiedTasks];
-   for (RTMExistingTask *task in tasks) {
-      [progressView updateMessage:[NSString stringWithFormat:@"updating %d/%d, %@...", i,tasks.count, task.name] withProgress:(float)i/(float)tasks.count];
+   for (RTMTask *task in tasks) {
+      if (progressView)
+         [progressView updateMessage:[NSString stringWithFormat:@"updating %d/%d, %@...", i,tasks.count, task.name] withProgress:(float)i/(float)tasks.count];
       int edit_bits = [task.edit_bits intValue];
 
       if (edit_bits & EB_TASK_DUE) {
@@ -206,7 +208,7 @@
          NSArray *vals = [NSArray arrayWithObjects:
             [NSString stringWithFormat:@"%d", [task.list_id intValue]],
             [NSString stringWithFormat:@"%d", [task.taskseries_id intValue]],
-            [NSString stringWithFormat:@"%d", [task.iD intValue]],
+            [NSString stringWithFormat:@"%d", [task.task_id intValue]],
             nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
@@ -236,7 +238,7 @@
          NSArray *vals = [NSArray arrayWithObjects:
             [NSString stringWithFormat:@"%d", [task.list_id intValue]],
             [NSString stringWithFormat:@"%d", [task.taskseries_id intValue]],
-            [NSString stringWithFormat:@"%d", [task.iD intValue]],
+            [NSString stringWithFormat:@"%d", [task.task_id intValue]],
             nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 

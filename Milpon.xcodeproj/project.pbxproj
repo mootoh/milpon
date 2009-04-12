@@ -462,7 +462,7 @@
 		B970A8150F637F71004467E9 /* ScaffoldTaskEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldTaskEditViewController.h; path = scaffold/ScaffoldTaskEditViewController.h; sourceTree = "<group>"; };
 		B970A8160F637F71004467E9 /* ScaffoldTaskEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldTaskEditViewController.m; path = scaffold/ScaffoldTaskEditViewController.m; sourceTree = "<group>"; };
 		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
-		B985AB890F6108A8004A1B54 /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B985AB890F6108A8004A1B54 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MilponBetaIconSmall.png; sourceTree = "<group>"; };
 		B9AE53190F6B4C6A0076D258 /* Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Beta.plist; sourceTree = SOURCE_ROOT; };
@@ -605,7 +605,7 @@
 				B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */,
 				B914B34D0F5EBDA6009C19BE /* UnitTest.octest */,
 				B9D0431E0F5F477400641E61 /* UnitTest.octest */,
-				B985AB890F6108A8004A1B54 /* Milpon.app */,
+				B985AB890F6108A8004A1B54 /* Scaffold.app */,
 				B9B956560F65D2720046712A /* UnitTest.octest */,
 				B9B957270F6615930046712A /* UnitTest.octest */,
 				B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */,
@@ -666,9 +666,9 @@
 			children = (
 				B9CBAFF80F5991710025216C /* add */,
 				B9CBAFF90F5991B80025216C /* auth */,
+				B93A12990F921AC200C0A9AB /* task */,
 				B9160EDA0F565D1500473A95 /* AppDelegate.h */,
 				B9160EDB0F565D1500473A95 /* AppDelegate.m */,
-				B93A12990F921AC200C0A9AB /* task */,
 				B9160EE00F565D1500473A95 /* ConfigViewController.h */,
 				B9160EE10F565D1500473A95 /* ConfigViewController.m */,
 				B9160EE40F565D1500473A95 /* ListSelectViewController.h */,
@@ -1027,7 +1027,7 @@
 			);
 			name = Scaffold;
 			productName = Milpon;
-			productReference = B985AB890F6108A8004A1B54 /* Milpon.app */;
+			productReference = B985AB890F6108A8004A1B54 /* Scaffold.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B9AE52A10F6B4AE50076D258 /* Milpon Beta */ = {
@@ -1726,10 +1726,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"LOCAL_DEBUG=1",
-					"DEBUG=1",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				INFOPLIST_FILE = Beta.plist;
 				PRODUCT_NAME = "Milpon Beta";
 				SDKROOT = iphonesimulator2.2.1;
