@@ -11,8 +11,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		926642100F9180F700249EB4 /* RootMenuViewController.m in Resources */ = {isa = PBXBuildFile; fileRef = 9266420F0F9180F700249EB4 /* RootMenuViewController.m */; };
-		926642110F9180F700249EB4 /* RootMenuViewController.m in Resources */ = {isa = PBXBuildFile; fileRef = 9266420F0F9180F700249EB4 /* RootMenuViewController.m */; };
 		B914B2D70F5E7D6E009C19BE /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
 		B914B30F0F5EBAC6009C19BE /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
 		B914B33C0F5EBDA6009C19BE /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
@@ -286,6 +284,8 @@
 		B9B95CA70F6767BE0046712A /* NoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B95CA60F6767BE0046712A /* NoteEdit.xib */; };
 		B9C648930F610B3100A47F4F /* ScaffoldMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C648920F610B3100A47F4F /* ScaffoldMainWindow.xib */; };
 		B9C648980F610B6600A47F4F /* ScaffoldAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */; };
+		B9C9A8690F91D0070078DC79 /* RootMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */; };
+		B9C9A86A0F91D0080078DC79 /* RootMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */; };
 		B9D043180F5F477400641E61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9D043190F5F477400641E61 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9D043380F5F48C800641E61 /* TaskProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043370F5F48C800641E61 /* TaskProviderTest.m */; };
@@ -309,8 +309,6 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Milpon_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Milpon_Prefix.pch; sourceTree = "<group>"; };
-		9266420E0F9180F700249EB4 /* RootMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootMenuViewController.h; sourceTree = "<group>"; };
-		9266420F0F9180F700249EB4 /* RootMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootMenuViewController.m; sourceTree = "<group>"; };
 		B914B34D0F5EBDA6009C19BE /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B914B34E0F5EBDA6009C19BE /* ListUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ListUnitTest-Info.plist"; path = "../ListUnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9160EC00F565CEF00473A95 /* RTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPI.h; sourceTree = "<group>"; };
@@ -464,7 +462,7 @@
 		B970A8150F637F71004467E9 /* ScaffoldTaskEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldTaskEditViewController.h; path = scaffold/ScaffoldTaskEditViewController.h; sourceTree = "<group>"; };
 		B970A8160F637F71004467E9 /* ScaffoldTaskEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldTaskEditViewController.m; path = scaffold/ScaffoldTaskEditViewController.m; sourceTree = "<group>"; };
 		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
-		B985AB890F6108A8004A1B54 /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B985AB890F6108A8004A1B54 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MilponBetaIconSmall.png; sourceTree = "<group>"; };
 		B9AE53190F6B4C6A0076D258 /* Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Beta.plist; sourceTree = SOURCE_ROOT; };
@@ -497,6 +495,8 @@
 		B9C648960F610B6600A47F4F /* ScaffoldAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldAppDelegate.h; path = scaffold/ScaffoldAppDelegate.h; sourceTree = "<group>"; };
 		B9C648970F610B6600A47F4F /* ScaffoldAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldAppDelegate.m; path = scaffold/ScaffoldAppDelegate.m; sourceTree = "<group>"; };
 		B9C648A10F610BB300A47F4F /* Scaffold-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Scaffold-Info.plist"; sourceTree = "<group>"; };
+		B9C9A8670F91D0070078DC79 /* RootMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootMenuViewController.h; sourceTree = "<group>"; };
+		B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootMenuViewController.m; sourceTree = "<group>"; };
 		B9D0430C0F5F470100641E61 /* TaskProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskProvider.h; sourceTree = "<group>"; };
 		B9D0431E0F5F477400641E61 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9D0431F0F5F477400641E61 /* TaskUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TaskUnitTest-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -605,7 +605,7 @@
 				B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */,
 				B914B34D0F5EBDA6009C19BE /* UnitTest.octest */,
 				B9D0431E0F5F477400641E61 /* UnitTest.octest */,
-				B985AB890F6108A8004A1B54 /* Milpon.app */,
+				B985AB890F6108A8004A1B54 /* Scaffold.app */,
 				B9B956560F65D2720046712A /* UnitTest.octest */,
 				B9B957270F6615930046712A /* UnitTest.octest */,
 				B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */,
@@ -702,8 +702,8 @@
 				B926C44B0F67812F0014DB7D /* AttributeView.m */,
 				B926C4F40F67A0AD0014DB7D /* TagListViewController.h */,
 				B926C4F50F67A0AD0014DB7D /* TagListViewController.m */,
-				9266420E0F9180F700249EB4 /* RootMenuViewController.h */,
-				9266420F0F9180F700249EB4 /* RootMenuViewController.m */,
+				B9C9A8670F91D0070078DC79 /* RootMenuViewController.h */,
+				B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -1019,7 +1019,7 @@
 			);
 			name = Scaffold;
 			productName = Milpon;
-			productReference = B985AB890F6108A8004A1B54 /* Milpon.app */;
+			productReference = B985AB890F6108A8004A1B54 /* Scaffold.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B9AE52A10F6B4AE50076D258 /* Milpon Beta */ = {
@@ -1172,7 +1172,6 @@
 				B970AC060F6416A1004467E9 /* TaskView.xib in Resources */,
 				B9B95CA70F6767BE0046712A /* NoteEdit.xib in Resources */,
 				B926C4BF0F67991B0014DB7D /* icon_url.png in Resources */,
-				926642100F9180F700249EB4 /* RootMenuViewController.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1239,7 +1238,6 @@
 				B9AE55160F6CEF610076D258 /* rtm.tasks.getList.xml in Resources */,
 				B9AE55170F6CEF610076D258 /* rtm.test.echo.xml in Resources */,
 				B9AE55180F6CEF610076D258 /* tasks.getList.xml in Resources */,
-				926642110F9180F700249EB4 /* RootMenuViewController.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1399,6 +1397,7 @@
 				B9B959110F664B780046712A /* TagViewController.m in Sources */,
 				B926C44C0F67812F0014DB7D /* AttributeView.m in Sources */,
 				B926C4F60F67A0AD0014DB7D /* TagListViewController.m in Sources */,
+				B9C9A86A0F91D0080078DC79 /* RootMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1503,6 +1502,7 @@
 				B9AE52F30F6B4AE50076D258 /* TagViewController.m in Sources */,
 				B9AE52F40F6B4AE50076D258 /* AttributeView.m in Sources */,
 				B9AE52F50F6B4AE50076D258 /* TagListViewController.m in Sources */,
+				B9C9A8690F91D0070078DC79 /* RootMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

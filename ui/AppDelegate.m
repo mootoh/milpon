@@ -12,16 +12,19 @@
 #import "RTMTask.h"
 #import "LocalCache.h"
 #import "AuthViewController.h"
-#import "RootViewController.h"
 #import "AddTaskViewController.h"
+#import "RootMenuViewController.h"
 #import "RTMSynchronizer.h"
 #import "Reachability.h"
 #import "logger.h"
 
-@implementation AppDelegate
+@interface AppDelegate (Private)
+- (NSString *) authPath;
+- (void) authInit:(NSString *)path;
+- (void) showAuthentication;
+@end // AppDelegate (Private)
 
-@synthesize window, auth, operationQueue, navigationController, bottomBar;
-
+@implementation AppDelegate (Private)
 - (NSString *) authPath
 {
    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -44,6 +47,23 @@
    }
 }
 
+- (void) showAuthentication
+{
+   AuthViewController *avc = [[AuthViewController alloc] initWithNibName:nil bundle:nil];
+   avc.navigationItem.hidesBackButton = YES;
+   
+   UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:avc];
+   [navigationController presentModalViewController:nc animated:NO];
+   [nc release];
+}
+
+
+@end // AppDelegate (Private)
+
+@implementation AppDelegate
+
+@synthesize window, auth, operationQueue, bottomBar;
+
 /**
   * init DB and authorization info
   */
@@ -62,7 +82,7 @@
    return self;
 }
 
-- (void)dealloc
+- (void) dealloc
 {
    [navigationController release];
    [bottomBar release];
@@ -72,31 +92,22 @@
    [super dealloc];
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application
+- (void) applicationDidFinishLaunching:(UIApplication *)application
 {
-#define USE_AUTH
-#ifdef USE_AUTH
+   RootMenuViewController *rmvc = [[RootMenuViewController alloc] initWithStyle:UITableViewStyleGrouped];
+   navigationController = [[UINavigationController alloc] initWithRootViewController:rmvc];
+   [rmvc release];
    [window addSubview:navigationController.view];
 
-   if (!auth.token || [auth.token isEqualToString:@""]) {
-      AuthViewController *avc = [[AuthViewController alloc] initWithNibName:nil bundle:nil];
-      avc.navigationItem.hidesBackButton = YES;
-
-      UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:avc];
-      [navigationController presentModalViewController:nc animated:NO];
-      [nc release];
-   }
-#else // USE_AUTH
-      RootViewController *root = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-      [window addSubview:root.view];
-#endif // USE_AUTH
+   if (!auth.token || [auth.token isEqualToString:@""])
+      [self showAuthentication];
 
    // create a bottom bar.
    CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
    const CGFloat toolbarHeight = 44;   
    self.bottomBar = [[UIToolbar alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height-toolbarHeight, appFrame.size.width, toolbarHeight)];
-   [self.navigationController.view addSubview:bottomBar];
-
+   [navigationController.view addSubview:bottomBar];
+   
    [window makeKeyAndVisible];
 }
 
