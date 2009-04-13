@@ -298,9 +298,11 @@
 
 - (NSString *) lastSync
 {
-   NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSString class] forKey:@"sync_date"];
+   NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSDate class] forKey:@"sync_date"];
    NSDictionary *result = [[self select:dict from:@"last_sync"] objectAtIndex:0];
-   return [result objectForKey:@"sync_date"];
+   NSDate *last_sync_date = [result objectForKey:@"sync_date"];
+   return [[MilponHelper sharedHelper] dateToRtmString:last_sync_date];
+
 }
 
 - (void) updateLastSync

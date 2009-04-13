@@ -146,7 +146,7 @@ enum {
 
    AttributeView *tag_field = [[AttributeView alloc] initWithFrame:CGRectMake(14, 140, 320-14*2, 20)];
    tag_field.tag = TAG_TAG;
-   [tag_field setDelegate:self asAction:@selector(edit_tag)];
+   //[tag_field setDelegate:self asAction:@selector(edit_tag)];
    NSString *tag_str = @"";
    for (NSString *tag in task.tags)
       tag_str = [tag_str stringByAppendingFormat:@"%@ ", tag];
