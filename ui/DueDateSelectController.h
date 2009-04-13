@@ -6,17 +6,16 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "Milpon.h"
 
-@class AddTaskViewController;
 @class UICCalendarPicker;
 
 @interface DueDateSelectController : UITableViewController
 {
-   AddTaskViewController *parent;
+   UIViewController <TaskEditDelegate> *parent;
    UICCalendarPicker *calendar_picker;
 }
 
-@property (nonatomic, retain) AddTaskViewController *parent;
+@property (nonatomic, retain) UIViewController <TaskEditDelegate> *parent;
 
 @end

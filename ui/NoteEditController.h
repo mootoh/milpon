@@ -6,17 +6,15 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-@class AddTaskViewController;
+#import "Milpon.h"
 
 @interface NoteEditController : UIViewController
 {
    IBOutlet UITextView *note_view;
-   AddTaskViewController *parent;
+   UIViewController <TaskEditDelegate> *parent;
    NSString *note;
 }
 
-@property (nonatomic,retain) AddTaskViewController *parent;
+@property (nonatomic,retain) UIViewController <TaskEditDelegate> *parent;
 @property (nonatomic,retain) NSString *note;
 @end

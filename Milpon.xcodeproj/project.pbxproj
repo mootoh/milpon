@@ -442,6 +442,7 @@
 		B9AE55060F6CEF610076D258 /* rtm.tasks.getList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.tasks.getList.xml; path = sample/rtm.tasks.getList.xml; sourceTree = SOURCE_ROOT; };
 		B9AE55070F6CEF610076D258 /* rtm.test.echo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.test.echo.xml; path = sample/rtm.test.echo.xml; sourceTree = SOURCE_ROOT; };
 		B9AE55080F6CEF610076D258 /* tasks.getList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = tasks.getList.xml; path = sample/tasks.getList.xml; sourceTree = SOURCE_ROOT; };
+		B9B6580B0F937D0400A1FA0A /* Milpon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Milpon.h; sourceTree = "<group>"; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B956560F65D2720046712A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "APILocalTest-Info.plist"; path = "../APILocalTest-Info.plist"; sourceTree = "<group>"; };
@@ -610,36 +611,26 @@
 			children = (
 				B9CBAFF80F5991710025216C /* add */,
 				B9CBAFF90F5991B80025216C /* auth */,
-				B93A12990F921AC200C0A9AB /* task */,
+				B93A12990F921AC200C0A9AB /* list tasks */,
+				B9B657650F9344AB00A1FA0A /* task */,
 				B9160EDA0F565D1500473A95 /* AppDelegate.h */,
 				B9160EDB0F565D1500473A95 /* AppDelegate.m */,
 				B9160EE00F565D1500473A95 /* ConfigViewController.h */,
 				B9160EE10F565D1500473A95 /* ConfigViewController.m */,
 				B9160EE40F565D1500473A95 /* ListSelectViewController.h */,
 				B9160EE50F565D1500473A95 /* ListSelectViewController.m */,
-				B9160EE60F565D1500473A95 /* ListViewController.h */,
-				B9160EE70F565D1500473A95 /* ListViewController.m */,
 				B9160EEA0F565D1500473A95 /* MenuViewController.h */,
 				B9160EEB0F565D1500473A95 /* MenuViewController.m */,
 				B9160EEC0F565D1500473A95 /* ReloadableTableViewController.h */,
 				B9160EEF0F565D1500473A95 /* TaskListViewController.h */,
 				B9160EF00F565D1500473A95 /* TaskListViewController.m */,
-				B9160EF10F565D1500473A95 /* TaskViewController.h */,
-				B9160EF20F565D1500473A95 /* TaskViewController.m */,
 				B9160FBA0F565DB600473A95 /* PriorityImageView.h */,
 				B9160FBB0F565DB600473A95 /* PriorityImageView.m */,
 				B9160FBC0F565DB600473A95 /* ProgressView.h */,
 				B9160FBD0F565DB600473A95 /* ProgressView.m */,
-				B9160FBE0F565DB600473A95 /* RTMTaskCell.h */,
-				B9160FBF0F565DB600473A95 /* RTMTaskCell.m */,
 				B9160FC00F565DB600473A95 /* TaskEditCell.h */,
 				B9160FC10F565DB600473A95 /* TaskEditCell.m */,
-				B9B9590F0F664B780046712A /* TagViewController.h */,
-				B9B959100F664B780046712A /* TagViewController.m */,
 				B9160FB90F565DB600473A95 /* MainWindow.xib */,
-				B970AC050F6416A1004467E9 /* TaskView.xib */,
-				B926C44A0F67812F0014DB7D /* AttributeView.h */,
-				B926C44B0F67812F0014DB7D /* AttributeView.m */,
 				B926C4F40F67A0AD0014DB7D /* TagListViewController.h */,
 				B926C4F50F67A0AD0014DB7D /* TagListViewController.m */,
 				B9C9A8670F91D0070078DC79 /* RootMenuViewController.h */,
@@ -709,6 +700,7 @@
 				B9160F370F565D6800473A95 /* MilponHelper.h */,
 				B9160F380F565D6800473A95 /* MilponHelper.m */,
 				B9160F390F565D6800473A95 /* PrivateInfo.h */,
+				B9B6580B0F937D0400A1FA0A /* Milpon.h */,
 			);
 			path = others;
 			sourceTree = "<group>";
@@ -815,13 +807,19 @@
 			path = mock;
 			sourceTree = "<group>";
 		};
-		B93A12990F921AC200C0A9AB /* task */ = {
+		B93A12990F921AC200C0A9AB /* list tasks */ = {
 			isa = PBXGroup;
 			children = (
+				B9160FBE0F565DB600473A95 /* RTMTaskCell.h */,
+				B9160FBF0F565DB600473A95 /* RTMTaskCell.m */,
 				B93A12950F921AAA00C0A9AB /* OverviewViewController.h */,
 				B93A12960F921AAA00C0A9AB /* OverviewViewController.m */,
+				B9160EE60F565D1500473A95 /* ListViewController.h */,
+				B9160EE70F565D1500473A95 /* ListViewController.m */,
+				B9B9590F0F664B780046712A /* TagViewController.h */,
+				B9B959100F664B780046712A /* TagViewController.m */,
 			);
-			name = task;
+			name = "list tasks";
 			sourceTree = "<group>";
 		};
 		B95C5C160F598F9C00A368DC /* icons */ = {
@@ -869,6 +867,18 @@
 				B9AE55080F6CEF610076D258 /* tasks.getList.xml */,
 			);
 			name = sample;
+			sourceTree = "<group>";
+		};
+		B9B657650F9344AB00A1FA0A /* task */ = {
+			isa = PBXGroup;
+			children = (
+				B970AC050F6416A1004467E9 /* TaskView.xib */,
+				B9160EF10F565D1500473A95 /* TaskViewController.h */,
+				B9160EF20F565D1500473A95 /* TaskViewController.m */,
+				B926C44A0F67812F0014DB7D /* AttributeView.h */,
+				B926C44B0F67812F0014DB7D /* AttributeView.m */,
+			);
+			name = task;
 			sourceTree = "<group>";
 		};
 		B9CBAFF80F5991710025216C /* add */ = {

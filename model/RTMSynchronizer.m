@@ -141,13 +141,19 @@
    for (RTMTask *task in pendings) {
       NSString *list_id = [task.list_id stringValue];
       NSDictionary *task_ret = [api_task add:task.name inList:list_id];
+      if (task_ret == nil) {
+         [[NSException
+            exceptionWithName:@"RTMSynchronizerException"
+            reason:[NSString stringWithFormat:@"Failed to create a task in RTM web site."]
+            userInfo:nil] raise];
+      }
 
-      // if added successfuly
+      // added successfuly
       NSMutableDictionary *ids = [NSMutableDictionary dictionaryWithDictionary:task_ret];
       [ids setObject:list_id forKey:@"list_id"];
 
       if (task.due && ![task.due isEqualToDate:[[MilponHelper sharedHelper] invalidDate]]) {
-         NSString *due = [[[MilponHelper sharedHelper] dateToString:task.due]stringByReplacingOccurrencesOfString:@" " withString:@"T"];
+         NSString *due = [[[MilponHelper sharedHelper] dateToString:task.due]stringByReplacingOccurrencesOfString:@" " withString:@"T"]; // TODO
          due = [due stringByReplacingOccurrencesOfString:@" GMT" withString:@"Z"];
          [api_task setDue:due forIDs:ids];
       }
@@ -176,6 +182,8 @@
          [[TaskProvider sharedTaskProvider] removeNote:[note objectForKey:@"id"]]; // TODO: update IDs instead of removing
       }
       [api_note release];
+
+      [[TaskProvider sharedTaskProvider] remove:task]; // TODO: update IDS instaed of removing
 
       [progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/(float)pendings.count];
       i++;

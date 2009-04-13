@@ -7,7 +7,6 @@
 //
 
 #import "DueDateSelectController.h"
-#import "AddTaskViewController.h"
 #import "UICCalendarPicker.h"
 
 @implementation DueDateSelectController
@@ -89,11 +88,10 @@ enum {
    return cell;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
    switch (indexPath.row) {
       case ROW_TODAY:
-         self.parent.due = [NSDate date];
+         [self.parent setDue:[NSDate date]];
          break;
       case ROW_TOMORROW: {
          NSDate *now = [NSDate date];
@@ -101,7 +99,7 @@ enum {
          [comps setDay:1];
          NSDate *date = [[NSCalendar currentCalendar] dateByAddingComponents:comps toDate:now  options:0];
          [comps release];
-         self.parent.due = date;
+         [self.parent setDue:date];
          break;
       }
       case ROW_CALENDAR:
@@ -117,27 +115,22 @@ enum {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   if (indexPath.row == 2)
-      return 340.0f;
-   else
-      return 44.0f;
+   return (indexPath.row == 2) ? 340.0f : 44.0f;
 }
-
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-    // Release anything that's not essential, such as cached data
+    [super didReceiveMemoryWarning];
 }
 
-
-- (void)dealloc {
+- (void)dealloc
+{
     [super dealloc];
 }
 
 - (void) picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate
 {
    if (selectedDate == nil) return;
-   self.parent.due = [selectedDate objectAtIndex:0];
+   [self.parent setDue:[selectedDate objectAtIndex:0]];
    [self.navigationController popViewControllerAnimated:YES];
    [self.parent updateView]; // TODO: should reload due row only.
 }

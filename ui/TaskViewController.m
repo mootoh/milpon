@@ -9,6 +9,7 @@
 #import "TaskViewController.h"
 #import "LocalCache.h"
 #import "AppDelegate.h"
+#import "RTMTask.h"
 #import "RTMList.h"
 #import "UICCalendarPicker.h"
 #import "logger.h"
@@ -16,6 +17,8 @@
 #import "MilponHelper.h"
 #import "AttributeView.h"
 #import "DueDateSelectController.h"
+#import "NoteEditController.h"
+#import "TagSelectController.h"
 
 #define kNOTE_PLACE_HOLDER @"note..."
 
@@ -25,15 +28,17 @@
 {
    if (self = [super initWithFrame:aRect]) {
       toggleCalendarDisplay = NO;
+      self.userInteractionEnabled = YES;
    }
    return self;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-   toggleCalendarDisplay = toggleCalendarDisplay ? NO : YES;
+   toggleCalendarDisplay = !toggleCalendarDisplay;
+   
    if (toggleCalendarDisplay) {
-			UICCalendarPicker *picker = [[UICCalendarPicker alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 204.0f, 234.0f)];
+      UICCalendarPicker *picker = [[UICCalendarPicker alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 204.0f, 234.0f)];
       [picker setDelegate:viewController];
       [picker showInView:self.superview];
       [picker release];
@@ -54,22 +59,21 @@
 
 @end
 
-
 @interface TaskViewController (Private)
 - (void) setPriorityButton;
 - (void) displayNote;
 @end
 
-
 @implementation TaskViewController
 
+@synthesize task;
+
 // icons {{{
-static NSArray *s_icons;
+static NSArray *s_icons = nil;
 
 + (NSArray *) icons
 {
-   static BOOL first = YES;
-   if (first) {
+   if (! s_icons) {
       NSMutableArray *ics = [[NSMutableArray alloc] init];
       for (int i=0; i<4; i++) {
          UIImage *img = [[UIImage alloc] initWithContentsOfFile:
@@ -80,25 +84,24 @@ static NSArray *s_icons;
       }
       s_icons = [ics retain];
       [ics release];
-      first = NO;
    }
    return s_icons;
 }
 // }}}
 
-@synthesize task;
-
 enum {
    TAG_NAME = 1,
    TAG_DUE,
    TAG_LIST,
+   TAG_TAG,
+   TAG_NOTE,
+   TAG_INPUT_NAME
 };
 
 - (void) viewDidLoad
 {
    self.title = task.name;
    [due setViewController:self];
-   due.userInteractionEnabled = YES;
 
 /*
    name.text = task.name;
@@ -131,6 +134,7 @@ enum {
    due_field.icon = [[[UIImage alloc] initWithContentsOfFile:
       [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_calendar.png"]] autorelease];
    [self.view addSubview:due_field];
+   due_field.tag = TAG_DUE;
    [due_field release];
 
    AttributeView *list_field = [[AttributeView alloc] initWithFrame:CGRectMake(14, 100, (320-14*2)/3, 20)];
@@ -141,6 +145,8 @@ enum {
    [list_field release];
 
    AttributeView *tag_field = [[AttributeView alloc] initWithFrame:CGRectMake(14, 140, 320-14*2, 20)];
+   tag_field.tag = TAG_TAG;
+   [tag_field setDelegate:self asAction:@selector(edit_tag)];
    NSString *tag_str = @"";
    for (NSString *tag in task.tags)
       tag_str = [tag_str stringByAppendingFormat:@"%@ ", tag];
@@ -180,10 +186,12 @@ enum {
    [self.view addSubview:dialogView];
 
    note_field = [[AttributeView alloc] initWithFrame:CGRectMake(14, 180, 320-14*2, 150)];
+   [note_field setDelegate:self asAction:@selector(edit_note)];
    note_field.text = task.name;
    note_field.icon = [[[UIImage alloc] initWithContentsOfFile:
       [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_note.png"]] autorelease];
    note_field.line_width = 1.0f;
+   note_field.tag = TAG_NOTE;
    [self.view addSubview:note_field];
 
    /*
@@ -273,29 +281,23 @@ prioritySelected_N(1);
 prioritySelected_N(2);
 prioritySelected_N(3);
 
-/* -------------------------------------------------------------------
- * UITextFieldDelegate
- */
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-#if 0
-   LOG(@"textFieldShouldReturn");
-   if (textField == name) {
-   } else if (textField == location) {
-   } else if (textField == repeat) {
-   } else if (textField == estimate) {
-   } else if (textField == list) {
+   if (textField.tag == TAG_INPUT_NAME) {
+      AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_NAME];
+      av.in_editing = NO;
+      av.text = textField.text;
+      self.task.name = textField.text;
+      [av setNeedsDisplay];
    }
 
    [textField resignFirstResponder];
-#endif // 0
+   [textField removeFromSuperview];
    return YES;
 }
 
 - (void) picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate
 {
-   LOG(@"picker");
    NSDate *theDate = [selectedDate objectAtIndex:0];
    task.due = theDate;
 
@@ -308,12 +310,17 @@ prioritySelected_N(3);
    av.in_editing = YES;
    [av drawRect:av.frame];
 
-   UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(24, 0, av.frame.size.width-24, av.frame.size.height-av.line_width)];
+   UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(24, 0, av.frame.size.width-24, av.frame.size.height-av.line_width-2)];
    tf.placeholder = av.text;
    tf.opaque = YES;
    tf.backgroundColor = [UIColor whiteColor];
+   tf.font = [UIFont systemFontOfSize:14];
+   tf.delegate = self;
+   tf.returnKeyType = UIReturnKeyDone;
+   tf.tag = TAG_INPUT_NAME;
    [av addSubview:tf];
    [tf becomeFirstResponder];
+   [tf release];
 }
 
 - (void) edit_due
@@ -331,6 +338,44 @@ prioritySelected_N(3);
 - (void) setDue:(NSDate *)date
 {
    task.due = date;
+   
+   NSCalendar *calendar = [NSCalendar currentCalendar];
+   unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+   NSDateComponents *comps = [calendar components:unitFlags fromDate:task.due];
+   
+   NSString *dueString = [NSString stringWithFormat:@"%d/%d", [comps month], [comps day]];
+   
+   AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_DUE];
+   av.in_editing = NO;
+   av.text = dueString;
+   
+   [av setNeedsDisplay];
+}
+
+- (void) edit_note
+{
+   notePages.numberOfPages = task.notes.count;
+   if (0 == task.notes.count) {
+      return;
+   }
+   
+   NSDictionary *note = [task.notes objectAtIndex:notePages.currentPage];
+   NSString *text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
+
+   NoteEditController *vc = [[NoteEditController alloc] initWithNibName:nil bundle:nil];
+   vc.parent = self;
+   vc.note = text;
+   [self.navigationController pushViewController:vc animated:YES];
+   [vc release];
+}
+
+- (void) edit_tag
+{
+   TagSelectController *vc = [[TagSelectController alloc] initWithNibName:nil bundle:nil];
+   vc.parent = self;
+   [vc setTags:task.tags];
+   [self.navigationController pushViewController:vc animated:YES];
+   [vc release];
 }
 
 - (void) setList:(RTMList *)list
@@ -340,6 +385,15 @@ prioritySelected_N(3);
 - (void) updateView
 {
    // TODO
+}
+
+- (void) setNote:(NSString *)note
+{
+
+   AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_NOTE];
+   av.in_editing = NO;
+   av.text = note;
+   [av setNeedsDisplay];
 }
 
 @end

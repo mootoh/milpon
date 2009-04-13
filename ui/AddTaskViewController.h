@@ -6,9 +6,11 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
+#import "Milpon.h"
+
 @class RTMList;
 
-@interface AddTaskViewController : UITableViewController
+@interface AddTaskViewController : UITableViewController <TaskEditDelegate>
 {
    UITextField *name_field;
    UIButton *due_button;
@@ -32,7 +34,5 @@
  * @todo: add rrule
  */
 - (IBAction) save;
-
-- (void) updateView;
 
 @end

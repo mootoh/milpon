@@ -6,12 +6,11 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "RTMTask.h"
+#import "Milpon.h"
 
-@class TaskViewController;
 @class AttributeView;
 @class RTMList;
+@class RTMTask;
 
 @interface DueLabel : UILabel
 {
@@ -24,7 +23,7 @@
 @end
 
 
-@interface TaskViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate>
+@interface TaskViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate, TaskEditDelegate>
 {
    RTMTask *task;
    IBOutlet DueLabel      *due;
