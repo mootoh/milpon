@@ -299,7 +299,7 @@
 - (NSString *) lastSync
 {
    NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSString class] forKey:@"sync_date"];
-   NSString *result = [[self select:dict from:@"last_sync"] objectAtIndex:0];
+   NSDictionary *result = [[self select:dict from:@"last_sync"] objectAtIndex:0];
    return [result objectForKey:@"sync_date"];
 }
 
