@@ -216,11 +216,7 @@
 
    RTMSynchronizer *syncer = [[RTMSynchronizer alloc] init:auth];
 
-   //[syncer uploadPendingTasks:progressView];
-   //[syncer syncModifiedTasks:progressView];
-   //[syncer syncTasks:progressView];
-
-   //[syncer uploadPendingTasks:nil];
+   [syncer uploadPendingTasks:nil];
    [syncer syncModifiedTasks:nil];
    [syncer syncTasks:nil];
 

@@ -10,6 +10,7 @@
 @class RTMTask;
 @class RTMList;
 @class RTMTag;
+@class RTMNote;
 
 @interface TaskProvider : NSObject
 
@@ -36,6 +37,8 @@
 - (void) updateTask:(NSDictionary *)task inTaskSeries:(NSDictionary *)taskseries;
 
 - (void) createNote:(NSString *)note task_id:(NSNumber *)tid;
+- (NSArray *) getNotes:(RTMTask *) task;
+- (void) removeNote:(NSNumber *) note_id;
 
 + (TaskProvider *) sharedTaskProvider;
 

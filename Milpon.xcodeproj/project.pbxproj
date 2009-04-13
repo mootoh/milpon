@@ -462,7 +462,7 @@
 		B970A8150F637F71004467E9 /* ScaffoldTaskEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaffoldTaskEditViewController.h; path = scaffold/ScaffoldTaskEditViewController.h; sourceTree = "<group>"; };
 		B970A8160F637F71004467E9 /* ScaffoldTaskEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScaffoldTaskEditViewController.m; path = scaffold/ScaffoldTaskEditViewController.m; sourceTree = "<group>"; };
 		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
-		B985AB890F6108A8004A1B54 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B985AB890F6108A8004A1B54 /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MilponBetaIconSmall.png; sourceTree = "<group>"; };
 		B9AE53190F6B4C6A0076D258 /* Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Beta.plist; sourceTree = SOURCE_ROOT; };
@@ -605,7 +605,7 @@
 				B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */,
 				B914B34D0F5EBDA6009C19BE /* UnitTest.octest */,
 				B9D0431E0F5F477400641E61 /* UnitTest.octest */,
-				B985AB890F6108A8004A1B54 /* Scaffold.app */,
+				B985AB890F6108A8004A1B54 /* Milpon.app */,
 				B9B956560F65D2720046712A /* UnitTest.octest */,
 				B9B957270F6615930046712A /* UnitTest.octest */,
 				B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */,
@@ -1027,7 +1027,7 @@
 			);
 			name = Scaffold;
 			productName = Milpon;
-			productReference = B985AB890F6108A8004A1B54 /* Scaffold.app */;
+			productReference = B985AB890F6108A8004A1B54 /* Milpon.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B9AE52A10F6B4AE50076D258 /* Milpon Beta */ = {

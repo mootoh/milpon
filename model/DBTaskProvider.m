@@ -328,6 +328,25 @@
    dirty_all_tasks_ = YES;
 }
 
+- (void) removeNote:(NSNumber *) note_id
+{
+   NSString *cond = [NSString stringWithFormat:@"WHERE id = %d", [note_id intValue]];
+   [local_cache_ delete:@"note" condition:cond];
+}
+
+- (NSArray *) getNotes:(RTMTask *) task
+{
+   NSDictionary *cond = [NSDictionary dictionaryWithObject:
+      [NSString stringWithFormat:@"task_id=%d", [task.iD intValue]]
+      forKey:@"WHERE"];
+
+   NSArray *keys = [NSArray arrayWithObjects:@"id", @"text", nil];
+   NSArray *vals = [NSArray arrayWithObjects:[NSNumber class], [NSString class], nil];
+   NSDictionary *query = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+
+   return [local_cache_ select:query from:@"note" option:cond];
+}
+
 - (void) erase
 {
    [local_cache_ delete:@"task" condition:nil];

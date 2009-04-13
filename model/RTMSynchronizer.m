@@ -13,7 +13,6 @@
 #import "RTMAPIList.h"
 #import "RTMAPITask.h"
 #import "RTMAPINote.h"
-//#import "RTMPendingTask.h"
 #import "ProgressView.h"
 #import "logger.h"
 #import "ListProvider.h"
@@ -135,12 +134,11 @@
 
 - (void) uploadPendingTasks:(ProgressView *)progressView
 {
-#if 0
    NSArray *pendings = [[TaskProvider sharedTaskProvider] pendingTasks];
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
 
    int i=1;
-   for (RTMPendingTask *task in pendings) {
+   for (RTMTask *task in pendings) {
       NSString *list_id = [task.list_id stringValue];
       NSDictionary *task_ret = [api_task add:task.name inList:list_id];
 
@@ -169,30 +167,25 @@
 
       // get Note from DB by old Task ID
       RTMAPINote *api_note = [[RTMAPINote alloc] init];
-      NSArray *notes = [RTMPendingTask getNotes:task.task_id fromDB:nil]; // TODO
+      NSArray *notes = [[TaskProvider sharedTaskProvider] getNotes:task];
       for (NSDictionary *note in notes) {
          // - API request (rtm.tasks.notes.add) using new Task ID
          [api_note add:[note objectForKey:@"text"] forIDs:ids];
 
          // remove old Note from DB
-         [RTMPendingTask removeNote:[note objectForKey:@"id"] fromDB:nil];
+         [[TaskProvider sharedTaskProvider] removeNote:[note objectForKey:@"id"]]; // TODO: update IDs instead of removing
       }
       [api_note release];
-
-      // remove old Task from DB
-      // [RTMPendingTask remove:task.task_id fromDB:db]; TODO: update IDs instead of removing
 
       [progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/(float)pendings.count];
       i++;
    }
 
 	[api_task release];
-#endif // 0
 }
 
 - (void) syncModifiedTasks:(ProgressView *)progressView
 {
-#if 1
    RTMAPITask *api_task = [[RTMAPITask alloc] init];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
@@ -252,7 +245,6 @@
 
    [pool release];
    [api_task release];
-#endif // 0
 }
 
 @end

@@ -81,6 +81,17 @@
    NSAssert(NO, @"not reach here");
 }
 
+- (void) removeNote:(NSNumber *) note_id
+{
+   NSAssert(NO, @"not reach here");
+}
+
+- (NSArray *) getNotes:(RTMTask *) task
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 - (NSArray *) pendingTasks
 {
    NSAssert(NO, @"not reach here");
