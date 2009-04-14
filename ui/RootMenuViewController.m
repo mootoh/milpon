@@ -143,6 +143,7 @@ enum sec_one {
       switch (indexPath.row) {
       case SEC_ONE_REVIEW:
          cell.text = @"Review";
+         cell.textColor = [UIColor grayColor];
          break;
       case SEC_ONE_SETTING:
          cell.text = @"Setting";
@@ -182,8 +183,9 @@ enum sec_one {
    } else {
       switch (indexPath.row) {
       case SEC_ONE_REVIEW:
-         vc = [[ReviewViewController alloc] initWithStyle:UITableViewStylePlain];
-         break;
+         //vc = [[ReviewViewController alloc] initWithStyle:UITableViewStylePlain];
+         //break;
+         return; // TODO:temporally
       case SEC_ONE_SETTING:
          vc = [[ConfigViewController alloc] initWithNibName:nil bundle:nil];
          break;
