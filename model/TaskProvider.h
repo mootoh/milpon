@@ -34,11 +34,12 @@
 - (void) remove:(RTMTask *) task;
 - (void) removeForID:(NSNumber *) task_id;
 - (BOOL) taskExist:(NSNumber *)idd;
-- (void) updateTask:(NSDictionary *)task inTaskSeries:(NSDictionary *)taskseries;
+- (void) updateTask:(NSDictionary *)taskseries;
 
 - (void) createNote:(NSString *)note task_id:(NSNumber *)tid;
 - (NSArray *) getNotes:(RTMTask *) task;
 - (void) removeNote:(NSNumber *) note_id;
+- (BOOL) noteExist:(NSNumber *)note_id;
 
 + (TaskProvider *) sharedTaskProvider;
 

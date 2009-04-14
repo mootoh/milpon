@@ -8,6 +8,7 @@
 
 #import "DBTaskProvider.h"
 #import "RTMTask.h"
+#import "Collection.h"
 #import "RTMList.h"
 #import "RTMTag.h"
 #import "LocalCache.h"
@@ -295,27 +296,16 @@
    NSArray *tasks = [params valueForKey:@"tasks"];
    for (NSDictionary *task in tasks) {
       NSString *deleted = [task valueForKey:@"deleted"];
-      if ([self taskExist:[task valueForKey:@"task_id"]]) {
+      if ([self taskExist:[task valueForKey:@"id"]]) {
          if (deleted && ! [deleted isEqualToString:@""]) {
-            [self removeForID:[task valueForKey:@"task_id"]];
+            [self removeForID:[task valueForKey:@"id"]];
          } else {
-            [self updateTask:task inTaskSeries:params];
+            [self updateTask:params];
          }
       } else {
          if (! deleted || [deleted isEqualToString:@""]) {
             [self createAtOnline:params];
          }
-      }
-   }
-
-   NSInteger taskseries_id = [[params valueForKey:@"id"] integerValue];
-   // notes
-   NSArray *notes = [params valueForKey:@"notes"];
-   for (NSDictionary *note in notes) {
-      if ([self noteExist:[note valueForKey:@"id"]]) {
-         [self updateNote:note inTaskSeries:params];
-      } else {
-         [self createNote:note inTaskSeries:taskseries_id];
       }
    }
 }
@@ -390,7 +380,7 @@
 - (BOOL) taskExist:(NSNumber *)idd
 {
    NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d", [idd intValue]] forKey:@"WHERE"];
-   NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
+   NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"task_id"];
    NSArray *tasks = [local_cache_ select:dict from:@"task" option:where];
    return tasks.count == 1;
 }
@@ -402,6 +392,98 @@
    dirty_all_tasks_ = YES;
 }
 
+- (void) updateTask:(NSDictionary *)taskseries
+{
+   NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:taskseries];
+   NSNumber *edit_bits = [NSNumber numberWithInt:0];
+   [attrs setObject:edit_bits forKey:@"edit_bits"];
+   [attrs setObject:[taskseries objectForKey:@"id"] forKey:@"taskseries_id"];
+   
+   [attrs removeObjectForKey:@"id"];
+   [attrs removeObjectForKey:@"created"];
+   [attrs removeObjectForKey:@"modified"];
+   [attrs removeObjectForKey:@"source"];
+   
+   NSArray *tasks = [attrs objectForKey:@"tasks"];
+   NSArray *notes = [attrs objectForKey:@"notes"];
+   NSArray *tags = [attrs objectForKey:@"tags"];
+   
+   [attrs removeObjectForKey:@"tasks"];
+   [attrs removeObjectForKey:@"notes"];
+   [attrs removeObjectForKey:@"tags"];
+   
+   for (NSDictionary *task in tasks) {
+      NSString *deleted_str = [task objectForKey:@"deleted"];
+      if (deleted_str && ! [deleted_str isEqualToString:@""])
+         continue;
+      
+      NSMutableDictionary *task_attrs = [NSMutableDictionary dictionaryWithDictionary:attrs];
+      [task_attrs setObject:[task objectForKey:@"id"] forKey:@"task_id"];
+      
+      NSString *due_str = [task objectForKey:@"due"];
+      if (due_str && ! [due_str isEqualToString:@""])
+         [task_attrs setObject:
+          [[MilponHelper sharedHelper] rtmStringToDate:
+           [task objectForKey:@"due"]] forKey:@"due"];
+      
+      NSString *completed_str = [task objectForKey:@"completed"];
+      if (completed_str && ! [completed_str isEqualToString:@""])
+         [task_attrs setObject:
+          [[MilponHelper sharedHelper] rtmStringToDate:
+           [task objectForKey:@"completed"]] forKey:@"completed"];
+      
+      NSString *priority_str = [task objectForKey:@"priority"];
+      NSNumber *pri = [NSNumber numberWithInt: [priority_str isEqualToString:@"N"] ?
+                       0 :
+                       [priority_str intValue]];
+      [task_attrs setObject:pri forKey:@"priority"];
+      
+      [task_attrs setObject:[NSNumber numberWithInt:[[task objectForKey:@"postponed"] intValue]] forKey:@"postponed"];
+      [task_attrs setObject:[task objectForKey:@"estimate"] forKey:@"estimate"];
+      
+      [local_cache_ update:task_attrs table:@"task" condition:[NSString stringWithFormat:@"WHERE task_id=%@", [task objectForKey:@"id"]]];
+#if 0
+      NSDictionary *iid = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
+      NSDictionary *order = [NSDictionary dictionaryWithObject:@"id DESC LIMIT 1" forKey:@"ORDER"]; // TODO: ad-hoc LIMIT
+      LOG(@"task select enter");
+      NSArray *ret = [local_cache_ select:iid from:@"task" option:order];
+      LOG(@"task select leave");
+      NSNumber *retn = [[ret objectAtIndex:0] objectForKey:@"id"];
+      
+      // add notes
+      for (NSDictionary *note in notes) {
+         [self createNoteAtOnline:[note objectForKey:@"text"] title:[note objectForKey:@"title"] task_id:retn];
+      }
+      
+      // add tags
+      for (NSString *tag in tags) {
+         LOG(@"tag %@ enter", tag);
+         NSNumber *tag_id = [[TagProvider sharedTagProvider] find:tag];
+         if (tag_id) {
+            LOG(@"tag_id %@ enter", tag);
+            [[TagProvider sharedTagProvider] createRelation:retn tag_id:tag_id];
+            LOG(@"tag_id %@ leaving", tag);
+         } else {
+            NSArray *tag_keys = [NSArray arrayWithObjects:@"name", @"task_id", nil];
+            NSArray *tag_vals = [NSArray arrayWithObjects:tag, retn, nil];
+            NSDictionary *tag_param = [NSDictionary dictionaryWithObjects:tag_vals forKeys:tag_keys];
+            [[TagProvider sharedTagProvider] create:tag_param];
+         }
+         LOG(@"tag %@ leave", tag);
+      }
+#endif // 0
+   }
+   dirty_all_tasks_ = YES;
+}
+
+- (BOOL) noteExist:(NSNumber *)note_id
+{
+      NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"id=%d", [note_id intValue]] forKey:@"WHERE"];
+      NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
+      NSArray *tasks = [local_cache_ select:dict from:@"note" option:where];
+      return tasks.count == 1;
+}
+   
 @end // DBTaskProvider
 
 @implementation TaskProvider (DB) // {{{

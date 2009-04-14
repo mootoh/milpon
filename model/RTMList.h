@@ -6,7 +6,7 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-@protocol Collection;
+#import "Collection.h"
 
 @interface RTMList : NSObject <Collection>
 {

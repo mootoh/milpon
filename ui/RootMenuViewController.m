@@ -184,8 +184,7 @@ enum sec_one {
          TagTaskCollection *collector = [[TagTaskCollection alloc] init];
          [(TaskCollectionViewController *)vc setCollector:collector];
          vc.title = @"Tag";
-         [collector release];
-         
+         [collector release];   
          break;
       }
       default:
@@ -210,7 +209,6 @@ enum sec_one {
    [self.navigationController pushViewController:vc animated:YES];
    [vc release];
 }
-
 
 /*
 // Override to support conditional editing of the table view.
