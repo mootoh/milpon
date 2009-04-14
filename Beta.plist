@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string>MilponBetaIconSmall.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.deadbeaf.milpon-beta</string>
+	<string>org.deadbeaf.milpon.beta</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

@@ -104,7 +104,7 @@
             [result setObject:str forKey:key];
          } else if (klass == [NSDate class]) {
             char *chs = (char *)sqlite3_column_text(stmt, i);
-            NSDate *date = (chs && chs[0] != '\0') ? [[MilponHelper sharedHelper] stringToDate:[NSString stringWithUTF8String:chs]] : [[MilponHelper sharedHelper].invalidDate retain];
+            NSDate *date = (chs && chs[0] != '\0') ? [[MilponHelper sharedHelper] rtmStringToDate:[NSString stringWithUTF8String:chs]] : [[MilponHelper sharedHelper].invalidDate retain];
             [result setObject:date forKey:key];
          } else {
             [[NSException
@@ -308,7 +308,7 @@
 - (void) updateLastSync
 {
    NSDate *now = [NSDate date];
-   NSString *last_sync = [[MilponHelper sharedHelper] dateToString:now];
+   NSString *last_sync = [[MilponHelper sharedHelper] dateToRtmString:now];
 
    NSDictionary *dict = [NSDictionary dictionaryWithObject:last_sync forKey:@"sync_date"];
    [self update:dict table:@"last_sync" condition:nil];
