@@ -308,7 +308,7 @@ prioritySelected_N(3);
 {
    AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_NAME];
    av.in_editing = YES;
-   [av drawRect:av.frame];
+   //[av drawRect:av.frame];
 
    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(24, 0, av.frame.size.width-24, av.frame.size.height-av.line_width-2)];
    tf.placeholder = av.text;

@@ -1508,6 +1508,217 @@
 			};
 			name = Release;
 		};
+		B90A5C740F941D0100917583 /* LocalDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "LOCAL_DEBUG=1";
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = iphonesimulator2.2.1;
+			};
+			name = LocalDebug;
+		};
+		B90A5C750F941D0100917583 /* LocalDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = Milpon;
+				SDKROOT = iphonesimulator2.2.1;
+			};
+			name = LocalDebug;
+		};
+		B90A5C760F941D0100917583 /* LocalDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = UNIT_TEST;
+				INFOPLIST_FILE = "UnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = LocalDebug;
+		};
+		B90A5C770F941D0100917583 /* LocalDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					UNIT_TEST,
+				);
+				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/ListUnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = LocalDebug;
+		};
+		B90A5C780F941D0100917583 /* LocalDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					UNIT_TEST,
+				);
+				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/TaskUnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = LocalDebug;
+		};
+		B90A5C790F941D0100917583 /* LocalDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					LOCAL_DEBUG,
+					UNIT_TEST,
+				);
+				INFOPLIST_FILE = "APILocalTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = LocalDebug;
+		};
+		B90A5C7A0F941D0100917583 /* LocalDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					UNIT_TEST,
+				);
+				INFOPLIST_FILE = "TagUnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = LocalDebug;
+		};
+		B90A5C7B0F941D0100917583 /* LocalDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Motohiro Takayama";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"LOCAL_DEBUG=1",
+					"DEBUG=1",
+				);
+				INFOPLIST_FILE = Beta.plist;
+				PRODUCT_NAME = "Milpon Beta";
+				SDKROOT = iphonesimulator2.2.1;
+			};
+			name = LocalDebug;
+		};
 		B914B34B0F5EBDA6009C19BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2062,6 +2273,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
+				B90A5C750F941D0100917583 /* LocalDebug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				B92A83360F9409E100DD725C /* AdHocRelease */,
 			);
@@ -2072,6 +2284,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B914B34B0F5EBDA6009C19BE /* Debug */,
+				B90A5C770F941D0100917583 /* LocalDebug */,
 				B914B34C0F5EBDA6009C19BE /* Release */,
 				B92A83380F9409E100DD725C /* AdHocRelease */,
 			);
@@ -2082,6 +2295,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B9AE52FD0F6B4AE50076D258 /* Debug */,
+				B90A5C7B0F941D0100917583 /* LocalDebug */,
 				B9AE52FE0F6B4AE50076D258 /* Release */,
 				B92A833C0F9409E100DD725C /* AdHocRelease */,
 			);
@@ -2092,6 +2306,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B9B77FAF0F56A31500BF0EF3 /* Debug */,
+				B90A5C760F941D0100917583 /* LocalDebug */,
 				B9B77FB00F56A31500BF0EF3 /* Release */,
 				B92A83370F9409E100DD725C /* AdHocRelease */,
 			);
@@ -2102,6 +2317,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B9B956540F65D2720046712A /* Debug */,
+				B90A5C790F941D0100917583 /* LocalDebug */,
 				B9B956550F65D2720046712A /* Release */,
 				B92A833A0F9409E100DD725C /* AdHocRelease */,
 			);
@@ -2112,6 +2328,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B9B957250F6615930046712A /* Debug */,
+				B90A5C7A0F941D0100917583 /* LocalDebug */,
 				B9B957260F6615930046712A /* Release */,
 				B92A833B0F9409E100DD725C /* AdHocRelease */,
 			);
@@ -2122,6 +2339,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B9D0431C0F5F477400641E61 /* Debug */,
+				B90A5C780F941D0100917583 /* LocalDebug */,
 				B9D0431D0F5F477400641E61 /* Release */,
 				B92A83390F9409E100DD725C /* AdHocRelease */,
 			);
@@ -2132,6 +2350,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
+				B90A5C740F941D0100917583 /* LocalDebug */,
 				C01FCF5008A954540054247B /* Release */,
 				B92A83350F9409E100DD725C /* AdHocRelease */,
 			);
