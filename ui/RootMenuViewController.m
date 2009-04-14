@@ -8,8 +8,8 @@
 
 #import "RootMenuViewController.h"
 #import "OverviewViewController.h"
-#import "ListViewController.h"
-#import "TagViewController.h"
+#import "TaskCollection.h"
+#import "TaskCollectionViewController.h"
 #import "AppDelegate.h"
 #import "ReviewViewController.h"
 #import "ConfigViewController.h"
@@ -171,12 +171,23 @@ enum sec_one {
       case SEC_ZERO_OVERVIEW:
          vc = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];
          break;
-      case SEC_ZERO_LIST:
-         vc = [[ListViewController alloc] initWithStyle:UITableViewStylePlain];
+      case SEC_ZERO_LIST: {
+         vc = [[TaskCollectionViewController alloc] initWithStyle:UITableViewStylePlain];
+         ListTaskCollection *collector = [[ListTaskCollection alloc] init];
+         [(TaskCollectionViewController *)vc setCollector:collector];
+         vc.title = @"List";
+         [collector release];
          break;
-      case SEC_ZERO_TAG:
-         vc = [[TagViewController alloc] initWithStyle:UITableViewStylePlain];
+      }
+      case SEC_ZERO_TAG: {
+         vc = [[TaskCollectionViewController alloc] initWithStyle:UITableViewStylePlain];
+         TagTaskCollection *collector = [[TagTaskCollection alloc] init];
+         [(TaskCollectionViewController *)vc setCollector:collector];
+         vc.title = @"Tag";
+         [collector release];
+         
          break;
+      }
       default:
          break;
       }

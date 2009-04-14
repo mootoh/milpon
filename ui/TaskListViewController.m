@@ -9,6 +9,7 @@
 #import "TaskListViewController.h"
 #import "AppDelegate.h"
 #import "TaskViewController.h"
+#import "Collection.h"
 #import "RTMList.h"
 #import "RTMTask.h"
 #import "RTMTaskCell.h"
@@ -17,19 +18,23 @@
 
 @implementation TaskListViewController
 
-@synthesize list, tasks;
+@synthesize tasks, collection;
 
 - (void) reloadFromDB
 {
    if (tasks) [tasks release];
-   tasks = [[[TaskProvider sharedTaskProvider] tasksInList:list] retain];
+   if ([collection isKindOfClass:[RTMList class]]) {
+      tasks = [[[TaskProvider sharedTaskProvider] tasksInList:(RTMList *)collection] retain];
+   } else {
+      tasks = [[[TaskProvider sharedTaskProvider] tasksInTag:(RTMTag *)collection] retain];
+   }
 }
 
-- (id)initWithStyle:(UITableViewStyle)style withList:(RTMList *)lst
+- (id)initWithStyle:(UITableViewStyle)style withCollection:(NSObject <Collection> *)cols;
 {
    if (self = [super initWithStyle:style]) {
-      self.list = lst;
-      self.title = lst.name;
+      self.collection = cols;
+      self.title = [cols name];
       [self reloadFromDB];
 
       UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTaskInList)];
@@ -46,7 +51,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   return [[TaskProvider sharedTaskProvider] tasksInList:list].count;
+   if ([collection isKindOfClass:[RTMList class]]) {
+      return [[TaskProvider sharedTaskProvider] tasksInList:(RTMList *)collection].count;
+   } else {
+      return [[TaskProvider sharedTaskProvider] tasksInTag:(RTMTag *)collection].count;
+   }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,7 +113,7 @@
 
 - (void)dealloc
 {
-   [list release];
+   [collection release];
    [tasks release];
    [super dealloc];
 }
@@ -142,8 +151,19 @@
 - (IBAction) addTaskInList
 {
    AddTaskViewController *atvController = [[AddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
-   atvController.list = self.list;
+   atvController.list = (RTMList *)self.collection;
 
+   UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:atvController];
+   [self presentModalViewController:navc animated:NO];
+   [navc release];
+   [atvController release];
+}
+
+- (IBAction) addTaskInTag
+{
+   AddTaskViewController *atvController = [[AddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
+   [atvController.tags addObject:(RTMTag *)self.collection];
+   
    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:atvController];
    [self presentModalViewController:navc animated:NO];
    [navc release];

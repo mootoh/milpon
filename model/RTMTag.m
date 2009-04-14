@@ -6,6 +6,7 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
+#import "Collection.h"
 #import "RTMTag.h"
 #import "RTMTask.h"
 #import "TagProvider.h"
@@ -40,6 +41,11 @@
 - (id) copyWithZone:(NSZone *)zone
 {
    return [self retain];
+}
+
+- (NSInteger) taskCount
+{
+   return [[TagProvider sharedTagProvider] taskCountInTag:self];
 }
 
 @end

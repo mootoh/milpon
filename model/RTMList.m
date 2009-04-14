@@ -6,6 +6,7 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
+#import "Collection.h"
 #import "RTMList.h"
 #import "RTMTask.h"
 #import "ListProvider.h"
@@ -48,6 +49,11 @@
 - (BOOL) isSmart
 {
    return filter != nil;
+}
+
+- (NSInteger) taskCount
+{
+   return [[ListProvider sharedListProvider] taskCountInList:self];
 }
 
 @end // RTMList

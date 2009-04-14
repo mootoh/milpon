@@ -9,18 +9,21 @@
 #import "ReloadableTableViewController.h"
 
 @class RTMList;
+@protocol Collection;
 
 @interface TaskListViewController : UITableViewController <ReloadableTableViewControllerProtocol>
 {
-   RTMList *list;
+   //RTMList *list;
    NSArray *tasks;
+   NSObject <Collection> *collection;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style withList:(RTMList *)lst;
-
-@property (nonatomic, retain) RTMList *list;
+//@property (nonatomic, retain) RTMList *list;
 @property (nonatomic, retain) NSArray *tasks;
+@property (nonatomic, retain) NSObject <Collection> *collection;
 
+- (id)initWithStyle:(UITableViewStyle)style withCollection:(NSObject <Collection> *)cols;
 - (IBAction) addTaskInList;
+- (IBAction) addTaskInTag;
 
 @end

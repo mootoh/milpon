@@ -6,7 +6,9 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-@interface RTMList : NSObject
+@protocol Collection;
+
+@interface RTMList : NSObject <Collection>
 {
    NSNumber *iD;
    NSString *name;

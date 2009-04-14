@@ -6,7 +6,9 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
-@interface RTMTag : NSObject <NSCopying>
+@protocol Collection;
+
+@interface RTMTag : NSObject <NSCopying, Collection>
 {
    NSNumber *iD;
    NSString *name;
