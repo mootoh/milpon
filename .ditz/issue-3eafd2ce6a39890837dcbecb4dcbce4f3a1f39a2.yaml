@@ -3,7 +3,7 @@ title: filter out deleted tasks
 desc: while syncing.
 type: :feature
 component: milpon
-release: beta7
+release: beta08
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -16,5 +16,9 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - created
   - ""
+- - 2009-04-16 10:54:37.075814 Z
+  - mootoh <mootoh@gmail.com>
+  - assigned to release beta08 from beta7
+  - reassign it
 git_branch: 
 claimer: 

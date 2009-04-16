@@ -3,7 +3,7 @@ title: swipe to move to next/prev task view
 desc: in the TaskView, swiping will be useful for scrolling between tasks.
 type: :feature
 component: milpon
-release: new ui
+release: 
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -15,6 +15,10 @@ log_events:
 - - 2009-03-17 02:59:53.906871 Z
   - mootoh <mootoh@gmail.com>
   - created
+  - ""
+- - 2009-04-16 10:56:02.262193 Z
+  - mootoh <mootoh@gmail.com>
+  - unassigned from release new ui
   - ""
 git_branch: 
 claimer: 

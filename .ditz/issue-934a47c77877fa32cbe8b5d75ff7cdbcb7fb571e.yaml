@@ -3,7 +3,7 @@ title: enable RTMAPIListTest add/delete.
 desc: use locally downloaded XML files.
 type: :task
 component: milpon
-release: beta7
+release: beta08
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -15,6 +15,10 @@ log_events:
 - - 2009-03-14 01:47:31.661761 Z
   - mootoh <mootoh@gmail.com>
   - created
+  - ""
+- - 2009-04-16 10:54:43.338987 Z
+  - mootoh <mootoh@gmail.com>
+  - assigned to release beta08 from beta7
   - ""
 git_branch: 
 claimer: 

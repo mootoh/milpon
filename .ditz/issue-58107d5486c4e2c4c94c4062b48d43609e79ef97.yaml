@@ -3,7 +3,7 @@ title: introduce job queue
 desc: use job queue to handle DB & web access as transactions.
 type: :feature
 component: milpon
-release: new ui
+release: 
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -15,6 +15,10 @@ log_events:
 - - 2009-04-11 16:03:35.908315 Z
   - mootoh <mootoh@gmail.com>
   - created
+  - ""
+- - 2009-04-16 10:56:10.956614 Z
+  - mootoh <mootoh@gmail.com>
+  - unassigned from release new ui
   - ""
 git_branch: 
 claimer: 

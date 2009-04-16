@@ -6,3 +6,5 @@ build
 others/PrivateInfo.h
 tags
 *.crash
+html
+sample

@@ -3,7 +3,7 @@ title: use filter field when list sync
 desc: add filter attributes if exists.
 type: :feature
 component: milpon
-release: beta7
+release: beta08
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -15,6 +15,10 @@ log_events:
 - - 2009-03-14 04:31:40.785861 Z
   - mootoh <mootoh@gmail.com>
   - created
+  - ""
+- - 2009-04-16 10:54:58.408199 Z
+  - mootoh <mootoh@gmail.com>
+  - assigned to release beta08 from beta7
   - ""
 git_branch: 
 claimer: 

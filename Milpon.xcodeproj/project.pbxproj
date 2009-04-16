@@ -1513,7 +1513,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator2.2.1;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "30718F42-3B54-4610-99E9-023759180436";
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = LocalDebug;
 		};
@@ -1695,7 +1696,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Motohiro Takayama";
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;

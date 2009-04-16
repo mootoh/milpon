@@ -127,15 +127,25 @@ enum sec_one {
 
    if (indexPath.section == 0) {
       switch (indexPath.row) {
-      case SEC_ZERO_OVERVIEW:
+         case SEC_ZERO_OVERVIEW: {
          cell.text = @"Overview";
+         cell.image = [[[UIImage alloc] initWithContentsOfFile:
+                        [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_calendar.png"]] autorelease];
          break;
-      case SEC_ZERO_LIST:
+      }
+      case SEC_ZERO_LIST: {
          cell.text = @"List";
+         cell.image = [[[UIImage alloc] initWithContentsOfFile:
+                        [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]] autorelease];
          break;
-      case SEC_ZERO_TAG:
+      }
+      case SEC_ZERO_TAG: {
          cell.text = @"Tag";
+         cell.image = [[[UIImage alloc] initWithContentsOfFile:
+                        [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]] autorelease];
+
          break;
+      }
       default:
          break;
       }
@@ -176,6 +186,12 @@ enum sec_one {
          ListTaskCollection *collector = [[ListTaskCollection alloc] init];
          [(TaskCollectionViewController *)vc setCollector:collector];
          vc.title = @"List";
+         
+         UIImageView *iv = [[UIImageView alloc] initWithImage:[[[UIImage alloc] initWithContentsOfFile:
+                        [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]] autorelease]];
+         UINavigationItem *ni = [[UINavigationItem alloc]
+
+         [self.navigationController pushNavigationItem:(UINavigationItem *)item animated:(BOOL)animated
          [collector release];
          break;
       }

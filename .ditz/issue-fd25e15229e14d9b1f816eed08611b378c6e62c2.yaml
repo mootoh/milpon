@@ -3,7 +3,7 @@ title: scroll notes
 desc: using PageControl.
 type: :feature
 component: milpon
-release: beta7
+release: beta08
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -15,6 +15,10 @@ log_events:
 - - 2009-03-17 02:55:59.779890 Z
   - mootoh <mootoh@gmail.com>
   - created
+  - ""
+- - 2009-04-16 10:55:16.939400 Z
+  - mootoh <mootoh@gmail.com>
+  - assigned to release beta08 from beta7
   - ""
 git_branch: 
 claimer: 
