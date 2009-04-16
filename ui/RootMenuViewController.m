@@ -185,13 +185,12 @@ enum sec_one {
          vc = [[TaskCollectionViewController alloc] initWithStyle:UITableViewStylePlain];
          ListTaskCollection *collector = [[ListTaskCollection alloc] init];
          [(TaskCollectionViewController *)vc setCollector:collector];
-         vc.title = @"List";
-         
+
+         //vc.title = @"List";
          UIImageView *iv = [[UIImageView alloc] initWithImage:[[[UIImage alloc] initWithContentsOfFile:
                         [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]] autorelease]];
-         UINavigationItem *ni = [[UINavigationItem alloc]
+         vc.navigationItem.titleView = iv;
 
-         [self.navigationController pushNavigationItem:(UINavigationItem *)item animated:(BOOL)animated
          [collector release];
          break;
       }
@@ -199,7 +198,11 @@ enum sec_one {
          vc = [[TaskCollectionViewController alloc] initWithStyle:UITableViewStylePlain];
          TagTaskCollection *collector = [[TagTaskCollection alloc] init];
          [(TaskCollectionViewController *)vc setCollector:collector];
-         vc.title = @"Tag";
+         //vc.title = @"Tag";
+         UIImageView *iv = [[UIImageView alloc] initWithImage:[[[UIImage alloc] initWithContentsOfFile:
+                                                                [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]] autorelease]];
+         vc.navigationItem.titleView = iv;
+
          [collector release];   
          break;
       }
