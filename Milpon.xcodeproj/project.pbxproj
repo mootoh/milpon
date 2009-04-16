@@ -33,7 +33,6 @@
 		B9160EF70F565D1500473A95 /* AuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EDF0F565D1500473A95 /* AuthWebViewController.m */; };
 		B9160EF80F565D1500473A95 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EE10F565D1500473A95 /* ConfigViewController.m */; };
 		B9160EFA0F565D1500473A95 /* ListSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EE50F565D1500473A95 /* ListSelectViewController.m */; };
-		B9160EFD0F565D1500473A95 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EEB0F565D1500473A95 /* MenuViewController.m */; };
 		B9160EFF0F565D1500473A95 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EF00F565D1500473A95 /* TaskListViewController.m */; };
 		B9160F000F565D1500473A95 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EF20F565D1500473A95 /* TaskViewController.m */; };
 		B9160F2D0F565D4C00473A95 /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1B0F565D4C00473A95 /* RTMAuth.m */; };
@@ -202,14 +201,6 @@
 		B9AE52FA0F6B4AE50076D258 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9AE53180F6B4C5C0076D258 /* MilponBetaIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */; };
 		B9AE550E0F6CEF610076D258 /* rtm.auth.checkToken.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE54FE0F6CEF610076D258 /* rtm.auth.checkToken.xml */; };
-		B9AE550F0F6CEF610076D258 /* rtm.auth.getFrob.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE54FF0F6CEF610076D258 /* rtm.auth.getFrob.xml */; };
-		B9AE55100F6CEF610076D258 /* rtm.auth.getToken.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55000F6CEF610076D258 /* rtm.auth.getToken.xml */; };
-		B9AE55120F6CEF610076D258 /* rtm.lists.getList.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55020F6CEF610076D258 /* rtm.lists.getList.xml */; };
-		B9AE55130F6CEF610076D258 /* rtm.tasks.add.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55030F6CEF610076D258 /* rtm.tasks.add.xml */; };
-		B9AE55140F6CEF610076D258 /* rtm.tasks.delete.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55040F6CEF610076D258 /* rtm.tasks.delete.xml */; };
-		B9AE55160F6CEF610076D258 /* rtm.tasks.getList.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55060F6CEF610076D258 /* rtm.tasks.getList.xml */; };
-		B9AE55170F6CEF610076D258 /* rtm.test.echo.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55070F6CEF610076D258 /* rtm.test.echo.xml */; };
-		B9AE55180F6CEF610076D258 /* tasks.getList.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE55080F6CEF610076D258 /* tasks.getList.xml */; };
 		B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9B9561E0F65D15E0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B956210F65D17C0046712A /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
@@ -434,14 +425,6 @@
 		B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MilponBetaIconSmall.png; sourceTree = "<group>"; };
 		B9AE53190F6B4C6A0076D258 /* Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Beta.plist; sourceTree = SOURCE_ROOT; };
 		B9AE54FE0F6CEF610076D258 /* rtm.auth.checkToken.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.auth.checkToken.xml; path = sample/rtm.auth.checkToken.xml; sourceTree = SOURCE_ROOT; };
-		B9AE54FF0F6CEF610076D258 /* rtm.auth.getFrob.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.auth.getFrob.xml; path = sample/rtm.auth.getFrob.xml; sourceTree = SOURCE_ROOT; };
-		B9AE55000F6CEF610076D258 /* rtm.auth.getToken.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.auth.getToken.xml; path = sample/rtm.auth.getToken.xml; sourceTree = SOURCE_ROOT; };
-		B9AE55020F6CEF610076D258 /* rtm.lists.getList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.lists.getList.xml; path = sample/rtm.lists.getList.xml; sourceTree = SOURCE_ROOT; };
-		B9AE55030F6CEF610076D258 /* rtm.tasks.add.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.tasks.add.xml; path = sample/rtm.tasks.add.xml; sourceTree = SOURCE_ROOT; };
-		B9AE55040F6CEF610076D258 /* rtm.tasks.delete.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.tasks.delete.xml; path = sample/rtm.tasks.delete.xml; sourceTree = SOURCE_ROOT; };
-		B9AE55060F6CEF610076D258 /* rtm.tasks.getList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.tasks.getList.xml; path = sample/rtm.tasks.getList.xml; sourceTree = SOURCE_ROOT; };
-		B9AE55070F6CEF610076D258 /* rtm.test.echo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.test.echo.xml; path = sample/rtm.test.echo.xml; sourceTree = SOURCE_ROOT; };
-		B9AE55080F6CEF610076D258 /* tasks.getList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = tasks.getList.xml; path = sample/tasks.getList.xml; sourceTree = SOURCE_ROOT; };
 		B9B6580B0F937D0400A1FA0A /* Milpon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Milpon.h; sourceTree = "<group>"; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B956560F65D2720046712A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -855,14 +838,6 @@
 			isa = PBXGroup;
 			children = (
 				B9AE54FE0F6CEF610076D258 /* rtm.auth.checkToken.xml */,
-				B9AE54FF0F6CEF610076D258 /* rtm.auth.getFrob.xml */,
-				B9AE55000F6CEF610076D258 /* rtm.auth.getToken.xml */,
-				B9AE55020F6CEF610076D258 /* rtm.lists.getList.xml */,
-				B9AE55030F6CEF610076D258 /* rtm.tasks.add.xml */,
-				B9AE55040F6CEF610076D258 /* rtm.tasks.delete.xml */,
-				B9AE55060F6CEF610076D258 /* rtm.tasks.getList.xml */,
-				B9AE55070F6CEF610076D258 /* rtm.test.echo.xml */,
-				B9AE55080F6CEF610076D258 /* tasks.getList.xml */,
 			);
 			name = sample;
 			sourceTree = "<group>";
@@ -1144,14 +1119,6 @@
 				B9AE52C20F6B4AE50076D258 /* icon_url.png in Resources */,
 				B9AE53180F6B4C5C0076D258 /* MilponBetaIconSmall.png in Resources */,
 				B9AE550E0F6CEF610076D258 /* rtm.auth.checkToken.xml in Resources */,
-				B9AE550F0F6CEF610076D258 /* rtm.auth.getFrob.xml in Resources */,
-				B9AE55100F6CEF610076D258 /* rtm.auth.getToken.xml in Resources */,
-				B9AE55120F6CEF610076D258 /* rtm.lists.getList.xml in Resources */,
-				B9AE55130F6CEF610076D258 /* rtm.tasks.add.xml in Resources */,
-				B9AE55140F6CEF610076D258 /* rtm.tasks.delete.xml in Resources */,
-				B9AE55160F6CEF610076D258 /* rtm.tasks.getList.xml in Resources */,
-				B9AE55170F6CEF610076D258 /* rtm.test.echo.xml in Resources */,
-				B9AE55180F6CEF610076D258 /* tasks.getList.xml in Resources */,
 				B93D753B0F941105001E11F3 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1275,7 +1242,6 @@
 				B9160EF70F565D1500473A95 /* AuthWebViewController.m in Sources */,
 				B9160EF80F565D1500473A95 /* ConfigViewController.m in Sources */,
 				B9160EFA0F565D1500473A95 /* ListSelectViewController.m in Sources */,
-				B9160EFD0F565D1500473A95 /* MenuViewController.m in Sources */,
 				B9160EFF0F565D1500473A95 /* TaskListViewController.m in Sources */,
 				B9160F000F565D1500473A95 /* TaskViewController.m in Sources */,
 				B9160F2D0F565D4C00473A95 /* RTMAuth.m in Sources */,
