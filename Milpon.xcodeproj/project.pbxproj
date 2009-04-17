@@ -423,7 +423,7 @@
 		B97F50050F94A33E0085FB9B /* Collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collection.h; sourceTree = "<group>"; };
 		B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MilponBetaIconSmall.png; sourceTree = "<group>"; };
-		B9AE53190F6B4C6A0076D258 /* Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Beta.plist; sourceTree = SOURCE_ROOT; };
+		B9AE53190F6B4C6A0076D258 /* Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Beta.plist; path = others/Beta.plist; sourceTree = SOURCE_ROOT; };
 		B9AE54FE0F6CEF610076D258 /* rtm.auth.checkToken.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.auth.checkToken.xml; path = sample/rtm.auth.checkToken.xml; sourceTree = SOURCE_ROOT; };
 		B9B6580B0F937D0400A1FA0A /* Milpon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Milpon.h; sourceTree = "<group>"; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -673,6 +673,7 @@
 		B9160F360F565D6800473A95 /* others */ = {
 			isa = PBXGroup;
 			children = (
+				B9AE53190F6B4C6A0076D258 /* Beta.plist */,
 				B93D753A0F941105001E11F3 /* Entitlements.plist */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				B9160ED40F565D0500473A95 /* logger.h */,
@@ -690,7 +691,6 @@
 			isa = PBXGroup;
 			children = (
 				B9AE54F80F6CEF4A0076D258 /* sample */,
-				B9AE53190F6B4C6A0076D258 /* Beta.plist */,
 				B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */,
 				B926C4BE0F67991B0014DB7D /* icon_url.png */,
 				B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */,
@@ -1920,7 +1920,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				INFOPLIST_FILE = /Users/takayama/prj/iphone/Milpon/Beta.plist;
+				INFOPLIST_FILE = "$(PROJECT_DIR)/others/Beta.plist";
 				PRODUCT_NAME = "Milpon Beta";
 			};
 			name = AdHocRelease;
@@ -1936,7 +1936,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
-				INFOPLIST_FILE = Beta.plist;
+				INFOPLIST_FILE = others/Beta.plist;
 				PRODUCT_NAME = "Milpon Beta";
 				SDKROOT = iphonesimulator2.2.1;
 			};
