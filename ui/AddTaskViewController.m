@@ -211,6 +211,7 @@ enum {
                break;
             }
          }
+         if (iconImageView) [iconImageView release];
          break;
       }
    }
