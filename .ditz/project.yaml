@@ -45,17 +45,6 @@ releases:
     - released
     - drop it.
 - !ditz.rubyforge.org,2008-03-06/release 
-  name: SmartList
-  status: :unreleased
-  release_time: 
-  log_events: 
-  - - 2009-03-16 03:46:35.512757 Z
-    - mootoh <mootoh@gmail.com>
-    - created
-    - |-
-      - list up tasks in the smartlist
-      - add tasks in the smartlist
-- !ditz.rubyforge.org,2008-03-06/release 
   name: beta08
   status: :unreleased
   release_time: 
