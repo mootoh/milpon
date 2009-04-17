@@ -269,7 +269,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Milpon_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Milpon_Prefix.pch; sourceTree = "<group>"; };
 		B914B34D0F5EBDA6009C19BE /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B914B34E0F5EBDA6009C19BE /* ListUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ListUnitTest-Info.plist"; path = "../ListUnitTest-Info.plist"; sourceTree = "<group>"; };
+		B914B34E0F5EBDA6009C19BE /* ListUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ListUnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9160EC00F565CEF00473A95 /* RTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPI.h; sourceTree = "<group>"; };
 		B9160EC10F565CEF00473A95 /* RTMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPI.m; sourceTree = "<group>"; };
 		B9160EC20F565CEF00473A95 /* RTMAPIAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIAuth.h; sourceTree = "<group>"; };
@@ -391,7 +391,7 @@
 		B9160FE10F565DE000473A95 /* RTMTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMTaskTest.m; sourceTree = "<group>"; };
 		B9160FE20F565DE000473A95 /* UpdateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateList.m; sourceTree = "<group>"; };
 		B9160FE30F565DE000473A95 /* UpdateTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateTask.m; sourceTree = "<group>"; };
-		B9160FF70F565E8000473A95 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		B9160FF70F565E8000473A95 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B916100C0F565F6500473A95 /* ListSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListSelectController.h; sourceTree = "<group>"; };
 		B916100D0F565F6500473A95 /* ListSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListSelectController.m; sourceTree = "<group>"; };
 		B916100F0F565F8A00473A95 /* NoteEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteEditController.h; sourceTree = "<group>"; };
@@ -413,7 +413,7 @@
 		B93A12560F9212AA00C0A9AB /* ReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
 		B93A12950F921AAA00C0A9AB /* OverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewViewController.h; sourceTree = "<group>"; };
 		B93A12960F921AAA00C0A9AB /* OverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewViewController.m; sourceTree = "<group>"; };
-		B93D753A0F941105001E11F3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = ../Entitlements.plist; sourceTree = "<group>"; };
+		B93D753A0F941105001E11F3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		B95C5C070F598C8400A368DC /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = rtm.sql; sourceTree = "<group>"; };
 		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
 		B97F4FEE0F94A08B0085FB9B /* TaskCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCollection.h; sourceTree = "<group>"; };
@@ -423,16 +423,16 @@
 		B97F50050F94A33E0085FB9B /* Collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collection.h; sourceTree = "<group>"; };
 		B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MilponBetaIconSmall.png; sourceTree = "<group>"; };
-		B9AE53190F6B4C6A0076D258 /* Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Beta.plist; path = others/Beta.plist; sourceTree = SOURCE_ROOT; };
+		B9AE53190F6B4C6A0076D258 /* Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Beta.plist; sourceTree = "<group>"; };
 		B9AE54FE0F6CEF610076D258 /* rtm.auth.checkToken.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.auth.checkToken.xml; path = sample/rtm.auth.checkToken.xml; sourceTree = SOURCE_ROOT; };
 		B9B6580B0F937D0400A1FA0A /* Milpon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Milpon.h; sourceTree = "<group>"; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B956560F65D2720046712A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "APILocalTest-Info.plist"; path = "../APILocalTest-Info.plist"; sourceTree = "<group>"; };
+		B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "APILocalTest-Info.plist"; sourceTree = "<group>"; };
 		B9B9570E0F6615880046712A /* DBTagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTagProvider.h; sourceTree = "<group>"; };
 		B9B9570F0F6615880046712A /* DBTagProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBTagProvider.m; sourceTree = "<group>"; };
 		B9B957270F6615930046712A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9B957280F6615930046712A /* TagUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TagUnitTest-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B9B957280F6615930046712A /* TagUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TagUnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9B957310F66160B0046712A /* TagProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagProviderTest.m; sourceTree = "<group>"; };
 		B9B957530F6617670046712A /* RTMTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMTag.h; sourceTree = "<group>"; };
 		B9B957540F6617670046712A /* RTMTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMTag.m; sourceTree = "<group>"; };
@@ -442,7 +442,7 @@
 		B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootMenuViewController.m; sourceTree = "<group>"; };
 		B9D0430C0F5F470100641E61 /* TaskProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskProvider.h; sourceTree = "<group>"; };
 		B9D0431E0F5F477400641E61 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9D0431F0F5F477400641E61 /* TaskUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TaskUnitTest-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B9D0431F0F5F477400641E61 /* TaskUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TaskUnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9D043370F5F48C800641E61 /* TaskProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskProviderTest.m; sourceTree = "<group>"; };
 		B9D0433C0F5F493E00641E61 /* TaskProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskProvider.m; sourceTree = "<group>"; };
 		B9D043410F5F49A900641E61 /* DBTaskProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTaskProvider.h; sourceTree = "<group>"; };
@@ -673,7 +673,7 @@
 		B9160F360F565D6800473A95 /* others */ = {
 			isa = PBXGroup;
 			children = (
-				B9AE53190F6B4C6A0076D258 /* Beta.plist */,
+				B95F74990F981D3700118B75 /* plists */,
 				B93D753A0F941105001E11F3 /* Entitlements.plist */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				B9160ED40F565D0500473A95 /* logger.h */,
@@ -690,17 +690,12 @@
 		B9160F430F565D9300473A95 /* resource */ = {
 			isa = PBXGroup;
 			children = (
-				B9AE54F80F6CEF4A0076D258 /* sample */,
 				B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */,
+				B9160F650F565D9300473A95 /* MilponIconSmall.png */,
 				B926C4BE0F67991B0014DB7D /* icon_url.png */,
-				B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */,
 				B9160F010F565D3C00473A95 /* db */,
 				B95C5C160F598F9C00A368DC /* icons */,
-				B9160F650F565D9300473A95 /* MilponIconSmall.png */,
-				B9160FF70F565E8000473A95 /* Info.plist */,
-				B914B34E0F5EBDA6009C19BE /* ListUnitTest-Info.plist */,
-				B9D0431F0F5F477400641E61 /* TaskUnitTest-Info.plist */,
-				B9B957280F6615930046712A /* TagUnitTest-Info.plist */,
+				B9AE54F80F6CEF4A0076D258 /* sample */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -820,6 +815,19 @@
 				B9160F5D0F565D9300473A95 /* icon_target.png */,
 			);
 			name = icons;
+			sourceTree = "<group>";
+		};
+		B95F74990F981D3700118B75 /* plists */ = {
+			isa = PBXGroup;
+			children = (
+				B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */,
+				B9160FF70F565E8000473A95 /* Info.plist */,
+				B914B34E0F5EBDA6009C19BE /* ListUnitTest-Info.plist */,
+				B9D0431F0F5F477400641E61 /* TaskUnitTest-Info.plist */,
+				B9B957280F6615930046712A /* TagUnitTest-Info.plist */,
+				B9AE53190F6B4C6A0076D258 /* Beta.plist */,
+			);
+			name = plists;
 			sourceTree = "<group>";
 		};
 		B9AE52090F6B408A0076D258 /* api */ = {
