@@ -201,6 +201,18 @@ enum {
 
    [notePages addTarget:self action:@selector(displayNote) forControlEvents:UIControlEventTouchUpInside];
    [self displayNote];
+   
+   
+   if (task.url && ![task.url isEqualToString:@""]) {
+      UIButton *url_button = [[UIButton alloc] initWithFrame:CGRectMake(280, 100, 20, 20)];
+      UIImage *url_image = [[UIImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_url.png"]];
+      [url_button setImage:url_image forState:UIControlStateNormal];
+      [url_button addTarget:self action:@selector(showWebView) forControlEvents:UIControlEventTouchDown];
+      
+      [self.view addSubview:url_button];
+      [url_image release];
+      [url_button release];
+   }
 }
 
 - (void) updateDue
@@ -394,6 +406,22 @@ prioritySelected_N(3);
    av.in_editing = NO;
    av.text = note;
    [av setNeedsDisplay];
+}
+
+- (void) showWebView
+{
+   CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+   UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height-44)];
+   webView.scalesPageToFit = YES;
+   
+   UIViewController *vc = [[UIViewController alloc] initWithNibName:nil bundle:nil];
+   
+   NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:task.url]];
+   [webView loadRequest:req];
+   [vc.view addSubview:webView];
+   [self.navigationController pushViewController:vc animated:YES];
+   [webView release];
+   [vc release];
 }
 
 @end
