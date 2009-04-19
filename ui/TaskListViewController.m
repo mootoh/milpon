@@ -37,7 +37,7 @@
       self.title = [cols name];
       [self reloadFromDB];
 
-      UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTaskInList)];
+      UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:[collection isKindOfClass:[RTMList class]] ? @selector(addTaskInList) : @selector(addTaskInTag)];
       self.navigationItem.rightBarButtonItem = addButton;
       [addButton release];
    }

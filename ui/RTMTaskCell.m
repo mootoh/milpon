@@ -133,14 +133,6 @@ static NSArray *s_check_box_images;
 	[pool release];
 }
 
-/*
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-   [super setSelected:selected animated:animated];
-// Configure the view for the selected state
-}
-*/
-
 - (void)dealloc
 {
    [completeButton release];
@@ -176,45 +168,4 @@ static NSArray *s_check_box_images;
    }
 }
 
-#if 0
-- (BOOL)canBecomeFirstResponder
-{
-   return YES;
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-   LOG(@"first ? %d", [self isFirstResponder]);
-   LOG(@"can become first ? %d", [self canBecomeFirstResponder]);
-   LOG(@"become %d", [self becomeFirstResponder]);
-   CGPoint pt = [[touches anyObject] locationInView:self];
-   startLocation = pt;
-   LOG(@"touchesBegan: (%f, %f)", pt.x, pt.y);
-
-   UITableView *parent = (UITableView *)self.superview;
-   parent.scrollEnabled = NO;
-   [self setEditing:YES animated:YES];
-
-   //[super touchesBegan:touches withEvent:event];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-   CGPoint pt = [[touches anyObject] locationInView:self];
-   LOG(@"touchesEnded: (%f, %f) moved =(%f, %f)", pt.x, pt.y,
-         startLocation.x-pt.x, startLocation.y-pt.y);
-
-   UITableView *parent = (UITableView *)self.superview;
-   parent.scrollEnabled = YES;
-}
-
-/*
-- (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-   CGPoint pt = [[touches anyObject] locationInView:self];
-   LOG(@"touchesMoved: (%f, %f) moved =(%f, %f)", pt.x, pt.y,
-   startLocation.x-pt.x, startLocation.y-pt.y);
-}  
-*/
-#endif // 0
 @end

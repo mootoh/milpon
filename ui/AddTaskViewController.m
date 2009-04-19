@@ -159,13 +159,10 @@ enum {
             iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 15, 16, 16)];
             iconImageView.tag = ICON_TAG;
             [cell.contentView addSubview:iconImageView];
-            //[iconImageView release];
             
             label = [[UILabel alloc] initWithFrame:CGRectMake(30, 2, 220, 36)];
             label.tag = LABEL_TAG;
-            //label.adjustsFontSizeToFitWidth = YES;
             [cell.contentView addSubview:label];
-            //[listLabel release];
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
          } else {

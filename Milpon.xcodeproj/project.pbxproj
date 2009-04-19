@@ -1488,7 +1488,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "30718F42-3B54-4610-99E9-023759180436";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphonesimulator2.2;
 			};
 			name = LocalDebug;
 		};
@@ -1759,7 +1759,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C519825E-CE5B-4630-8EC6-3D832C005111";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphonesimulator2.2;
 			};
 			name = AdHocRelease;
 		};
@@ -2216,7 +2216,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator2.2.1;
+				SDKROOT = iphonesimulator2.2;
 			};
 			name = Debug;
 		};
@@ -2230,7 +2230,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator2.2.1;
+				SDKROOT = iphonesimulator2.2;
 			};
 			name = Release;
 		};

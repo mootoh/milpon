@@ -24,15 +24,6 @@
    return self;
 }
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view.
-- (void)viewDidLoad
-{
-[super viewDidLoad];
-}
-*/
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
    return 1;

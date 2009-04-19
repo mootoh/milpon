@@ -8,7 +8,6 @@
 
 #import "ReviewViewController.h"
 
-
 @implementation ReviewViewController
 
 /*
@@ -76,7 +75,6 @@
     return 1;
 }
 
-
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 0;
@@ -92,7 +90,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
-    
+
     // Set up the cell...
 	
     return cell;
@@ -149,8 +147,8 @@
 
 - (void)dealloc {
     [super dealloc];
+
 }
 
 
 @end
-

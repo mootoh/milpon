@@ -96,7 +96,6 @@
 - (void) dealloc
 {
    [navigationController release];
-   if (bottomBar) [bottomBar release];
    [operationQueue release];
    [auth release];
    [window release];
@@ -114,14 +113,6 @@
       [self showAuthentication];
 
    [self recoverView];
-
-#if 0
-   // create a bottom bar.
-   CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
-   const CGFloat toolbarHeight = 44;   
-   self.bottomBar = [[UIToolbar alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height-toolbarHeight, appFrame.size.width, toolbarHeight)];
-   [navigationController.view addSubview:bottomBar];
-#endif // 0 
    [window makeKeyAndVisible];
 }
 
@@ -201,7 +192,7 @@
    [app.operationQueue addOperation:ope];
    [ope release];
 }
-
+ 
 - (void) replaceAll
 {
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
