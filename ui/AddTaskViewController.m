@@ -83,12 +83,12 @@ enum {
    [iconImage release];
    
    // setup priority segment
-   NSArray *priority_items = [NSArray arrayWithObjects:@"-", @"3", @"2", @"1", nil];
+   NSArray *priority_items = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", nil];
    priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(104, 4, CGRectGetWidth(self.view.frame)-104-10, 32)];
    for (int i=0; i<priority_items.count; i++)
       [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
    
-   priority_segment.selectedSegmentIndex = 0;
+   priority_segment.selectedSegmentIndex = 3;
 }
 - (void) didReceiveMemoryWarning
 {
@@ -218,10 +218,6 @@ enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
    switch (indexPath.row) {
       case ROW_DUE_PRIORITY:
          [tableView deselectRowAtIndexPath:indexPath animated:NO];

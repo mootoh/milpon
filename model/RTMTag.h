@@ -6,7 +6,7 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
-@protocol Collection;
+#import "Collection.h"
 
 @interface RTMTag : NSObject <NSCopying, Collection>
 {
