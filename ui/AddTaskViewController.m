@@ -45,19 +45,15 @@ enum {
 
 - (void)dealloc
 {
-   [priority_segment release];
-   [due_button release];
-   [name_field release];
+   if (name_field_) [name_field_ release];
+   if (priority_segment_) [priority_segment_ release];
    [super dealloc];
 }
 
 - (void) viewDidLoad
 {
    self.tableView.rowHeight = 40;
-
-   /*
-    * Navigation buttons
-    */
+   
    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
    self.navigationItem.leftBarButtonItem = cancelButton;
    [cancelButton release];
@@ -65,31 +61,8 @@ enum {
    UIBarButtonItem *submitButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
    self.navigationItem.rightBarButtonItem = submitButton;
    [submitButton release];
-
-   // task name
-   name_field = [[UITextField alloc] initWithFrame:CGRectMake(30, 8, 300, 40)];
-   [name_field setFont:[UIFont systemFontOfSize:20.0f]];
-   name_field.placeholder = @"what to do...";
-   
-   // due button
-   due_button = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-   due_button.frame = CGRectMake(8, 4, 84, 32);
-   due_button.font = [UIFont systemFontOfSize:14];
-   
-   UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
-                         [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_calendar.png"]];
-   [due_button setImage:iconImage forState:UIControlStateNormal];
-   [due_button addTarget:self action:@selector(selectDue) forControlEvents:UIControlEventTouchDown];
-   [iconImage release];
-   
-   // setup priority segment
-   NSArray *priority_items = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", nil];
-   priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(104, 4, CGRectGetWidth(self.view.frame)-104-10, 32)];
-   for (int i=0; i<priority_items.count; i++)
-      [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
-   
-   priority_segment.selectedSegmentIndex = 3;
 }
+
 - (void) didReceiveMemoryWarning
 {
    [super didReceiveMemoryWarning];
@@ -101,24 +74,32 @@ enum {
    return 1;
 }
 
-
 // Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
    return ROW_COUNT;
 }
 
-#define ICON_TAG 1
-#define LABEL_TAG 2
+enum {
+   ICON_TAG = 1,
+   LABEL_TAG,
+   DUE_BUTTON_TAG,
+   NAME_FIELD_TAG,
+   PRIORITY_SEGMENT_TAG
+};
+
 #define NAME_CELL_IDENTIFIER @"NameCell"
 #define DUE_PRIORITY_CELL_IDENTIFIER @"DuePriorityCell"
 #define ICON_LABEL_CELL_IDENTIFIER @"IconLabelCell"
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   UITableViewCell *cell;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   UITableViewCell *cell = nil;
    switch (indexPath.row) {
       case ROW_NAME: {
          cell = [tableView dequeueReusableCellWithIdentifier:NAME_CELL_IDENTIFIER];
+         UITextField *name_field = nil;
          if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:NAME_CELL_IDENTIFIER] autorelease];
             UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 15, 16, 16)];
@@ -126,19 +107,55 @@ enum {
                                   [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_target.png"]];
             iconImageView.image = iconImage;
             [cell.contentView addSubview:iconImageView];
+            
+            // task name
+            name_field = [[UITextField alloc] initWithFrame:CGRectMake(30, 8, 300, 40)];
+            [name_field setFont:[UIFont systemFontOfSize:20.0f]];
+            name_field.placeholder = @"what to do...";            
 
             [cell.contentView addSubview:name_field];
+         } else {
+            name_field = (UITextField *)[cell viewWithTag:NAME_FIELD_TAG];
          }
+         name_field_ = [name_field retain];
          [name_field becomeFirstResponder];
          break;
       }
       case ROW_DUE_PRIORITY: {
          cell = [tableView dequeueReusableCellWithIdentifier:DUE_PRIORITY_CELL_IDENTIFIER];
+         UIButton *due_button = nil;
+         UISegmentedControl *priority_segment = nil;
          if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:DUE_PRIORITY_CELL_IDENTIFIER] autorelease];
+            
+            // due button
+            due_button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            due_button.frame = CGRectMake(8, 4, 84, 32);
+            due_button.font = [UIFont systemFontOfSize:14];
+            
+            UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+                                  [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_calendar.png"]];
+            [due_button setImage:iconImage forState:UIControlStateNormal];
+            [due_button addTarget:self action:@selector(selectDue) forControlEvents:UIControlEventTouchDown];
+            due_button.tag = DUE_BUTTON_TAG;
+            [iconImage release];
+
             [cell.contentView addSubview:due_button];
+
+            // setup priority segment
+            NSArray *priority_items = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", nil];
+            priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(104, 4, CGRectGetWidth(self.view.frame)-104-10, 32)];
+            for (int i=0; i<priority_items.count; i++)
+               [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
+            
+            priority_segment.selectedSegmentIndex = 3;
             [cell.contentView addSubview:priority_segment];
+         } else {
+            due_button = (UIButton *)[cell viewWithTag:DUE_BUTTON_TAG];
+            priority_segment = (UISegmentedControl *)[cell viewWithTag:PRIORITY_SEGMENT_TAG];
          }
+         priority_segment_ = [priority_segment retain];
+
          if (self.due) {
             NSDateFormatter *date_formatter = [[NSDateFormatter alloc] init];
             date_formatter.dateFormat = @" MM/dd";
@@ -265,11 +282,11 @@ enum {
 
 - (IBAction) save
 {
-   NSString *name = name_field.text;
+   NSString *name = name_field_.text;
    if (name == nil || [name isEqualToString:@""]) // validate name_field
       return;
 
-   NSNumber *priority = [NSNumber numberWithInteger:priority_segment.selectedSegmentIndex];
+   NSNumber *priority = [NSNumber numberWithInteger:priority_segment_.selectedSegmentIndex];
 
    // create RTMTask and store it in DB.
    NSArray *keys = [NSArray arrayWithObjects:@"name", @"list_id", @"priority", nil];

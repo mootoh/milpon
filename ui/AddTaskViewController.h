@@ -12,14 +12,13 @@
 
 @interface AddTaskViewController : UITableViewController <TaskEditDelegate>
 {
-   UITextField *name_field;
-   UIButton *due_button;
-   UISegmentedControl *priority_segment;
-
    RTMList *list;
    NSDate *due;
    NSMutableSet *tags;
    NSString *note;
+   
+   UITextField *name_field_;
+   UISegmentedControl *priority_segment_;
 }
 
 @property (nonatomic, retain) RTMList *list;
