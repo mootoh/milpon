@@ -407,8 +407,8 @@
    [attrs removeObjectForKey:@"source"];
    
    NSArray *tasks = [attrs objectForKey:@"tasks"];
-   NSArray *notes = [attrs objectForKey:@"notes"];
-   NSArray *tags = [attrs objectForKey:@"tags"];
+   //NSArray *notes = [attrs objectForKey:@"notes"]; // TODO enable this
+   //NSArray *tags = [attrs objectForKey:@"tags"];   // TODO enable thi
    
    [attrs removeObjectForKey:@"tasks"];
    [attrs removeObjectForKey:@"notes"];

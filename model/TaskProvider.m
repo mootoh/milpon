@@ -98,6 +98,32 @@
    return nil;
 }
 
+- (void) createOrUpdate:(NSDictionary *)params
+{
+   NSAssert(NO, @"not reach here");
+}
+
+- (void) removeForID:(NSNumber *) task_id
+{
+   NSAssert(NO, @"not reach here");
+}
+
+- (BOOL) taskExist:(NSNumber *)idd
+{
+   NSAssert(NO, @"not reach here");
+   return NO;
+}
+- (void) updateTask:(NSDictionary *)taskseries
+{
+   NSAssert(NO, @"not reach here");
+}
+
+- (BOOL) noteExist:(NSNumber *)note_id
+{
+   NSAssert(NO, @"not reach here");
+   return NO;
+}
+
 + (TaskProvider *) sharedTaskProvider
 {
    NSAssert(NO, @"not reach here");

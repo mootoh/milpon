@@ -48,6 +48,12 @@
    NSAssert(NO, @"not reach here");
 }
 
+- (NSInteger)taskCountInList:(RTMList *) list
+{
+   NSAssert(NO, @"not reach here");
+   return 0;
+}
+
 + (ListProvider *) sharedListProvider
 {
    NSAssert(NO, @"not reach here");

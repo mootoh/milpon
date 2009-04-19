@@ -382,11 +382,13 @@ prioritySelected_N(4);
 
 - (void) edit_tag
 {
+#if 0
    TagSelectController *vc = [[TagSelectController alloc] initWithNibName:nil bundle:nil];
    vc.parent = self;
    [vc setTags:task.tags];
    [self.navigationController pushViewController:vc animated:YES];
    [vc release];
+#endif // 0
 }
 
 - (void) setList:(RTMList *)list
