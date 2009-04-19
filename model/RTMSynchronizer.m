@@ -161,7 +161,7 @@
       if (0 != [task.location_id intValue])
          [api_task setLocation:[task.location_id stringValue] forIDs:ids];
 
-      if (0 != [task.priority intValue])
+      if (0 != [task.priority intValue]) // TODO: care priority=4s
          [api_task setPriority:[task.priority stringValue] forIDs:ids];
 
       if (task.estimate && ![task.estimate isEqualToString:@""]) 
@@ -243,7 +243,7 @@
             nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-         if ([api_task setPriority:[NSString stringWithFormat:@"%d", [task.priority intValue]] forIDs:ids]) {
+         if ([api_task setPriority:[NSString stringWithFormat:@"%d", [task.priority intValue]] forIDs:ids]) { // TODO: care about priority=4
             LOG(@"setPriority succeeded");
          }
       }

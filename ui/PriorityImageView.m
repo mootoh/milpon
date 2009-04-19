@@ -63,8 +63,6 @@ static NSArray *s_icons;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-   LOG(@"touchesBegan");
-
    if (dialog_displayed) {
       dialogView.hidden = YES;
    } else {

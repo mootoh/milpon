@@ -75,7 +75,7 @@ static NSArray *s_icons = nil;
 {
    if (! s_icons) {
       NSMutableArray *ics = [[NSMutableArray alloc] init];
-      for (int i=0; i<4; i++) {
+      for (int i=1; i<=4; i++) {
          UIImage *img = [[UIImage alloc] initWithContentsOfFile:
             [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:
                [NSString stringWithFormat:@"icon_priority_%d.png", i]]];
@@ -170,9 +170,9 @@ enum {
    dialogView.opaque = NO;
    dialogView.hidden = YES;
 
-   for (int i=0; i<4; i++) {
-      UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(i*44, 0, 44, 44)];
-      [btn setImage:[[TaskViewController icons] objectAtIndex:i] forState:UIControlStateNormal];
+   for (int i=1; i<=4; i++) {
+      UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake((i-1)*44, 0, 44, 44)];
+      [btn setImage:[[TaskViewController icons] objectAtIndex:i-1] forState:UIControlStateNormal];
       NSString *selector = [NSString stringWithFormat:@"prioritySelected_%d", i];
       [btn addTarget:self action:NSSelectorFromString(selector) forControlEvents:UIControlEventTouchDown];
       btn.opaque = NO;
@@ -255,8 +255,7 @@ enum {
 - (void) setPriorityButton
 {
    int priority = [task.priority intValue];
-
-   [priorityButton setImage:[[TaskViewController icons] objectAtIndex:priority] forState:UIControlStateNormal];
+   [priorityButton setImage:[[TaskViewController icons] objectAtIndex:priority-1] forState:UIControlStateNormal];
 }
 
 - (void) displayNote
@@ -288,10 +287,10 @@ enum {
    [self togglePriorityView]; \
 }
 
-prioritySelected_N(0);
 prioritySelected_N(1);
 prioritySelected_N(2);
 prioritySelected_N(3);
+prioritySelected_N(4);
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

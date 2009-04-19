@@ -37,10 +37,8 @@
 		B9160F000F565D1500473A95 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EF20F565D1500473A95 /* TaskViewController.m */; };
 		B9160F2D0F565D4C00473A95 /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1B0F565D4C00473A95 /* RTMAuth.m */; };
 		B9160F2E0F565D4C00473A95 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
-		B9160F2F0F565D4C00473A95 /* RTMExistingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1F0F565D4C00473A95 /* RTMExistingTask.m */; };
 		B9160F300F565D4C00473A95 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
 		B9160F310F565D4C00473A95 /* RTMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F230F565D4C00473A95 /* RTMNote.m */; };
-		B9160F320F565D4C00473A95 /* RTMPendingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F250F565D4C00473A95 /* RTMPendingTask.m */; };
 		B9160F330F565D4C00473A95 /* RTMStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F270F565D4C00473A95 /* RTMStorable.m */; };
 		B9160F340F565D4C00473A95 /* RTMSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F290F565D4C00473A95 /* RTMSynchronizer.m */; };
 		B9160F350F565D4C00473A95 /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F2B0F565D4C00473A95 /* RTMTask.m */; };
@@ -51,7 +49,7 @@
 		B9160F740F565D9300473A95 /* icon_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F500F565D9300473A95 /* icon_checked.png */; };
 		B9160F760F565D9300473A95 /* icon_list.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F520F565D9300473A95 /* icon_list.png */; };
 		B9160F780F565D9300473A95 /* icon_note.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F540F565D9300473A95 /* icon_note.png */; };
-		B9160F7B0F565D9300473A95 /* icon_priority_0.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F570F565D9300473A95 /* icon_priority_0.png */; };
+		B9160F7B0F565D9300473A95 /* icon_priority_4.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F570F565D9300473A95 /* icon_priority_4.png */; };
 		B9160F7C0F565D9300473A95 /* icon_priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F580F565D9300473A95 /* icon_priority_1.png */; };
 		B9160F7D0F565D9300473A95 /* icon_priority_2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F590F565D9300473A95 /* icon_priority_2.png */; };
 		B9160F7E0F565D9300473A95 /* icon_priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5A0F565D9300473A95 /* icon_priority_3.png */; };
@@ -128,7 +126,7 @@
 		B9AE52A60F6B4AE50076D258 /* icon_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F500F565D9300473A95 /* icon_checked.png */; };
 		B9AE52A70F6B4AE50076D258 /* icon_list.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F520F565D9300473A95 /* icon_list.png */; };
 		B9AE52A80F6B4AE50076D258 /* icon_note.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F540F565D9300473A95 /* icon_note.png */; };
-		B9AE52A90F6B4AE50076D258 /* icon_priority_0.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F570F565D9300473A95 /* icon_priority_0.png */; };
+		B9AE52A90F6B4AE50076D258 /* icon_priority_4.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F570F565D9300473A95 /* icon_priority_4.png */; };
 		B9AE52AA0F6B4AE50076D258 /* icon_priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F580F565D9300473A95 /* icon_priority_1.png */; };
 		B9AE52AB0F6B4AE50076D258 /* icon_priority_2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F590F565D9300473A95 /* icon_priority_2.png */; };
 		B9AE52AC0F6B4AE50076D258 /* icon_priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5A0F565D9300473A95 /* icon_priority_3.png */; };
@@ -309,14 +307,10 @@
 		B9160F1B0F565D4C00473A95 /* RTMAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuth.m; sourceTree = "<group>"; };
 		B9160F1C0F565D4C00473A95 /* LocalCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCache.h; sourceTree = "<group>"; };
 		B9160F1D0F565D4C00473A95 /* LocalCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCache.m; sourceTree = "<group>"; };
-		B9160F1E0F565D4C00473A95 /* RTMExistingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMExistingTask.h; sourceTree = "<group>"; };
-		B9160F1F0F565D4C00473A95 /* RTMExistingTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMExistingTask.m; sourceTree = "<group>"; };
 		B9160F200F565D4C00473A95 /* RTMList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMList.h; sourceTree = "<group>"; };
 		B9160F210F565D4C00473A95 /* RTMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMList.m; sourceTree = "<group>"; };
 		B9160F220F565D4C00473A95 /* RTMNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMNote.h; sourceTree = "<group>"; };
 		B9160F230F565D4C00473A95 /* RTMNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMNote.m; sourceTree = "<group>"; };
-		B9160F240F565D4C00473A95 /* RTMPendingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMPendingTask.h; sourceTree = "<group>"; };
-		B9160F250F565D4C00473A95 /* RTMPendingTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMPendingTask.m; sourceTree = "<group>"; };
 		B9160F260F565D4C00473A95 /* RTMStorable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMStorable.h; sourceTree = "<group>"; };
 		B9160F270F565D4C00473A95 /* RTMStorable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMStorable.m; sourceTree = "<group>"; };
 		B9160F280F565D4C00473A95 /* RTMSynchronizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMSynchronizer.h; sourceTree = "<group>"; };
@@ -333,7 +327,7 @@
 		B9160F500F565D9300473A95 /* icon_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_checked.png; sourceTree = "<group>"; };
 		B9160F520F565D9300473A95 /* icon_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_list.png; sourceTree = "<group>"; };
 		B9160F540F565D9300473A95 /* icon_note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_note.png; sourceTree = "<group>"; };
-		B9160F570F565D9300473A95 /* icon_priority_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_priority_0.png; sourceTree = "<group>"; };
+		B9160F570F565D9300473A95 /* icon_priority_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_priority_4.png; sourceTree = "<group>"; };
 		B9160F580F565D9300473A95 /* icon_priority_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_priority_1.png; sourceTree = "<group>"; };
 		B9160F590F565D9300473A95 /* icon_priority_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_priority_2.png; sourceTree = "<group>"; };
 		B9160F5A0F565D9300473A95 /* icon_priority_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_priority_3.png; sourceTree = "<group>"; };
@@ -637,23 +631,19 @@
 				B9B957630F662E780046712A /* TagProvider.m */,
 				B9B9570E0F6615880046712A /* DBTagProvider.h */,
 				B9B9570F0F6615880046712A /* DBTagProvider.m */,
-				B9D0433C0F5F493E00641E61 /* TaskProvider.m */,
-				B9D0430C0F5F470100641E61 /* TaskProvider.h */,
 				B9D043410F5F49A900641E61 /* DBTaskProvider.h */,
 				B9D043420F5F49A900641E61 /* DBTaskProvider.m */,
+				B9D0433C0F5F493E00641E61 /* TaskProvider.m */,
+				B9D0430C0F5F470100641E61 /* TaskProvider.h */,
 				B9160F190F565D4C00473A95 /* ListProvider.h */,
 				B9160F1A0F565D4C00473A95 /* RTMAuth.h */,
 				B9160F1B0F565D4C00473A95 /* RTMAuth.m */,
 				B9160F1C0F565D4C00473A95 /* LocalCache.h */,
 				B9160F1D0F565D4C00473A95 /* LocalCache.m */,
-				B9160F1E0F565D4C00473A95 /* RTMExistingTask.h */,
-				B9160F1F0F565D4C00473A95 /* RTMExistingTask.m */,
 				B9160F200F565D4C00473A95 /* RTMList.h */,
 				B9160F210F565D4C00473A95 /* RTMList.m */,
 				B9160F220F565D4C00473A95 /* RTMNote.h */,
 				B9160F230F565D4C00473A95 /* RTMNote.m */,
-				B9160F240F565D4C00473A95 /* RTMPendingTask.h */,
-				B9160F250F565D4C00473A95 /* RTMPendingTask.m */,
 				B9160F260F565D4C00473A95 /* RTMStorable.h */,
 				B9160F270F565D4C00473A95 /* RTMStorable.m */,
 				B9160F280F565D4C00473A95 /* RTMSynchronizer.h */,
@@ -807,7 +797,7 @@
 				B9160F500F565D9300473A95 /* icon_checked.png */,
 				B9160F520F565D9300473A95 /* icon_list.png */,
 				B9160F540F565D9300473A95 /* icon_note.png */,
-				B9160F570F565D9300473A95 /* icon_priority_0.png */,
+				B9160F570F565D9300473A95 /* icon_priority_4.png */,
 				B9160F580F565D9300473A95 /* icon_priority_1.png */,
 				B9160F590F565D9300473A95 /* icon_priority_2.png */,
 				B9160F5A0F565D9300473A95 /* icon_priority_3.png */,
@@ -1052,7 +1042,7 @@
 				B9160F740F565D9300473A95 /* icon_checked.png in Resources */,
 				B9160F760F565D9300473A95 /* icon_list.png in Resources */,
 				B9160F780F565D9300473A95 /* icon_note.png in Resources */,
-				B9160F7B0F565D9300473A95 /* icon_priority_0.png in Resources */,
+				B9160F7B0F565D9300473A95 /* icon_priority_4.png in Resources */,
 				B9160F7C0F565D9300473A95 /* icon_priority_1.png in Resources */,
 				B9160F7D0F565D9300473A95 /* icon_priority_2.png in Resources */,
 				B9160F7E0F565D9300473A95 /* icon_priority_3.png in Resources */,
@@ -1099,7 +1089,7 @@
 				B9AE52A60F6B4AE50076D258 /* icon_checked.png in Resources */,
 				B9AE52A70F6B4AE50076D258 /* icon_list.png in Resources */,
 				B9AE52A80F6B4AE50076D258 /* icon_note.png in Resources */,
-				B9AE52A90F6B4AE50076D258 /* icon_priority_0.png in Resources */,
+				B9AE52A90F6B4AE50076D258 /* icon_priority_4.png in Resources */,
 				B9AE52AA0F6B4AE50076D258 /* icon_priority_1.png in Resources */,
 				B9AE52AB0F6B4AE50076D258 /* icon_priority_2.png in Resources */,
 				B9AE52AC0F6B4AE50076D258 /* icon_priority_3.png in Resources */,
@@ -1254,10 +1244,8 @@
 				B9160F000F565D1500473A95 /* TaskViewController.m in Sources */,
 				B9160F2D0F565D4C00473A95 /* RTMAuth.m in Sources */,
 				B9160F2E0F565D4C00473A95 /* LocalCache.m in Sources */,
-				B9160F2F0F565D4C00473A95 /* RTMExistingTask.m in Sources */,
 				B9160F300F565D4C00473A95 /* RTMList.m in Sources */,
 				B9160F310F565D4C00473A95 /* RTMNote.m in Sources */,
-				B9160F320F565D4C00473A95 /* RTMPendingTask.m in Sources */,
 				B9160F330F565D4C00473A95 /* RTMStorable.m in Sources */,
 				B9160F340F565D4C00473A95 /* RTMSynchronizer.m in Sources */,
 				B9160F350F565D4C00473A95 /* RTMTask.m in Sources */,

@@ -85,9 +85,6 @@ static NSArray *s_check_box_images;
       lineBreakMode:UILineBreakModeTailTruncation];
 
    switch ([task.priority intValue]) {
-      case 0:
-         CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 0.0);
-         break;
       case 1:
          CGContextSetRGBStrokeColor(context, 0.917, 0.321, 0.0, 1.0);
          break;
@@ -96,6 +93,9 @@ static NSArray *s_check_box_images;
          break;
       case 3:
          CGContextSetRGBStrokeColor(context, 0.207, 0.604, 1.0, 1.0);
+         break;
+      case 4:
+         CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 0.0);
          break;
       default:
          break;

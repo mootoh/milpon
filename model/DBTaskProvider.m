@@ -102,7 +102,9 @@
    if (dirty_all_tasks_) {
       //[all_tasks_ release];
       //NSDictionary *cond = [NSDictionary dictionaryWithObject:@"deleted is NULL" forKey:@"WHERE"];
-      NSDictionary *cond = [NSDictionary dictionaryWithObject:@"completed is NULL" forKey:@"WHERE"];
+      NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
+      NSArray *vals = [NSArray arrayWithObjects:@"completed is NULL", @"priority ASC, due IS NULL ASC, due ASC", nil];
+      NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
       all_tasks_ = [[self tasks:cond] retain];
       dirty_all_tasks_ = NO;
    }
@@ -115,7 +117,7 @@
    NSArray *vals = [NSArray arrayWithObjects:
       //[NSString stringWithFormat:@"list_id=%d AND deleted is NULL", [list.iD intValue]],
       [NSString stringWithFormat:@"list_id=%d AND completed is NULL", [list.iD intValue]],
-      [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
+      [NSString stringWithFormat:@"priority ASC, due IS NULL ASC, due ASC"],
       nil];
 
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
@@ -129,7 +131,7 @@
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", @"JOIN", @"GROUP", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [NSString stringWithFormat:@"task_tag.tag_id=%d", [tag.iD intValue]],
-      [NSString stringWithFormat:@"task.priority=0 ASC, task.priority ASC, task.due IS NULL ASC, task.due ASC"],
+      [NSString stringWithFormat:@"task.priority ASC, task.due IS NULL ASC, task.due ASC"],
       [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys],
       @"task_tag.task_id",
       nil];
@@ -143,7 +145,7 @@
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [NSString stringWithFormat:@"completed='' OR completed is NULL"],
-      [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
+      [NSString stringWithFormat:@"priority ASC, due IS NULL ASC, due ASC"],
       nil];
 
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
@@ -155,7 +157,7 @@
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [NSString stringWithFormat:@"edit_bits>1"],
-      [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
+      [NSString stringWithFormat:@"priority ASC, due IS NULL ASC, due ASC"],
       nil];
 
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
@@ -167,7 +169,7 @@
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [NSString stringWithFormat:@"(completed='' OR completed is NULL) AND edit_bits & 1"],
-      [NSString stringWithFormat:@"priority=0 ASC, priority ASC, due IS NULL ASC, due ASC"],
+      [NSString stringWithFormat:@"priority ASC, due IS NULL ASC, due ASC"],
       nil];
 
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
@@ -248,7 +250,7 @@
 
       NSString *priority_str = [task objectForKey:@"priority"];
       NSNumber *pri = [NSNumber numberWithInt: [priority_str isEqualToString:@"N"] ?
-         0 :
+         4 :
          [priority_str intValue]];
       [task_attrs setObject:pri forKey:@"priority"];
 
@@ -434,7 +436,7 @@
       
       NSString *priority_str = [task objectForKey:@"priority"];
       NSNumber *pri = [NSNumber numberWithInt: [priority_str isEqualToString:@"N"] ?
-                       0 :
+                       4 :
                        [priority_str intValue]];
       [task_attrs setObject:pri forKey:@"priority"];
       
