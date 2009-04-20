@@ -12,7 +12,6 @@
 #import "RTMList.h"
 
 @implementation ListSelectController
-
 @synthesize parent;
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -53,8 +52,9 @@
    return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   //self.parent.list = [[[ListProvider sharedListProvider] lists] objectAtIndex:indexPath.row]];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   self.parent.list = [[[ListProvider sharedListProvider] lists] objectAtIndex:indexPath.row];
    [self.navigationController popViewControllerAnimated:YES];
    [self.parent updateView];
 }

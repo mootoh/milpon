@@ -6,8 +6,6 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @class AddTaskViewController;
 
 @interface ListSelectController : UITableViewController

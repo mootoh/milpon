@@ -91,7 +91,7 @@ static UIImage *s_checkedIcon = nil;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   NSAssert(self.parent, @"parent should be set");
+   //NSAssert(self.parent, @"parent should be set");
    RTMTag *tag = [[tag_provider tags] objectAtIndex:indexPath.row];
    if ([[selected_flags objectForKey:tag] boolValue]) {
       [selected_flags setObject:[NSNumber numberWithBool:NO] forKey:tag];

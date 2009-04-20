@@ -70,7 +70,8 @@ enum {
 
 #pragma mark Table view methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
    return 1;
 }
 
@@ -85,33 +86,36 @@ enum {
    LABEL_TAG,
    DUE_BUTTON_TAG,
    NAME_FIELD_TAG,
-   PRIORITY_SEGMENT_TAG
+   PRIORITY_SEGMENT_TAG,
+   ICON_IMAGE_VIEW_TAG
 };
 
 #define NAME_CELL_IDENTIFIER @"NameCell"
 #define DUE_PRIORITY_CELL_IDENTIFIER @"DuePriorityCell"
 #define ICON_LABEL_CELL_IDENTIFIER @"IconLabelCell"
-
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
    UITableViewCell *cell = nil;
+
    switch (indexPath.row) {
       case ROW_NAME: {
          cell = [tableView dequeueReusableCellWithIdentifier:NAME_CELL_IDENTIFIER];
          UITextField *name_field = nil;
          if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:NAME_CELL_IDENTIFIER] autorelease];
-            UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 15, 16, 16)];
-            UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
+            UIImageView *icon_image_view = [[UIImageView alloc] initWithFrame:CGRectMake(8, 15, 16, 16)];
+            UIImage *icon_image = [[UIImage alloc] initWithContentsOfFile:
                                   [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_target.png"]];
-            iconImageView.image = iconImage;
-            [cell.contentView addSubview:iconImageView];
+            icon_image_view.image = icon_image;
+            [icon_image release];
+            [cell.contentView addSubview:icon_image_view];
+            [icon_image_view release];
             
             // task name
             name_field = [[UITextField alloc] initWithFrame:CGRectMake(30, 8, 300, 40)];
             [name_field setFont:[UIFont systemFontOfSize:20.0f]];
-            name_field.placeholder = @"what to do...";            
+            name_field.placeholder = @"what to do...";
+            name_field.tag = NAME_FIELD_TAG;
 
             [cell.contentView addSubview:name_field];
          } else {
@@ -149,7 +153,9 @@ enum {
                [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
             
             priority_segment.selectedSegmentIndex = 3;
+            priority_segment.tag = PRIORITY_SEGMENT_TAG;
             [cell.contentView addSubview:priority_segment];
+            [priority_segment release];
          } else {
             due_button = (UIButton *)[cell viewWithTag:DUE_BUTTON_TAG];
             priority_segment = (UISegmentedControl *)[cell viewWithTag:PRIORITY_SEGMENT_TAG];
@@ -167,15 +173,17 @@ enum {
          break;
       }
       default: {
-         UIImageView *iconImageView = nil;
          UILabel *label = nil;
+         UIImageView *icon_image_view = nil;
+
          cell = [tableView dequeueReusableCellWithIdentifier:ICON_LABEL_CELL_IDENTIFIER];
          if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:ICON_LABEL_CELL_IDENTIFIER] autorelease];
 
-            iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 15, 16, 16)];
-            iconImageView.tag = ICON_TAG;
-            [cell.contentView addSubview:iconImageView];
+            icon_image_view = [[UIImageView alloc] initWithFrame:CGRectMake(8, 15, 16, 16)];
+            icon_image_view.tag = ICON_IMAGE_VIEW_TAG;
+            [cell.contentView addSubview:icon_image_view];
+            [icon_image_view release];
             
             label = [[UILabel alloc] initWithFrame:CGRectMake(30, 2, 220, 36)];
             label.tag = LABEL_TAG;
@@ -183,7 +191,7 @@ enum {
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
          } else {
-            iconImageView = (UIImageView *)[cell.contentView viewWithTag:ICON_TAG];
+            icon_image_view = (UIImageView *)[cell.contentView viewWithTag:ICON_IMAGE_VIEW_TAG];
             label = (UILabel *)[cell.contentView viewWithTag:LABEL_TAG];
          }
          
@@ -191,7 +199,7 @@ enum {
             case ROW_LIST: {
                UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
                   [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]];
-               iconImageView.image = iconImage;
+               icon_image_view.image = iconImage;
                [iconImage release];
                label.text = list.name;
                break;
@@ -199,17 +207,16 @@ enum {
             case ROW_TAG: {
                UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
                   [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]];
-               iconImageView.image = iconImage;
+               icon_image_view.image = iconImage;
                [iconImage release];
 
                // join tags
                NSString *tags_joined = @"";
                if (tags.count == 0) {
                   tags_joined = @"Tag...";
-               } else {         
-                  for (RTMTag *tag in tags) {
+               } else {
+                  for (RTMTag *tag in tags)
                      tags_joined = [tags_joined stringByAppendingString:[NSString stringWithFormat:@"%@ ", tag.name]];
-                  }
                }
                
                label.text = tags_joined;
@@ -218,20 +225,18 @@ enum {
             case ROW_NOTE: {
                UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
                                      [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_note.png"]];
-               iconImageView.image = iconImage;
+               icon_image_view.image = iconImage;
                [iconImage release];
                
                label.text = note ? note : @"Note...";
                break;
             }
          }
-         if (iconImageView) [iconImageView release];
          break;
       }
    }
    return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -324,4 +329,5 @@ enum {
 {
    [self.tableView reloadData]; // TODO: should reload due row only.
 }
+
 @end
