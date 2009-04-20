@@ -129,6 +129,19 @@
    [self flagUpEditBits:EB_TASK_DUE];
 }
 
+- (void) setNote:(NSString *)note ofIndex:(NSInteger) index
+{
+   /* TODO: implement this
+   NSArray *note_comps = [note componentsSeparatedByString:@"\n"];
+   NSString *title = [note_comps objectAtIndex:0];
+   NSString *body = @"";
+   for (int i=1; i<note_comps.count; i++)
+      body = [body stringByAppendingString:[note_comps objectAtIndex:i]];
+
+   [self flagUpEditBits:EB_TASK_NOTE];
+    */
+}
+
 - (NSNumber *) edit_bits
 {
    return edit_bits;

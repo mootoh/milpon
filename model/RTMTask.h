@@ -28,8 +28,8 @@
    NSNumber *list_id;
    NSString *rrule;
 
-   NSArray  *tags;
-   NSArray  *notes;
+   NSMutableArray *tags;
+   NSMutableArray *notes;
 }
 
 @property (nonatomic, retain) NSNumber *iD;
@@ -73,7 +73,8 @@ enum task_edit_bits_t {
    EB_TASK_URL           = 1 << 7,
    EB_TASK_LOCACTION_ID  = 1 << 8,
    EB_TASK_LIST_ID       = 1 << 9,
-   EB_TASK_RRULE         = 1 << 10
+   EB_TASK_RRULE         = 1 << 10,
+   EB_TASK_NOTE          = 1 << 11,
 };
 
 @end

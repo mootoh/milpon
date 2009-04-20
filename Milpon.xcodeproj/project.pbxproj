@@ -587,7 +587,7 @@
 				B9CBAFF80F5991710025216C /* add */,
 				B9CBAFF90F5991B80025216C /* auth */,
 				B93A12990F921AC200C0A9AB /* list tasks */,
-				B9B657650F9344AB00A1FA0A /* task */,
+				B9B657650F9344AB00A1FA0A /* task view */,
 				B9160EDA0F565D1500473A95 /* AppDelegate.h */,
 				B9160EDB0F565D1500473A95 /* AppDelegate.m */,
 				B9160FB90F565DB600473A95 /* MainWindow.xib */,
@@ -840,7 +840,7 @@
 			name = sample;
 			sourceTree = "<group>";
 		};
-		B9B657650F9344AB00A1FA0A /* task */ = {
+		B9B657650F9344AB00A1FA0A /* task view */ = {
 			isa = PBXGroup;
 			children = (
 				B970AC050F6416A1004467E9 /* TaskView.xib */,
@@ -849,7 +849,7 @@
 				B926C44A0F67812F0014DB7D /* AttributeView.h */,
 				B926C44B0F67812F0014DB7D /* AttributeView.m */,
 			);
-			name = task;
+			name = "task view";
 			sourceTree = "<group>";
 		};
 		B9CBAFF80F5991710025216C /* add */ = {

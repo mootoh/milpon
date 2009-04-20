@@ -402,9 +402,11 @@ prioritySelected_N(4);
 
 - (void) setNote:(NSString *)note
 {
-
    AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_NOTE];
    av.in_editing = NO;
+
+   [task setNote:note ofIndex:notePages.currentPage];
+   
    av.text = note;
    [av setNeedsDisplay];
 }

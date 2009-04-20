@@ -360,7 +360,6 @@
 
 - (void) createNoteAtOnline:(NSString *)note title:(NSString *)title task_id:(NSNumber *)tid
 {
-   LOG(@"createNoteAtOnline enter");
    NSMutableArray *keys = [NSMutableArray arrayWithObjects:@"task_id", @"edit_bits", nil];
    NSMutableArray *vals = [NSMutableArray arrayWithObjects:tid, [NSNumber numberWithInt:EB_CREATED_OFFLINE], nil];
 
@@ -376,7 +375,6 @@
 
    NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    [local_cache_ insert:attrs into:@"note"];
-   LOG(@"createNoteAtOnline leave");
 }
 
 - (BOOL) taskExist:(NSNumber *)idd

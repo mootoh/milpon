@@ -25,7 +25,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
    [super viewDidLoad];
-   //note_view.text = note;
+   note_view.text = note;
    [note_view becomeFirstResponder];
 }
 

@@ -41,7 +41,7 @@
 - (void) edit_due;
 - (void) setDue:(NSDate *)date;
 - (void) setList:(RTMList *)list;
-
+- (void) setNote:(NSString *)note;
 - (void) updateView;
 
 @end
