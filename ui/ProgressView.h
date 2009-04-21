@@ -6,9 +6,8 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-@interface ProgressView : UIView {
+@interface ProgressView : UIView
+{
   UIActivityIndicatorView *activityIndicator;
   UILabel *messageLabel;
   UIProgressView *progressView;
@@ -22,6 +21,7 @@
 - (void) progressBegin;
 - (void) progressEnd;
 - (void) updateMessage:(NSString *)msg;
+
 /**
  * @note should be called in background thread (not main thread)
  */

@@ -201,6 +201,7 @@
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
+// TODO: shows CoreAnimation animated progressbar
 - (void) uploadOperation
 {
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -234,6 +235,30 @@
    //[progressView progressEnd];
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
    //refreshButton.enabled = YES;
+}
+
+- (IBAction) showDialog
+{
+   [UIView beginAnimations:nil context:NULL];
+   [UIView setAnimationDuration:1.0f];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDidStopSelector:@selector(dialogAnimDidstop:finished:context:)];
+	CGAffineTransform transform = CGAffineTransformMakeScale(1.2, 1.2);
+
+   CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+   UIView *maskView = [[UIView alloc] initWithFrame:appFrame];
+   maskView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.9f];
+   maskView.opaque = NO;
+   maskView.transform = transform;
+
+   [window addSubview:maskView];
+   [UIView commitAnimations];
+
+}
+
+- (void)dialogAnimDidstop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
+{
+   NSLog(@"dialogAnimDidStop");
 }
 
 @end
