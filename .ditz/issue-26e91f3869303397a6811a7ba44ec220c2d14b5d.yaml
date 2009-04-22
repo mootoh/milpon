@@ -20,5 +20,9 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - assigned to release beta08 from beta7
   - ""
+- - 2009-04-22 11:30:06.796211 Z
+  - mootoh <mootoh@gmail.com>
+  - commented
+  - learned how to animate views using CoreAnimation.
 git_branch: 
 claimer: 

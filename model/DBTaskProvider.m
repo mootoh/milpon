@@ -483,7 +483,26 @@
       NSArray *tasks = [local_cache_ select:dict from:@"note" option:where];
       return tasks.count == 1;
 }
-   
+
+- (NSArray *) todayTasks
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
+- (NSArray *) tomorrowTasks
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
+- (NSArray *) inAWeekTasks
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
+
 @end // DBTaskProvider
 
 @implementation TaskProvider (DB) // {{{

@@ -124,6 +124,30 @@
    return NO;
 }
 
+- (NSArray *) overDueTasks
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
+- (NSArray *) todayTasks
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
+- (NSArray *) tomorrowTasks
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
+- (NSArray *) inAWeekTasks
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 + (TaskProvider *) sharedTaskProvider
 {
    NSAssert(NO, @"not reach here");

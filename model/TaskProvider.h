@@ -20,6 +20,10 @@
 - (NSArray *) modifiedTasks;
 - (NSArray *) pendingTasks;
 - (NSArray *) existingTasks;
+- (NSArray *) overDueTasks;
+- (NSArray *) todayTasks;
+- (NSArray *) tomorrowTasks;
+- (NSArray *) inAWeekTasks;
 
 /**
  * @return created task id
