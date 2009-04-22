@@ -17,6 +17,7 @@
 #import "OverviewViewController.h"
 #import "RTMSynchronizer.h"
 #import "Reachability.h"
+#import "ProgressView.h"
 #import "logger.h"
 
 @interface AppDelegate (Private)
@@ -239,24 +240,29 @@
 
 - (IBAction) showDialog
 {
-   [UIView beginAnimations:nil context:NULL];
-   [UIView setAnimationDuration:1.0f];
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationDidStopSelector:@selector(dialogAnimDidstop:finished:context:)];
-	CGAffineTransform transform = CGAffineTransformMakeScale(1.2, 1.2);
-
+   // setup ProgressView
    CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
-   UIView *maskView = [[UIView alloc] initWithFrame:appFrame];
-   maskView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.9f];
-   maskView.opaque = NO;
-   maskView.transform = transform;
+   ProgressView *pv = [[ProgressView alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height, appFrame.size.width, 100)];
+   pv.alpha = 0.0f;
+   pv.backgroundColor = [UIColor blackColor];
+   pv.opaque = YES;
+   [window addSubview:pv];
 
-   [window addSubview:maskView];
-   [UIView commitAnimations];
+   // animation part
+   [UIView beginAnimations:nil context:NULL]; {
+      [UIView setAnimationDuration:0.20f];
+      [UIView setAnimationDelegate:self];
+      [UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
 
+      pv.alpha = 0.8f;
+      pv.frame = CGRectMake(appFrame.origin.x, appFrame.size.height-80, appFrame.size.width, 100);
+   } [UIView commitAnimations];
+   
+   [pv toggleDisplay];
+   [pv release];
 }
 
-- (void)dialogAnimDidstop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
+- (void)animationFinished:(NSString *)animationID finished:(BOOL)finished context:(void *)context
 {
    NSLog(@"dialogAnimDidStop");
 }

@@ -16,7 +16,6 @@ static const float messageLabelPadding = 18.0f;
 {
    if (self = [super initWithFrame:frame]) {
       inProgress = NO;
-      self.opaque = NO;
 
       activityIndicator = [[UIActivityIndicatorView alloc]
          initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -29,11 +28,11 @@ static const float messageLabelPadding = 18.0f;
 
       messageLabel = [[UILabel alloc] initWithFrame:messageRect];
       messageLabel.backgroundColor = [UIColor colorWithRed:1.0f green:0 blue:0 alpha:0.0f];
-      messageLabel.opaque = NO;
+      messageLabel.opaque = YES;
       messageLabel.font = [UIFont systemFontOfSize:10];
       messageLabel.textColor = [UIColor whiteColor];
       messageLabel.textAlignment = UITextAlignmentCenter;
-      messageLabel.text = @"";
+      messageLabel.text = @"yes";
       [self addSubview:messageLabel];
 
       progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
