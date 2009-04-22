@@ -22,7 +22,7 @@ enum {
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-       calendar_picker = [[UICCalendarPicker alloc] initWithFrame:CGRectMake(58.0f, 52.0f, 204.0f, 234.0f)];
+       calendar_picker = [[UICCalendarPicker alloc] initWithSize:UICCalendarPickerSizeExtraLarge];
        calendar_picker.delegate = self;
     }
     return self;
@@ -79,7 +79,7 @@ enum {
          cell.text = @"Tomorrow";
          break;
       case ROW_CALENDAR:
-         [calendar_picker showInView:cell.contentView];
+         [calendar_picker showInView:cell.contentView animated:NO];
          //[cell.contentView addSubview:calendar_picker];
          break;
       default:

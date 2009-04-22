@@ -4,17 +4,30 @@
 @implementation UICCalendarPickerDateButton
 
 @synthesize date;
-@synthesize button;
+@synthesize dayOfWeek;
+@synthesize monthout;
+@synthesize outOfRange;
+
+- (BOOL)isToday {
+	return isToday;
+}
+
+- (void)setToday:(BOOL)b {
+	isToday = b;
+}
 
 - (id)init {
 	if (self = [super init]) {
-		self.button = [UIButton buttonWithType:UIButtonTypeCustom];
+		button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+		date = nil;
+		isToday = NO;
+		dayOfWeek = UICCalendarPickerDayOfWeekSunday;
+		outOfRange = NO;
 	}
 	return self;
 }
 
 - (void)dealloc {
-	LOG_CURRENT_METHOD;
 	[date release];
 	[button release];
 	[super dealloc];
