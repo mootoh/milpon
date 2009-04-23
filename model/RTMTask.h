@@ -6,8 +6,10 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-@interface RTMTask : NSObject
-{
+#import "RTMObject.h"
+
+@interface RTMTask : RTMObject
+{/*
    NSNumber *iD;
    NSNumber *edit_bits;
    // Task
@@ -28,11 +30,12 @@
 
    NSMutableArray *tags;
    NSMutableArray *notes;
+*/
 }
 
-@property (nonatomic, retain) NSNumber *iD;
-@property (nonatomic, retain) NSNumber *edit_bits;
+#pragma mark properties
 
+#if 0
 @property (nonatomic, retain) NSNumber *task_id;
 @property (nonatomic, retain) NSDate   *due;
 @property (nonatomic, retain) NSDate   *completed;
@@ -50,7 +53,9 @@
 
 @property (nonatomic, retain) NSArray  *tags;
 @property (nonatomic, retain) NSArray  *notes;
+#endif // 0
 
+#pragma mark methods
 - (id) initByParams:(NSDictionary *)params;
 
 - (void) complete;
@@ -76,4 +81,3 @@ enum task_edit_bits_t {
 };
 
 @end
-// set vim:ft=objc

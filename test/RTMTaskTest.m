@@ -16,13 +16,14 @@
 
 @implementation RTMTaskTest
 
+#if 0
+
 - (void) testAliveTasks
 {
    NSArray *alive_tasks = [[TaskProvider sharedTaskProvider] tasks];
    STAssertTrue(4 == [alive_tasks count], @"2 tasks should exist in list_id=2.");
 }
 
-#if 0
 
 - (void) testAllTasks
 {

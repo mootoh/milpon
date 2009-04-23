@@ -6,16 +6,12 @@
 
 @implementation RTMTask
 
-@synthesize iD, name, url, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, taskseries_id, task_id, taskseries_id, has_due_time;
+//@synthesize name, url, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, taskseries_id, task_id, taskseries_id, has_due_time;
 
-//
-// note: I use [object retain] instead of property assignment,
-//       because I implemented custom assignment function to store value into DB.
-//       initByParams should be called from DB.
-//
-- (id) initByParams:(NSDictionary *)params
+- (id) initByAttributes:(NSDictionary *)attrs
 {
    if (self = [super init]) {
+#if 0
       self.iD              = [params objectForKey:@"task.id"];
       edit_bits            = [[params objectForKey:@"task.edit_bits"] retain];
 
@@ -35,12 +31,14 @@
       self.location_id     = [params objectForKey:@"task.location_id"];
       self.list_id         = [params objectForKey:@"task.list_id"];
       self.rrule           = [params objectForKey:@"task.rrule"];
+#endif // 0
    }
    return self;
 }
 
 - (void) dealloc
 {
+#if 0
    [iD release];
    [edit_bits release];
 
@@ -61,47 +59,62 @@
 
    [tags release];
    [notes release];
-
+#endif // 0
    [super dealloc];
 }
 - (void) complete
 {
+#if 0
    self.completed = [NSDate date];
    [[TaskProvider sharedTaskProvider] complete:self];
+#endif //0
 }
 
 - (void) uncomplete
 {
+#if 0
    [[TaskProvider sharedTaskProvider] uncomplete:self];
    self.completed = nil;
+#endif // 0
 }
 
 - (BOOL) is_completed
 {
+#if 0
    return completed != nil;
+#endif // 0
+   return YES;
 }
 
 - (void) flagUpEditBits:(enum task_edit_bits_t) flag
 {
+#if 0
    int eb = [edit_bits intValue];
    eb |= flag;
    self.edit_bits = [NSNumber numberWithInt:eb];
+#endif // 0
 }
 
 - (void) flagDownEditBits:(enum task_edit_bits_t) flag
 {
+#if 0
    int eb = [edit_bits intValue];
    eb = eb ^ flag;
    self.edit_bits = [NSNumber numberWithInt:eb];
+#endif // 0
 }
 
 - (NSNumber *) priority
 {
+#if 0
    return priority;
+#endif // 0
+   return [NSNumber numberWithInt:1];
 }
 
 - (void) setPriority:(NSNumber *)pri
 {
+#if 0
    [priority release];
    priority = [pri retain];
 
@@ -110,15 +123,20 @@
    [[LocalCache sharedLocalCache] update:dict table:@"task" condition:where];
 
    [self flagUpEditBits:EB_TASK_PRIORITY];
+#endif // 0
 }
 
 - (NSDate *) due
 {
+#if 0
    return due;
+#endif // 0
+   return [NSDate date];
 }
 
 - (void) setDue:(NSDate *)du
 {
+#if 0
    [due release];
    due = [du retain];
 
@@ -127,6 +145,7 @@
    [[LocalCache sharedLocalCache] update:dict table:@"task" condition:where];
 
    [self flagUpEditBits:EB_TASK_DUE];
+#endif // 0
 }
 
 - (void) setNote:(NSString *)note ofIndex:(NSInteger) index
@@ -144,31 +163,22 @@
 
 - (NSNumber *) edit_bits
 {
+#if 0
    return edit_bits;
+#endif // 0
+   return [NSNumber numberWithInt:1];
 }
 
 - (void) setEdit_bits:(NSNumber *)eb
 {
+#if 0
    [edit_bits release];
    edit_bits = [eb retain];
 
    NSDictionary *dict = [NSDictionary dictionaryWithObject:eb forKey:@"edit_bits"];
    NSString *where = [NSString stringWithFormat:@"WHERE id=%d", [iD intValue]];
    [[LocalCache sharedLocalCache] update:dict table:@"task" condition:where];
-}
-
-- (void) dump
-{
-   LOG(@"RTMTask attrs:(id, name, url, due, completed, priority, postponed, estimate, rrule, tags, notes, list_id, location_id, edit_bits) = (%d, %@, %@, %@, %@, %d, %d, %@, %@, %p, %p, %d, %d, %d)",
-      [self.iD intValue],
-      self.name, self.url, self.due, self.completed, 
-      [self.priority intValue],
-      [self.postponed intValue],
-      self.estimate, self.rrule,
-      self.tags, self.notes,
-      [self.list_id intValue],
-      [self.location_id intValue],
-      [self.edit_bits intValue]);
+#endif // 0
 }
 
 @end // RTMTask

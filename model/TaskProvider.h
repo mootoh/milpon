@@ -14,6 +14,7 @@
 
 @interface TaskProvider : NSObject
 
+#pragma mark Task Collectors
 - (NSArray *) tasks;
 - (NSArray *) tasksInList:(RTMList *)list;
 - (NSArray *) tasksInTag:(RTMTag *)tag;
@@ -25,6 +26,7 @@
 - (NSArray *) tomorrowTasks;
 - (NSArray *) inAWeekTasks;
 
+#pragma mark Create
 /**
  * @return created task id
  */
