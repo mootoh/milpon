@@ -9,6 +9,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "RTMAPI.h"
 #import "RTMTask.h"
+#import "TaskProvider.h"
 
 @interface RTMTaskTest : SenTestCase
 @end
@@ -17,9 +18,11 @@
 
 - (void) testAliveTasks
 {
-   NSArray *alive_tasks = [RTMTask tasks];
+   NSArray *alive_tasks = [[TaskProvider sharedTaskProvider] tasks];
    STAssertTrue(4 == [alive_tasks count], @"2 tasks should exist in list_id=2.");
 }
+
+#if 0
 
 - (void) testAllTasks
 {
@@ -41,5 +44,5 @@
    RTMTask *task = [tasks objectAtIndex:0];
    STAssertTrue([task.name isEqualToString:@"Forget about it"], @"check task name");
 }
-
+#endif
 @end

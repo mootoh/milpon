@@ -88,6 +88,8 @@
 		B919969B0F612CB200D631D1 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
 		B919969D0F612CB800D631D1 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
 		B919969F0F612CBD00D631D1 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
+		B91C48560FA04319001032CD /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
+		B91C48740FA04970001032CD /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
 		B926C44C0F67812F0014DB7D /* AttributeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B926C44B0F67812F0014DB7D /* AttributeView.m */; };
 		B926C4BF0F67991B0014DB7D /* icon_url.png in Resources */ = {isa = PBXBuildFile; fileRef = B926C4BE0F67991B0014DB7D /* icon_url.png */; };
 		B93A12570F9212AA00C0A9AB /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12560F9212AA00C0A9AB /* ReviewViewController.m */; };
@@ -95,23 +97,18 @@
 		B93A12970F921AAA00C0A9AB /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12960F921AAA00C0A9AB /* OverviewViewController.m */; };
 		B93A12980F921AAA00C0A9AB /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12960F921AAA00C0A9AB /* OverviewViewController.m */; };
 		B93D753B0F941105001E11F3 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
-		B94A03600F5FEC0500A43BCA /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
 		B95C5C080F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B95C5C090F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B970A78D0F636AC5004467E9 /* ListProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */; };
-		B970A7EC0F637D71004467E9 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
-		B970A7EF0F637D82004467E9 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
-		B970A7F00F637D84004467E9 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
 		B970AC060F6416A1004467E9 /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B970AC050F6416A1004467E9 /* TaskView.xib */; };
 		B971DBDE0F5CCA3000513D03 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
+		B97AA00C0F9FEA1C004A23E3 /* RTMTaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FE10F565DE000473A95 /* RTMTaskTest.m */; };
+		B97AA0480F9FECA6004A23E3 /* MockTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B97AA0460F9FECA6004A23E3 /* MockTaskProvider.m */; };
 		B97F4FF00F94A1260085FB9B /* TaskCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B97F4FEF0F94A1260085FB9B /* TaskCollection.m */; };
 		B97F4FF10F94A1260085FB9B /* TaskCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B97F4FEF0F94A1260085FB9B /* TaskCollection.m */; };
 		B97F4FF80F94A1D90085FB9B /* TaskCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B97F4FF70F94A1D90085FB9B /* TaskCollectionViewController.m */; };
 		B97F4FF90F94A1D90085FB9B /* TaskCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B97F4FF70F94A1D90085FB9B /* TaskCollectionViewController.m */; };
 		B97F500E0F94C9280085FB9B /* RTMTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBF0F565DB600473A95 /* RTMTaskCell.m */; };
-		B985AAC20F60F308004A1B54 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
-		B985AAC70F60F332004A1B54 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
-		B985AAC90F60F34B004A1B54 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
 		B9A403460F92CF950043A4C6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
 		B9AE52080F6B407B0076D258 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
 		B9AE521A0F6B415C0076D258 /* RTMAPIListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD80F565DE000473A95 /* RTMAPIListTest.m */; };
@@ -241,17 +238,13 @@
 		B9B9576A0F662E880046712A /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
 		B9B9576F0F662EBB0046712A /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F2B0F565D4C00473A95 /* RTMTask.m */; };
 		B9B957780F662F380046712A /* TaskProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043370F5F48C800641E61 /* TaskProviderTest.m */; };
-		B9B957B30F6632C30046712A /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
 		B9B957B70F6632DB0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B95CA70F6767BE0046712A /* NoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B95CA60F6767BE0046712A /* NoteEdit.xib */; };
 		B9C9A8690F91D0070078DC79 /* RootMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */; };
 		B9C9A86A0F91D0080078DC79 /* RootMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */; };
 		B9D043180F5F477400641E61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9D043190F5F477400641E61 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
-		B9D043380F5F48C800641E61 /* TaskProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043370F5F48C800641E61 /* TaskProviderTest.m */; };
-		B9D0433D0F5F493E00641E61 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
 		B9D0433E0F5F493E00641E61 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
-		B9D043430F5F49A900641E61 /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
 		B9D043440F5F49A900641E61 /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
 		B9D043470F5F49CF00641E61 /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F2B0F565D4C00473A95 /* RTMTask.m */; };
 		B9D11FAF0F56A56300B5ABA4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
@@ -410,6 +403,10 @@
 		B93D753A0F941105001E11F3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		B95C5C070F598C8400A368DC /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = rtm.sql; sourceTree = "<group>"; };
 		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
+		B97AA0430F9FECA6004A23E3 /* MockList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockList.h; sourceTree = "<group>"; };
+		B97AA0440F9FECA6004A23E3 /* MockList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockList.m; sourceTree = "<group>"; };
+		B97AA0450F9FECA6004A23E3 /* MockTaskProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockTaskProvider.h; sourceTree = "<group>"; };
+		B97AA0460F9FECA6004A23E3 /* MockTaskProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockTaskProvider.m; sourceTree = "<group>"; };
 		B97F4FEE0F94A08B0085FB9B /* TaskCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCollection.h; sourceTree = "<group>"; };
 		B97F4FEF0F94A1260085FB9B /* TaskCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCollection.m; sourceTree = "<group>"; };
 		B97F4FF60F94A1D90085FB9B /* TaskCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCollectionViewController.h; sourceTree = "<group>"; };
@@ -763,6 +760,10 @@
 		B91610590F56607600473A95 /* mock */ = {
 			isa = PBXGroup;
 			children = (
+				B97AA0430F9FECA6004A23E3 /* MockList.h */,
+				B97AA0440F9FECA6004A23E3 /* MockList.m */,
+				B97AA0450F9FECA6004A23E3 /* MockTaskProvider.h */,
+				B97AA0460F9FECA6004A23E3 /* MockTaskProvider.m */,
 				B9160FD30F565DE000473A95 /* MockRTMAPI.h */,
 				B9160FD40F565DE000473A95 /* MockRTMAPI.m */,
 				B916105A0F56607600473A95 /* MockListProvider.h */,
@@ -1415,19 +1416,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9D043380F5F48C800641E61 /* TaskProviderTest.m in Sources */,
-				B9D0433D0F5F493E00641E61 /* TaskProvider.m in Sources */,
-				B9D043430F5F49A900641E61 /* DBTaskProvider.m in Sources */,
 				B9D043470F5F49CF00641E61 /* RTMTask.m in Sources */,
-				B94A03600F5FEC0500A43BCA /* LocalCache.m in Sources */,
-				B985AAC20F60F308004A1B54 /* RTMList.m in Sources */,
-				B985AAC70F60F332004A1B54 /* DBListProvider.m in Sources */,
-				B985AAC90F60F34B004A1B54 /* ListProvider.m in Sources */,
-				B970A7EC0F637D71004467E9 /* RTMAPIList.m in Sources */,
-				B970A7EF0F637D82004467E9 /* RTMAPIXMLParserCallback.m in Sources */,
-				B970A7F00F637D84004467E9 /* RTMAPI.m in Sources */,
 				B9B956E00F6609FA0046712A /* MilponHelper.m in Sources */,
-				B9B957B30F6632C30046712A /* RTMTag.m in Sources */,
+				B97AA00C0F9FEA1C004A23E3 /* RTMTaskTest.m in Sources */,
+				B97AA0480F9FECA6004A23E3 /* MockTaskProvider.m in Sources */,
+				B91C48560FA04319001032CD /* LocalCache.m in Sources */,
+				B91C48740FA04970001032CD /* TaskProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1476,7 +1470,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "30718F42-3B54-4610-99E9-023759180436";
-				SDKROOT = iphonesimulator2.2;
+				SDKROOT = iphonesimulator2.2.1;
 			};
 			name = LocalDebug;
 		};
@@ -1747,7 +1741,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C519825E-CE5B-4630-8EC6-3D832C005111";
-				SDKROOT = iphonesimulator2.2;
+				SDKROOT = iphonesimulator2.2.1;
 			};
 			name = AdHocRelease;
 		};
@@ -1920,6 +1914,215 @@
 				PRODUCT_NAME = "Milpon Beta";
 			};
 			name = AdHocRelease;
+		};
+		B97AA0300F9FEB70004A23E3 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = UnitTest;
+		};
+		B97AA0310F9FEB70004A23E3 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = Milpon;
+				SDKROOT = iphonesimulator2.2.1;
+			};
+			name = UnitTest;
+		};
+		B97AA0320F9FEB70004A23E3 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = UNIT_TEST;
+				INFOPLIST_FILE = "UnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = UnitTest;
+		};
+		B97AA0330F9FEB70004A23E3 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					UNIT_TEST,
+				);
+				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/ListUnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = UnitTest;
+		};
+		B97AA0340F9FEB70004A23E3 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					UNIT_TEST,
+				);
+				GCC_USE_GCC3_PFE_SUPPORT = YES;
+				INFOPLIST_FILE = "others/TaskUnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = UnitTest;
+		};
+		B97AA0350F9FEB70004A23E3 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					LOCAL_DEBUG,
+					UNIT_TEST,
+				);
+				INFOPLIST_FILE = "APILocalTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = UnitTest;
+		};
+		B97AA0360F9FEB70004A23E3 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					UNIT_TEST,
+				);
+				INFOPLIST_FILE = "TagUnitTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = macosx10.5;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = UnitTest;
+		};
+		B97AA0370F9FEB70004A23E3 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Motohiro Takayama";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				INFOPLIST_FILE = others/Beta.plist;
+				PRODUCT_NAME = "Milpon Beta";
+				SDKROOT = iphonesimulator2.2.1;
+			};
+			name = UnitTest;
 		};
 		B9AE52FD0F6B4AE50076D258 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2140,6 +2343,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2148,7 +2352,8 @@
 					DEBUG,
 					UNIT_TEST,
 				);
-				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/TaskUnitTest-Info.plist";
+				GCC_USE_GCC3_PFE_SUPPORT = YES;
+				INFOPLIST_FILE = "others/TaskUnitTest-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -2204,7 +2409,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator2.2;
+				SDKROOT = iphonesimulator2.2.1;
 			};
 			name = Debug;
 		};
@@ -2218,7 +2423,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator2.2;
+				SDKROOT = iphonesimulator2.2.1;
 			};
 			name = Release;
 		};
@@ -2232,6 +2437,7 @@
 				B90A5C750F941D0100917583 /* LocalDebug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				B92A83360F9409E100DD725C /* AdHocRelease */,
+				B97AA0310F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -2243,6 +2449,7 @@
 				B90A5C770F941D0100917583 /* LocalDebug */,
 				B914B34C0F5EBDA6009C19BE /* Release */,
 				B92A83380F9409E100DD725C /* AdHocRelease */,
+				B97AA0330F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -2254,6 +2461,7 @@
 				B90A5C7B0F941D0100917583 /* LocalDebug */,
 				B9AE52FE0F6B4AE50076D258 /* Release */,
 				B92A833C0F9409E100DD725C /* AdHocRelease */,
+				B97AA0370F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -2265,6 +2473,7 @@
 				B90A5C760F941D0100917583 /* LocalDebug */,
 				B9B77FB00F56A31500BF0EF3 /* Release */,
 				B92A83370F9409E100DD725C /* AdHocRelease */,
+				B97AA0320F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -2276,6 +2485,7 @@
 				B90A5C790F941D0100917583 /* LocalDebug */,
 				B9B956550F65D2720046712A /* Release */,
 				B92A833A0F9409E100DD725C /* AdHocRelease */,
+				B97AA0350F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -2287,6 +2497,7 @@
 				B90A5C7A0F941D0100917583 /* LocalDebug */,
 				B9B957260F6615930046712A /* Release */,
 				B92A833B0F9409E100DD725C /* AdHocRelease */,
+				B97AA0360F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -2298,6 +2509,7 @@
 				B90A5C780F941D0100917583 /* LocalDebug */,
 				B9D0431D0F5F477400641E61 /* Release */,
 				B92A83390F9409E100DD725C /* AdHocRelease */,
+				B97AA0340F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -2309,6 +2521,7 @@
 				B90A5C740F941D0100917583 /* LocalDebug */,
 				C01FCF5008A954540054247B /* Release */,
 				B92A83350F9409E100DD725C /* AdHocRelease */,
+				B97AA0300F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
