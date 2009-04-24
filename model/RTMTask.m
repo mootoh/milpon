@@ -1,8 +1,8 @@
 #import "RTMTask.h"
 #import "TaskProvider.h"
-#import "logger.h"
 #import "MilponHelper.h"
 #import "LocalCache.h"
+#import "logger.h"
 
 @implementation RTMTask
 
@@ -10,98 +10,20 @@
 
 - (id) initByAttributes:(NSDictionary *)attrs
 {
-   if (self = [super init]) {
-#if 0
-      self.iD              = [params objectForKey:@"task.id"];
-      edit_bits            = [[params objectForKey:@"task.edit_bits"] retain];
-
-      self.task_id         = [params objectForKey:@"task.task_id"];
-      if (! [[[MilponHelper sharedHelper] invalidDate] isEqualToDate:[params objectForKey:@"task.due"]])
-         due               = [[params objectForKey:@"task.due"] retain];
-      if (! [[[MilponHelper sharedHelper] invalidDate] isEqualToDate:[params objectForKey:@"task.completed"]])
-         completed         = [[params objectForKey:@"task.completed"] retain];
-      priority             = [[params objectForKey:@"task.priority"] retain];
-      self.postponed       = [params objectForKey:@"task.postponed"];
-      self.estimate        = [params objectForKey:@"task.estimate"];
-      self.has_due_time    = [params objectForKey:@"task.has_due_time"];
-
-      self.taskseries_id   = [params objectForKey:@"task.taskseries_id"];
-      self.name            = [params objectForKey:@"task.name"];
-      self.url             = [params objectForKey:@"task.url"];
-      self.location_id     = [params objectForKey:@"task.location_id"];
-      self.list_id         = [params objectForKey:@"task.list_id"];
-      self.rrule           = [params objectForKey:@"task.rrule"];
-#endif // 0
+   if (self = [super initByAttributes:attrs]) {
    }
    return self;
 }
 
 - (void) dealloc
 {
-#if 0
-   [iD release];
-   [edit_bits release];
-
-   [task_id release];
-   [due release];
-   [completed release];
-   [priority release];
-   [postponed release];
-   [estimate release];
-   [has_due_time release];
-
-   [taskseries_id release];
-   [name release];
-   [url release];
-   [location_id release];
-   [list_id release];
-   [rrule release];
-
-   [tags release];
-   [notes release];
-#endif // 0
    [super dealloc];
 }
-- (void) complete
-{
-#if 0
-   self.completed = [NSDate date];
-   [[TaskProvider sharedTaskProvider] complete:self];
-#endif //0
-}
 
-- (void) uncomplete
-{
-#if 0
-   [[TaskProvider sharedTaskProvider] uncomplete:self];
-   self.completed = nil;
-#endif // 0
-}
 
 - (BOOL) is_completed
 {
-#if 0
-   return completed != nil;
-#endif // 0
-   return YES;
-}
-
-- (void) flagUpEditBits:(enum task_edit_bits_t) flag
-{
-#if 0
-   int eb = [edit_bits intValue];
-   eb |= flag;
-   self.edit_bits = [NSNumber numberWithInt:eb];
-#endif // 0
-}
-
-- (void) flagDownEditBits:(enum task_edit_bits_t) flag
-{
-#if 0
-   int eb = [edit_bits intValue];
-   eb = eb ^ flag;
-   self.edit_bits = [NSNumber numberWithInt:eb];
-#endif // 0
+   return [attrs_ objectForKey:@"task.completed"] != nil;
 }
 
 - (NSNumber *) priority

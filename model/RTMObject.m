@@ -49,4 +49,18 @@
    // update DB too
 }
 
+- (void) flagUpEditBits:(NSInteger) flag
+{
+   NSInteger eb = [[attrs_ objectForKey:@"edit_bits"] integerValue];
+   eb |= flag;
+   self.edit_bits = eb;
+}
+
+- (void) flagDownEditBits:(NSInteger) flag
+{
+   NSInteger eb = [[attrs_ objectForKey:@"edit_bits"] integerValue];
+   eb = eb ^ flag;
+   self.edit_bits = eb;
+}
+
 @end

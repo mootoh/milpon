@@ -56,14 +56,7 @@
 #endif // 0
 
 #pragma mark methods
-- (id) initByParams:(NSDictionary *)params;
-
-- (void) complete;
-- (void) uncomplete;
 - (BOOL) is_completed;
-
-- (void) flagUpEditBits:(enum task_edit_bits_t) flag;
-- (void) flagDownEditBits:(enum task_edit_bits_t) flag;
 
 // XXX: edit bits assumes 32 bit integer.
 enum task_edit_bits_t {

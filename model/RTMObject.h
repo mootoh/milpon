@@ -23,6 +23,8 @@ enum edit_bits_t {
 
 
 - (id) initByAttributes:(NSDictionary *)attrs;
+- (void) flagUpEditBits:(NSInteger) flag;
+- (void) flagDownEditBits:(NSInteger) flag;
 
 /**
  * create a entity via online.
