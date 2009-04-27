@@ -20,11 +20,11 @@ enum edit_bits_t {
 @property (nonatomic) NSInteger iD;
 @property (nonatomic) NSInteger edit_bits;
 
-
-
 - (id) initByAttributes:(NSDictionary *)attrs;
 - (void) flagUpEditBits:(NSInteger) flag;
 - (void) flagDownEditBits:(NSInteger) flag;
+
++ (NSString *)table_name;
 
 /**
  * create a entity via online.

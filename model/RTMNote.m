@@ -24,4 +24,9 @@
 	return self;
 }
 
++ (NSString *) table_name
+{
+   return @"note";
+}
+
 @end

@@ -8,14 +8,12 @@
 
 #import "Collection.h"
 
-@interface RTMList : NSObject <Collection>
+@interface RTMList : RTMObject <Collection>
 {
-   NSNumber *iD;
    NSString *name;
    NSString *filter;
 }
 
-@property (nonatomic, retain) NSNumber *iD;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *filter;
 @property (nonatomic, readonly) NSArray *tasks;

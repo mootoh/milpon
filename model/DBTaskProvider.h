@@ -8,10 +8,6 @@
 
 #import "TaskProvider.h"
 
-@interface TaskProvider (DB)
-+ (TaskProvider *) sharedTaskProvider;
-@end
-
 @class LocalCache;
 
 @interface DBTaskProvider : TaskProvider
@@ -21,6 +17,13 @@
    BOOL dirty_all_tasks_;
 }
 
-- (void) createNoteAtOnline:(NSString *)note title:(NSString *)title task_id:(NSNumber *)tid;
+//- (void) createNoteAtOnline:(NSString *)note title:(NSString *)title task_id:(NSNumber *)tid;
 
-@end
+@end // DBTaskProvider
+
+
+@interface TaskProvider (DB)
+
++ (TaskProvider *) sharedTaskProvider;
+
+@end // TaskProvider (DB)

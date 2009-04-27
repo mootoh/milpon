@@ -48,4 +48,9 @@
    return [[TagProvider sharedTagProvider] taskCountInTag:self];
 }
 
++ (NSString *) table_name
+{
+   return @"tag";
+}
+
 @end

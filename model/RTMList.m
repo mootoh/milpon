@@ -14,12 +14,11 @@
 
 @implementation RTMList
 
-@synthesize iD, name, filter;
+@synthesize name, filter;
 
 - (id) initWithID:(NSNumber *)idd forName:(NSString *)nm
 {
    if (self = [super init]) {
-      self.iD   = idd;
       self.name = nm;
    }
    return self;
@@ -54,6 +53,11 @@
 - (NSInteger) taskCount
 {
    return [[ListProvider sharedListProvider] taskCountInList:self];
+}
+
++ (NSString *) table_name
+{
+   return @"list";
 }
 
 @end // RTMList

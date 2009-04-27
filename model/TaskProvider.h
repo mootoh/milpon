@@ -16,36 +16,36 @@
 
 #pragma mark Task Collectors
 - (NSArray *) tasks;
-- (NSArray *) tasksInList:(RTMList *)list;
-- (NSArray *) tasksInTag:(RTMTag *)tag;
-- (NSArray *) modifiedTasks;
-- (NSArray *) pendingTasks;
-- (NSArray *) existingTasks;
-- (NSArray *) overDueTasks;
-- (NSArray *) todayTasks;
-- (NSArray *) tomorrowTasks;
-- (NSArray *) inAWeekTasks;
+//- (NSArray *) tasksInList:(RTMList *)list;
+//- (NSArray *) tasksInTag:(RTMTag *)tag;
+//- (NSArray *) modifiedTasks;
+//- (NSArray *) pendingTasks;
+//- (NSArray *) existingTasks;
+//- (NSArray *) overDueTasks;
+//- (NSArray *) todayTasks;
+//- (NSArray *) tomorrowTasks;
+//- (NSArray *) inAWeekTasks;
 
 #pragma mark Create
 /**
  * @return created task id
  */
-- (NSNumber *) createAtOffline:(NSDictionary *)params;
-- (void) createAtOnline:(NSDictionary *)params;
-- (void) createOrUpdate:(NSDictionary *)params;
-- (void) sync;
-- (void) erase;
-- (void) complete:(RTMTask *)task;
-- (void) uncomplete:(RTMTask *)task;
-- (void) remove:(RTMTask *) task;
-- (void) removeForID:(NSNumber *) task_id;
-- (BOOL) taskExist:(NSNumber *)idd;
-- (void) updateTask:(NSDictionary *)taskseries;
-
-- (void) createNote:(NSString *)note task_id:(NSNumber *)tid;
-- (NSArray *) getNotes:(RTMTask *) task;
-- (void) removeNote:(NSNumber *) note_id;
-- (BOOL) noteExist:(NSNumber *)note_id;
+//- (NSNumber *) createAtOffline:(NSDictionary *)params;
+//- (void) createAtOnline:(NSDictionary *)params;
+//- (void) createOrUpdate:(NSDictionary *)params;
+//- (void) sync;
+//- (void) erase;
+//- (void) complete:(RTMTask *)task;
+//- (void) uncomplete:(RTMTask *)task;
+//- (void) remove:(RTMTask *) task;
+//- (void) removeForID:(NSNumber *) task_id;
+//- (BOOL) taskExist:(NSNumber *)idd;
+//- (void) updateTask:(NSDictionary *)taskseries;
+//
+//- (void) createNote:(NSString *)note task_id:(NSNumber *)tid;
+//- (NSArray *) getNotes:(RTMTask *) task;
+//- (void) removeNote:(NSNumber *) note_id;
+//- (BOOL) noteExist:(NSNumber *)note_id;
 
 + (TaskProvider *) sharedTaskProvider;
 

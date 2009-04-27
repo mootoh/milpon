@@ -54,11 +54,12 @@
       [local_cache_ select:dict from:@"task"];
 
    for (NSDictionary *dict in task_arr) {
-      RTMTask *task = [[RTMTask alloc] initByParams:dict];
+      RTMTask *task = [[RTMTask alloc] initByAttributes:dict];
 
-      int tid = [task.iD intValue];
+//      int tid = task.iD;
 
       { // collect tags
+         /*
          NSDictionary *tag_dict = [NSDictionary dictionaryWithObject:[NSString class] forKey:@"name"];
          NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
          NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"tag.id=task_tag.tag_id", nil];
@@ -76,8 +77,10 @@
          for (NSDictionary *tag in tags_dict)
             [tags addObject:[tag objectForKey:@"name"]];
          task.tags = tags;
+          */
       }
       { // collect notes
+         /*
          NSArray *note_keys = [NSArray arrayWithObjects:@"title", @"text", nil];
          NSArray *note_vals = [NSArray arrayWithObjects:[NSString class], [NSString class], nil];
          NSDictionary *note_dict = [NSDictionary dictionaryWithObjects:note_vals forKeys:note_keys];
@@ -87,6 +90,7 @@
 
          NSArray *notes = [local_cache_ select:note_dict from:@"note" option:note_opts];
          task.notes = notes;
+          */
       }
 
       [tasks addObject:task];
@@ -111,6 +115,7 @@
    return all_tasks_;
 }
 
+/*
 - (NSArray *) tasksInList:(RTMList *)list
 {
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
@@ -502,7 +507,7 @@
    return nil;
 }
 
-
+*/
 @end // DBTaskProvider
 
 @implementation TaskProvider (DB) // {{{

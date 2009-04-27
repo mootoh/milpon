@@ -103,4 +103,9 @@
 #endif // 0
 }
 
++ (NSString *) table_name
+{
+   return @"task";
+}
+
 @end // RTMTask
