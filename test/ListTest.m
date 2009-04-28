@@ -58,50 +58,49 @@
    STAssertTrue([lstLast isSmart], @"smart list check");
 }
 
-#if 0
+- (void) testTasksCount
+{
+   RTMList *lstZero = [[lp lists] objectAtIndex:0];
+   STAssertEquals([lstZero taskCount], 1, @"task count check");
+}
+
 - (void) testTasks
 {
-   RTMList *list = [[RTMList alloc]
-      initWithID:[NSNumber numberWithInt:1]
-      forName:@"list one"];
+   RTMList *lstZero = [[lp lists] objectAtIndex:0];
 
-   NSArray *tasks = list.tasks;
-   STAssertEquals([tasks count], 3U, @"tasks should be 7.");
+   NSArray *tasks = lstZero.tasks;
+   STAssertEquals([tasks count], 1U, @"tasks should be 1.");
 }
-#endif // 0
+
+// should executed last
+- (void) testZ999Erase
+{
+   [lp erase];
+   STAssertEquals(lp.lists.count, 0U, @"lists should be erased to zero.");
+}
+
+// create in database
+- (void) testZ998Create
+{
+   [lp erase];
+   int before = lp.lists.count;
+
+   NSArray *keys = [NSArray arrayWithObjects:@"id", @"name", @"filter", nil];
+   NSArray *vals = [NSArray arrayWithObjects:[NSNumber numberWithInt:77], @"lucky seven", @"", nil];
+   NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+
+   [lp create:params];
+
+   int after = lp.lists.count;
+   STAssertEquals(after, before+1, @"1 element should be added");
+}
 
 /*
- #if 0
- - (void) testSync
- {
- ListProvider *lp = [ListProvider sharedListProvider];
- [lp sync];
- }
- #endif // 0
- 
- - (void) testErase
- {
- ListProvider *lp = [ListProvider sharedListProvider];
- [lp erase];
- STAssertEquals(lp.lists.count, 0U, @"lists should be erased to zero.");
- }
- 
- - (void) testCreate
- {
- ListProvider *lp = [ListProvider sharedListProvider];
- 
- [lp erase];
- int before = lp.lists.count;
- 
- NSArray *keys = [NSArray arrayWithObjects:@"iD", @"name", nil];
- NSArray *vals = [NSArray arrayWithObjects:[NSNumber numberWithInt:77], @"lucky seven", nil];
- NSDictionary *params = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
- 
- [lp create:params];
- 
- int after = lp.lists.count;
- STAssertEquals(after, before+1, @"1 element should be added");
- }
- */
+- (void) testSync
+{
+   ListProvider *lp = [ListProvider sharedListProvider];
+   [lp sync];
+}
+*/
 
 @end

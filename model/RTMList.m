@@ -10,6 +10,7 @@
 #import "RTMList.h"
 #import "RTMTask.h"
 #import "LocalCache.h"
+#import "TaskProvider.h"
 
 @implementation RTMList
 
@@ -35,12 +36,10 @@ DEFINE_ATTRIBUTE(name, Name, NSString*, EB_LIST_NAME);
    return [self attribute:@"filter"];
 }
 
-/*
 - (NSArray *) tasks
 {
-   return [[TaskProvider sharedTaskProvider] tasksInList:self];
+   return [[TaskProvider sharedTaskProvider] tasksInList:self.iD];
 }
-*/
 
 - (BOOL) isSmart
 {

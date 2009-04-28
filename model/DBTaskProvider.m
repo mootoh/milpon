@@ -9,7 +9,6 @@
 #import "DBTaskProvider.h"
 #import "RTMTask.h"
 #import "Collection.h"
-#import "RTMList.h"
 #import "RTMTag.h"
 #import "LocalCache.h"
 #import "logger.h"
@@ -106,20 +105,18 @@
    return [self tasks:cond];
 }
 
-/*
-- (NSArray *) tasksInList:(RTMList *)list
+- (NSArray *) tasksInList:(NSInteger) list_id
 {
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
    NSArray *vals = [NSArray arrayWithObjects:
-      //[NSString stringWithFormat:@"list_id=%d AND deleted is NULL", [list.iD intValue]],
-      [NSString stringWithFormat:@"list_id=%d AND completed is NULL", [list.iD intValue]],
+      [NSString stringWithFormat:@"list_id=%d AND completed is NULL", list_id],
       [NSString stringWithFormat:@"priority ASC, due IS NULL ASC, due ASC"],
       nil];
 
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    return [self tasks:cond];
 }
-
+/*
 - (NSArray *) tasksInTag:(RTMTag *)tag
 {
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];

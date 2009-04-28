@@ -62,11 +62,10 @@
 
 #pragma mark methods
 - (BOOL) is_completed;
-- (void) postpone;
-
-- (void) addNote: (RTMNote *) note;
+//- (void) postpone;
+//- (void) addNote: (RTMNote *) note;
 //- (void) removeNote: (RTMNote *) note;
-- (void) addTag: (RTMTag *) tag;
+//- (void) addTag: (RTMTag *) tag;
 //- (void) removeTag; (RTMTag *) tag;
 
 // XXX: edit bits assumes 32 bit integer.

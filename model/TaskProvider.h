@@ -8,7 +8,6 @@
  */
 
 @class RTMTask;
-@class RTMList;
 @class RTMTag;
 @class RTMNote;
 
@@ -16,7 +15,7 @@
 
 #pragma mark Task Collectors
 - (NSArray *) tasks;
-//- (NSArray *) tasksInList:(RTMList *)list;
+- (NSArray *) tasksInList:(NSInteger) list_id;
 //- (NSArray *) tasksInTag:(RTMTag *)tag;
 //- (NSArray *) modifiedTasks;
 //- (NSArray *) pendingTasks;

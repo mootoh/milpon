@@ -16,12 +16,13 @@
    return nil;
 }
 
-//- (NSArray *) tasksInList:(RTMList *)list
-//{
-//   NSAssert(NO, @"not reach here");
-//   return nil;
-//}
-//
+
+- (NSArray *) tasksInList:(NSInteger) list_id;
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 //- (NSArray *) tasksInTag:(RTMTag *)tag;
 //{
 //   NSAssert(NO, @"not reach here");
