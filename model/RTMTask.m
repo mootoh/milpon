@@ -26,25 +26,9 @@
    return [attrs_ objectForKey:@"task.completed"] != nil;
 }
 
-- (NSNumber *) priority
-{
-   return [self attribute:@"priority"];
-}
+DEFINE_ATTRIBUTE(priority, Priority, NSNumber*, EB_TASK_PRIORITY);
+DEFINE_ATTRIBUTE(due, Due, NSDate*, EB_TASK_DUE);
 
-- (void) setPriority:(NSNumber *)pri
-{
-   [self setAttribute:pri forName:@"priority" editBits:EB_TASK_PRIORITY];
-}
-
-- (NSDate *) due
-{
-   return [self attribute:@"due"];
-}
-
-- (void) setDue:(NSDate *)du
-{
-   [self setAttribute:du forName:@"due" editBits:EB_TASK_DUE];
-}
 
 - (void) setNote:(NSString *)note ofIndex:(NSInteger) index
 {

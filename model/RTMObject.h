@@ -51,3 +51,12 @@ enum edit_bits_t {
 //+ (void) remove:(NSNumber *)iid fromDB:(RTMDatabase *)db;
 
 @end
+
+#define DEFINE_ATTRIBUTE(namE, cameL, typE, eB) \
+- (typE) namE { \
+  return [self attribute:[NSString stringWithUTF8String:#namE]]; \
+}\
+\
+- (void) set##cameL:(typE)attr { \
+  [self setAttribute:attr forName:[NSString stringWithUTF8String:#namE] editBits:eB]; \
+}

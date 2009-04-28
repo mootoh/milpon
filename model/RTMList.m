@@ -41,15 +41,7 @@
 }
 */
 
-- (NSString *)name
-{
-   return [self attribute:@"name"];
-}
-
-- (void) setName:(NSString *)nm
-{
-   return [self setAttribute:nm forName:@"name" editBits:EB_LIST_NAME];
-}
+DEFINE_ATTRIBUTE(name, Name, NSString*, EB_LIST_NAME);
 
 /*
 - (NSArray *) tasks
