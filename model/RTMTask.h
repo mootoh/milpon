@@ -43,9 +43,7 @@
 */
 @property (nonatomic, assign) NSDate   *due;
 @property (nonatomic, assign) NSNumber *priority;
-/*
-@property (nonatomic, retain) NSDate   *completed;
-*/
+@property (nonatomic, assign) NSDate   *completed;
 /*
 @property (nonatomic, retain) NSNumber *postponed;
 @property (nonatomic, retain) NSString *estimate;

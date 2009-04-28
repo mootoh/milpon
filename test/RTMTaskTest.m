@@ -27,11 +27,11 @@
    NSArray *tasks = [[TaskProvider sharedTaskProvider] tasks];
    RTMTask *taskOne = [tasks objectAtIndex:0];
    STAssertEquals(taskOne.priority, [NSNumber numberWithInteger:0], @"priority check");
-//   STAssertEquals(taskOne.edit_bits, 0, @"edit bits should flagged up");
-//
-//   taskOne.priority = [NSNumber numberWithInteger:1];
-//   STAssertEquals(taskOne.priority, [NSNumber numberWithInteger:1], @"priority changed");
-//   STAssertEquals(taskOne.edit_bits, EB_TASK_PRIORITY, @"edit bits should flagged up");
+   STAssertEquals(taskOne.edit_bits, 0, @"edit bits should flagged up");
+
+   taskOne.priority = [NSNumber numberWithInteger:1];
+   STAssertEquals(taskOne.priority, [NSNumber numberWithInteger:1], @"priority changed");
+   STAssertEquals(taskOne.edit_bits, EB_TASK_PRIORITY, @"edit bits should flagged up");
 }
 
 #if 0

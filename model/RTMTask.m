@@ -28,6 +28,7 @@
 
 DEFINE_ATTRIBUTE(priority, Priority, NSNumber*, EB_TASK_PRIORITY);
 DEFINE_ATTRIBUTE(due, Due, NSDate*, EB_TASK_DUE);
+DEFINE_ATTRIBUTE(completed, Completed, NSDate*, EB_TASK_COMPLETED);
 
 
 - (void) setNote:(NSString *)note ofIndex:(NSInteger) index

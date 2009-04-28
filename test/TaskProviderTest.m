@@ -13,19 +13,21 @@
 #import "RTMTag.h"
 #import "MilponHelper.h"
 
-@interface TaskProviderTest : SenTestCase; @end
+@interface TaskProviderTest : SenTestCase
+{
+   TaskProvider *tp;
+}
+@end
 
 @implementation TaskProviderTest
 
-- (void) testSingleton
+- (void) setUp
 {
-   TaskProvider *tp = [TaskProvider sharedTaskProvider];
-   STAssertNotNil(tp, @"should not be nil");
+   tp = [TaskProvider sharedTaskProvider];
 }
 
 - (void) testTasks
 {
-   TaskProvider *tp = [TaskProvider sharedTaskProvider];
    NSArray *tasks = [tp tasks];
    STAssertEquals(tasks.count, 1U, @"should have some list elements.");
 

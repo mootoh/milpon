@@ -14,16 +14,18 @@
 - (NSArray *) lists;
 //- (NSArray *) smartLists;
 
-//- (void) create:(NSDictionary *)params;
+/**
+ * create List in DB, called from rtm.lists.getList callback
+ */
+- (void) create:(NSDictionary *)params;
 //- (void) remove:(RTMList *) list;
-//- (void) erase; // remove all lists from DB.
+- (void) erase; // remove all lists from DB.
 //- (NSString *)nameForListID:(NSNumber *)list_id;
-//- (NSInteger)taskCountInList:(RTMList *) list;
 
 /**
  * replace all local lists with lists on the web.
  */
-//- (void) sync;
+- (void) sync;
 
 + (ListProvider *) sharedListProvider;
 

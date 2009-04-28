@@ -8,10 +8,20 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "RTMList.h"
+#import "ListProvider.h"
 
-@interface RTMListTest : SenTestCase; @end	
+@interface RTMListTest : SenTestCase
+{
+   ListProvider *lp;
+}
+@end
 
 @implementation RTMListTest
+
+- (void) setUp
+{
+   lp = [ListProvider sharedListProvider];
+}
 
 - (void) testCreate
 {
@@ -21,6 +31,15 @@
    
    RTMList *list = [[RTMList alloc] initByAttributes:attrs];
    STAssertNotNil(list, @"list should be created");
+   STAssertEquals(list.iD, 0, @"id check");
+   STAssertEquals(list.name, @"list One", @"name check");
+   STAssertEquals(list.filter, @"", @"filter check");
+}
+
+- (void) testAttribute
+{
+   RTMList *lstOne = [lp.lists objectAtIndex:0];
+   NSLog(@"lstOne id = %d, name = %@", lstOne.iD, lstOne.name);
 }
 
 #if 0

@@ -9,6 +9,7 @@
 #import "DBListProvider.h"
 #import "RTMList.h"
 #import "LocalCache.h"
+#import "RTMAPIList.h"
 
 @interface DBListProvider (Private);
 - (NSArray *) loadLists:(NSDictionary *)option;
@@ -35,7 +36,6 @@
    return [self loadLists];
 }
 
-/*
 - (void) sync
 {
    [self erase];
@@ -46,27 +46,8 @@
 
    for (NSDictionary *list in lists)
       [self create:list];
-
-   // TODO : broadcast the lists are no longer valid.
-   [lists_ release];
    [self loadLists];
 }
-*/
-/*
-- (NSInteger)taskCountInList:(RTMList *) list
-{
-   NSDictionary *cond = [NSDictionary dictionaryWithObject:
-      [NSString stringWithFormat:@"list_id=%d AND completed is NULL", [list.iD intValue]]
-      forKey:@"WHERE"];
-
-   NSDictionary *query = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"count()"];
-   NSArray *counts = [local_cache_ select:query from:@"task" option:cond];
-   NSDictionary *count = (NSDictionary *)[counts objectAtIndex:0];
-   NSNumber *count_num = [count objectForKey:@"count()"];
-   return count_num.integerValue;
-}
-*/
-
 @end // DBListProvider
 
 @implementation DBListProvider (Private)
@@ -94,39 +75,44 @@
    return lists;
 }
 
-
 - (NSArray *) loadLists
 {
-   NSDictionary *opts = [NSDictionary dictionaryWithObject:@"filter is NULL" forKey:@"WHERE"];
-   return [self loadLists:opts];
+//   NSDictionary *opts = [NSDictionary dictionaryWithObject:@"filter is NULL" forKey:@"WHERE"];
+//   return [self loadLists:opts];
+   return [self loadLists:nil];
 }
-/*
+
 - (void) erase
 {
    [local_cache_ delete:@"list" condition:nil];
 }
 
+/*
 - (void) remove:(RTMList *) list
 {
    NSString *cond = [NSString stringWithFormat:@"WHERE id = %@",
       [[list iD] stringValue]];
    [local_cache_ delete:@"list" condition:cond];
 }
+*/
 
+/**
+  * params should have (id, filter*)
+  */
 - (void) create:(NSDictionary *)params
 {
    NSString *name = [params objectForKey:@"name"];
    NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithObject:name forKey:@"name"];
 
-   if ([params objectForKey:@"id"])
-      [attrs setObject:[params objectForKey:@"id"] forKey:@"id"];
+   NSAssert([params objectForKey:@"id"], @"should have id");
+   [attrs setObject:[params objectForKey:@"id"] forKey:@"id"];
 
    if ([params objectForKey:@"filter"])
       [attrs setObject:[params objectForKey:@"filter"] forKey:@"filter"];
 
    [local_cache_ insert:attrs into:@"list"];
 }
-
+/*
 - (NSString *)nameForListID:(NSNumber *)list_id {
    for (RTMList *lst in [self lists]) {
       if ([lst.iD isEqualToNumber:list_id])

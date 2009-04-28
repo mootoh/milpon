@@ -10,23 +10,25 @@
 #import "ListProvider.h"
 #import "RTMList.h"
 
-@interface ListProviderTest : SenTestCase; @end
+@interface ListProviderTest : SenTestCase
+{
+   ListProvider *lp;
+}
+@end
 
 @implementation ListProviderTest
 
-- (void) test00Singleton
+- (void) setUp
 {
-   ListProvider *lp = [ListProvider sharedListProvider];
-   STAssertNotNil(lp, @"should not be nil");
+   lp = [ListProvider sharedListProvider];
 }
 
-- (void) test01Lists
+- (void) testLists
 {
-   ListProvider *lp = [ListProvider sharedListProvider];
-   STAssertTrue(lp.lists.count > 0, @"should have some list elements.");
-   RTMList *lstOne = [lp.lists objectAtIndex:0];
-   NSLog(@"lstOne id = %d, name = %@", lstOne.iD, lstOne.name);
+   STAssertEquals(lp.lists.count, 5U, @"should have some list elements.");
 }
+
+
 /*
 #if 0
 - (void) testSync

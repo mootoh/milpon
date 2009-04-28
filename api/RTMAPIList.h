@@ -11,13 +11,13 @@
  */
 @interface RTMAPIList : NSObject {
   enum method_t {
-    LISTS_ADD,
-    LISTS_ARCHIVE,
-    LISTS_DELETE,
+    LISTS_ADD,            // out of scope
+    LISTS_ARCHIVE,        // out of scope
+    LISTS_DELETE,         // out of scope
     LISTS_GETLIST,
-    LISTS_SETDEFAULTLIST,
-    LISTS_SETNAME,
-    LISTS_UNARCHIVE    
+    LISTS_SETDEFAULTLIST, // out of scope
+    LISTS_SETNAME,        // out of scope
+    LISTS_UNARCHIVE       // out of scope
   } method;
 }
 

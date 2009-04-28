@@ -237,6 +237,9 @@
 		B9B95CA70F6767BE0046712A /* NoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B95CA60F6767BE0046712A /* NoteEdit.xib */; };
 		B9C4DD030FA70B0C00DE1E18 /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
 		B9C4DD0F0FA70CAE00DE1E18 /* RTMListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDD0F565DE000473A95 /* RTMListTest.m */; };
+		B9C4DD7A0FA7280F00DE1E18 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
+		B9C4DD7C0FA7281500DE1E18 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
+		B9C4DD7E0FA7282000DE1E18 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
 		B9C9A8690F91D0070078DC79 /* RootMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */; };
 		B9C9A86A0F91D0080078DC79 /* RootMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */; };
 		B9D043180F5F477400641E61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -1303,6 +1306,9 @@
 				B9B957B70F6632DB0046712A /* MilponHelper.m in Sources */,
 				B9C4DD030FA70B0C00DE1E18 /* RTMObject.m in Sources */,
 				B9C4DD0F0FA70CAE00DE1E18 /* RTMListTest.m in Sources */,
+				B9C4DD7A0FA7280F00DE1E18 /* RTMAPIList.m in Sources */,
+				B9C4DD7C0FA7281500DE1E18 /* RTMAPI.m in Sources */,
+				B9C4DD7E0FA7282000DE1E18 /* RTMAPIXMLParserCallback.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

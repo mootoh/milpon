@@ -9,7 +9,7 @@
 #import "Collection.h"
 #import "RTMList.h"
 #import "RTMTask.h"
-#import "ListProvider.h"
+#import "LocalCache.h"
 
 @implementation RTMList
 
@@ -19,46 +19,46 @@
 - (id) initWithID:(NSNumber *)idd forName:(NSString *)nm
 {
    if (self = [super init]) {
-      self.name = nm;
-   }
-   return self;
-}
-
-- (id) initWithID:(NSNumber *)idd forName:(NSString *)nm withFilter:(NSString *)filt
-{
-   if ([self initWithID:idd forName:nm]) {
-      self.filter = filt;
    }
    return self;
 }
 
 - (void) dealloc
 {
-   if (iD) [iD release];
-   if (name) [name release];
-   if (filter) [filter release];
    [super dealloc];
 }
 */
 
 DEFINE_ATTRIBUTE(name, Name, NSString*, EB_LIST_NAME);
 
+- (NSString *) filter
+{
+   return [self attribute:@"filter"];
+}
+
 /*
 - (NSArray *) tasks
 {
    return [[TaskProvider sharedTaskProvider] tasksInList:self];
 }
+*/
 
 - (BOOL) isSmart
 {
-   return filter != nil;
+   return self.filter != nil;
 }
 
 - (NSInteger) taskCount
 {
-   return [[ListProvider sharedListProvider] taskCountInList:self];
+    NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"list_id=%d AND completed is NULL", self.iD] forKey:@"WHERE"];
+    
+    NSDictionary *query = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"count()"];
+    NSArray *counts = [[LocalCache sharedLocalCache] select:query from:@"task" option:cond];
+    NSDictionary *count = (NSDictionary *)[counts objectAtIndex:0];
+    NSNumber *count_num = [count objectForKey:@"count()"];
+    return count_num.integerValue;
 }
-*/
+
 + (NSString *) table_name
 {
    return @"list";
