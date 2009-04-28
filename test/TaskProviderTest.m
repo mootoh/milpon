@@ -32,6 +32,7 @@
    RTMTask *first_task = [tasks objectAtIndex:0];
 
    STAssertEquals(first_task.iD, 1, @"check attr");
+   
 /*   
    STAssertTrue([first_task.name isEqualToString:@"task one"], @"check attr");
    STAssertTrue([first_task.url isEqualToString:@""], @"check attr");

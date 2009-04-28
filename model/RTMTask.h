@@ -7,6 +7,8 @@
 //
 
 #import "RTMObject.h"
+@class RTMNote;
+@class RTMTag;
 
 @interface RTMTask : RTMObject
 {
@@ -38,9 +40,13 @@
 
 /*
 @property (nonatomic, retain) NSNumber *task_id;
+*/
 @property (nonatomic, retain) NSDate   *due;
-@property (nonatomic, retain) NSDate   *completed;
 @property (nonatomic, retain) NSNumber *priority;
+/*
+@property (nonatomic, retain) NSDate   *completed;
+*/
+/*
 @property (nonatomic, retain) NSNumber *postponed;
 @property (nonatomic, retain) NSString *estimate;
 @property (nonatomic, retain) NSNumber *has_due_time;
@@ -58,6 +64,12 @@
 
 #pragma mark methods
 - (BOOL) is_completed;
+- (void) postpone;
+
+- (void) addNote: (RTMNote *) note;
+//- (void) removeNote: (RTMNote *) note;
+- (void) addTag: (RTMTag *) tag;
+//- (void) removeTag; (RTMTag *) tag;
 
 // XXX: edit bits assumes 32 bit integer.
 enum task_edit_bits_t {

@@ -22,15 +22,12 @@
 {
    if (self = [super init]) {
       local_cache_ = [LocalCache sharedLocalCache];
-      all_tasks_ = nil;
-      dirty_all_tasks_ = YES;
    }
    return self;
 }
 
 - (void) dealloc
 {
-   [all_tasks_ release];
    [super dealloc];
 }
 
@@ -103,16 +100,10 @@
 
 - (NSArray *) tasks
 {
-   if (dirty_all_tasks_) {
-      //[all_tasks_ release];
-      //NSDictionary *cond = [NSDictionary dictionaryWithObject:@"deleted is NULL" forKey:@"WHERE"];
-      NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
-      NSArray *vals = [NSArray arrayWithObjects:@"completed is NULL", @"priority ASC, due IS NULL ASC, due ASC", nil];
-      NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-      all_tasks_ = [[self tasks:cond] retain];
-      dirty_all_tasks_ = NO;
-   }
-   return all_tasks_;
+   NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
+   NSArray *vals = [NSArray arrayWithObjects:@"completed is NULL", @"priority ASC, due IS NULL ASC, due ASC", nil];
+   NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   return [self tasks:cond];
 }
 
 /*

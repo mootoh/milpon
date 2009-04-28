@@ -7,6 +7,7 @@
 //
 
 #import "RTMObject.h"
+#import "LocalCache.h"
 #import "logger.h"
 
 @implementation RTMObject
@@ -39,7 +40,6 @@
 
 - (NSInteger) edit_bits
 {
-   // retrieve if not cached yet
    return [[attrs_ objectForKey:[NSString stringWithFormat:@"%@.edit_bits", [self.class table_name]]] integerValue];
 }
 
@@ -63,6 +63,26 @@
    self.edit_bits = eb;
 }
 
+- (BOOL) is_modified
+{
+   return self.edit_bits != EB_SYNCHRONIZED;
+}
+
+- (void) setAttribute:(id) attr forName:(NSString *)name editBits:(NSInteger)eb
+{
+   [attrs_ setObject:attr forKey:[NSString stringWithFormat:@"%@.%@", [self.class table_name], name]];
+   
+   NSDictionary *dict = [NSDictionary dictionaryWithObject:attr forKey:name];
+   NSString *where = [NSString stringWithFormat:@"WHERE id=%d", self.iD];
+   [[LocalCache sharedLocalCache] update:dict table:[self.class table_name] condition:where];
+   [self flagUpEditBits:eb];
+}
+
+- (id) attribute:(NSString *)name
+{
+   return [attrs_ objectForKey:[NSString stringWithFormat:@"%@.%@", [self.class table_name], name]];
+}
+   
 + (NSString *) table_name
 {
    NSAssert(NO, @"not reach here");

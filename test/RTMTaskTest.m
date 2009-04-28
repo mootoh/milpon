@@ -16,15 +16,25 @@
 
 @implementation RTMTaskTest
 
-#if 0
-
-- (void) testAliveTasks
+- (void) testTasks
 {
-   NSArray *alive_tasks = [[TaskProvider sharedTaskProvider] tasks];
-   STAssertTrue(4 == [alive_tasks count], @"2 tasks should exist in list_id=2.");
+   NSArray *tasks = [[TaskProvider sharedTaskProvider] tasks];
+   STAssertEquals(tasks.count, 1U, @"should have some task elements.");
 }
 
+- (void) testPriority
+{
+   NSArray *tasks = [[TaskProvider sharedTaskProvider] tasks];
+   RTMTask *taskOne = [tasks objectAtIndex:0];
+   STAssertEquals(taskOne.priority, [NSNumber numberWithInteger:0], @"priority check");
+   STAssertEquals(taskOne.edit_bits, 0, @"edit bits should flagged up");
 
+   taskOne.priority = [NSNumber numberWithInteger:1];
+   STAssertEquals(taskOne.priority, [NSNumber numberWithInteger:1], @"priority changed");
+   STAssertEquals(taskOne.edit_bits, EB_TASK_PRIORITY, @"edit bits should flagged up");
+}
+
+#if 0
 - (void) testAllTasks
 {
    NSArray *tasks = [RTMTask allTasks];
