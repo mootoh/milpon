@@ -54,9 +54,9 @@ enum edit_bits_t {
 
 #define DEFINE_ATTRIBUTE(namE, cameL, typE, eB) \
 - (typE) namE { \
-  return [self attribute:[NSString stringWithUTF8String:#namE]]; \
+  return [self attribute:@#namE]; \
 }\
 \
 - (void) set##cameL:(typE)attr { \
-  [self setAttribute:attr forName:[NSString stringWithUTF8String:#namE] editBits:eB]; \
+  [self setAttribute:attr forName:@#namE editBits:eB]; \
 }
