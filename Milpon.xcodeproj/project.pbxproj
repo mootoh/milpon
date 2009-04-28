@@ -384,10 +384,6 @@
 		B91610120F565F8A00473A95 /* TagSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagSelectController.m; sourceTree = "<group>"; };
 		B91610160F565F9E00473A95 /* DueDateSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DueDateSelectController.h; sourceTree = "<group>"; };
 		B91610170F565F9E00473A95 /* DueDateSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DueDateSelectController.m; sourceTree = "<group>"; };
-		B916105A0F56607600473A95 /* MockListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockListProvider.h; sourceTree = "<group>"; };
-		B916105B0F56607600473A95 /* MockListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockListProvider.m; sourceTree = "<group>"; };
-		B916105C0F56607600473A95 /* MockTagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockTagProvider.h; sourceTree = "<group>"; };
-		B916105D0F56607600473A95 /* MockTagProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockTagProvider.m; sourceTree = "<group>"; };
 		B91610890F56618400473A95 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B916108C0F56686600473A95 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		B91C48A90FA04BD5001032CD /* RTMObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMObject.h; sourceTree = "<group>"; };
@@ -402,10 +398,6 @@
 		B93D753A0F941105001E11F3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		B95C5C070F598C8400A368DC /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = rtm.sql; sourceTree = "<group>"; };
 		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
-		B97AA0430F9FECA6004A23E3 /* MockList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockList.h; sourceTree = "<group>"; };
-		B97AA0440F9FECA6004A23E3 /* MockList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockList.m; sourceTree = "<group>"; };
-		B97AA0450F9FECA6004A23E3 /* MockTaskProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockTaskProvider.h; sourceTree = "<group>"; };
-		B97AA0460F9FECA6004A23E3 /* MockTaskProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockTaskProvider.m; sourceTree = "<group>"; };
 		B97F4FEE0F94A08B0085FB9B /* TaskCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCollection.h; sourceTree = "<group>"; };
 		B97F4FEF0F94A1260085FB9B /* TaskCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCollection.m; sourceTree = "<group>"; };
 		B97F4FF60F94A1D90085FB9B /* TaskCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCollectionViewController.h; sourceTree = "<group>"; };
@@ -773,16 +765,8 @@
 		B91610590F56607600473A95 /* mock */ = {
 			isa = PBXGroup;
 			children = (
-				B97AA0430F9FECA6004A23E3 /* MockList.h */,
-				B97AA0440F9FECA6004A23E3 /* MockList.m */,
-				B97AA0450F9FECA6004A23E3 /* MockTaskProvider.h */,
-				B97AA0460F9FECA6004A23E3 /* MockTaskProvider.m */,
 				B9160FD30F565DE000473A95 /* MockRTMAPI.h */,
 				B9160FD40F565DE000473A95 /* MockRTMAPI.m */,
-				B916105A0F56607600473A95 /* MockListProvider.h */,
-				B916105B0F56607600473A95 /* MockListProvider.m */,
-				B916105C0F56607600473A95 /* MockTagProvider.h */,
-				B916105D0F56607600473A95 /* MockTagProvider.m */,
 			);
 			path = mock;
 			sourceTree = "<group>";
