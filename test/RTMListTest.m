@@ -38,8 +38,8 @@
 
 - (void) testAttribute
 {
-   RTMList *lstOne = [lp.lists objectAtIndex:0];
-   NSLog(@"lstOne id = %d, name = %@", lstOne.iD, lstOne.name);
+   RTMList *lstZero = [[lp lists] objectAtIndex:0];
+   NSLog(@"lstOne id = %d, name = %@", lstZero.iD, lstZero.name);
 }
 
 #if 0

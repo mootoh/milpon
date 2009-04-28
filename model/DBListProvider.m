@@ -57,7 +57,7 @@
    NSMutableArray *lists = [NSMutableArray array];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-   NSArray *keys  = [NSArray arrayWithObjects:@"id", @"name", nil];
+   NSArray *keys  = [NSArray arrayWithObjects:@"list.id", @"list.name", nil];
    NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], nil];
    NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
 
