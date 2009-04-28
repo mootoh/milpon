@@ -1,5 +1,5 @@
 //
-//  RTMListTest.m
+//  ListTest.m
 //  Milpon
 //
 //  Created by mootoh on 8/30/08.

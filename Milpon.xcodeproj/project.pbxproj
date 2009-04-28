@@ -96,7 +96,6 @@
 		B93D753B0F941105001E11F3 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
 		B95C5C080F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B95C5C090F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
-		B970A78D0F636AC5004467E9 /* ListProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */; };
 		B970AC060F6416A1004467E9 /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B970AC050F6416A1004467E9 /* TaskView.xib */; };
 		B971DBDE0F5CCA3000513D03 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
 		B97AA00C0F9FEA1C004A23E3 /* RTMTaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FE10F565DE000473A95 /* RTMTaskTest.m */; };
@@ -236,7 +235,7 @@
 		B9B957B70F6632DB0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B95CA70F6767BE0046712A /* NoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B95CA60F6767BE0046712A /* NoteEdit.xib */; };
 		B9C4DD030FA70B0C00DE1E18 /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
-		B9C4DD0F0FA70CAE00DE1E18 /* RTMListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDD0F565DE000473A95 /* RTMListTest.m */; };
+		B9C4DD0F0FA70CAE00DE1E18 /* ListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDD0F565DE000473A95 /* ListTest.m */; };
 		B9C4DD7A0FA7280F00DE1E18 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
 		B9C4DD7C0FA7281500DE1E18 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
 		B9C4DD7E0FA7282000DE1E18 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
@@ -369,7 +368,7 @@
 		B9160FDA0F565DE000473A95 /* RTMAPITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPITest.m; sourceTree = "<group>"; };
 		B9160FDB0F565DE000473A95 /* RTMAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuthTest.m; sourceTree = "<group>"; };
 		B9160FDC0F565DE000473A95 /* LocalCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCacheTest.m; sourceTree = "<group>"; };
-		B9160FDD0F565DE000473A95 /* RTMListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMListTest.m; sourceTree = "<group>"; };
+		B9160FDD0F565DE000473A95 /* ListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTest.m; sourceTree = "<group>"; };
 		B9160FDE0F565DE000473A95 /* RTMPendingTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMPendingTaskTest.m; sourceTree = "<group>"; };
 		B9160FDF0F565DE000473A95 /* RTMSynchronizerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMSynchronizerTest.m; sourceTree = "<group>"; };
 		B9160FE00F565DE000473A95 /* RTMTaskEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMTaskEntryTest.m; sourceTree = "<group>"; };
@@ -438,7 +437,6 @@
 		B9D0433C0F5F493E00641E61 /* TaskProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskProvider.m; sourceTree = "<group>"; };
 		B9D043410F5F49A900641E61 /* DBTaskProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTaskProvider.h; sourceTree = "<group>"; };
 		B9D043420F5F49A900641E61 /* DBTaskProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBTaskProvider.m; sourceTree = "<group>"; };
-		B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProviderTest.m; sourceTree = "<group>"; };
 		B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProvider.m; sourceTree = "<group>"; };
 		B9D120A20F5763DB00B5ABA4 /* DBListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBListProvider.h; sourceTree = "<group>"; };
 		B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBListProvider.m; sourceTree = "<group>"; };
@@ -753,7 +751,7 @@
 			children = (
 				B9AE52090F6B408A0076D258 /* api */,
 				B91610590F56607600473A95 /* mock */,
-				B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */,
+				B9160FDD0F565DE000473A95 /* ListTest.m */,
 				B9B957310F66160B0046712A /* TagProviderTest.m */,
 				B9D043370F5F48C800641E61 /* TaskProviderTest.m */,
 				B9160FB70F565DB600473A95 /* FunctionalTestProgressViewWindow.xib */,
@@ -762,7 +760,6 @@
 				B9160FD50F565DE000473A95 /* ProgressViewController.h */,
 				B9160FD60F565DE000473A95 /* ProgressViewController.m */,
 				B9160FDC0F565DE000473A95 /* LocalCacheTest.m */,
-				B9160FDD0F565DE000473A95 /* RTMListTest.m */,
 				B9160FDE0F565DE000473A95 /* RTMPendingTaskTest.m */,
 				B9160FE00F565DE000473A95 /* RTMTaskEntryTest.m */,
 				B9160FE10F565DE000473A95 /* RTMTaskTest.m */,
@@ -1302,10 +1299,9 @@
 				B914B3530F5EBE77009C19BE /* DBListProvider.m in Sources */,
 				B914B3770F5EC14D009C19BE /* LocalCache.m in Sources */,
 				B914B41E0F5ED23F009C19BE /* LocalCacheTest.m in Sources */,
-				B970A78D0F636AC5004467E9 /* ListProviderTest.m in Sources */,
 				B9B957B70F6632DB0046712A /* MilponHelper.m in Sources */,
 				B9C4DD030FA70B0C00DE1E18 /* RTMObject.m in Sources */,
-				B9C4DD0F0FA70CAE00DE1E18 /* RTMListTest.m in Sources */,
+				B9C4DD0F0FA70CAE00DE1E18 /* ListTest.m in Sources */,
 				B9C4DD7A0FA7280F00DE1E18 /* RTMAPIList.m in Sources */,
 				B9C4DD7C0FA7281500DE1E18 /* RTMAPI.m in Sources */,
 				B9C4DD7E0FA7282000DE1E18 /* RTMAPIXMLParserCallback.m in Sources */,
