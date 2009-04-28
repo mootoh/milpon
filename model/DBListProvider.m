@@ -9,7 +9,6 @@
 #import "DBListProvider.h"
 #import "RTMList.h"
 #import "LocalCache.h"
-#import "RTMAPIList.h"
 
 @interface DBListProvider (Private);
 - (NSArray *) loadLists:(NSDictionary *)option;
@@ -22,26 +21,21 @@
 {
    if (self = [super init]) {
       local_cache_ = [LocalCache sharedLocalCache];
-      dirty_ = NO;
    }
    return self;
 }
 
 - (void) dealloc
 {
-   if (lists_) [lists_ release];
    [super dealloc];
 }
 
 - (NSArray *) lists
 {
-   if (dirty_ || ! lists_) {
-      [self loadLists];
-      dirty_ = NO;
-   }
-   return lists_;
+   return [self loadLists];
 }
 
+/*
 - (void) sync
 {
    [self erase];
@@ -57,7 +51,8 @@
    [lists_ release];
    [self loadLists];
 }
-
+*/
+/*
 - (NSInteger)taskCountInList:(RTMList *) list
 {
    NSDictionary *cond = [NSDictionary dictionaryWithObject:
@@ -70,7 +65,7 @@
    NSNumber *count_num = [count objectForKey:@"count()"];
    return count_num.integerValue;
 }
-
+*/
 
 @end // DBListProvider
 
@@ -89,18 +84,13 @@
       [local_cache_ select:dict from:@"list" option:option] :
       [local_cache_ select:dict from:@"list"];
 
-   for (NSDictionary *dict in list_arr) {
-      RTMList *lst = [[RTMList alloc]
-         initWithID:[dict objectForKey:@"id"]
-         forName:[dict objectForKey:@"name"]];
+   for (NSDictionary *attrs in list_arr) {
+      RTMList *lst = [[RTMList alloc] initByAttributes:attrs];
       [lists addObject:lst];
       [lst release];
    }
    [pool release];
 
-   if (lists_)
-      [lists_ release];
-   lists_ = [lists retain];
    return lists;
 }
 
@@ -110,11 +100,10 @@
    NSDictionary *opts = [NSDictionary dictionaryWithObject:@"filter is NULL" forKey:@"WHERE"];
    return [self loadLists:opts];
 }
-
+/*
 - (void) erase
 {
    [local_cache_ delete:@"list" condition:nil];
-   dirty_ = YES;
 }
 
 - (void) remove:(RTMList *) list
@@ -122,7 +111,6 @@
    NSString *cond = [NSString stringWithFormat:@"WHERE id = %@",
       [[list iD] stringValue]];
    [local_cache_ delete:@"list" condition:cond];
-   dirty_ = YES;
 }
 
 - (void) create:(NSDictionary *)params
@@ -137,7 +125,6 @@
       [attrs setObject:[params objectForKey:@"filter"] forKey:@"filter"];
 
    [local_cache_ insert:attrs into:@"list"];
-   dirty_ = YES;
 }
 
 - (NSString *)nameForListID:(NSNumber *)list_id {
@@ -148,7 +135,7 @@
    NSAssert(NO, @"not reach here");
    return nil;
 }
-
+*/
 @end // DBListProvider (Private)
 
 @implementation ListProvider (DB)

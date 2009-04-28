@@ -13,11 +13,5 @@
 @interface DBListProvider : ListProvider
 {
    LocalCache *local_cache_;
-   NSArray *lists_;
-   BOOL dirty_;
 }
-@end
-
-@interface ListProvider (DB)
-+ (ListProvider *) sharedListProvider;
 @end

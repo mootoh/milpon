@@ -8,6 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "ListProvider.h"
+#import "RTMList.h"
 
 @interface ListProviderTest : SenTestCase; @end
 
@@ -23,8 +24,10 @@
 {
    ListProvider *lp = [ListProvider sharedListProvider];
    STAssertTrue(lp.lists.count > 0, @"should have some list elements.");
+   RTMList *lstOne = [lp.lists objectAtIndex:0];
+   NSLog(@"lstOne id = %d, name = %@", lstOne.iD, lstOne.name);
 }
-
+/*
 #if 0
 - (void) testSync
 {
@@ -56,4 +59,5 @@
    int after = lp.lists.count;
    STAssertEquals(after, before+1, @"1 element should be added");
 }
+*/
 @end

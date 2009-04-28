@@ -10,12 +10,12 @@
 #import "RTMList.h"
 #import "RTMTask.h"
 #import "ListProvider.h"
-#import "TaskProvider.h"
 
 @implementation RTMList
 
-@synthesize name, filter;
+//@synthesize name, filter;
 
+/*
 - (id) initWithID:(NSNumber *)idd forName:(NSString *)nm
 {
    if (self = [super init]) {
@@ -39,7 +39,19 @@
    if (filter) [filter release];
    [super dealloc];
 }
+*/
 
+- (NSString *)name
+{
+   return [self attribute:@"name"];
+}
+
+- (void) setName:(NSString *)nm
+{
+   return [self setAttribute:nm forName:@"name" editBits:EB_LIST_NAME];
+}
+
+/*
 - (NSArray *) tasks
 {
    return [[TaskProvider sharedTaskProvider] tasksInList:self];
@@ -54,7 +66,7 @@
 {
    return [[ListProvider sharedListProvider] taskCountInList:self];
 }
-
+*/
 + (NSString *) table_name
 {
    return @"list";

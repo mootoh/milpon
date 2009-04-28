@@ -41,8 +41,8 @@
 /*
 @property (nonatomic, retain) NSNumber *task_id;
 */
-@property (nonatomic, retain) NSDate   *due;
-@property (nonatomic, retain) NSNumber *priority;
+@property (nonatomic, assign) NSDate   *due;
+@property (nonatomic, assign) NSNumber *priority;
 /*
 @property (nonatomic, retain) NSDate   *completed;
 */

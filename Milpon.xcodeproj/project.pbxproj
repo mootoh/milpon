@@ -85,10 +85,6 @@
 		B91610180F565F9E00473A95 /* DueDateSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610170F565F9E00473A95 /* DueDateSelectController.m */; };
 		B916108A0F56618400473A95 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B916108D0F56686600473A95 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
-		B91996780F612AA300D631D1 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
-		B919969B0F612CB200D631D1 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
-		B919969D0F612CB800D631D1 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
-		B919969F0F612CBD00D631D1 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
 		B91C48560FA04319001032CD /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
 		B91C48740FA04970001032CD /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
 		B91C48AB0FA04BD5001032CD /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
@@ -240,6 +236,8 @@
 		B9B957780F662F380046712A /* TaskProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043370F5F48C800641E61 /* TaskProviderTest.m */; };
 		B9B957B70F6632DB0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B95CA70F6767BE0046712A /* NoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B95CA60F6767BE0046712A /* NoteEdit.xib */; };
+		B9C4DD030FA70B0C00DE1E18 /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
+		B9C4DD0F0FA70CAE00DE1E18 /* RTMListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDD0F565DE000473A95 /* RTMListTest.m */; };
 		B9C9A8690F91D0070078DC79 /* RootMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */; };
 		B9C9A86A0F91D0080078DC79 /* RootMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */; };
 		B9D043180F5F477400641E61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -753,6 +751,7 @@
 			children = (
 				B9AE52090F6B408A0076D258 /* api */,
 				B91610590F56607600473A95 /* mock */,
+				B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */,
 				B9B957310F66160B0046712A /* TagProviderTest.m */,
 				B9D043370F5F48C800641E61 /* TaskProviderTest.m */,
 				B9160FB70F565DB600473A95 /* FunctionalTestProgressViewWindow.xib */,
@@ -763,12 +762,11 @@
 				B9160FDC0F565DE000473A95 /* LocalCacheTest.m */,
 				B9160FDD0F565DE000473A95 /* RTMListTest.m */,
 				B9160FDE0F565DE000473A95 /* RTMPendingTaskTest.m */,
-				B9160FDF0F565DE000473A95 /* RTMSynchronizerTest.m */,
 				B9160FE00F565DE000473A95 /* RTMTaskEntryTest.m */,
 				B9160FE10F565DE000473A95 /* RTMTaskTest.m */,
 				B9160FE20F565DE000473A95 /* UpdateList.m */,
 				B9160FE30F565DE000473A95 /* UpdateTask.m */,
-				B9D11FD70F56A66C00B5ABA4 /* ListProviderTest.m */,
+				B9160FDF0F565DE000473A95 /* RTMSynchronizerTest.m */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -1302,12 +1300,10 @@
 				B914B3530F5EBE77009C19BE /* DBListProvider.m in Sources */,
 				B914B3770F5EC14D009C19BE /* LocalCache.m in Sources */,
 				B914B41E0F5ED23F009C19BE /* LocalCacheTest.m in Sources */,
-				B91996780F612AA300D631D1 /* TaskProvider.m in Sources */,
-				B919969B0F612CB200D631D1 /* RTMAPIList.m in Sources */,
-				B919969D0F612CB800D631D1 /* RTMAPIXMLParserCallback.m in Sources */,
-				B919969F0F612CBD00D631D1 /* RTMAPI.m in Sources */,
 				B970A78D0F636AC5004467E9 /* ListProviderTest.m in Sources */,
 				B9B957B70F6632DB0046712A /* MilponHelper.m in Sources */,
+				B9C4DD030FA70B0C00DE1E18 /* RTMObject.m in Sources */,
+				B9C4DD0F0FA70CAE00DE1E18 /* RTMListTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2009,7 +2005,7 @@
 					DEBUG,
 					UNIT_TEST,
 				);
-				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/ListUnitTest-Info.plist";
+				INFOPLIST_FILE = "others/ListUnitTest-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",

@@ -15,9 +15,11 @@
 
 - (void) testCreate
 {
-   RTMList *list = [[RTMList alloc]
-      initWithID:[NSNumber numberWithInt:1]
-      forName:@"list one"];
+   NSArray *keys = [NSArray arrayWithObjects:@"list.id", @"list.name", @"list.filter", nil];
+   NSArray *vals = [NSArray arrayWithObjects:[NSNumber numberWithInt:0], @"list One", @"", nil];
+   NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   
+   RTMList *list = [[RTMList alloc] initByAttributes:attrs];
    STAssertNotNil(list, @"list should be created");
 }
 
