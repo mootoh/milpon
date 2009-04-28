@@ -15,19 +15,18 @@
 
 //@synthesize name, filter;
 
-/*
-- (id) initWithID:(NSNumber *)idd forName:(NSString *)nm
+- (id) initByAttribute:(NSDictionary *)attrs
 {
-   if (self = [super init]) {
+   if (self = [super initByAttributes:attrs]) {
    }
    return self;
 }
+
 
 - (void) dealloc
 {
    [super dealloc];
 }
-*/
 
 DEFINE_ATTRIBUTE(name, Name, NSString*, EB_LIST_NAME);
 
@@ -45,7 +44,8 @@ DEFINE_ATTRIBUTE(name, Name, NSString*, EB_LIST_NAME);
 
 - (BOOL) isSmart
 {
-   return self.filter != nil;
+   NSLog(@"RTMList#isSmart : filter = %@", [self filter]);
+   return ![self.filter isEqualTo:@""];
 }
 
 - (NSInteger) taskCount

@@ -23,11 +23,12 @@
    lp = [ListProvider sharedListProvider];
 }
 
-- (void) testLists
+- (void) testListsCount
 {
    STAssertEquals(lp.lists.count, 5U, @"should have some list elements.");
 }
 
+// emulate create an instance from DB
 - (void) testCreate
 {
    NSArray *keys = [NSArray arrayWithObjects:@"list.id", @"list.name", @"list.filter", nil];
@@ -37,14 +38,24 @@
    RTMList *list = [[RTMList alloc] initByAttributes:attrs];
    STAssertNotNil(list, @"list should be created");
    STAssertEquals(list.iD, 0, @"id check");
-   STAssertEquals(list.name, @"list One", @"name check");
-   STAssertEquals(list.filter, @"", @"filter check");
+   STAssertTrue([list.name isEqualTo:@"list One"], @"name check");
+   STAssertTrue([list.filter isEqualTo:@""], @"filter check");
 }
 
 - (void) testAttribute
 {
-   RTMList *lstZero = [[lp lists] objectAtIndex:0];
-   NSLog(@"lstOne id = %d, name = %@", lstZero.iD, lstZero.name);
+   NSArray *lists = [lp lists];
+   RTMList *lstZero = [lists objectAtIndex:0];
+   STAssertEquals(lstZero.iD, 1, @"id check");
+   STAssertTrue([lstZero.name isEqualTo:@"Inbox"], @"name check");
+   STAssertTrue([lstZero.filter isEqualTo:@""], @"filter check");
+   STAssertFalse([lstZero isSmart], @"smart list check");
+
+   RTMList *lstLast = [lists objectAtIndex:lists.count-1];
+   STAssertEquals(lstLast.iD, 5, @"id check");
+   STAssertTrue([lstLast.name isEqualTo:@"2007List"], @"name check");
+   STAssertTrue([lstLast.filter isEqualTo:@"(tag:2007)"], @"filter check");
+   STAssertTrue([lstLast isSmart], @"smart list check");
 }
 
 #if 0
