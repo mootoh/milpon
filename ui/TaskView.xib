@@ -92,13 +92,13 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUIHighlightedImage" id="610094352">
+						<object class="NSCustomResource" key="IBUIHighlightedImage" id="389391975">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">icon_priority_0.png</string>
+							<string key="NSResourceName">icon_priority_1.png</string>
 						</object>
-						<reference key="IBUIDisabledImage" ref="610094352"/>
-						<reference key="IBUISelectedImage" ref="610094352"/>
-						<reference key="IBUINormalImage" ref="610094352"/>
+						<reference key="IBUIDisabledImage" ref="389391975"/>
+						<reference key="IBUISelectedImage" ref="389391975"/>
+						<reference key="IBUINormalImage" ref="389391975"/>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 416}</string>

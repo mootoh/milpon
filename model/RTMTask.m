@@ -51,6 +51,20 @@ DEFINE_ATTRIBUTE(estimate, Estimate, NSString*, EB_TASK_ESTIMATE);
     */
 }
 
+- (NSArray *) tags
+{
+   return nil;
+}
+
+- (NSArray *) notes
+{
+   return nil;
+}
+
+- (void) complete
+{
+}
+
 + (NSString *) table_name
 {
    return @"task";

@@ -116,7 +116,7 @@
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    return [self tasks:cond];
 }
-/*
+
 - (NSArray *) tasksInTag:(RTMTag *)tag
 {
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
@@ -132,7 +132,7 @@
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    return [self tasks:cond];
 }
-
+/*
 - (NSArray *) existingTasks
 {
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];

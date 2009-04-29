@@ -62,6 +62,8 @@
 //- (void) addTag: (RTMTag *) tag;
 //- (void) removeTag; (RTMTag *) tag;
 
+- (void) complete;
+
 // XXX: edit bits assumes 32 bit integer.
 enum task_edit_bits_t {
    EB_TASK_DUE           = 1 << 1,

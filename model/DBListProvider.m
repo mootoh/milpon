@@ -111,16 +111,15 @@
 
    [local_cache_ insert:attrs into:@"list"];
 }
-/*
+
 - (NSString *)nameForListID:(NSNumber *)list_id {
    for (RTMList *lst in [self lists]) {
-      if ([lst.iD isEqualToNumber:list_id])
+      if (lst.iD == [list_id integerValue])
          return lst.name;
    }
    NSAssert(NO, @"not reach here");
    return nil;
 }
-*/
 @end // DBListProvider (Private)
 
 @implementation ListProvider (DB)

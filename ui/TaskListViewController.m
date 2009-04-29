@@ -5,7 +5,6 @@
 //  Created by mootoh on 9/3/08.
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
-
 #import "TaskListViewController.h"
 #import "AppDelegate.h"
 #import "TaskViewController.h"
@@ -24,7 +23,7 @@
 {
    if (tasks) [tasks release];
    if ([collection isKindOfClass:[RTMList class]]) {
-      tasks = [[[TaskProvider sharedTaskProvider] tasksInList:(RTMList *)collection] retain];
+      tasks = [[[TaskProvider sharedTaskProvider] tasksInList:((RTMList *)collection).iD] retain];
    } else {
       tasks = [[[TaskProvider sharedTaskProvider] tasksInTag:(RTMTag *)collection] retain];
    }
@@ -52,7 +51,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
    if ([collection isKindOfClass:[RTMList class]]) {
-      return [[TaskProvider sharedTaskProvider] tasksInList:(RTMList *)collection].count;
+      return [[TaskProvider sharedTaskProvider] tasksInList:((RTMList *)collection).iD].count;
    } else {
       return [[TaskProvider sharedTaskProvider] tasksInTag:(RTMTag *)collection].count;
    }
