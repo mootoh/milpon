@@ -38,27 +38,21 @@
 
 #pragma mark properties
 
-/*
 @property (nonatomic, retain) NSNumber *task_id;
-*/
 @property (nonatomic, assign) NSDate   *due;
 @property (nonatomic, assign) NSNumber *priority;
 @property (nonatomic, assign) NSDate   *completed;
-/*
 @property (nonatomic, retain) NSNumber *postponed;
 @property (nonatomic, retain) NSString *estimate;
 @property (nonatomic, retain) NSNumber *has_due_time;
-
 @property (nonatomic, retain) NSNumber *taskseries_id;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSNumber *location_id;
 @property (nonatomic, retain) NSNumber *list_id;
 @property (nonatomic, retain) NSString *rrule;
-
 @property (nonatomic, retain) NSArray  *tags;
 @property (nonatomic, retain) NSArray  *notes;
-*/
 
 #pragma mark methods
 - (BOOL) is_completed;
@@ -81,6 +75,8 @@ enum task_edit_bits_t {
    EB_TASK_LIST_ID       = 1 << 9,
    EB_TASK_RRULE         = 1 << 10,
    EB_TASK_NOTE          = 1 << 11,
+   EB_TASK_TASKSERIES_ID = 1 << 12,
+   EB_TASK_TASK_ID       = 1 << 13
 };
 
 @end

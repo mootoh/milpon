@@ -23,13 +23,20 @@
 
 - (BOOL) is_completed
 {
-   return [attrs_ objectForKey:@"task.completed"] != nil;
+   MilponHelper *mh = [MilponHelper sharedHelper];
+   return ![[attrs_ objectForKey:@"task.completed"] isEqualToDate:[mh invalidDate]];
 }
 
+DEFINE_ATTRIBUTE(task_id, Task_id, NSNumber*, EB_TASK_TASK_ID);
 DEFINE_ATTRIBUTE(priority, Priority, NSNumber*, EB_TASK_PRIORITY);
 DEFINE_ATTRIBUTE(due, Due, NSDate*, EB_TASK_DUE);
 DEFINE_ATTRIBUTE(completed, Completed, NSDate*, EB_TASK_COMPLETED);
-
+DEFINE_ATTRIBUTE(list_id, List_id, NSNumber*, EB_TASK_LIST_ID);
+DEFINE_ATTRIBUTE(taskseries_id, Taskseries_id, NSNumber*, EB_TASK_TASKSERIES_ID);
+DEFINE_ATTRIBUTE(name, Name, NSString*, EB_TASK_NAME);
+DEFINE_ATTRIBUTE(url, Url, NSString*, EB_TASK_URL);
+DEFINE_ATTRIBUTE(location_id, Location_id, NSNumber*, EB_TASK_LOCACTION_ID);
+DEFINE_ATTRIBUTE(estimate, Estimate, NSString*, EB_TASK_ESTIMATE);
 
 - (void) setNote:(NSString *)note ofIndex:(NSInteger) index
 {

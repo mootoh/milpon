@@ -12,19 +12,27 @@
 #import "TaskProvider.h"
 
 @interface RTMTaskTest : SenTestCase
+{
+   TaskProvider *tp;
+}
 @end
 
 @implementation RTMTaskTest
 
+- (void) setUp
+{
+   tp = [TaskProvider sharedTaskProvider];
+}
+
 - (void) testTasks
 {
-   NSArray *tasks = [[TaskProvider sharedTaskProvider] tasks];
+   NSArray *tasks = [tp tasks];
    STAssertEquals(tasks.count, 1U, @"should have some task elements.");
 }
 
 - (void) testPriority
 {
-   NSArray *tasks = [[TaskProvider sharedTaskProvider] tasks];
+   NSArray *tasks = [tp tasks];
    RTMTask *taskOne = [tasks objectAtIndex:0];
    STAssertEquals(taskOne.priority, [NSNumber numberWithInteger:0], @"priority check");
    STAssertEquals(taskOne.edit_bits, 0, @"edit bits should flagged up");
@@ -32,6 +40,11 @@
    taskOne.priority = [NSNumber numberWithInteger:1];
    STAssertEquals(taskOne.priority, [NSNumber numberWithInteger:1], @"priority changed");
    STAssertEquals(taskOne.edit_bits, EB_TASK_PRIORITY, @"edit bits should flagged up");
+}
+
+- (void) testAttributes
+{
+   RTMTask *taskOne = [[tp tasks] objectAtIndex:0];
 }
 
 #if 0
