@@ -4,23 +4,26 @@
 INSERT INTO list (id, name)        VALUES (1, 'Inbox');
 INSERT INTO list (id, name)        VALUES (2, 'Sent');
 INSERT INTO list (id, name)        VALUES (3, 'Project');
-INSERT INTO list (id, name,filter) VALUES (4, 'Week', '(dueWithin:"7 days of today")');
-INSERT INTO list (id, name,filter) VALUES (5, '2007List', '(tag:2007)');
+INSERT INTO list VALUES (4, 'Week', '(dueWithin:"7 days of today")');
+INSERT INTO list VALUES (5, '2007List', '(tag:2007)');
 
 --------------------------------------------------------------------
 -- Task
 --
 
--- task created at online already
-INSERT INTO task (
-    id, edit_bits,
-    task_id, due, completed, priority, postponed, estimate, has_due_time,
-    taskseries_id, name, url, location_id, list_id, rrule)
-  VALUES (
-    1, 0,
+INSERT INTO task VALUES (1, 0,
     1, NULL, NULL, 0, 0, '', 0,
     1, 'task one', '', 1, 1, '');
 
+-- has due
+INSERT INTO task VALUES (2, 0,
+    2, '2009-12-31 23:59:59', NULL, 0, 0, '', 0,
+    1, 'task two', '', 1, 1, '');
+
+-- has completed
+INSERT INTO task VALUES (3, 0,
+    3, NULL, '2009-03-31 23:59:59', 0, 0, '', 0,
+    1, 'task three', '', 1, 1, '');
 --------------------------------------------------------------------
 -- Note
 --

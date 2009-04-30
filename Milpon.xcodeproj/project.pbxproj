@@ -109,6 +109,8 @@
 		B9A8D90C0FA952EE00F07D0D /* TagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957630F662E780046712A /* TagProvider.m */; };
 		B9A8D9660FA9650000F07D0D /* TagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957630F662E780046712A /* TagProvider.m */; };
 		B9A8D97B0FA966A800F07D0D /* TaskProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043370F5F48C800641E61 /* TaskProviderTest.m */; };
+		B9A8DA060FA9729200F07D0D /* DBTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B9570F0F6615880046712A /* DBTagProvider.m */; };
+		B9A8DA080FA9729F00F07D0D /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
 		B9AE52080F6B407B0076D258 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
 		B9AE521A0F6B415C0076D258 /* RTMAPIListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD80F565DE000473A95 /* RTMAPIListTest.m */; };
 		B9AE52600F6B45970076D258 /* RTMAPITaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */; };
@@ -1424,6 +1426,8 @@
 				B91C48AB0FA04BD5001032CD /* RTMObject.m in Sources */,
 				B910D96F0FA1E5760051EFB0 /* DBTaskProvider.m in Sources */,
 				B9A8D9660FA9650000F07D0D /* TagProvider.m in Sources */,
+				B9A8DA060FA9729200F07D0D /* DBTagProvider.m in Sources */,
+				B9A8DA080FA9729F00F07D0D /* RTMTag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

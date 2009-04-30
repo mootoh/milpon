@@ -1,5 +1,6 @@
 #import "RTMTask.h"
 #import "TaskProvider.h"
+#import "TagProvider.h"
 #import "MilponHelper.h"
 #import "LocalCache.h"
 #import "logger.h"
@@ -42,7 +43,7 @@ DEFINE_ATTRIBUTE(rrule, Rrule, NSString*, EB_TASK_RRULE);
 
 - (NSArray *) tags
 {
-   return nil;
+   return [[TagProvider sharedTagProvider] tagsInTask:self.iD];
 }
 
 - (NSArray *) notes

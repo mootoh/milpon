@@ -81,6 +81,28 @@
    return count_num.integerValue;
 }
 
+- (NSArray *) tagsInTask:(NSInteger) task_id
+{
+   NSMutableArray *tags = [NSMutableArray array];
+
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+   NSDictionary *tag_dict = [NSDictionary dictionaryWithObject:[NSString class] forKey:@"name"];
+   NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
+   NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"tag.id=task_tag.tag_id", nil];
+   NSDictionary *join_dict = [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys];
+
+   NSArray *tag_keys = [NSArray arrayWithObjects:@"WHERE", @"JOIN", nil];
+   NSArray *tag_vals = [NSArray arrayWithObjects:[NSString stringWithFormat:@"task_tag.task_id=%d", task_id], join_dict, nil];
+   NSDictionary *tag_opts = [NSDictionary dictionaryWithObjects:tag_vals forKeys:tag_keys];
+
+   NSArray *tags_dict = [local_cache_ select:tag_dict from:@"tag" option:tag_opts];
+   for (NSDictionary *tag in tags_dict)
+      [tags addObject:[tag objectForKey:@"name"]];
+
+   [pool release];
+   return tags;
+}
+
 @end // DBTagProvider
 
 @implementation DBTagProvider (Private)

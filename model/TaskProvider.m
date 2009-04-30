@@ -23,12 +23,12 @@
    return nil;
 }
 
-//- (NSArray *) tasksInTag:(RTMTag *)tag;
-//{
-//   NSAssert(NO, @"not reach here");
-//   return nil;
-//}
-//
+- (NSArray *) tasksInTag:(RTMTag *)tag;
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 //- (NSArray *) modifiedTasks
 //{
 //   NSAssert(NO, @"not reach here");

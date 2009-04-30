@@ -70,6 +70,12 @@
    return 0;
 }
 
+- (NSArray *) tagsInTask:(NSInteger) task_id
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 + (TagProvider *) sharedTagProvider
 {
    NSAssert(NO, @"not reach here");
@@ -77,4 +83,3 @@
 }
 
 @end
-
