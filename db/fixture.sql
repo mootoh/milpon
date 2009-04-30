@@ -12,18 +12,18 @@ INSERT INTO list VALUES (5, '2007List', '(tag:2007)');
 --
 
 INSERT INTO task VALUES (1, 0,
-    1, NULL, NULL, 0, 0, '', 0,
-    1, 'task one', '', 1, 1, '');
+    1, NULL, NULL, 0, 0, NULL, 0,
+    1, 'task one', NULL, 1, 1, NULL);
 
 -- has due
 INSERT INTO task VALUES (2, 0,
-    2, '2009-12-31 23:59:59', NULL, 0, 0, '', 0,
-    1, 'task two', '', 1, 1, '');
+    2, '2009-12-31 23:59:59', NULL, 0, 0, NULL, 0,
+    1, 'task two', NULL, 1, 1, NULL);
 
 -- has completed
 INSERT INTO task VALUES (3, 0,
-    3, NULL, '2009-03-31 23:59:59', 0, 0, '', 0,
-    1, 'task three', '', 1, 1, '');
+    3, NULL, '2009-03-31 23:59:59', 0, 0, NULL, 0,
+    1, 'task three', NULL, 1, 1, NULL);
 --------------------------------------------------------------------
 -- Note
 --

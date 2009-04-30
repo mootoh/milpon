@@ -50,11 +50,11 @@
 
    STAssertEquals(first_task.iD, 1, @"check attr");
    STAssertTrue([first_task.name isEqualToString:@"task one"], @"check attr");
-   STAssertTrue([first_task.url isEqualToString:@""], @"check attr");
+   STAssertNil(first_task.url, @"check attr");
    STAssertEquals([first_task.priority intValue], 0, @"check attr");
    STAssertEquals([first_task.postponed intValue], 0, @"check attr");
-   STAssertTrue([first_task.estimate isEqualToString:@""], @"check attr");
-   STAssertTrue([first_task.rrule isEqualToString:@""], @"check attr");
+   STAssertNil(first_task.estimate, @"check attr");
+   STAssertNil(first_task.rrule, @"check attr");
    STAssertEquals([first_task.list_id intValue], 1, @"check attr");
    STAssertEquals([first_task.location_id intValue], 1, @"check attr");
    STAssertEquals(first_task.edit_bits, 0, @"check attr");
@@ -63,7 +63,7 @@
    STAssertTrue([second_task.due isEqualToDate:[[MilponHelper sharedHelper] stringToDate:@"2009-12-31 23:59:59"]], @"check attr");
 
    RTMTask *third_task = [tasks objectAtIndex:2];
-   //STAssertTrue([third_task.completed isEqualToDate:[[MilponHelper sharedHelper] stringToDate:@"2009-03-31 23:59:59"]], @"check attr");
+   STAssertTrue([third_task.completed isEqualToDate:[[MilponHelper sharedHelper] stringToDate:@"2009-03-31 23:59:59"]], @"check attr");
 
    STAssertEquals(first_task.tags.count, 1U, @"check tags");
 }
