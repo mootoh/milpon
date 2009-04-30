@@ -149,6 +149,12 @@
 //   return nil;
 //}
 
+- (NSArray *) completedTasks
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 + (TaskProvider *) sharedTaskProvider
 {
    NSAssert(NO, @"not reach here");

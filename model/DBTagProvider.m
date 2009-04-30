@@ -54,7 +54,7 @@
 
 - (NSNumber *) find:(NSString *)tag_name
 {
-   NSDictionary *query = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
+   NSArray *query = [NSArray arrayWithObject:@"id"];
    NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"name='%@'", tag_name] forKey:@"WHERE"];
    NSArray *results = [local_cache_ select:query from:@"tag" option:where];
    return results.count == 1 ?
@@ -74,7 +74,7 @@
       nil];
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:tag_vals forKeys:tag_keys];
 
-   NSDictionary *query = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"count()"];
+   NSArray *query = [NSArray arrayWithObject:@"count()"];
    NSArray *counts = [local_cache_ select:query from:@"task_tag" option:cond];
    NSDictionary *count = (NSDictionary *)[counts objectAtIndex:0];
    NSNumber *count_num = [count objectForKey:@"count()"];
@@ -86,16 +86,16 @@
    NSMutableArray *tags = [NSMutableArray array];
 
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-   NSDictionary *tag_dict = [NSDictionary dictionaryWithObject:[NSString class] forKey:@"name"];
+   NSArray *tag_keys = [NSArray arrayWithObject:@"name"];
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
    NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"tag.id=task_tag.tag_id", nil];
    NSDictionary *join_dict = [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys];
 
-   NSArray *tag_keys = [NSArray arrayWithObjects:@"WHERE", @"JOIN", nil];
-   NSArray *tag_vals = [NSArray arrayWithObjects:[NSString stringWithFormat:@"task_tag.task_id=%d", task_id], join_dict, nil];
-   NSDictionary *tag_opts = [NSDictionary dictionaryWithObjects:tag_vals forKeys:tag_keys];
+   NSArray *tag_opt_keys = [NSArray arrayWithObjects:@"WHERE", @"JOIN", nil];
+   NSArray *tag_opt_vals = [NSArray arrayWithObjects:[NSString stringWithFormat:@"task_tag.task_id=%d", task_id], join_dict, nil];
+   NSDictionary *tag_opts = [NSDictionary dictionaryWithObjects:tag_opt_vals forKeys:tag_opt_keys];
 
-   NSArray *tags_dict = [local_cache_ select:tag_dict from:@"tag" option:tag_opts];
+   NSArray *tags_dict = [local_cache_ select:tag_keys from:@"tag" option:tag_opts];
    for (NSDictionary *tag in tags_dict)
       [tags addObject:[tag objectForKey:@"name"]];
 
@@ -113,12 +113,9 @@
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    NSArray *keys  = [NSArray arrayWithObjects:@"id", @"name", nil];
-   NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], nil];
-   NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
-
    NSArray *tag_arr = option ?
-      [local_cache_ select:dict from:@"tag" option:option] :
-      [local_cache_ select:dict from:@"tag"];
+      [local_cache_ select:keys from:@"tag" option:option] :
+      [local_cache_ select:keys from:@"tag"];
 
    for (NSDictionary *dict in tag_arr) {
       RTMTag *tag = [[RTMTag alloc]
@@ -167,7 +164,7 @@
    [local_cache_ insert:attrs into:@"tag"];
 
    // obtain tag_id created
-   NSDictionary *iid = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
+   NSArray *iid = [NSArray arrayWithObject:@"id"];
    NSDictionary *order = [NSDictionary dictionaryWithObject:@"id DESC LIMIT 1" forKey:@"ORDER"]; // TODO: ad-hoc LIMIT
    NSArray *ret = [local_cache_ select:iid from:@"tag" option:order];
    NSNumber *tag_id = [[ret objectAtIndex:0] objectForKey:@"id"];

@@ -48,7 +48,7 @@
    RTMList *lstZero = [lists objectAtIndex:0];
    STAssertEquals(lstZero.iD, 1, @"id check");
    STAssertTrue([lstZero.name isEqualTo:@"Inbox"], @"name check");
-   STAssertTrue([lstZero.filter isEqualTo:@""], @"filter check");
+   STAssertNil(lstZero.filter, @"filter check");
    STAssertFalse([lstZero isSmart], @"smart list check");
 
    RTMList *lstLast = [lists objectAtIndex:lists.count-1];
@@ -61,7 +61,7 @@
 - (void) testTasksCount
 {
    RTMList *lstZero = [[lp lists] objectAtIndex:0];
-   STAssertEquals([lstZero taskCount], 1, @"task count check");
+   STAssertEquals([lstZero taskCount], 2, @"task count check");
 }
 
 - (void) testTasks
@@ -69,7 +69,7 @@
    RTMList *lstZero = [[lp lists] objectAtIndex:0];
 
    NSArray *tasks = lstZero.tasks;
-   STAssertEquals([tasks count], 1U, @"tasks should be 1.");
+   STAssertEquals([tasks count], 3U, @"tasks should be 1.");
 }
 
 // should executed last

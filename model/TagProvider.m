@@ -32,12 +32,6 @@
    return nil;
 }
 
-- (NSArray *) tasksInTag:(RTMTag *)tag
-{
-   NSAssert(NO, @"not reach here");
-   return nil;
-}
-
 - (void) sync
 {
    NSAssert(NO, @"not reach here");

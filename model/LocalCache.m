@@ -44,25 +44,25 @@
    [super dealloc];
 }
 
-- (NSArray *) select:(NSDictionary *)dict from:(NSString *)table
+- (NSArray *) select:(NSArray *) keys from:(NSString *)table
 {
-   return [self select:dict from:table option:nil];
+   return [self select:keys from:table option:nil];
 }
 
-- (NSArray *) select:(NSDictionary *)dict from:(NSString *)table option:(NSDictionary *)option
+- (NSArray *) select:(NSArray *) keys from:(NSString *)table option:(NSDictionary *)option
 {
    sqlite3_stmt *stmt = nil;
    NSMutableArray *results = [NSMutableArray array];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
    // construct the query.
-   NSString *keys = @"";
-   for (NSString *key in dict)
-      keys = [keys stringByAppendingFormat:@"%@,", key];
+   NSString *ks = @"";
+   for (NSString *key in keys)
+      ks = [ks stringByAppendingFormat:@"%@,", key];
 
-   keys = [keys substringToIndex:keys.length-1]; // cut last ', '
+   ks = [ks substringToIndex:ks.length-1]; // cut last ', '
 
-   NSString *sql = [NSString stringWithFormat:@"SELECT %@ FROM %@", keys, table];
+   NSString *sql = [NSString stringWithFormat:@"SELECT %@ FROM %@", ks, table];
 
    NSDictionary *join = [option objectForKey:@"JOIN"];
    if (join)
@@ -93,25 +93,25 @@
       NSMutableDictionary *result = [NSMutableDictionary dictionary];
       int i = 0;
 
-      for (NSString *key in dict) {
-         Class klass = [dict objectForKey:key];
-         if (klass == [NSNumber class]) {
-            NSNumber *num = [NSNumber numberWithInt:sqlite3_column_int(stmt, i)];
-            [result setObject:num forKey:key];
-         } else if (klass == [NSString class]) {
-            char *chs = (char *)sqlite3_column_text(stmt, i);
-            NSString *str = chs ? [NSString stringWithUTF8String:chs] : @"";
-            [result setObject:str forKey:key];
-         } else if (klass == [NSDate class]) {
-            char *chs = (char *)sqlite3_column_text(stmt, i);
-            NSDate *date = (chs && chs[0] != '\0') ? [[MilponHelper sharedHelper] stringToDate:[NSString stringWithUTF8String:chs]] : [[MilponHelper sharedHelper].invalidDate retain];
-            [result setObject:date forKey:key];
-         } else {
-            [[NSException
-              exceptionWithName:@"LocalCacheException"
-              reason:[NSString stringWithFormat:@"should not reach here, LINE=%d", __LINE__]
-              userInfo:nil] raise];
+      for (NSString *key in keys) {
+         id value = nil;
+
+         switch (sqlite3_column_type(stmt, i)) {
+            case SQLITE_INTEGER:
+               value = [NSNumber numberWithInt:sqlite3_column_int(stmt, i)];
+               break;
+            case SQLITE_TEXT:
+               value = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, i)];
+               break;
+            case SQLITE_NULL:
+               value = [NSNull null];
+               break;
+            default:
+               NSAssert(NO, @"not reach here");
+               abort();
          }
+         NSAssert(value != nil, @"value should be set");
+         [result setObject:value forKey:key];
          i++;
       }
       [results addObject:result];
@@ -298,8 +298,8 @@
 
 - (NSString *) lastSync
 {
-   NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSDate class] forKey:@"sync_date"];
-   NSDictionary *result = [[self select:dict from:@"last_sync"] objectAtIndex:0];
+   NSArray *keys = [NSArray arrayWithObject:@"sync_date"];
+   NSDictionary *result = [[self select:keys from:@"last_sync"] objectAtIndex:0];
    NSDate *last_sync_date = [result objectForKey:@"sync_date"];
    return [[MilponHelper sharedHelper] dateToRtmString:last_sync_date];
 

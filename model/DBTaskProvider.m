@@ -39,15 +39,10 @@
       @"task.id", @"task.edit_bits",
       @"task.task_id", @"task.due", @"task.completed", @"task.priority", @"task.postponed", @"task.estimate", @"task.has_due_time",
       @"task.taskseries_id", @"task.name", @"task.url", @"task.location_id", @"task.list_id", @"task.rrule", nil];
-   NSArray *types = [NSArray arrayWithObjects:
-      [NSNumber class], [NSNumber class],
-      [NSNumber class], [NSDate class], [NSDate class], [NSNumber class], [NSNumber class], [NSString class],[NSNumber class], 
-      [NSNumber class], [NSString class], [NSString class], [NSNumber class], [NSNumber class], [NSString class], nil];
-   NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
 
    NSArray *task_arr = conditions ?
-      [local_cache_ select:dict from:@"task" option:conditions] : 
-      [local_cache_ select:dict from:@"task"];
+      [local_cache_ select:keys from:@"task" option:conditions] : 
+      [local_cache_ select:keys from:@"task"];
 
    for (NSDictionary *dict in task_arr) {
       RTMTask *task = [[RTMTask alloc] initByAttributes:dict];
@@ -236,11 +231,9 @@
 
       [local_cache_ insert:task_attrs into:@"task"];
 
-      NSDictionary *iid = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
+      NSArray *iid = [NSArray arrayWithObject:@"id"];
       NSDictionary *order = [NSDictionary dictionaryWithObject:@"id DESC LIMIT 1" forKey:@"ORDER"]; // TODO: ad-hoc LIMIT
-      LOG(@"task select enter");
       NSArray *ret = [local_cache_ select:iid from:@"task" option:order];
-      LOG(@"task select leave");
       NSNumber *retn = [[ret objectAtIndex:0] objectForKey:@"id"];
 #if 0
       // add notes
@@ -355,8 +348,8 @@
 - (BOOL) taskExist:(NSNumber *)idd
 {
    NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d", [idd intValue]] forKey:@"WHERE"];
-   NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"task_id"];
-   NSArray *tasks = [local_cache_ select:dict from:@"task" option:where];
+   NSArray *keys = [NSArray arrayWithObject:@"task_id"];
+   NSArray *tasks = [local_cache_ select:keys from:@"task" option:where];
    return tasks.count == 1;
 }
 

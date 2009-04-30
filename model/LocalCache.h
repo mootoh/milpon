@@ -21,12 +21,12 @@
  * @param [in] table table to be selected from.
  * @param option [in] other options like ORDER, HWERE, etc...
  */
-- (NSArray *) select:(NSDictionary *)dict from:(NSString *)table option:(NSDictionary *)option;
+- (NSArray *) select:(NSArray *)keys from:(NSString *)table option:(NSDictionary *)option;
 
 /**
  * shorthand of select:from:option (no option)
  */
-- (NSArray *) select:(NSDictionary *)dict from:(NSString *)table;
+- (NSArray *) select:(NSArray *)keys from:(NSString *)table;
 
 /**
  * SQL INSERT.

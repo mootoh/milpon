@@ -84,7 +84,8 @@
 
 - (id) attribute:(NSString *)name
 {
-   return [attrs_ objectForKey:[NSString stringWithFormat:@"%@.%@", [self.class table_name], name]];
+   id value = [attrs_ objectForKey:[NSString stringWithFormat:@"%@.%@", [self.class table_name], name]];
+   return value == [NSNull null] ? nil : value;
 }
    
 + (NSString *) table_name

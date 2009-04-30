@@ -14,8 +14,6 @@
 
 @implementation RTMList
 
-//@synthesize name, filter;
-
 - (id) initByAttribute:(NSDictionary *)attrs
 {
    if (self = [super initByAttributes:attrs]) {
@@ -43,19 +41,17 @@ DEFINE_ATTRIBUTE(name, Name, NSString*, EB_LIST_NAME);
 
 - (BOOL) isSmart
 {
-   NSLog(@"RTMList#isSmart : filter = %@", [self filter]);
-   return ![self.filter isEqualTo:@""];
+   return self.filter != nil;
 }
 
 - (NSInteger) taskCount
 {
-    NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"list_id=%d AND completed is NULL", self.iD] forKey:@"WHERE"];
-    
-    NSDictionary *query = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"count()"];
-    NSArray *counts = [[LocalCache sharedLocalCache] select:query from:@"task" option:cond];
-    NSDictionary *count = (NSDictionary *)[counts objectAtIndex:0];
-    NSNumber *count_num = [count objectForKey:@"count()"];
-    return count_num.integerValue;
+   NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"list_id=%d AND completed is NULL", self.iD] forKey:@"WHERE"];
+   NSArray *query = [NSArray arrayWithObject:@"count()"];
+   NSArray *counts = [[LocalCache sharedLocalCache] select:query from:@"task" option:cond];
+   NSDictionary *count = (NSDictionary *)[counts objectAtIndex:0];
+   NSNumber *count_num = [count objectForKey:@"count()"];
+   return count_num.integerValue;
 }
 
 + (NSString *) table_name

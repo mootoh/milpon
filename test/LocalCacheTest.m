@@ -23,9 +23,7 @@
 {
    LocalCache *db = (LocalCache *)[LocalCache sharedLocalCache];
    NSArray *keys  = [NSArray arrayWithObjects:@"id", @"name", nil];
-   NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], nil];
-   NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
-   NSArray *results = [db select:dict from:@"task"];
+   NSArray *results = [db select:keys from:@"task"];
    NSDictionary *result = [results objectAtIndex:0];
    STAssertEquals([NSNumber numberWithInt:1], [result objectForKey:@"id"], @"id check");
    STAssertTrue([[result objectForKey:@"name"] isEqualToString:@"task one"], @"name check");

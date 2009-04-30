@@ -57,13 +57,11 @@
    NSMutableArray *lists = [NSMutableArray array];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-   NSArray *keys  = [NSArray arrayWithObjects:@"list.id", @"list.name", @"list.filter", nil];
-   NSArray *types = [NSArray arrayWithObjects:[NSNumber class], [NSString class], [NSString class], nil];
-   NSDictionary *dict = [NSDictionary dictionaryWithObjects:types forKeys:keys];
+   NSArray *keys = [NSArray arrayWithObjects:@"list.id", @"list.name", @"list.filter", nil];
 
    NSArray *list_arr = option ?
-      [local_cache_ select:dict from:@"list" option:option] :
-      [local_cache_ select:dict from:@"list"];
+      [local_cache_ select:keys from:@"list" option:option] :
+      [local_cache_ select:keys from:@"list"];
 
    for (NSDictionary *attrs in list_arr) {
       RTMList *lst = [[[RTMList alloc] initByAttributes:attrs] autorelease];
