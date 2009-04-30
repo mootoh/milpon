@@ -7,14 +7,6 @@
 
 @implementation RTMTask
 
-@synthesize task_id, taskseries_id, list_id, url;
-
-- (BOOL) is_completed
-{
-   MilponHelper *mh = [MilponHelper sharedHelper];
-   return ![[attrs_ objectForKey:@"task.completed"] isEqualToDate:[mh invalidDate]];
-}
-
 DEFINE_ATTRIBUTE_RO(task_id, NSNumber*);
 DEFINE_ATTRIBUTE_RO(taskseries_id, NSNumber*);
 DEFINE_ATTRIBUTE_RO(list_id, NSNumber*);
@@ -27,6 +19,12 @@ DEFINE_ATTRIBUTE(location_id, Location_id, NSNumber*, EB_TASK_LOCACTION_ID);
 DEFINE_ATTRIBUTE(estimate, Estimate, NSString*, EB_TASK_ESTIMATE);
 DEFINE_ATTRIBUTE(postponed, Postponed, NSNumber*, EB_TASK_POSTPONED);
 DEFINE_ATTRIBUTE(rrule, Rrule, NSString*, EB_TASK_RRULE);
+
+- (BOOL) is_completed
+{
+   MilponHelper *mh = [MilponHelper sharedHelper];
+   return ![[attrs_ objectForKey:@"task.completed"] isEqualToDate:[mh invalidDate]];
+}
 
 - (void) setNote:(NSString *)note ofIndex:(NSInteger) index
 {

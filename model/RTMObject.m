@@ -71,7 +71,7 @@
 - (void) setAttribute:(id) attr forName:(NSString *)name editBits:(NSInteger)eb
 {
    NSString *table_name = [self.class table_name];
-   [attrs_ setObject:attr forKey:[NSString stringWithFormat:@"%@.%@", table_name, name]];
+   [attrs_ setObject:attr ? attr : [NSNull null] forKey:[NSString stringWithFormat:@"%@.%@", table_name, name]];
    [attrs_ setObject:[NSNumber numberWithInteger:eb] forKey:[NSString stringWithFormat:@"%@.edit_bits", table_name]];
    
    NSArray *keys = [NSArray arrayWithObjects:name, @"edit_bits", nil];

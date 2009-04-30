@@ -23,7 +23,7 @@
    return nil;
 }
 
-- (NSArray *) tasksInTag:(RTMTag *)tag;
+- (NSArray *) tasksInTag:(NSInteger) tag_id;
 {
    NSAssert(NO, @"not reach here");
    return nil;

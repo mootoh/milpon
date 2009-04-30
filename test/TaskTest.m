@@ -68,26 +68,27 @@
    STAssertEquals(first_task.tags.count, 1U, @"check tags");
 }
 
-#if 0
-- (void) testAllTasks
+- (void) testTasksInList
 {
-   NSArray *tasks = [RTMTask allTasks];
-   STAssertTrue(7 == [tasks count], @"7 tasks should exist.");
+   NSArray *tasks = [tp tasksInList:1];
+   STAssertEquals([tasks count], 3U, @"3 tasks should exist in list_id=1.");
 }
 
-- (void) testTaskWithListID
+- (void) testTasksInTags
 {
-   NSArray *tasks = [RTMTask tasksInList:1];
-   STAssertTrue(5 == [tasks count], @"5 tasks should exist in list_id=1.");
+   NSArray *tasks = [tp tasksInTag:1];
+   STAssertEquals(tasks.count, 1U, @"should have some task elements in a index tag #1");
 }
 
-- (void) testTaskProperties
+- (void) testZZZComplete
 {
-   NSArray *tasks = [RTMTask tasksInList:2];
-   STAssertTrue(2 == [tasks count], @"2 tasks should exist in list_id=2.");
+   NSUInteger completedCountBefore = [tp completedTasks].count;
+   RTMTask *taskOne = [[tp tasks] objectAtIndex:0];
 
-   RTMTask *task = [tasks objectAtIndex:0];
-   STAssertTrue([task.name isEqualToString:@"Forget about it"], @"check task name");
+   [taskOne complete];
+   STAssertTrue([taskOne is_completed], @"should be completed");
+   NSUInteger completedCountAfter = [tp completedTasks].count;
+   STAssertEquals(completedCountAfter, completedCountBefore-1, @"completion check");
 }
-#endif
+
 @end

@@ -94,13 +94,13 @@
    return [self tasks:cond];
 }
 
-- (NSArray *) tasksInTag:(RTMTag *)tag
+- (NSArray *) tasksInTag:(NSInteger) tag_id
 {
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
    NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"task.id=task_tag.task_id", nil];
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", @"JOIN", @"GROUP", nil];
    NSArray *vals = [NSArray arrayWithObjects:
-      [NSString stringWithFormat:@"task_tag.tag_id=%d", [tag.iD intValue]],
+      [NSString stringWithFormat:@"task_tag.tag_id=%d", tag_id],
       [NSString stringWithFormat:@"task.priority ASC, task.due IS NULL ASC, task.due ASC"],
       [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys],
       @"task_tag.task_id",
@@ -109,6 +109,13 @@
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    return [self tasks:cond];
 }
+
+- (NSArray *) completedTasks
+{
+   NSDictionary *cond = [NSDictionary dictionaryWithObject:@"completed is NULL" forKey:@"WHERE"];
+   return [self tasks:cond];
+}
+
 /*
 - (NSArray *) existingTasks
 {
