@@ -28,31 +28,6 @@
 
 - (void) testTasks
 {
-   NSArray *tasks = [tp tasks];
-   STAssertEquals(tasks.count, 1U, @"should have some list elements.");
-
-   RTMTask *first_task = [tasks objectAtIndex:0];
-
-   STAssertEquals(first_task.iD, 1, @"check attr");
-   
-/*   
-   STAssertTrue([first_task.name isEqualToString:@"task one"], @"check attr");
-   STAssertTrue([first_task.url isEqualToString:@""], @"check attr");
-   //STAssertTrue([first_task.due isEqualToDate:[[MilponHelper sharedHelper] stringToDate:@"2009-03-31 13:00:00"]], @"check attr");
-   STAssertEquals([first_task.priority intValue], 0, @"check attr");
-   STAssertEquals([first_task.postponed intValue], 0, @"check attr");
-   STAssertTrue([first_task.estimate isEqualToString:@""], @"check attr");
-   STAssertTrue([first_task.rrule isEqualToString:@""], @"check attr");
-   STAssertEquals([first_task.list_id intValue], 1, @"check attr");
-   STAssertEquals([first_task.location_id intValue], 1, @"check attr");
-   STAssertEquals([first_task.edit_bits intValue], 0, @"check attr");
-
-   STAssertTrue(first_task.tags.count > 0, @"check tags");
-   NSString *tags = @"tag: ";
-   for (NSString *tag in first_task.tags)
-      tags = [tags stringByAppendingFormat:@"%@, ", tag];
-   NSLog(tags);
- */
 }
 
 #if 0

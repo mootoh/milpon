@@ -60,3 +60,8 @@ enum edit_bits_t {
 - (void) set##cameL:(typE)attr { \
   [self setAttribute:attr forName:@#namE editBits:eB]; \
 }
+
+#define DEFINE_ATTRIBUTE_RO(namE, typE) \
+- (typE) namE { \
+return [self attribute:@#namE]; \
+}

@@ -70,12 +70,16 @@
 
 - (void) setAttribute:(id) attr forName:(NSString *)name editBits:(NSInteger)eb
 {
-   [attrs_ setObject:attr forKey:[NSString stringWithFormat:@"%@.%@", [self.class table_name], name]];
+   NSString *table_name = [self.class table_name];
+   [attrs_ setObject:attr forKey:[NSString stringWithFormat:@"%@.%@", table_name, name]];
+   [attrs_ setObject:[NSNumber numberWithInteger:eb] forKey:[NSString stringWithFormat:@"%@.edit_bits", table_name]];
    
-   NSDictionary *dict = [NSDictionary dictionaryWithObject:attr forKey:name];
+   NSArray *keys = [NSArray arrayWithObjects:name, @"edit_bits", nil];
+   NSArray *vals = [NSArray arrayWithObjects:attr, [NSNumber numberWithInteger:eb], nil];
+   NSDictionary *dict = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    NSString *where = [NSString stringWithFormat:@"WHERE id=%d", self.iD];
-   [[LocalCache sharedLocalCache] update:dict table:[self.class table_name] condition:where];
-   [self flagUpEditBits:eb];
+
+   [[LocalCache sharedLocalCache] update:dict table:table_name condition:where];
 }
 
 - (id) attribute:(NSString *)name

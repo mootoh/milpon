@@ -11,9 +11,9 @@
 
 @interface RTMList : RTMObject <Collection>
 
-@property (nonatomic, assign)   NSString       *name;
-@property (nonatomic, readonly) NSString       *filter;
-@property (nonatomic, readonly) NSArray *tasks;
+@property (nonatomic, assign)   NSString *name;
+@property (nonatomic, readonly) NSString *filter;
+@property (nonatomic, readonly) NSArray  *tasks;
 
 - (BOOL) isSmart;
 - (NSInteger) taskCount;

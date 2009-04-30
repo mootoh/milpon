@@ -16,7 +16,7 @@
 #pragma mark Task Collectors
 - (NSArray *) tasks;
 - (NSArray *) tasksInList:(NSInteger) list_id;
-- (NSArray *) tasksInTag:(RTMTag *)tag;
+//- (NSArray *) tasksInTag:(RTMTag *)tag;
 //- (NSArray *) modifiedTasks;
 //- (NSArray *) pendingTasks;
 //- (NSArray *) existingTasks;
@@ -34,8 +34,6 @@
 //- (void) createOrUpdate:(NSDictionary *)params;
 //- (void) sync;
 //- (void) erase;
-//- (void) complete:(RTMTask *)task;
-//- (void) uncomplete:(RTMTask *)task;
 //- (void) remove:(RTMTask *) task;
 //- (void) removeForID:(NSNumber *) task_id;
 //- (BOOL) taskExist:(NSNumber *)idd;

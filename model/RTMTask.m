@@ -6,20 +6,7 @@
 
 @implementation RTMTask
 
-//@synthesize name, url, completed, postponed, estimate, rrule, tags, notes, list_id, location_id, taskseries_id, task_id, taskseries_id, has_due_time;
-/*
-- (id) initByAttributes:(NSDictionary *)attrs
-{
-   if (self = [super initByAttributes:attrs]) {
-   }
-   return self;
-}
-
-- (void) dealloc
-{
-   [super dealloc];
-}
- */
+@synthesize task_id, taskseries_id, list_id, url;
 
 - (BOOL) is_completed
 {
@@ -27,16 +14,18 @@
    return ![[attrs_ objectForKey:@"task.completed"] isEqualToDate:[mh invalidDate]];
 }
 
-DEFINE_ATTRIBUTE(task_id, Task_id, NSNumber*, EB_TASK_TASK_ID);
+DEFINE_ATTRIBUTE_RO(task_id, NSNumber*);
+DEFINE_ATTRIBUTE_RO(taskseries_id, NSNumber*);
+DEFINE_ATTRIBUTE_RO(list_id, NSNumber*);
+DEFINE_ATTRIBUTE_RO(url, NSString*);
 DEFINE_ATTRIBUTE(priority, Priority, NSNumber*, EB_TASK_PRIORITY);
 DEFINE_ATTRIBUTE(due, Due, NSDate*, EB_TASK_DUE);
 DEFINE_ATTRIBUTE(completed, Completed, NSDate*, EB_TASK_COMPLETED);
-DEFINE_ATTRIBUTE(list_id, List_id, NSNumber*, EB_TASK_LIST_ID);
-DEFINE_ATTRIBUTE(taskseries_id, Taskseries_id, NSNumber*, EB_TASK_TASKSERIES_ID);
 DEFINE_ATTRIBUTE(name, Name, NSString*, EB_TASK_NAME);
-DEFINE_ATTRIBUTE(url, Url, NSString*, EB_TASK_URL);
 DEFINE_ATTRIBUTE(location_id, Location_id, NSNumber*, EB_TASK_LOCACTION_ID);
 DEFINE_ATTRIBUTE(estimate, Estimate, NSString*, EB_TASK_ESTIMATE);
+DEFINE_ATTRIBUTE(postponed, Postponed, NSNumber*, EB_TASK_POSTPONED);
+DEFINE_ATTRIBUTE(rrule, Rrule, NSString*, EB_TASK_RRULE);
 
 - (void) setNote:(NSString *)note ofIndex:(NSInteger) index
 {
@@ -63,6 +52,12 @@ DEFINE_ATTRIBUTE(estimate, Estimate, NSString*, EB_TASK_ESTIMATE);
 
 - (void) complete
 {
+   self.completed = [NSDate date];
+}
+
+- (void) uncomplete
+{
+   self.completed = nil;
 }
 
 + (NSString *) table_name

@@ -144,7 +144,7 @@
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    return [self tasks:cond];
 }
-
+*/
 - (NSArray *) modifiedTasks
 {
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
@@ -168,7 +168,7 @@
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    return [self tasks:cond];
 }
-
+/*
 - (void) complete:(RTMTask *)task
 {
    [task flagUpEditBits:EB_TASK_COMPLETED];
@@ -200,7 +200,7 @@
    NSNumber *retn = [[ret objectAtIndex:0] objectForKey:@"id"];
    return retn;
 }
-
+*/
 - (void) createAtOnline:(NSDictionary *)params
 {
    NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:params];
@@ -214,7 +214,7 @@
    [attrs removeObjectForKey:@"source"];
 
    NSArray *tasks = [attrs objectForKey:@"tasks"];
-   NSArray *notes = [attrs objectForKey:@"notes"];
+   //NSArray *notes = [attrs objectForKey:@"notes"];
    NSArray *tags = [attrs objectForKey:@"tags"];
 
    [attrs removeObjectForKey:@"tasks"];
@@ -258,12 +258,12 @@
       NSArray *ret = [local_cache_ select:iid from:@"task" option:order];
       LOG(@"task select leave");
       NSNumber *retn = [[ret objectAtIndex:0] objectForKey:@"id"];
-
+#if 0
       // add notes
       for (NSDictionary *note in notes) {
          [self createNoteAtOnline:[note objectForKey:@"text"] title:[note objectForKey:@"title"] task_id:retn];
       }
-
+#endif // 0
       // add tags
       for (NSString *tag in tags) {
          LOG(@"tag %@ enter", tag);
@@ -281,9 +281,8 @@
          LOG(@"tag %@ leave", tag);
       }
    }
-   dirty_all_tasks_ = YES;
 }
-
+#if 0
 // TODO: FIXME
 - (void) createOrUpdate:(NSDictionary *)params
 {
@@ -304,7 +303,8 @@
       }
    }
 }
-
+#endif // 0
+/*
 - (void) remove:(RTMTask *) task
 {
    NSString *cond = [NSString stringWithFormat:@"WHERE id = %@", [[task iD] stringValue]];
@@ -331,7 +331,7 @@
 
    return [local_cache_ select:query from:@"note" option:cond];
 }
-
+*/
 - (void) erase
 {
    [local_cache_ delete:@"task" condition:nil];
@@ -339,10 +339,8 @@
    [local_cache_ delete:@"tag" condition:nil];
    [local_cache_ delete:@"task_tag" condition:nil];
    [local_cache_ delete:@"location" condition:nil];
-
-   dirty_all_tasks_ = YES;
 }
-
+/*
 - (void) createNote:(NSString *)note task_id:(NSNumber *)tid
 {
    NSArray *keys = [NSArray arrayWithObjects:@"text", @"task_id", @"edit_bits", nil];
@@ -369,7 +367,7 @@
    NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    [local_cache_ insert:attrs into:@"note"];
 }
-
+*/
 - (BOOL) taskExist:(NSNumber *)idd
 {
    NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d", [idd intValue]] forKey:@"WHERE"];
@@ -382,9 +380,8 @@
 {
    NSString *cond = [NSString stringWithFormat:@"WHERE task_id = %d", [task_id intValue]];
    [local_cache_ delete:@"task" condition:cond];
-   dirty_all_tasks_ = YES;
 }
-
+/*
 - (void) updateTask:(NSDictionary *)taskseries
 {
    NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:taskseries];
