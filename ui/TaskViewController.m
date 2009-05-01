@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "RTMTask.h"
 #import "RTMList.h"
+#import "RTMTag.h"
 #import "UICCalendarPicker.h"
 #import "logger.h"
 #import "ListProvider.h"
@@ -148,8 +149,8 @@ enum {
    tag_field.tag = TAG_TAG;
    //[tag_field setDelegate:self asAction:@selector(edit_tag)];
    NSString *tag_str = @"";
-   for (NSString *tag in task.tags)
-      tag_str = [tag_str stringByAppendingFormat:@"%@ ", tag];
+   for (RTMTag *tag in task.tags)
+      tag_str = [tag_str stringByAppendingFormat:@"%@ ", tag.name];
    tag_field.text = tag_str;
    
    tag_field.icon = [[[UIImage alloc] initWithContentsOfFile:
