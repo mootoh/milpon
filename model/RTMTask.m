@@ -52,10 +52,8 @@ DEFINE_ATTRIBUTE(rrule, Rrule, NSString*, EB_TASK_RRULE);
 
 - (void) setCompleted:(NSDate *)ct
 {
-   if ((NSNull *)ct == [NSNull null]) {
-      return [self setAttribute:nil forName:@"completed" editBits:EB_TASK_COMPLETED];
-   }
-   return [self setDateAttribute:ct forName:@"completed" editBits:EB_TASK_COMPLETED];
+   ct = ((NSNull *)ct == [NSNull null]) ? nil : ct;
+   return [self setAttribute:ct forName:@"completed" editBits:EB_TASK_COMPLETED];
 }
 
 - (void) setNote:(NSString *)note ofIndex:(NSInteger) index
@@ -68,7 +66,7 @@ DEFINE_ATTRIBUTE(rrule, Rrule, NSString*, EB_TASK_RRULE);
       body = [body stringByAppendingString:[note_comps objectAtIndex:i]];
 
    [self flagUpEditBits:EB_TASK_NOTE];
-    */
+   */
 }
 
 - (NSArray *) tags
@@ -78,7 +76,10 @@ DEFINE_ATTRIBUTE(rrule, Rrule, NSString*, EB_TASK_RRULE);
 
 - (NSArray *) notes
 {
-   return nil;
+   NSArray *keys = [NSArray arrayWithObjects:@"title", @"text", nil];
+   NSDictionary *note_opts = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d", self.iD] forKey:@"WHERE"];
+   NSArray *ret = [[LocalCache sharedLocalCache] select:keys from:@"note" option:note_opts];
+   return ret;
 }
 
 - (void) complete

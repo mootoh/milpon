@@ -109,4 +109,11 @@
    STAssertEquals(completedCountFinally, completedCountMiddle+1, @"uncompletion check");
 }
 
+- (void) testNotes
+{
+   RTMTask *first_task = [[tp tasks] objectAtIndex:0];
+   NSArray *notes = first_task.notes;
+   STAssertTrue(notes.count > 0, @"notes should be exist");
+}
+
 @end

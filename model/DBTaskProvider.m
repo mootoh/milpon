@@ -47,22 +47,6 @@
    for (NSDictionary *dict in task_arr) {
       RTMTask *task = [[RTMTask alloc] initByAttributes:dict];
 
-//      int tid = task.iD;
-
-      { // collect notes
-         /*
-         NSArray *note_keys = [NSArray arrayWithObjects:@"title", @"text", nil];
-         NSArray *note_vals = [NSArray arrayWithObjects:[NSString class], [NSString class], nil];
-         NSDictionary *note_dict = [NSDictionary dictionaryWithObjects:note_vals forKeys:note_keys];
-
-         NSDictionary *note_opts = [NSDictionary dictionaryWithObject:
-            [NSString stringWithFormat:@"task_id=%d", tid] forKey:@"WHERE"];
-
-         NSArray *notes = [local_cache_ select:note_dict from:@"note" option:note_opts];
-         task.notes = notes;
-          */
-      }
-
       [tasks addObject:task];
       [task release];
    }
