@@ -14,6 +14,7 @@
    NSArray *tasks;
    NSMutableArray *due_tasks;
    BOOL needs_scroll_to_today;
+   BOOL showCompleted;
 }
 
 @property (nonatomic, retain) NSArray *headers;

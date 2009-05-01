@@ -11,6 +11,7 @@
 #import "Collection.h"
 #import "RTMList.h"
 #import "RTMTask.h"
+#import "RTMTag.h"
 #import "RTMTaskCell.h"
 #import "TaskProvider.h"
 #import "AddTaskViewController.h"
@@ -23,9 +24,9 @@
 {
    if (tasks) [tasks release];
    if ([collection isKindOfClass:[RTMList class]]) {
-      tasks = [[[TaskProvider sharedTaskProvider] tasksInList:((RTMList *)collection).iD] retain];
+      tasks = [[[TaskProvider sharedTaskProvider] tasksInList:((RTMList *)collection).iD showCompleted:showCompleted] retain];
    } else {
-      tasks = [[[TaskProvider sharedTaskProvider] tasksInTag:(RTMTag *)collection] retain];
+      tasks = [[[TaskProvider sharedTaskProvider] tasksInTag:[((RTMTag *)collection).iD integerValue] showCompleted:showCompleted] retain];
    }
 }
 
@@ -34,6 +35,7 @@
    if (self = [super initWithStyle:style]) {
       self.collection = cols;
       self.title = [cols name];
+      showCompleted = NO;
       [self reloadFromDB];
 
       UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:[collection isKindOfClass:[RTMList class]] ? @selector(addTaskInList) : @selector(addTaskInTag)];
@@ -51,9 +53,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
    if ([collection isKindOfClass:[RTMList class]]) {
-      return [[TaskProvider sharedTaskProvider] tasksInList:((RTMList *)collection).iD].count;
+      return [[TaskProvider sharedTaskProvider] tasksInList:((RTMList *)collection).iD showCompleted:showCompleted].count;
    } else {
-      return [[TaskProvider sharedTaskProvider] tasksInTag:(RTMTag *)collection].count;
+      return [[TaskProvider sharedTaskProvider] tasksInTag:[((RTMTag *)collection).iD integerValue] showCompleted:showCompleted].count;
    }
 }
 

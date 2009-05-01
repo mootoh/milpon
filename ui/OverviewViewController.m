@@ -34,7 +34,7 @@ static const int SECTIONS = 4;
    if (due_tasks) [due_tasks release];
 
    // load
-   tasks = [[[TaskProvider sharedTaskProvider] tasks] retain];
+   tasks = [[[TaskProvider sharedTaskProvider] tasks:showCompleted] retain];
    due_tasks = [[NSMutableArray alloc] init];
    for (int i=0; i<SECTIONS; i++)
       [due_tasks addObject:[NSMutableArray array]];
@@ -76,6 +76,7 @@ static const int SECTIONS = 4;
       needs_scroll_to_today = YES;
       tasks = nil;
       due_tasks = nil;
+      showCompleted = NO;
 
       self.headers = [NSArray arrayWithObjects:@"Outdated", @"Today", @"Tomorrow", @"7 days", nil];
 
@@ -97,6 +98,7 @@ static const int SECTIONS = 4;
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:app action:@selector(addTask)];
+   //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(toggleShowCompletion)];
    self.navigationItem.rightBarButtonItem = addButton;
    [addButton release];
 }
@@ -162,6 +164,12 @@ static const int SECTIONS = 4;
    [tasks release];
    [due_tasks release];
    [super dealloc];
+}
+
+- (IBAction) toggleShowCompletion
+{
+   showCompleted = !showCompleted;
+   [self reloadFromDB];
 }
 
 @end

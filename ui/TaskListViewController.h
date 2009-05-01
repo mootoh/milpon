@@ -16,6 +16,7 @@
    //RTMList *list;
    NSArray *tasks;
    NSObject <Collection> *collection;
+   BOOL showCompleted;
 }
 
 //@property (nonatomic, retain) RTMList *list;

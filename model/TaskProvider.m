@@ -10,20 +10,19 @@
 
 @implementation TaskProvider
 
-- (NSArray *) tasks
+- (NSArray *) tasks:(BOOL) showCompleted
 {
    NSAssert(NO, @"not reach here");
    return nil;
 }
 
-
-- (NSArray *) tasksInList:(NSInteger) list_id;
+- (NSArray *) tasksInList:(NSInteger) list_id showCompleted:(BOOL) sc
 {
    NSAssert(NO, @"not reach here");
    return nil;
 }
 
-- (NSArray *) tasksInTag:(NSInteger) tag_id;
+- (NSArray *) tasksInTag: (NSInteger) tag_id showCompleted:(BOOL) sc
 {
    NSAssert(NO, @"not reach here");
    return nil;
@@ -41,11 +40,11 @@
 //   return nil;
 //}
 //
-//- (NSNumber *) createAtOffline:(NSDictionary *)params
-//{
-//   NSAssert(NO, @"not reach here");
-//   return nil;
-//}
+- (NSNumber *) createAtOffline:(NSDictionary *)params
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
 //
 //- (void) createAtOnline:(NSDictionary *)params;
 //{

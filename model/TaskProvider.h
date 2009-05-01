@@ -14,9 +14,9 @@
 @interface TaskProvider : NSObject
 
 #pragma mark Task Collectors
-- (NSArray *) tasks;
-- (NSArray *) tasksInList:(NSInteger) list_id;
-- (NSArray *) tasksInTag: (NSInteger) tag_id;
+- (NSArray *) tasks:(BOOL) showCompleted;
+- (NSArray *) tasksInList:(NSInteger) list_id showCompleted:(BOOL) sc;
+- (NSArray *) tasksInTag: (NSInteger) tag_id showCompleted:(BOOL) sc;
 
 - (NSArray *) completedTasks;
 
@@ -32,7 +32,7 @@
 /**
  * @return created task id
  */
-//- (NSNumber *) createAtOffline:(NSDictionary *)params;
+- (NSNumber *) createAtOffline:(NSDictionary *)params;
 //- (void) createAtOnline:(NSDictionary *)params;
 //- (void) createOrUpdate:(NSDictionary *)params;
 //- (void) sync;

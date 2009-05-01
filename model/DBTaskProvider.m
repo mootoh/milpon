@@ -30,7 +30,7 @@
    [super dealloc];
 }
 
-- (NSArray *) tasks:(NSDictionary *)conditions
+- (NSArray *) tasksWithCondition:(NSDictionary *)conditions
 {
    NSMutableArray *tasks = [NSMutableArray array];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -55,59 +55,63 @@
    return tasks;
 }
 
-- (NSArray *) tasks
+- (NSArray *) tasks:(BOOL) showCompleted
 {
-   NSDictionary *cond = [NSDictionary dictionaryWithObject:@"ORDER" forKey:@"priority ASC, due IS NULL ASC, due ASC"];
-   return [self tasks:cond];
+   NSMutableDictionary *cond = [NSMutableDictionary dictionaryWithObject:@"ORDER" forKey:@"priority ASC, due IS NULL ASC, due ASC"];
+   if (! showCompleted)
+      [cond setObject:@"completed IS NULL" forKey:@"WHERE"];
+   return [self tasksWithCondition:cond];
 }
 
-- (NSArray *) tasksInList:(NSInteger) list_id
+- (NSArray *) tasksInList:(NSInteger) list_id showCompleted:(BOOL) sc
 {
+   NSString *where = [NSString stringWithFormat:@"list_id=%d", list_id];
+   if (! sc)
+      where = [where stringByAppendingString:@" AND completed IS NULL"];
+   
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
-   NSArray *vals = [NSArray arrayWithObjects:
-      [NSString stringWithFormat:@"list_id=%d", list_id],
+   NSArray *vals = [NSArray arrayWithObjects:where,
       [NSString stringWithFormat:@"priority ASC, due IS NULL ASC, due ASC"],
       nil];
 
-   NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-   return [self tasks:cond];
+   NSMutableDictionary *cond = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
+   return [self tasksWithCondition:cond];
 }
 
-- (NSArray *) tasksInTag:(NSInteger) tag_id
+- (NSArray *) tasksInTag: (NSInteger) tag_id showCompleted:(BOOL) sc
 {
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
    NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"task.id=task_tag.task_id", nil];
+   
+   NSString *where = [NSString stringWithFormat:@"task_tag.tag_id=%d", tag_id];
+   if (! sc)
+      where = [where stringByAppendingString:@" AND completed IS NULL"];
+
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", @"JOIN", @"GROUP", nil];
    NSArray *vals = [NSArray arrayWithObjects:
-      [NSString stringWithFormat:@"task_tag.tag_id=%d", tag_id],
+      where,
       [NSString stringWithFormat:@"task.priority ASC, task.due IS NULL ASC, task.due ASC"],
       [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys],
       @"task_tag.task_id",
       nil];
 
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-   return [self tasks:cond];
+   return [self tasksWithCondition:cond];
 }
 
 - (NSArray *) completedTasks
 {
-   NSDictionary *cond = [NSDictionary dictionaryWithObject:@"completed is NULL" forKey:@"WHERE"];
-   return [self tasks:cond];
+   NSDictionary *cond = [NSDictionary dictionaryWithObject:@"completed IS NOT NULL" forKey:@"WHERE"];
+   return [self tasksWithCondition:cond];
+}
+
+- (NSArray *) yetTasks
+{
+   NSDictionary *cond = [NSDictionary dictionaryWithObject:@"completed IS NOT NULL" forKey:@"WHERE"];
+   return [self tasksWithCondition:cond];
 }
 
 /*
-- (NSArray *) existingTasks
-{
-   NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
-   NSArray *vals = [NSArray arrayWithObjects:
-      [NSString stringWithFormat:@"completed='' OR completed is NULL"],
-      [NSString stringWithFormat:@"priority ASC, due IS NULL ASC, due ASC"],
-      nil];
-
-   NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-   return [self tasks:cond];
-}
-*/
 - (NSArray *) modifiedTasks
 {
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
@@ -147,7 +151,7 @@
    NSDictionary *dict = [NSDictionary dictionaryWithObject:[[MilponHelper sharedHelper] invalidDate] forKey:@"completed"];
    [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"WHERE id=%d", [task.iD intValue]]];
 }
-
+*/
 - (NSNumber *) createAtOffline:(NSDictionary *)params
 {
    NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:params];
@@ -155,15 +159,14 @@
    [attrs setObject:edit_bits forKey:@"edit_bits"];
 
    [local_cache_ insert:attrs into:@"task"];
-   dirty_all_tasks_ = YES;
 
-   NSDictionary *iid = [NSDictionary dictionaryWithObject:[NSNumber class] forKey:@"id"];
+   NSArray *iid = [NSArray arrayWithObject:@"id"];
    NSDictionary *order = [NSDictionary dictionaryWithObject:@"id DESC LIMIT 1" forKey:@"ORDER"]; // TODO: ad-hoc LIMIT
    NSArray *ret = [local_cache_ select:iid from:@"task" option:order];
    NSNumber *retn = [[ret objectAtIndex:0] objectForKey:@"id"];
    return retn;
 }
-*/
+
 - (void) createAtOnline:(NSDictionary *)params
 {
    NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:params];
