@@ -6,8 +6,6 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface MenuViewController : UITableViewController
 {
    enum {

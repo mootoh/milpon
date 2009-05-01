@@ -28,10 +28,7 @@ DEFINE_ATTRIBUTE(rrule, Rrule, NSString*, EB_TASK_RRULE);
 - (NSDate *) dateAttribute:(NSString *)name
 {
    id dt = [self attribute:name];
-   if (dt == [NSNull null]) {
-      return nil;
-   }
-   return [[MilponHelper sharedHelper] stringToDate:dt];
+   return dt ? [[MilponHelper sharedHelper] stringToDate:dt] : nil;
 }
 
 - (void) setDateAttribute:(NSDate *) dt forName:(NSString *)name editBits:(NSInteger) eb

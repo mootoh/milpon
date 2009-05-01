@@ -229,9 +229,6 @@
             continue;
          }
       }
-      if (edit_bits & EB_TASK_DELETED) {
-         // TODO
-      }
       if (edit_bits & EB_TASK_PRIORITY) {
          [task flagDownEditBits:EB_TASK_PRIORITY];
 
