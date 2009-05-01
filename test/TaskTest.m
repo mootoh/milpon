@@ -9,6 +9,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "RTMAPI.h"
 #import "RTMTask.h"
+#import "RTMNote.h"
 #import "TaskProvider.h"
 #import "MilponHelper.h"
 
@@ -114,6 +115,9 @@
    RTMTask *first_task = [[tp tasks] objectAtIndex:0];
    NSArray *notes = first_task.notes;
    STAssertTrue(notes.count > 0, @"notes should be exist");
+   for (RTMNote *note in notes) {
+      NSLog(@"note = (%@, %@)", note.title, note.text);
+   }
 }
 
 @end

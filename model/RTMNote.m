@@ -10,19 +10,10 @@
 
 @implementation RTMNote
 
-@synthesize iD, modified, created, title, body, task_id;
+DEFINE_ATTRIBUTE(title, Title, NSString*, EB_NOTE_TITLE);
+DEFINE_ATTRIBUTE(text, Text, NSString*, EB_NOTE_TEXT);
+DEFINE_ATTRIBUTE_RO(task_id, NSNumber *);
 
-- (id) init:(NSInteger)i created:(NSString *)c modified:(NSString *)m title:(NSString *)t task_id:(NSInteger)tid
-{
-	if (self = [super init]) {
-    self.iD = i;
-    self.created = c;
-    self.modified = m;
-    self.title = t;
-    self.task_id = tid;
-	}
-	return self;
-}
 
 + (NSString *) table_name
 {

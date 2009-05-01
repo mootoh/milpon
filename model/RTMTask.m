@@ -3,6 +3,7 @@
 #import "TagProvider.h"
 #import "MilponHelper.h"
 #import "LocalCache.h"
+#import "NoteProvider.h"
 #import "logger.h"
 
 @implementation RTMTask
@@ -76,10 +77,7 @@ DEFINE_ATTRIBUTE(rrule, Rrule, NSString*, EB_TASK_RRULE);
 
 - (NSArray *) notes
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"title", @"text", nil];
-   NSDictionary *note_opts = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d", self.iD] forKey:@"WHERE"];
-   NSArray *ret = [[LocalCache sharedLocalCache] select:keys from:@"note" option:note_opts];
-   return ret;
+   return [[NoteProvider sharedNoteProvider] notesInTask:self.iD];
 }
 
 - (void) complete

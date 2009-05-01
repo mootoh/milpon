@@ -6,21 +6,19 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-@interface RTMNote : NSObject {
-	NSInteger iD;
-	NSString *created;
-	NSString *modified;
-	NSString *title;
-	NSString *body;
-	NSInteger task_id;
+#import "RTMObject.h"
+
+@interface RTMNote : RTMObject
+{
 }
 
-@property (nonatomic) NSInteger iD;
-@property (nonatomic, retain) NSString *created;
-@property (nonatomic, retain) NSString *modified;
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSString *body;
-@property (nonatomic) NSInteger task_id;
+@property (nonatomic, assign) NSString   *title;
+@property (nonatomic, assign) NSString   *text;
+@property (nonatomic, readonly) NSNumber *task_id;
 
-- (id) init:(NSInteger)iD created:(NSString *)created modified:(NSString *)modified title:(NSString *)title task_id:(NSInteger)task_id;
+enum note_edit_bits_t {
+   EB_NOTE_TITLE = 1 << 1,
+   EB_NOTE_TEXT  = 1 << 2
+};
+
 @end
