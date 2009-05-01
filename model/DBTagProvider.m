@@ -23,24 +23,18 @@
 {
    if (self = [super init]) {
       local_cache_ = [LocalCache sharedLocalCache];
-      dirty_ = NO;
    }
    return self;
 }
 
 - (void) dealloc
 {
-   if (tags_) [tags_ release];
    [super dealloc];
 }
 
 - (NSArray *) tags
 {
-   if (dirty_ || ! tags_) {
-      [self loadTags];
-      dirty_ = NO;
-   }
-   return tags_;
+   return [self loadTags];
 }
 
 - (void) updateTaskSeriesID:(RTMTag *)tag tid:(NSNumber *)tid 
@@ -86,7 +80,7 @@
    NSMutableArray *tags = [NSMutableArray array];
 
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-   NSArray *tag_keys = [NSArray arrayWithObject:@"name"];
+   NSArray *tag_keys = [NSArray arrayWithObject:@"tag.name"];
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
    NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"tag.id=task_tag.tag_id", nil];
    NSDictionary *join_dict = [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys];
@@ -96,8 +90,13 @@
    NSDictionary *tag_opts = [NSDictionary dictionaryWithObjects:tag_opt_vals forKeys:tag_opt_keys];
 
    NSArray *tags_dict = [local_cache_ select:tag_keys from:@"tag" option:tag_opts];
-   for (NSDictionary *tag in tags_dict)
-      [tags addObject:[tag objectForKey:@"name"]];
+   for (NSDictionary *tag_dict in tags_dict) {
+      RTMTag *tag = [[RTMTag alloc]
+                     initWithID:[tag_dict objectForKey:@"tag.id"]
+                     forName:[tag_dict objectForKey:@"tag.name"]];
+      [tags addObject:tag];
+      [tag release];
+   }
 
    [pool release];
    return tags;
@@ -112,23 +111,19 @@
    NSMutableArray *tags = [NSMutableArray array];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-   NSArray *keys  = [NSArray arrayWithObjects:@"id", @"name", nil];
+   NSArray *keys  = [NSArray arrayWithObjects:@"tag.id", @"tag.name", nil];
    NSArray *tag_arr = option ?
       [local_cache_ select:keys from:@"tag" option:option] :
       [local_cache_ select:keys from:@"tag"];
 
    for (NSDictionary *dict in tag_arr) {
       RTMTag *tag = [[RTMTag alloc]
-         initWithID:[dict objectForKey:@"id"]
-         forName:[dict objectForKey:@"name"]];
+         initWithID:[dict objectForKey:@"tag.id"]
+         forName:[dict objectForKey:@"tag.name"]];
       [tags addObject:tag];
       [tag release];
    }
    [pool release];
-
-   if (tags_)
-      [tags_ release];
-   tags_ = [tags retain];
    return tags;
 }
 
@@ -141,7 +136,6 @@
 - (void) erase
 {
    [local_cache_ delete:@"tag" condition:nil];
-   dirty_ = YES;
 }
 
 - (void) remove:(RTMTag *) tag
@@ -149,7 +143,6 @@
    NSString *cond = [NSString stringWithFormat:@"WHERE id = %@",
       [[tag iD] stringValue]];
    [local_cache_ delete:@"tag" condition:cond];
-   dirty_ = YES;
 }
 
 - (void) create:(NSDictionary *)params
@@ -176,8 +169,6 @@
    NSMutableDictionary *task_tag = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
    [local_cache_ insert:task_tag into:@"task_tag"];
-
-   dirty_ = YES;
 }
 
 - (void) createRelation:(NSNumber *)task_id tag_id:(NSNumber *)tag_id
@@ -187,7 +178,6 @@
    NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
    [local_cache_ insert:attrs into:@"task_tag"];
-   dirty_ = YES;
 }
 
 - (NSString *)nameForTagID:(NSNumber *)tag_id {

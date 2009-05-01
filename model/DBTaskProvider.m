@@ -46,7 +46,6 @@
 
    for (NSDictionary *dict in task_arr) {
       RTMTask *task = [[RTMTask alloc] initByAttributes:dict];
-
       [tasks addObject:task];
       [task release];
    }
@@ -68,7 +67,7 @@
    NSString *where = [NSString stringWithFormat:@"list_id=%d", list_id];
    if (! sc)
       where = [where stringByAppendingString:@" AND completed IS NULL"];
-   
+
    NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
    NSArray *vals = [NSArray arrayWithObjects:where,
       [NSString stringWithFormat:@"priority ASC, due IS NULL ASC, due ASC"],
@@ -82,7 +81,7 @@
 {
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
    NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"task.id=task_tag.task_id", nil];
-   
+
    NSString *where = [NSString stringWithFormat:@"task_tag.tag_id=%d", tag_id];
    if (! sc)
       where = [where stringByAppendingString:@" AND completed IS NULL"];
@@ -96,18 +95,6 @@
       nil];
 
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-   return [self tasksWithCondition:cond];
-}
-
-- (NSArray *) completedTasks
-{
-   NSDictionary *cond = [NSDictionary dictionaryWithObject:@"completed IS NOT NULL" forKey:@"WHERE"];
-   return [self tasksWithCondition:cond];
-}
-
-- (NSArray *) yetTasks
-{
-   NSDictionary *cond = [NSDictionary dictionaryWithObject:@"completed IS NOT NULL" forKey:@"WHERE"];
    return [self tasksWithCondition:cond];
 }
 

@@ -13,8 +13,6 @@
 @interface DBTagProvider : TagProvider
 {
    LocalCache *local_cache_;
-   NSArray *tags_;
-   BOOL dirty_;
 }
 @end
 

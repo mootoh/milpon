@@ -18,8 +18,6 @@
 - (NSArray *) tasksInList:(NSInteger) list_id showCompleted:(BOOL) sc;
 - (NSArray *) tasksInTag: (NSInteger) tag_id showCompleted:(BOOL) sc;
 
-- (NSArray *) completedTasks;
-
 //- (NSArray *) modifiedTasks;
 //- (NSArray *) pendingTasks;
 //- (NSArray *) existingTasks;

@@ -35,7 +35,7 @@
 
 - (NSArray *) tasks
 {
-   return [[TaskProvider sharedTaskProvider] tasksInTag:[self.iD integerValue]];
+   return [[TaskProvider sharedTaskProvider] tasksInTag:[self.iD integerValue] showCompleted:YES];
 }
 
 - (id) copyWithZone:(NSZone *)zone
