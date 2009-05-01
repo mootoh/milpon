@@ -71,11 +71,13 @@
 - (void) setAttribute:(id) attr forName:(NSString *)name editBits:(NSInteger)eb
 {
    NSString *table_name = [self.class table_name];
-   [attrs_ setObject:attr ? attr : [NSNull null] forKey:[NSString stringWithFormat:@"%@.%@", table_name, name]];
+   attr = attr ? attr : [NSNull null];
+   [attrs_ setObject:attr forKey:[NSString stringWithFormat:@"%@.%@", table_name, name]];
    [attrs_ setObject:[NSNumber numberWithInteger:eb] forKey:[NSString stringWithFormat:@"%@.edit_bits", table_name]];
-   
+
    NSArray *keys = [NSArray arrayWithObjects:name, @"edit_bits", nil];
-   NSArray *vals = [NSArray arrayWithObjects:attr, [NSNumber numberWithInteger:eb], nil];
+   NSArray *vals = [NSArray arrayWithObjects:attr , [NSNumber numberWithInteger:eb], nil];
+   NSAssert(keys.count == vals.count, @"key /value counts should be equaul");
    NSDictionary *dict = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    NSString *where = [NSString stringWithFormat:@"WHERE id=%d", self.iD];
 

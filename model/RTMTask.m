@@ -12,8 +12,6 @@ DEFINE_ATTRIBUTE_RO(taskseries_id, NSNumber*);
 DEFINE_ATTRIBUTE_RO(list_id, NSNumber*);
 DEFINE_ATTRIBUTE_RO(url, NSString*);
 DEFINE_ATTRIBUTE(priority, Priority, NSNumber*, EB_TASK_PRIORITY);
-//DEFINE_ATTRIBUTE(due, Due, NSDate*, EB_TASK_DUE);
-//DEFINE_ATTRIBUTE(completed, Completed, NSDate*, EB_TASK_COMPLETED);
 DEFINE_ATTRIBUTE(name, Name, NSString*, EB_TASK_NAME);
 DEFINE_ATTRIBUTE(location_id, Location_id, NSNumber*, EB_TASK_LOCACTION_ID);
 DEFINE_ATTRIBUTE(estimate, Estimate, NSString*, EB_TASK_ESTIMATE);
@@ -54,6 +52,9 @@ DEFINE_ATTRIBUTE(rrule, Rrule, NSString*, EB_TASK_RRULE);
 
 - (void) setCompleted:(NSDate *)ct
 {
+   if ((NSNull *)ct == [NSNull null]) {
+      return [self setAttribute:nil forName:@"completed" editBits:EB_TASK_COMPLETED];
+   }
    return [self setDateAttribute:ct forName:@"completed" editBits:EB_TASK_COMPLETED];
 }
 

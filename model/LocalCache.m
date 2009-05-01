@@ -216,7 +216,7 @@
          val = ([[[MilponHelper sharedHelper] invalidDate] isEqualToDate:v]) ?
             @"NULL" :
             [NSString stringWithFormat:@"'%@'", [[MilponHelper sharedHelper] dateToString:v]];
-      } else if (v == nil) {
+      } else if ([v isKindOfClass:[NSNull class]]) {
          val = @"NULL";
       } else {
          [[NSException
@@ -252,6 +252,8 @@
       } else if ([v isKindOfClass:[NSDate class]]) {
          NSString *date_str = [[MilponHelper sharedHelper] dateToString:(NSDate *)v];
          sqlite3_bind_text(stmt, i, [date_str UTF8String], -1, SQLITE_TRANSIENT);
+      } else if ([v isKindOfClass:[NSNull class]]) {
+         sqlite3_bind_null(stmt, i);
       } else {
          [[NSException
            exceptionWithName:@"LocalCacheException"

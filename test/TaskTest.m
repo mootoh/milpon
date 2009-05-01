@@ -91,4 +91,22 @@
    STAssertEquals(completedCountAfter, completedCountBefore-1, @"completion check");
 }
 
+- (void) testZZZUncomplete
+{
+   NSUInteger completedCountBefore = [tp completedTasks].count;
+   RTMTask *taskTwo = [[tp tasks] objectAtIndex:1];
+
+   // complete first
+   [taskTwo complete];
+   STAssertTrue([taskTwo is_completed], @"should be completed");
+   NSUInteger completedCountMiddle = [tp completedTasks].count;
+   STAssertEquals(completedCountMiddle, completedCountBefore-1, @"completion check");
+
+   // then uncomplete
+   [taskTwo uncomplete];
+   STAssertFalse([taskTwo is_completed], @"should not be completed");
+   NSUInteger completedCountFinally = [tp completedTasks].count;
+   STAssertEquals(completedCountFinally, completedCountMiddle+1, @"uncompletion check");
+}
+
 @end
