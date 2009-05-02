@@ -18,6 +18,7 @@
 #import "ListProvider.h"
 #import "TaskProvider.h"
 #import "LocalCache.h"
+#import "NoteProvider.h"
 #import "MilponHelper.h"
 
 @implementation RTMSynchronizer
@@ -60,7 +61,7 @@
    for (old in old_lists) {
       BOOL found = NO;
       for (new in new_lists) {
-         if ([old.iD stringValue] == [new objectForKey:@"id"])  {
+         if (old.iD == [[new objectForKey:@"id"] integerValue]) {
             found = YES;
             break;
          }
@@ -74,7 +75,7 @@
    for (new in new_lists) {
       BOOL found = NO;
       for (old in old_lists) {
-         if ([old.iD stringValue] == [new objectForKey:@"id"]) {
+         if (old.iD == [[new objectForKey:@"id"] integerValue]) {
             found = YES;
             break;
          }
@@ -141,20 +142,18 @@
    for (RTMTask *task in pendings) {
       NSString *list_id = [task.list_id stringValue];
       NSDictionary *task_ret = [api_task add:task.name inList:list_id];
-      if (task_ret == nil) {
+      if (task_ret == nil)
          [[NSException
             exceptionWithName:@"RTMSynchronizerException"
             reason:[NSString stringWithFormat:@"Failed to create a task in RTM web site."]
             userInfo:nil] raise];
-      }
 
       // added successfuly
       NSMutableDictionary *ids = [NSMutableDictionary dictionaryWithDictionary:task_ret];
       [ids setObject:list_id forKey:@"list_id"];
 
-      if (task.due && ![task.due isEqualToDate:[[MilponHelper sharedHelper] invalidDate]]) {
-         NSString *due = [[[MilponHelper sharedHelper] dateToString:task.due]stringByReplacingOccurrencesOfString:@" " withString:@"T"]; // TODO
-         due = [due stringByReplacingOccurrencesOfString:@" GMT" withString:@"Z"];
+      if (task.due) {
+         NSString *due = [[MilponHelper sharedHelper] dateToRtmString:task.due];
          [api_task setDue:due forIDs:ids];
       }
 
@@ -166,22 +165,23 @@
 
       if (task.estimate && ![task.estimate isEqualToString:@""]) 
          [api_task setEstimate:task.estimate forIDs:ids];
-
+#if 0
       /*
        * TODO: set tags
        */
 
       // get Note from DB by old Task ID
       RTMAPINote *api_note = [[RTMAPINote alloc] init];
-      NSArray *notes = [[TaskProvider sharedTaskProvider] getNotes:task];
+      NSArray *notes = [[NoteProvider sharedNoteProvider] notesInTask:[task.task_id integerValue]];
       for (NSDictionary *note in notes) {
          // - API request (rtm.tasks.notes.add) using new Task ID
          [api_note add:[note objectForKey:@"text"] forIDs:ids];
 
          // remove old Note from DB
-         [[TaskProvider sharedTaskProvider] removeNote:[note objectForKey:@"id"]]; // TODO: update IDs instead of removing
+         [[NoteProvider sharedTaskProvider] removeNote:[note objectForKey:@"id"]]; // TODO: update IDs instead of removing
       }
       [api_note release];
+#endif // 0
 
       [[TaskProvider sharedTaskProvider] remove:task]; // TODO: update IDS instaed of removing
 

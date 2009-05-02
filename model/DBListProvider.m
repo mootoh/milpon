@@ -84,14 +84,11 @@
    [local_cache_ delete:@"list" condition:nil];
 }
 
-/*
 - (void) remove:(RTMList *) list
 {
-   NSString *cond = [NSString stringWithFormat:@"WHERE id = %@",
-      [[list iD] stringValue]];
+   NSString *cond = [NSString stringWithFormat:@"WHERE id = %d", list.iD];
    [local_cache_ delete:@"list" condition:cond];
 }
-*/
 
 /**
   * params should have (id, filter*)

@@ -291,11 +291,11 @@ enum {
    if (name == nil || [name isEqualToString:@""]) // validate name_field
       return;
 
-   NSNumber *priority = [NSNumber numberWithInteger:priority_segment_.selectedSegmentIndex];
+   NSNumber *priority = [NSNumber numberWithInteger:priority_segment_.selectedSegmentIndex + 1];
 
    // create RTMTask and store it in DB.
    NSArray *keys = [NSArray arrayWithObjects:@"name", @"list_id", @"priority", nil];
-   NSArray *vals = [NSArray arrayWithObjects:name, list.iD, priority, nil];
+   NSArray *vals = [NSArray arrayWithObjects:name, [NSNumber numberWithInteger:list.iD], priority, nil];
    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (due)
       [params setObject:due forKey:@"due"];
@@ -306,9 +306,10 @@ enum {
    for (RTMTag *tag in tags)
       [[TagProvider sharedTagProvider] createRelation:tid tag_id:tag.iD];
 
+#if 0
    if (note)
       [tp createNote:note task_id:tid];
-
+#endif // 0
    [self close];
 }
 

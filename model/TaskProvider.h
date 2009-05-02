@@ -19,7 +19,7 @@
 - (NSArray *) tasksInTag: (NSInteger) tag_id showCompleted:(BOOL) sc;
 
 //- (NSArray *) modifiedTasks;
-//- (NSArray *) pendingTasks;
+- (NSArray *) pendingTasks;
 //- (NSArray *) existingTasks;
 //- (NSArray *) overDueTasks;
 //- (NSArray *) todayTasks;
@@ -34,8 +34,8 @@
 //- (void) createAtOnline:(NSDictionary *)params;
 //- (void) createOrUpdate:(NSDictionary *)params;
 //- (void) sync;
-//- (void) erase;
-//- (void) remove:(RTMTask *) task;
+- (void) erase;
+- (void) remove:(RTMTask *) task;
 //- (void) removeForID:(NSNumber *) task_id;
 //- (BOOL) taskExist:(NSNumber *)idd;
 //- (void) updateTask:(NSDictionary *)taskseries;

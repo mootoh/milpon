@@ -110,17 +110,11 @@
    NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    return [self tasks:cond];
 }
-
+*/
 - (NSArray *) pendingTasks
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
-   NSArray *vals = [NSArray arrayWithObjects:
-      [NSString stringWithFormat:@"(completed='' OR completed is NULL) AND edit_bits & 1"],
-      [NSString stringWithFormat:@"priority ASC, due IS NULL ASC, due ASC"],
-      nil];
-
-   NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-   return [self tasks:cond];
+   NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"edit_bits & %d", EB_CREATED_OFFLINE] forKey:@"WHERE"];
+   return [self tasksWithCondition:cond];
 }
 /*
 - (void) complete:(RTMTask *)task
@@ -255,15 +249,13 @@
    }
 }
 #endif // 0
-/*
+
 - (void) remove:(RTMTask *) task
 {
-   NSString *cond = [NSString stringWithFormat:@"WHERE id = %@", [[task iD] stringValue]];
-   [local_cache_ delete:@"task" condition:cond];
-
-   dirty_all_tasks_ = YES;
+   NSString *cond = [NSString stringWithFormat:@"WHERE id = %d", task.iD];
+   [local_cache_ delete:@"task" condition:cond];   
 }
-
+/*
 - (void) removeNote:(NSNumber *) note_id
 {
    NSString *cond = [NSString stringWithFormat:@"WHERE id = %d", [note_id intValue]];

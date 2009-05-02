@@ -18,7 +18,7 @@
  * create List in DB, called from rtm.lists.getList callback
  */
 - (void) create:(NSDictionary *)params;
-//- (void) remove:(RTMList *) list;
+- (void) remove:(RTMList *) list;
 - (void) erase; // remove all lists from DB.
 - (NSString *)nameForListID:(NSNumber *)list_id;
 

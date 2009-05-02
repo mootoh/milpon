@@ -71,10 +71,10 @@
 //   NSAssert(NO, @"not reach here");
 //}
 //
-//- (void) erase
-//{
-//   NSAssert(NO, @"not reach here");
-//}
+- (void) erase
+{
+   NSAssert(NO, @"not reach here");
+}
 //
 //- (void) createNote:(NSString *)note task_id:(NSNumber *)tid
 //{
