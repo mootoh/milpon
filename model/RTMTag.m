@@ -12,7 +12,6 @@
 #import "TagProvider.h"
 #import "TaskProvider.h"
 
-
 @implementation RTMTag
 
 @synthesize iD, name;
@@ -51,6 +50,13 @@
 + (NSString *) table_name
 {
    return @"tag";
+}
+
+- (BOOL) isEqual: (id) anObject
+{
+   RTMTag *other = (RTMTag *)anObject;
+   NSLog(@"comparing %@ and %@", self.name, other.name);
+   return other.iD == self.iD && [other.name isEqualToString:self.name];
 }
 
 @end

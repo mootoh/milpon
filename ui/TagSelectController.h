@@ -14,11 +14,13 @@
    AddTaskViewController *parent;
    NSMutableSet *selected_tags;
    NSMutableDictionary *selected_flags;
+   NSArray *all_tags;
 }
 
 - (void) setTags:(NSMutableSet *) tags;
 
 @property (nonatomic, retain) AddTaskViewController *parent;
 @property (nonatomic, retain) NSMutableSet *selected_tags;
+@property (nonatomic, retain) NSArray *all_tags;
 
 @end

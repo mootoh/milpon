@@ -13,7 +13,7 @@
 
 @implementation TagSelectController
 
-@synthesize parent, selected_tags;
+@synthesize parent, selected_tags, all_tags;
 
 static UIImage *s_checkedIcon = nil;
 
@@ -29,15 +29,16 @@ static UIImage *s_checkedIcon = nil;
 {
    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
       tag_provider = [[TagProvider sharedTagProvider] retain];
+      self.all_tags = [tag_provider tags];
       self.title = @"Tags";
       selected_flags = [[NSMutableDictionary alloc] init];
    }
    return self;
 }
 
-
 - (void)dealloc
 {
+   [all_tags release];
    [selected_flags release];
    [tag_provider release];
    [super dealloc];
@@ -46,8 +47,17 @@ static UIImage *s_checkedIcon = nil;
 - (void) setTags:(NSMutableSet *) tags
 {
    self.selected_tags = tags;
-   for (RTMTag *tag in [tag_provider tags]) {
-      BOOL has = [selected_tags containsObject:tag];
+   for (RTMTag *tag in all_tags) {
+      // KRDS start: should use NSSet:member or NSSet:containsObject
+      //   instead of O(N) loop
+      //   (but that does not work for this)
+#if 0
+      id has = [selected_tags containsObject:tag];
+#endif // 0
+      BOOL has = NO;
+      for (RTMTag *tg in selected_tags)
+         if ([tg isEqual:tag]) has = YES;
+      // KRDS end
       [selected_flags setObject:[NSNumber numberWithBool:has] forKey:tag];
    }      
 }
@@ -61,20 +71,19 @@ static UIImage *s_checkedIcon = nil;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [tag_provider tags].count;
+    return all_tags.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"TagSelectConrtollerCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
 
-   RTMTag *tag = [[tag_provider tags] objectAtIndex:indexPath.row];
+   RTMTag *tag = [all_tags objectAtIndex:indexPath.row];
    cell.text = tag.name;
    
    if ([[selected_flags objectForKey:tag] boolValue]) {
@@ -90,7 +99,7 @@ static UIImage *s_checkedIcon = nil;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   RTMTag *tag = [[tag_provider tags] objectAtIndex:indexPath.row];
+   RTMTag *tag = [all_tags objectAtIndex:indexPath.row];
    if ([[selected_flags objectForKey:tag] boolValue]) {
       [selected_flags setObject:[NSNumber numberWithBool:NO] forKey:tag];
       [selected_tags removeObject:tag];
