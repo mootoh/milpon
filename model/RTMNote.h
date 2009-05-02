@@ -9,8 +9,6 @@
 #import "RTMObject.h"
 
 @interface RTMNote : RTMObject
-{
-}
 
 @property (nonatomic, assign) NSString   *title;
 @property (nonatomic, assign) NSString   *text;

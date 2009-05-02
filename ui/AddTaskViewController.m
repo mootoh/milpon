@@ -11,14 +11,15 @@
 #import "TagSelectController.h"
 #import "NoteEditController.h"
 #import "DueDateSelectController.h"
+#import "ReloadableTableViewController.h"
 #import "AppDelegate.h"
 #import "RTMTask.h"
 #import "RTMList.h"
 #import "RTMTag.h"
 #import "TaskProvider.h"
-#import "ReloadableTableViewController.h"
 #import "ListProvider.h"
 #import "TagProvider.h"
+#import "NoteProvider.h"
 
 @implementation AddTaskViewController
 
@@ -306,10 +307,9 @@ enum {
    for (RTMTag *tag in tags)
       [[TagProvider sharedTagProvider] createRelation:tid tag_id:tag.iD];
 
-#if 0
    if (note)
-      [tp createNote:note task_id:tid];
-#endif // 0
+      [[NoteProvider sharedNoteProvider] create:note inTask:[tid integerValue]];
+
    [self close];
 }
 

@@ -12,6 +12,7 @@
 #import "RTMTask.h"
 #import "RTMList.h"
 #import "RTMTag.h"
+#import "RTMNote.h"
 #import "UICCalendarPicker.h"
 #import "logger.h"
 #import "ListProvider.h"
@@ -267,8 +268,11 @@ enum {
       return;
    }
 
-   NSDictionary *note = [task.notes objectAtIndex:notePages.currentPage];
-   NSString *text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
+   RTMNote *note = [task.notes objectAtIndex:notePages.currentPage];
+   NSString *text = @"";
+   if (note.title)
+      text = [text stringByAppendingString:[note.title stringByAppendingString:@"\n"]];
+   text = [text stringByAppendingString:note.text];
    note_field.text = text;
    [note_field setNeedsDisplay];
 }

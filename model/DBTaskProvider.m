@@ -291,25 +291,6 @@
    NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    [local_cache_ insert:attrs into:@"note"];
 }
-
-- (void) createNoteAtOnline:(NSString *)note title:(NSString *)title task_id:(NSNumber *)tid
-{
-   NSMutableArray *keys = [NSMutableArray arrayWithObjects:@"task_id", @"edit_bits", nil];
-   NSMutableArray *vals = [NSMutableArray arrayWithObjects:tid, [NSNumber numberWithInt:EB_CREATED_OFFLINE], nil];
-
-   if (title && ! [title isEqualToString:@""]) {
-      [keys addObject:@"title"];
-      [vals addObject:title];
-   }
-
-   if (note && ! [note isEqualToString:@""]) {
-      [keys addObject:@"text"];
-      [vals addObject:note];
-   }
-
-   NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-   [local_cache_ insert:attrs into:@"note"];
-}
 */
 - (BOOL) taskExist:(NSNumber *)idd
 {
