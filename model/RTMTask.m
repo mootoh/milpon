@@ -1,5 +1,6 @@
 #import "RTMTask.h"
 #import "RTMList.h"
+#import "RTMTag.h"
 #import "TaskProvider.h"
 #import "TagProvider.h"
 #import "MilponHelper.h"
@@ -100,6 +101,13 @@ DEFINE_ATTRIBUTE(to_list_id, To_list_id, NSNumber*, EB_TASK_LIST_ID);
 - (void) setList:(RTMList *) list
 {
    self.to_list_id = [NSNumber numberWithInteger:list.iD];
+}
+
+- (void) setTags:(NSMutableSet *)tags
+{
+   [[TagProvider sharedTagProvider] removeRelationForTask:self.iD];
+   for (RTMTag *tag in tags)
+      [[TagProvider sharedTagProvider] createRelation:[NSNumber numberWithInteger:self.iD] tag_id:tag.iD];
 }
 
 + (NSString *) table_name

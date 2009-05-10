@@ -26,6 +26,11 @@
    NSAssert(NO, @"not reach here");
 }
 
+- (void) removeRelationForTask:(NSInteger)task_id
+{
+   NSAssert(NO, @"not reach here");
+}
+
 - (NSString *) nameForTagID:(NSNumber *) lid
 {
    NSAssert(NO, @"not reach here");

@@ -419,14 +419,19 @@ prioritySelected_N(4);
 
    TagSelectController *vc = [[TagSelectController alloc] initWithNibName:nil bundle:nil];
    vc.parent = self;
-   [vc setTags:task.tags];
+   
+   NSMutableSet *tag_set = [NSMutableSet set];
+   for (RTMTag *tag in task.tags)
+      [tag_set addObject:tag];   
+   [vc setTags:tag_set];
+   
    [self.navigationController pushViewController:vc animated:YES];
    [vc release];
 }
 
 - (void) setTag:(NSMutableSet *) tags
 {
-   //[task setTag:tags];
+   [task setTags:tags];
    
    AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_TAG];
    av.in_editing = NO;

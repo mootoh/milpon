@@ -80,7 +80,7 @@
    NSMutableArray *tags = [NSMutableArray array];
 
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-   NSArray *tag_keys = [NSArray arrayWithObject:@"tag.name"];
+   NSArray *tag_keys = [NSArray arrayWithObjects:@"tag.id", @"tag.name", nil];
    NSArray *join_keys = [NSArray arrayWithObjects:@"table", @"condition", nil];
    NSArray *join_vals = [NSArray arrayWithObjects:@"task_tag", @"tag.id=task_tag.tag_id", nil];
    NSDictionary *join_dict = [NSDictionary dictionaryWithObjects:join_vals forKeys:join_keys];
@@ -100,6 +100,11 @@
 
    [pool release];
    return tags;
+}
+
+- (void) removeRelationForTask:(NSInteger)task_id
+{
+   [local_cache_ delete:@"task_tag" condition:[NSString stringWithFormat:@"WHERE task_tag.task_id=%d", task_id]];
 }
 
 @end // DBTagProvider

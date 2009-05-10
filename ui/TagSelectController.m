@@ -56,7 +56,10 @@ static UIImage *s_checkedIcon = nil;
 #endif // 0
       BOOL has = NO;
       for (RTMTag *tg in selected_tags)
-         if ([tg isEqual:tag]) has = YES;
+         if ([tg isEqual:tag]) {
+            has = YES;
+            break;
+         }
       // KRDS end
       [selected_flags setObject:[NSNumber numberWithBool:has] forKey:tag.name];
    }      
@@ -106,7 +109,7 @@ static UIImage *s_checkedIcon = nil;
       for (RTMTag *tg in selected_tags) {
          NSLog(@"tg = %d, %@", tg.iD, tg.name);
       }
-      [selected_tags removeObject:tag];
+      [selected_tags removeObject:tag]; // FIXME: if the pointers of RTMTag in all_tags and selected_tags are not equal, removeObject does not remove the tag unexpectedly.
    } else {
       [selected_flags setObject:[NSNumber numberWithBool:YES] forKey:tag.name];
       [selected_tags addObject:tag];
