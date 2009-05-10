@@ -37,11 +37,6 @@
    return [[TaskProvider sharedTaskProvider] tasksInTag:[self.iD integerValue] showCompleted:YES];
 }
 
-- (id) copyWithZone:(NSZone *)zone
-{
-   return [self retain];
-}
-
 - (NSInteger) taskCount
 {
    return [[TagProvider sharedTagProvider] taskCountInTag:self];

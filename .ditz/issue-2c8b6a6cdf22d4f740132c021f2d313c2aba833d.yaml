@@ -1,0 +1,20 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: too much SQL access for note on TaskView shows up
+desc: SQL select is called 4 times on showing TaskView.
+type: :bugfix
+component: milpon
+release: beta08
+reporter: mootoh <mootoh@gmail.com>
+status: :unstarted
+disposition: 
+creation_time: 2009-05-10 06:47:51.638987 Z
+references: []
+
+id: 2c8b6a6cdf22d4f740132c021f2d313c2aba833d
+log_events: 
+- - 2009-05-10 06:47:51.639802 Z
+  - mootoh <mootoh@gmail.com>
+  - created
+  - ""
+git_branch: 
+claimer: 

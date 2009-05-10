@@ -8,7 +8,7 @@
 
 #import "Collection.h"
 
-@interface RTMTag : NSObject <NSCopying, Collection>
+@interface RTMTag : NSObject <Collection>
 {
    NSNumber *iD;
    NSString *name;

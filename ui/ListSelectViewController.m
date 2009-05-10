@@ -52,7 +52,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    RTMList * lst = [lists objectAtIndex:indexPath.row];
-   self.parent.list = lst;
+   [self.parent setList:lst];
    //[self.parent.tableView reloadData];
    [self.parent.view setNeedsDisplay];
    [self.navigationController popViewControllerAnimated:YES];

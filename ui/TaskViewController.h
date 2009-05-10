@@ -23,7 +23,7 @@
 @end
 
 
-@interface TaskViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate, TaskEditDelegate>
+@interface TaskViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate, TaskEditDelegate, HavingList>
 {
    RTMTask *task;
    IBOutlet DueLabel      *due;

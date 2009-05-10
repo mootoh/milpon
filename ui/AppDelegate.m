@@ -108,6 +108,8 @@
    RootMenuViewController *rmvc = [[RootMenuViewController alloc] initWithStyle:UITableViewStyleGrouped];
    navigationController = [[UINavigationController alloc] initWithRootViewController:rmvc];
    [rmvc release];
+   navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.0f green:51.0f/256.0f blue:102.0f/256.0f alpha:1.0];
+
    [window addSubview:navigationController.view];
 
    if (!auth.token || [auth.token isEqualToString:@""])

@@ -14,3 +14,11 @@
 - (void) updateView;
 
 @end
+
+@class RTMList;
+
+@protocol HavingList
+
+- (void) setList:(RTMList *)list;
+
+@end

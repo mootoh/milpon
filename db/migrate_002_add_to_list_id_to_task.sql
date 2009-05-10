@@ -1,0 +1,3 @@
+ALTER TABLE task
+   ADD to_list_id INTEGER DEFAULT NULL
+;

@@ -58,7 +58,7 @@ static UIImage *s_checkedIcon = nil;
       for (RTMTag *tg in selected_tags)
          if ([tg isEqual:tag]) has = YES;
       // KRDS end
-      [selected_flags setObject:[NSNumber numberWithBool:has] forKey:tag];
+      [selected_flags setObject:[NSNumber numberWithBool:has] forKey:tag.name];
    }      
 }
 
@@ -86,7 +86,7 @@ static UIImage *s_checkedIcon = nil;
    RTMTag *tag = [all_tags objectAtIndex:indexPath.row];
    cell.text = tag.name;
    
-   if ([[selected_flags objectForKey:tag] boolValue]) {
+   if ([[selected_flags objectForKey:tag.name] boolValue]) {
       UIImageView *image_view = [[UIImageView alloc] initWithImage:[TagSelectController checkedIcon]];
       cell.accessoryView = image_view;
       [image_view release];
@@ -100,11 +100,15 @@ static UIImage *s_checkedIcon = nil;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    RTMTag *tag = [all_tags objectAtIndex:indexPath.row];
-   if ([[selected_flags objectForKey:tag] boolValue]) {
-      [selected_flags setObject:[NSNumber numberWithBool:NO] forKey:tag];
+   if ([[selected_flags objectForKey:tag.name] boolValue]) {
+      [selected_flags setObject:[NSNumber numberWithBool:NO] forKey:tag.name];
+      
+      for (RTMTag *tg in selected_tags) {
+         NSLog(@"tg = %d, %@", tg.iD, tg.name);
+      }
       [selected_tags removeObject:tag];
    } else {
-      [selected_flags setObject:[NSNumber numberWithBool:YES] forKey:tag];
+      [selected_flags setObject:[NSNumber numberWithBool:YES] forKey:tag.name];
       [selected_tags addObject:tag];
    }
    [tableView reloadData]; // TODO: should update only selected row.

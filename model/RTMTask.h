@@ -9,6 +9,7 @@
 #import "RTMObject.h"
 @class RTMNote;
 @class RTMTag;
+@class RTMList;
 
 @interface RTMTask : RTMObject
 
@@ -29,6 +30,7 @@
 @property (nonatomic, assign)   NSString *rrule;
 @property (nonatomic, readonly) NSArray  *tags;
 @property (nonatomic, readonly) NSArray  *notes;
+@property (nonatomic, assign)   NSNumber *to_list_id;
 
 #pragma mark methods
 - (BOOL) is_completed;
@@ -37,6 +39,7 @@
 //- (void) removeNote: (RTMNote *) note;
 //- (void) addTag: (RTMTag *) tag;
 //- (void) removeTag; (RTMTag *) tag;
+- (void) setList:(RTMList *)list;
 
 - (void) complete;
 - (void) uncomplete;
@@ -50,7 +53,8 @@ enum task_edit_bits_t {
    EB_TASK_NAME          = 1 << 5,
    EB_TASK_LOCACTION_ID  = 1 << 6,
    EB_TASK_RRULE         = 1 << 7,
-   EB_TASK_POSTPONED     = 1 << 8
+   EB_TASK_POSTPONED     = 1 << 8,
+   EB_TASK_LIST_ID       = 1 << 9,
 };
 
 @end

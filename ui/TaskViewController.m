@@ -21,6 +21,7 @@
 #import "DueDateSelectController.h"
 #import "NoteEditController.h"
 #import "TagSelectController.h"
+#import "ListSelectViewController.h"
 
 #define kNOTE_PLACE_HOLDER @"note..."
 
@@ -140,9 +141,11 @@ enum {
    [due_field release];
 
    AttributeView *list_field = [[AttributeView alloc] initWithFrame:CGRectMake(14, 100, (320-14*2)/3, 20)];
+   [list_field setDelegate:self asAction:@selector(edit_list)];
    list_field.text = [[ListProvider sharedListProvider] nameForListID:task.list_id];
    list_field.icon = [[[UIImage alloc] initWithContentsOfFile:
       [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]] autorelease];
+   list_field.tag = TAG_LIST;
    [self.view addSubview:list_field];
    [list_field release];
 
@@ -326,7 +329,8 @@ prioritySelected_N(4);
    //[av drawRect:av.frame];
 
    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(24, 0, av.frame.size.width-24, av.frame.size.height-av.line_width-2)];
-   tf.placeholder = av.text;
+   //tf.placeholder = av.text;
+   tf.text = av.text;
    tf.opaque = YES;
    tf.backgroundColor = [UIColor whiteColor];
    tf.font = [UIFont systemFontOfSize:14];
@@ -367,6 +371,29 @@ prioritySelected_N(4);
    [av setNeedsDisplay];
 }
 
+- (void) edit_list
+{
+   AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_LIST];
+   av.in_editing = YES;
+   [av drawRect:av.frame];
+   
+   ListSelectViewController *vc = [[ListSelectViewController alloc] initWithStyle:UITableViewStylePlain];
+   vc.parent = self;
+   [self.navigationController pushViewController:vc animated:YES];
+   [vc release];
+}
+
+- (void) setList:(RTMList *)list
+{
+   [task setList:list];
+   
+   AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_LIST];
+   av.in_editing = NO;
+   av.text = list.name;
+   
+   [av setNeedsDisplay];
+   
+}
 - (void) edit_note
 {
    notePages.numberOfPages = task.notes.count;
@@ -393,10 +420,6 @@ prioritySelected_N(4);
    [self.navigationController pushViewController:vc animated:YES];
    [vc release];
 #endif // 0
-}
-
-- (void) setList:(RTMList *)list
-{
 }
 
 - (void) updateView

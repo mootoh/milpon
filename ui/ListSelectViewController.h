@@ -7,13 +7,14 @@
 //
 
 @class AddTaskViewController;
+@protocol HavingList;
 
 @interface ListSelectViewController : UITableViewController
 {
    NSArray *lists;
-   AddTaskViewController *parent;
+   UIViewController <HavingList> *parent;
 }
 
-@property (nonatomic, retain) AddTaskViewController *parent;
+@property (nonatomic, retain) UIViewController <HavingList> *parent;
 
 @end
