@@ -9,8 +9,9 @@
 #import "Milpon.h"
 
 @class RTMList;
+@protocol HavingTag;
 
-@interface AddTaskViewController : UITableViewController <TaskEditDelegate>
+@interface AddTaskViewController : UITableViewController <TaskEditDelegate, HavingTag>
 {
    RTMList *list;
    NSDate *due;

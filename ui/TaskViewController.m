@@ -150,6 +150,7 @@ enum {
    [list_field release];
 
    AttributeView *tag_field = [[AttributeView alloc] initWithFrame:CGRectMake(14, 140, 320-14*2, 20)];
+   [tag_field setDelegate:self asAction:@selector(edit_tag)];
    tag_field.tag = TAG_TAG;
    //[tag_field setDelegate:self asAction:@selector(edit_tag)];
    NSString *tag_str = @"";
@@ -390,10 +391,9 @@ prioritySelected_N(4);
    AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_LIST];
    av.in_editing = NO;
    av.text = list.name;
-   
    [av setNeedsDisplay];
-   
 }
+
 - (void) edit_note
 {
    notePages.numberOfPages = task.notes.count;
@@ -413,13 +413,29 @@ prioritySelected_N(4);
 
 - (void) edit_tag
 {
-#if 0
+   AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_TAG];
+   av.in_editing = YES;
+   [av drawRect:av.frame];
+
    TagSelectController *vc = [[TagSelectController alloc] initWithNibName:nil bundle:nil];
    vc.parent = self;
    [vc setTags:task.tags];
    [self.navigationController pushViewController:vc animated:YES];
    [vc release];
-#endif // 0
+}
+
+- (void) setTag:(NSMutableSet *) tags
+{
+   //[task setTag:tags];
+   
+   AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_TAG];
+   av.in_editing = NO;
+   
+   NSString *tag_str = @"";
+   for (RTMTag *tag in tags)
+      tag_str = [tag_str stringByAppendingFormat:@"%@ ", tag.name];
+   av.text = tag_str;
+   [av setNeedsDisplay];
 }
 
 - (void) updateView

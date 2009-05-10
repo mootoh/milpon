@@ -8,10 +8,11 @@
 
 @class AddTaskViewController;
 @class TagProvider;
+@protocol HavingTag;
 
 @interface TagSelectController : UITableViewController {
    TagProvider *tag_provider;
-   AddTaskViewController *parent;
+   UIViewController <HavingTag> *parent;
    NSMutableSet *selected_tags;
    NSMutableDictionary *selected_flags;
    NSArray *all_tags;
@@ -19,7 +20,7 @@
 
 - (void) setTags:(NSMutableSet *) tags;
 
-@property (nonatomic, retain) AddTaskViewController *parent;
+@property (nonatomic, retain) UIViewController <HavingTag> *parent;
 @property (nonatomic, retain) NSMutableSet *selected_tags;
 @property (nonatomic, retain) NSArray *all_tags;
 

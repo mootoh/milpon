@@ -22,3 +22,9 @@
 - (void) setList:(RTMList *)list;
 
 @end
+
+@protocol HavingTag
+
+- (void) setTag:(NSMutableSet *) tags;
+
+@end

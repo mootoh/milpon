@@ -55,6 +55,7 @@ enum task_edit_bits_t {
    EB_TASK_RRULE         = 1 << 7,
    EB_TASK_POSTPONED     = 1 << 8,
    EB_TASK_LIST_ID       = 1 << 9,
+   EB_TASK_TAG           = 1 << 10,
 };
 
 @end

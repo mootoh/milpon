@@ -331,4 +331,9 @@ enum {
    [self.tableView reloadData]; // TODO: should reload due row only.
 }
 
+- (void) setTag:(NSMutableSet *) tags
+{
+   [self updateView];
+}
+
 @end
