@@ -265,13 +265,14 @@ enum {
 
 - (void) displayNote
 {
-   notePages.numberOfPages = task.notes.count;
-   if (0 == task.notes.count) {
+   NSArray *notes = task.notes;
+   notePages.numberOfPages = notes.count;
+   if (0 == notes.count) {
       note_field.text = kNOTE_PLACE_HOLDER;
       return;
    }
 
-   RTMNote *note = [task.notes objectAtIndex:notePages.currentPage];
+   RTMNote *note = [notes objectAtIndex:notePages.currentPage];
    NSString *text = @"";
    if (note.title)
       text = [text stringByAppendingString:[note.title stringByAppendingString:@"\n"]];
@@ -396,12 +397,13 @@ prioritySelected_N(4);
 
 - (void) edit_note
 {
-   notePages.numberOfPages = task.notes.count;
-   if (0 == task.notes.count) {
+   NSArray *notes = task.notes;
+   notePages.numberOfPages = notes.count;
+   if (0 == notes.count) {
       return;
    }
    
-   NSDictionary *note = [task.notes objectAtIndex:notePages.currentPage];
+   NSDictionary *note = [notes objectAtIndex:notePages.currentPage];
    NSString *text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
 
    NoteEditController *vc = [[NoteEditController alloc] initWithNibName:nil bundle:nil];
