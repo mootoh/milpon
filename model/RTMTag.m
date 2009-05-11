@@ -11,6 +11,7 @@
 #import "RTMTask.h"
 #import "TagProvider.h"
 #import "TaskProvider.h"
+#import "logger.h"
 
 @implementation RTMTag
 
@@ -50,7 +51,7 @@
 - (BOOL) isEqual: (id) anObject
 {
    RTMTag *other = (RTMTag *)anObject;
-   NSLog(@"comparing %@ and %@", self.name, other.name);
+   LOG(@"comparing %@ and %@", self.name, other.name);
    return other.iD == self.iD && [other.name isEqualToString:self.name];
 }
 

@@ -328,10 +328,8 @@ prioritySelected_N(4);
 {
    AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_NAME];
    av.in_editing = YES;
-   //[av drawRect:av.frame];
 
    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(24, 0, av.frame.size.width-24, av.frame.size.height-av.line_width-2)];
-   //tf.placeholder = av.text;
    tf.text = av.text;
    tf.opaque = YES;
    tf.backgroundColor = [UIColor whiteColor];
@@ -348,7 +346,6 @@ prioritySelected_N(4);
 {
    AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_DUE];
    av.in_editing = YES;
-   [av drawRect:av.frame];
 
    DueDateSelectController *vc = [[DueDateSelectController alloc] initWithNibName:nil bundle:nil];
    vc.parent = self;
@@ -377,7 +374,6 @@ prioritySelected_N(4);
 {
    AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_LIST];
    av.in_editing = YES;
-   [av drawRect:av.frame];
    
    ListSelectViewController *vc = [[ListSelectViewController alloc] initWithStyle:UITableViewStylePlain];
    vc.parent = self;
@@ -417,7 +413,6 @@ prioritySelected_N(4);
 {
    AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_TAG];
    av.in_editing = YES;
-   [av drawRect:av.frame];
 
    TagSelectController *vc = [[TagSelectController alloc] initWithNibName:nil bundle:nil];
    vc.parent = self;
