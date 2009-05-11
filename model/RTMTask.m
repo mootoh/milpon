@@ -103,7 +103,7 @@ DEFINE_ATTRIBUTE(to_list_id, To_list_id, NSNumber*, EB_TASK_LIST_ID);
    self.to_list_id = [NSNumber numberWithInteger:list.iD];
 }
 
-- (void) setTags:(NSMutableSet *)tags
+- (void) setTags:(NSArray *)tags
 {
    [[TagProvider sharedTagProvider] removeRelationForTask:self.iD];
    for (RTMTag *tag in tags)

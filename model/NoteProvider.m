@@ -16,6 +16,11 @@
    return nil;
 }
 
+- (void) create:(NSString *)note inTask:(NSInteger) task_id
+{
+   NSAssert(NO, @"not reach here");
+}
+
 + (NoteProvider *) sharedNoteProvider
 {
    NSAssert(NO, @"not reach here");

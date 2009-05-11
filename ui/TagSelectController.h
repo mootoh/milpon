@@ -13,15 +13,15 @@
 @interface TagSelectController : UITableViewController {
    TagProvider *tag_provider;
    UIViewController <HavingTag> *parent;
-   NSMutableSet *selected_tags;
+   NSMutableArray *selected_tags;
    NSMutableDictionary *selected_flags;
    NSArray *all_tags;
 }
 
-- (void) setTags:(NSMutableSet *) tags;
+- (void) setTags:(NSMutableArray *) tags;
 
 @property (nonatomic, retain) UIViewController <HavingTag> *parent;
-@property (nonatomic, retain) NSMutableSet *selected_tags;
+@property (nonatomic, retain) NSMutableArray *selected_tags;
 @property (nonatomic, retain) NSArray *all_tags;
 
 @end

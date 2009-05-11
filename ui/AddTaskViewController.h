@@ -15,7 +15,7 @@
 {
    RTMList *list;
    NSDate *due;
-   NSMutableSet *tags;
+   NSMutableArray *tags;
    NSString *note;
    
    UITextField *name_field_;
@@ -24,7 +24,7 @@
 
 @property (nonatomic, retain) RTMList *list;
 @property (nonatomic, retain) NSDate *due;
-@property (nonatomic, retain) NSMutableSet *tags;
+@property (nonatomic, retain) NSMutableArray *tags;
 @property (nonatomic, retain) NSString *note;
 
 - (IBAction) cancel;

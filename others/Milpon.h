@@ -25,6 +25,6 @@
 
 @protocol HavingTag
 
-- (void) setTag:(NSMutableSet *) tags;
+- (void) setTag:(NSArray *) tags;
 
 @end

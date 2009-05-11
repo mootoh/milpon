@@ -44,9 +44,10 @@ static UIImage *s_checkedIcon = nil;
    [super dealloc];
 }
 
-- (void) setTags:(NSMutableSet *) tags
+- (void) setTags:(NSMutableArray *) tags
 {
    self.selected_tags = tags;
+   
    for (RTMTag *tag in all_tags) {
       // KRDS start: should use NSSet:member or NSSet:containsObject
       //   instead of O(N) loop

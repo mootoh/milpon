@@ -420,7 +420,7 @@ prioritySelected_N(4);
    TagSelectController *vc = [[TagSelectController alloc] initWithNibName:nil bundle:nil];
    vc.parent = self;
    
-   NSMutableSet *tag_set = [NSMutableSet set];
+   NSMutableArray *tag_set = [NSMutableArray array];
    for (RTMTag *tag in task.tags)
       [tag_set addObject:tag];   
    [vc setTags:tag_set];
@@ -429,7 +429,7 @@ prioritySelected_N(4);
    [vc release];
 }
 
-- (void) setTag:(NSMutableSet *) tags
+- (void) setTag:(NSArray *) tags
 {
    [task setTags:tags];
    
@@ -453,8 +453,9 @@ prioritySelected_N(4);
    AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_NOTE];
    av.in_editing = NO;
 
+#if 0 // implement this !
    [task setNote:note ofIndex:notePages.currentPage];
-   
+#endif // 0
    av.text = note;
    [av setNeedsDisplay];
 }

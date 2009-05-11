@@ -36,7 +36,7 @@ DEFINE_ATTRIBUTE(name, Name, NSString*, EB_LIST_NAME);
 
 - (NSArray *) tasks
 {
-   return [[TaskProvider sharedTaskProvider] tasksInList:self.iD];
+   return [[TaskProvider sharedTaskProvider] tasksInList:self.iD showCompleted:NO]; // TODO: showCompleted flag should be acquired by global configuration.
 }
 
 - (BOOL) isSmart

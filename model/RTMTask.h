@@ -40,7 +40,7 @@
 //- (void) addTag: (RTMTag *) tag;
 //- (void) removeTag; (RTMTag *) tag;
 - (void) setList:(RTMList *)list;
-- (void) setTags:(NSMutableSet *)tags;
+- (void) setTags:(NSArray *)tags;
 
 - (void) complete;
 - (void) uncomplete;

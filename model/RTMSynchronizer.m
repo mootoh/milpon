@@ -202,7 +202,7 @@
    for (RTMTask *task in tasks) {
       if (progressView)
          [progressView updateMessage:[NSString stringWithFormat:@"updating %d/%d, %@...", i,tasks.count, task.name] withProgress:(float)i/(float)tasks.count];
-      int edit_bits = [task.edit_bits intValue];
+      NSInteger edit_bits = task.edit_bits;
 
       if (edit_bits & EB_TASK_DUE) {
          NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", nil];

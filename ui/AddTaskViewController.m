@@ -39,7 +39,7 @@ enum {
    if (self = [super initWithStyle:style]) {
       self.title = @"Add";
       self.list  = [[[ListProvider sharedListProvider] lists] objectAtIndex:0];
-      self.tags  = [NSMutableSet set];
+      self.tags  = [NSMutableArray array];
    }
    return self;
 }
@@ -331,7 +331,7 @@ enum {
    [self.tableView reloadData]; // TODO: should reload due row only.
 }
 
-- (void) setTag:(NSMutableSet *) tags
+- (void) setTag:(NSArray *) tags
 {
    [self updateView];
 }

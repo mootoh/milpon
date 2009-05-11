@@ -18,7 +18,7 @@
 - (NSArray *) tasksInList:(NSInteger) list_id showCompleted:(BOOL) sc;
 - (NSArray *) tasksInTag: (NSInteger) tag_id showCompleted:(BOOL) sc;
 
-//- (NSArray *) modifiedTasks;
+- (NSArray *) modifiedTasks;
 - (NSArray *) pendingTasks;
 //- (NSArray *) existingTasks;
 //- (NSArray *) overDueTasks;
@@ -31,8 +31,8 @@
  * @return created task id
  */
 - (NSNumber *) createAtOffline:(NSDictionary *)params;
-//- (void) createAtOnline:(NSDictionary *)params;
-//- (void) createOrUpdate:(NSDictionary *)params;
+- (void) createAtOnline:(NSDictionary *)params;
+- (void) createOrUpdate:(NSDictionary *)params;
 //- (void) sync;
 - (void) erase;
 - (void) remove:(RTMTask *) task;

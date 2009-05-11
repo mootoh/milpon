@@ -28,12 +28,12 @@
    return nil;
 }
 
-//- (NSArray *) modifiedTasks
-//{
-//   NSAssert(NO, @"not reach here");
-//   return nil;
-//}
-//
+- (NSArray *) modifiedTasks
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 //- (NSArray *) existingTasks;
 //{
 //   NSAssert(NO, @"not reach here");
@@ -46,11 +46,11 @@
    return nil;
 }
 //
-//- (void) createAtOnline:(NSDictionary *)params;
-//{
-//   NSAssert(NO, @"not reach here");
-//}
-//
+- (void) createAtOnline:(NSDictionary *)params;
+{
+   NSAssert(NO, @"not reach here");
+}
+
 //- (void) sync
 //{
 //   NSAssert(NO, @"not reach here");
@@ -66,11 +66,11 @@
 //   NSAssert(NO, @"not reach here");
 //}
 //
-//- (void) remove:(RTMTask *) task;
-//{
-//   NSAssert(NO, @"not reach here");
-//}
-//
+- (void) remove:(RTMTask *) task;
+{
+   NSAssert(NO, @"not reach here");
+}
+
 - (void) erase
 {
    NSAssert(NO, @"not reach here");
@@ -91,18 +91,18 @@
 //   NSAssert(NO, @"not reach here");
 //   return nil;
 //}
-//
-//- (NSArray *) pendingTasks
-//{
-//   NSAssert(NO, @"not reach here");
-//   return nil;
-//}
-//
-//- (void) createOrUpdate:(NSDictionary *)params
-//{
-//   NSAssert(NO, @"not reach here");
-//}
-//
+
+- (NSArray *) pendingTasks
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
+- (void) createOrUpdate:(NSDictionary *)params
+{
+   NSAssert(NO, @"not reach here");
+}
+
 //- (void) removeForID:(NSNumber *) task_id
 //{
 //   NSAssert(NO, @"not reach here");

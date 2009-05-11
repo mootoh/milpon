@@ -58,7 +58,7 @@
 								<int key="IBUINumberOfPages">2</int>
 							</object>
 						</object>
-						<string key="NSFrame">{{0, 387}, {320, 29}}</string>
+						<string key="NSFrame">{{0, 377}, {320, 39}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
@@ -207,7 +207,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>TaskViewController</string>
 					<string>UIResponder</string>
-					<string>{{244, 157}, {320, 416}}</string>
+					<string>{{512, 99}, {320, 416}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
