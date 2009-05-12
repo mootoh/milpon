@@ -51,7 +51,7 @@ DEFINE_ATTRIBUTE(to_list_id, To_list_id, NSNumber*, EB_TASK_LIST_ID);
 
 - (void) setDue:(NSDate *)du
 {
-   return [self setDateAttribute:du forName:@"due" editBits:EB_TASK_DUE];
+   [self setDateAttribute:du forName:@"due" editBits:EB_TASK_DUE];
 }
 
 - (NSDate *) completed

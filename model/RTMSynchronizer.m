@@ -220,8 +220,7 @@
             nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-         NSString *due = [[[MilponHelper sharedHelper] dateToString:task.due] stringByAppendingString:@"Z"];
-         due = [due stringByReplacingOccurrencesOfString:@"_" withString:@"T"];
+         NSString *due = [[MilponHelper sharedHelper] dateToRtmString:task.due];
 
          if ([api_task setDue:due forIDs:ids]) {
             LOG(@"setDue succeeded");
@@ -267,7 +266,10 @@
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
          
          [api_task setTags:tag_str forIDs:ids];
-      }            
+         [task flagDownEditBits:EB_TASK_TAG];
+      }
+      
+      // TODO: sync notes
 
       i++;
    }

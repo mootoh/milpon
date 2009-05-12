@@ -211,8 +211,8 @@
    RTMSynchronizer *syncer = [[RTMSynchronizer alloc] init:auth];
 
    [syncer uploadPendingTasks:nil];
-#if 0 // 20090502
    [syncer syncModifiedTasks:nil];
+#if 0 // 20090502
    [syncer syncTasks:nil];
 #endif // 0
    [syncer release];

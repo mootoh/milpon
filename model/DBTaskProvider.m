@@ -98,19 +98,13 @@
    return [self tasksWithCondition:cond];
 }
 
-/*
+
 - (NSArray *) modifiedTasks
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"WHERE", @"ORDER", nil];
-   NSArray *vals = [NSArray arrayWithObjects:
-      [NSString stringWithFormat:@"edit_bits>1"],
-      [NSString stringWithFormat:@"priority ASC, due IS NULL ASC, due ASC"],
-      nil];
-
-   NSDictionary *cond = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-   return [self tasks:cond];
+   NSDictionary *cond = [NSDictionary dictionaryWithObject:@"edit_bits>1" forKey:@"WHERE"];
+   return [self tasksWithCondition:cond];
 }
-*/
+
 - (NSArray *) pendingTasks
 {
    NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"edit_bits & %d", EB_CREATED_OFFLINE] forKey:@"WHERE"];
