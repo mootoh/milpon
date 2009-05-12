@@ -441,8 +441,8 @@ prioritySelected_N(4);
       return;
    }
 
-   NSDictionary *note = [notes objectAtIndex:notePages.currentPage];
-   NSString *text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
+   RTMNote *note = [notes objectAtIndex:notePages.currentPage];
+   NSString *text = [NSString stringWithFormat:@"%@\n%@", note.title, note.text];
 
    NoteEditController *vc = [[NoteEditController alloc] initWithNibName:nil bundle:nil];
    vc.parent = self;
@@ -462,7 +462,7 @@ prioritySelected_N(4);
    if (notes.count == currentPage) {
       [[NoteProvider sharedNoteProvider] createAtOffline:note inTask:task.iD];
    } else {
-      //[task setNote:note ofIndex:notePages.currentPage];
+      [[NoteProvider sharedNoteProvider] update:[notes objectAtIndex:currentPage] text:note];
    }
 
    av.text = note;

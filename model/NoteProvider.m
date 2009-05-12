@@ -22,6 +22,11 @@
    return nil;
 }
 
+- (void) update:(RTMNote *)note text:(NSString *)text
+{
+   NSAssert(NO, @"not reach here");
+}
+
 + (NoteProvider *) sharedNoteProvider
 {
    NSAssert(NO, @"not reach here");

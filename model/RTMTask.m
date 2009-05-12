@@ -65,19 +65,6 @@ DEFINE_ATTRIBUTE(to_list_id, To_list_id, NSNumber*, EB_TASK_LIST_ID);
    return [self setAttribute:ct forName:@"completed" editBits:EB_TASK_COMPLETED];
 }
 
-- (void) setNote:(NSString *)note ofIndex:(NSInteger) index
-{
-   /* TODO: implement this
-   NSArray *note_comps = [note componentsSeparatedByString:@"\n"];
-   NSString *title = [note_comps objectAtIndex:0];
-   NSString *body = @"";
-   for (int i=1; i<note_comps.count; i++)
-      body = [body stringByAppendingString:[note_comps objectAtIndex:i]];
-
-   [self flagUpEditBits:EB_TASK_NOTE];
-   */
-}
-
 - (NSArray *) tags
 {
    return [[TagProvider sharedTagProvider] tagsInTask:self.iD];

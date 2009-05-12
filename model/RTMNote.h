@@ -15,8 +15,7 @@
 @property (nonatomic, readonly) NSNumber *task_id;
 
 enum note_edit_bits_t {
-   EB_NOTE_TITLE = 1 << 1,
-   EB_NOTE_TEXT  = 1 << 2
+   EB_NOTE_MODIFIED = 1 << 1
 };
 
 @end

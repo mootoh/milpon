@@ -10,8 +10,8 @@
 
 @implementation RTMNote
 
-DEFINE_ATTRIBUTE(title, Title, NSString*, EB_NOTE_TITLE);
-DEFINE_ATTRIBUTE(text, Text, NSString*, EB_NOTE_TEXT);
+DEFINE_ATTRIBUTE(title, Title, NSString*, EB_NOTE_MODIFIED);
+DEFINE_ATTRIBUTE(text, Text, NSString*, EB_NOTE_MODIFIED);
 DEFINE_ATTRIBUTE_RO(task_id, NSNumber *);
 
 

@@ -44,7 +44,6 @@
    NSMutableArray *keys = [NSMutableArray arrayWithObjects:@"task_id", @"edit_bits", nil];
    NSMutableArray *vals = [NSMutableArray arrayWithObjects:[NSNumber numberWithInteger:task_id], [NSNumber numberWithInt:EB_CREATED_OFFLINE], nil];
 
-
    NSMutableArray *note_elms = [NSMutableArray arrayWithArray:[note componentsSeparatedByString:@"\n"]];
    if (note_elms.count > 1) {
       [keys addObject:@"title"];
@@ -69,6 +68,32 @@
    return retn;
 }
    
+- (void) update:(RTMNote *)note text:(NSString *)text
+{
+   NSMutableArray *keys = [NSMutableArray arrayWithObjects:@"edit_bits", nil];
+   NSMutableArray *vals = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:EB_NOTE_MODIFIED], nil];
+   
+   NSMutableArray *note_elms = [NSMutableArray arrayWithArray:[text componentsSeparatedByString:@"\n"]];
+   [keys addObject:@"title"];
+   if (note_elms.count > 1) {
+      [vals addObject:[note_elms objectAtIndex:0]];
+      [note_elms removeObjectAtIndex:0];
+   } else {
+      [vals addObject:[NSNull null]];
+   }
+   
+   NSString *note_text = @"";
+   for (NSString *pieces in note_elms)
+      note_text = [note_text stringByAppendingString:[pieces stringByAppendingString:@"\n"]];
+   
+   [keys addObject:@"text"];
+   [vals addObject:note_text];
+   
+   NSDictionary *dict = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   NSString *where = [NSString stringWithFormat:@"WHERE id=%d", note.iD];
+   
+   [[LocalCache sharedLocalCache] update:dict table:@"note" condition:where];
+}
 @end // DBNoteProvider
 
 @implementation NoteProvider (DB)
