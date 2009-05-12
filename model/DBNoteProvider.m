@@ -111,6 +111,13 @@
    
    [[LocalCache sharedLocalCache] update:dict table:@"note" condition:where];
 }
+
+- (void) remove:(NSInteger) note_id
+{
+   NSString *cond = [NSString stringWithFormat:@"WHERE id = %d", note_id];
+   [local_cache_ delete:@"note" condition:cond];
+}
+
 @end // DBNoteProvider
 
 @implementation NoteProvider (DB)

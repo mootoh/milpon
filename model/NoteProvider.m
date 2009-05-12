@@ -32,6 +32,11 @@
    NSAssert(NO, @"not reach here");
 }
 
+- (void) remove:(NSInteger) note_id
+{
+   NSAssert(NO, @"not reach here");
+}
+
 + (NoteProvider *) sharedNoteProvider
 {
    NSAssert(NO, @"not reach here");

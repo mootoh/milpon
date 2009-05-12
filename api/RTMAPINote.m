@@ -8,19 +8,20 @@
 
 #import "RTMAPINote.h"
 #import "RTMAPI.h"
+#import "RTMNote.h"
 #import "RTMAPIXMLParserCallback.h"
 #import "logger.h"
 
 @implementation RTMAPINote
 
-- (BOOL) add:(NSString *)text forIDs:(NSDictionary *)ids
+- (BOOL) add:(RTMNote *)note forIDs:(NSDictionary *)ids
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSString *timeline = [api createTimeline];
    if (! timeline) return NO;
 
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"note_title", @"note_text", @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:[ids objectForKey:@"list_id"], [ids objectForKey:@"taskseries_id"], [ids objectForKey:@"task_id"], @"", text, timeline, nil];
+   NSArray *vals = [NSArray arrayWithObjects:[ids objectForKey:@"list_id"], [ids objectForKey:@"taskseries_id"], [ids objectForKey:@"task_id"], note.title ? note.title : @"", note.text, timeline, nil];
    NSDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
 
    NSData *response = [api call:@"rtm.tasks.notes.add" withArgs:args];

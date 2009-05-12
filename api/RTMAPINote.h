@@ -5,6 +5,7 @@
 //  Created by mootoh on 12/06/08.
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
+@class RTMNote;
 
 @interface RTMAPINote : NSObject {
   enum {
@@ -15,7 +16,7 @@
   } method;
 }
 
-- (BOOL) add:(NSString *)text forIDs:(NSDictionary *)ids;
+- (BOOL) add:(RTMNote *)note forIDs:(NSDictionary *)ids;
 - (BOOL) delete:(NSNumber *)note_id;
 - (BOOL) edit:(NSNumber *)note_id withTitle:(NSString *)title withText:(NSString *)text;
 

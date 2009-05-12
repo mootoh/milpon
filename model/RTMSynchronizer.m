@@ -10,6 +10,7 @@
 #import "RTMList.h"
 #import "RTMTask.h"
 #import "RTMTag.h"
+#import "RTMNote.h"
 #import "RTMAuth.h"
 #import "RTMAPIList.h"
 #import "RTMAPITask.h"
@@ -176,19 +177,18 @@
             
          [api_task setTags:tag_str forIDs:ids];
       }
-#if 0
+
       // get Note from DB by old Task ID
       RTMAPINote *api_note = [[RTMAPINote alloc] init];
-      NSArray *notes = [[NoteProvider sharedNoteProvider] notesInTask:[task.task_id integerValue]];
-      for (NSDictionary *note in notes) {
+      NSArray *notes = [[NoteProvider sharedNoteProvider] notesInTask:task.iD];
+      for (RTMNote *note in notes) {
          // - API request (rtm.tasks.notes.add) using new Task ID
-         [api_note add:[note objectForKey:@"text"] forIDs:ids];
+         [api_note add:note forIDs:ids];
 
          // remove old Note from DB
-         [[NoteProvider sharedNoteProvider] removeNote:[note objectForKey:@"id"]]; // TODO: update IDs instead of removing
+         [[NoteProvider sharedNoteProvider] remove:note.iD]; // TODO: update IDs instead of removing
       }
       [api_note release];
-#endif // 0
 
       [[TaskProvider sharedTaskProvider] remove:task]; // TODO: update IDS instaed of removing
 
