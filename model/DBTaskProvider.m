@@ -14,7 +14,7 @@
 #import "logger.h"
 #import "MilponHelper.h"
 #import "TagProvider.h"
-
+#import "NoteProvider.h"
 @implementation DBTaskProvider
 
 - (id) init
@@ -161,7 +161,7 @@
    [attrs removeObjectForKey:@"source"];
 
    NSArray *tasks = [attrs objectForKey:@"tasks"];
-   //NSArray *notes = [attrs objectForKey:@"notes"];
+   NSArray *notes = [attrs objectForKey:@"notes"];
    NSArray *tags = [attrs objectForKey:@"tags"];
 
    [attrs removeObjectForKey:@"tasks"];
@@ -203,12 +203,12 @@
       NSDictionary *order = [NSDictionary dictionaryWithObject:@"id DESC LIMIT 1" forKey:@"ORDER"]; // TODO: ad-hoc LIMIT
       NSArray *ret = [local_cache_ select:iid from:@"task" option:order];
       NSNumber *retn = [[ret objectAtIndex:0] objectForKey:@"id"];
-#if 0
+
       // add notes
       for (NSDictionary *note in notes) {
-         [self createNoteAtOnline:[note objectForKey:@"text"] title:[note objectForKey:@"title"] task_id:retn];
+         [[NoteProvider sharedNoteProvider] createNoteAtOnline:[note objectForKey:@"text"] title:[note objectForKey:@"title"] task_id:[retn integerValue]];
       }
-#endif // 0
+
       // add tags
       for (NSString *tag in tags) {
          LOG(@"tag %@ enter", tag);

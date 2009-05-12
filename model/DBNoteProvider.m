@@ -39,6 +39,23 @@
    return ret;
 }
 
+- (void) createNoteAtOnline:(NSString *)text title:(NSString *)title task_id:(NSInteger)task_id
+{
+   NSMutableArray *keys = [NSMutableArray arrayWithObjects:@"task_id", @"text", nil];
+   NSMutableArray *vals = [NSMutableArray arrayWithObjects:
+                           [NSNumber numberWithInteger:task_id],
+                           text,
+                           nil];
+
+   if (! [title isEqualToString:@""]) {
+      [keys addObject:@"title"];
+      [vals addObject:title];
+   }
+
+   NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   [local_cache_ insert:attrs into:@"note"];
+}
+
 - (NSNumber *) createAtOffline:(NSString *)note inTask:(NSInteger) task_id
 {
    NSMutableArray *keys = [NSMutableArray arrayWithObjects:@"task_id", @"edit_bits", nil];

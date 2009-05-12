@@ -442,7 +442,9 @@ prioritySelected_N(4);
    }
 
    RTMNote *note = [notes objectAtIndex:notePages.currentPage];
-   NSString *text = [NSString stringWithFormat:@"%@\n%@", note.title, note.text];
+   NSString *text = note.title ?
+      [NSString stringWithFormat:@"%@\n%@", note.title, note.text] :
+      note.text;
 
    NoteEditController *vc = [[NoteEditController alloc] initWithNibName:nil bundle:nil];
    vc.parent = self;
@@ -455,6 +457,13 @@ prioritySelected_N(4);
 {
    AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_NOTE];
    av.in_editing = NO;
+
+   // check whethere chars contains white space only.
+   const char *str = [note UTF8String];
+   int i=0, len=[note length];
+   for (; i<len; i++)
+      if (! isspace(str[i])) break;
+   if (i == len) return;
 
    NSArray *notes = task.notes;
    NSInteger currentPage = notePages.currentPage;
