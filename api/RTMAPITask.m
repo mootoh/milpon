@@ -428,4 +428,34 @@
    return YES;
 }
 
+- (BOOL) setTags:(NSString *)tags forIDs:(NSDictionary *)ids
+{
+   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
+   NSString *timeline = [api createTimeline];
+   if (! timeline) return NO;
+   
+   NSArray *keys = [NSArray arrayWithObjects:@"tags", @"list_id", @"taskseries_id", @"task_id",  @"timeline", nil];
+   NSArray *vals = [NSArray arrayWithObjects:
+                    tags,
+                    [ids objectForKey:@"list_id"],
+                    [ids objectForKey:@"taskseries_id"],
+                    [ids objectForKey:@"task_id"],
+                    timeline,
+                    nil];
+   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   
+   NSData *response = [api call:@"rtm.tasks.setTags" withArgs:args];
+   if (! response) return NO;
+   
+   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
+   RTMAPIXMLParserCallback *cb = [[[RTMAPIXMLParserCallback alloc] init] autorelease];
+   [parser setDelegate:cb];
+   [parser parse];
+   if (! cb.succeeded) {
+      LOG(@"complete failed : %@", [cb.error localizedDescription]);
+      return NO;
+   }
+   return YES;   
+}
+
 @end

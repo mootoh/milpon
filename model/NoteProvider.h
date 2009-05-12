@@ -12,7 +12,7 @@
 @interface NoteProvider : NSObject
 
 - (NSArray *) notesInTask:(NSInteger) task_id;
-- (void) create:(NSString *)note inTask:(NSInteger) task_id;
+- (NSNumber *) createAtOffline:(NSString *)note inTask:(NSInteger) task_id;
 
 + (NoteProvider *) sharedNoteProvider;
 

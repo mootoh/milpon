@@ -308,7 +308,7 @@ enum {
       [[TagProvider sharedTagProvider] createRelation:tid tag_id:tag.iD];
 
    if (note)
-      [[NoteProvider sharedNoteProvider] create:note inTask:[tid integerValue]];
+      [[NoteProvider sharedNoteProvider] createAtOffline:note inTask:[tid integerValue]];
 
    [self close];
 }

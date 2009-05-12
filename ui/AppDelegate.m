@@ -189,7 +189,6 @@
    //refreshButton.enabled = NO;
    //[progressView progressBegin];
    NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];
-   //NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(replaceAll) object:nil];
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    [app.operationQueue addOperation:ope];

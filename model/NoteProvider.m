@@ -16,9 +16,10 @@
    return nil;
 }
 
-- (void) create:(NSString *)note inTask:(NSInteger) task_id
+- (NSNumber *) createAtOffline:(NSString *)note inTask:(NSInteger) task_id
 {
    NSAssert(NO, @"not reach here");
+   return nil;
 }
 
 + (NoteProvider *) sharedNoteProvider

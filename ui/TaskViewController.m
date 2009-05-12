@@ -16,6 +16,7 @@
 #import "UICCalendarPicker.h"
 #import "logger.h"
 #import "ListProvider.h"
+#import "NoteProvider.h"
 #import "MilponHelper.h"
 #import "AttributeView.h"
 #import "DueDateSelectController.h"
@@ -391,24 +392,6 @@ prioritySelected_N(4);
    [av setNeedsDisplay];
 }
 
-- (void) edit_note
-{
-   NSArray *notes = task.notes;
-   notePages.numberOfPages = notes.count;
-   if (0 == notes.count) {
-      return;
-   }
-   
-   NSDictionary *note = [notes objectAtIndex:notePages.currentPage];
-   NSString *text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
-
-   NoteEditController *vc = [[NoteEditController alloc] initWithNibName:nil bundle:nil];
-   vc.parent = self;
-   vc.note = text;
-   [self.navigationController pushViewController:vc animated:YES];
-   [vc release];
-}
-
 - (void) edit_tag
 {
    AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_TAG];
@@ -445,14 +428,43 @@ prioritySelected_N(4);
    // TODO
 }
 
+- (void) edit_note
+{
+   NSArray *notes = task.notes;
+   notePages.numberOfPages = notes.count;
+   if (0 == notes.count) {      
+      // create new note
+      NoteEditController *vc = [[NoteEditController alloc] initWithNibName:nil bundle:nil];
+      vc.parent = self;
+      [self.navigationController pushViewController:vc animated:YES];
+      [vc release];
+      return;
+   }
+
+   NSDictionary *note = [notes objectAtIndex:notePages.currentPage];
+   NSString *text = [NSString stringWithFormat:@"%@\n%@", [note valueForKey:@"title"], [note valueForKey:@"text"]];
+
+   NoteEditController *vc = [[NoteEditController alloc] initWithNibName:nil bundle:nil];
+   vc.parent = self;
+   vc.note = text;
+   [self.navigationController pushViewController:vc animated:YES];
+   [vc release];
+}
+
 - (void) setNote:(NSString *)note
 {
    AttributeView *av = (AttributeView *)[self.view viewWithTag:TAG_NOTE];
    av.in_editing = NO;
 
-#if 0 // implement this !
-   [task setNote:note ofIndex:notePages.currentPage];
-#endif // 0
+   NSArray *notes = task.notes;
+   NSInteger currentPage = notePages.currentPage;
+
+   if (notes.count == currentPage) {
+      [[NoteProvider sharedNoteProvider] createAtOffline:note inTask:task.iD];
+   } else {
+      //[task setNote:note ofIndex:notePages.currentPage];
+   }
+
    av.text = note;
    [av setNeedsDisplay];
 }

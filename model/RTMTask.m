@@ -101,6 +101,7 @@ DEFINE_ATTRIBUTE(to_list_id, To_list_id, NSNumber*, EB_TASK_LIST_ID);
 - (void) setList:(RTMList *) list
 {
    self.to_list_id = [NSNumber numberWithInteger:list.iD];
+   [self flagUpEditBits:EB_TASK_LIST_ID];
 }
 
 - (void) setTags:(NSArray *)tags
@@ -108,6 +109,7 @@ DEFINE_ATTRIBUTE(to_list_id, To_list_id, NSNumber*, EB_TASK_LIST_ID);
    [[TagProvider sharedTagProvider] removeRelationForTask:self.iD];
    for (RTMTag *tag in tags)
       [[TagProvider sharedTagProvider] createRelation:[NSNumber numberWithInteger:self.iD] tag_id:tag.iD];
+   [self flagUpEditBits:EB_TASK_TAG];
 }
 
 + (NSString *) table_name

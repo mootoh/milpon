@@ -9,6 +9,7 @@
 #import "RTMSynchronizer.h"
 #import "RTMList.h"
 #import "RTMTask.h"
+#import "RTMTag.h"
 #import "RTMAuth.h"
 #import "RTMAPIList.h"
 #import "RTMAPITask.h"
@@ -165,11 +166,17 @@
 
       if (task.estimate && ![task.estimate isEqualToString:@""]) 
          [api_task setEstimate:task.estimate forIDs:ids];
-#if 0
-      /*
-       * TODO: set tags
-       */
 
+      if (task.tags) {
+         NSString *tag_str = @"";
+         for (RTMTag *tg in task.tags)
+            tag_str = [tag_str stringByAppendingFormat:@"%@,", tg.name];
+         tag_str = [tag_str substringToIndex:tag_str.length-1]; // cut last ', '
+
+            
+         [api_task setTags:tag_str forIDs:ids];
+      }
+#if 0
       // get Note from DB by old Task ID
       RTMAPINote *api_note = [[RTMAPINote alloc] init];
       NSArray *notes = [[NoteProvider sharedNoteProvider] notesInTask:[task.task_id integerValue]];
@@ -178,7 +185,7 @@
          [api_note add:[note objectForKey:@"text"] forIDs:ids];
 
          // remove old Note from DB
-         [[NoteProvider sharedTaskProvider] removeNote:[note objectForKey:@"id"]]; // TODO: update IDs instead of removing
+         [[NoteProvider sharedNoteProvider] removeNote:[note objectForKey:@"id"]]; // TODO: update IDs instead of removing
       }
       [api_note release];
 #endif // 0
@@ -244,6 +251,23 @@
             LOG(@"setPriority succeeded");
          }
       }
+      
+      if (edit_bits & EB_TASK_TAG) {
+         NSString *tag_str = @"";
+         for (RTMTag *tg in task.tags)
+            tag_str = [tag_str stringByAppendingFormat:@"%@,", tg.name];
+         tag_str = [tag_str substringToIndex:tag_str.length-1]; // cut last ', '
+         
+         NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", nil];
+         NSArray *vals = [NSArray arrayWithObjects:
+                          [NSString stringWithFormat:@"%d", [task.list_id intValue]],
+                          [NSString stringWithFormat:@"%d", [task.taskseries_id intValue]],
+                          [NSString stringWithFormat:@"%d", [task.task_id intValue]],
+                          nil];
+         NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+         
+         [api_task setTags:tag_str forIDs:ids];
+      }            
 
       i++;
    }

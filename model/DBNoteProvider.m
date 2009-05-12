@@ -39,7 +39,7 @@
    return ret;
 }
 
-- (void) create:(NSString *)note inTask:(NSInteger) task_id
+- (NSNumber *) createAtOffline:(NSString *)note inTask:(NSInteger) task_id
 {
    NSMutableArray *keys = [NSMutableArray arrayWithObjects:@"task_id", @"edit_bits", nil];
    NSMutableArray *vals = [NSMutableArray arrayWithObjects:[NSNumber numberWithInteger:task_id], [NSNumber numberWithInt:EB_CREATED_OFFLINE], nil];
@@ -61,9 +61,15 @@
 
    NSDictionary *attrs = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    [local_cache_ insert:attrs into:@"note"];
+   
+   NSArray *iid = [NSArray arrayWithObject:@"id"];
+   NSDictionary *order = [NSDictionary dictionaryWithObject:@"id DESC LIMIT 1" forKey:@"ORDER"]; // TODO: ad-hoc LIMIT
+   NSArray *ret = [local_cache_ select:iid from:@"note" option:order];
+   NSNumber *retn = [[ret objectAtIndex:0] objectForKey:@"id"];
+   return retn;
 }
-
-@end // DBNoteProvider (Private)
+   
+@end // DBNoteProvider
 
 @implementation NoteProvider (DB)
 
