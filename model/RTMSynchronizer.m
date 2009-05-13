@@ -214,7 +214,7 @@
       if (edit_bits & EB_TASK_DUE) {
          NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", nil];
          NSArray *vals = [NSArray arrayWithObjects:
-            [NSString stringWithFormat:@"%d", [task.list_id intValue]],
+            [NSString stringWithFormat:@"%d", [task.list_id_itself intValue]],
             [NSString stringWithFormat:@"%d", [task.taskseries_id intValue]],
             [NSString stringWithFormat:@"%d", [task.task_id intValue]],
             nil];
@@ -228,19 +228,18 @@
          }
       }
       if (edit_bits & EB_TASK_COMPLETED) {
-         [task flagDownEditBits:EB_TASK_COMPLETED];
          if ([api_task complete:task]) {
             [[TaskProvider sharedTaskProvider] remove:task]; // TODO: do not remove, keep it in DB to review completed tasks.
+            [task flagDownEditBits:EB_TASK_COMPLETED];
             i++;
             continue;
          }
       }
       if (edit_bits & EB_TASK_PRIORITY) {
-         [task flagDownEditBits:EB_TASK_PRIORITY];
 
          NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", nil];
          NSArray *vals = [NSArray arrayWithObjects:
-            [NSString stringWithFormat:@"%d", [task.list_id intValue]],
+            [NSString stringWithFormat:@"%d", [task.list_id_itself intValue]],
             [NSString stringWithFormat:@"%d", [task.taskseries_id intValue]],
             [NSString stringWithFormat:@"%d", [task.task_id intValue]],
             nil];
@@ -248,9 +247,9 @@
 
          if ([api_task setPriority:[NSString stringWithFormat:@"%d", [task.priority intValue]] forIDs:ids]) { // TODO: care about priority=4
             LOG(@"setPriority succeeded");
+            [task flagDownEditBits:EB_TASK_PRIORITY];
          }
       }
-      
       if (edit_bits & EB_TASK_TAG) {
          NSString *tag_str = @"";
          for (RTMTag *tg in task.tags)
@@ -259,17 +258,38 @@
          
          NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", nil];
          NSArray *vals = [NSArray arrayWithObjects:
-                          [NSString stringWithFormat:@"%d", [task.list_id intValue]],
+                          [NSString stringWithFormat:@"%d", [task.list_id_itself intValue]],
                           [NSString stringWithFormat:@"%d", [task.taskseries_id intValue]],
                           [NSString stringWithFormat:@"%d", [task.task_id intValue]],
                           nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
          
-         [api_task setTags:tag_str forIDs:ids];
-         [task flagDownEditBits:EB_TASK_TAG];
+         if ([api_task setTags:tag_str forIDs:ids]) {
+            [task flagDownEditBits:EB_TASK_TAG];
+         }
       }
-      
+
+      // TODO: rename
       // TODO: sync notes
+
+      if (edit_bits & EB_TASK_LIST_ID) {
+         NSArray *keys = [NSArray arrayWithObjects:@"from_list_id", @"to_list_id", @"taskseries_id", @"task_id", nil];
+         NSArray *vals = [NSArray arrayWithObjects:
+                          [task.list_id_itself stringValue],
+                          [task.to_list_id stringValue],
+                          [task.taskseries_id stringValue],
+                          [task.task_id stringValue],
+                          nil];
+         NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+
+         if ([api_task moveTo:ids]) {
+            NSArray *update_keys = [NSArray arrayWithObjects:@"list_id", @"to_list_id", nil];
+            NSArray *update_vals = [NSArray arrayWithObjects:task.to_list_id, [NSNull null], nil];
+            NSDictionary *update_dict = [NSDictionary dictionaryWithObjects:update_vals forKeys:update_keys];
+            [[LocalCache sharedLocalCache] update:update_dict table:@"task" condition:[NSString stringWithFormat:@"WHERE id=%d", task.iD]];
+            [task flagDownEditBits:EB_TASK_LIST_ID];
+         }
+      }
 
       i++;
    }

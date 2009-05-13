@@ -38,7 +38,7 @@
    NSArray *keys = [NSArray arrayWithObjects:
       @"task.id", @"task.edit_bits",
       @"task.task_id", @"task.due", @"task.completed", @"task.priority", @"task.postponed", @"task.estimate", @"task.has_due_time",
-      @"task.taskseries_id", @"task.name", @"task.url", @"task.location_id", @"task.list_id", @"task.rrule", nil];
+      @"task.taskseries_id", @"task.name", @"task.url", @"task.location_id", @"task.list_id", @"task.rrule", @"task.to_list_id", nil];
 
    NSArray *task_arr = conditions ?
       [local_cache_ select:keys from:@"task" option:conditions] : 
@@ -64,7 +64,7 @@
 
 - (NSArray *) tasksInList:(NSInteger) list_id showCompleted:(BOOL) sc
 {
-   NSString *where = [NSString stringWithFormat:@"list_id=%d", list_id];
+   NSString *where = [NSString stringWithFormat:@"(to_list_id=%d OR (to_list_id is NULL AND list_id=%d))", list_id, list_id];
    if (! sc)
       where = [where stringByAppendingString:@" AND completed IS NULL"];
 

@@ -18,6 +18,7 @@
 @property (nonatomic, readonly) NSNumber *task_id;
 @property (nonatomic, readonly) NSNumber *taskseries_id;
 @property (nonatomic, readonly) NSNumber *list_id;
+@property (nonatomic, readonly) NSNumber *list_id_itself;
 @property (nonatomic, assign)   NSDate   *due;
 @property (nonatomic, assign)   NSNumber *priority;
 @property (nonatomic, assign)   NSString *name;

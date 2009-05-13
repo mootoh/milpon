@@ -46,7 +46,7 @@ DEFINE_ATTRIBUTE(name, Name, NSString*, EB_LIST_NAME);
 
 - (NSInteger) taskCount
 {
-   NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"list_id=%d AND completed is NULL", self.iD] forKey:@"WHERE"];
+   NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"(to_list_id=%d OR (to_list_id is NULL AND list_id=%d)) AND completed is NULL", self.iD, self.iD] forKey:@"WHERE"];
    NSArray *query = [NSArray arrayWithObject:@"count()"];
    NSArray *counts = [[LocalCache sharedLocalCache] select:query from:@"task" option:cond];
    NSDictionary *count = (NSDictionary *)[counts objectAtIndex:0];

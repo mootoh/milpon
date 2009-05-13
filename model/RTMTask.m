@@ -27,6 +27,11 @@ DEFINE_ATTRIBUTE(to_list_id, To_list_id, NSNumber*, EB_TASK_LIST_ID);
    return tli ? tli : [self attribute:@"list_id"];
 }
 
+- (NSNumber *) list_id_itself
+{
+   return [self attribute:@"list_id"];
+}
+
 - (BOOL) is_completed
 {
    return [attrs_ objectForKey:@"task.completed"] != [NSNull null];
@@ -88,7 +93,6 @@ DEFINE_ATTRIBUTE(to_list_id, To_list_id, NSNumber*, EB_TASK_LIST_ID);
 - (void) setList:(RTMList *) list
 {
    self.to_list_id = [NSNumber numberWithInteger:list.iD];
-   [self flagUpEditBits:EB_TASK_LIST_ID];
 }
 
 - (void) setTags:(NSArray *)tags
