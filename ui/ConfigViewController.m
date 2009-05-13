@@ -22,6 +22,7 @@
       activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
       activityIndicator.frame = CGRectMake(appFrame.size.width/2-32, appFrame.size.height/2, 64, 64);
       activityIndicator.hidesWhenStopped = YES;
+      self.title = @"Setting";
    }
    return self;
 }

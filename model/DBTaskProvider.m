@@ -15,6 +15,12 @@
 #import "MilponHelper.h"
 #import "TagProvider.h"
 #import "NoteProvider.h"
+
+@interface DBTaskProvider (Private)
+- (BOOL) taskExist:(NSNumber *)task_id;
+- (void) removeForID:(NSNumber *) task_id;
+@end
+
 @implementation DBTaskProvider
 
 - (id) init
@@ -98,7 +104,6 @@
    return [self tasksWithCondition:cond];
 }
 
-
 - (NSArray *) modifiedTasks
 {
    NSDictionary *cond = [NSDictionary dictionaryWithObject:@"edit_bits>1" forKey:@"WHERE"];
@@ -110,23 +115,7 @@
    NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"edit_bits & %d", EB_CREATED_OFFLINE] forKey:@"WHERE"];
    return [self tasksWithCondition:cond];
 }
-/*
-- (void) complete:(RTMTask *)task
-{
-   [task flagUpEditBits:EB_TASK_COMPLETED];
 
-   NSDictionary *dict = [NSDictionary dictionaryWithObject:task.completed forKey:@"completed"];
-   [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"WHERE id=%d", [task.iD intValue]]];
-}
-
-- (void) uncomplete:(RTMTask *)task
-{
-   [task flagUpEditBits:EB_TASK_COMPLETED];
-
-   NSDictionary *dict = [NSDictionary dictionaryWithObject:[[MilponHelper sharedHelper] invalidDate] forKey:@"completed"];
-   [local_cache_ update:dict table:@"task" condition:[NSString stringWithFormat:@"WHERE id=%d", [task.iD intValue]]];
-}
-*/
 - (NSNumber *) createAtOffline:(NSDictionary *)params
 {
    NSMutableDictionary *attrs = [NSMutableDictionary dictionaryWithDictionary:params];
@@ -221,8 +210,7 @@
       }
    }
 }
-#if 0
-// TODO: FIXME
+
 - (void) createOrUpdate:(NSDictionary *)params
 {
    // Tasks
@@ -233,7 +221,7 @@
          if (deleted && ! [deleted isEqualToString:@""]) {
             [self removeForID:[task valueForKey:@"id"]];
          } else {
-            [self updateTask:params];
+            [self updateTask:params]; // TODO
          }
       } else {
          if (! deleted || [deleted isEqualToString:@""]) {
@@ -242,7 +230,6 @@
       }
    }
 }
-#endif // 0
 
 - (void) remove:(RTMTask *) task
 {
@@ -286,9 +273,9 @@
    [local_cache_ insert:attrs into:@"note"];
 }
 */
-- (BOOL) taskExist:(NSNumber *)idd
+- (BOOL) taskExist:(NSNumber *)task_id
 {
-   NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d", [idd intValue]] forKey:@"WHERE"];
+   NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d", [task_id intValue]] forKey:@"WHERE"];
    NSArray *keys = [NSArray arrayWithObject:@"task_id"];
    NSArray *tasks = [local_cache_ select:keys from:@"task" option:where];
    return tasks.count == 1;

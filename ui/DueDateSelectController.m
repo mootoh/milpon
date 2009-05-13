@@ -24,6 +24,7 @@ enum {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
        calendar_picker = [[UICCalendarPicker alloc] initWithSize:UICCalendarPickerSizeExtraLarge];
        calendar_picker.delegate = self;
+       self.title = @"Due Date";
     }
     return self;
 }

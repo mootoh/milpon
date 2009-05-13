@@ -184,7 +184,6 @@
 		B9AE52E40F6B4AE50076D258 /* PriorityImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBB0F565DB600473A95 /* PriorityImageView.m */; };
 		B9AE52E50F6B4AE50076D258 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBD0F565DB600473A95 /* ProgressView.m */; };
 		B9AE52E70F6B4AE50076D258 /* TaskEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FC10F565DB600473A95 /* TaskEditCell.m */; };
-		B9AE52E80F6B4AE50076D258 /* ListSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916100D0F565F6500473A95 /* ListSelectController.m */; };
 		B9AE52E90F6B4AE50076D258 /* NoteEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610100F565F8A00473A95 /* NoteEditController.m */; };
 		B9AE52EA0F6B4AE50076D258 /* TagSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610120F565F8A00473A95 /* TagSelectController.m */; };
 		B9AE52EB0F6B4AE50076D258 /* DueDateSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610170F565F9E00473A95 /* DueDateSelectController.m */; };
@@ -263,6 +262,7 @@
 		B9D11FAF0F56A56300B5ABA4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9D1200C0F56A97B00B5ABA4 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
 		B9D120A40F5763DB00B5ABA4 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
+		B9DFD23F0FBA617B00FC1186 /* ListSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916100D0F565F6500473A95 /* ListSelectController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1340,7 +1340,6 @@
 				B9AE52E40F6B4AE50076D258 /* PriorityImageView.m in Sources */,
 				B9AE52E50F6B4AE50076D258 /* ProgressView.m in Sources */,
 				B9AE52E70F6B4AE50076D258 /* TaskEditCell.m in Sources */,
-				B9AE52E80F6B4AE50076D258 /* ListSelectController.m in Sources */,
 				B9AE52E90F6B4AE50076D258 /* NoteEditController.m in Sources */,
 				B9AE52EA0F6B4AE50076D258 /* TagSelectController.m in Sources */,
 				B9AE52EB0F6B4AE50076D258 /* DueDateSelectController.m in Sources */,
@@ -1361,6 +1360,7 @@
 				B904056B0FA82E1B00DEA392 /* RTMObject.m in Sources */,
 				B93AE4440FAB140E00343773 /* DBNoteProvider.m in Sources */,
 				B93AE4450FAB140E00343773 /* NoteProvider.m in Sources */,
+				B9DFD23F0FBA617B00FC1186 /* ListSelectController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

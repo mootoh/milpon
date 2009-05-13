@@ -20,6 +20,7 @@
 {
    if (self = [super initWithStyle:style]) {
       lists = [[[ListProvider sharedListProvider] lists] retain];
+      self.title = @"List";
    }
    return self;
 }
