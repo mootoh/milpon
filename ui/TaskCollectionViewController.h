@@ -11,6 +11,7 @@
 @interface TaskCollectionViewController : UITableViewController
 {
    NSObject <TaskCollection> *collector;
+   NSArray *collection;
 }
 
 @property (nonatomic, retain) NSObject <TaskCollection> *collector;

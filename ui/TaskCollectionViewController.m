@@ -15,6 +15,12 @@
 
 @synthesize collector;
 
+- (void) setCollector:(NSObject <TaskCollection> *)clctr
+{
+   collector = [clctr retain];
+   collection = [[collector collection] retain];
+}
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -24,7 +30,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   return [collector collection].count;
+   return collection.count;
 }
 
 #define LISVIEWCELL_TASK_COUNT_TAG 1
@@ -55,22 +61,20 @@
    }
    
    // Set up the cell
-   NSArray *cols = [collector collection];
-   NSObject <Collection> *collection = [cols objectAtIndex:indexPath.row];
-   cell.text = [collection name];
+   NSObject <Collection> *cols = [collection objectAtIndex:indexPath.row];
+   cell.text = [cols name];
    
-   task_count.text = [NSString stringWithFormat:@"%d", [collection taskCount]];
+   task_count.text = [NSString stringWithFormat:@"%d", [cols taskCount]];
    [cell setNeedsDisplay];
    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   NSArray *cols = [collector collection];
-   NSObject <Collection> *collection = [cols objectAtIndex:indexPath.row];
+   NSObject <Collection> *cols = [collection objectAtIndex:indexPath.row];
    
    // Navigation logic
-   TaskListViewController *ctrl = [[TaskListViewController alloc] initWithStyle:UITableViewStylePlain withCollection:collection];
+   TaskListViewController *ctrl = [[TaskListViewController alloc] initWithStyle:UITableViewStylePlain withCollection:cols];
    
    // Push the detail view controller
    [[self navigationController] pushViewController:ctrl animated:YES];
@@ -79,7 +83,8 @@
 
 - (void)dealloc
 {
-    [super dealloc];
+   [collection release];
+   [super dealloc];
 }
 
 @end
