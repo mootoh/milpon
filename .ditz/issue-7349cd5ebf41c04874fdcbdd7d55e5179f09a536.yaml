@@ -3,7 +3,7 @@ title: displays wrong list count in list view
 desc: ""
 type: :bugfix
 component: milpon
-release: 
+release: beta08
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -20,5 +20,9 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - commented
   - may need update the view.
+- - 2009-05-13 00:50:52.990683 Z
+  - mootoh <mootoh@gmail.com>
+  - assigned to release beta08 from unassigned
+  - ""
 git_branch: 
 claimer: 

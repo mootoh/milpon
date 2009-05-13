@@ -3,7 +3,7 @@ title: use 'syncing' instead of 'message' in progress.
 desc: ""
 type: :task
 component: milpon
-release: 
+release: "1.1"
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -15,6 +15,10 @@ log_events:
 - - 2009-02-19 12:00:08.191522 Z
   - mootoh <mootoh@gmail.com>
   - created
+  - ""
+- - 2009-05-13 00:52:35.756360 Z
+  - mootoh <mootoh@gmail.com>
+  - assigned to release 1.1 from unassigned
   - ""
 git_branch: 
 claimer: 

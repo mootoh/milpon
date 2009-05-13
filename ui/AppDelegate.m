@@ -212,9 +212,7 @@
 
    [syncer uploadPendingTasks:nil];
    [syncer syncModifiedTasks:nil];
-#if 0 // 20090502
    [syncer syncTasks:nil];
-#endif // 0
    [syncer release];
 
    //[self reload];
