@@ -16,9 +16,9 @@
   } method;
 }
 
-- (BOOL) add:(RTMNote *)note forIDs:(NSDictionary *)ids;
+- (NSInteger) add:(RTMNote *)note forIDs:(NSDictionary *)ids; // if failed, return -1
 - (BOOL) delete:(NSNumber *)note_id;
-- (BOOL) edit:(NSNumber *)note_id withTitle:(NSString *)title withText:(NSString *)text;
+- (BOOL) edit:(NSDictionary *)ids withTitle:(NSString *)title withText:(NSString *)text;
 
 @end
 // vim:set ft=objc:

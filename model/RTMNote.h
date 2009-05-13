@@ -13,6 +13,7 @@
 @property (nonatomic, assign) NSString   *title;
 @property (nonatomic, assign) NSString   *text;
 @property (nonatomic, readonly) NSNumber *task_id;
+@property (nonatomic, readonly) NSNumber *note_id;
 
 enum note_edit_bits_t {
    EB_NOTE_MODIFIED = 1 << 1

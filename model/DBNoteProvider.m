@@ -9,7 +9,6 @@
 #import "DBNoteProvider.h"
 #import "RTMNote.h"
 #import "LocalCache.h"
-#import "RTMAPINote.h"
 
 @implementation DBNoteProvider
 
@@ -28,7 +27,7 @@
 - (NSArray *) notesInTask:(NSInteger) task_id
 {
    NSMutableArray *ret = [NSMutableArray array];
-   NSArray *keys = [NSArray arrayWithObjects:@"note.id", @"note.title", @"note.text", @"note.task_id", @"note.edit_bits", nil];
+   NSArray *keys = [NSArray arrayWithObjects:@"note.id", @"note.title", @"note.text", @"note.task_id", @"note.edit_bits", @"note.note_id", nil];
    NSDictionary *note_opts = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d", task_id] forKey:@"WHERE"];
    NSArray *notes = [local_cache_ select:keys from:@"note" option:note_opts];
    for (NSDictionary *attr in notes) {
@@ -39,12 +38,13 @@
    return ret;
 }
 
-- (void) createNoteAtOnline:(NSString *)text title:(NSString *)title task_id:(NSInteger)task_id
+- (void) createNoteAtOnline:(NSString *)text title:(NSString *)title task_id:(NSInteger)task_id note_id:(NSInteger)note_id
 {
-   NSMutableArray *keys = [NSMutableArray arrayWithObjects:@"task_id", @"text", nil];
+   NSMutableArray *keys = [NSMutableArray arrayWithObjects:@"task_id", @"text", @"note_id", nil];
    NSMutableArray *vals = [NSMutableArray arrayWithObjects:
                            [NSNumber numberWithInteger:task_id],
                            text,
+                           note_id,
                            nil];
 
    if (! [title isEqualToString:@""]) {

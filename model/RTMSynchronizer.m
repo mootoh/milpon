@@ -183,10 +183,11 @@
       NSArray *notes = [[NoteProvider sharedNoteProvider] notesInTask:task.iD];
       for (RTMNote *note in notes) {
          // - API request (rtm.tasks.notes.add) using new Task ID
-         [api_note add:note forIDs:ids];
-
-         // remove old Note from DB
-         [[NoteProvider sharedNoteProvider] remove:note.iD]; // TODO: update IDs instead of removing
+         NSInteger note_id = [api_note add:note forIDs:ids];
+         if (note_id != -1) {
+            // remove old Note from DB
+            [[NoteProvider sharedNoteProvider] remove:note.iD]; // TODO: update IDs instead of removing
+         }
       }
       [api_note release];
 
@@ -269,8 +270,18 @@
          }
       }
 
-      // TODO: rename
-      // TODO: sync notes
+      if (edit_bits & EB_TASK_NAME) {
+         NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", nil];
+         NSArray *vals = [NSArray arrayWithObjects:
+                          [task.list_id_itself stringValue],
+                          [task.taskseries_id stringValue],
+                          [task.task_id stringValue],
+                          nil];
+         NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+         
+         if ([api_task setName:task.name forIDs:ids])
+            [task flagDownEditBits:EB_TASK_NAME];
+      }
 
       if (edit_bits & EB_TASK_LIST_ID) {
          NSArray *keys = [NSArray arrayWithObjects:@"from_list_id", @"to_list_id", @"taskseries_id", @"task_id", nil];
@@ -290,6 +301,38 @@
             [task flagDownEditBits:EB_TASK_LIST_ID];
          }
       }
+
+      RTMAPINote *api_note = [[RTMAPINote alloc] init];
+      // TODO: sync notes
+      for (RTMNote *note in [[NoteProvider sharedNoteProvider] notesInTask:task.iD]) {
+         if (note.edit_bits & EB_CREATED_OFFLINE) {
+            NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", nil];
+            NSArray *vals = [NSArray arrayWithObjects:
+                             [task.list_id_itself stringValue],
+                             [task.taskseries_id stringValue],
+                             [task.task_id stringValue],
+                             nil];
+            NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+            
+            NSInteger note_id = [api_note add:note forIDs:ids];
+            if (note_id != -1) {
+               [[NoteProvider sharedNoteProvider] remove:note.iD]; // TODO: update IDs instead of removing
+            }
+         } else if (note.edit_bits & EB_NOTE_MODIFIED) {
+            NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"note_id", nil];
+            NSArray *vals = [NSArray arrayWithObjects:
+                             [task.list_id_itself stringValue],
+                             [task.taskseries_id stringValue],
+                             [task.task_id stringValue],
+                             note.note_id,
+                             nil];
+            NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+            
+            if ([api_note edit:ids withTitle:note.title withText:note.text])
+               note.edit_bits = 0;
+         }
+      }
+      [api_note release];
 
       i++;
    }

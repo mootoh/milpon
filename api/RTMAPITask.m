@@ -481,4 +481,27 @@
    return YES;   
 }
 
+- (BOOL) setName:(NSString *)name forIDs:(NSDictionary *)ids
+{
+   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
+   NSString *timeline = [api createTimeline];
+   if (! timeline) return NO;
+   
+   NSMutableDictionary *args = [NSMutableDictionary dictionaryWithDictionary:ids];
+   [args setObject:timeline forKey:@"timeline"];
+   [args setObject:name forKey:@"name"];
+   
+   NSData *response = [api call:@"rtm.tasks.setName" withArgs:args];
+   if (! response) return NO;
+   
+   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
+   RTMAPIXMLParserCallback *cb = [[[RTMAPIXMLParserCallback alloc] init] autorelease];
+   [parser setDelegate:cb];
+   [parser parse];
+   if (! cb.succeeded) {
+      LOG(@"setName failed : %@", [cb.error localizedDescription]);
+      return NO;
+   }
+   return YES;   
+}
 @end

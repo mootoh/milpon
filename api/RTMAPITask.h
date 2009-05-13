@@ -49,5 +49,6 @@
 - (BOOL) complete:(RTMTask *)ids;
 - (BOOL) setTags:(NSString *)tags forIDs:(NSDictionary *)ids;
 - (BOOL) moveTo:(NSDictionary *)ids;
+- (BOOL) setName:(NSString *)name forIDs:(NSDictionary *)ids;
 @end
 // vim:set ft=objc:

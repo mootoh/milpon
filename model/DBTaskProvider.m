@@ -189,7 +189,7 @@
 
       // add notes
       for (NSDictionary *note in notes) {
-         [[NoteProvider sharedNoteProvider] createNoteAtOnline:[note objectForKey:@"text"] title:[note objectForKey:@"title"] task_id:[retn integerValue]];
+         [[NoteProvider sharedNoteProvider] createNoteAtOnline:[note objectForKey:@"text"] title:[note objectForKey:@"title"] task_id:[retn integerValue] note_id:[[note objectForKey:@"id"] integerValue]];
       }
 
       // add tags

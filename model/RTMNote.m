@@ -13,6 +13,7 @@
 DEFINE_ATTRIBUTE(title, Title, NSString*, EB_NOTE_MODIFIED);
 DEFINE_ATTRIBUTE(text, Text, NSString*, EB_NOTE_MODIFIED);
 DEFINE_ATTRIBUTE_RO(task_id, NSNumber *);
+DEFINE_ATTRIBUTE_RO(note_id, NSNumber *);
 
 
 + (NSString *) table_name
