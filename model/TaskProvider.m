@@ -113,10 +113,6 @@
 //   NSAssert(NO, @"not reach here");
 //   return NO;
 //}
-//- (void) updateTask:(NSDictionary *)taskseries
-//{
-//   NSAssert(NO, @"not reach here");
-//}
 //
 //- (BOOL) noteExist:(NSNumber *)note_id
 //{

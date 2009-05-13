@@ -38,7 +38,6 @@
 - (void) remove:(RTMTask *) task;
 //- (void) removeForID:(NSNumber *) task_id;
 //- (BOOL) taskExist:(NSNumber *)idd;
-//- (void) updateTask:(NSDictionary *)taskseries;
 //
 //- (void) createNote:(NSString *)note task_id:(NSNumber *)tid;
 //- (NSArray *) getNotes:(RTMTask *) task;

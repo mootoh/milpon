@@ -44,7 +44,7 @@
    NSMutableArray *vals = [NSMutableArray arrayWithObjects:
                            [NSNumber numberWithInteger:task_id],
                            text,
-                           note_id,
+                           [NSNumber numberWithInteger:note_id],
                            nil];
 
    if (! [title isEqualToString:@""]) {
