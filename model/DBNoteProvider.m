@@ -43,7 +43,7 @@
    NSMutableArray *keys = [NSMutableArray arrayWithObjects:@"task_id", @"text", @"note_id", nil];
    NSMutableArray *vals = [NSMutableArray arrayWithObjects:
                            [NSNumber numberWithInteger:task_id],
-                           text,
+                           text == nil ? @"" : text,
                            [NSNumber numberWithInteger:note_id],
                            nil];
 
