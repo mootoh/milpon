@@ -197,27 +197,26 @@
 
       // add tags
       for (NSString *tag in tags) {
-         LOG(@"tag %@ enter", tag);
          NSNumber *tag_id = [[TagProvider sharedTagProvider] find:tag];
          if (tag_id) {
-            LOG(@"tag_id %@ enter", tag);
             [[TagProvider sharedTagProvider] createRelation:retn tag_id:tag_id];
-            LOG(@"tag_id %@ leaving", tag);
          } else {
             NSArray *tag_keys = [NSArray arrayWithObjects:@"name", @"task_id", nil];
             NSArray *tag_vals = [NSArray arrayWithObjects:tag, retn, nil];
             NSDictionary *tag_param = [NSDictionary dictionaryWithObjects:tag_vals forKeys:tag_keys];
             [[TagProvider sharedTagProvider] create:tag_param];
          }
-         LOG(@"tag %@ leave", tag);
       }
    }
 }
 
 - (void) createOrUpdate:(NSDictionary *)params
-{
-   if ([self taskseriesExist:[params valueForKey:@"id"]])
-      [self removeForTaskseries:[params valueForKey:@"id"]]; // remove anyway
+{   
+   if ([self taskseriesExist:[params objectForKey:@"id"]]) {
+      for (NSDictionary *task in [params objectForKey:@"task"])
+         [[NoteProvider sharedNoteProvider] removeForTask:[[task objectForKey:@"id"] integerValue]];
+      [self removeForTaskseries:[params objectForKey:@"id"]]; // remove anyway
+   }
 
    [self createAtOnline:params];
 }
@@ -283,7 +282,7 @@
    NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"taskseries_id=%d", [taskseries_id intValue]] forKey:@"WHERE"];
    NSArray *keys = [NSArray arrayWithObject:@"taskseries_id"];
    NSArray *tasks = [local_cache_ select:keys from:@"task" option:where];
-   return tasks.count == 1;
+   return tasks.count > 1;
 }
 
 - (void) removeForTaskseries:(NSNumber *) taskseries_id

@@ -118,6 +118,12 @@
    [local_cache_ delete:@"note" condition:cond];
 }
 
+- (void) removeForTask:(NSInteger) task_id
+{
+   NSString *cond = [NSString stringWithFormat:@"WHERE task_id = %d", task_id];
+   [local_cache_ delete:@"note" condition:cond];
+}
+
 @end // DBNoteProvider
 
 @implementation NoteProvider (DB)

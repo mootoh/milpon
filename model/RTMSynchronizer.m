@@ -295,11 +295,15 @@
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
          if ([api_task moveTo:ids]) {
+            /*
             NSArray *update_keys = [NSArray arrayWithObjects:@"list_id", @"to_list_id", nil];
             NSArray *update_vals = [NSArray arrayWithObjects:task.to_list_id, [NSNull null], nil];
             NSDictionary *update_dict = [NSDictionary dictionaryWithObjects:update_vals forKeys:update_keys];
             [[LocalCache sharedLocalCache] update:update_dict table:@"task" condition:[NSString stringWithFormat:@"WHERE id=%d", task.iD]];
+             */
             [task flagDownEditBits:EB_TASK_LIST_ID];
+            [[TaskProvider sharedTaskProvider] remove:task]; // TODO: do not remove, keep it in DB to review completed tasks.
+
          }
       }
 
