@@ -96,6 +96,7 @@
 
 - (void) dealloc
 {
+   [pv release];
    [navigationController release];
    [operationQueue release];
    [auth release];
@@ -116,6 +117,12 @@
       [self showAuthentication];
 
    [self recoverView];
+
+   CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+   pv = [[ProgressView alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height, appFrame.size.width, 100)];
+   pv.tag = PROGRESSVIEW_TAG;
+   [window addSubview:pv];
+
    [window makeKeyAndVisible];
 }
 
@@ -186,9 +193,9 @@
       LOG(@"OK");
    }
 #endif // 0
-   //refreshButton.enabled = NO;
-   //[progressView progressBegin];
+
    NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];
+   [self showDialog];
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    [app.operationQueue addOperation:ope];
@@ -206,13 +213,14 @@
 // TODO: shows CoreAnimation animated progressbar
 - (void) uploadOperation
 {
+   navigationController.navigationBar.topItem.leftBarButtonItem.enabled = NO;
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
    RTMSynchronizer *syncer = [[RTMSynchronizer alloc] init:auth];
 
-   [syncer uploadPendingTasks:nil];
-   [syncer syncModifiedTasks:nil];
-   [syncer syncTasks:nil];
+   [syncer uploadPendingTasks:pv];
+   [syncer syncModifiedTasks:pv];
+   [syncer syncTasks:pv];
    [syncer release];
 
    //[self reload];
@@ -233,20 +241,15 @@
    [progressView updateMessage:[NSString stringWithFormat:@"Updated: %@", lastUpdated]];
 #endif // 0
 
-   //[progressView progressEnd];
-   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-   //refreshButton.enabled = YES;
+   [self performSelectorOnMainThread:@selector(hideDialog) withObject:nil waitUntilDone:YES];
 }
 
 - (IBAction) showDialog
 {
-   // setup ProgressView
    CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
-   ProgressView *pv = [[ProgressView alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height, appFrame.size.width, 100)];
    pv.alpha = 0.0f;
    pv.backgroundColor = [UIColor blackColor];
    pv.opaque = YES;
-   [window addSubview:pv];
 
    // animation part
    [UIView beginAnimations:nil context:NULL]; {
@@ -257,14 +260,29 @@
       pv.alpha = 0.8f;
       pv.frame = CGRectMake(appFrame.origin.x, appFrame.size.height-80, appFrame.size.width, 100);
    } [UIView commitAnimations];
-   
-   [pv toggleDisplay];
-   [pv release];
 }
 
 - (void)animationFinished:(NSString *)animationID finished:(BOOL)finished context:(void *)context
 {
    LOG(@"dialogAnimDidStop");
+}
+
+- (IBAction) hideDialog
+{
+   CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+   // animation part
+   [UIView beginAnimations:nil context:NULL]; {
+      [UIView setAnimationDuration:0.20f];
+      [UIView setAnimationDelegate:self];
+      [UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
+      
+      pv.alpha = 0.0f;
+      pv.frame = CGRectMake(appFrame.origin.x, appFrame.size.height, appFrame.size.width, 100);
+   } [UIView commitAnimations];
+   
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+   navigationController.navigationBar.topItem.leftBarButtonItem.enabled = YES;
+   [self.window setNeedsDisplay];
 }
 
 @end

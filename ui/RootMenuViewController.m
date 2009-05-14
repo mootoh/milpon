@@ -24,7 +24,7 @@ enum sec_zero {
 };
 
 enum sec_one {
-   SEC_ONE_REVIEW,
+   //SEC_ONE_REVIEW,
    SEC_ONE_SETTING,
    SEC_ONE_COUNT
 };
@@ -152,10 +152,12 @@ enum sec_one {
       }
    } else {
       switch (indexPath.row) {
+#if 0
       case SEC_ONE_REVIEW:
          cell.text = @"Review";
          cell.textColor = [UIColor grayColor];
          break;
+#endif // 0
       case SEC_ONE_SETTING:
          cell.text = @"Setting";
          break;
@@ -212,10 +214,12 @@ enum sec_one {
       }
    } else {
       switch (indexPath.row) {
+#if 0
       case SEC_ONE_REVIEW:
          //vc = [[ReviewViewController alloc] initWithStyle:UITableViewStylePlain];
          //break;
          return; // TODO:temporally
+#endif // 0
       case SEC_ONE_SETTING:
          vc = [[ConfigViewController alloc] initWithNibName:nil bundle:nil];
          break;

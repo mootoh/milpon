@@ -6,6 +6,10 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
+enum {
+   PROGRESSVIEW_TAG = 1
+};
+
 @interface ProgressView : UIView
 {
   UIActivityIndicatorView *activityIndicator;
