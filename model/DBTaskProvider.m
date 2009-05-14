@@ -217,17 +217,11 @@
    // Tasks
    NSArray *tasks = [params valueForKey:@"tasks"];
    for (NSDictionary *task in tasks) {
-      NSString *deleted = [task valueForKey:@"deleted"];
-      if ([self taskExist:[task valueForKey:@"id"]]) {
+      if ([self taskExist:[task valueForKey:@"id"]])
          [self removeForID:[task valueForKey:@"id"]]; // remove anyway
-         if (!deleted || [deleted isEqualToString:@""]) {
-            [self createAtOnline:params];
-         }
-      } else {
-         if (! deleted || [deleted isEqualToString:@""]) {
-            [self createAtOnline:params];
-         }
-      }
+      NSString *deleted = [task valueForKey:@"deleted"];
+      if (! deleted || [deleted isEqualToString:@""])
+         [self createAtOnline:params];
    }
 }
 

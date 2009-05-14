@@ -211,13 +211,13 @@ enum {
    
    
    if (task.url && ![task.url isEqualToString:@""]) {
-      UIButton *url_button = [[UIButton alloc] initWithFrame:CGRectMake(280, 100, 20, 20)];
-      UIImage *url_image = [[UIImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_url.png"]];
-      [url_button setImage:url_image forState:UIControlStateNormal];
+      UIButton *url_button = [[UIButton alloc] initWithFrame:CGRectMake(238, 60, 18, 18)];
+      UIImage *url_icon_image = [[UIImage alloc] initWithContentsOfFile:
+                                 [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_url.png"]];
+      [url_button setImage:url_icon_image forState:UIControlStateNormal];
+      [url_icon_image release];
       [url_button addTarget:self action:@selector(showWebView) forControlEvents:UIControlEventTouchDown];
-      
       [self.view addSubview:url_button];
-      [url_image release];
       [url_button release];
    }
 }

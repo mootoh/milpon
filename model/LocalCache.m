@@ -302,9 +302,8 @@
 {
    NSArray *keys = [NSArray arrayWithObject:@"sync_date"];
    NSDictionary *result = [[self select:keys from:@"last_sync"] objectAtIndex:0];
-   NSDate *last_sync_date = [result objectForKey:@"sync_date"];
-   return [[MilponHelper sharedHelper] dateToRtmString:last_sync_date];
-
+   NSString *last_sync_date = [result objectForKey:@"sync_date"];
+   return last_sync_date;
 }
 
 - (void) updateLastSync

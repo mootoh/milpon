@@ -162,15 +162,16 @@
       if (0 != [task.location_id intValue])
          [api_task setLocation:[task.location_id stringValue] forIDs:ids];
 
-      if (0 != [task.priority intValue]) // TODO: care priority=4s
+      if (4 != [task.priority intValue]) // TODO: care priority=4s
          [api_task setPriority:[task.priority stringValue] forIDs:ids];
 
       if (task.estimate && ![task.estimate isEqualToString:@""]) 
          [api_task setEstimate:task.estimate forIDs:ids];
 
-      if (task.tags) {
+      NSArray *tags = task.tags;
+      if (tags && tags.count > 0) {
          NSString *tag_str = @"";
-         for (RTMTag *tg in task.tags)
+         for (RTMTag *tg in tags)
             tag_str = [tag_str stringByAppendingFormat:@"%@,", tg.name];
          tag_str = [tag_str substringToIndex:tag_str.length-1]; // cut last ', '
 
