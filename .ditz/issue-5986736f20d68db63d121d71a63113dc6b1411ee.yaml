@@ -5,8 +5,8 @@ type: :task
 component: milpon
 release: beta08
 reporter: mootoh <mootoh@gmail.com>
-status: :unstarted
-disposition: 
+status: :closed
+disposition: :fixed
 creation_time: 2009-05-14 16:19:02.472203 Z
 references: []
 
@@ -15,6 +15,10 @@ log_events:
 - - 2009-05-14 16:19:02.472559 Z
   - mootoh <mootoh@gmail.com>
   - created
+  - ""
+- - 2009-05-14 18:22:22.068217 Z
+  - mootoh <mootoh@gmail.com>
+  - closed with disposition fixed
   - ""
 git_branch: 
 claimer: 
