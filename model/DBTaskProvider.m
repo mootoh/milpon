@@ -20,6 +20,8 @@
 - (BOOL) taskExist:(NSNumber *)task_id;
 - (void) removeForID:(NSNumber *) task_id;
 - (void) updateTask:(NSDictionary *)taskseries;
+- (BOOL) taskseriesExist:(NSNumber *)taskseries_id;
+- (void) removeForTaskseries:(NSNumber *) taskseries_id;
 @end
 
 @implementation DBTaskProvider
@@ -214,15 +216,10 @@
 
 - (void) createOrUpdate:(NSDictionary *)params
 {
-   // Tasks
-   NSArray *tasks = [params valueForKey:@"tasks"];
-   for (NSDictionary *task in tasks) {
-      if ([self taskExist:[task valueForKey:@"id"]])
-         [self removeForID:[task valueForKey:@"id"]]; // remove anyway
-      NSString *deleted = [task valueForKey:@"deleted"];
-      if (! deleted || [deleted isEqualToString:@""])
-         [self createAtOnline:params];
-   }
+   if ([self taskseriesExist:[params valueForKey:@"id"]])
+      [self removeForTaskseries:[params valueForKey:@"id"]]; // remove anyway
+
+   [self createAtOnline:params];
 }
 
 - (void) remove:(RTMTask *) task
@@ -278,6 +275,20 @@
 - (void) removeForID:(NSNumber *) task_id
 {
    NSString *cond = [NSString stringWithFormat:@"WHERE task_id = %d", [task_id intValue]];
+   [local_cache_ delete:@"task" condition:cond];
+}
+
+- (BOOL) taskseriesExist:(NSNumber *)taskseries_id
+{
+   NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"taskseries_id=%d", [taskseries_id intValue]] forKey:@"WHERE"];
+   NSArray *keys = [NSArray arrayWithObject:@"taskseries_id"];
+   NSArray *tasks = [local_cache_ select:keys from:@"task" option:where];
+   return tasks.count == 1;
+}
+
+- (void) removeForTaskseries:(NSNumber *) taskseries_id
+{
+   NSString *cond = [NSString stringWithFormat:@"WHERE taskseries_id = %d", [taskseries_id intValue]];
    [local_cache_ delete:@"task" condition:cond];
 }
 

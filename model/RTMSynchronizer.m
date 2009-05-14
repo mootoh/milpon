@@ -231,8 +231,8 @@
       }
       if (edit_bits & EB_TASK_COMPLETED) {
          if ([api_task complete:task]) {
-            [[TaskProvider sharedTaskProvider] remove:task]; // TODO: do not remove, keep it in DB to review completed tasks.
             [task flagDownEditBits:EB_TASK_COMPLETED];
+            [[TaskProvider sharedTaskProvider] remove:task]; // TODO: do not remove, keep it in DB to review completed tasks.
             i++;
             continue;
          }
