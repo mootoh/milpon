@@ -33,7 +33,8 @@
 
 - (NSArray *) lists
 {
-   return [self loadLists];
+   NSDictionary *option = [NSDictionary dictionaryWithObject:@"list.filter is NULL" forKey:@"WHERE"]; // skip Smart List
+	return [self loadLists:option];
 }
 
 - (void) sync
@@ -46,7 +47,9 @@
 
    for (NSDictionary *list in lists)
       [self create:list];
-   [self loadLists];
+   
+   NSDictionary *option = [NSDictionary dictionaryWithObject:@"list.filter is NULL" forKey:@"WHERE"]; // skip Smart List
+   [self loadLists:option];
 }
 @end // DBListProvider
 
