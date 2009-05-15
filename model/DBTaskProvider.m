@@ -282,7 +282,7 @@
    NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"taskseries_id=%d", [taskseries_id intValue]] forKey:@"WHERE"];
    NSArray *keys = [NSArray arrayWithObject:@"taskseries_id"];
    NSArray *tasks = [local_cache_ select:keys from:@"task" option:where];
-   return tasks.count > 1;
+   return tasks.count > 0;
 }
 
 - (void) removeForTaskseries:(NSNumber *) taskseries_id
