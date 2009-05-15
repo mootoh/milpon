@@ -52,12 +52,12 @@
       task_count.tag = LISVIEWCELL_TASK_COUNT_TAG;
       task_count.font = [UIFont systemFontOfSize:16.0];
       task_count.textAlignment = UITextAlignmentCenter;
-      task_count.backgroundColor = [UIColor colorWithRed:0.0078 green:0.421 blue:0.921 alpha:1.0];
+      task_count.backgroundColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
       task_count.textColor = [UIColor whiteColor];
       task_count.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
       [cell addSubview:task_count];
    } else {
-      task_count = (UILabel *)[cell.contentView viewWithTag:LISVIEWCELL_TASK_COUNT_TAG];
+      task_count = (UILabel *)[cell viewWithTag:LISVIEWCELL_TASK_COUNT_TAG];
    }
    
    // Set up the cell
