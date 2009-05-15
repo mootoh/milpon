@@ -185,6 +185,13 @@
    [local_cache_ insert:attrs into:@"task_tag"];
 }
 
+- (BOOL) existRelation:(NSNumber *)task_id tag_id:(NSNumber *)tag_id
+{
+   NSArray *keys = [NSArray arrayWithObjects:@"task_id", @"tag_id", nil];   
+   NSArray *ret = [local_cache_ select:keys from:@"task_tag"];
+   return ret.count > 0;
+}
+
 - (NSString *)nameForTagID:(NSNumber *)tag_id {
    for (RTMTag *lst in [self tags]) {
       if ([lst.iD isEqualToNumber:tag_id])

@@ -206,7 +206,8 @@
       for (NSString *tag in tags) {
          NSNumber *tag_id = [[TagProvider sharedTagProvider] find:tag];
          if (tag_id) {
-            [[TagProvider sharedTagProvider] createRelation:retn tag_id:tag_id];
+            if (! [[TagProvider sharedTagProvider] existRelation:retn tag_id:tag_id]) 
+               [[TagProvider sharedTagProvider] createRelation:retn tag_id:tag_id];
          } else {
             NSArray *tag_keys = [NSArray arrayWithObjects:@"name", @"task_id", nil];
             NSArray *tag_vals = [NSArray arrayWithObjects:tag, retn, nil];
@@ -220,8 +221,10 @@
 - (void) createOrUpdate:(NSDictionary *)params
 {   
    if ([self taskseriesExist:[params objectForKey:@"id"]]) {
-      for (NSDictionary *task in [params objectForKey:@"task"])
-         [[NoteProvider sharedNoteProvider] removeForTask:[[task objectForKey:@"id"] integerValue]];
+      for (NSDictionary *task in [params objectForKey:@"tasks"]) {
+         NSInteger task_id = [[task objectForKey:@"id"] integerValue];
+         [[NoteProvider sharedNoteProvider] removeForTask:task_id];
+      }
       [self removeForTaskseries:[params objectForKey:@"id"]]; // remove anyway
    }
 

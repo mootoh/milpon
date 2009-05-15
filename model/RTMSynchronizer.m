@@ -22,6 +22,7 @@
 #import "LocalCache.h"
 #import "NoteProvider.h"
 #import "MilponHelper.h"
+#import "TagProvider.h"
 
 @implementation RTMSynchronizer
 
@@ -174,9 +175,11 @@
          for (RTMTag *tg in tags)
             tag_str = [tag_str stringByAppendingFormat:@"%@,", tg.name];
          tag_str = [tag_str substringToIndex:tag_str.length-1]; // cut last ', '
-
-            
-         [api_task setTags:tag_str forIDs:ids];
+         
+         if (-1 != [api_task setTags:tag_str forIDs:ids]) {
+            for (RTMTag *tg in tags)
+               [[TagProvider sharedTagProvider] remove:tg]; // TODO: update IDs instead of removing            
+         }
       }
 
       // get Note from DB by old Task ID
@@ -232,7 +235,7 @@
       if (edit_bits & EB_TASK_COMPLETED) {
          if ([api_task complete:task]) {
             [task flagDownEditBits:EB_TASK_COMPLETED];
-            [[TaskProvider sharedTaskProvider] remove:task]; // TODO: do not remove, keep it in DB to review completed tasks.
+            //[[TaskProvider sharedTaskProvider] remove:task]; // TODO: do not remove, keep it in DB to review completed tasks.
             i++;
             continue;
          }
@@ -295,15 +298,7 @@
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
          if ([api_task moveTo:ids]) {
-            /*
-            NSArray *update_keys = [NSArray arrayWithObjects:@"list_id", @"to_list_id", nil];
-            NSArray *update_vals = [NSArray arrayWithObjects:task.to_list_id, [NSNull null], nil];
-            NSDictionary *update_dict = [NSDictionary dictionaryWithObjects:update_vals forKeys:update_keys];
-            [[LocalCache sharedLocalCache] update:update_dict table:@"task" condition:[NSString stringWithFormat:@"WHERE id=%d", task.iD]];
-             */
             [task flagDownEditBits:EB_TASK_LIST_ID];
-            [[TaskProvider sharedTaskProvider] remove:task]; // TODO: do not remove, keep it in DB to review completed tasks.
-
          }
       }
       i++;
