@@ -17,7 +17,6 @@
 - (NSArray *) tasks:(BOOL) showCompleted;
 - (NSArray *) tasksInList:(NSInteger) list_id showCompleted:(BOOL) sc;
 - (NSArray *) tasksInTag: (NSInteger) tag_id showCompleted:(BOOL) sc;
-
 - (NSArray *) modifiedTasks;
 - (NSArray *) pendingTasks;
 //- (NSArray *) existingTasks;
@@ -25,6 +24,8 @@
 //- (NSArray *) todayTasks;
 //- (NSArray *) tomorrowTasks;
 //- (NSArray *) inAWeekTasks;
+
+- (RTMTask *) taskForNote:(RTMNote *) note;
 
 #pragma mark Create
 /**

@@ -130,7 +130,7 @@ static NSString *s_token;
    while (key = [enumerator nextObject]) {
       // escape values
       NSString *val = [args_with_token objectForKey:key];
-      val = [val stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+      val = [val stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; // TODO
       val = [val stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
 
       [arg appendFormat:@"&%@=%@", key, val];

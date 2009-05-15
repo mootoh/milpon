@@ -16,6 +16,12 @@
    return nil;
 }
 
+- (NSArray *) modifiedNotes
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 - (void) createNoteAtOnline:(NSString *)text title:(NSString *)title task_id:(NSInteger)task_id note_id:(NSInteger)note_id
 {
    NSAssert(NO, @"not reach here");

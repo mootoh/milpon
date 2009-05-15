@@ -12,6 +12,7 @@
 @interface NoteProvider : NSObject
 
 - (NSArray *) notesInTask:(NSInteger) task_id;
+- (NSArray *) modifiedNotes;
 - (void) createNoteAtOnline:(NSString *)text title:(NSString *)title task_id:(NSInteger)task_id note_id:(NSInteger)note_id;
 - (NSNumber *) createAtOffline:(NSString *)note inTask:(NSInteger) task_id;
 - (void) update:(RTMNote *)note text:(NSString *)text;

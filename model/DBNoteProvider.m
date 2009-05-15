@@ -38,6 +38,20 @@
    return ret;
 }
 
+- (NSArray *) modifiedNotes
+{
+   NSMutableArray *ret = [NSMutableArray array];
+   NSArray *keys = [NSArray arrayWithObjects:@"note.id", @"note.title", @"note.text", @"note.task_id", @"note.edit_bits", @"note.note_id", nil];
+   NSDictionary *cond = [NSDictionary dictionaryWithObject:@"edit_bits>0" forKey:@"WHERE"];
+   NSArray *notes = [local_cache_ select:keys from:@"note" option:cond];
+   for (NSDictionary *attr in notes) {
+      RTMNote *note = [[RTMNote alloc] initByAttributes:attr];
+      [ret addObject:note];
+      [note release];
+   }
+   return ret;
+}
+
 - (void) createNoteAtOnline:(NSString *)text title:(NSString *)title task_id:(NSInteger)task_id note_id:(NSInteger)note_id
 {
    NSMutableArray *keys = [NSMutableArray arrayWithObjects:@"task_id", @"text", @"note_id", nil];

@@ -10,6 +10,7 @@
 #import "RTMTask.h"
 #import "Collection.h"
 #import "RTMTag.h"
+#import "RTMNote.h"
 #import "LocalCache.h"
 #import "logger.h"
 #import "MilponHelper.h"
@@ -117,6 +118,12 @@
 {
    NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"edit_bits & %d", EB_CREATED_OFFLINE] forKey:@"WHERE"];
    return [self tasksWithCondition:cond];
+}
+
+- (RTMTask *) taskForNote:(RTMNote *) note
+{
+   NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"id=%d", note.task_id] forKey:@"WHERE"];
+   return [[self tasksWithCondition:cond] objectAtIndex:0];
 }
 
 - (NSNumber *) createAtOffline:(NSDictionary *)params

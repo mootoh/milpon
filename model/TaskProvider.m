@@ -98,6 +98,12 @@
    return nil;
 }
 
+- (RTMTask *) taskForNote:(RTMNote *) note
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 - (void) createOrUpdate:(NSDictionary *)params
 {
    NSAssert(NO, @"not reach here");
