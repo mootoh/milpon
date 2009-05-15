@@ -122,7 +122,7 @@
 
 - (RTMTask *) taskForNote:(RTMNote *) note
 {
-   NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"id=%d", note.task_id] forKey:@"WHERE"];
+   NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"id=%d", [note.task_id integerValue]] forKey:@"WHERE"];
    return [[self tasksWithCondition:cond] objectAtIndex:0];
 }
 

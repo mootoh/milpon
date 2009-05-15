@@ -129,7 +129,8 @@ static NSString *s_token;
    NSString *key;
    while (key = [enumerator nextObject]) {
       // escape values
-      NSString *val = [args_with_token objectForKey:key];
+      id v = [args_with_token objectForKey:key];
+      NSString *val = [v isKindOfClass:[NSString class]] ? v : [v stringValue];
       val = [val stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; // TODO
       val = [val stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
 
