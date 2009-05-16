@@ -8,6 +8,7 @@
  */
 
 @class RTMNote;
+@class RTMTask;
 
 @interface NoteProvider : NSObject
 
@@ -17,7 +18,7 @@
 - (NSNumber *) createAtOffline:(NSString *)note inTask:(NSInteger) task_id;
 - (void) update:(RTMNote *)note text:(NSString *)text;
 - (void) remove:(NSInteger) note_id;
-- (void) removeForTask:(NSInteger) task_id;
+- (void) removeForTask:(RTMTask *) task_id;
 
 + (NoteProvider *) sharedNoteProvider;
 

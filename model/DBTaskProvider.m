@@ -23,6 +23,7 @@
 - (void) updateTask:(NSDictionary *)taskseries;
 - (BOOL) taskseriesExist:(NSNumber *)taskseries_id;
 - (void) removeForTaskseries:(NSNumber *) taskseries_id;
+- (RTMTask *) taskForTaskID:(NSInteger) task_id;
 @end
 
 @implementation DBTaskProvider
@@ -122,7 +123,7 @@
 
 - (RTMTask *) taskForNote:(RTMNote *) note
 {
-   NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"id=%d", note.task_id] forKey:@"WHERE"];
+   NSDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"id=%d", [note.task_id integerValue]] forKey:@"WHERE"];
    return [[self tasksWithCondition:cond] objectAtIndex:0];
 }
 
@@ -223,12 +224,19 @@
    if ([self taskseriesExist:[params objectForKey:@"id"]]) {
       for (NSDictionary *task in [params objectForKey:@"tasks"]) {
          NSInteger task_id = [[task objectForKey:@"id"] integerValue];
-         [[NoteProvider sharedNoteProvider] removeForTask:task_id];
+         RTMTask *rtm_task = [self taskForTaskID:task_id];
+         [[NoteProvider sharedNoteProvider] removeForTask:rtm_task];
       }
       [self removeForTaskseries:[params objectForKey:@"id"]]; // remove anyway
    }
 
    [self createAtOnline:params];
+}
+
+- (RTMTask *) taskForTaskID:(NSInteger) task_id
+{
+   NSMutableDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d", task_id] forKey:@"WHERE"];
+   return [[self tasksWithCondition:cond] objectAtIndex:0];
 }
 
 - (void) remove:(RTMTask *) task

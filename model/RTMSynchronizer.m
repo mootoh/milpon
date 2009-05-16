@@ -329,7 +329,7 @@
                           [task.list_id_itself stringValue],
                           [task.taskseries_id stringValue],
                           [task.task_id stringValue],
-                          note.note_id,
+                          [note.note_id stringValue],
                           nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
          
