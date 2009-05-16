@@ -8,6 +8,7 @@
 
 #import "DBNoteProvider.h"
 #import "RTMNote.h"
+#import "RTMTask.h"
 #import "LocalCache.h"
 
 @implementation DBNoteProvider
@@ -132,9 +133,9 @@
    [local_cache_ delete:@"note" condition:cond];
 }
 
-- (void) removeForTask:(NSInteger) task_id
+- (void) removeForTask:(RTMTask *) task
 {
-   NSString *cond = [NSString stringWithFormat:@"WHERE task_id = %d", task_id];
+   NSString *cond = [NSString stringWithFormat:@"WHERE task_id=%d", task.iD];
    [local_cache_ delete:@"note" condition:cond];
 }
 

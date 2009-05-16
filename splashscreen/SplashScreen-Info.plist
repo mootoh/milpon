@@ -4,27 +4,19 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
-	<key>CFBundleDisplayName</key>
-	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>MilponIconSmall.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.deadbeaf.milpon</string>
+	<string>com.yourcompany.${PRODUCT_NAME:identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.0</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
+	<string>1.0</string>
 	<key>NSMainNibFile</key>
-	<string>MainWindow</string>
+	<string>SplashScreen</string>
 </dict>
 </plist>

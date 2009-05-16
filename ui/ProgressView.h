@@ -24,12 +24,10 @@ enum {
 
 - (void) progressBegin;
 - (void) progressEnd;
-- (void) updateMessage:(NSString *)msg;
-
+#if 0
 /**
  * @note should be called in background thread (not main thread)
  */
 - (void) updateMessage:(NSString *)msg withProgress:(float)pg;
-- (void) toggleDisplay;
-
+#endif // 0
 @end

@@ -26,6 +26,12 @@
    NSAssert(NO, @"not reach here");
 }
 
+- (BOOL) existRelation:(NSNumber *)task_id tag_id:(NSNumber *)tag_id
+{
+   NSAssert(NO, @"not reach here");
+   return NO;
+}
+
 - (void) removeRelationForTask:(NSInteger)task_id
 {
    NSAssert(NO, @"not reach here");

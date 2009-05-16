@@ -3,7 +3,7 @@ title: treat as 'canceled' when task attribute edit has no means
 desc: current implementation always sync even if there's nothing changed.
 type: :task
 component: milpon
-release: beta08
+release: "1.1"
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -15,6 +15,10 @@ log_events:
 - - 2009-05-15 16:02:42.574291 Z
   - mootoh <mootoh@gmail.com>
   - created
+  - ""
+- - 2009-05-16 03:40:06.788506 Z
+  - mootoh <mootoh@gmail.com>
+  - assigned to release 1.1 from beta08
   - ""
 git_branch: 
 claimer: 

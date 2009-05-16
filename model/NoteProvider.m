@@ -43,7 +43,7 @@
    NSAssert(NO, @"not reach here");
 }
 
-- (void) removeForTask:(NSInteger) task_id
+- (void) removeForTask:(RTMTask *) task_id
 {
    NSAssert(NO, @"not reach here");
 }

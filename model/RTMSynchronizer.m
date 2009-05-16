@@ -22,6 +22,7 @@
 #import "LocalCache.h"
 #import "NoteProvider.h"
 #import "MilponHelper.h"
+#import "TagProvider.h"
 
 @implementation RTMSynchronizer
 
@@ -124,7 +125,8 @@
    int i=0;
    for (NSDictionary *taskseries in taskserieses_updated) {
       if (progressView)
-         [progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, taskserieses_updated.count] withProgress:(float)i/(float)taskserieses_updated.count];
+         //[progressView updateMessage:[NSString stringWithFormat:@"syncing task %d/%d", i, taskserieses_updated.count] withProgress:(float)i/(float)taskserieses_updated.count];
+         progressView.message = [NSString stringWithFormat:@"syncing task %d/%d", i, taskserieses_updated.count];
 
       [[TaskProvider sharedTaskProvider] createOrUpdate:taskseries];
       i++;
@@ -142,6 +144,9 @@
 
    int i=1;
    for (RTMTask *task in pendings) {
+      //[progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/(float)pendings.count];
+      progressView.message = [NSString stringWithFormat:@"uploading %d/%d tasks...", i, pendings.count];
+
       NSString *list_id = [task.list_id stringValue];
       NSDictionary *task_ret = [api_task add:task.name inList:list_id];
       if (task_ret == nil)
@@ -174,9 +179,11 @@
          for (RTMTag *tg in tags)
             tag_str = [tag_str stringByAppendingFormat:@"%@,", tg.name];
          tag_str = [tag_str substringToIndex:tag_str.length-1]; // cut last ', '
-
-            
-         [api_task setTags:tag_str forIDs:ids];
+         
+         if (-1 != [api_task setTags:tag_str forIDs:ids]) {
+            for (RTMTag *tg in tags)
+               [[TagProvider sharedTagProvider] remove:tg]; // TODO: update IDs instead of removing            
+         }
       }
 
       // get Note from DB by old Task ID
@@ -194,7 +201,6 @@
 
       [[TaskProvider sharedTaskProvider] remove:task]; // TODO: update IDS instaed of removing
 
-      [progressView updateMessage:[NSString stringWithFormat:@"uploading %d/%d tasks", i, pendings.count] withProgress:(float)i/(float)pendings.count];
       i++;
    }
 
@@ -203,47 +209,15 @@
 
 - (void) syncModifiedTasks:(ProgressView *)progressView
 {
+   RTMAPITask *api_task = [[RTMAPITask alloc] init];
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-   RTMAPINote *api_note = [[RTMAPINote alloc] init];
-   NSArray *modified_notes = [[NoteProvider sharedNoteProvider] modifiedNotes];
-   for (RTMNote *note in modified_notes) {
-      RTMTask *task = [[TaskProvider sharedTaskProvider] taskForNote:note];
-      if (note.edit_bits & EB_CREATED_OFFLINE) {
-         NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", nil];
-         NSArray *vals = [NSArray arrayWithObjects:
-                          [task.list_id_itself stringValue],
-                          [task.taskseries_id stringValue],
-                          [task.task_id stringValue],
-                          nil];
-         NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-         
-         NSInteger note_id = [api_note add:note forIDs:ids];
-         if (note_id != -1) {
-            [[NoteProvider sharedNoteProvider] remove:note.iD]; // TODO: update IDs instead of removing
-         }
-      } else if (note.edit_bits & EB_NOTE_MODIFIED) {
-         NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"note_id", nil];
-         NSArray *vals = [NSArray arrayWithObjects:
-                          [task.list_id_itself stringValue],
-                          [task.taskseries_id stringValue],
-                          [task.task_id stringValue],
-                          note.note_id,
-                          nil];
-         NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-         
-         if ([api_note edit:ids withTitle:note.title withText:note.text])
-            note.edit_bits = 0;
-      }
-   }
-   [api_note release];
-   
-   RTMAPITask *api_task = [[RTMAPITask alloc] init];   
    int i=0;
    NSArray *tasks = [[TaskProvider sharedTaskProvider] modifiedTasks];
    for (RTMTask *task in tasks) {
       if (progressView)
-         [progressView updateMessage:[NSString stringWithFormat:@"updating %d/%d, %@...", i,tasks.count, task.name] withProgress:(float)i/(float)tasks.count];
+         //[progressView updateMessage:[NSString stringWithFormat:@"updating %d/%d, %@...", i,tasks.count, task.name] withProgress:(float)i/(float)tasks.count];
+         progressView.message = [NSString stringWithFormat:@"updating %d/%d\n%@...", i,tasks.count, task.name];
       NSInteger edit_bits = task.edit_bits;
 
       if (edit_bits & EB_TASK_DUE) {
@@ -265,7 +239,7 @@
       if (edit_bits & EB_TASK_COMPLETED) {
          if ([api_task complete:task]) {
             [task flagDownEditBits:EB_TASK_COMPLETED];
-            [[TaskProvider sharedTaskProvider] remove:task]; // TODO: do not remove, keep it in DB to review completed tasks.
+            //[[TaskProvider sharedTaskProvider] remove:task]; // TODO: do not remove, keep it in DB to review completed tasks.
             i++;
             continue;
          }
@@ -286,10 +260,12 @@
          }
       }
       if (edit_bits & EB_TASK_TAG) {
+         NSArray *tags = task.tags;
          NSString *tag_str = @"";
          for (RTMTag *tg in task.tags)
             tag_str = [tag_str stringByAppendingFormat:@"%@,", tg.name];
-         tag_str = [tag_str substringToIndex:tag_str.length-1]; // cut last ', '
+         if (tags.count > 0)
+            tag_str = [tag_str substringToIndex:tag_str.length-1]; // cut last ', '
          
          NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", nil];
          NSArray *vals = [NSArray arrayWithObjects:
@@ -328,20 +304,44 @@
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
          if ([api_task moveTo:ids]) {
-            /*
-            NSArray *update_keys = [NSArray arrayWithObjects:@"list_id", @"to_list_id", nil];
-            NSArray *update_vals = [NSArray arrayWithObjects:task.to_list_id, [NSNull null], nil];
-            NSDictionary *update_dict = [NSDictionary dictionaryWithObjects:update_vals forKeys:update_keys];
-            [[LocalCache sharedLocalCache] update:update_dict table:@"task" condition:[NSString stringWithFormat:@"WHERE id=%d", task.iD]];
-             */
             [task flagDownEditBits:EB_TASK_LIST_ID];
-            [[TaskProvider sharedTaskProvider] remove:task]; // TODO: do not remove, keep it in DB to review completed tasks.
-
          }
       }
       i++;
    }
    
+   RTMAPINote *api_note = [[RTMAPINote alloc] init];
+   NSArray *modified_notes = [[NoteProvider sharedNoteProvider] modifiedNotes];
+   for (RTMNote *note in modified_notes) {
+      RTMTask *task = [[TaskProvider sharedTaskProvider] taskForNote:note];
+      if (note.edit_bits & EB_CREATED_OFFLINE) {
+         NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", nil];
+         NSArray *vals = [NSArray arrayWithObjects:
+                          [task.list_id_itself stringValue],
+                          [task.taskseries_id stringValue],
+                          [task.task_id stringValue],
+                          nil];
+         NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+         
+         NSInteger note_id = [api_note add:note forIDs:ids];
+         if (note_id != -1) {
+            [[NoteProvider sharedNoteProvider] remove:note.iD]; // TODO: update IDs instead of removing
+         }
+      } else if (note.edit_bits & EB_NOTE_MODIFIED) {
+         NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"note_id", nil];
+         NSArray *vals = [NSArray arrayWithObjects:
+                          [task.list_id_itself stringValue],
+                          [task.taskseries_id stringValue],
+                          [task.task_id stringValue],
+                          [note.note_id stringValue],
+                          nil];
+         NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+         
+         if ([api_note edit:ids withTitle:note.title withText:note.text])
+            note.edit_bits = 0;
+      }
+   }
+   [api_note release];
    [pool release];
    [api_task release];
 }

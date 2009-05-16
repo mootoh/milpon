@@ -23,6 +23,7 @@
 - (void) updateTask:(NSDictionary *)taskseries;
 - (BOOL) taskseriesExist:(NSNumber *)taskseries_id;
 - (void) removeForTaskseries:(NSNumber *) taskseries_id;
+- (RTMTask *) taskForTaskID:(NSInteger) task_id;
 @end
 
 @implementation DBTaskProvider
@@ -206,7 +207,8 @@
       for (NSString *tag in tags) {
          NSNumber *tag_id = [[TagProvider sharedTagProvider] find:tag];
          if (tag_id) {
-            [[TagProvider sharedTagProvider] createRelation:retn tag_id:tag_id];
+            if (! [[TagProvider sharedTagProvider] existRelation:retn tag_id:tag_id]) 
+               [[TagProvider sharedTagProvider] createRelation:retn tag_id:tag_id];
          } else {
             NSArray *tag_keys = [NSArray arrayWithObjects:@"name", @"task_id", nil];
             NSArray *tag_vals = [NSArray arrayWithObjects:tag, retn, nil];
@@ -220,12 +222,24 @@
 - (void) createOrUpdate:(NSDictionary *)params
 {   
    if ([self taskseriesExist:[params objectForKey:@"id"]]) {
-      for (NSDictionary *task in [params objectForKey:@"task"])
-         [[NoteProvider sharedNoteProvider] removeForTask:[[task objectForKey:@"id"] integerValue]];
+      for (NSDictionary *task in [params objectForKey:@"tasks"]) {
+         NSInteger task_id = [[task objectForKey:@"id"] integerValue];
+         RTMTask *rtm_task = [self taskForTaskID:task_id];
+         if (rtm_task == nil) // maybe deleted already.
+            continue;
+         [[NoteProvider sharedNoteProvider] removeForTask:rtm_task];
+      }
       [self removeForTaskseries:[params objectForKey:@"id"]]; // remove anyway
    }
 
    [self createAtOnline:params];
+}
+
+- (RTMTask *) taskForTaskID:(NSInteger) task_id
+{
+   NSMutableDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d", task_id] forKey:@"WHERE"];
+   NSArray *ret = [self tasksWithCondition:cond];
+   return ret.count > 0 ? [ret objectAtIndex:0] : nil;
 }
 
 - (void) remove:(RTMTask *) task

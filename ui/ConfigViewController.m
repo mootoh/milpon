@@ -7,10 +7,9 @@
 //
 
 #import "ConfigViewController.h"
-#import "MenuViewController.h"
 #import "AppDelegate.h"
 
-#define VERSION "$Id: 02fde4fcd53dd4fe2d8017c9b6ef7073a168c471 $"
+#define VERSION "$Id$"
 
 @implementation ConfigViewController
 

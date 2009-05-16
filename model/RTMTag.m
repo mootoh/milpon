@@ -52,7 +52,11 @@
 {
    RTMTag *other = (RTMTag *)anObject;
    LOG(@"comparing %@ and %@", self.name, other.name);
-   return other.iD == self.iD && [other.name isEqualToString:self.name];
+   //return other.iD == self.iD && [other.name isEqualToString:self.name];
+   LOG(@"other.iD = %d, self.iD = %d, equal? = %d", other.iD, self.iD, other.iD == self.iD);
+   LOG(@"other.name = %@, self.name = %@, equal? = %d", other.name, self.name, [other.name isEqualToString:self.name]);
+   //return other.iD == self.iD && [other.name isEqualToString:self.name];
+   return [other.name isEqualToString:self.name];
 }
 
 @end

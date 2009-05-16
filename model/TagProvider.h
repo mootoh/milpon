@@ -22,6 +22,7 @@
 - (NSNumber *) find:(NSString *)tag_name;
 - (NSInteger)taskCountInTag:(RTMTag *) tag;
 - (NSArray *) tagsInTask:(NSInteger) task_id;
+- (BOOL) existRelation:(NSNumber *)task_id tag_id:(NSNumber *)tag_id;
 
 /**
  * taskseries_id is set temporal task_id for offline created task.

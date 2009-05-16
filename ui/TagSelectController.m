@@ -22,7 +22,7 @@ static UIImage *s_checkedIcon = nil;
    if (s_checkedIcon == nil)
       s_checkedIcon = [[UIImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_checked.png"]];
    return s_checkedIcon;
-}
+   }
 
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

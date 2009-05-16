@@ -46,6 +46,12 @@
 - (NSString *) lastSync;
 - (void) updateLastSync;
 
+- (void) dropTable:(NSString *)table;
+
+- (NSInteger) current_migrate_version;
+- (void) upgrade_from_1_0_to_2_0;
+- (void) migrate;
+
 /**
  * get singleton instance.
  */
