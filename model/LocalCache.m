@@ -16,11 +16,23 @@
 - (NSArray *) splitSQLs:(NSString *)migrations;
 - (void) run_migration_sql:(NSString *)sql;
 - (NSArray *) migrations;
-- (void) migrate;
-- (int) current_migrate_version;
 @end
 
 @implementation LocalCache
+
+- (void) upgrade_from_1_0_to_2_0
+{
+   // migrate DB from 1.0 to 2.0
+   [self dropTable:@"last_sync"];
+   [self dropTable:@"list"];
+   [self dropTable:@"location"];
+   [self dropTable:@"note"];
+   [self dropTable:@"tag"];
+   [self dropTable:@"task"];
+   
+   NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:-1] forKey:@"version"];   
+   [self update:dict table:@"migrate_version" condition:nil];
+}
 
 -(id) init
 {
@@ -31,8 +43,6 @@
             exceptionWithName:@"LocalCacheException"
             reason:[NSString stringWithFormat:@"Failed to open sqlite file: path=%@, msg='%s LINE=%d'", path_, sqlite3_errmsg(handle_), __LINE__]
             userInfo:nil] raise];
-
-      [self migrate];
    }
    return self;
 }
@@ -315,6 +325,79 @@
    [self update:dict table:@"last_sync" condition:nil];
 }
 
+- (void) dropTable:(NSString *)table
+{
+   sqlite3_stmt *stmt = nil;   
+   NSString *sql = [NSString stringWithFormat:@"DROP TABLE %@;", table];
+   LOG(@"drop table SQL = %@", sql);
+
+   if (sqlite3_prepare_v2(handle_, [sql UTF8String], -1, &stmt, NULL) != SQLITE_OK) {
+      [[NSException
+        exceptionWithName:@"LocalCacheException"
+        reason:[NSString stringWithFormat:@"Failed to prepare statement: msg='%s', LINE=%d", sqlite3_errmsg(handle_), __LINE__]
+        userInfo:nil] raise];
+   }
+   
+   if (SQLITE_ERROR == sqlite3_step(stmt)) {
+      [[NSException
+        exceptionWithName:@"LocalCacheException"
+        reason:[NSString stringWithFormat:@"Failed to DROP TABLE LocalCache: msg='%s', LINE=%d", sqlite3_errmsg(handle_), __LINE__]
+        userInfo:nil] raise];
+   }
+   sqlite3_finalize(stmt);
+}   
+
+- (void) migrate
+{
+   for (NSString *mig_path in [self migrations]) {
+      NSError *error;
+      NSString *mig = [NSString stringWithContentsOfFile:mig_path encoding:NSUTF8StringEncoding error:&error];
+      if (! mig) {
+         [[NSException
+           exceptionWithName:@"LocalCacheException"
+           reason:[NSString stringWithFormat:@"failed to read migration file: %@, error=%@", mig_path, [error localizedDescription]]
+           userInfo:nil] raise];
+      }
+      for (NSString *sql in [self splitSQLs:mig]) {
+         NSString *version = [[mig_path componentsSeparatedByString:@"_"] objectAtIndex:1];
+         int mig_version = [version integerValue];
+         if (mig_version <= [self current_migrate_version])
+            continue;
+         
+         [self run_migration_sql:sql];
+      }
+      
+      if (! [[NSFileManager defaultManager] removeItemAtPath:mig_path error:&error]) {
+         [[NSException
+           exceptionWithName:@"LocalCacheException"
+           reason:[NSString stringWithFormat:@"Failed to remove used migration: %@, error=%@", mig_path, [error localizedDescription]]
+           userInfo:nil] raise];
+      }
+   }
+}
+
+- (NSInteger) current_migrate_version
+{
+   sqlite3_stmt *stmt = nil;
+   const char *sql = "select version from migrate_version";
+   if (sqlite3_prepare_v2(handle_, sql, -1, &stmt, NULL) != SQLITE_OK) {
+      [[NSException
+        exceptionWithName:@"LocalCacheException"
+        reason:[NSString stringWithFormat:@"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_)]
+        userInfo:nil] raise];
+   }
+   if (sqlite3_step(stmt) == SQLITE_ERROR) {
+      [[NSException
+        exceptionWithName:@"LocalCacheException"
+        reason:[NSString stringWithFormat:@"Error: failed to exec sql with message '%s'.", sqlite3_errmsg(handle_)]
+        userInfo:nil] raise];
+   }
+   
+   NSInteger ret = sqlite3_column_int(stmt, 0);
+   sqlite3_finalize(stmt);
+   return ret;
+}
+
 
 static LocalCache *s_local_cache = nil;
 
@@ -382,35 +465,6 @@ static LocalCache *s_local_cache = nil;
 #endif // UNIT_TEST
 }
 
-- (void) migrate
-{
-   for (NSString *mig_path in [self migrations]) {
-      NSError *error;
-      NSString *mig = [NSString stringWithContentsOfFile:mig_path encoding:NSUTF8StringEncoding error:&error];
-      if (! mig) {
-         [[NSException
-            exceptionWithName:@"LocalCacheException"
-            reason:[NSString stringWithFormat:@"failed to read migration file: %@, error=%@", mig_path, [error localizedDescription]]
-            userInfo:nil] raise];
-      }
-      for (NSString *sql in [self splitSQLs:mig]) {
-         NSString *version = [[mig_path componentsSeparatedByString:@"_"] objectAtIndex:1];
-         int mig_version = [version integerValue];
-         if (mig_version <= [self current_migrate_version])
-            continue;
-         
-         [self run_migration_sql:sql];
-      }
-
-      if (! [[NSFileManager defaultManager] removeItemAtPath:mig_path error:&error]) {
-         [[NSException
-            exceptionWithName:@"LocalCacheException"
-            reason:[NSString stringWithFormat:@"Failed to remove used migration: %@, error=%@", mig_path, [error localizedDescription]]
-            userInfo:nil] raise];
-      }
-   }
-}
-
 - (NSArray *) migrations
 {
    NSMutableArray *ret = [NSMutableArray array];
@@ -448,28 +502,6 @@ static LocalCache *s_local_cache = nil;
 - (NSArray *) splitSQLs:(NSString *)migrations
 {
    return [migrations componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@";"]];
-}
-
-- (int) current_migrate_version
-{
-   sqlite3_stmt *stmt = nil;
-   const char *sql = "select version from migrate_version";
-   if (sqlite3_prepare_v2(handle_, sql, -1, &stmt, NULL) != SQLITE_OK) {
-      [[NSException
-         exceptionWithName:@"LocalCacheException"
-         reason:[NSString stringWithFormat:@"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(handle_)]
-         userInfo:nil] raise];
-   }
-   if (sqlite3_step(stmt) == SQLITE_ERROR) {
-      [[NSException
-         exceptionWithName:@"LocalCacheException"
-         reason:[NSString stringWithFormat:@"Error: failed to exec sql with message '%s'.", sqlite3_errmsg(handle_)]
-         userInfo:nil] raise];
-   }
-
-   int ret = sqlite3_column_int(stmt, 0);
-   sqlite3_finalize(stmt);
-   return ret;
 }
 
 @end // LocalCache

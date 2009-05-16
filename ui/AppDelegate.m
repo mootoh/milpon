@@ -10,14 +10,15 @@
 #import "RTMAPI.h"
 #import "RTMAuth.h"
 #import "RTMTask.h"
-#import "LocalCache.h"
 #import "AuthViewController.h"
 #import "AddTaskViewController.h"
 #import "RootMenuViewController.h"
 #import "OverviewViewController.h"
+#import "UpgradeFetchAllViewController.h"
 #import "RTMSynchronizer.h"
 #import "Reachability.h"
 #import "ProgressView.h"
+#import "LocalCache.h"
 #import "logger.h"
 
 @interface AppDelegate (Private)
@@ -28,6 +29,7 @@
 @end // AppDelegate (Private)
 
 @implementation AppDelegate (Private)
+
 - (NSString *) authPath
 {
    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -70,6 +72,15 @@
    [hvc release];
 }
 
+- (void) showUpgradeFetchAllView
+{
+   UpgradeFetchAllViewController *ufavc = [[UpgradeFetchAllViewController alloc] initWithNibName:nil bundle:nil];
+   
+   UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:ufavc];
+   [navigationController presentModalViewController:nc animated:NO];
+   [nc release];
+}
+
 @end // AppDelegate (Private)
 
 @implementation AppDelegate
@@ -105,8 +116,19 @@
    [super dealloc];
 }
 
+
+#define VERSION_1_0_MIGRATE_NUMBER 4
+
 - (void) applicationDidFinishLaunching:(UIApplication *)application
 {
+   LocalCache *local_cache = [LocalCache sharedLocalCache];
+   BOOL upgraded_from_1_0 = NO;
+   if ([local_cache current_migrate_version] == VERSION_1_0_MIGRATE_NUMBER) {
+      upgraded_from_1_0 = YES;
+      [local_cache upgrade_from_1_0_to_2_0];
+   }
+   [local_cache migrate];
+   
    self.refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
    RootMenuViewController *rmvc = [[RootMenuViewController alloc] initWithStyle:UITableViewStyleGrouped];
    navigationController = [[UINavigationController alloc] initWithRootViewController:rmvc];
@@ -115,16 +137,22 @@
    navigationController.navigationBar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
    [window addSubview:navigationController.view];
 
-   if (!auth.token || [auth.token isEqualToString:@""])
-      [self showAuthentication];
-
-   [self recoverView];
-
    CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
    pv = [[ProgressView alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height, appFrame.size.width, 100)];
    pv.tag = PROGRESSVIEW_TAG;
    [window addSubview:pv];
-
+   
+   if (!auth.token || [auth.token isEqualToString:@""]) {
+      [self showAuthentication];
+      [self recoverView];
+   } else {
+      if (upgraded_from_1_0) {
+         [self showUpgradeFetchAllView];
+      } else {
+         [self recoverView];
+      }
+   }
+   
    [window makeKeyAndVisible];
 }
 

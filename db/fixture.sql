@@ -47,4 +47,3 @@ INSERT INTO task_tag (id, task_id, tag_id) VALUES (1, 1, 1);
 
 
 INSERT INTO last_sync (sync_date) VALUES ('1990-01-01');
-INSERT INTO migrate_version (version) VALUES (2);
