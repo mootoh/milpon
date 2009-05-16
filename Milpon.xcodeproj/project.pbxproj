@@ -23,6 +23,8 @@
 		925C7A570FBEB7F300BCD6EF /* migrate_005_version_2.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4D0FBEB7F300BCD6EF /* migrate_005_version_2.sql */; };
 		925C7B2F0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */; };
 		925C7B300FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */; };
+		9278D1950FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */; };
+		9278D1960FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */; };
 		B904056B0FA82E1B00DEA392 /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
 		B910D96F0FA1E5760051EFB0 /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
 		B914B2D70F5E7D6E009C19BE /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
@@ -291,6 +293,7 @@
 		925C7A4D0FBEB7F300BCD6EF /* migrate_005_version_2.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_005_version_2.sql; sourceTree = "<group>"; };
 		925C7B2D0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeFetchAllViewController.h; sourceTree = "<group>"; };
 		925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeFetchAllViewController.m; sourceTree = "<group>"; };
+		9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_006_add_initial_lastsync.sql; sourceTree = "<group>"; };
 		B914B34D0F5EBDA6009C19BE /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B914B34E0F5EBDA6009C19BE /* ListUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ListUnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9160EC00F565CEF00473A95 /* RTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPI.h; sourceTree = "<group>"; };
@@ -680,6 +683,7 @@
 		B9160F010F565D3C00473A95 /* db */ = {
 			isa = PBXGroup;
 			children = (
+				9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */,
 				925C7A490FBEB7F300BCD6EF /* migrate_000_init.sql */,
 				925C7A4A0FBEB7F300BCD6EF /* migrate_001_add_filter_to_list.sql */,
 				925C7A4B0FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql */,
@@ -1103,6 +1107,7 @@
 				925C7A500FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql in Resources */,
 				925C7A510FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql in Resources */,
 				925C7A520FBEB7F300BCD6EF /* migrate_005_version_2.sql in Resources */,
+				9278D1950FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1158,6 +1163,7 @@
 				925C7A550FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql in Resources */,
 				925C7A560FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql in Resources */,
 				925C7A570FBEB7F300BCD6EF /* migrate_005_version_2.sql in Resources */,
+				9278D1960FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
