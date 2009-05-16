@@ -164,14 +164,8 @@
    RTMSynchronizer *syncer = [[RTMSynchronizer alloc] init:auth];
    [syncer replaceLists];
    [syncer replaceTasks];
-   //[syncer replaceLocations];
-   //[syncer replaceNotes];
-   //[syncer replaceTags];
 
    [syncer release];
-
-   //[self reload];
-
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
