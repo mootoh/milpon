@@ -25,6 +25,28 @@
 		925C7B300FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */; };
 		9278D1950FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */; };
 		9278D1960FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */; };
+		9278D1B30FBF07730007B03B /* DBNoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43D0FAB140E00343773 /* DBNoteProvider.m */; };
+		9278D1B40FBF07750007B03B /* NoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43F0FAB140E00343773 /* NoteProvider.m */; };
+		9278D1B50FBF07770007B03B /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
+		9278D1B60FBF07C00007B03B /* MilponBetaIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */; };
+		9278D25A0FBF0DE20007B03B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		9278D25B0FBF0DE20007B03B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		9278D25C0FBF0DE20007B03B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		9278D25D0FBF0DE20007B03B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
+		9278D25E0FBF0DE20007B03B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
+		9278D28B0FBF0EE80007B03B /* SplashScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9278D28A0FBF0EE80007B03B /* SplashScreen.xib */; };
+		9278D2940FBF0F730007B03B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		9278D2AE0FBF10420007B03B /* SplashScreenAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9278D2AD0FBF10420007B03B /* SplashScreenAppDelegate.m */; };
+		9278D3630FBF16820007B03B /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9278D3610FBF16820007B03B /* SplashScreenViewController.m */; };
+		9278D3640FBF16820007B03B /* SplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3620FBF16820007B03B /* SplashScreenViewController.xib */; };
+		9278D3B40FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
+		9278D3B50FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
+		9278D3B60FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
+		9278D3B70FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
+		9278D3B80FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
+		9278D3B90FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
+		9278D3BA0FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
+		9278D3BB0FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
 		B904056B0FA82E1B00DEA392 /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
 		B910D96F0FA1E5760051EFB0 /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
 		B914B2D70F5E7D6E009C19BE /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
@@ -294,6 +316,16 @@
 		925C7B2D0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeFetchAllViewController.h; sourceTree = "<group>"; };
 		925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeFetchAllViewController.m; sourceTree = "<group>"; };
 		9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_006_add_initial_lastsync.sql; sourceTree = "<group>"; };
+		9278D1F40FBF0DB50007B03B /* SplashScreen-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SplashScreen-Info.plist"; sourceTree = "<group>"; };
+		9278D2650FBF0DE20007B03B /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9278D2670FBF0DE20007B03B /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = "<group>"; };
+		9278D28A0FBF0EE80007B03B /* SplashScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SplashScreen.xib; path = splashscreen/SplashScreen.xib; sourceTree = SOURCE_ROOT; };
+		9278D2AC0FBF10420007B03B /* SplashScreenAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenAppDelegate.h; sourceTree = "<group>"; };
+		9278D2AD0FBF10420007B03B /* SplashScreenAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenAppDelegate.m; sourceTree = "<group>"; };
+		9278D3600FBF16820007B03B /* SplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenViewController.h; sourceTree = "<group>"; };
+		9278D3610FBF16820007B03B /* SplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenViewController.m; sourceTree = "<group>"; };
+		9278D3620FBF16820007B03B /* SplashScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashScreenViewController.xib; sourceTree = "<group>"; };
+		9278D3B30FBF185B0007B03B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		B914B34D0F5EBDA6009C19BE /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B914B34E0F5EBDA6009C19BE /* ListUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ListUnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9160EC00F565CEF00473A95 /* RTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPI.h; sourceTree = "<group>"; };
@@ -322,8 +354,6 @@
 		B9160EE10F565D1500473A95 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		B9160EE40F565D1500473A95 /* ListSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListSelectViewController.h; sourceTree = "<group>"; };
 		B9160EE50F565D1500473A95 /* ListSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListSelectViewController.m; sourceTree = "<group>"; };
-		B9160EEA0F565D1500473A95 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		B9160EEB0F565D1500473A95 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		B9160EEC0F565D1500473A95 /* ReloadableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReloadableTableViewController.h; sourceTree = "<group>"; };
 		B9160EEF0F565D1500473A95 /* TaskListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListViewController.h; sourceTree = "<group>"; };
 		B9160EF00F565D1500473A95 /* TaskListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListViewController.m; sourceTree = "<group>"; };
@@ -367,7 +397,6 @@
 		B9160F940F565DAB00473A95 /* UICCalendarPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICCalendarPicker.m; sourceTree = "<group>"; };
 		B9160F950F565DAB00473A95 /* UICCalendarPickerDateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPickerDateButton.h; sourceTree = "<group>"; };
 		B9160F960F565DAB00473A95 /* UICCalendarPickerDateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICCalendarPickerDateButton.m; sourceTree = "<group>"; };
-		B9160F970F565DAB00473A95 /* UICCalendarPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPickerDelegate.h; sourceTree = "<group>"; };
 		B9160F980F565DAB00473A95 /* uiccalendar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_background.png; sourceTree = "<group>"; };
 		B9160F990F565DAB00473A95 /* uiccalendar_cell_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_disabled.png; sourceTree = "<group>"; };
 		B9160F9A0F565DAB00473A95 /* uiccalendar_cell_holiday.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_holiday.png; sourceTree = "<group>"; };
@@ -483,6 +512,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9278D2590FBF0DE20007B03B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9278D25A0FBF0DE20007B03B /* Foundation.framework in Frameworks */,
+				9278D25B0FBF0DE20007B03B /* UIKit.framework in Frameworks */,
+				9278D25C0FBF0DE20007B03B /* CoreGraphics.framework in Frameworks */,
+				9278D25D0FBF0DE20007B03B /* libsqlite3.dylib in Frameworks */,
+				9278D25E0FBF0DE20007B03B /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B914B3460F5EBDA6009C19BE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -553,6 +594,7 @@
 				B9B956560F65D2720046712A /* UnitTest.octest */,
 				B9B957270F6615930046712A /* UnitTest.octest */,
 				B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */,
+				9278D2650FBF0DE20007B03B /* Milpon.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -560,6 +602,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				9278D2690FBF0E0F0007B03B /* SplashScreen */,
 				B9160EBF0F565CEF00473A95 /* api */,
 				B9160ED60F565D1500473A95 /* ui */,
 				B9160F180F565D4C00473A95 /* model */,
@@ -583,6 +626,20 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9278D2690FBF0E0F0007B03B /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9278D28A0FBF0EE80007B03B /* SplashScreen.xib */,
+				9278D1F40FBF0DB50007B03B /* SplashScreen-Info.plist */,
+				9278D2AC0FBF10420007B03B /* SplashScreenAppDelegate.h */,
+				9278D2AD0FBF10420007B03B /* SplashScreenAppDelegate.m */,
+				9278D3600FBF16820007B03B /* SplashScreenViewController.h */,
+				9278D3610FBF16820007B03B /* SplashScreenViewController.m */,
+				9278D3620FBF16820007B03B /* SplashScreenViewController.xib */,
+			);
+			path = SplashScreen;
 			sourceTree = "<group>";
 		};
 		B910D9350FA1E3600051EFB0 /* object */ = {
@@ -659,8 +716,6 @@
 				B9160EE10F565D1500473A95 /* ConfigViewController.m */,
 				B9160EE40F565D1500473A95 /* ListSelectViewController.h */,
 				B9160EE50F565D1500473A95 /* ListSelectViewController.m */,
-				B9160EEA0F565D1500473A95 /* MenuViewController.h */,
-				B9160EEB0F565D1500473A95 /* MenuViewController.m */,
 				B9160EEC0F565D1500473A95 /* ReloadableTableViewController.h */,
 				B9160EEF0F565D1500473A95 /* TaskListViewController.h */,
 				B9160EF00F565D1500473A95 /* TaskListViewController.m */,
@@ -730,6 +785,7 @@
 		B9160F430F565D9300473A95 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				9278D3B30FBF185B0007B03B /* Default.png */,
 				B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */,
 				B9160F650F565D9300473A95 /* MilponIconSmall.png */,
 				B926C4BE0F67991B0014DB7D /* icon_url.png */,
@@ -780,7 +836,6 @@
 				B9160F940F565DAB00473A95 /* UICCalendarPicker.m */,
 				B9160F950F565DAB00473A95 /* UICCalendarPickerDateButton.h */,
 				B9160F960F565DAB00473A95 /* UICCalendarPickerDateButton.m */,
-				B9160F970F565DAB00473A95 /* UICCalendarPickerDelegate.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -848,6 +903,7 @@
 				B9D0431F0F5F477400641E61 /* TaskUnitTest-Info.plist */,
 				B9B957280F6615930046712A /* TagUnitTest-Info.plist */,
 				B9AE53190F6B4C6A0076D258 /* Beta.plist */,
+				9278D2670FBF0DE20007B03B /* Info copy.plist */,
 			);
 			name = plists;
 			sourceTree = "<group>";
@@ -933,6 +989,23 @@
 			name = Milpon;
 			productName = Milpon;
 			productReference = 1D6058910D05DD3D006BFB54 /* Milpon.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9278D1FC0FBF0DE20007B03B /* Splash Screen */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9278D25F0FBF0DE20007B03B /* Build configuration list for PBXNativeTarget "Splash Screen" */;
+			buildPhases = (
+				9278D1FD0FBF0DE20007B03B /* Resources */,
+				9278D2260FBF0DE20007B03B /* Sources */,
+				9278D2590FBF0DE20007B03B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Splash Screen";
+			productName = Milpon;
+			productReference = 9278D2650FBF0DE20007B03B /* Milpon.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B914B33A0F5EBDA6009C19BE /* ListUnitTest */ = {
@@ -1061,6 +1134,7 @@
 				B9B956410F65D2720046712A /* APILocalTest */,
 				B9B957120F6615930046712A /* TagUnitTest */,
 				B9AE52A10F6B4AE50076D258 /* Milpon Beta */,
+				9278D1FC0FBF0DE20007B03B /* Splash Screen */,
 			);
 		};
 /* End PBXProject section */
@@ -1108,6 +1182,18 @@
 				925C7A510FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql in Resources */,
 				925C7A520FBEB7F300BCD6EF /* migrate_005_version_2.sql in Resources */,
 				9278D1950FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */,
+				9278D1B60FBF07C00007B03B /* MilponBetaIconSmall.png in Resources */,
+				9278D3B40FBF185B0007B03B /* Default.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9278D1FD0FBF0DE20007B03B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9278D28B0FBF0EE80007B03B /* SplashScreen.xib in Resources */,
+				9278D3640FBF16820007B03B /* SplashScreenViewController.xib in Resources */,
+				9278D3BB0FBF185B0007B03B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1116,6 +1202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B914B33C0F5EBDA6009C19BE /* rtm.sql in Resources */,
+				9278D3B60FBF185B0007B03B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1164,6 +1251,7 @@
 				925C7A560FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql in Resources */,
 				925C7A570FBEB7F300BCD6EF /* migrate_005_version_2.sql in Resources */,
 				9278D1960FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */,
+				9278D3BA0FBF185B0007B03B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1172,6 +1260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B95C5C090F598C8400A368DC /* rtm.sql in Resources */,
+				9278D3B50FBF185B0007B03B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1180,6 +1269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9B956430F65D2720046712A /* rtm.sql in Resources */,
+				9278D3B80FBF185B0007B03B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1188,6 +1278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9B957140F6615930046712A /* rtm.sql in Resources */,
+				9278D3B90FBF185B0007B03B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1195,6 +1286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9278D3B70FBF185B0007B03B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1320,6 +1412,19 @@
 				B97F4FF10F94A1260085FB9B /* TaskCollection.m in Sources */,
 				B97F4FF80F94A1D90085FB9B /* TaskCollectionViewController.m in Sources */,
 				925C7B2F0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m in Sources */,
+				9278D1B30FBF07730007B03B /* DBNoteProvider.m in Sources */,
+				9278D1B40FBF07750007B03B /* NoteProvider.m in Sources */,
+				9278D1B50FBF07770007B03B /* RTMObject.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9278D2260FBF0DE20007B03B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9278D2940FBF0F730007B03B /* main.m in Sources */,
+				9278D2AE0FBF10420007B03B /* SplashScreenAppDelegate.m in Sources */,
+				9278D3630FBF16820007B03B /* SplashScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1498,9 +1603,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = others/Info.plist;
 				PRODUCT_NAME = Milpon;
-				SDKROOT = iphonesimulator2.2.1;
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = Debug;
 		};
@@ -1508,13 +1613,88 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = others/Info.plist;
 				PRODUCT_NAME = Milpon;
 			};
 			name = Release;
+		};
+		9278D2600FBF0DE20007B03B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				INFOPLIST_FILE = "splashscreen/SplashScreen-Info.plist";
+				PRODUCT_NAME = Milpon;
+				SDKROOT = iphonesimulator2.2.1;
+			};
+			name = Debug;
+		};
+		9278D2610FBF0DE20007B03B /* LocalDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				INFOPLIST_FILE = "/Users/mootoh/prj/iphone/milpon/others/Info copy.plist";
+				PRODUCT_NAME = Milpon;
+				SDKROOT = iphonesimulator2.2.1;
+			};
+			name = LocalDebug;
+		};
+		9278D2620FBF0DE20007B03B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				INFOPLIST_FILE = "/Users/mootoh/prj/iphone/milpon/others/Info copy.plist";
+				PRODUCT_NAME = Milpon;
+			};
+			name = Release;
+		};
+		9278D2630FBF0DE20007B03B /* AdHocRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				INFOPLIST_FILE = "splashscreen/SplashScreen-Info.plist";
+				PRODUCT_NAME = "Milpon Splash Screen";
+				SDKROOT = iphonesimulator2.2.1;
+			};
+			name = AdHocRelease;
+		};
+		9278D2640FBF0DE20007B03B /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				INFOPLIST_FILE = "/Users/mootoh/prj/iphone/milpon/others/Info copy.plist";
+				PRODUCT_NAME = Milpon;
+				SDKROOT = iphonesimulator2.2.1;
+			};
+			name = UnitTest;
 		};
 		B90A5C740F941D0100917583 /* LocalDebug */ = {
 			isa = XCBuildConfiguration;
@@ -1809,11 +1989,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = others/Entitlements.plist;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = others/Info.plist;
 				PRODUCT_NAME = Milpon;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B50027B4-7B6E-434A-BC24-30B0560355D1";
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = AdHocRelease;
 		};
@@ -2501,6 +2684,18 @@
 				1D6058950D05DD3E006BFB54 /* Release */,
 				B92A83360F9409E100DD725C /* AdHocRelease */,
 				B97AA0310F9FEB70004A23E3 /* UnitTest */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9278D25F0FBF0DE20007B03B /* Build configuration list for PBXNativeTarget "Splash Screen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9278D2600FBF0DE20007B03B /* Debug */,
+				9278D2610FBF0DE20007B03B /* LocalDebug */,
+				9278D2620FBF0DE20007B03B /* Release */,
+				9278D2630FBF0DE20007B03B /* AdHocRelease */,
+				9278D2640FBF0DE20007B03B /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

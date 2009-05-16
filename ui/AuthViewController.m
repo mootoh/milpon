@@ -183,10 +183,15 @@
 
    [self getToken];
    instructionLabel.text = @"fetching all lists, tasks...\nThis may take for a while. Be patient m(_ _)m";
+   
+   self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+   self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
+
    [super viewDidAppear:animated];
    if (state != STATE_JUMPED)
       return;
