@@ -1928,12 +1928,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_ENTITLEMENTS = others/Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Motohiro Takayama";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
 				INFOPLIST_FILE = "$(PROJECT_DIR)/others/Beta.plist";
 				PRODUCT_NAME = "Milpon Beta";
+				PROVISIONING_PROFILE = "0686E23C-4552-41C9-965B-C583FBDB55E9";
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = AdHocRelease;
 		};

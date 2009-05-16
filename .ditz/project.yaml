@@ -46,13 +46,17 @@ releases:
     - drop it.
 - !ditz.rubyforge.org,2008-03-06/release 
   name: beta08
-  status: :unreleased
-  release_time: 
+  status: :released
+  release_time: 2009-05-16 03:40:18.147085 Z
   log_events: 
   - - 2009-04-16 10:53:15.156761 Z
     - mootoh <mootoh@gmail.com>
     - created
     - ""
+  - - 2009-05-16 03:40:18.147100 Z
+    - mootoh <mootoh@gmail.com>
+    - released
+    - released!
 - !ditz.rubyforge.org,2008-03-06/release 
   name: "1.1"
   status: :unreleased

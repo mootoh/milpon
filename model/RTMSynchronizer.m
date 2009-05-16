@@ -256,10 +256,12 @@
          }
       }
       if (edit_bits & EB_TASK_TAG) {
+         NSArray *tags = task.tags;
          NSString *tag_str = @"";
          for (RTMTag *tg in task.tags)
             tag_str = [tag_str stringByAppendingFormat:@"%@,", tg.name];
-         tag_str = [tag_str substringToIndex:tag_str.length-1]; // cut last ', '
+         if (tags.count > 0)
+            tag_str = [tag_str substringToIndex:tag_str.length-1]; // cut last ', '
          
          NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", nil];
          NSArray *vals = [NSArray arrayWithObjects:

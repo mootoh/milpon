@@ -187,8 +187,9 @@
 
 - (BOOL) existRelation:(NSNumber *)task_id tag_id:(NSNumber *)tag_id
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"task_id", @"tag_id", nil];   
-   NSArray *ret = [local_cache_ select:keys from:@"task_tag"];
+   NSArray *keys = [NSArray arrayWithObjects:@"task_id", @"tag_id", nil];
+   NSDictionary *where = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d AND tag_id=%d", [task_id integerValue], [tag_id integerValue]] forKey:@"WHERE"];
+   NSArray *ret = [local_cache_ select:keys from:@"task_tag" option:where];
    return ret.count > 0;
 }
 
