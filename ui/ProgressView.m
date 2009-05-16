@@ -8,6 +8,10 @@
 
 #import "ProgressView.h"
 
+@interface ProgressView (Private)
+- (void) toggleDisplay;
+@end
+
 @implementation ProgressView
 
 static const float messageLabelPadding = 18.0f;
@@ -29,10 +33,10 @@ static const float messageLabelPadding = 18.0f;
       messageLabel = [[UILabel alloc] initWithFrame:messageRect];
       messageLabel.backgroundColor = [UIColor colorWithRed:1.0f green:0 blue:0 alpha:0.0f];
       messageLabel.opaque = YES;
-      messageLabel.font = [UIFont systemFontOfSize:12];
+      messageLabel.font = [UIFont systemFontOfSize:14];
       messageLabel.textColor = [UIColor whiteColor];
       messageLabel.textAlignment = UITextAlignmentCenter;
-      //messageLabel.text = @"yes";
+      messageLabel.numberOfLines = 2;
       [self addSubview:messageLabel];
 
       progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
@@ -67,9 +71,9 @@ static const float messageLabelPadding = 18.0f;
    progressView.progress = 1.0;
 }
 
-- (void) updateMessage:(NSString *)msg
+- (void) updateTheView
 {
-   messageLabel.text = msg;
+   [messageLabel setNeedsDisplay];
 }
 
 - (void) updateMessage:(NSString *)msg withProgress:(float)pg
@@ -88,11 +92,14 @@ static const float messageLabelPadding = 18.0f;
 {
    if (message) [message release];
    message = [msg retain];
-
+   messageLabel.text = msg;
+   [self performSelectorOnMainThread:@selector(updateTheView) withObject:nil waitUntilDone:NO];
+   
+#if 0
    if (! inProgress) {
-      messageLabel.text = msg;
       [messageLabel setNeedsDisplay];
    }
+#endif // 0
 }
 
 - (NSString *)message

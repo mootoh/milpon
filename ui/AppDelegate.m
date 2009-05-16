@@ -74,7 +74,7 @@
 
 @implementation AppDelegate
 
-@synthesize window, auth, operationQueue;
+@synthesize window, auth, operationQueue, refreshButton;
 
 /**
   * init DB and authorization info
@@ -96,6 +96,7 @@
 
 - (void) dealloc
 {
+   [refreshButton release];
    [pv release];
    [navigationController release];
    [operationQueue release];
@@ -106,6 +107,7 @@
 
 - (void) applicationDidFinishLaunching:(UIApplication *)application
 {
+   self.refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
    RootMenuViewController *rmvc = [[RootMenuViewController alloc] initWithStyle:UITableViewStyleGrouped];
    navigationController = [[UINavigationController alloc] initWithRootViewController:rmvc];
    [rmvc release];
@@ -173,7 +175,7 @@
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
-- (IBAction) refresh
+- (BOOL) is_reachable
 {
 #ifndef LOCAL_DEBUG
    Reachability *reach = [Reachability sharedReachability];
@@ -182,64 +184,40 @@
    reach.networkStatusNotificationsEnabled = NO;
    if (stat == NotReachable) {
       UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Not Connected"
-         message:@"Not connected to the RTM site. Sync when you are online."
-         delegate:nil
-         cancelButtonTitle:@"OK"
-         otherButtonTitles:nil];
+                                                   message:@"Not connected to the RTM site. Sync when you are online."
+                                                  delegate:nil
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil];
       [av show];
       [av release];
-      return;
-   } else {
-      LOG(@"OK");
+      return NO;
    }
-#endif // 0
+#endif // LOCAL_DEBUG
+   return YES;
+}
 
-   NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];
+- (IBAction) refresh
+{
+   if (! [self is_reachable]) return;
+
+   refreshButton.enabled = NO;
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
    [self showDialog];
 
+   NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    [app.operationQueue addOperation:ope];
    [ope release];
 }
  
-- (void) replaceAll
-{
-   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   [app fetchAll];
-   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
-
-// TODO: shows CoreAnimation animated progressbar
 - (void) uploadOperation
 {
-   navigationController.navigationBar.topItem.leftBarButtonItem.enabled = NO;
-   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
    RTMSynchronizer *syncer = [[RTMSynchronizer alloc] init:auth];
 
    [syncer uploadPendingTasks:pv];
    [syncer syncModifiedTasks:pv];
    [syncer syncTasks:pv];
    [syncer release];
-
-   //[self reload];
-
-#if 0
-   NSString *lastUpdated = [[LocalCache sharedLocalCache] lastSync];
-   lastUpdated = [lastUpdated stringByReplacingOccurrencesOfString:@"T" withString:@"_"];
-   lastUpdated = [lastUpdated stringByReplacingOccurrencesOfString:@"Z" withString:@" GMT"];
-
-   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
-
-   NSDate *lu = [formatter dateFromString:lastUpdated];
-   [formatter setDateFormat:@"MM/dd HH:mm"];
-   lastUpdated = [formatter stringFromDate:lu];
-
-   [progressView updateMessage:[NSString stringWithFormat:@"Updated: %@", lastUpdated]];
-#endif // 0
 
    [self performSelectorOnMainThread:@selector(hideDialog) withObject:nil waitUntilDone:YES];
 }
@@ -250,38 +228,34 @@
    pv.alpha = 0.0f;
    pv.backgroundColor = [UIColor blackColor];
    pv.opaque = YES;
+   pv.message = @"Syncing...";
 
    // animation part
    [UIView beginAnimations:nil context:NULL]; {
       [UIView setAnimationDuration:0.20f];
       [UIView setAnimationDelegate:self];
-      [UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
 
       pv.alpha = 0.8f;
       pv.frame = CGRectMake(appFrame.origin.x, appFrame.size.height-80, appFrame.size.width, 100);
    } [UIView commitAnimations];
 }
 
-- (void)animationFinished:(NSString *)animationID finished:(BOOL)finished context:(void *)context
-{
-   LOG(@"dialogAnimDidStop");
-}
-
 - (IBAction) hideDialog
 {
    CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+   pv.message = @"Synced.";
+
    // animation part
    [UIView beginAnimations:nil context:NULL]; {
       [UIView setAnimationDuration:0.20f];
       [UIView setAnimationDelegate:self];
-      [UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
       
       pv.alpha = 0.0f;
       pv.frame = CGRectMake(appFrame.origin.x, appFrame.size.height, appFrame.size.width, 100);
    } [UIView commitAnimations];
    
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-   navigationController.navigationBar.topItem.leftBarButtonItem.enabled = YES;
+   refreshButton.enabled = YES;
    [self.window setNeedsDisplay];
 }
 

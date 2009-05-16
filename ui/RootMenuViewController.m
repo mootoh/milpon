@@ -49,14 +49,11 @@ enum sec_one {
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:app action:@selector(addTask)];
-   UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:app action:@selector(refresh)];
-
-   //UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:app action:@selector(showDialog)];
+   
    self.navigationItem.rightBarButtonItem = addButton;
-   self.navigationItem.leftBarButtonItem  = refreshButton;
+   self.navigationItem.leftBarButtonItem  = app.refreshButton;
 
    [addButton release];
-   [refreshButton release];
 }
 /*
 - (void)viewWillAppear:(BOOL)animated {

@@ -374,8 +374,6 @@
 		B9160FD20F565DE000473A95 /* FunctionalTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionalTestAppDelegate.m; sourceTree = "<group>"; };
 		B9160FD30F565DE000473A95 /* MockRTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockRTMAPI.h; sourceTree = "<group>"; };
 		B9160FD40F565DE000473A95 /* MockRTMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockRTMAPI.m; sourceTree = "<group>"; };
-		B9160FD50F565DE000473A95 /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
-		B9160FD60F565DE000473A95 /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
 		B9160FD70F565DE000473A95 /* RTMAPIAuthTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIAuthTest.m; sourceTree = "<group>"; };
 		B9160FD80F565DE000473A95 /* RTMAPIListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPIListTest.m; sourceTree = "<group>"; };
 		B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPITaskTest.m; sourceTree = "<group>"; };
@@ -769,8 +767,6 @@
 				B9160FB70F565DB600473A95 /* FunctionalTestProgressViewWindow.xib */,
 				B9160FD10F565DE000473A95 /* FunctionalTestAppDelegate.h */,
 				B9160FD20F565DE000473A95 /* FunctionalTestAppDelegate.m */,
-				B9160FD50F565DE000473A95 /* ProgressViewController.h */,
-				B9160FD60F565DE000473A95 /* ProgressViewController.m */,
 				B9160FDC0F565DE000473A95 /* LocalCacheTest.m */,
 				B9160FDE0F565DE000473A95 /* RTMPendingTaskTest.m */,
 				B9160FE00F565DE000473A95 /* RTMTaskEntryTest.m */,

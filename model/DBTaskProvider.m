@@ -225,6 +225,8 @@
       for (NSDictionary *task in [params objectForKey:@"tasks"]) {
          NSInteger task_id = [[task objectForKey:@"id"] integerValue];
          RTMTask *rtm_task = [self taskForTaskID:task_id];
+         if (rtm_task == nil) // maybe deleted already.
+            continue;
          [[NoteProvider sharedNoteProvider] removeForTask:rtm_task];
       }
       [self removeForTaskseries:[params objectForKey:@"id"]]; // remove anyway
@@ -236,7 +238,8 @@
 - (RTMTask *) taskForTaskID:(NSInteger) task_id
 {
    NSMutableDictionary *cond = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"task_id=%d", task_id] forKey:@"WHERE"];
-   return [[self tasksWithCondition:cond] objectAtIndex:0];
+   NSArray *ret = [self tasksWithCondition:cond];
+   return ret.count > 0 ? [ret objectAtIndex:0] : nil;
 }
 
 - (void) remove:(RTMTask *) task
