@@ -366,13 +366,6 @@
          
          [self run_migration_sql:sql];
       }
-      
-      if (! [[NSFileManager defaultManager] removeItemAtPath:mig_path error:&error]) {
-         [[NSException
-           exceptionWithName:@"LocalCacheException"
-           reason:[NSString stringWithFormat:@"Failed to remove used migration: %@, error=%@", mig_path, [error localizedDescription]]
-           userInfo:nil] raise];
-      }
    }
 }
 
