@@ -10,4 +10,4 @@ clean:
 	xcodebuild -parallelizeTargets -target UnitTest -configuration Debug -sdk macosx10.5 clean
 
 wc:
-	wc */*.m */*.h test/*/*.m test/*/*.h
+	wc */*.[mh]
