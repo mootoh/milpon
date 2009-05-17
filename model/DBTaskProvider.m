@@ -67,7 +67,7 @@
 
 - (NSArray *) tasks:(BOOL) showCompleted
 {
-   NSMutableDictionary *cond = [NSMutableDictionary dictionaryWithObject:@"ORDER" forKey:@"priority ASC, due IS NULL ASC, due ASC"];
+   NSMutableDictionary *cond = [NSMutableDictionary dictionaryWithObject:@"priority ASC, due IS NULL ASC, due ASC" forKey:@"ORDER"];
    if (! showCompleted)
       [cond setObject:@"completed IS NULL" forKey:@"WHERE"];
    return [self tasksWithCondition:cond];
