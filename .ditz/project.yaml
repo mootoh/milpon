@@ -59,10 +59,23 @@ releases:
     - released!
 - !ditz.rubyforge.org,2008-03-06/release 
   name: "1.1"
-  status: :unreleased
-  release_time: 
+  status: :released
+  release_time: 2009-05-21 16:18:03.147896 Z
   log_events: 
   - - 2009-04-16 10:58:28.117185 Z
     - mootoh <mootoh@gmail.com>
     - created
     - new UI, tag support.
+  - - 2009-05-21 16:18:03.147921 Z
+    - mootoh <mootoh@gmail.com>
+    - released
+    - ""
+- !ditz.rubyforge.org,2008-03-06/release 
+  name: "2.1"
+  status: :unreleased
+  release_time: 
+  log_events: 
+  - - 2009-05-21 16:17:18.996697 Z
+    - mootoh <mootoh@gmail.com>
+    - created
+    - minor improvements and bug fixes from 2.0.
