@@ -2003,7 +2003,6 @@
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
 				INFOPLIST_FILE = others/Info.plist;
 				PRODUCT_NAME = Milpon;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B50027B4-7B6E-434A-BC24-30B0560355D1";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = AdHocRelease;
