@@ -27,6 +27,7 @@
    NSString *list_id;
    NSMutableArray *tasks;
    NSMutableArray *tags;
+   NSString *tag;
    NSMutableArray *notes;
    NSMutableArray *task_entries;
    NSMutableDictionary *note;
@@ -43,6 +44,7 @@
       list_id = nil;
       tasks = nil;
       tags = nil;
+      tag = nil;
       notes = nil;
       task_entries = nil;
       note = nil;
@@ -81,6 +83,7 @@
    } else if ([elementName isEqualToString:@"tag"]) {
       NSAssert(taskseries, @"should be in taskseries element");
       NSAssert(tags, @"should be in tags element");
+      tag = @"";
       mode = TAG;
    } else if ([elementName isEqualToString:@"notes"]) {
       NSAssert(taskseries, @"should be in taskseries element");
@@ -110,6 +113,10 @@
       task_entries = nil;
    } else if ([elementName isEqualToString:@"tags"]) {
       tags = nil;
+   } else if ([elementName isEqualToString:@"tag"]) {
+      NSAssert(tags, @"should be in tags");
+      [tags addObject:tag];
+      tag = nil;
    } else if ([elementName isEqualToString:@"notes"]) {
       notes = nil;
    } else if ([elementName isEqualToString:@"note"]) {
@@ -132,7 +139,7 @@
    switch (mode) {
       case TAG:
          NSAssert(tags, @"should be in tags");
-         [tags addObject:chars];
+         tag = [tag stringByAppendingString:chars];
          break;
       case NOTE:
          NSAssert(notes, @"should be in notes");

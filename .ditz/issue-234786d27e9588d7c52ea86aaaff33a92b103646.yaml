@@ -3,7 +3,7 @@ title: Localized to Japanese
 desc: Japanese users are a major part.
 type: :feature
 component: milpon
-release: "1.1"
+release: "2.1"
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -15,6 +15,10 @@ log_events:
 - - 2009-05-11 11:36:38.483223 Z
   - mootoh <mootoh@gmail.com>
   - created
+  - ""
+- - 2009-05-21 16:17:37.387915 Z
+  - mootoh <mootoh@gmail.com>
+  - assigned to release 2.1 from 1.1
   - ""
 git_branch: 
 claimer: 
