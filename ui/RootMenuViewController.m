@@ -126,19 +126,20 @@ enum sec_one {
    if (indexPath.section == 0) {
       switch (indexPath.row) {
          case SEC_ZERO_OVERVIEW: {
-         cell.text = @"Overview";
+         cell.text =  NSLocalizedString(@"Overview", @"");
          cell.image = [[[UIImage alloc] initWithContentsOfFile:
                         [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_calendar.png"]] autorelease];
          break;
       }
       case SEC_ZERO_LIST: {
-         cell.text = @"List";
+         cell.text =  NSLocalizedString(@"List", @"");
+
          cell.image = [[[UIImage alloc] initWithContentsOfFile:
                         [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]] autorelease];
          break;
       }
       case SEC_ZERO_TAG: {
-         cell.text = @"Tag";
+         cell.text =  NSLocalizedString(@"Tag", @"");
          cell.image = [[[UIImage alloc] initWithContentsOfFile:
                         [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]] autorelease];
 
@@ -156,7 +157,7 @@ enum sec_one {
          break;
 #endif // 0
       case SEC_ONE_SETTING:
-         cell.text = @"Setting";
+         cell.text =  NSLocalizedString(@"Setting", @"");
          break;
       default:
          break;
