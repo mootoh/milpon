@@ -16,5 +16,11 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - created
   - ""
+- - 2009-05-24 02:47:09.983947 Z
+  - mootoh <mootoh@gmail.com>
+  - commented
+  - |-
+    I thought it could be done easily by using the Tableview header, and tried, but the result was not so good because it was too scrolled.
+    It could be better to put TextField on the top.
 git_branch: 
 claimer: 

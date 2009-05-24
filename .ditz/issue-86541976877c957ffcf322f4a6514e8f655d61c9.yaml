@@ -16,5 +16,9 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - created
   - ""
+- - 2009-05-24 02:53:48.349875 Z
+  - mootoh <mootoh@gmail.com>
+  - commented
+  - use base64, or XOR.
 git_branch: 
 claimer: 
