@@ -64,4 +64,8 @@ CREATE TABLE last_sync (
   sync_date      CHAR(24)
 );
 
+CREATE TABLE migrate_version (
+  version        INTEGER
+);
+
 INSERT INTO migrate_version VALUES (0);
