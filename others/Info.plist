@@ -9,7 +9,9 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>MilponIconSmall.png</string>
+	<string>IconSmall.png</string>
+	<key>UIPrerenderedIcon</key>
+	<string>true</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.deadbeaf.milpon</string>
 	<key>CFBundleInfoDictionaryVersion</key>
