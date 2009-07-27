@@ -39,7 +39,7 @@ enum sec_one {
 
 - (void)viewDidLoad {
    [super viewDidLoad];
-   self.title = @"Milpon";
+   self.title = NSLocalizedString(@"Milpon", @"");
 
    UILabel *taskLabel = [[UILabel alloc] initWithFrame:CGRectZero];
    taskLabel.text = @"Task";
@@ -274,7 +274,7 @@ return YES;
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-   return section == 0 ? @"Task" : nil;
+   return section == 0 ? NSLocalizedString(@"Task", @"") : nil;
 }
 
 - (void)dealloc

@@ -37,7 +37,7 @@ enum {
 - (id)initWithStyle:(UITableViewStyle)style
 {
    if (self = [super initWithStyle:style]) {
-      self.title = @"Add";
+      self.title = NSLocalizedString(@"Add", @"");
       self.list  = [[[ListProvider sharedListProvider] lists] objectAtIndex:0];
       self.tags  = [NSMutableArray array];
    }
@@ -115,7 +115,7 @@ enum {
             // task name
             name_field = [[UITextField alloc] initWithFrame:CGRectMake(30, 8, 300, 40)];
             [name_field setFont:[UIFont systemFontOfSize:20.0f]];
-            name_field.placeholder = @"what to do...";
+            name_field.placeholder = NSLocalizedString(@"WhatToDo", @"");
             name_field.tag = NAME_FIELD_TAG;
 
             [cell.contentView addSubview:name_field];
@@ -214,7 +214,7 @@ enum {
                // join tags
                NSString *tags_joined = @"";
                if (tags.count == 0) {
-                  tags_joined = @"Tag...";
+                  tags_joined = NSLocalizedString(@"Tag", @"");
                } else {
                   for (RTMTag *tag in tags)
                      tags_joined = [tags_joined stringByAppendingString:[NSString stringWithFormat:@"%@ ", tag.name]];
@@ -229,7 +229,7 @@ enum {
                icon_image_view.image = iconImage;
                [iconImage release];
                
-               label.text = note ? note : @"Note...";
+               label.text = note ? note : NSLocalizedString(@"Note", @"");
                break;
             }
          }

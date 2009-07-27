@@ -21,7 +21,7 @@
       activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
       activityIndicator.frame = CGRectMake(appFrame.size.width/2-32, appFrame.size.height/2, 64, 64);
       activityIndicator.hidesWhenStopped = YES;
-      self.title = @"Setting";
+      self.title = NSLocalizedString(@"Setting", @"");
    }
    return self;
 }
@@ -35,7 +35,7 @@
 
    UIButton *reloadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
    reloadButton.frame = CGRectMake(20, 32, 280, 32);
-   [reloadButton setTitle:@"refresh all local data (long wait)" forState:UIControlStateNormal];
+   [reloadButton setTitle:NSLocalizedString(@"RefreshAll", @"") forState:UIControlStateNormal];
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    [reloadButton addTarget:app action:@selector(fetchAll) forControlEvents:UIControlEventTouchDown];
@@ -43,7 +43,7 @@
 
    UIButton *feedbackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
    feedbackButton.frame = CGRectMake(20, 96, 280, 32);
-   [feedbackButton setTitle:@"Send Feedback" forState:UIControlStateNormal];
+   [feedbackButton setTitle:NSLocalizedString(@"SendFeedback", @"") forState:UIControlStateNormal];
    [feedbackButton addTarget:self action:@selector(emailFeedback) forControlEvents:UIControlEventTouchDown];
    [self.view addSubview:feedbackButton];
 

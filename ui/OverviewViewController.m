@@ -78,7 +78,11 @@ static const int SECTIONS = 4;
       due_tasks = nil;
       showCompleted = NO;
 
-      self.headers = [NSArray arrayWithObjects:@"Outdated", @"Today", @"Tomorrow", @"7 days", nil];
+      self.headers = [NSArray arrayWithObjects:
+                      NSLocalizedString(@"Outdated", @""),
+                      NSLocalizedString(@"Today", @""),
+                      NSLocalizedString(@"Tomorrow", @""),
+                      NSLocalizedString(@"7days", @""), nil];
 
 		NSDate *today = [NSDate date];
       NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

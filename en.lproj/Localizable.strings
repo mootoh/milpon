@@ -2,3 +2,15 @@
 "List" = "List";
 "Tag"  = "Tag";
 "Setting"  = "Setting";
+"Task"     = "Task";
+"RefreshAll" = "Refresh Local data (long wait)";
+"SendFeedback" = "Send Feedback";
+"WhatToDo" = "What to do";
+"Note" = "Note";
+"Tag" = "Tag";
+"Add" = "Add";
+"Outdated" = "Outdated";
+"Today" = "Today";
+"Tomorrow" = "Tomorrow";
+"7days" = "7 days";
+"Milpon" = "Milpon";
