@@ -28,7 +28,7 @@ return self;
 {
    [super loadView];
 
-   self.title = @"Authorize";
+   self.title = NSLocalizedString(@"AuthWebviewTitle", @"auth web view title");
 
    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height-44)];

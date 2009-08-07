@@ -1,0 +1,68 @@
+﻿/* No comment provided by engineer. */
+"7days" = "7日以内";
+
+/* No comment provided by engineer. */
+"Add" = "追加";
+
+/* No comment provided by engineer. */
+"List" = "リスト";
+
+/* No comment provided by engineer. */
+"Milpon" = "みるぽん";
+
+/* No comment provided by engineer. */
+"Note" = "ノート";
+
+/* No comment provided by engineer. */
+"Outdated" = "期限切れ";
+
+/* No comment provided by engineer. */
+"Overview" = "直近のもの";
+
+/* No comment provided by engineer. */
+"RefreshAll" = "キャッシュをクリア (時間がかかります)";
+
+/* No comment provided by engineer. */
+"SendFeedback" = "フィードバックをどうぞ";
+
+/* No comment provided by engineer. */
+"Setting" = "設定";
+
+/* No comment provided by engineer. */
+"Tag" = "タグ";
+
+/* No comment provided by engineer. */
+"Task" = "タスク";
+
+/* No comment provided by engineer. */
+"Today" = "今日";
+
+/* No comment provided by engineer. */
+"Tomorrow" = "明日";
+
+/* No comment provided by engineer. */
+"WhatToDo" = "やること";
+
+/* first auth navigation message */
+"AuthNaviFirst" = "みるぽんは RTM のデータにアクセスします。\n以下から RTM サイトにログインすると、みるぽんにデータへのアクセスを許可するか聞かれます。\nよろしければ承認していただいて、アプリ画面上部にあるセットアップボタンを押して戻ってきてください。";
+
+/* error in RTM site auth. */
+"AuthError" = "RTM サイトから必要な情報を得られませんでした。オンラインのときに、もう一度お試しください。";
+
+/* go to RTM button */
+"GoToRTM" = "RTM サイトへ";
+
+/* setup screen */
+"Setup" = "セットアップ";
+
+/* permission getting screen */
+"AcquiringPermission" = "アクセス権を取得中...";
+
+/* fetch all data */
+"FetchingInstruction" = "リストとタスクをダウンロード中...\nちょっと時間がかかります。しばらくお待ちください  m(_ _)m";
+
+/* all initial process has been succeeded */
+"InitDone" = "完了 !\n\n:)";
+
+/* auth web view title */
+"AuthWebviewTitle" = "RTM サイト認証";

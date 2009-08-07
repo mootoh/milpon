@@ -17,7 +17,7 @@
 {
    if (self = [super initWithNibName:nibName bundle:bundle]) {
       state = STATE_INITIAL;
-      self.title = @"Setup";
+      self.title = NSLocalizedString(@"Setup", "setup screen");
 
       CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
 
@@ -51,7 +51,7 @@
 #ifdef DEBUG
       UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
       doneButton.frame = CGRectMake(appFrame.size.width/2-150/2, 350, 150, 40);
-      [doneButton setTitle:@"done" forState:UIControlStateNormal];
+      [doneButton setTitle:NSLocalizedString(@"Done", @"done button") forState:UIControlStateNormal];
       [doneButton addTarget:self action:@selector(done:) forControlEvents:UIControlEventTouchDown];
       doneButton.enabled = YES;
       doneButton.hidden = NO;
@@ -90,9 +90,9 @@
    state = STATE_INITIAL;
 
    instructionLabel.textAlignment = UITextAlignmentLeft;
-   instructionLabel.text = @"Milpon needs a permission to access your RTM data.\n\nGo and login to RTM site, then you will be asked whether you accept this app to access your data.\n\nAfter you admit, return here by pressing 'Setup' button on navigation bar.";
+   instructionLabel.text = NSLocalizedString(@"AuthNaviFirst", @"first auth navigation message");
 
-   [confirmButton setTitle:@"go to RTM" forState:UIControlStateNormal];
+   [confirmButton setTitle:NSLocalizedString(@"GoToRTM", @"go to RTM button") forState:UIControlStateNormal];
    [confirmButton addTarget:self action:@selector(auth) forControlEvents:UIControlEventTouchDown];
    confirmButton.enabled = YES;
    confirmButton.hidden = NO;
@@ -101,7 +101,7 @@
 - (void) alertError
 {
    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"＞＜"
-      message:@"could not get necessary information from RTM web site. please try again when you online."
+      message:NSLocalizedString(@"AuthError", @"error in RTM site auth.")
       delegate:nil
       cancelButtonTitle:@"OK"
       otherButtonTitles:nil];
@@ -174,7 +174,7 @@
    if (state != STATE_JUMPED)
       return;
 
-   instructionLabel.text = @"acquiring permission...";
+   instructionLabel.text = NSLocalizedString(@"AcquiringPermission", @"permission getting screen");
    instructionLabel.textAlignment = UITextAlignmentCenter;
 
    [confirmButton removeTarget:self action:@selector(auth) forControlEvents:UIControlEventTouchDown];
@@ -182,7 +182,7 @@
    confirmButton.hidden = YES;
 
    [self getToken];
-   instructionLabel.text = @"fetching all lists, tasks...\nThis may take for a while. Be patient m(_ _)m";
+   instructionLabel.text = NSLocalizedString(@"FetchingInstruction", @"fetch all data");
    
    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
 
@@ -199,7 +199,7 @@
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    [app fetchAll];
 
-   instructionLabel.text = @"DONE !\n\nEnjoy :)";
+   instructionLabel.text = NSLocalizedString(@"InitDone", @"all initial process has been succeeded");
 
    NSTimer *timer;
    timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(done:) userInfo:nil repeats:NO];
