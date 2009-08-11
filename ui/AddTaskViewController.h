@@ -11,14 +11,14 @@
 @class RTMList;
 @protocol HavingTag;
 
-@interface AddTaskViewController : UITableViewController <TaskEditDelegate, HavingTag>
+@interface AddTaskViewController : UITableViewController <TaskEditDelegate, HavingTag, UITextFieldDelegate>
 {
    RTMList *list;
    NSDate *due;
    NSMutableArray *tags;
-   NSString *note;
-   
-   UITextField *name_field_;
+   NSString *note;   
+   NSString *task_name;
+
    UISegmentedControl *priority_segment_;
 }
 
@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSDate *due;
 @property (nonatomic, retain) NSMutableArray *tags;
 @property (nonatomic, retain) NSString *note;
+@property (nonatomic, retain) NSString *task_name;
 
 - (IBAction) cancel;
 

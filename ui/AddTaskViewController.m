@@ -32,7 +32,7 @@ enum {
    ROW_COUNT
 };
 
-@synthesize list, due, tags, note;
+@synthesize list, due, tags, note, task_name;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -46,7 +46,6 @@ enum {
 
 - (void)dealloc
 {
-   if (name_field_) [name_field_ release];
    if (priority_segment_) [priority_segment_ release];
    [super dealloc];
 }
@@ -103,7 +102,8 @@ enum {
          cell = [tableView dequeueReusableCellWithIdentifier:NAME_CELL_IDENTIFIER];
          UITextField *name_field = nil;
          if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:NAME_CELL_IDENTIFIER] autorelease];
+            cell = [[[UITableViewCell alloc]
+                     initWithFrame:CGRectZero reuseIdentifier:NAME_CELL_IDENTIFIER] autorelease];
             UIImageView *icon_image_view = [[UIImageView alloc] initWithFrame:CGRectMake(8, 15, 16, 16)];
             UIImage *icon_image = [[UIImage alloc] initWithContentsOfFile:
                                   [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_target.png"]];
@@ -117,12 +117,14 @@ enum {
             [name_field setFont:[UIFont systemFontOfSize:20.0f]];
             name_field.placeholder = NSLocalizedString(@"WhatToDo", @"");
             name_field.tag = NAME_FIELD_TAG;
+            name_field.delegate = self;
+            if (task_name)
+               name_field.text = task_name;
 
             [cell.contentView addSubview:name_field];
          } else {
             name_field = (UITextField *)[cell viewWithTag:NAME_FIELD_TAG];
          }
-         name_field_ = [name_field retain];
          [name_field becomeFirstResponder];
          break;
       }
@@ -288,15 +290,14 @@ enum {
 
 - (IBAction) save
 {
-   NSString *name = name_field_.text;
-   if (name == nil || [name isEqualToString:@""]) // validate name_field
+   if (task_name == nil || [task_name isEqualToString:@""]) // validate name_field
       return;
 
    NSNumber *priority = [NSNumber numberWithInteger:priority_segment_.selectedSegmentIndex + 1];
 
    // create RTMTask and store it in DB.
    NSArray *keys = [NSArray arrayWithObjects:@"name", @"list_id", @"priority", nil];
-   NSArray *vals = [NSArray arrayWithObjects:name, [NSNumber numberWithInteger:list.iD], priority, nil];
+   NSArray *vals = [NSArray arrayWithObjects:task_name, [NSNumber numberWithInteger:list.iD], priority, nil];
    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (due)
       [params setObject:due forKey:@"due"];
@@ -334,6 +335,14 @@ enum {
 - (void) setTag:(NSArray *) tags
 {
    [self updateView];
+}
+
+#pragma mark UITextFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+
+{
+   self.task_name = [textField.text stringByAppendingString:string];
+   return YES;
 }
 
 @end
