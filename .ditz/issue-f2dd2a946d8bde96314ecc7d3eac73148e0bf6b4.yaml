@@ -3,7 +3,7 @@ title: show recurrent icon for recurrent task
 desc: ""
 type: :feature
 component: milpon
-release: 
+release: "2.2"
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -16,5 +16,9 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - created
   - ""
+- - 2009-08-13 10:53:43.887213 Z
+  - mootoh <mootoh@gmail.com>
+  - assigned to release 2.2 from unassigned
+  - requested.
 git_branch: 
 claimer: 
