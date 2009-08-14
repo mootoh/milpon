@@ -8,6 +8,7 @@ build
 tags
 html
 sample
+private
 others/PrivateInfo.h
 
 vendor/UICCalendarPicker/Info.plist
