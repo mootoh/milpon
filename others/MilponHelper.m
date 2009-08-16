@@ -21,6 +21,7 @@ static MilponHelper *the_milpon_helper;
       [the_formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
       [the_formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
       [the_formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+      [the_formatter setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"en_US"]];
 
       invalidDate = [[NSDate dateWithTimeIntervalSince1970:0] retain];
    }

@@ -43,6 +43,7 @@ static const int SECTIONS = 4;
    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
    [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
    [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
+   [formatter setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"en_US"]];
 
    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
    NSCalendar *calendar = [NSCalendar currentCalendar];
