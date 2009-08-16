@@ -220,6 +220,10 @@ enum {
       [self.view addSubview:url_button];
       [url_button release];
    }
+   
+   if (! [task.rrule isEqualToString:@""]) {
+      recurrentImageView.hidden = NO;
+   }
 }
 
 - (void) updateDue

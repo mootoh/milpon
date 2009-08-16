@@ -53,6 +53,9 @@
 		92E4AAA9102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
 		92E91C380FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
 		92E91C5D0FBFD7E600DCDE16 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
+		92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
+		92ECF0C2103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
+		92ECF0C3103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
 		B904056B0FA82E1B00DEA392 /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
 		B910D96F0FA1E5760051EFB0 /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
 		B914B2D70F5E7D6E009C19BE /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
@@ -333,6 +336,7 @@
 		92E4AA9D102C21DC00CACCC9 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E4AAAA102C220D00CACCC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_007_clear_last_sync.sql; sourceTree = "<group>"; };
+		92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recurrentIcon.png; sourceTree = "<group>"; };
 		B914B34D0F5EBDA6009C19BE /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B914B34E0F5EBDA6009C19BE /* ListUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ListUnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9160EC00F565CEF00473A95 /* RTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPI.h; sourceTree = "<group>"; };
@@ -886,6 +890,7 @@
 		B95C5C160F598F9C00A368DC /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */,
 				B9160F440F565D9300473A95 /* checkBox.png */,
 				B9160F460F565D9300473A95 /* checkBoxChecked.png */,
 				B9160F4E0F565D9300473A95 /* icon_calendar.png */,
@@ -1202,6 +1207,7 @@
 				92E91C380FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql in Resources */,
 				922C0016101C66EC0029AC32 /* IconSmall.png in Resources */,
 				92E4AAA7102C220700CACCC9 /* Localizable.strings in Resources */,
+				92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1213,6 +1219,7 @@
 				9278D3640FBF16820007B03B /* SplashScreenViewController.xib in Resources */,
 				9278D3BB0FBF185B0007B03B /* Default.png in Resources */,
 				92E4AAA9102C220700CACCC9 /* Localizable.strings in Resources */,
+				92ECF0C3103809FC004F8CB5 /* recurrentIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1272,6 +1279,7 @@
 				9278D3BA0FBF185B0007B03B /* Default.png in Resources */,
 				92E91C5D0FBFD7E600DCDE16 /* migrate_007_clear_last_sync.sql in Resources */,
 				92E4AAA8102C220700CACCC9 /* Localizable.strings in Resources */,
+				92ECF0C2103809FC004F8CB5 /* recurrentIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1635,6 +1643,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = others/Info.plist;
 				PRODUCT_NAME = Milpon;
 				SDKROOT = iphoneos2.2.1;

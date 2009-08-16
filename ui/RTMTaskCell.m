@@ -42,6 +42,17 @@ static NSArray *s_check_box_images;
    return s_check_box_images;
 }
 
+static UIImage *s_recurrentIcon = nil;
+
++ (UIImage *) recurrentIcon
+{
+   if (nil == s_recurrentIcon) {
+      s_recurrentIcon = [UIImage imageNamed:@"recurrentIcon.png"];
+      [s_recurrentIcon retain];
+   }
+   return s_recurrentIcon;
+}
+
 - (void) prepareForReuse
 {
    if (task) [task release];
@@ -128,6 +139,10 @@ static NSArray *s_check_box_images;
       }
    } else {
       dueLabel.hidden = YES;
+   }
+   
+   if (![task.rrule isEqualToString:@""]) {
+      [[RTMTaskCell recurrentIcon] drawInRect:CGRectMake(292, 14, 16, 16)];
    }
 
 	[pool release];

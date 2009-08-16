@@ -30,6 +30,7 @@
    IBOutlet UIButton      *priorityButton;
    IBOutlet UIPageControl *notePages;
    IBOutlet AttributeView *note_field;
+   IBOutlet UIImageView   *recurrentImageView;
    UIView  *dialogView;
    NSArray *prioritySelections;
 }
