@@ -13,7 +13,6 @@
 #import "RTMList.h"
 #import "RTMTag.h"
 #import "RTMNote.h"
-#import "UICCalendarPicker.h"
 #import "logger.h"
 #import "ListProvider.h"
 #import "NoteProvider.h"
@@ -25,43 +24,6 @@
 #import "ListSelectViewController.h"
 
 #define kNOTE_PLACE_HOLDER @"note..."
-
-@implementation DueLabel
-
-- (id) initWithFrame:(CGRect)aRect
-{
-   if (self = [super initWithFrame:aRect]) {
-      toggleCalendarDisplay = NO;
-      self.userInteractionEnabled = YES;
-   }
-   return self;
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-   toggleCalendarDisplay = !toggleCalendarDisplay;
-   
-   if (toggleCalendarDisplay) {
-      UICCalendarPicker *picker = [[UICCalendarPicker alloc] initWithSize:UICCalendarPickerSizeExtraLarge];
-      [picker setDelegate:viewController];
-      [picker showInView:self.superview animated:NO];
-      [picker release];
-   }
-}
-
-- (void) dealloc
-{
-   [viewController release];
-   [super dealloc];
-}
-
-- (void) setViewController:(UIViewController *)vc
-{
-   viewController = vc;
-   [vc retain];
-}
-
-@end
 
 @interface TaskViewController (Private)
 - (void) setPriorityButton;
@@ -105,7 +67,6 @@ enum {
 - (void) viewDidLoad
 {
    self.title = task.name;
-   [due setViewController:self];
 
 /*
    name.text = task.name;
@@ -163,8 +124,6 @@ enum {
       [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]] autorelease];
    [self.view addSubview:tag_field];
    [tag_field release];
-
-   [self updateDue];
 
    [self setPriorityButton];
    [priorityButton addTarget:self action:@selector(togglePriorityView) forControlEvents:UIControlEventTouchDown];
@@ -226,19 +185,6 @@ enum {
    }
 }
 
-- (void) updateDue
-{
-   if (task.due) {
-      NSCalendar *calendar = [NSCalendar currentCalendar];
-      unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-      NSDateComponents *comps = [calendar components:unitFlags fromDate:task.due];
-
-      NSString *dueString = [NSString stringWithFormat:@"%d/%d", [comps month], [comps day]];
-
-      due.text = dueString;
-   }
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
    // Return YES for supported orientations
@@ -254,7 +200,6 @@ enum {
 
 - (void) dealloc
 {
-   [due release];
    [task release];
    [note_field release];
    [dialogView release];
@@ -319,14 +264,6 @@ prioritySelected_N(4);
    [textField resignFirstResponder];
    [textField removeFromSuperview];
    return YES;
-}
-
-- (void) picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate
-{
-   NSDate *theDate = [selectedDate objectAtIndex:0];
-   task.due = theDate;
-
-   [self updateDue];
 }
 
 - (void) edit_name

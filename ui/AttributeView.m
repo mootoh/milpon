@@ -56,15 +56,6 @@
 {
    if (edit_delegate)
       objc_msgSend(edit_delegate,action);
-#if 0
-   toggleCalendarDisplay = toggleCalendarDisplay ? NO : YES;
-   if (toggleCalendarDisplay) {
-      UICCalendarPicker *picker = [[UICCalendarPicker alloc] initWithSize:UICCalendarPickerSizeExtraLarge];
-      [picker setDelegate:viewController];
-      [picker showInView:self.superview animated:NO];
-      [picker release];
-   }
-#endif // 0
 }
 
 - (void) setDelegate:(id) dlg asAction:(SEL)act

@@ -12,24 +12,12 @@
 @class RTMList;
 @class RTMTask;
 
-@interface DueLabel : UILabel
-{
-   BOOL toggleCalendarDisplay;
-   UIViewController *viewController;
-}
-
-- (void) setViewController:(UIViewController *)vc;
-
-@end
-
-
 @interface TaskViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate, TaskEditDelegate, HavingList, HavingTag>
 {
    RTMTask *task;
-   IBOutlet DueLabel      *due;
    IBOutlet UIButton      *priorityButton;
    IBOutlet UIPageControl *notePages;
-   IBOutlet AttributeView *note_field;
+   AttributeView *note_field;
    IBOutlet UIImageView   *recurrentImageView;
    UIView  *dialogView;
    NSArray *prioritySelections;
@@ -37,7 +25,6 @@
 
 @property (nonatomic, retain) RTMTask *task;
 
-- (void) updateDue;
 - (void) edit_name;
 - (void) edit_due;
 - (void) setDue:(NSDate *)date;
