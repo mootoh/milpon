@@ -59,4 +59,8 @@
    return [other.name isEqualToString:self.name];
 }
 
+- (NSComparisonResult) compareByTagName:(RTMTag *)aTag
+{
+   return [name caseInsensitiveCompare:aTag.name];
+}
 @end

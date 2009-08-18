@@ -25,9 +25,8 @@ static UICCalendarPicker *s_calendar_picker = nil;
 
 + (UICCalendarPicker *) theCalendarPicker
 {
-   if (s_calendar_picker == nil) {
+   if (s_calendar_picker == nil)
       s_calendar_picker = [[[UICCalendarPicker alloc] initWithSize:UICCalendarPickerSizeExtraLarge] retain];
-   }
    return s_calendar_picker;
 }
 

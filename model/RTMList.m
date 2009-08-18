@@ -59,4 +59,8 @@ DEFINE_ATTRIBUTE(name, Name, NSString*, EB_LIST_NAME);
    return @"list";
 }
 
+- (NSComparisonResult) compareByListName:(RTMList *)aList
+{
+   return [self.name caseInsensitiveCompare:aList.name];
+}
 @end // RTMList

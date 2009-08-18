@@ -28,5 +28,9 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - assigned to release 2.2 from 2.1
   - ""
+- - 2009-08-18 12:50:31.591335 Z
+  - mootoh <mootoh@gmail.com>
+  - commented
+  - may use some transaction to do it.
 git_branch: 
 claimer: 

@@ -72,7 +72,7 @@
    }
    [pool release];
 
-   return lists;
+   return [lists sortedArrayUsingSelector:@selector(compareByListName:)];
 }
 
 - (NSArray *) loadLists

@@ -17,6 +17,7 @@
 
 - (BOOL) isSmart;
 - (NSInteger) taskCount;
+- (NSComparisonResult) compareByListName:(RTMList *)aList;
 
 enum list_edit_bits_t {
    EB_LIST_NAME   = 1 << 1

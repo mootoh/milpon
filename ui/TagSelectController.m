@@ -29,7 +29,7 @@ static UIImage *s_checkedIcon = nil;
 {
    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
       tag_provider = [[TagProvider sharedTagProvider] retain];
-      self.all_tags = [tag_provider tags];
+      self.all_tags = [[tag_provider tags] sortedArrayUsingSelector:@selector(compareByTagName:)];
       self.title = @"Tags";
       selected_flags = [[NSMutableDictionary alloc] init];
    }

@@ -19,6 +19,7 @@
 @property (nonatomic, readonly) NSArray *tasks;
 
 - (id) initWithID:(NSNumber *)id_ forName:(NSString *)name;
+- (NSComparisonResult) compareByTagName:(RTMTag *)aTag;
 
 @end
 // vim:set ft=objc:

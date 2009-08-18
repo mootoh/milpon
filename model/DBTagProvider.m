@@ -129,7 +129,7 @@
       [tag release];
    }
    [pool release];
-   return tags;
+   return [tags sortedArrayUsingSelector:@selector(compareByTagName:)];
 }
 
 
