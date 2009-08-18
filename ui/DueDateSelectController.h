@@ -8,12 +8,9 @@
 
 #import "Milpon.h"
 
-@class UICCalendarPicker;
-
 @interface DueDateSelectController : UITableViewController
 {
    UIViewController <TaskEditDelegate> *parent;
-   UICCalendarPicker *calendar_picker;
 }
 
 @property (nonatomic, retain) UIViewController <TaskEditDelegate> *parent;

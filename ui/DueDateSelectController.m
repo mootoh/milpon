@@ -9,6 +9,7 @@
 #import "DueDateSelectController.h"
 #import "UICCalendarPicker.h"
 
+
 @implementation DueDateSelectController
 
 enum {
@@ -19,11 +20,21 @@ enum {
 
 @synthesize parent;
 
+
+static UICCalendarPicker *s_calendar_picker = nil;
+
++ (UICCalendarPicker *) theCalendarPicker
+{
+   if (s_calendar_picker == nil) {
+      s_calendar_picker = [[[UICCalendarPicker alloc] initWithSize:UICCalendarPickerSizeExtraLarge] retain];
+   }
+   return s_calendar_picker;
+}
+
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-       calendar_picker = [[UICCalendarPicker alloc] initWithSize:UICCalendarPickerSizeExtraLarge];
-       calendar_picker.delegate = self;
+       [DueDateSelectController theCalendarPicker].delegate = self;
        self.title = @"Due Date";
     }
     return self;
@@ -80,8 +91,7 @@ enum {
          cell.text = @"Tomorrow";
          break;
       case ROW_CALENDAR:
-         [calendar_picker showInView:cell.contentView animated:NO];
-         //[cell.contentView addSubview:calendar_picker];
+         [[DueDateSelectController theCalendarPicker] showInView:cell.contentView animated:NO];
          break;
       default:
          break;
