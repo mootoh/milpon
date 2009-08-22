@@ -23,5 +23,9 @@ log_events:
     investigated.
     after completed a recurrent task, rtm.tasks.getList returns all the tasks associated with it, including completed ones before.
     fmmmm...
+- - 2009-08-22 00:28:25.216094 Z
+  - mootoh <mootoh@gmail.com>
+  - commented
+  - got a request to do this.
 git_branch: 
 claimer: 
