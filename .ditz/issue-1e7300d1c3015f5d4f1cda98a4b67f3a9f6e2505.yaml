@@ -1,0 +1,22 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: call LocalCache dealloc to close sqlite DB
+desc: |-
+  The current implementation instantiate LocalCache as a singleton.
+  It should be released at application termination phase, but it does not. (checked using setting breakpoint to LocalCache#dealloc).
+type: :bugfix
+component: milpon
+release: "2.2"
+reporter: Takayama Motohiro <mootoh@gmail.com>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-29 03:20:53.459657 Z
+references: []
+
+id: 1e7300d1c3015f5d4f1cda98a4b67f3a9f6e2505
+log_events: 
+- - 2009-09-29 03:20:53.460410 Z
+  - Takayama Motohiro <mootoh@gmail.com>
+  - created
+  - ""
+git_branch: 
+claimer: 
