@@ -325,7 +325,7 @@
 		925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeFetchAllViewController.m; sourceTree = "<group>"; };
 		9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_006_add_initial_lastsync.sql; sourceTree = "<group>"; };
 		9278D1F40FBF0DB50007B03B /* SplashScreen-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SplashScreen-Info.plist"; sourceTree = "<group>"; };
-		9278D2650FBF0DE20007B03B /* Milpon Splash Screen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Splash Screen.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9278D2650FBF0DE20007B03B /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9278D28A0FBF0EE80007B03B /* SplashScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SplashScreen.xib; path = splashscreen/SplashScreen.xib; sourceTree = SOURCE_ROOT; };
 		9278D2AC0FBF10420007B03B /* SplashScreenAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenAppDelegate.h; sourceTree = "<group>"; };
 		9278D2AD0FBF10420007B03B /* SplashScreenAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenAppDelegate.m; sourceTree = "<group>"; };
@@ -604,7 +604,7 @@
 				B9B956560F65D2720046712A /* UnitTest.octest */,
 				B9B957270F6615930046712A /* UnitTest.octest */,
 				B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */,
-				9278D2650FBF0DE20007B03B /* Milpon Splash Screen.app */,
+				9278D2650FBF0DE20007B03B /* Milpon.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -612,7 +612,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				9278D2690FBF0E0F0007B03B /* SplashScreen */,
 				B9160EBF0F565CEF00473A95 /* api */,
 				B9160ED60F565D1500473A95 /* ui */,
 				B9160F180F565D4C00473A95 /* model */,
@@ -622,6 +621,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				B9160FD00F565DE000473A95 /* test */,
+				9278D2690FBF0E0F0007B03B /* SplashScreen */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1018,7 +1018,7 @@
 			);
 			name = "Splash Screen";
 			productName = Milpon;
-			productReference = 9278D2650FBF0DE20007B03B /* Milpon Splash Screen.app */;
+			productReference = 9278D2650FBF0DE20007B03B /* Milpon.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B914B33A0F5EBDA6009C19BE /* ListUnitTest */ = {
@@ -1133,6 +1133,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = deadbeaf.org;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Milpon" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
@@ -1753,7 +1756,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "30718F42-3B54-4610-99E9-023759180436";
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = LocalDebug;
 		};
@@ -2024,7 +2027,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C519825E-CE5B-4630-8EC6-3D832C005111";
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = AdHocRelease;
 		};
@@ -2217,7 +2220,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = UnitTest;
 		};
@@ -2699,7 +2702,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator2.2.1;
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = Debug;
 		};
@@ -2713,7 +2716,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = Release;
 		};

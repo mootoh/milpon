@@ -3,7 +3,7 @@ title: background sync
 desc: smart sync while online
 type: :feature
 component: milpon
-release: "2.2"
+release: "2.3"
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -20,5 +20,9 @@ log_events:
   - mootoh <mootoh@gmail.com>
   - assigned to release 2.2 from unassigned
   - automatically sync.
+- - 2009-09-29 02:28:38.742687 Z
+  - Takayama Motohiro <mootoh@gmail.com>
+  - assigned to release 2.3 from 2.2
+  - moved.
 git_branch: 
 claimer: 

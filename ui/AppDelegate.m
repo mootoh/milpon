@@ -60,6 +60,7 @@
    avc.navigationItem.hidesBackButton = YES;
    
    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:avc];
+   [avc release];
    [navigationController presentModalViewController:nc animated:NO];
    [nc release];
 }
@@ -154,7 +155,8 @@
          [self recoverView];
       }
    }
-   
+
+   [self refresh];
    [window makeKeyAndVisible];
 }
 
