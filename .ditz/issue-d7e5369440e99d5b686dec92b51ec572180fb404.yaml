@@ -3,7 +3,7 @@ title: improve stability
 desc: often crashes when doing something while syncing.
 type: :task
 component: milpon
-release: "2.2"
+release: 
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -15,6 +15,10 @@ log_events:
 - - 2009-08-22 00:07:30.347952 Z
   - mootoh <mootoh@gmail.com>
   - created
+  - ""
+- - 2009-09-29 02:59:54.031770 Z
+  - Takayama Motohiro <mootoh@gmail.com>
+  - unassigned from release 2.2
   - ""
 git_branch: 
 claimer: 

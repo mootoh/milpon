@@ -38,7 +38,7 @@ enum {
 {
    if (self = [super initWithStyle:style]) {
       self.title = NSLocalizedString(@"Add", @"");
-      self.list  = [[[ListProvider sharedListProvider] lists] objectAtIndex:0];
+      self.list  = [[ListProvider sharedListProvider] inboxList];
       self.tags  = [NSMutableArray array];
    }
    return self;
