@@ -92,3 +92,12 @@ releases:
     - mootoh <mootoh@gmail.com>
     - created
     - Improve the usability.
+- !ditz.rubyforge.org,2008-03-06/release 
+  name: "2.3"
+  status: :unreleased
+  release_time: 
+  log_events: 
+  - - 2009-09-29 02:28:19.638634 Z
+    - Takayama Motohiro <mootoh@gmail.com>
+    - created
+    - background sync.

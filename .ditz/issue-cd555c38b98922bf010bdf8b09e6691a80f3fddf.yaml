@@ -1,0 +1,24 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: sync at start
+desc: as preparation for background sync.
+type: :feature
+component: milpon
+release: "2.2"
+reporter: Takayama Motohiro <mootoh@gmail.com>
+status: :closed
+disposition: :fixed
+creation_time: 2009-09-29 02:29:10.103491 Z
+references: []
+
+id: cd555c38b98922bf010bdf8b09e6691a80f3fddf
+log_events: 
+- - 2009-09-29 02:29:10.104179 Z
+  - Takayama Motohiro <mootoh@gmail.com>
+  - created
+  - ""
+- - 2009-09-29 02:48:57.593147 Z
+  - Takayama Motohiro <mootoh@gmail.com>
+  - closed with disposition fixed
+  - kick AppDelegate#refresh at start.
+git_branch: 
+claimer: 
