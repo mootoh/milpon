@@ -325,7 +325,7 @@
 		925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeFetchAllViewController.m; sourceTree = "<group>"; };
 		9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_006_add_initial_lastsync.sql; sourceTree = "<group>"; };
 		9278D1F40FBF0DB50007B03B /* SplashScreen-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SplashScreen-Info.plist"; sourceTree = "<group>"; };
-		9278D2650FBF0DE20007B03B /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9278D2650FBF0DE20007B03B /* Milpon Splash Screen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Splash Screen.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9278D28A0FBF0EE80007B03B /* SplashScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SplashScreen.xib; path = splashscreen/SplashScreen.xib; sourceTree = SOURCE_ROOT; };
 		9278D2AC0FBF10420007B03B /* SplashScreenAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenAppDelegate.h; sourceTree = "<group>"; };
 		9278D2AD0FBF10420007B03B /* SplashScreenAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenAppDelegate.m; sourceTree = "<group>"; };
@@ -333,6 +333,7 @@
 		9278D3610FBF16820007B03B /* SplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenViewController.m; sourceTree = "<group>"; };
 		9278D3620FBF16820007B03B /* SplashScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashScreenViewController.xib; sourceTree = "<group>"; };
 		9278D3B30FBF185B0007B03B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		928601981072E55C004B7DFE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E4AA9D102C21DC00CACCC9 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E4AAAA102C220D00CACCC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_007_clear_last_sync.sql; sourceTree = "<group>"; };
@@ -604,7 +605,7 @@
 				B9B956560F65D2720046712A /* UnitTest.octest */,
 				B9B957270F6615930046712A /* UnitTest.octest */,
 				B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */,
-				9278D2650FBF0DE20007B03B /* Milpon.app */,
+				9278D2650FBF0DE20007B03B /* Milpon Splash Screen.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1018,7 +1019,7 @@
 			);
 			name = "Splash Screen";
 			productName = Milpon;
-			productReference = 9278D2650FBF0DE20007B03B /* Milpon.app */;
+			productReference = 9278D2650FBF0DE20007B03B /* Milpon Splash Screen.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B914B33A0F5EBDA6009C19BE /* ListUnitTest */ = {
@@ -1146,6 +1147,8 @@
 				German,
 				ja,
 				en,
+				Spanish,
+				es,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -1629,6 +1632,7 @@
 			children = (
 				92E4AA9D102C21DC00CACCC9 /* English */,
 				92E4AAAA102C220D00CACCC9 /* ja */,
+				928601981072E55C004B7DFE /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

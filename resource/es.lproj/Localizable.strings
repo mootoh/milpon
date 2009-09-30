@@ -1,0 +1,69 @@
+﻿/* No comment provided by engineer. */
+"7days" = "7 días";
+ 
+/* No comment provided by engineer. */
+"Add" = "Agregar";
+ 
+/* No comment provided by engineer. */
+"List" = "Lista";
+ 
+/* No comment provided by engineer. */
+"Milpon" = "Milpon";
+ 
+/* No comment provided by engineer. */
+"Note" = "Nota";
+ 
+/* No comment provided by engineer. */
+"Outdated" = "Atrasadas";
+ 
+/* No comment provided by engineer. */
+"Overview" = "Vista general";
+ 
+/* No comment provided by engineer. */
+"RefreshAll" = "Recargar datos locales";
+ 
+/* No comment provided by engineer. */
+"SendFeedback" = "Enviar comentario";
+ 
+/* No comment provided by engineer. */
+"Setting" = "Ajustes";
+ 
+/* No comment provided by engineer. */
+"Tag" = "Etiqueta";
+ 
+/* No comment provided by engineer. */
+"Task" = "Tarea";
+ 
+/* No comment provided by engineer. */
+"Today" = "Hoy";
+ 
+/* No comment provided by engineer. */
+"Tomorrow" = "Mañana";
+ 
+/* No comment provided by engineer. */
+"WhatToDo" = "¿Qué hacer?";
+ 
+/* first auth navigation message */
+"AuthNaviFirst" = "Milpon necesita permiso para acceder a los datos de RTM.\n\nEntra a la página de RTM y se le perguntará si quiere o no aceptar que esta aplicación acceda a sus datos..\n\nDespués de aceptar, presione en 'Configurar' en la bara para volver.";
+ 
+/* error in RTM site auth. */
+"AuthError" = "No se pudo adquirir la información de RTM. Inténtelo de nuevo cuando esté online.";
+ 
+/* go to RTM button */
+"GoToRTM" = "Ir a RTM";
+ 
+/* setup screen */
+"Setup" = "Configurar";
+ 
+/* permission getting screen */
+"AcquiringPermission" = "Adquiriendo permisos...";
+ 
+/* fetch all data */
+"FetchingInstruction" = "Cargando listas, tareas…\nPuede demorar. Tenga paciencia m(_ _)m";
+ 
+/* all initial process has been succeeded */
+"InitDone" = "¡Hecho!\n\nDisfrute :)";
+ 
+/* auth web view title */
+"AuthWebviewTitle" = "Autorizar";
+ 
