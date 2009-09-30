@@ -18,5 +18,9 @@ log_events:
   - Takayama Motohiro <mootoh@gmail.com>
   - created
   - ""
+- - 2009-09-29 03:22:11.931624 Z
+  - Takayama Motohiro <mootoh@gmail.com>
+  - commented
+  - A way to do that, simply don't use the Singleton.
 git_branch: 
 claimer: 
