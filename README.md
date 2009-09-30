@@ -1,13 +1,16 @@
+# Milpon #
+
 An iPhone application for Remember the Milk.
 
-= Requirements =
+## Requirements ##
 
 Need a Remember the Milk API key.
 Obtain from RTM web site, then store them in PrivateInfo.h (see PrivateInfo.h-sample).
 
-= LICENSE =
+## LICENSE ##
 
 New BSD.
 
---
+----
+
 mootoh
