@@ -85,13 +85,17 @@ releases:
     - ""
 - !ditz.rubyforge.org,2008-03-06/release 
   name: "2.2"
-  status: :unreleased
-  release_time: 
+  status: :released
+  release_time: 2009-10-13 08:53:18.783203 Z
   log_events: 
   - - 2009-08-11 10:55:43.079468 Z
     - mootoh <mootoh@gmail.com>
     - created
     - Improve the usability.
+  - - 2009-10-13 08:53:18.783231 Z
+    - Takayama Motohiro <mootoh@gmail.com>
+    - released
+    - released!
 - !ditz.rubyforge.org,2008-03-06/release 
   name: "2.3"
   status: :unreleased

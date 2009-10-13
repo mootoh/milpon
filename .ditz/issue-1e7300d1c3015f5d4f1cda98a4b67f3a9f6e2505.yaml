@@ -5,7 +5,7 @@ desc: |-
   It should be released at application termination phase, but it does not. (checked using setting breakpoint to LocalCache#dealloc).
 type: :bugfix
 component: milpon
-release: "2.2"
+release: "2.3"
 reporter: Takayama Motohiro <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -22,5 +22,9 @@ log_events:
   - Takayama Motohiro <mootoh@gmail.com>
   - commented
   - A way to do that, simply don't use the Singleton.
+- - 2009-10-13 08:52:37.714311 Z
+  - Takayama Motohiro <mootoh@gmail.com>
+  - assigned to release 2.3 from 2.2
+  - ""
 git_branch: 
 claimer: 
