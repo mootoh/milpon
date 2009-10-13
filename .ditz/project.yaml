@@ -114,3 +114,12 @@ releases:
     - Takayama Motohiro <mootoh@gmail.com>
     - created
     - better UI.
+- !ditz.rubyforge.org,2008-03-06/release 
+  name: 2.2.1
+  status: :unreleased
+  release_time: 
+  log_events: 
+  - - 2009-10-13 08:59:04.619820 Z
+    - Takayama Motohiro <mootoh@gmail.com>
+    - created
+    - for minor bug fixes.
