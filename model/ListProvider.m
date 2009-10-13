@@ -48,6 +48,12 @@
    NSAssert(NO, @"not reach here");
 }
 
+- (RTMList *) inboxList
+{
+   NSAssert(NO, @"not reach here");
+   return nil;
+}
+
 + (ListProvider *) sharedListProvider
 {
    NSAssert(NO, @"not reach here");

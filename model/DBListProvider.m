@@ -31,6 +31,12 @@
    [super dealloc];
 }
 
+- (RTMList *) inboxList
+{
+   NSDictionary *option = [NSDictionary dictionaryWithObject:@"list.name is 'INBOX'" forKey:@"WHERE"];
+	return [[self loadLists:option] objectAtIndex:0];
+}
+
 - (NSArray *) lists
 {
    NSDictionary *option = [NSDictionary dictionaryWithObject:@"list.filter is NULL" forKey:@"WHERE"]; // skip Smart List

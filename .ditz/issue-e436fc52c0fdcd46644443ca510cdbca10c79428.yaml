@@ -3,7 +3,7 @@ title: separate config out to Setting.bundle
 desc: There are lots of setting items, so it should be good to isolate out of the app.
 type: :feature
 component: milpon
-release: "2.2"
+release: 
 reporter: mootoh <mootoh@gmail.com>
 status: :unstarted
 disposition: 
@@ -19,6 +19,10 @@ log_events:
 - - 2009-08-11 10:55:54.571569 Z
   - mootoh <mootoh@gmail.com>
   - assigned to release 2.2 from 2.1
+  - ""
+- - 2009-09-29 02:59:49.585941 Z
+  - Takayama Motohiro <mootoh@gmail.com>
+  - unassigned from release 2.2
   - ""
 git_branch: 
 claimer: 
