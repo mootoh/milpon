@@ -105,3 +105,12 @@ releases:
     - Takayama Motohiro <mootoh@gmail.com>
     - created
     - background sync.
+- !ditz.rubyforge.org,2008-03-06/release 
+  name: "2.4"
+  status: :unreleased
+  release_time: 
+  log_events: 
+  - - 2009-10-13 08:55:27.868432 Z
+    - Takayama Motohiro <mootoh@gmail.com>
+    - created
+    - better UI.
