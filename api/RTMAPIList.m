@@ -146,13 +146,11 @@
    return [cb lists];
 }
 
-- (NSString *) add:(NSString *)name withFilter:(NSString *)filter
+- (NSString *) add:(NSString *)name withFilter:(NSString *)filter withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return nil;
    NSArray *keys = [NSArray arrayWithObjects:@"name", @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:name, timeline, nil];
+   NSArray *vals = [NSArray arrayWithObjects:name, timeLine, nil];
 
    NSMutableDictionary *args = [NSDictionary dictionaryWithObjects:vals
       forKeys:keys];
@@ -170,13 +168,11 @@
    return cb.iD;
 }
 
-- (BOOL) delete:(NSString *)list_id
+- (BOOL) delete:(NSString *)list_id withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return NO;
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:list_id, timeline, nil];
+   NSArray *vals = [NSArray arrayWithObjects:list_id, timeLine, nil];
 
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals
       forKeys:keys];

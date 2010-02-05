@@ -39,16 +39,16 @@
 /**
  * @return [taskseries_id, task_id]
  */
-- (NSDictionary *) add:(NSString *)name inList:(NSString *)list_id;
-- (BOOL) delete:(NSString *)task_id inTaskSeries:(NSString *)taskseries_id inList:(NSString *)list_id;
+- (NSDictionary *) add:(NSString *)name inList:(NSString *)list_id withTimeLine:(NSString *)timeLine;
+- (BOOL) delete:(NSString *)task_id inTaskSeries:(NSString *)taskseries_id inList:(NSString *)list_id withTimeLine:(NSString *)timeLine;
 
-- (BOOL) setDue:(NSString *)due forIDs:(NSDictionary *)ids;
-- (BOOL) setLocation:(NSString *)location_id forIDs:(NSDictionary *)ids;
-- (BOOL) setPriority:(NSString *)priority forIDs:(NSDictionary *)ids;
-- (BOOL) setEstimate:(NSString *)estimate forIDs:(NSDictionary *)ids;
-- (BOOL) complete:(RTMTask *)ids;
-- (BOOL) setTags:(NSString *)tags forIDs:(NSDictionary *)ids;
-- (BOOL) moveTo:(NSDictionary *)ids;
-- (BOOL) setName:(NSString *)name forIDs:(NSDictionary *)ids;
+- (BOOL) setDue:(NSString *)due forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine;
+- (BOOL) setLocation:(NSString *)location_id forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine;
+- (BOOL) setPriority:(NSString *)priority forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine;
+- (BOOL) setEstimate:(NSString *)estimate forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine;
+- (BOOL) complete:(RTMTask *)task withTimeLine:(NSString *)timeLine;
+- (BOOL) setTags:(NSString *)tags forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine;
+- (BOOL) moveTo:(NSDictionary *)ids withTimeLine:(NSString *)timeLine;
+- (BOOL) setName:(NSString *)name forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine;
 @end
 // vim:set ft=objc:

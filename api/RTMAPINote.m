@@ -41,14 +41,12 @@
 
 @implementation RTMAPINote
 
-- (NSInteger) add:(RTMNote *)note forIDs:(NSDictionary *)ids
+- (NSInteger) add:(RTMNote *)note forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return -1;
 
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"note_title", @"note_text", @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:[ids objectForKey:@"list_id"], [ids objectForKey:@"taskseries_id"], [ids objectForKey:@"task_id"], note.title ? note.title : @"", note.text, timeline, nil];
+   NSArray *vals = [NSArray arrayWithObjects:[ids objectForKey:@"list_id"], [ids objectForKey:@"taskseries_id"], [ids objectForKey:@"task_id"], note.title ? note.title : @"", note.text, timeLine, nil];
    NSDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
 
    NSData *response = [api call:@"rtm.tasks.notes.add" withArgs:args];
@@ -65,11 +63,9 @@
    return cb.note_id;
 }
 
-- (BOOL) delete:(NSNumber *)note_id
+- (BOOL) delete:(NSNumber *)note_id withTimeline:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return NO;
 
    NSString *str_note_id = [NSString stringWithFormat:@"%d", [note_id integerValue]];
    NSDictionary *args = [NSDictionary dictionaryWithObject:str_note_id forKey:@"note_id"];
@@ -88,14 +84,12 @@
    return YES;
 }
 
-- (BOOL) edit:(NSDictionary *)ids withTitle:(NSString *)title withText:(NSString *)text
+- (BOOL) edit:(NSDictionary *)ids withTitle:(NSString *)title withText:(NSString *)text withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return NO;
    
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"note_title", @"note_text", @"note_id", @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:[ids objectForKey:@"list_id"], [ids objectForKey:@"taskseries_id"], [ids objectForKey:@"task_id"], title ? title : @"", text, [ids objectForKey:@"note_id"], timeline, nil];
+   NSArray *vals = [NSArray arrayWithObjects:[ids objectForKey:@"list_id"], [ids objectForKey:@"taskseries_id"], [ids objectForKey:@"task_id"], title ? title : @"", text, [ids objectForKey:@"note_id"], timeLine, nil];
    NSDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    
    NSData *response = [api call:@"rtm.tasks.notes.edit" withArgs:args];

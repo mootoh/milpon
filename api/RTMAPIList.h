@@ -26,13 +26,13 @@
  *
  * @return added list id. if failed, return nil.
  */
-- (NSString *) add:(NSString *)name withFilter:(NSString *)filter;
+- (NSString *) add:(NSString *)name withFilter:(NSString *)filter withTimeLine:(NSString *)timeLine;
 /**
  * call rtm.lists.delete
  *
  * @return deletion has been done successfully or not.
  */
-- (BOOL) delete:(NSString *)list_id;
+- (BOOL) delete:(NSString *)list_id withTimeLine:(NSString *)timeLine;
 /**
  * call rtm.lists.getList
  *

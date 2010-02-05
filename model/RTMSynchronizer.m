@@ -12,6 +12,7 @@
 #import "RTMTag.h"
 #import "RTMNote.h"
 #import "RTMAuth.h"
+#import "RTMAPI.h"
 #import "RTMAPIList.h"
 #import "RTMAPITask.h"
 #import "RTMAPINote.h"
@@ -25,11 +26,15 @@
 #import "TagProvider.h"
 
 @implementation RTMSynchronizer
+@synthesize timeLine;
 
 - (id) init:(RTMAuth *)aauth
 {
-   if (self = [super init]) {
+   if (self = [super init]) {      
       auth = aauth;
+      
+      RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
+      self.timeLine = [api createTimeline];
    }
    return self;
 }
@@ -148,7 +153,7 @@
       progressView.message = [NSString stringWithFormat:@"uploading %d/%d tasks...", i, pendings.count];
 
       NSString *list_id = [task.list_id stringValue];
-      NSDictionary *task_ret = [api_task add:task.name inList:list_id];
+      NSDictionary *task_ret = [api_task add:task.name inList:list_id withTimeLine:timeLine];
       if (task_ret == nil)
          [[NSException
             exceptionWithName:@"RTMSynchronizerException"
@@ -161,17 +166,17 @@
 
       if (task.due) {
          NSString *due = [[MilponHelper sharedHelper] dateToRtmString:task.due];
-         [api_task setDue:due forIDs:ids];
+         [api_task setDue:due forIDs:ids withTimeLine:timeLine];
       }
 
       if (0 != [task.location_id intValue])
-         [api_task setLocation:[task.location_id stringValue] forIDs:ids];
+         [api_task setLocation:[task.location_id stringValue] forIDs:ids withTimeLine:timeLine];
 
       if (4 != [task.priority intValue]) // TODO: care priority=4s
-         [api_task setPriority:[task.priority stringValue] forIDs:ids];
+         [api_task setPriority:[task.priority stringValue] forIDs:ids withTimeLine:timeLine];
 
       if (task.estimate && ![task.estimate isEqualToString:@""]) 
-         [api_task setEstimate:task.estimate forIDs:ids];
+         [api_task setEstimate:task.estimate forIDs:ids withTimeLine:timeLine];
 
       NSArray *tags = task.tags;
       if (tags && tags.count > 0) {
@@ -180,7 +185,7 @@
             tag_str = [tag_str stringByAppendingFormat:@"%@,", tg.name];
          tag_str = [tag_str substringToIndex:tag_str.length-1]; // cut last ', '
          
-         if (-1 != [api_task setTags:tag_str forIDs:ids]) {
+         if (-1 != [api_task setTags:tag_str forIDs:ids withTimeLine:timeLine]) {
             for (RTMTag *tg in tags)
                [[TagProvider sharedTagProvider] remove:tg]; // TODO: update IDs instead of removing            
          }
@@ -191,7 +196,7 @@
       NSArray *notes = [[NoteProvider sharedNoteProvider] notesInTask:task.iD];
       for (RTMNote *note in notes) {
          // - API request (rtm.tasks.notes.add) using new Task ID
-         NSInteger note_id = [api_note add:note forIDs:ids];
+         NSInteger note_id = [api_note add:note forIDs:ids withTimeLine:timeLine];
          if (note_id != -1) {
             // remove old Note from DB
             [[NoteProvider sharedNoteProvider] remove:note.iD]; // TODO: update IDs instead of removing
@@ -231,13 +236,13 @@
 
          NSString *due = [[MilponHelper sharedHelper] dateToRtmString:task.due];
 
-         if ([api_task setDue:due forIDs:ids]) {
+         if ([api_task setDue:due forIDs:ids withTimeLine:timeLine]) {
             LOG(@"setDue succeeded");
             [task flagDownEditBits:EB_TASK_DUE];
          }
       }
       if (edit_bits & EB_TASK_COMPLETED) {
-         if ([api_task complete:task]) {
+         if ([api_task complete:task withTimeLine:timeLine]) {
             [task flagDownEditBits:EB_TASK_COMPLETED];
             //[[TaskProvider sharedTaskProvider] remove:task]; // TODO: do not remove, keep it in DB to review completed tasks.
             i++;
@@ -254,7 +259,7 @@
             nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-         if ([api_task setPriority:[NSString stringWithFormat:@"%d", [task.priority intValue]] forIDs:ids]) { // TODO: care about priority=4
+         if ([api_task setPriority:[NSString stringWithFormat:@"%d", [task.priority intValue]] forIDs:ids withTimeLine:timeLine]) { // TODO: care about priority=4
             LOG(@"setPriority succeeded");
             [task flagDownEditBits:EB_TASK_PRIORITY];
          }
@@ -275,7 +280,7 @@
                           nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
          
-         if ([api_task setTags:tag_str forIDs:ids]) {
+         if ([api_task setTags:tag_str forIDs:ids withTimeLine:timeLine]) {
             [task flagDownEditBits:EB_TASK_TAG];
          }
       }
@@ -289,7 +294,7 @@
                           nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
          
-         if ([api_task setName:task.name forIDs:ids])
+         if ([api_task setName:task.name forIDs:ids withTimeLine:timeLine])
             [task flagDownEditBits:EB_TASK_NAME];
       }
 
@@ -303,7 +308,7 @@
                           nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-         if ([api_task moveTo:ids]) {
+         if ([api_task moveTo:ids withTimeLine:timeLine]) {
             [task flagDownEditBits:EB_TASK_LIST_ID];
          }
       }
@@ -323,7 +328,7 @@
                           nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
          
-         NSInteger note_id = [api_note add:note forIDs:ids];
+         NSInteger note_id = [api_note add:note forIDs:ids withTimeLine:timeLine];
          if (note_id != -1) {
             [[NoteProvider sharedNoteProvider] remove:note.iD]; // TODO: update IDs instead of removing
          }
@@ -337,7 +342,7 @@
                           nil];
          NSDictionary *ids = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
          
-         if ([api_note edit:ids withTitle:note.title withText:note.text])
+         if ([api_note edit:ids withTitle:note.title withText:note.text withTimeLine:timeLine])
             note.edit_bits = 0;
       }
    }

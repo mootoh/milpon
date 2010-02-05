@@ -10,8 +10,12 @@
 @class ProgressView;
 
 @interface RTMSynchronizer : NSObject {
-  RTMAuth *auth;
+   RTMAuth *auth;
+   NSString *timeLine;
 }
+
+@property (nonatomic, retain) NSString *timeLine;
+
 
 - (id) init:(RTMAuth *)aauth;
 

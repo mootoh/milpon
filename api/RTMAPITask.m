@@ -236,14 +236,12 @@
    return [self getList_internal:args];
 }	
 
-- (NSDictionary *) add:(NSString *)name inList:(NSString *)list_id
+- (NSDictionary *) add:(NSString *)name inList:(NSString *)list_id withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return nil;
 
    NSArray *keys = [NSArray arrayWithObjects:@"name", @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:name, timeline, nil];
+   NSArray *vals = [NSArray arrayWithObjects:name, timeLine, nil];
    NSMutableDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (list_id)
       [args setObject:list_id forKey:@"list_id"];
@@ -262,14 +260,12 @@
    return [cb ids];
 }
 
-- (BOOL) delete:(NSString *)task_id inTaskSeries:(NSString *)taskseries_id inList:(NSString *)list_id
+- (BOOL) delete:(NSString *)task_id inTaskSeries:(NSString *)taskseries_id inList:(NSString *)list_id withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return NO;
 
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, nil];
+   NSArray *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeLine, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
    NSData *response = [api call:@"rtm.tasks.delete" withArgs:args];
@@ -286,18 +282,16 @@
    return YES;
 }
 
-- (BOOL) setDue:(NSString *)due forIDs:(NSDictionary *)ids
+- (BOOL) setDue:(NSString *)due forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return NO;
 
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"due", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [ids objectForKey:@"list_id"],
       [ids objectForKey:@"taskseries_id"],
       [ids objectForKey:@"task_id"],
-      timeline,
+      timeLine,
       due,
       nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
@@ -316,18 +310,16 @@
    return YES;
 }
 
-- (BOOL) setLocation:(NSString *)location_id forIDs:(NSDictionary *)ids
+- (BOOL) setLocation:(NSString *)location_id forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return NO;
 
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"location_id", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [ids objectForKey:@"list_id"],
       [ids objectForKey:@"taskseries_id"],
       [ids objectForKey:@"task_id"],
-      timeline,
+      timeLine,
       location_id,
       nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
@@ -346,18 +338,16 @@
    return YES;
 }
 
-- (BOOL) setPriority:(NSString *)priority forIDs:(NSDictionary *)ids
+- (BOOL) setPriority:(NSString *)priority forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return NO;
 
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"priority", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [ids objectForKey:@"list_id"],
       [ids objectForKey:@"taskseries_id"],
       [ids objectForKey:@"task_id"],
-      timeline,
+      timeLine,
       priority,
       nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
@@ -376,18 +366,16 @@
    return YES;
 }
 
-- (BOOL) setEstimate:(NSString *)estimate forIDs:(NSDictionary *)ids
+- (BOOL) setEstimate:(NSString *)estimate forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return NO;
 
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"estimate", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [ids objectForKey:@"list_id"],
       [ids objectForKey:@"taskseries_id"],
       [ids objectForKey:@"task_id"],
-      timeline,
+      timeLine,
       estimate,
       nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
@@ -406,18 +394,16 @@
    return YES;
 }
 
-- (BOOL) complete:(RTMTask *)task
+- (BOOL) complete:(RTMTask *)task withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return NO;
 
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", nil];
    NSArray *vals = [NSArray arrayWithObjects:
       [task.list_id stringValue],
       [task.taskseries_id stringValue],
       [task.task_id stringValue],
-      timeline,
+      timeLine,
       nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
@@ -435,11 +421,9 @@
    return YES;
 }
 
-- (BOOL) setTags:(NSString *)tags forIDs:(NSDictionary *)ids
+- (BOOL) setTags:(NSString *)tags forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return NO;
    
    NSArray *keys = [NSArray arrayWithObjects:@"tags", @"list_id", @"taskseries_id", @"task_id",  @"timeline", nil];
    NSArray *vals = [NSArray arrayWithObjects:
@@ -447,7 +431,7 @@
                     [ids objectForKey:@"list_id"],
                     [ids objectForKey:@"taskseries_id"],
                     [ids objectForKey:@"task_id"],
-                    timeline,
+                    timeLine,
                     nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    
@@ -465,14 +449,12 @@
    return YES;   
 }
 
-- (BOOL) moveTo:(NSDictionary *)ids
+- (BOOL) moveTo:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return NO;
    
    NSMutableDictionary *args = [NSMutableDictionary dictionaryWithDictionary:ids];
-   [args setObject:timeline forKey:@"timeline"];
+   [args setObject:timeLine forKey:@"timeline"];
    
    NSData *response = [api call:@"rtm.tasks.moveTo" withArgs:args];
    if (! response) return NO;
@@ -488,14 +470,12 @@
    return YES;   
 }
 
-- (BOOL) setName:(NSString *)name forIDs:(NSDictionary *)ids
+- (BOOL) setName:(NSString *)name forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSString *timeline = [api createTimeline];
-   if (! timeline) return NO;
    
    NSMutableDictionary *args = [NSMutableDictionary dictionaryWithDictionary:ids];
-   [args setObject:timeline forKey:@"timeline"];
+   [args setObject:timeLine forKey:@"timeline"];
    [args setObject:name forKey:@"name"];
    
    NSData *response = [api call:@"rtm.tasks.setName" withArgs:args];
