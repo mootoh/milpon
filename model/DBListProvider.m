@@ -33,7 +33,7 @@
 
 - (RTMList *) inboxList
 {
-   NSDictionary *option = [NSDictionary dictionaryWithObject:@"list.name is 'INBOX'" forKey:@"WHERE"];
+   NSDictionary *option = [NSDictionary dictionaryWithObject:@"list.name == 'Inbox'" forKey:@"WHERE"];
 	return [[self loadLists:option] objectAtIndex:0];
 }
 
