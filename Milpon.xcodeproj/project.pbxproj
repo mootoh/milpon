@@ -1235,8 +1235,8 @@
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
 				INFOPLIST_FILE = others/Info.plist;
 				PRODUCT_NAME = Milpon;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C29F2971-2379-4BAD-834C-5A8742018B89";
-				SDKROOT = iphoneos2.2.1;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BFA52439-DF9F-48CC-9EB0-D9030562ECE3";
+				SDKROOT = iphoneos3.1.2;
 			};
 			name = Release;
 		};
@@ -1586,13 +1586,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BFA52439-DF9F-48CC-9EB0-D9030562ECE3";
 				SDKROOT = iphoneos3.1.2;
 			};
 			name = Release;
