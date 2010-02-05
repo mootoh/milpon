@@ -86,12 +86,17 @@ releases:
 - !ditz.rubyforge.org,2008-03-06/release 
   name: "2.2"
   status: :released
+<<<<<<< HEAD
   release_time: 2009-10-13 08:53:18.783203 Z
+=======
+  release_time: 2010-02-05 14:31:47.621524 Z
+>>>>>>> moved issues to github issue tracking system.
   log_events: 
   - - 2009-08-11 10:55:43.079468 Z
     - mootoh <mootoh@gmail.com>
     - created
     - Improve the usability.
+<<<<<<< HEAD
   - - 2009-10-13 08:53:18.783231 Z
     - Takayama Motohiro <mootoh@gmail.com>
     - released
@@ -123,3 +128,9 @@ releases:
     - Takayama Motohiro <mootoh@gmail.com>
     - created
     - for minor bug fixes.
+=======
+  - - 2010-02-05 14:31:47.621552 Z
+    - mootoh <mootoh@gmail.com>
+    - released
+    - ""
+>>>>>>> moved issues to github issue tracking system.
