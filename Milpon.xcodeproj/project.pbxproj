@@ -30,44 +30,18 @@
 		9278D1B40FBF07750007B03B /* NoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43F0FAB140E00343773 /* NoteProvider.m */; };
 		9278D1B50FBF07770007B03B /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
 		9278D1B60FBF07C00007B03B /* MilponBetaIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */; };
-		9278D25A0FBF0DE20007B03B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		9278D25B0FBF0DE20007B03B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		9278D25C0FBF0DE20007B03B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		9278D25D0FBF0DE20007B03B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
-		9278D25E0FBF0DE20007B03B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
-		9278D28B0FBF0EE80007B03B /* SplashScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9278D28A0FBF0EE80007B03B /* SplashScreen.xib */; };
-		9278D2940FBF0F730007B03B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		9278D2AE0FBF10420007B03B /* SplashScreenAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9278D2AD0FBF10420007B03B /* SplashScreenAppDelegate.m */; };
-		9278D3630FBF16820007B03B /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9278D3610FBF16820007B03B /* SplashScreenViewController.m */; };
-		9278D3640FBF16820007B03B /* SplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3620FBF16820007B03B /* SplashScreenViewController.xib */; };
 		9278D3B40FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
 		9278D3B50FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
-		9278D3B60FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
-		9278D3B70FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
-		9278D3B80FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
-		9278D3B90FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
 		9278D3BA0FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
-		9278D3BB0FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
 		92E4AAA7102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
 		92E4AAA8102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
-		92E4AAA9102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
 		92E91C380FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
 		92E91C5D0FBFD7E600DCDE16 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
 		92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
 		92ECF0C2103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
-		92ECF0C3103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
 		B904056B0FA82E1B00DEA392 /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
-		B910D96F0FA1E5760051EFB0 /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
 		B914B2D70F5E7D6E009C19BE /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
 		B914B30F0F5EBAC6009C19BE /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
-		B914B33C0F5EBDA6009C19BE /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
-		B914B3410F5EBDA6009C19BE /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
-		B914B3430F5EBDA6009C19BE /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
-		B914B3470F5EBDA6009C19BE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		B914B3480F5EBDA6009C19BE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
-		B914B3530F5EBE77009C19BE /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
-		B914B3770F5EC14D009C19BE /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
-		B914B41E0F5ED23F009C19BE /* LocalCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDC0F565DE000473A95 /* LocalCacheTest.m */; };
 		B9160ECC0F565CEF00473A95 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
 		B9160ECD0F565CEF00473A95 /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPIAuth.m */; };
 		B9160ECE0F565CEF00473A95 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
@@ -129,45 +103,27 @@
 		B91610180F565F9E00473A95 /* DueDateSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610170F565F9E00473A95 /* DueDateSelectController.m */; };
 		B916108A0F56618400473A95 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B916108D0F56686600473A95 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
-		B91C48560FA04319001032CD /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
-		B91C48740FA04970001032CD /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
-		B91C48AB0FA04BD5001032CD /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
 		B926C44C0F67812F0014DB7D /* AttributeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B926C44B0F67812F0014DB7D /* AttributeView.m */; };
 		B926C4BF0F67991B0014DB7D /* icon_url.png in Resources */ = {isa = PBXBuildFile; fileRef = B926C4BE0F67991B0014DB7D /* icon_url.png */; };
 		B93A12570F9212AA00C0A9AB /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12560F9212AA00C0A9AB /* ReviewViewController.m */; };
 		B93A12580F9212AA00C0A9AB /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12560F9212AA00C0A9AB /* ReviewViewController.m */; };
 		B93A12970F921AAA00C0A9AB /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12960F921AAA00C0A9AB /* OverviewViewController.m */; };
 		B93A12980F921AAA00C0A9AB /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12960F921AAA00C0A9AB /* OverviewViewController.m */; };
-		B93AE4400FAB140E00343773 /* DBNoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43D0FAB140E00343773 /* DBNoteProvider.m */; };
-		B93AE4410FAB140E00343773 /* NoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43F0FAB140E00343773 /* NoteProvider.m */; };
 		B93AE4420FAB140E00343773 /* DBNoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43D0FAB140E00343773 /* DBNoteProvider.m */; };
 		B93AE4430FAB140E00343773 /* NoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43F0FAB140E00343773 /* NoteProvider.m */; };
 		B93AE4440FAB140E00343773 /* DBNoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43D0FAB140E00343773 /* DBNoteProvider.m */; };
 		B93AE4450FAB140E00343773 /* NoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43F0FAB140E00343773 /* NoteProvider.m */; };
-		B93AE4550FAB171A00343773 /* RTMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F230F565D4C00473A95 /* RTMNote.m */; };
 		B93D753B0F941105001E11F3 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
 		B95C5C080F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B95C5C090F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B970AC060F6416A1004467E9 /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B970AC050F6416A1004467E9 /* TaskView.xib */; };
 		B971DBDE0F5CCA3000513D03 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
-		B97AA00C0F9FEA1C004A23E3 /* TaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FE10F565DE000473A95 /* TaskTest.m */; };
 		B97F4FF00F94A1260085FB9B /* TaskCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B97F4FEF0F94A1260085FB9B /* TaskCollection.m */; };
 		B97F4FF10F94A1260085FB9B /* TaskCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B97F4FEF0F94A1260085FB9B /* TaskCollection.m */; };
 		B97F4FF80F94A1D90085FB9B /* TaskCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B97F4FF70F94A1D90085FB9B /* TaskCollectionViewController.m */; };
 		B97F4FF90F94A1D90085FB9B /* TaskCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B97F4FF70F94A1D90085FB9B /* TaskCollectionViewController.m */; };
 		B97F500E0F94C9280085FB9B /* RTMTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBF0F565DB600473A95 /* RTMTaskCell.m */; };
 		B9A403460F92CF950043A4C6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
-		B9A8D90C0FA952EE00F07D0D /* TagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957630F662E780046712A /* TagProvider.m */; };
-		B9A8D9660FA9650000F07D0D /* TagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957630F662E780046712A /* TagProvider.m */; };
-		B9A8DA060FA9729200F07D0D /* DBTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B9570F0F6615880046712A /* DBTagProvider.m */; };
-		B9A8DA080FA9729F00F07D0D /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
-		B9AE52080F6B407B0076D258 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
-		B9AE521A0F6B415C0076D258 /* RTMAPIListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD80F565DE000473A95 /* RTMAPIListTest.m */; };
-		B9AE52600F6B45970076D258 /* RTMAPITaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */; };
-		B9AE52650F6B47110076D258 /* RTMAPITest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDA0F565DE000473A95 /* RTMAPITest.m */; };
-		B9AE526F0F6B48640076D258 /* RTMAuthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDB0F565DE000473A95 /* RTMAuthTest.m */; };
-		B9AE527C0F6B490D0076D258 /* RTMAPIAuthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD70F565DE000473A95 /* RTMAPIAuthTest.m */; };
-		B9AE52810F6B492B0076D258 /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPIAuth.m */; };
 		B9AE52A30F6B4AE50076D258 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F440F565D9300473A95 /* checkBox.png */; };
 		B9AE52A40F6B4AE50076D258 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F460F565D9300473A95 /* checkBoxChecked.png */; };
 		B9AE52A50F6B4AE50076D258 /* icon_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F4E0F565D9300473A95 /* icon_calendar.png */; };
@@ -252,56 +208,14 @@
 		B9B9562E0F65D1FF0046712A /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
 		B9B956300F65D2130046712A /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1B0F565D4C00473A95 /* RTMAuth.m */; };
 		B9B956320F65D21E0046712A /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
-		B9B956430F65D2720046712A /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
-		B9B956450F65D2720046712A /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
-		B9B956460F65D2720046712A /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
-		B9B956470F65D2720046712A /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
-		B9B956480F65D2720046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
-		B9B956490F65D2720046712A /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
-		B9B9564B0F65D2720046712A /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPITask.m */; };
-		B9B9564C0F65D2720046712A /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
-		B9B9564D0F65D2720046712A /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1B0F565D4C00473A95 /* RTMAuth.m */; };
-		B9B9564E0F65D2720046712A /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
-		B9B956500F65D2720046712A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		B9B956510F65D2720046712A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
-		B9B956E00F6609FA0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B957110F6615880046712A /* DBTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B9570F0F6615880046712A /* DBTagProvider.m */; };
-		B9B957140F6615930046712A /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
-		B9B957160F6615930046712A /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
-		B9B957170F6615930046712A /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
-		B9B957180F6615930046712A /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
-		B9B957190F6615930046712A /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
-		B9B9571C0F6615930046712A /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
-		B9B9571D0F6615930046712A /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
-		B9B9571E0F6615930046712A /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
-		B9B957210F6615930046712A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		B9B957220F6615930046712A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
-		B9B9572B0F6615E30046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
-		B9B9574A0F66170D0046712A /* DBTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B9570F0F6615880046712A /* DBTagProvider.m */; };
-		B9B957550F6617670046712A /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
 		B9B957560F6617670046712A /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
-		B9B957640F662E780046712A /* TagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957630F662E780046712A /* TagProvider.m */; };
 		B9B957650F662E780046712A /* TagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957630F662E780046712A /* TagProvider.m */; };
-		B9B957690F662E870046712A /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
-		B9B9576A0F662E880046712A /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
-		B9B9576F0F662EBB0046712A /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F2B0F565D4C00473A95 /* RTMTask.m */; };
-		B9B957B70F6632DB0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B95CA70F6767BE0046712A /* NoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B95CA60F6767BE0046712A /* NoteEdit.xib */; };
-		B9C4DD030FA70B0C00DE1E18 /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
-		B9C4DD0F0FA70CAE00DE1E18 /* ListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDD0F565DE000473A95 /* ListTest.m */; };
-		B9C4DD7A0FA7280F00DE1E18 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
-		B9C4DD7C0FA7281500DE1E18 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
-		B9C4DD7E0FA7282000DE1E18 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
-		B9C4DF330FA7372E00DE1E18 /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
-		B9C4DF340FA7373000DE1E18 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
-		B9C4DF4C0FA7374900DE1E18 /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F2B0F565D4C00473A95 /* RTMTask.m */; };
 		B9C9A8690F91D0070078DC79 /* RootMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */; };
 		B9C9A86A0F91D0080078DC79 /* RootMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */; };
-		B9D043180F5F477400641E61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		B9D043190F5F477400641E61 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9D0433E0F5F493E00641E61 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
 		B9D043440F5F49A900641E61 /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
-		B9D043470F5F49CF00641E61 /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F2B0F565D4C00473A95 /* RTMTask.m */; };
 		B9D11FAF0F56A56300B5ABA4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9D1200C0F56A97B00B5ABA4 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
 		B9D120A40F5763DB00B5ABA4 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
@@ -325,7 +239,6 @@
 		925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeFetchAllViewController.m; sourceTree = "<group>"; };
 		9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_006_add_initial_lastsync.sql; sourceTree = "<group>"; };
 		9278D1F40FBF0DB50007B03B /* SplashScreen-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SplashScreen-Info.plist"; sourceTree = "<group>"; };
-		9278D2650FBF0DE20007B03B /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9278D28A0FBF0EE80007B03B /* SplashScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SplashScreen.xib; path = splashscreen/SplashScreen.xib; sourceTree = SOURCE_ROOT; };
 		9278D2AC0FBF10420007B03B /* SplashScreenAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenAppDelegate.h; sourceTree = "<group>"; };
 		9278D2AD0FBF10420007B03B /* SplashScreenAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenAppDelegate.m; sourceTree = "<group>"; };
@@ -338,7 +251,6 @@
 		92E4AAAA102C220D00CACCC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_007_clear_last_sync.sql; sourceTree = "<group>"; };
 		92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recurrentIcon.png; sourceTree = "<group>"; };
-		B914B34D0F5EBDA6009C19BE /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B914B34E0F5EBDA6009C19BE /* ListUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ListUnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9160EC00F565CEF00473A95 /* RTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPI.h; sourceTree = "<group>"; };
 		B9160EC10F565CEF00473A95 /* RTMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPI.m; sourceTree = "<group>"; };
@@ -486,11 +398,9 @@
 		B9AE54FE0F6CEF610076D258 /* rtm.auth.checkToken.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.auth.checkToken.xml; path = sample/rtm.auth.checkToken.xml; sourceTree = SOURCE_ROOT; };
 		B9B6580B0F937D0400A1FA0A /* Milpon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Milpon.h; sourceTree = "<group>"; };
 		B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9B956560F65D2720046712A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B9565B0F65D2720046712A /* APILocalTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "APILocalTest-Info.plist"; sourceTree = "<group>"; };
 		B9B9570E0F6615880046712A /* DBTagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTagProvider.h; sourceTree = "<group>"; };
 		B9B9570F0F6615880046712A /* DBTagProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBTagProvider.m; sourceTree = "<group>"; };
-		B9B957270F6615930046712A /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B957280F6615930046712A /* TagUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TagUnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9B957310F66160B0046712A /* TagProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagProviderTest.m; sourceTree = "<group>"; };
 		B9B957530F6617670046712A /* RTMTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMTag.h; sourceTree = "<group>"; };
@@ -500,7 +410,6 @@
 		B9C9A8670F91D0070078DC79 /* RootMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootMenuViewController.h; sourceTree = "<group>"; };
 		B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootMenuViewController.m; sourceTree = "<group>"; };
 		B9D0430C0F5F470100641E61 /* TaskProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskProvider.h; sourceTree = "<group>"; };
-		B9D0431E0F5F477400641E61 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9D0431F0F5F477400641E61 /* TaskUnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TaskUnitTest-Info.plist"; sourceTree = "<group>"; };
 		B9D0433C0F5F493E00641E61 /* TaskProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskProvider.m; sourceTree = "<group>"; };
 		B9D043410F5F49A900641E61 /* DBTaskProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTaskProvider.h; sourceTree = "<group>"; };
@@ -520,27 +429,6 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				B916108A0F56618400473A95 /* libsqlite3.dylib in Frameworks */,
 				B916108D0F56686600473A95 /* SystemConfiguration.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9278D2590FBF0DE20007B03B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9278D25A0FBF0DE20007B03B /* Foundation.framework in Frameworks */,
-				9278D25B0FBF0DE20007B03B /* UIKit.framework in Frameworks */,
-				9278D25C0FBF0DE20007B03B /* CoreGraphics.framework in Frameworks */,
-				9278D25D0FBF0DE20007B03B /* libsqlite3.dylib in Frameworks */,
-				9278D25E0FBF0DE20007B03B /* SystemConfiguration.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B914B3460F5EBDA6009C19BE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B914B3470F5EBDA6009C19BE /* Foundation.framework in Frameworks */,
-				B914B3480F5EBDA6009C19BE /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,33 +453,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B9B9564F0F65D2720046712A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B9B956500F65D2720046712A /* Foundation.framework in Frameworks */,
-				B9B956510F65D2720046712A /* libsqlite3.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B9B957200F6615930046712A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B9B957210F6615930046712A /* Foundation.framework in Frameworks */,
-				B9B957220F6615930046712A /* libsqlite3.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B9D043170F5F477400641E61 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B9D043180F5F477400641E61 /* Foundation.framework in Frameworks */,
-				B9D043190F5F477400641E61 /* libsqlite3.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -600,12 +461,7 @@
 			children = (
 				1D6058910D05DD3D006BFB54 /* Milpon.app */,
 				B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */,
-				B914B34D0F5EBDA6009C19BE /* UnitTest.octest */,
-				B9D0431E0F5F477400641E61 /* UnitTest.octest */,
-				B9B956560F65D2720046712A /* UnitTest.octest */,
-				B9B957270F6615930046712A /* UnitTest.octest */,
 				B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */,
-				9278D2650FBF0DE20007B03B /* Milpon.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1005,41 +861,6 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Milpon.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9278D1FC0FBF0DE20007B03B /* Splash Screen */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9278D25F0FBF0DE20007B03B /* Build configuration list for PBXNativeTarget "Splash Screen" */;
-			buildPhases = (
-				9278D1FD0FBF0DE20007B03B /* Resources */,
-				9278D2260FBF0DE20007B03B /* Sources */,
-				9278D2590FBF0DE20007B03B /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Splash Screen";
-			productName = Milpon;
-			productReference = 9278D2650FBF0DE20007B03B /* Milpon.app */;
-			productType = "com.apple.product-type.application";
-		};
-		B914B33A0F5EBDA6009C19BE /* ListUnitTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B914B34A0F5EBDA6009C19BE /* Build configuration list for PBXNativeTarget "ListUnitTest" */;
-			buildPhases = (
-				B914B33B0F5EBDA6009C19BE /* Resources */,
-				B914B33D0F5EBDA6009C19BE /* Sources */,
-				B914B3460F5EBDA6009C19BE /* Frameworks */,
-				B914B3490F5EBDA6009C19BE /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ListUnitTest;
-			productName = UnitTest;
-			productReference = B914B34D0F5EBDA6009C19BE /* UnitTest.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 		B9AE52A10F6B4AE50076D258 /* Milpon Beta */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9AE52FC0F6B4AE50076D258 /* Build configuration list for PBXNativeTarget "Milpon Beta" */;
@@ -1075,66 +896,13 @@
 			productReference = B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B9B956410F65D2720046712A /* APILocalTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B9B956530F65D2720046712A /* Build configuration list for PBXNativeTarget "APILocalTest" */;
-			buildPhases = (
-				B9B956420F65D2720046712A /* Resources */,
-				B9B956440F65D2720046712A /* Sources */,
-				B9B9564F0F65D2720046712A /* Frameworks */,
-				B9B956520F65D2720046712A /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = APILocalTest;
-			productName = UnitTest;
-			productReference = B9B956560F65D2720046712A /* UnitTest.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
-		B9B957120F6615930046712A /* TagUnitTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B9B957240F6615930046712A /* Build configuration list for PBXNativeTarget "TagUnitTest" */;
-			buildPhases = (
-				B9B957130F6615930046712A /* Resources */,
-				B9B957150F6615930046712A /* Sources */,
-				B9B957200F6615930046712A /* Frameworks */,
-				B9B957230F6615930046712A /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TagUnitTest;
-			productName = UnitTest;
-			productReference = B9B957270F6615930046712A /* UnitTest.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
-		B9D0430E0F5F477400641E61 /* TaskUnitTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B9D0431B0F5F477400641E61 /* Build configuration list for PBXNativeTarget "TaskUnitTest" */;
-			buildPhases = (
-				B9D0430F0F5F477400641E61 /* Resources */,
-				B9D043110F5F477400641E61 /* Sources */,
-				B9D043170F5F477400641E61 /* Frameworks */,
-				B9D0431A0F5F477400641E61 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TaskUnitTest;
-			productName = UnitTest;
-			productReference = B9D0431E0F5F477400641E61 /* UnitTest.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				ORGANIZATIONNAME = deadbeaf.org;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Milpon" */;
@@ -1155,13 +923,8 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Milpon */,
-				B9B77FAC0F56A31400BF0EF3 /* UnitTest */,
-				B914B33A0F5EBDA6009C19BE /* ListUnitTest */,
-				B9D0430E0F5F477400641E61 /* TaskUnitTest */,
-				B9B956410F65D2720046712A /* APILocalTest */,
-				B9B957120F6615930046712A /* TagUnitTest */,
 				B9AE52A10F6B4AE50076D258 /* Milpon Beta */,
-				9278D1FC0FBF0DE20007B03B /* Splash Screen */,
+				B9B77FAC0F56A31400BF0EF3 /* UnitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -1214,27 +977,6 @@
 				922C0016101C66EC0029AC32 /* IconSmall.png in Resources */,
 				92E4AAA7102C220700CACCC9 /* Localizable.strings in Resources */,
 				92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9278D1FD0FBF0DE20007B03B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9278D28B0FBF0EE80007B03B /* SplashScreen.xib in Resources */,
-				9278D3640FBF16820007B03B /* SplashScreenViewController.xib in Resources */,
-				9278D3BB0FBF185B0007B03B /* Default.png in Resources */,
-				92E4AAA9102C220700CACCC9 /* Localizable.strings in Resources */,
-				92ECF0C3103809FC004F8CB5 /* recurrentIcon.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B914B33B0F5EBDA6009C19BE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B914B33C0F5EBDA6009C19BE /* rtm.sql in Resources */,
-				9278D3B60FBF185B0007B03B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1298,88 +1040,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B9B956420F65D2720046712A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B9B956430F65D2720046712A /* rtm.sql in Resources */,
-				9278D3B80FBF185B0007B03B /* Default.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B9B957130F6615930046712A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B9B957140F6615930046712A /* rtm.sql in Resources */,
-				9278D3B90FBF185B0007B03B /* Default.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B9D0430F0F5F477400641E61 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9278D3B70FBF185B0007B03B /* Default.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B914B3490F5EBDA6009C19BE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		B9B77FAB0F56A31400BF0EF3 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		B9B956520F65D2720046712A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		B9B957230F6615930046712A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		B9D0431A0F5F477400641E61 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1449,38 +1113,6 @@
 				9278D1B30FBF07730007B03B /* DBNoteProvider.m in Sources */,
 				9278D1B40FBF07750007B03B /* NoteProvider.m in Sources */,
 				9278D1B50FBF07770007B03B /* RTMObject.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9278D2260FBF0DE20007B03B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9278D2940FBF0F730007B03B /* main.m in Sources */,
-				9278D2AE0FBF10420007B03B /* SplashScreenAppDelegate.m in Sources */,
-				9278D3630FBF16820007B03B /* SplashScreenViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B914B33D0F5EBDA6009C19BE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B914B3410F5EBDA6009C19BE /* RTMList.m in Sources */,
-				B914B3430F5EBDA6009C19BE /* ListProvider.m in Sources */,
-				B914B3530F5EBE77009C19BE /* DBListProvider.m in Sources */,
-				B914B3770F5EC14D009C19BE /* LocalCache.m in Sources */,
-				B914B41E0F5ED23F009C19BE /* LocalCacheTest.m in Sources */,
-				B9B957B70F6632DB0046712A /* MilponHelper.m in Sources */,
-				B9C4DD030FA70B0C00DE1E18 /* RTMObject.m in Sources */,
-				B9C4DD0F0FA70CAE00DE1E18 /* ListTest.m in Sources */,
-				B9C4DD7A0FA7280F00DE1E18 /* RTMAPIList.m in Sources */,
-				B9C4DD7C0FA7281500DE1E18 /* RTMAPI.m in Sources */,
-				B9C4DD7E0FA7282000DE1E18 /* RTMAPIXMLParserCallback.m in Sources */,
-				B9C4DF330FA7372E00DE1E18 /* DBTaskProvider.m in Sources */,
-				B9C4DF340FA7373000DE1E18 /* TaskProvider.m in Sources */,
-				B9C4DF4C0FA7374900DE1E18 /* RTMTask.m in Sources */,
-				B9A8D90C0FA952EE00F07D0D /* TagProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1560,70 +1192,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B9B956440F65D2720046712A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B9B956450F65D2720046712A /* LocalCache.m in Sources */,
-				B9B956460F65D2720046712A /* RTMList.m in Sources */,
-				B9B956470F65D2720046712A /* ListProvider.m in Sources */,
-				B9B956480F65D2720046712A /* MilponHelper.m in Sources */,
-				B9B956490F65D2720046712A /* TaskProvider.m in Sources */,
-				B9B9564B0F65D2720046712A /* RTMAPITask.m in Sources */,
-				B9B9564C0F65D2720046712A /* RTMAPI.m in Sources */,
-				B9B9564D0F65D2720046712A /* RTMAuth.m in Sources */,
-				B9B9564E0F65D2720046712A /* RTMAPIXMLParserCallback.m in Sources */,
-				B9AE52080F6B407B0076D258 /* RTMAPIList.m in Sources */,
-				B9AE521A0F6B415C0076D258 /* RTMAPIListTest.m in Sources */,
-				B9AE52600F6B45970076D258 /* RTMAPITaskTest.m in Sources */,
-				B9AE52650F6B47110076D258 /* RTMAPITest.m in Sources */,
-				B9AE526F0F6B48640076D258 /* RTMAuthTest.m in Sources */,
-				B9AE527C0F6B490D0076D258 /* RTMAPIAuthTest.m in Sources */,
-				B9AE52810F6B492B0076D258 /* RTMAPIAuth.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B9B957150F6615930046712A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B9B957160F6615930046712A /* RTMList.m in Sources */,
-				B9B957170F6615930046712A /* ListProvider.m in Sources */,
-				B9B957180F6615930046712A /* DBListProvider.m in Sources */,
-				B9B957190F6615930046712A /* LocalCache.m in Sources */,
-				B9B9571C0F6615930046712A /* RTMAPIList.m in Sources */,
-				B9B9571D0F6615930046712A /* RTMAPIXMLParserCallback.m in Sources */,
-				B9B9571E0F6615930046712A /* RTMAPI.m in Sources */,
-				B9B9572B0F6615E30046712A /* MilponHelper.m in Sources */,
-				B9B9574A0F66170D0046712A /* DBTagProvider.m in Sources */,
-				B9B957550F6617670046712A /* RTMTag.m in Sources */,
-				B9B957640F662E780046712A /* TagProvider.m in Sources */,
-				B9B957690F662E870046712A /* TaskProvider.m in Sources */,
-				B9B9576A0F662E880046712A /* DBTaskProvider.m in Sources */,
-				B9B9576F0F662EBB0046712A /* RTMTask.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B9D043110F5F477400641E61 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B9D043470F5F49CF00641E61 /* RTMTask.m in Sources */,
-				B9B956E00F6609FA0046712A /* MilponHelper.m in Sources */,
-				B97AA00C0F9FEA1C004A23E3 /* TaskTest.m in Sources */,
-				B91C48560FA04319001032CD /* LocalCache.m in Sources */,
-				B91C48740FA04970001032CD /* TaskProvider.m in Sources */,
-				B91C48AB0FA04BD5001032CD /* RTMObject.m in Sources */,
-				B910D96F0FA1E5760051EFB0 /* DBTaskProvider.m in Sources */,
-				B9A8D9660FA9650000F07D0D /* TagProvider.m in Sources */,
-				B9A8DA060FA9729200F07D0D /* DBTagProvider.m in Sources */,
-				B9A8DA080FA9729F00F07D0D /* RTMTag.m in Sources */,
-				B93AE4400FAB140E00343773 /* DBNoteProvider.m in Sources */,
-				B93AE4410FAB140E00343773 /* NoteProvider.m in Sources */,
-				B93AE4550FAB171A00343773 /* RTMNote.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -1672,80 +1240,6 @@
 			};
 			name = Release;
 		};
-		9278D2600FBF0DE20007B03B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
-				INFOPLIST_FILE = "splashscreen/SplashScreen-Info.plist";
-				PRODUCT_NAME = Milpon;
-				SDKROOT = iphonesimulator2.2.1;
-			};
-			name = Debug;
-		};
-		9278D2610FBF0DE20007B03B /* LocalDebug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
-				INFOPLIST_FILE = "/Users/mootoh/prj/iphone/milpon/others/Info copy.plist";
-				PRODUCT_NAME = Milpon;
-				SDKROOT = iphonesimulator2.2.1;
-			};
-			name = LocalDebug;
-		};
-		9278D2620FBF0DE20007B03B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				INFOPLIST_FILE = "/Users/mootoh/prj/iphone/milpon/others/Info copy.plist";
-				PRODUCT_NAME = Milpon;
-			};
-			name = Release;
-		};
-		9278D2630FBF0DE20007B03B /* AdHocRelease */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				INFOPLIST_FILE = "splashscreen/SplashScreen-Info.plist";
-				PRODUCT_NAME = "Milpon Splash Screen";
-				SDKROOT = iphonesimulator2.2.1;
-			};
-			name = AdHocRelease;
-		};
-		9278D2640FBF0DE20007B03B /* UnitTest */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
-				INFOPLIST_FILE = "/Users/mootoh/prj/iphone/milpon/others/Info copy.plist";
-				PRODUCT_NAME = Milpon;
-				SDKROOT = iphonesimulator2.2.1;
-			};
-			name = UnitTest;
-		};
 		B90A5C740F941D0100917583 /* LocalDebug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1760,7 +1254,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "30718F42-3B54-4610-99E9-023759180436";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.1.2;
 			};
 			name = LocalDebug;
 		};
@@ -1809,135 +1303,6 @@
 			};
 			name = LocalDebug;
 		};
-		B90A5C770F941D0100917583 /* LocalDebug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					UNIT_TEST,
-				);
-				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/ListUnitTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = LocalDebug;
-		};
-		B90A5C780F941D0100917583 /* LocalDebug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					UNIT_TEST,
-				);
-				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/TaskUnitTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = LocalDebug;
-		};
-		B90A5C790F941D0100917583 /* LocalDebug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					LOCAL_DEBUG,
-					UNIT_TEST,
-				);
-				INFOPLIST_FILE = "APILocalTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = LocalDebug;
-		};
-		B90A5C7A0F941D0100917583 /* LocalDebug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					UNIT_TEST,
-				);
-				INFOPLIST_FILE = "TagUnitTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = LocalDebug;
-		};
 		B90A5C7B0F941D0100917583 /* LocalDebug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1959,67 +1324,6 @@
 			};
 			name = LocalDebug;
 		};
-		B914B34B0F5EBDA6009C19BE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					UNIT_TEST,
-				);
-				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/ListUnitTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		B914B34C0F5EBDA6009C19BE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/UnitTest-Info copy.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		B92A83350F9409E100DD725C /* AdHocRelease */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2031,7 +1335,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C519825E-CE5B-4630-8EC6-3D832C005111";
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.1.2;
 			};
 			name = AdHocRelease;
 		};
@@ -2080,122 +1384,6 @@
 			};
 			name = AdHocRelease;
 		};
-		B92A83380F9409E100DD725C /* AdHocRelease */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/UnitTest-Info copy.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = AdHocRelease;
-		};
-		B92A83390F9409E100DD725C /* AdHocRelease */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/ListUnitTest-Info copy.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = AdHocRelease;
-		};
-		B92A833A0F9409E100DD725C /* AdHocRelease */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "APILocalTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = AdHocRelease;
-		};
-		B92A833B0F9409E100DD725C /* AdHocRelease */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "TagUnitTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = AdHocRelease;
-		};
 		B92A833C0F9409E100DD725C /* AdHocRelease */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2224,7 +1412,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.1.2;
 			};
 			name = UnitTest;
 		};
@@ -2259,137 +1447,6 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				GCC_PREPROCESSOR_DEFINITIONS = UNIT_TEST;
 				INFOPLIST_FILE = "UnitTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = UnitTest;
-		};
-		B97AA0330F9FEB70004A23E3 /* UnitTest */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					UNIT_TEST,
-				);
-				INFOPLIST_FILE = "others/ListUnitTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = UnitTest;
-		};
-		B97AA0340F9FEB70004A23E3 /* UnitTest */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					UNIT_TEST,
-				);
-				GCC_USE_GCC3_PFE_SUPPORT = YES;
-				INFOPLIST_FILE = "others/TaskUnitTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = UnitTest;
-		};
-		B97AA0350F9FEB70004A23E3 /* UnitTest */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					LOCAL_DEBUG,
-					UNIT_TEST,
-				);
-				INFOPLIST_FILE = "APILocalTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = UnitTest;
-		};
-		B97AA0360F9FEB70004A23E3 /* UnitTest */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					UNIT_TEST,
-				);
-				INFOPLIST_FILE = "TagUnitTest-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -2508,205 +1565,20 @@
 			};
 			name = Release;
 		};
-		B9B956540F65D2720046712A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					LOCAL_DEBUG,
-					UNIT_TEST,
-				);
-				INFOPLIST_FILE = "APILocalTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		B9B956550F65D2720046712A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "APILocalTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		B9B957250F6615930046712A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					UNIT_TEST,
-				);
-				INFOPLIST_FILE = "TagUnitTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		B9B957260F6615930046712A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "TagUnitTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		B9D0431C0F5F477400641E61 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					UNIT_TEST,
-				);
-				GCC_USE_GCC3_PFE_SUPPORT = YES;
-				INFOPLIST_FILE = "others/TaskUnitTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		B9D0431D0F5F477400641E61 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "/Users/takayama/prj/iphone/Milpon/ListUnitTest-Info copy.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2.1;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.1.2;
 			};
 			name = Debug;
 		};
@@ -2720,7 +1592,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2.1;
+				SDKROOT = iphoneos3.1.2;
 			};
 			name = Release;
 		};
@@ -2735,30 +1607,6 @@
 				1D6058950D05DD3E006BFB54 /* Release */,
 				B92A83360F9409E100DD725C /* AdHocRelease */,
 				B97AA0310F9FEB70004A23E3 /* UnitTest */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		9278D25F0FBF0DE20007B03B /* Build configuration list for PBXNativeTarget "Splash Screen" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9278D2600FBF0DE20007B03B /* Debug */,
-				9278D2610FBF0DE20007B03B /* LocalDebug */,
-				9278D2620FBF0DE20007B03B /* Release */,
-				9278D2630FBF0DE20007B03B /* AdHocRelease */,
-				9278D2640FBF0DE20007B03B /* UnitTest */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		B914B34A0F5EBDA6009C19BE /* Build configuration list for PBXNativeTarget "ListUnitTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B914B34B0F5EBDA6009C19BE /* Debug */,
-				B90A5C770F941D0100917583 /* LocalDebug */,
-				B914B34C0F5EBDA6009C19BE /* Release */,
-				B92A83380F9409E100DD725C /* AdHocRelease */,
-				B97AA0330F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -2783,42 +1631,6 @@
 				B9B77FB00F56A31500BF0EF3 /* Release */,
 				B92A83370F9409E100DD725C /* AdHocRelease */,
 				B97AA0320F9FEB70004A23E3 /* UnitTest */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		B9B956530F65D2720046712A /* Build configuration list for PBXNativeTarget "APILocalTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B9B956540F65D2720046712A /* Debug */,
-				B90A5C790F941D0100917583 /* LocalDebug */,
-				B9B956550F65D2720046712A /* Release */,
-				B92A833A0F9409E100DD725C /* AdHocRelease */,
-				B97AA0350F9FEB70004A23E3 /* UnitTest */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		B9B957240F6615930046712A /* Build configuration list for PBXNativeTarget "TagUnitTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B9B957250F6615930046712A /* Debug */,
-				B90A5C7A0F941D0100917583 /* LocalDebug */,
-				B9B957260F6615930046712A /* Release */,
-				B92A833B0F9409E100DD725C /* AdHocRelease */,
-				B97AA0360F9FEB70004A23E3 /* UnitTest */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		B9D0431B0F5F477400641E61 /* Build configuration list for PBXNativeTarget "TaskUnitTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B9D0431C0F5F477400641E61 /* Debug */,
-				B90A5C780F941D0100917583 /* LocalDebug */,
-				B9D0431D0F5F477400641E61 /* Release */,
-				B92A83390F9409E100DD725C /* AdHocRelease */,
-				B97AA0340F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
