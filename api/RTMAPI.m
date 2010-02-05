@@ -84,7 +84,7 @@ static NSString *s_token;
    NSString *path = [self resultXMLPath:method];
    return [NSData dataWithContentsOfFile:path];
 #else // LOCAL_DEBUG
-   sleep(1);
+   //sleep(1);
    NSString *url = [self path:method withArgs:args];
    NSURLRequest *req = [NSURLRequest
       requestWithURL:[NSURL URLWithString:url]
