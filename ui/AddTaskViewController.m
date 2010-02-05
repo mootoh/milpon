@@ -20,6 +20,7 @@
 #import "ListProvider.h"
 #import "TagProvider.h"
 #import "NoteProvider.h"
+#import "logger.h"
 
 @implementation AddTaskViewController
 
@@ -40,6 +41,7 @@ enum {
       self.title = NSLocalizedString(@"Add", @"");
       self.list  = [[ListProvider sharedListProvider] inboxList];
       self.tags  = [NSMutableArray array];
+      name_text_field = [[UITextField alloc] initWithFrame:CGRectMake(30, 8, 300, 40)];
    }
    return self;
 }
@@ -47,6 +49,7 @@ enum {
 - (void)dealloc
 {
    if (priority_segment_) [priority_segment_ release];
+   [name_text_field release];
    [super dealloc];
 }
 
@@ -100,7 +103,6 @@ enum {
    switch (indexPath.row) {
       case ROW_NAME: {
          cell = [tableView dequeueReusableCellWithIdentifier:NAME_CELL_IDENTIFIER];
-         UITextField *name_field = nil;
          if (cell == nil) {
             cell = [[[UITableViewCell alloc]
                      initWithFrame:CGRectZero reuseIdentifier:NAME_CELL_IDENTIFIER] autorelease];
@@ -113,19 +115,16 @@ enum {
             [icon_image_view release];
             
             // task name
-            name_field = [[UITextField alloc] initWithFrame:CGRectMake(30, 8, 300, 40)];
-            [name_field setFont:[UIFont systemFontOfSize:20.0f]];
-            name_field.placeholder = NSLocalizedString(@"WhatToDo", @"");
-            name_field.tag = NAME_FIELD_TAG;
-            name_field.delegate = self;
+            [name_text_field setFont:[UIFont systemFontOfSize:20.0f]];
+            name_text_field.placeholder = NSLocalizedString(@"WhatToDo", @"");
+            name_text_field.tag = NAME_FIELD_TAG;
+            name_text_field.delegate = self;
             if (task_name)
-               name_field.text = task_name;
+               name_text_field.text = task_name;
 
-            [cell.contentView addSubview:name_field];
-         } else {
-            name_field = (UITextField *)[cell viewWithTag:NAME_FIELD_TAG];
+            [cell.contentView addSubview:name_text_field];
          }
-         [name_field becomeFirstResponder];
+         [name_text_field becomeFirstResponder];
          break;
       }
       case ROW_DUE_PRIORITY: {
@@ -290,14 +289,14 @@ enum {
 
 - (IBAction) save
 {
-   if (task_name == nil || [task_name isEqualToString:@""]) // validate name_field
+   if ([name_text_field.text isEqualToString:@""]) // validate name_field
       return;
 
    NSNumber *priority = [NSNumber numberWithInteger:priority_segment_.selectedSegmentIndex + 1];
 
    // create RTMTask and store it in DB.
    NSArray *keys = [NSArray arrayWithObjects:@"name", @"list_id", @"priority", nil];
-   NSArray *vals = [NSArray arrayWithObjects:task_name, [NSNumber numberWithInteger:list.iD], priority, nil];
+   NSArray *vals = [NSArray arrayWithObjects:name_text_field.text, [NSNumber numberWithInteger:list.iD], priority, nil];
    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (due)
       [params setObject:due forKey:@"due"];
@@ -335,14 +334,6 @@ enum {
 - (void) setTag:(NSArray *) tags
 {
    [self updateView];
-}
-
-#pragma mark UITextFieldDelegate
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-
-{
-   self.task_name = [textField.text stringByAppendingString:string];
-   return YES;
 }
 
 @end

@@ -18,6 +18,7 @@
    NSMutableArray *tags;
    NSString *note;   
    NSString *task_name;
+   UITextField *name_text_field;
 
    UISegmentedControl *priority_segment_;
 }
