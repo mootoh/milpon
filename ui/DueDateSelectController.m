@@ -20,20 +20,12 @@ enum {
 
 @synthesize parent;
 
-
-static UICCalendarPicker *s_calendar_picker = nil;
-
-+ (UICCalendarPicker *) theCalendarPicker
-{
-   if (s_calendar_picker == nil)
-      s_calendar_picker = [[[UICCalendarPicker alloc] initWithSize:UICCalendarPickerSizeExtraLarge] retain];
-   return s_calendar_picker;
-}
-
 // The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-       [DueDateSelectController theCalendarPicker].delegate = self;
+       calendar_picker = [[UICCalendarPicker alloc] initWithSize:UICCalendarPickerSizeExtraLarge];
+       calendar_picker.delegate = self;
        self.title = @"Due Date";
     }
     return self;
@@ -90,7 +82,7 @@ static UICCalendarPicker *s_calendar_picker = nil;
          cell.text = @"Tomorrow";
          break;
       case ROW_CALENDAR:
-         [[DueDateSelectController theCalendarPicker] showInView:cell.contentView animated:NO];
+         [calendar_picker showInView:cell.contentView animated:NO];
          break;
       default:
          break;
@@ -134,7 +126,13 @@ static UICCalendarPicker *s_calendar_picker = nil;
 
 - (void)dealloc
 {
-    [super dealloc];
+   [calendar_picker release];
+   [super dealloc];
+}
+
+- (void) setDate:(NSDate *) date
+{
+   [calendar_picker addSelectedDate:date];
 }
 
 - (void) picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate
