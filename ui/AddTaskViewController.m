@@ -317,6 +317,9 @@ enum {
 {
    DueDateSelectController *vc = [[DueDateSelectController alloc] initWithNibName:nil bundle:nil];
    vc.parent = self;
+   if (self.due)
+      [vc setDate:self.due];
+
    [self.navigationController pushViewController:vc animated:YES];
    [vc release];
 }

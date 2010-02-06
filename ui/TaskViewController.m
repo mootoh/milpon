@@ -291,6 +291,9 @@ prioritySelected_N(4);
 
    DueDateSelectController *vc = [[DueDateSelectController alloc] initWithNibName:nil bundle:nil];
    vc.parent = self;
+   if (task.due)
+      [vc setDate:task.due];
+
    [self.navigationController pushViewController:vc animated:YES];
    [vc release];
 }
