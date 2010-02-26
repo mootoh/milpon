@@ -17,29 +17,19 @@
 		925C7A500FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4B0FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql */; };
 		925C7A510FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4C0FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql */; };
 		925C7A520FBEB7F300BCD6EF /* migrate_005_version_2.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4D0FBEB7F300BCD6EF /* migrate_005_version_2.sql */; };
-		925C7A530FBEB7F300BCD6EF /* migrate_000_init.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A490FBEB7F300BCD6EF /* migrate_000_init.sql */; };
-		925C7A540FBEB7F300BCD6EF /* migrate_001_add_filter_to_list.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4A0FBEB7F300BCD6EF /* migrate_001_add_filter_to_list.sql */; };
-		925C7A550FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4B0FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql */; };
-		925C7A560FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4C0FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql */; };
-		925C7A570FBEB7F300BCD6EF /* migrate_005_version_2.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4D0FBEB7F300BCD6EF /* migrate_005_version_2.sql */; };
 		925C7B2F0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */; };
-		925C7B300FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */; };
 		9278D1950FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */; };
-		9278D1960FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */; };
 		9278D1B30FBF07730007B03B /* DBNoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43D0FAB140E00343773 /* DBNoteProvider.m */; };
 		9278D1B40FBF07750007B03B /* NoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43F0FAB140E00343773 /* NoteProvider.m */; };
 		9278D1B50FBF07770007B03B /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
 		9278D1B60FBF07C00007B03B /* MilponBetaIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */; };
 		9278D3B40FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
 		9278D3B50FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
-		9278D3BA0FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
+		927A61C0113815ED005B4548 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
+		927A61F31138194B005B4548 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 927A61F21138194B005B4548 /* Settings.bundle */; };
 		92E4AAA7102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
-		92E4AAA8102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
 		92E91C380FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
-		92E91C5D0FBFD7E600DCDE16 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
 		92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
-		92ECF0C2103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
-		B904056B0FA82E1B00DEA392 /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
 		B914B2D70F5E7D6E009C19BE /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
 		B914B30F0F5EBAC6009C19BE /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
 		B9160ECC0F565CEF00473A95 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
@@ -105,101 +95,16 @@
 		B916108D0F56686600473A95 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
 		B926C44C0F67812F0014DB7D /* AttributeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B926C44B0F67812F0014DB7D /* AttributeView.m */; };
 		B926C4BF0F67991B0014DB7D /* icon_url.png in Resources */ = {isa = PBXBuildFile; fileRef = B926C4BE0F67991B0014DB7D /* icon_url.png */; };
-		B93A12570F9212AA00C0A9AB /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12560F9212AA00C0A9AB /* ReviewViewController.m */; };
 		B93A12580F9212AA00C0A9AB /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12560F9212AA00C0A9AB /* ReviewViewController.m */; };
-		B93A12970F921AAA00C0A9AB /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12960F921AAA00C0A9AB /* OverviewViewController.m */; };
 		B93A12980F921AAA00C0A9AB /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12960F921AAA00C0A9AB /* OverviewViewController.m */; };
 		B93AE4420FAB140E00343773 /* DBNoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43D0FAB140E00343773 /* DBNoteProvider.m */; };
 		B93AE4430FAB140E00343773 /* NoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43F0FAB140E00343773 /* NoteProvider.m */; };
-		B93AE4440FAB140E00343773 /* DBNoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43D0FAB140E00343773 /* DBNoteProvider.m */; };
-		B93AE4450FAB140E00343773 /* NoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43F0FAB140E00343773 /* NoteProvider.m */; };
-		B93D753B0F941105001E11F3 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
 		B95C5C080F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B95C5C090F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B970AC060F6416A1004467E9 /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B970AC050F6416A1004467E9 /* TaskView.xib */; };
 		B971DBDE0F5CCA3000513D03 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
-		B97F4FF00F94A1260085FB9B /* TaskCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B97F4FEF0F94A1260085FB9B /* TaskCollection.m */; };
 		B97F4FF10F94A1260085FB9B /* TaskCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B97F4FEF0F94A1260085FB9B /* TaskCollection.m */; };
 		B97F4FF80F94A1D90085FB9B /* TaskCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B97F4FF70F94A1D90085FB9B /* TaskCollectionViewController.m */; };
-		B97F4FF90F94A1D90085FB9B /* TaskCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B97F4FF70F94A1D90085FB9B /* TaskCollectionViewController.m */; };
-		B97F500E0F94C9280085FB9B /* RTMTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBF0F565DB600473A95 /* RTMTaskCell.m */; };
-		B9A403460F92CF950043A4C6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
-		B9AE52A30F6B4AE50076D258 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F440F565D9300473A95 /* checkBox.png */; };
-		B9AE52A40F6B4AE50076D258 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F460F565D9300473A95 /* checkBoxChecked.png */; };
-		B9AE52A50F6B4AE50076D258 /* icon_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F4E0F565D9300473A95 /* icon_calendar.png */; };
-		B9AE52A60F6B4AE50076D258 /* icon_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F500F565D9300473A95 /* icon_checked.png */; };
-		B9AE52A70F6B4AE50076D258 /* icon_list.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F520F565D9300473A95 /* icon_list.png */; };
-		B9AE52A80F6B4AE50076D258 /* icon_note.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F540F565D9300473A95 /* icon_note.png */; };
-		B9AE52A90F6B4AE50076D258 /* icon_priority_4.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F570F565D9300473A95 /* icon_priority_4.png */; };
-		B9AE52AA0F6B4AE50076D258 /* icon_priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F580F565D9300473A95 /* icon_priority_1.png */; };
-		B9AE52AB0F6B4AE50076D258 /* icon_priority_2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F590F565D9300473A95 /* icon_priority_2.png */; };
-		B9AE52AC0F6B4AE50076D258 /* icon_priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5A0F565D9300473A95 /* icon_priority_3.png */; };
-		B9AE52AD0F6B4AE50076D258 /* icon_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5B0F565D9300473A95 /* icon_tag.png */; };
-		B9AE52AE0F6B4AE50076D258 /* icon_target.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5D0F565D9300473A95 /* icon_target.png */; };
-		B9AE52B00F6B4AE50076D258 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = B9160F8F0F565DAB00473A95 /* README.txt */; };
-		B9AE52B10F6B4AE50076D258 /* uiccalendar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F980F565DAB00473A95 /* uiccalendar_background.png */; };
-		B9AE52B20F6B4AE50076D258 /* uiccalendar_cell_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F990F565DAB00473A95 /* uiccalendar_cell_disabled.png */; };
-		B9AE52B30F6B4AE50076D258 /* uiccalendar_cell_holiday.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F9A0F565DAB00473A95 /* uiccalendar_cell_holiday.png */; };
-		B9AE52B40F6B4AE50076D258 /* uiccalendar_cell_monthout.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F9B0F565DAB00473A95 /* uiccalendar_cell_monthout.png */; };
-		B9AE52B50F6B4AE50076D258 /* uiccalendar_cell_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F9C0F565DAB00473A95 /* uiccalendar_cell_normal.png */; };
-		B9AE52B60F6B4AE50076D258 /* uiccalendar_cell_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F9D0F565DAB00473A95 /* uiccalendar_cell_selected.png */; };
-		B9AE52B70F6B4AE50076D258 /* uiccalendar_cell_today.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F9E0F565DAB00473A95 /* uiccalendar_cell_today.png */; };
-		B9AE52B80F6B4AE50076D258 /* uiccalendar_cell_today_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F9F0F565DAB00473A95 /* uiccalendar_cell_today_selected.png */; };
-		B9AE52B90F6B4AE50076D258 /* uiccalendar_close.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA00F565DAB00473A95 /* uiccalendar_close.png */; };
-		B9AE52BA0F6B4AE50076D258 /* uiccalendar_left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA10F565DAB00473A95 /* uiccalendar_left_arrow.png */; };
-		B9AE52BB0F6B4AE50076D258 /* uiccalendar_main.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA20F565DAB00473A95 /* uiccalendar_main.png */; };
-		B9AE52BC0F6B4AE50076D258 /* uiccalendar_right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA30F565DAB00473A95 /* uiccalendar_right_arrow.png */; };
-		B9AE52BD0F6B4AE50076D258 /* uiccalendar_title.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA40F565DAB00473A95 /* uiccalendar_title.png */; };
-		B9AE52BE0F6B4AE50076D258 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9160FB90F565DB600473A95 /* MainWindow.xib */; };
-		B9AE52BF0F6B4AE50076D258 /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
-		B9AE52C00F6B4AE50076D258 /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B970AC050F6416A1004467E9 /* TaskView.xib */; };
-		B9AE52C10F6B4AE50076D258 /* NoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B95CA60F6767BE0046712A /* NoteEdit.xib */; };
-		B9AE52C20F6B4AE50076D258 /* icon_url.png in Resources */ = {isa = PBXBuildFile; fileRef = B926C4BE0F67991B0014DB7D /* icon_url.png */; };
-		B9AE52C40F6B4AE50076D258 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		B9AE52C50F6B4AE50076D258 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
-		B9AE52C60F6B4AE50076D258 /* RTMAPIAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPIAuth.m */; };
-		B9AE52C70F6B4AE50076D258 /* RTMAPIList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPIList.m */; };
-		B9AE52C80F6B4AE50076D258 /* RTMAPINote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPINote.m */; };
-		B9AE52C90F6B4AE50076D258 /* RTMAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPITask.m */; };
-		B9AE52CA0F6B4AE50076D258 /* RTMAPIXMLParserCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIXMLParserCallback.m */; };
-		B9AE52CB0F6B4AE50076D258 /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ED90F565D1500473A95 /* AddTaskViewController.m */; };
-		B9AE52CC0F6B4AE50076D258 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EDB0F565D1500473A95 /* AppDelegate.m */; };
-		B9AE52CD0F6B4AE50076D258 /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EDD0F565D1500473A95 /* AuthViewController.m */; };
-		B9AE52CE0F6B4AE50076D258 /* AuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EDF0F565D1500473A95 /* AuthWebViewController.m */; };
-		B9AE52CF0F6B4AE50076D258 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EE10F565D1500473A95 /* ConfigViewController.m */; };
-		B9AE52D10F6B4AE50076D258 /* ListSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EE50F565D1500473A95 /* ListSelectViewController.m */; };
-		B9AE52D50F6B4AE50076D258 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EF00F565D1500473A95 /* TaskListViewController.m */; };
-		B9AE52D60F6B4AE50076D258 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EF20F565D1500473A95 /* TaskViewController.m */; };
-		B9AE52D70F6B4AE50076D258 /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1B0F565D4C00473A95 /* RTMAuth.m */; };
-		B9AE52D80F6B4AE50076D258 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
-		B9AE52DA0F6B4AE50076D258 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
-		B9AE52DB0F6B4AE50076D258 /* RTMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F230F565D4C00473A95 /* RTMNote.m */; };
-		B9AE52DE0F6B4AE50076D258 /* RTMSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F290F565D4C00473A95 /* RTMSynchronizer.m */; };
-		B9AE52DF0F6B4AE50076D258 /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F2B0F565D4C00473A95 /* RTMTask.m */; };
-		B9AE52E00F6B4AE50076D258 /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
-		B9AE52E10F6B4AE50076D258 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F8E0F565DAB00473A95 /* Reachability.m */; };
-		B9AE52E20F6B4AE50076D258 /* UICCalendarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F940F565DAB00473A95 /* UICCalendarPicker.m */; };
-		B9AE52E30F6B4AE50076D258 /* UICCalendarPickerDateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F960F565DAB00473A95 /* UICCalendarPickerDateButton.m */; };
-		B9AE52E40F6B4AE50076D258 /* PriorityImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBB0F565DB600473A95 /* PriorityImageView.m */; };
-		B9AE52E50F6B4AE50076D258 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FBD0F565DB600473A95 /* ProgressView.m */; };
-		B9AE52E70F6B4AE50076D258 /* TaskEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FC10F565DB600473A95 /* TaskEditCell.m */; };
-		B9AE52E90F6B4AE50076D258 /* NoteEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610100F565F8A00473A95 /* NoteEditController.m */; };
-		B9AE52EA0F6B4AE50076D258 /* TagSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610120F565F8A00473A95 /* TagSelectController.m */; };
-		B9AE52EB0F6B4AE50076D258 /* DueDateSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91610170F565F9E00473A95 /* DueDateSelectController.m */; };
-		B9AE52EC0F6B4AE50076D258 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
-		B9AE52ED0F6B4AE50076D258 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
-		B9AE52EE0F6B4AE50076D258 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
-		B9AE52EF0F6B4AE50076D258 /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
-		B9AE52F00F6B4AE50076D258 /* DBTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B9570F0F6615880046712A /* DBTagProvider.m */; };
-		B9AE52F10F6B4AE50076D258 /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
-		B9AE52F20F6B4AE50076D258 /* TagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957630F662E780046712A /* TagProvider.m */; };
-		B9AE52F40F6B4AE50076D258 /* AttributeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B926C44B0F67812F0014DB7D /* AttributeView.m */; };
-		B9AE52F70F6B4AE50076D258 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		B9AE52F80F6B4AE50076D258 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		B9AE52F90F6B4AE50076D258 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		B9AE52FA0F6B4AE50076D258 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
-		B9AE53180F6B4C5C0076D258 /* MilponBetaIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */; };
-		B9AE550E0F6CEF610076D258 /* rtm.auth.checkToken.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9AE54FE0F6CEF610076D258 /* rtm.auth.checkToken.xml */; };
 		B9B77FBD0F56A46700BF0EF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		B9B9561E0F65D15E0046712A /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9B956210F65D17C0046712A /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
@@ -212,14 +117,12 @@
 		B9B957560F6617670046712A /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
 		B9B957650F662E780046712A /* TagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957630F662E780046712A /* TagProvider.m */; };
 		B9B95CA70F6767BE0046712A /* NoteEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B95CA60F6767BE0046712A /* NoteEdit.xib */; };
-		B9C9A8690F91D0070078DC79 /* RootMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */; };
 		B9C9A86A0F91D0080078DC79 /* RootMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C9A8680F91D0070078DC79 /* RootMenuViewController.m */; };
 		B9D0433E0F5F493E00641E61 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
 		B9D043440F5F49A900641E61 /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
 		B9D11FAF0F56A56300B5ABA4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B9D1200C0F56A97B00B5ABA4 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
 		B9D120A40F5763DB00B5ABA4 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
-		B9DFD23F0FBA617B00FC1186 /* ListSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916100D0F565F6500473A95 /* ListSelectController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -246,6 +149,7 @@
 		9278D3610FBF16820007B03B /* SplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenViewController.m; sourceTree = "<group>"; };
 		9278D3620FBF16820007B03B /* SplashScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashScreenViewController.xib; sourceTree = "<group>"; };
 		9278D3B30FBF185B0007B03B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		927A61F21138194B005B4548 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		928601981072E55C004B7DFE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E4AA9D102C21DC00CACCC9 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E4AAAA102C220D00CACCC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -392,7 +296,6 @@
 		B97F4FF60F94A1D90085FB9B /* TaskCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCollectionViewController.h; sourceTree = "<group>"; };
 		B97F4FF70F94A1D90085FB9B /* TaskCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCollectionViewController.m; sourceTree = "<group>"; };
 		B97F50050F94A33E0085FB9B /* Collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collection.h; sourceTree = "<group>"; };
-		B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MilponBetaIconSmall.png; sourceTree = "<group>"; };
 		B9AE53190F6B4C6A0076D258 /* Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Beta.plist; sourceTree = "<group>"; };
 		B9AE54FE0F6CEF610076D258 /* rtm.auth.checkToken.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rtm.auth.checkToken.xml; path = sample/rtm.auth.checkToken.xml; sourceTree = SOURCE_ROOT; };
@@ -432,18 +335,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B9AE52F60F6B4AE50076D258 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B9AE52F70F6B4AE50076D258 /* Foundation.framework in Frameworks */,
-				B9AE52F80F6B4AE50076D258 /* UIKit.framework in Frameworks */,
-				B9AE52F90F6B4AE50076D258 /* CoreGraphics.framework in Frameworks */,
-				B9AE52FA0F6B4AE50076D258 /* libsqlite3.dylib in Frameworks */,
-				B9A403460F92CF950043A4C6 /* SystemConfiguration.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B9B77FAA0F56A31400BF0EF3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -461,7 +352,6 @@
 			children = (
 				1D6058910D05DD3D006BFB54 /* Milpon.app */,
 				B9B77FAD0F56A31400BF0EF3 /* UnitTest.octest */,
-				B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -661,6 +551,7 @@
 				B9160F010F565D3C00473A95 /* db */,
 				B95C5C160F598F9C00A368DC /* icons */,
 				B9AE54F80F6CEF4A0076D258 /* sample */,
+				927A61F21138194B005B4548 /* Settings.bundle */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -861,23 +752,6 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Milpon.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B9AE52A10F6B4AE50076D258 /* Milpon Beta */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B9AE52FC0F6B4AE50076D258 /* Build configuration list for PBXNativeTarget "Milpon Beta" */;
-			buildPhases = (
-				B9AE52A20F6B4AE50076D258 /* Resources */,
-				B9AE52C30F6B4AE50076D258 /* Sources */,
-				B9AE52F60F6B4AE50076D258 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Milpon Beta";
-			productName = Milpon;
-			productReference = B9AE52FF0F6B4AE50076D258 /* Milpon Beta.app */;
-			productType = "com.apple.product-type.application";
-		};
 		B9B77FAC0F56A31400BF0EF3 /* UnitTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9B77FB10F56A31500BF0EF3 /* Build configuration list for PBXNativeTarget "UnitTest" */;
@@ -923,7 +797,6 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Milpon */,
-				B9AE52A10F6B4AE50076D258 /* Milpon Beta */,
 				B9B77FAC0F56A31400BF0EF3 /* UnitTest */,
 			);
 		};
@@ -977,57 +850,8 @@
 				922C0016101C66EC0029AC32 /* IconSmall.png in Resources */,
 				92E4AAA7102C220700CACCC9 /* Localizable.strings in Resources */,
 				92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B9AE52A20F6B4AE50076D258 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B9AE52A30F6B4AE50076D258 /* checkBox.png in Resources */,
-				B9AE52A40F6B4AE50076D258 /* checkBoxChecked.png in Resources */,
-				B9AE52A50F6B4AE50076D258 /* icon_calendar.png in Resources */,
-				B9AE52A60F6B4AE50076D258 /* icon_checked.png in Resources */,
-				B9AE52A70F6B4AE50076D258 /* icon_list.png in Resources */,
-				B9AE52A80F6B4AE50076D258 /* icon_note.png in Resources */,
-				B9AE52A90F6B4AE50076D258 /* icon_priority_4.png in Resources */,
-				B9AE52AA0F6B4AE50076D258 /* icon_priority_1.png in Resources */,
-				B9AE52AB0F6B4AE50076D258 /* icon_priority_2.png in Resources */,
-				B9AE52AC0F6B4AE50076D258 /* icon_priority_3.png in Resources */,
-				B9AE52AD0F6B4AE50076D258 /* icon_tag.png in Resources */,
-				B9AE52AE0F6B4AE50076D258 /* icon_target.png in Resources */,
-				B9AE52B00F6B4AE50076D258 /* README.txt in Resources */,
-				B9AE52B10F6B4AE50076D258 /* uiccalendar_background.png in Resources */,
-				B9AE52B20F6B4AE50076D258 /* uiccalendar_cell_disabled.png in Resources */,
-				B9AE52B30F6B4AE50076D258 /* uiccalendar_cell_holiday.png in Resources */,
-				B9AE52B40F6B4AE50076D258 /* uiccalendar_cell_monthout.png in Resources */,
-				B9AE52B50F6B4AE50076D258 /* uiccalendar_cell_normal.png in Resources */,
-				B9AE52B60F6B4AE50076D258 /* uiccalendar_cell_selected.png in Resources */,
-				B9AE52B70F6B4AE50076D258 /* uiccalendar_cell_today.png in Resources */,
-				B9AE52B80F6B4AE50076D258 /* uiccalendar_cell_today_selected.png in Resources */,
-				B9AE52B90F6B4AE50076D258 /* uiccalendar_close.png in Resources */,
-				B9AE52BA0F6B4AE50076D258 /* uiccalendar_left_arrow.png in Resources */,
-				B9AE52BB0F6B4AE50076D258 /* uiccalendar_main.png in Resources */,
-				B9AE52BC0F6B4AE50076D258 /* uiccalendar_right_arrow.png in Resources */,
-				B9AE52BD0F6B4AE50076D258 /* uiccalendar_title.png in Resources */,
-				B9AE52BE0F6B4AE50076D258 /* MainWindow.xib in Resources */,
-				B9AE52BF0F6B4AE50076D258 /* rtm.sql in Resources */,
-				B9AE52C00F6B4AE50076D258 /* TaskView.xib in Resources */,
-				B9AE52C10F6B4AE50076D258 /* NoteEdit.xib in Resources */,
-				B9AE52C20F6B4AE50076D258 /* icon_url.png in Resources */,
-				B9AE53180F6B4C5C0076D258 /* MilponBetaIconSmall.png in Resources */,
-				B9AE550E0F6CEF610076D258 /* rtm.auth.checkToken.xml in Resources */,
-				B93D753B0F941105001E11F3 /* Entitlements.plist in Resources */,
-				925C7A530FBEB7F300BCD6EF /* migrate_000_init.sql in Resources */,
-				925C7A540FBEB7F300BCD6EF /* migrate_001_add_filter_to_list.sql in Resources */,
-				925C7A550FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql in Resources */,
-				925C7A560FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql in Resources */,
-				925C7A570FBEB7F300BCD6EF /* migrate_005_version_2.sql in Resources */,
-				9278D1960FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */,
-				9278D3BA0FBF185B0007B03B /* Default.png in Resources */,
-				92E91C5D0FBFD7E600DCDE16 /* migrate_007_clear_last_sync.sql in Resources */,
-				92E4AAA8102C220700CACCC9 /* Localizable.strings in Resources */,
-				92ECF0C2103809FC004F8CB5 /* recurrentIcon.png in Resources */,
+				927A61C0113815ED005B4548 /* Entitlements.plist in Resources */,
+				927A61F31138194B005B4548 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1116,63 +940,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B9AE52C30F6B4AE50076D258 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B9AE52C40F6B4AE50076D258 /* main.m in Sources */,
-				B9AE52C50F6B4AE50076D258 /* RTMAPI.m in Sources */,
-				B9AE52C60F6B4AE50076D258 /* RTMAPIAuth.m in Sources */,
-				B9AE52C70F6B4AE50076D258 /* RTMAPIList.m in Sources */,
-				B9AE52C80F6B4AE50076D258 /* RTMAPINote.m in Sources */,
-				B9AE52C90F6B4AE50076D258 /* RTMAPITask.m in Sources */,
-				B9AE52CA0F6B4AE50076D258 /* RTMAPIXMLParserCallback.m in Sources */,
-				B9AE52CB0F6B4AE50076D258 /* AddTaskViewController.m in Sources */,
-				B9AE52CC0F6B4AE50076D258 /* AppDelegate.m in Sources */,
-				B9AE52CD0F6B4AE50076D258 /* AuthViewController.m in Sources */,
-				B9AE52CE0F6B4AE50076D258 /* AuthWebViewController.m in Sources */,
-				B9AE52CF0F6B4AE50076D258 /* ConfigViewController.m in Sources */,
-				B9AE52D10F6B4AE50076D258 /* ListSelectViewController.m in Sources */,
-				B9AE52D50F6B4AE50076D258 /* TaskListViewController.m in Sources */,
-				B9AE52D60F6B4AE50076D258 /* TaskViewController.m in Sources */,
-				B9AE52D70F6B4AE50076D258 /* RTMAuth.m in Sources */,
-				B9AE52D80F6B4AE50076D258 /* LocalCache.m in Sources */,
-				B9AE52DA0F6B4AE50076D258 /* RTMList.m in Sources */,
-				B9AE52DB0F6B4AE50076D258 /* RTMNote.m in Sources */,
-				B9AE52DE0F6B4AE50076D258 /* RTMSynchronizer.m in Sources */,
-				B9AE52DF0F6B4AE50076D258 /* RTMTask.m in Sources */,
-				B9AE52E00F6B4AE50076D258 /* MilponHelper.m in Sources */,
-				B9AE52E10F6B4AE50076D258 /* Reachability.m in Sources */,
-				B9AE52E20F6B4AE50076D258 /* UICCalendarPicker.m in Sources */,
-				B9AE52E30F6B4AE50076D258 /* UICCalendarPickerDateButton.m in Sources */,
-				B9AE52E40F6B4AE50076D258 /* PriorityImageView.m in Sources */,
-				B9AE52E50F6B4AE50076D258 /* ProgressView.m in Sources */,
-				B9AE52E70F6B4AE50076D258 /* TaskEditCell.m in Sources */,
-				B9AE52E90F6B4AE50076D258 /* NoteEditController.m in Sources */,
-				B9AE52EA0F6B4AE50076D258 /* TagSelectController.m in Sources */,
-				B9AE52EB0F6B4AE50076D258 /* DueDateSelectController.m in Sources */,
-				B9AE52EC0F6B4AE50076D258 /* ListProvider.m in Sources */,
-				B9AE52ED0F6B4AE50076D258 /* DBListProvider.m in Sources */,
-				B9AE52EE0F6B4AE50076D258 /* TaskProvider.m in Sources */,
-				B9AE52EF0F6B4AE50076D258 /* DBTaskProvider.m in Sources */,
-				B9AE52F00F6B4AE50076D258 /* DBTagProvider.m in Sources */,
-				B9AE52F10F6B4AE50076D258 /* RTMTag.m in Sources */,
-				B9AE52F20F6B4AE50076D258 /* TagProvider.m in Sources */,
-				B9AE52F40F6B4AE50076D258 /* AttributeView.m in Sources */,
-				B9C9A8690F91D0070078DC79 /* RootMenuViewController.m in Sources */,
-				B93A12570F9212AA00C0A9AB /* ReviewViewController.m in Sources */,
-				B93A12970F921AAA00C0A9AB /* OverviewViewController.m in Sources */,
-				B97F4FF00F94A1260085FB9B /* TaskCollection.m in Sources */,
-				B97F4FF90F94A1D90085FB9B /* TaskCollectionViewController.m in Sources */,
-				B97F500E0F94C9280085FB9B /* RTMTaskCell.m in Sources */,
-				B904056B0FA82E1B00DEA392 /* RTMObject.m in Sources */,
-				B93AE4440FAB140E00343773 /* DBNoteProvider.m in Sources */,
-				B93AE4450FAB140E00343773 /* NoteProvider.m in Sources */,
-				B9DFD23F0FBA617B00FC1186 /* ListSelectController.m in Sources */,
-				925C7B300FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B9B77FA90F56A31400BF0EF3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1212,6 +979,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = others/Entitlements.plist;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1229,6 +997,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = others/Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1240,123 +1009,38 @@
 			};
 			name = Release;
 		};
-		B90A5C740F941D0100917583 /* LocalDebug */ = {
+		927A61D511381779005B4548 /* Test */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "LOCAL_DEBUG=1";
-				GCC_VERSION = 4.0;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "30718F42-3B54-4610-99E9-023759180436";
-				SDKROOT = iphoneos3.1.2;
-			};
-			name = LocalDebug;
-		};
-		B90A5C750F941D0100917583 /* LocalDebug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
-				INFOPLIST_FILE = others/Info.plist;
-				PRODUCT_NAME = Milpon;
-				SDKROOT = iphonesimulator2.2.1;
-			};
-			name = LocalDebug;
-		};
-		B90A5C760F941D0100917583 /* LocalDebug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_PREPROCESSOR_DEFINITIONS = UNIT_TEST;
-				INFOPLIST_FILE = "UnitTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = LocalDebug;
-		};
-		B90A5C7B0F941D0100917583 /* LocalDebug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "Don't Code Sign";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"LOCAL_DEBUG=1",
-					"DEBUG=1",
-				);
-				INFOPLIST_FILE = Beta.plist;
-				PRODUCT_NAME = "Milpon Beta";
-				SDKROOT = iphonesimulator2.2.1;
-			};
-			name = LocalDebug;
-		};
-		B92A83350F9409E100DD725C /* AdHocRelease */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DF720ECB-F4C0-4114-BA21-91695D956C7F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.1.2;
 			};
-			name = AdHocRelease;
+			name = Test;
 		};
-		B92A83360F9409E100DD725C /* AdHocRelease */ = {
+		927A61D611381779005B4548 /* Test */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = others/Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
 				INFOPLIST_FILE = others/Info.plist;
 				PRODUCT_NAME = Milpon;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DF720ECB-F4C0-4114-BA21-91695D956C7F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E292CD0F-BF12-41CA-BE5D-A042C4C437A3";
 				SDKROOT = iphoneos3.1.2;
 			};
-			name = AdHocRelease;
+			name = Test;
 		};
-		B92A83370F9409E100DD725C /* AdHocRelease */ = {
+		927A61D811381779005B4548 /* Test */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1383,36 +1067,21 @@
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
-			name = AdHocRelease;
-		};
-		B92A833C0F9409E100DD725C /* AdHocRelease */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = others/Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Motohiro Takayama";
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				INFOPLIST_FILE = "$(PROJECT_DIR)/others/Beta.plist";
-				PRODUCT_NAME = "Milpon Beta";
-				PROVISIONING_PROFILE = "0686E23C-4552-41C9-965B-C583FBDB55E9";
-				SDKROOT = iphoneos2.2.1;
-			};
-			name = AdHocRelease;
+			name = Test;
 		};
 		B97AA0300F9FEB70004A23E3 /* UnitTest */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.1.2;
 			};
 			name = UnitTest;
@@ -1421,6 +1090,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = others/Entitlements.plist;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1461,52 +1131,6 @@
 				WRAPPER_EXTENSION = octest;
 			};
 			name = UnitTest;
-		};
-		B97AA0370F9FEB70004A23E3 /* UnitTest */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Motohiro Takayama";
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
-				INFOPLIST_FILE = others/Beta.plist;
-				PRODUCT_NAME = "Milpon Beta";
-				SDKROOT = iphonesimulator2.2.1;
-			};
-			name = UnitTest;
-		};
-		B9AE52FD0F6B4AE50076D258 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Motohiro Takayama";
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
-				INFOPLIST_FILE = others/Beta.plist;
-				PRODUCT_NAME = "Milpon Beta";
-				SDKROOT = iphonesimulator2.2.1;
-			};
-			name = Debug;
-		};
-		B9AE52FE0F6B4AE50076D258 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				INFOPLIST_FILE = others/Beta.plist;
-				PRODUCT_NAME = "Milpon Beta";
-			};
-			name = Release;
 		};
 		B9B77FAF0F56A31500BF0EF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1570,7 +1194,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = 4.2;
@@ -1587,13 +1211,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BFA52439-DF9F-48CC-9EB0-D9030562ECE3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.1.2;
 			};
 			name = Release;
@@ -1605,22 +1229,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
-				B90A5C750F941D0100917583 /* LocalDebug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-				B92A83360F9409E100DD725C /* AdHocRelease */,
+				927A61D611381779005B4548 /* Test */,
 				B97AA0310F9FEB70004A23E3 /* UnitTest */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		B9AE52FC0F6B4AE50076D258 /* Build configuration list for PBXNativeTarget "Milpon Beta" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B9AE52FD0F6B4AE50076D258 /* Debug */,
-				B90A5C7B0F941D0100917583 /* LocalDebug */,
-				B9AE52FE0F6B4AE50076D258 /* Release */,
-				B92A833C0F9409E100DD725C /* AdHocRelease */,
-				B97AA0370F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -1629,9 +1240,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B9B77FAF0F56A31500BF0EF3 /* Debug */,
-				B90A5C760F941D0100917583 /* LocalDebug */,
 				B9B77FB00F56A31500BF0EF3 /* Release */,
-				B92A83370F9409E100DD725C /* AdHocRelease */,
+				927A61D811381779005B4548 /* Test */,
 				B97AA0320F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1641,9 +1251,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
-				B90A5C740F941D0100917583 /* LocalDebug */,
 				C01FCF5008A954540054247B /* Release */,
-				B92A83350F9409E100DD725C /* AdHocRelease */,
+				927A61D511381779005B4548 /* Test */,
 				B97AA0300F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
