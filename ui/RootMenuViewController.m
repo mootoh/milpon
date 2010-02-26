@@ -54,6 +54,8 @@ enum sec_one {
    self.navigationItem.leftBarButtonItem  = app.refreshButton;
 
    [addButton release];
+
+   self.tableView.scrollEnabled = NO;
 }
 /*
 - (void)viewWillAppear:(BOOL)animated {
