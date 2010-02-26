@@ -25,7 +25,7 @@ enum sec_zero {
 
 enum sec_one {
    //SEC_ONE_REVIEW,
-   SEC_ONE_SETTING,
+   SEC_ONE_MORE,
    SEC_ONE_COUNT
 };
 
@@ -158,8 +158,8 @@ enum sec_one {
          cell.textColor = [UIColor grayColor];
          break;
 #endif // 0
-      case SEC_ONE_SETTING:
-         cell.text =  NSLocalizedString(@"Setting", @"");
+      case SEC_ONE_MORE:
+         cell.text =  NSLocalizedString(@"More", @"");
          break;
       default:
          break;
@@ -220,7 +220,7 @@ enum sec_one {
          //break;
          return; // TODO:temporally
 #endif // 0
-      case SEC_ONE_SETTING:
+      case SEC_ONE_MORE:
          vc = [[ConfigViewController alloc] initWithNibName:nil bundle:nil];
          break;
       default:
