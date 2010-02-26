@@ -156,7 +156,9 @@
       }
    }
 
-   [self refresh];
+   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // get the setting prefs
+   if ([defaults boolForKey:@"pref_sync_at_start"])
+      [self refresh];
    [window makeKeyAndVisible];
 }
 

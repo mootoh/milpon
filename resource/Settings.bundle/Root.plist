@@ -70,9 +70,9 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Sync Automatically</string>
+			<string>Sync at Start</string>
 			<key>Key</key>
-			<string>pref_sync_auto</string>
+			<string>pref_sync_at_start</string>
 			<key>DefaultValue</key>
 			<true/>
 		</dict>
