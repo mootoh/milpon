@@ -10,6 +10,7 @@
 #import "RTMAPI.h"
 #import "RTMAuth.h"
 #import "RTMTask.h"
+#import "RTMList.h"
 #import "AuthViewController.h"
 #import "AddTaskViewController.h"
 #import "RootMenuViewController.h"
@@ -22,6 +23,7 @@
 #import "logger.h"
 #import "TaskProvider.h"
 #import "MilponHelper.h"
+#import "ListProvider.h"
 
 @interface AppDelegate (Private)
 - (NSString *) authPath;
@@ -162,7 +164,20 @@
    [window makeKeyAndVisible];
 }
 
-- (void) applicationWillTerminate:(UIApplication *)application
+enum {
+   BADGE_INBOX = 0,
+   BADGE_TODAY = 1,
+   BADGE_REMAINS = 2
+};
+
+- (NSInteger) inboxTaskCount
+{
+   RTMList *inboxList = [[ListProvider sharedListProvider] inboxList];
+   NSArray *tasks = [[TaskProvider sharedTaskProvider] tasksInList:inboxList.iD showCompleted:NO];
+   return [tasks count];
+}
+
+- (NSInteger) todayTaskCount
 {
    NSMutableArray *todayTasks = [NSMutableArray array];
    
@@ -186,22 +201,60 @@
                                                     [comp_due year], [comp_due month], [comp_due day]]];
       
       NSTimeInterval interval = [due_date timeIntervalSinceDate:today];
-      /*
-      if (interval < 0) {
-         [[due_tasks objectAtIndex:OVERDUE] addObject:task];
-      } else
-      */
-      if (interval < 24*60*60) {
+      if (0 <= interval && interval < 24*60*60)
          [todayTasks addObject:task];
-      } /*
-      else if (interval < 24*60*60*2) {
-         [[due_tasks objectAtIndex:TOMORROW] addObject:task];
-      } else if (interval < 24*60*60*7) {
-         [[due_tasks objectAtIndex:THIS_WEEK] addObject:task];
-      }
-      */
    }
-   [application setApplicationIconBadgeNumber:todayTasks.count];
+   return [todayTasks count];
+}
+
+- (NSInteger) remainTaskCount
+{
+   NSMutableArray *remainTasks = [NSMutableArray array];
+
+   NSDate *now = [NSDate date];
+   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
+
+   unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+   NSCalendar *calendar = [NSCalendar currentCalendar];
+   NSDateComponents *comps = [calendar components:unitFlags fromDate:now];
+
+   NSDate *today = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
+                                              [comps year], [comps month], [comps day]]];
+
+   NSArray *tasks = [[TaskProvider sharedTaskProvider] tasks:NO];
+   for (RTMTask *task in tasks) {
+      if (!task.due || task.due == [MilponHelper sharedHelper].invalidDate) continue;
+      NSDateComponents *comp_due = [calendar components:unitFlags fromDate:task.due];
+      NSDate *due_date = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
+                                                    [comp_due year], [comp_due month], [comp_due day]]];
+
+      NSTimeInterval interval = [due_date timeIntervalSinceDate:today];
+      if (interval < 0 || interval < 24*60*60)
+          [remainTasks addObject:task];
+   }
+   return [remainTasks count];
+}
+
+- (void) applicationWillTerminate:(UIApplication *)application
+{
+   NSInteger badgeCount = 0;
+   switch([[NSUserDefaults standardUserDefaults] integerForKey:@"pref_badge_source"]) {
+      case BADGE_INBOX:
+         badgeCount = [self inboxTaskCount];
+         break;
+      case BADGE_TODAY:
+         badgeCount = [self todayTaskCount];
+         break;
+      case BADGE_REMAINS:
+         badgeCount = [self remainTaskCount];
+         break;
+      default:
+         break;
+   }
+
+   [application setApplicationIconBadgeNumber:badgeCount];
 }
 
 - (IBAction) addTask
