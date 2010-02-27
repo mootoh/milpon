@@ -103,7 +103,6 @@ static const int SECTIONS = 4;
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:app action:@selector(addTask)];
-   //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(toggleShowCompletion)];
    self.navigationItem.rightBarButtonItem = addButton;
    [addButton release];
 }
