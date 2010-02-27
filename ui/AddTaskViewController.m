@@ -11,6 +11,7 @@
 #import "TagSelectController.h"
 #import "NoteEditController.h"
 #import "DueDateSelectController.h"
+#import "ReloadableTableViewController.h"
 #import "AppDelegate.h"
 #import "RTMTask.h"
 #import "RTMList.h"
@@ -278,7 +279,11 @@ enum {
 {
    UINavigationController *tbc = (UINavigationController *)self.navigationController.parentViewController;
    UITableViewController *tvc = (UITableViewController *)tbc.topViewController;
-   [tvc.tableView reloadData];
+   if ([tvc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
+      [(UITableViewController<ReloadableTableViewControllerProtocol> *)tvc reloadFromDB];
+      [tvc.tableView reloadData];
+   }
+   
    [self dismissModalViewControllerAnimated:YES];
 }
 

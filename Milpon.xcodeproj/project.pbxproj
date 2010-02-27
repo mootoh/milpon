@@ -182,6 +182,7 @@
 		B9160EE10F565D1500473A95 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		B9160EE40F565D1500473A95 /* ListSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListSelectViewController.h; sourceTree = "<group>"; };
 		B9160EE50F565D1500473A95 /* ListSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListSelectViewController.m; sourceTree = "<group>"; };
+		B9160EEC0F565D1500473A95 /* ReloadableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReloadableTableViewController.h; sourceTree = "<group>"; };
 		B9160EEF0F565D1500473A95 /* TaskListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListViewController.h; sourceTree = "<group>"; };
 		B9160EF00F565D1500473A95 /* TaskListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListViewController.m; sourceTree = "<group>"; };
 		B9160EF10F565D1500473A95 /* TaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskViewController.h; sourceTree = "<group>"; };
@@ -472,6 +473,7 @@
 				B9160EE10F565D1500473A95 /* ConfigViewController.m */,
 				B9160EE40F565D1500473A95 /* ListSelectViewController.h */,
 				B9160EE50F565D1500473A95 /* ListSelectViewController.m */,
+				B9160EEC0F565D1500473A95 /* ReloadableTableViewController.h */,
 				B9160EEF0F565D1500473A95 /* TaskListViewController.h */,
 				B9160EF00F565D1500473A95 /* TaskListViewController.m */,
 				B9160FBA0F565DB600473A95 /* PriorityImageView.h */,

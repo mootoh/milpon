@@ -342,13 +342,7 @@ enum {
    [syncer syncTasks:pv];
    [syncer release];
 
-   [self performSelectorOnMainThread:@selector(refreshView) withObject:nil waitUntilDone:YES];
    [self performSelectorOnMainThread:@selector(hideDialog) withObject:nil waitUntilDone:YES];
-}
-
-- (void) refreshView
-{
-   [navigationController.topViewController.view setNeedsDisplay];
 }
 
 - (IBAction) showDialog
