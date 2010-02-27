@@ -22,6 +22,7 @@
 #import "NoteEditController.h"
 #import "TagSelectController.h"
 #import "ListSelectViewController.h"
+#import "ReloadableTableViewController.h"
 
 #define kNOTE_PLACE_HOLDER @"note..."
 
@@ -205,6 +206,16 @@ enum {
    [dialogView release];
    [prioritySelections release];
    [super dealloc];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+   UIViewController *vc = self.navigationController.topViewController;
+   if ([vc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
+      UITableViewController <ReloadableTableViewControllerProtocol> *tvc = (UITableViewController <ReloadableTableViewControllerProtocol> *)vc;
+      [tvc reloadFromDB];
+      [tvc.tableView reloadData];
+   }
 }
 
 - (void) setPriorityButton

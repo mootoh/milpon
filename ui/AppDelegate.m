@@ -342,7 +342,19 @@ enum {
    [syncer syncTasks:pv];
    [syncer release];
 
+   [self performSelectorOnMainThread:@selector(refreshView) withObject:nil waitUntilDone:YES];
    [self performSelectorOnMainThread:@selector(hideDialog) withObject:nil waitUntilDone:YES];
+}
+
+- (void) refreshView
+{
+   UIViewController *vc = navigationController.topViewController;
+   if ([vc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
+      UITableViewController<ReloadableTableViewControllerProtocol> *tvc = (UITableViewController<ReloadableTableViewControllerProtocol> *)vc;
+      [tvc reloadFromDB];
+      [tvc.tableView reloadData];
+   }
+
 }
 
 - (IBAction) showDialog
