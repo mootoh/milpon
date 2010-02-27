@@ -6,9 +6,7 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import "ReloadableTableViewController.h"
-
-@interface OverviewViewController : UITableViewController <ReloadableTableViewControllerProtocol>
+@interface OverviewViewController : UITableViewController
 {
    NSArray *headers;
    NSArray *tasks;

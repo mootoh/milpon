@@ -6,12 +6,10 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import "ReloadableTableViewController.h"
-
 @class RTMList;
 @protocol Collection;
 
-@interface TaskListViewController : UITableViewController <ReloadableTableViewControllerProtocol>
+@interface TaskListViewController : UITableViewController
 {
    //RTMList *list;
    NSArray *tasks;
