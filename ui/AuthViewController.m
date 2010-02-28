@@ -5,6 +5,7 @@
 #import "AppDelegate.h"
 #import "AuthWebViewController.h"
 #import "RTMAPI.h"
+#import "ReloadableTableViewController.h"
 
 @implementation AuthViewController
 
@@ -208,8 +209,16 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
    [super viewWillDisappear:animated];
-   if (STATE_DONE == state)
+   if (STATE_DONE == state) {
       self.bottomBar.hidden = NO;
+
+      UIViewController *vc = ((UINavigationController *)self.navigationController.parentViewController).topViewController;
+      if ([vc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
+         UITableViewController <ReloadableTableViewControllerProtocol> *tvc = (UITableViewController <ReloadableTableViewControllerProtocol> *)vc;
+         [tvc reloadFromDB];
+         [tvc.tableView reloadData];
+      }
+   }
 }
 
 @end
