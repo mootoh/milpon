@@ -47,7 +47,7 @@
    } else if ([elementName isEqualToString:@"list"]) {
       mode = LIST;
       // some filtering
-      if ([[attributeDict valueForKey:@"name"] isEqualToString:@"Sent"]) {
+      if ([[attributeDict valueForKey:@"name"] isEqualToString:@"Sent"] || [[attributeDict valueForKey:@"smart"] isEqualToString:@"1"]) {
          skip = YES;
       } else {
          skip = NO;
