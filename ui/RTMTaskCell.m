@@ -61,7 +61,8 @@ static UIImage *s_recurrentIcon = nil;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier
 {
-   if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+   if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]) {
+      self.frame = frame;
       self.opaque = YES;
       //self.backgroundColor = [UIColor whiteColor];
       self.userInteractionEnabled = YES;

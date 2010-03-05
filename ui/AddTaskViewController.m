@@ -137,7 +137,7 @@ enum {
             // due button
             due_button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             due_button.frame = CGRectMake(8, 4, 84, 32);
-            due_button.font = [UIFont systemFontOfSize:14];
+            due_button.titleLabel.font = [UIFont systemFontOfSize:14];
             
             UIImage *iconImage = [[UIImage alloc] initWithContentsOfFile:
                                   [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_calendar.png"]];

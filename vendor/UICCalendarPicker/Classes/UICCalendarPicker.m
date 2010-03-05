@@ -486,7 +486,7 @@ static UIColor *holidayColor;
 	[button setTitleColor:normalColor forState:UIControlStateNormal];
 	[button setTitleColor:selectedColor forState:UIControlStateSelected];
 	[button setTitleColor:disabledColor forState:UIControlStateDisabled];
-	[button setFont:[UIFont fontWithName:@"ArialMT" size:UICCALENDAR_CELL_FONT_SIZE]];
+	[button.titleLabel setFont:[UIFont fontWithName:@"ArialMT" size:UICCALENDAR_CELL_FONT_SIZE]];
 	[button setShowsTouchWhenHighlighted:NO];
 }
 
@@ -497,7 +497,7 @@ static UIColor *holidayColor;
 	[button setTitleColor:normalColor forState:UIControlStateNormal];
 	[button setTitleColor:selectedColor forState:UIControlStateSelected];
 	[button setTitleColor:disabledColor forState:UIControlStateDisabled];
-	[button setFont:[UIFont fontWithName:@"ArialMT" size:UICCALENDAR_CELL_FONT_SIZE]];
+	[button.titleLabel setFont:[UIFont fontWithName:@"ArialMT" size:UICCALENDAR_CELL_FONT_SIZE]];
 	[button setShowsTouchWhenHighlighted:NO];
 }
 

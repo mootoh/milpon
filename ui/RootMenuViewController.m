@@ -128,21 +128,21 @@ enum sec_one {
    if (indexPath.section == 0) {
       switch (indexPath.row) {
          case SEC_ZERO_OVERVIEW: {
-         cell.text =  NSLocalizedString(@"Overview", @"");
-         cell.image = [[[UIImage alloc] initWithContentsOfFile:
+         cell.textLabel.text =  NSLocalizedString(@"Overview", @"");
+         cell.imageView.image = [[[UIImage alloc] initWithContentsOfFile:
                         [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_calendar.png"]] autorelease];
          break;
       }
       case SEC_ZERO_LIST: {
-         cell.text =  NSLocalizedString(@"List", @"");
+         cell.textLabel.text =  NSLocalizedString(@"List", @"");
 
-         cell.image = [[[UIImage alloc] initWithContentsOfFile:
+         cell.imageView.image = [[[UIImage alloc] initWithContentsOfFile:
                         [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]] autorelease];
          break;
       }
       case SEC_ZERO_TAG: {
-         cell.text =  NSLocalizedString(@"Tag", @"");
-         cell.image = [[[UIImage alloc] initWithContentsOfFile:
+         cell.textLabel.text =  NSLocalizedString(@"Tag", @"");
+         cell.imageView.image = [[[UIImage alloc] initWithContentsOfFile:
                         [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]] autorelease];
 
          break;
@@ -159,7 +159,7 @@ enum sec_one {
          break;
 #endif // 0
       case SEC_ONE_MORE:
-         cell.text =  NSLocalizedString(@"More", @"");
+         cell.textLabel.text =  NSLocalizedString(@"More", @"");
          break;
       default:
          break;

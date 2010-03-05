@@ -13,12 +13,13 @@
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier
 {
-   if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+   if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]) {
+      self.frame = frame;
       label_field = [[UILabel alloc] initWithFrame:CGRectMake(4, 2, 52, CGRectGetHeight(self.frame)-4)];
       label_field.textAlignment = UITextAlignmentRight;
       label_field.font = [UIFont systemFontOfSize:12];
       label_field.textColor = [UIColor grayColor];
-      self.font = [UIFont systemFontOfSize:14];
+      self.textLabel.font = [UIFont systemFontOfSize:14];
       self.indentationWidth = 30;
       self.indentationLevel = 1;
    }

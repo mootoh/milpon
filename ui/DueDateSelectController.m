@@ -76,10 +76,10 @@ enum {
    
    switch (indexPath.row) {
       case ROW_TODAY:
-         cell.text = @"Today";
+         cell.textLabel.text = @"Today";
          break;
       case ROW_TOMORROW:
-         cell.text = @"Tomorrow";
+         cell.textLabel.text = @"Tomorrow";
          break;
       case ROW_CALENDAR:
          [calendar_picker showInView:cell.contentView animated:NO];

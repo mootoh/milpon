@@ -48,7 +48,7 @@
    }
    
    RTMList *list = [[[ListProvider sharedListProvider] lists] objectAtIndex:indexPath.row];
-   cell.text = list.name;
+   cell.textLabel.text = list.name;
    return cell;
 }
 

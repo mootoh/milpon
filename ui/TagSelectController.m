@@ -88,7 +88,7 @@ static UIImage *s_checkedIcon = nil;
     }
 
    RTMTag *tag = [all_tags objectAtIndex:indexPath.row];
-   cell.text = tag.name;
+   cell.textLabel.text = tag.name;
    
    if ([[selected_flags objectForKey:tag.name] boolValue]) {
       UIImageView *image_view = [[UIImageView alloc] initWithImage:[TagSelectController checkedIcon]];

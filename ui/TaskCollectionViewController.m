@@ -62,7 +62,7 @@
    
    // Set up the cell
    NSObject <Collection> *cols = [collection objectAtIndex:indexPath.row];
-   cell.text = [cols name];
+   cell.textLabel.text = [cols name];
    
    task_count.text = [NSString stringWithFormat:@"%d", [cols taskCount]];
    [cell setNeedsDisplay];

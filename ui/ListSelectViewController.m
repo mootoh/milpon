@@ -46,7 +46,7 @@
    }
    // Configure the cell
    RTMList *lst = [lists objectAtIndex:indexPath.row];
-   cell.text = lst.name;
+   cell.textLabel.text = lst.name;
    return cell;
 }
 
