@@ -99,6 +99,8 @@
 		B93A12980F921AAA00C0A9AB /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A12960F921AAA00C0A9AB /* OverviewViewController.m */; };
 		B93AE4420FAB140E00343773 /* DBNoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43D0FAB140E00343773 /* DBNoteProvider.m */; };
 		B93AE4430FAB140E00343773 /* NoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43F0FAB140E00343773 /* NoteProvider.m */; };
+		B93B8323114D0BB800C8B833 /* DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B93B8322114D0BB800C8B833 /* DataModel.xcdatamodel */; };
+		B93B8324114D0BB900C8B833 /* DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B93B8322114D0BB800C8B833 /* DataModel.xcdatamodel */; };
 		B95C5C080F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B95C5C090F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
 		B970AC060F6416A1004467E9 /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B970AC050F6416A1004467E9 /* TaskView.xib */; };
@@ -288,6 +290,7 @@
 		B93AE43D0FAB140E00343773 /* DBNoteProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBNoteProvider.m; sourceTree = "<group>"; };
 		B93AE43E0FAB140E00343773 /* NoteProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteProvider.h; sourceTree = "<group>"; };
 		B93AE43F0FAB140E00343773 /* NoteProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteProvider.m; sourceTree = "<group>"; };
+		B93B8322114D0BB800C8B833 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		B93D753A0F941105001E11F3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = ../others/Entitlements.plist; sourceTree = "<group>"; };
 		B95C5C070F598C8400A368DC /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = rtm.sql; sourceTree = "<group>"; };
 		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
@@ -519,6 +522,7 @@
 				B9160F1D0F565D4C00473A95 /* LocalCache.m */,
 				B9160F280F565D4C00473A95 /* RTMSynchronizer.h */,
 				B9160F290F565D4C00473A95 /* RTMSynchronizer.m */,
+				B93B8322114D0BB800C8B833 /* DataModel.xcdatamodel */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -937,6 +941,7 @@
 				9278D1B30FBF07730007B03B /* DBNoteProvider.m in Sources */,
 				9278D1B40FBF07750007B03B /* NoteProvider.m in Sources */,
 				9278D1B50FBF07770007B03B /* RTMObject.m in Sources */,
+				B93B8324114D0BB900C8B833 /* DataModel.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -956,6 +961,7 @@
 				B9B956320F65D21E0046712A /* RTMAPIXMLParserCallback.m in Sources */,
 				B93AE4420FAB140E00343773 /* DBNoteProvider.m in Sources */,
 				B93AE4430FAB140E00343773 /* NoteProvider.m in Sources */,
+				B93B8323114D0BB800C8B833 /* DataModel.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

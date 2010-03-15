@@ -1,3 +1,8 @@
+2010-03-14  mootoh <mootoh@gmail.com>
+
+	* TODO:
+	- use has_due_time flag in sync
+
 2008-12-17 mootoh
 	* due date selection:
 		今日、明日、それ以外で選びたいところ。
