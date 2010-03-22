@@ -20,7 +20,7 @@ DEFINE_ATTRIBUTE(estimate, Estimate, NSString*, EB_TASK_ESTIMATE);
 DEFINE_ATTRIBUTE(postponed, Postponed, NSNumber*, EB_TASK_POSTPONED);
 DEFINE_ATTRIBUTE(rrule, Rrule, NSString*, EB_TASK_RRULE);
 DEFINE_ATTRIBUTE(to_list_id, To_list_id, NSNumber*, EB_TASK_LIST_ID);
-DEFINE_ATTRIBUTE(has_due_time, Has_due_time, NSNumber *, EB_TASK_HAS_DUE_DATE);                 
+
 - (NSNumber *) list_id
 {
    NSNumber *tli = self.to_list_id;
