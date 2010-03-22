@@ -90,7 +90,7 @@
 
 @implementation AppDelegate
 
-@synthesize window, auth, operationQueue, refreshButton;
+@synthesize window, auth, refreshButton;
 
 /**
   * init DB and authorization info
@@ -104,8 +104,6 @@
       [RTMAPI setSecret:auth.shared_secret];
       if (auth.token)
          [RTMAPI setToken:auth.token];
-
-      operationQueue = [[NSOperationQueue alloc] init];
    }
    return self;
 }
@@ -115,7 +113,6 @@
    [refreshButton release];
    [pv release];
    [navigationController release];
-   [operationQueue release];
    [auth release];
    [window release];
    [super dealloc];

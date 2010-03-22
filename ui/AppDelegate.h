@@ -14,14 +14,12 @@
    IBOutlet UIWindow               *window;
    IBOutlet UINavigationController *navigationController;
    RTMAuth                         *auth;
-   NSOperationQueue                *operationQueue;
    ProgressView                    *pv;
    UIBarButtonItem                 *refreshButton;
 }
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) RTMAuth *auth;
-@property (nonatomic, retain) NSOperationQueue *operationQueue;
 @property (nonatomic, retain) UIBarButtonItem *refreshButton;
 
 - (IBAction) addTask;
