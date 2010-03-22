@@ -15,17 +15,13 @@
    IBOutlet UINavigationController *navigationController;
    RTMAuth                         *auth;
    ProgressView                    *pv;
-   UIBarButtonItem                 *refreshButton;
 }
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) RTMAuth *auth;
-@property (nonatomic, retain) UIBarButtonItem *refreshButton;
 
 - (IBAction) addTask;
 - (IBAction) saveAuth;
 - (IBAction) authDone;
-- (IBAction) fetchAll;
-- (IBAction) refresh;
-- (IBAction) showDialog;
+
 @end

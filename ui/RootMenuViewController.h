@@ -6,5 +6,15 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
+@class ProgressView;
+
 @interface RootMenuViewController : UITableViewController
+{
+   UIBarButtonItem                 *refreshButton;
+   ProgressView                    *pv;
+}
+
+- (IBAction) refresh;
+- (IBAction) showDialog;
+
 @end

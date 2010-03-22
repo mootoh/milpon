@@ -197,14 +197,20 @@
    if (state != STATE_JUMPED)
       return;
 
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   [app fetchAll];
-
    instructionLabel.text = NSLocalizedString(@"InitDone", @"all initial process has been succeeded");
 
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFetchAll) name:@"didFetchAll" object:nil];
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchAll" object:nil];
+}
+
+- (void) didFetchAll
+{
+   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFetchAll" object:nil];
+   
    NSTimer *timer;
    timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(done:) userInfo:nil repeats:NO];
-}
+}   
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {

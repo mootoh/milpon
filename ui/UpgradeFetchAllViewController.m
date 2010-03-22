@@ -35,12 +35,16 @@
 - (void)viewDidAppear:(BOOL)animated
 {
    [super viewDidAppear:animated];
-   
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   [app fetchAll];
+
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(waitForFetch) name:@"waitForFetch" object:nil];
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchAll" object:nil];
+}
+
+- (void) waitForFetch
+{
+   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"waitForFetch" object:nil];
    
    NSTimer *timer;
    timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(done:) userInfo:nil repeats:NO];
-}
-
+}   
 @end
