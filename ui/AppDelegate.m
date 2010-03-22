@@ -23,35 +23,11 @@
 #import "MilponHelper.h"
 
 @interface AppDelegate (Private)
-- (NSString *) authPath;
-- (void) authInit:(NSString *)path;
 - (void) showAuthentication;
 - (void) recoverView;
 @end // AppDelegate (Private)
 
 @implementation AppDelegate (Private)
-
-- (NSString *) authPath
-{
-   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-   NSString *documentDirectory = [paths objectAtIndex:0];
-   NSString *path = [documentDirectory stringByAppendingPathComponent:@"auth.dat"];
-   return path;
-}
-
-- (void) authInit:(NSString *)path
-{
-   NSFileManager *fm = [NSFileManager defaultManager];
-   if ([fm fileExistsAtPath:path]) {
-      NSMutableData *data = [NSMutableData dataWithContentsOfFile:path];
-      NSKeyedUnarchiver *decoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-      self.auth = [decoder decodeObjectForKey:@"auth"];
-      [decoder finishDecoding];
-      [decoder release];
-   } else {
-      self.auth = [[RTMAuth alloc] init];
-   }
-}
 
 - (void) showAuthentication
 {
@@ -96,7 +72,7 @@
 - (id) init
 {
    if (self = [super init]) {
-      [self authInit:[self authPath]];
+      self.auth = [[RTMAuth alloc] init];
 
       [RTMAPI setApiKey:auth.api_key];
       [RTMAPI setSecret:auth.shared_secret];
@@ -196,18 +172,6 @@ enum {
    [navigationController presentModalViewController:navc animated:NO];
    [navc release];
    [atvController release];
-}
-
-- (IBAction) saveAuth
-{
-   NSMutableData *theData = [NSMutableData data];
-   NSKeyedArchiver *encoder = [[NSKeyedArchiver alloc] initForWritingWithMutableData:theData];
-
-   [encoder encodeObject:auth forKey:@"auth"];
-   [encoder finishEncoding];
-
-   [theData writeToFile:[self authPath] atomically:YES];
-   [encoder release];
 }
 
 @end

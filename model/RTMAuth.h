@@ -24,4 +24,6 @@
 @property (nonatomic, retain) NSString *frob;
 @property (nonatomic, retain) NSString *token;
 
+- (IBAction) save;
+
 @end

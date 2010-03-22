@@ -159,7 +159,7 @@
 
    auth.token = token;
    [RTMAPI setToken:auth.token];
-   [app saveAuth];
+   [app.auth save];
 }
 
 - (void) done:(NSTimer*)theTimer
