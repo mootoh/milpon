@@ -16,14 +16,11 @@
 #import "RootMenuViewController.h"
 #import "OverviewViewController.h"
 #import "UpgradeFetchAllViewController.h"
-#import "RTMSynchronizer.h"
-#import "Reachability.h"
-#import "ProgressView.h"
 #import "LocalCache.h"
 #import "logger.h"
 #import "TaskProvider.h"
-#import "MilponHelper.h"
 #import "ListProvider.h"
+#import "MilponHelper.h"
 
 @interface AppDelegate (Private)
 - (NSString *) authPath;
@@ -90,7 +87,8 @@
 
 @implementation AppDelegate
 
-@synthesize window, auth;
+@synthesize window;
+@synthesize auth;
 
 /**
   * init DB and authorization info
@@ -110,13 +108,11 @@
 
 - (void) dealloc
 {
-   [pv release];
    [navigationController release];
    [auth release];
    [window release];
    [super dealloc];
 }
-
 
 #define VERSION_1_0_MIGRATE_NUMBER 4
 - (BOOL) migrate:(LocalCache *)local_cache
@@ -156,6 +152,7 @@
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // get the settings prefs
    if ([defaults boolForKey:@"pref_sync_at_start"])
       [rmvc refresh];
+
    [window makeKeyAndVisible];
 }
 
@@ -172,66 +169,6 @@ enum {
    return [tasks count];
 }
 
-- (NSInteger) todayTaskCount
-{
-   NSMutableArray *todayTasks = [NSMutableArray array];
-   
-   NSDate *now = [NSDate date];
-   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
-   
-   unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-   NSCalendar *calendar = [NSCalendar currentCalendar];
-   NSDateComponents *comps = [calendar components:unitFlags fromDate:now];
-   
-   NSDate *today = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
-                                              [comps year], [comps month], [comps day]]];
-   
-   NSArray *tasks = [[TaskProvider sharedTaskProvider] tasks:NO];
-   for (RTMTask *task in tasks) {
-      if (!task.due || task.due == [MilponHelper sharedHelper].invalidDate) continue;
-      NSDateComponents *comp_due = [calendar components:unitFlags fromDate:task.due];
-      NSDate *due_date = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
-                                                    [comp_due year], [comp_due month], [comp_due day]]];
-      
-      NSTimeInterval interval = [due_date timeIntervalSinceDate:today];
-      if (0 <= interval && interval < 24*60*60)
-         [todayTasks addObject:task];
-   }
-   return [todayTasks count];
-}
-
-- (NSInteger) remainTaskCount
-{
-   NSMutableArray *remainTasks = [NSMutableArray array];
-
-   NSDate *now = [NSDate date];
-   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
-
-   unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-   NSCalendar *calendar = [NSCalendar currentCalendar];
-   NSDateComponents *comps = [calendar components:unitFlags fromDate:now];
-
-   NSDate *today = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
-                                              [comps year], [comps month], [comps day]]];
-
-   NSArray *tasks = [[TaskProvider sharedTaskProvider] tasks:NO];
-   for (RTMTask *task in tasks) {
-      if (!task.due || task.due == [MilponHelper sharedHelper].invalidDate) continue;
-      NSDateComponents *comp_due = [calendar components:unitFlags fromDate:task.due];
-      NSDate *due_date = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
-                                                    [comp_due year], [comp_due month], [comp_due day]]];
-
-      NSTimeInterval interval = [due_date timeIntervalSinceDate:today];
-      if (interval < 0 || interval < 24*60*60)
-          [remainTasks addObject:task];
-   }
-   return [remainTasks count];
-}
-
 - (void) applicationWillTerminate:(UIApplication *)application
 {
    NSInteger badgeCount = 0;
@@ -240,10 +177,10 @@ enum {
          badgeCount = [self inboxTaskCount];
          break;
       case BADGE_TODAY:
-         badgeCount = [self todayTaskCount];
+         badgeCount = [[TaskProvider sharedTaskProvider] todayTaskCount];
          break;
       case BADGE_REMAINS:
-         badgeCount = [self remainTaskCount];
+         badgeCount = [[TaskProvider sharedTaskProvider] remainTaskCount];
          break;
       default:
          break;
@@ -271,15 +208,6 @@ enum {
 
    [theData writeToFile:[self authPath] atomically:YES];
    [encoder release];
-}
-
-- (IBAction) authDone
-{
-   NSArray *svs = window.subviews;
-   NSAssert(svs.count == 1, @"should be only avc");
-   [window addSubview:navigationController.view];
-   [window bringSubviewToFront:navigationController.view];
-   [[svs objectAtIndex:0] removeFromSuperview];
 }
 
 @end

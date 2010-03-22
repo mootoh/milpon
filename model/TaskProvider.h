@@ -45,6 +45,9 @@
 //- (void) removeNote:(NSNumber *) note_id;
 //- (BOOL) noteExist:(NSNumber *)note_id;
 
+- (NSInteger) todayTaskCount;
+- (NSInteger) remainTaskCount;
+
 + (TaskProvider *) sharedTaskProvider;
 
 @end // TaskProvider

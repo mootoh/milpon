@@ -312,6 +312,66 @@
    [local_cache_ delete:@"task" condition:cond];
 }
 
+- (NSInteger) todayTaskCount
+{
+   NSMutableArray *todayTasks = [NSMutableArray array];
+   
+   NSDate *now = [NSDate date];
+   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
+   
+   unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+   NSCalendar *calendar = [NSCalendar currentCalendar];
+   NSDateComponents *comps = [calendar components:unitFlags fromDate:now];
+   
+   NSDate *today = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
+                                              [comps year], [comps month], [comps day]]];
+   
+   NSArray *tasks = [[TaskProvider sharedTaskProvider] tasks:NO];
+   for (RTMTask *task in tasks) {
+      if (!task.due || task.due == [MilponHelper sharedHelper].invalidDate) continue;
+      NSDateComponents *comp_due = [calendar components:unitFlags fromDate:task.due];
+      NSDate *due_date = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
+                                                    [comp_due year], [comp_due month], [comp_due day]]];
+      
+      NSTimeInterval interval = [due_date timeIntervalSinceDate:today];
+      if (0 <= interval && interval < 24*60*60)
+         [todayTasks addObject:task];
+   }
+   return [todayTasks count];
+}
+
+- (NSInteger) remainTaskCount
+{
+   NSMutableArray *remainTasks = [NSMutableArray array];
+   
+   NSDate *now = [NSDate date];
+   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
+   
+   unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+   NSCalendar *calendar = [NSCalendar currentCalendar];
+   NSDateComponents *comps = [calendar components:unitFlags fromDate:now];
+   
+   NSDate *today = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
+                                              [comps year], [comps month], [comps day]]];
+   
+   NSArray *tasks = [[TaskProvider sharedTaskProvider] tasks:NO];
+   for (RTMTask *task in tasks) {
+      if (!task.due || task.due == [MilponHelper sharedHelper].invalidDate) continue;
+      NSDateComponents *comp_due = [calendar components:unitFlags fromDate:task.due];
+      NSDate *due_date = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT",
+                                                    [comp_due year], [comp_due month], [comp_due day]]];
+      
+      NSTimeInterval interval = [due_date timeIntervalSinceDate:today];
+      if (interval < 0 || interval < 24*60*60)
+         [remainTasks addObject:task];
+   }
+   return [remainTasks count];
+}
+
 /*
 - (BOOL) noteExist:(NSNumber *)note_id
 {

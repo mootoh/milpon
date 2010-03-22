@@ -7,14 +7,12 @@
 //
 
 @class RTMAuth;
-@class ProgressView;
 
-@interface AppDelegate : NSObject <UIApplicationDelegate, UIActionSheetDelegate>
+@interface AppDelegate : NSObject <UIApplicationDelegate>
 {	
    IBOutlet UIWindow               *window;
    IBOutlet UINavigationController *navigationController;
    RTMAuth                         *auth;
-   ProgressView                    *pv;
 }
 
 @property (nonatomic, retain) UIWindow *window;
@@ -22,6 +20,5 @@
 
 - (IBAction) addTask;
 - (IBAction) saveAuth;
-- (IBAction) authDone;
 
 @end

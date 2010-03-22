@@ -47,7 +47,6 @@ enum sec_one {
 
    refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
    
-
    CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
    pv = [[ProgressView alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height, appFrame.size.width, 100)];
    pv.tag = PROGRESSVIEW_TAG;
@@ -70,56 +69,19 @@ enum sec_one {
 
    self.tableView.scrollEnabled = NO;
 }
-/*
-- (void)viewWillAppear:(BOOL)animated {
-   [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-   [super viewDidAppear:animated];
-   }
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-   [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-   [super viewDidDisappear:animated];
-}
-*/
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-   // Return YES for supported orientations
-   return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-- (void)didReceiveMemoryWarning {
-   // Releases the view if it doesn't have a superview.
+- (void)didReceiveMemoryWarning
+{
    [super didReceiveMemoryWarning];
-
-   // Release any cached data, images, etc that aren't in use.
 }
-
-/*
-- (void)viewDidUnload {
-   // Release any retained subviews of the main view.
-   // e.g. self.myOutlet = nil;
-}
-*/
 
 #pragma mark Table view methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
    return 2;
 }
 
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
    if (section == 0)
       return SEC_ZERO_COUNT;
@@ -128,7 +90,6 @@ enum sec_one {
    return 0;
 }
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
    static NSString *CellIdentifier = @"RootMenuCell";
@@ -165,12 +126,6 @@ enum sec_one {
       }
    } else {
       switch (indexPath.row) {
-#if 0
-      case SEC_ONE_REVIEW:
-         cell.text = @"Review";
-         cell.textColor = [UIColor grayColor];
-         break;
-#endif // 0
       case SEC_ONE_MORE:
          cell.textLabel.text =  NSLocalizedString(@"More", @"");
          break;
@@ -185,11 +140,6 @@ enum sec_one {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   // Navigation logic may go here. Create and push another view controller.
-   // AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-   // [self.navigationController pushViewController:anotherViewController];
-   // [anotherViewController release];
-
    UIViewController *vc = nil;
 
    if (indexPath.section == 0) {
@@ -227,12 +177,6 @@ enum sec_one {
       }
    } else {
       switch (indexPath.row) {
-#if 0
-      case SEC_ONE_REVIEW:
-         //vc = [[ReviewViewController alloc] initWithStyle:UITableViewStylePlain];
-         //break;
-         return; // TODO:temporally
-#endif // 0
       case SEC_ONE_MORE:
          vc = [[ConfigViewController alloc] initWithNibName:nil bundle:nil];
          break;
@@ -246,46 +190,6 @@ enum sec_one {
    [self.navigationController pushViewController:vc animated:YES];
    [vc release];
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-// Return NO if you do not want the specified item to be editable.
-return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-
-if (editingStyle == UITableViewCellEditingStyleDelete) {
-// Delete the row from the data source
-[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-}   
-else if (editingStyle == UITableViewCellEditingStyleInsert) {
-// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-}   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-// Return NO if you do not want the item to be re-orderable.
-return YES;
-}
-*/
-
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {

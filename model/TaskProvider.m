@@ -150,6 +150,18 @@
 //   return nil;
 //}
 
+- (NSInteger) todayTaskCount
+{
+   NSAssert(NO, @"not reach here");
+   return -1;
+}
+
+- (NSInteger) remainTaskCount
+{
+   NSAssert(NO, @"not reach here");
+   return -1;
+}
+
 
 + (TaskProvider *) sharedTaskProvider
 {
