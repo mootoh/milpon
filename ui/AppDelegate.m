@@ -326,11 +326,8 @@ enum {
    refreshButton.enabled = NO;
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
    [self showDialog];
-
-   NSInvocationOperation *ope = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(uploadOperation) object:nil];
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   [app.operationQueue addOperation:ope];
-   [ope release];
+   
+   [self performSelectorInBackground:@selector(uploadOperation) withObject:nil];
 }
  
 - (void) uploadOperation
