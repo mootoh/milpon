@@ -16,18 +16,13 @@
       STATE_DONE
    } state;
 
-   UILabel *greetingLabel;
-   UILabel *instructionLabel;
    UIActivityIndicatorView *authActivity;
-   UIButton *confirmButton;
-   UIToolbar *bottomBar;
+   IBOutlet UITextField *usernameField;
+   IBOutlet UITextField *passwordField;
 }
-
-@property (nonatomic, retain) UIToolbar *bottomBar;
 
 - (IBAction) auth;
 - (IBAction) getToken;
-- (void) greet;
 
 @end
 // vim:set ft=objc:

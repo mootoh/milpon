@@ -27,6 +27,7 @@
 		9278D3B50FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
 		927A61C0113815ED005B4548 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
 		927A61F31138194B005B4548 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 927A61F21138194B005B4548 /* Settings.bundle */; };
+		92B2F4C41158EAA000254FC6 /* AuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B2F4C31158EAA000254FC6 /* AuthView.xib */; };
 		92E4AAA7102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
 		92E91C380FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
 		92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
@@ -155,6 +156,7 @@
 		9278D3B30FBF185B0007B03B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		927A61F21138194B005B4548 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		928601981072E55C004B7DFE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		92B2F4C31158EAA000254FC6 /* AuthView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthView.xib; sourceTree = "<group>"; };
 		92E4AA9D102C21DC00CACCC9 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E4AAAA102C220D00CACCC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_007_clear_last_sync.sql; sourceTree = "<group>"; };
@@ -732,11 +734,11 @@
 				B91610170F565F9E00473A95 /* DueDateSelectController.m */,
 				B916100F0F565F8A00473A95 /* NoteEditController.h */,
 				B91610100F565F8A00473A95 /* NoteEditController.m */,
+				B9B95CA60F6767BE0046712A /* NoteEdit.xib */,
 				B91610110F565F8A00473A95 /* TagSelectController.h */,
 				B91610120F565F8A00473A95 /* TagSelectController.m */,
 				B916100C0F565F6500473A95 /* ListSelectController.h */,
 				B916100D0F565F6500473A95 /* ListSelectController.m */,
-				B9B95CA60F6767BE0046712A /* NoteEdit.xib */,
 			);
 			name = add;
 			sourceTree = "<group>";
@@ -746,6 +748,7 @@
 			children = (
 				B9160EDC0F565D1500473A95 /* AuthViewController.h */,
 				B9160EDD0F565D1500473A95 /* AuthViewController.m */,
+				92B2F4C31158EAA000254FC6 /* AuthView.xib */,
 				B9160EDE0F565D1500473A95 /* AuthWebViewController.h */,
 				B9160EDF0F565D1500473A95 /* AuthWebViewController.m */,
 			);
@@ -891,6 +894,7 @@
 				92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */,
 				927A61C0113815ED005B4548 /* Entitlements.plist in Resources */,
 				927A61F31138194B005B4548 /* Settings.bundle in Resources */,
+				92B2F4C41158EAA000254FC6 /* AuthView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

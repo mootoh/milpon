@@ -11,9 +11,15 @@
 
 @interface AuthWebViewController : UIViewController <UIWebViewDelegate>
 {
+   UIWebView *webView_;
    NSURL *url;
+   NSString *username;
+   NSString *password;
+   NSInteger state;
 }
 
 @property (nonatomic, retain) NSURL *url;
+@property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) NSString *password;
 
 @end

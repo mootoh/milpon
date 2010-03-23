@@ -31,13 +31,9 @@
 
 - (void) showAuthentication
 {
-   AuthViewController *avc = [[AuthViewController alloc] initWithNibName:nil bundle:nil];
-   avc.navigationItem.hidesBackButton = YES;
-   
-   UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:avc];
+   AuthViewController *avc = [[AuthViewController alloc] initWithNibName:@"AuthView" bundle:nil];
+   [navigationController presentModalViewController:avc animated:NO];
    [avc release];
-   [navigationController presentModalViewController:nc animated:NO];
-   [nc release];
 }
 
 - (void) recoverView

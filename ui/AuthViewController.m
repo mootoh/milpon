@@ -9,8 +9,6 @@
 
 @implementation AuthViewController
 
-@synthesize bottomBar;
-
 #define GREETING_LABEL_WIDTH 156
 #define INSTRUCTION_LABEL_WIDTH 284
 
@@ -19,84 +17,14 @@
    if (self = [super initWithNibName:nibName bundle:bundle]) {
       state = STATE_INITIAL;
       self.title = NSLocalizedString(@"Setup", "setup screen");
-
-      CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
-
-      /*
-       * greeting
-       */
-      greetingLabel = [[UILabel alloc] initWithFrame:CGRectMake(appFrame.size.width/2-GREETING_LABEL_WIDTH/2, 32, GREETING_LABEL_WIDTH, 48)];
-      greetingLabel.font = [UIFont systemFontOfSize:48];
-      greetingLabel.text = @"Milpon";
-
-      /*
-       * instruction
-       */
-      instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(appFrame.size.width/2-INSTRUCTION_LABEL_WIDTH/2, 110, INSTRUCTION_LABEL_WIDTH, 176)];
-      //instructionLabel.backgroundColor = [UIColor grayColor];
-      instructionLabel.font = [UIFont systemFontOfSize:16];
-      instructionLabel.lineBreakMode = UILineBreakModeWordWrap;
-      instructionLabel.numberOfLines = 9;
-
-      /*
-       * button
-       */
-      confirmButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-      confirmButton.frame = CGRectMake(appFrame.size.width/2-150/2, 300, 150, 40);
-      [confirmButton retain];
-
-      authActivity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-      authActivity.frame = CGRectMake(appFrame.size.width/2-16, appFrame.size.height/2, 32, 32);
-      authActivity.hidesWhenStopped = YES;
-
-#ifdef DEBUG
-      UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-      doneButton.frame = CGRectMake(appFrame.size.width/2-150/2, 350, 150, 40);
-      [doneButton setTitle:NSLocalizedString(@"Done", @"done button") forState:UIControlStateNormal];
-      [doneButton addTarget:self action:@selector(done:) forControlEvents:UIControlEventTouchDown];
-      doneButton.enabled = YES;
-      doneButton.hidden = NO;
-      [self.view addSubview:doneButton];
-#endif // DEBUG
-
-      [self greet];
    }
    return self;
 }
 
 - (void) dealloc
 {
-   [greetingLabel release];
-   [instructionLabel release];
    [authActivity release];
-   [confirmButton release];
    [super dealloc];
-}
-
-- (void) loadView
-{
-   [super loadView];
-
-   self.view.backgroundColor = [UIColor whiteColor];
-
-   // TODO: add funny image
-   [self.view addSubview:greetingLabel];
-   [self.view addSubview:instructionLabel];
-   [self.view addSubview:confirmButton];
-   [self.view addSubview:authActivity];
-}
-
-- (void) greet
-{
-   state = STATE_INITIAL;
-
-   instructionLabel.textAlignment = UITextAlignmentLeft;
-   instructionLabel.text = NSLocalizedString(@"AuthNaviFirst", @"first auth navigation message");
-
-   [confirmButton setTitle:NSLocalizedString(@"GoToRTM", @"go to RTM button") forState:UIControlStateNormal];
-   [confirmButton addTarget:self action:@selector(auth) forControlEvents:UIControlEventTouchDown];
-   confirmButton.enabled = YES;
-   confirmButton.hidden = NO;
 }
 
 - (void) alertError
@@ -127,11 +55,16 @@
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSString *urlString = [api authURL:frob forPermission:@"delete"];
    NSURL *authURL = [NSURL URLWithString:urlString];
+   NSLog(@"authURL = %@", authURL);
 
    //self.navigationController.navigationBarHidden = NO;
    AuthWebViewController *authWebViewController = [[AuthWebViewController alloc] initWithNibName:nil bundle:nil];
    authWebViewController.url = authURL;
-   [self.navigationController pushViewController:authWebViewController animated:YES];
+   authWebViewController.username = usernameField.text;
+   authWebViewController.password = passwordField.text;
+   
+//   [self.navigationController pushViewController:authWebViewController animated:YES];
+   [self presentModalViewController:authWebViewController animated:YES];
    [authWebViewController release];
 
    state = STATE_JUMPED;
@@ -153,7 +86,6 @@
 
    if (!token) {
       [self alertError];
-      [self greet];
       return;
    }
 
@@ -175,15 +107,7 @@
    if (state != STATE_JUMPED)
       return;
 
-   instructionLabel.text = NSLocalizedString(@"AcquiringPermission", @"permission getting screen");
-   instructionLabel.textAlignment = UITextAlignmentCenter;
-
-   [confirmButton removeTarget:self action:@selector(auth) forControlEvents:UIControlEventTouchDown];
-   confirmButton.enabled = NO;
-   confirmButton.hidden = YES;
-
    [self getToken];
-   instructionLabel.text = NSLocalizedString(@"FetchingInstruction", @"fetch all data");
    
    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
 
@@ -196,8 +120,6 @@
    [super viewDidAppear:animated];
    if (state != STATE_JUMPED)
       return;
-
-   instructionLabel.text = NSLocalizedString(@"InitDone", @"all initial process has been succeeded");
 
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFetchAll) name:@"didFetchAll" object:nil];
    [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchAll" object:nil];
@@ -216,8 +138,6 @@
 {
    [super viewWillDisappear:animated];
    if (STATE_DONE == state) {
-      self.bottomBar.hidden = NO;
-
       UIViewController *vc = ((UINavigationController *)self.navigationController.parentViewController).topViewController;
       if ([vc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
          UITableViewController <ReloadableTableViewControllerProtocol> *tvc = (UITableViewController <ReloadableTableViewControllerProtocol> *)vc;
