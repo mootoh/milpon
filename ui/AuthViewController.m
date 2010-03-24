@@ -9,21 +9,35 @@
 
 @implementation AuthViewController
 
-#define GREETING_LABEL_WIDTH 156
-#define INSTRUCTION_LABEL_WIDTH 284
-
 - (id) initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
    if (self = [super initWithNibName:nibName bundle:bundle]) {
       state = STATE_INITIAL;
       self.title = NSLocalizedString(@"Setup", "setup screen");
+      authWebViewController = nil;
+
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFailInAuth) name:@"didFailInAuth" object:nil];
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedInAuth) name:@"didSucceedInAuth" object:nil];
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAuthWebView) name:@"presentAuthWebView" object:nil];
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDismissWebView) name:@"didDismissWebView" object:nil];
    }
    return self;
 }
 
 - (void) dealloc
 {
-   [authActivity release];
+   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFailInAuth" object:nil];
+   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didSucceedInAuth" object:nil];
+   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"presentAuthWebView" object:nil];
+   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didDismissWebView" object:nil];
+   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFetchAll" object:nil];
+
+   [authWebViewController release];
+//   [proceedButton release];
+//   [authActivity release];
+//   [usernameField release];
+//   [passwordField release];
+//   [instructionLabel release];
    [super dealloc];
 }
 
@@ -38,8 +52,18 @@
    [av release];
 }
 
-- (IBAction) auth
+- (IBAction) proceedToAuthorization
 {
+   instructionLabel.text = @"Press OK button in the next screen.";
+   
+   [usernameField resignFirstResponder];
+   usernameField.enabled = NO;
+   [passwordField resignFirstResponder];
+   passwordField.enabled = NO;
+   proceedButton.enabled = NO;
+   
+   [authActivity startAnimating];
+
    // get Frob
    RTMAPIAuth *api_auth = [[[RTMAPIAuth alloc] init] autorelease];
    NSString *frob = [api_auth getFrob];
@@ -55,19 +79,57 @@
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSString *urlString = [api authURL:frob forPermission:@"delete"];
    NSURL *authURL = [NSURL URLWithString:urlString];
+
    NSLog(@"authURL = %@", authURL);
 
-   //self.navigationController.navigationBarHidden = NO;
-   AuthWebViewController *authWebViewController = [[AuthWebViewController alloc] initWithNibName:nil bundle:nil];
+   authWebViewController = [[AuthWebViewController alloc] initWithNibName:nil bundle:nil];
    authWebViewController.url = authURL;
    authWebViewController.username = usernameField.text;
    authWebViewController.password = passwordField.text;
-   
-//   [self.navigationController pushViewController:authWebViewController animated:YES];
-   [self presentModalViewController:authWebViewController animated:YES];
-   [authWebViewController release];
+
+   [authWebViewController startLoading];
+//   [self presentModalViewController:authWebViewController animated:YES];
 
    state = STATE_JUMPED;
+}
+
+- (void) didFailInAuth
+{
+   NSLog(@"failed in auth");
+   instructionLabel.text = @"Login failed.";
+   [authWebViewController stop];
+
+   [usernameField becomeFirstResponder];
+   usernameField.enabled = YES;
+   passwordField.enabled = YES;
+   proceedButton.enabled = YES;
+   [authActivity stopAnimating];
+   
+   [authWebViewController dismissModalViewControllerAnimated:YES];
+   [authWebViewController release];
+}
+
+- (void) didSucceedInAuth
+{
+   NSLog(@"succeeded in auth");
+   instructionLabel.text = @"Loading Tasks...";
+   [authWebViewController stop];
+   [authWebViewController dismissModalViewControllerAnimated:YES];
+}
+
+- (void) didDismissWebView
+{
+   [authWebViewController release];
+
+   [self getToken];
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFetchAll) name:@"didFetchAll" object:nil];
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchAll" object:nil];
+}
+
+- (void) presentAuthWebView
+{
+   NSLog(@"present Auth WebView");
+   [self presentModalViewController:authWebViewController animated:YES];
 }
 
 - (IBAction) getToken
@@ -97,8 +159,16 @@
 - (void) done:(NSTimer*)theTimer
 {
    state = STATE_DONE;
-   //[self.navigationController popViewControllerAnimated:YES];
    [self dismissModalViewControllerAnimated:YES];
+
+   UINavigationController *nc = (UINavigationController *)self.parentViewController;
+   UIViewController *vc = nc.topViewController;
+   if ([vc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
+      UITableViewController<ReloadableTableViewControllerProtocol> *tvc = (UITableViewController<ReloadableTableViewControllerProtocol> *)vc;
+      [tvc reloadFromDB];
+      [tvc.tableView reloadData];
+   }
+   
 }
 
 - (void) viewDidLoad
@@ -107,29 +177,22 @@
    [usernameField becomeFirstResponder];
 }
 
+/*
 - (void)viewWillAppear:(BOOL)animated
 {
    [super viewWillAppear:animated];
    if (state != STATE_JUMPED)
       return;
-
-   [self getToken];
-   
-   self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
 }
-
+*/
+/*
 - (void)viewDidAppear:(BOOL)animated
 {
-   self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
-
    [super viewDidAppear:animated];
    if (state != STATE_JUMPED)
       return;
-
-   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFetchAll) name:@"didFetchAll" object:nil];
-   [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchAll" object:nil];
 }
-
+*/
 - (void) didFetchAll
 {
    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFetchAll" object:nil];

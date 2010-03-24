@@ -22,4 +22,7 @@
 @property (nonatomic, retain) NSString *username;
 @property (nonatomic, retain) NSString *password;
 
+- (void) startLoading;
+- (void) stop;
+
 @end

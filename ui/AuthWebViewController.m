@@ -13,38 +13,30 @@
 @synthesize url;
 @synthesize username, password;
 
-/*
-// Override initWithNibName:bundle: to load the view using a nib file then perform additional customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-// Custom initialization
+   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+      self.title = NSLocalizedString(@"AuthWebviewTitle", @"auth web view title");
+      
+      CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+      webView_ = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height-44)];
+      webView_.delegate = self;
+      webView_.scalesPageToFit = YES;
+      state = 0;
+   }
+   return self;
 }
-return self;
-}
-*/
 
-// Implement loadView to create a view hierarchy programmatically.
-- (void)loadView
+- (void) startLoading
 {
-   [super loadView];
-
-   self.title = NSLocalizedString(@"AuthWebviewTitle", @"auth web view title");
-
-   CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-   webView_ = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height-44)];
-   webView_.delegate = self;
-   webView_.scalesPageToFit = YES;
-
    NSURLRequest *req = [NSURLRequest requestWithURL:url];
    [webView_ loadRequest:req];
 }
 
-// Implement viewDidLoad to do additional setup after loading the view.
-- (void)viewDidLoad
+- (void)loadView
 {
-   [super viewDidLoad];
-   state = 0;
+   [super loadView];
+   [self.view addSubview:webView_];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -53,13 +45,10 @@ return self;
    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
 - (void)didReceiveMemoryWarning
 {
    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-   // Release anything that's not essential, such as cached data
 }
-
 
 - (void)dealloc
 {
@@ -67,14 +56,10 @@ return self;
    [super dealloc];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
-   [super viewWillAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-   [super viewWillDisappear:animated];
+   [super viewDidDisappear:animated];
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"didDismissWebView" object:nil];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -93,29 +78,35 @@ return self;
    authorizeingPhase = ![result isEqualToString:@""];
    result = [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"var password = document.getElementById('password'); password.value='%@';", password]];
    authorizeingPhase = authorizeingPhase && ![result isEqualToString:@""];
-   NSLog(@"au = %d", authorizeingPhase);
-   if (authorizeingPhase && state == 0) {
-      state++;
-      [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms['loginform']; form.submit();"];
-      return;
+   NSLog(@"authorizingPhase = %d", authorizeingPhase);
+   if (authorizeingPhase) {
+      if (state == 0) {
+         state++;
+         [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms['loginform']; form.submit();"];
+         return;
+      } else {
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"didFailInAuth" object:nil];
+         return;
+      }         
    }
 
    // authorize it
    NSString *authorize_yes = [webView stringByEvaluatingJavaScriptFromString:@"var authorize_yes = document.getElementById('authorize_yes'); authorize_yes ? 'yes' : '';"];
-   NSLog(@"yes = %@", authorize_yes);
    if ([authorize_yes isEqualToString:@""]) {
-      NSLog(@"authorization failed");
+      if (state == 0) {
+         return;
+      }
    } else if (state == 1) {
       result = [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms[0]; form ? 'form exist' : 'form not';"];
-      NSLog(@"form result = %@", result);
 
-      result = [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms.length; form;"];
-      
+      result = [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms.length; form;"];      
+
       NSLog(@"form count= %@", result);
 
 //      result = [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms[0]; form.submit();"];
 //      NSLog(@"submit result = %@", result);
       [self.view addSubview:webView_];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"presentAuthWebView" object:nil];
 
       state++;
       return;
@@ -126,8 +117,13 @@ return self;
    if ([result isEqualToString:@"Application successfully authorized"]) {
       NSLog(@"finished");
       state++;
-      [self dismissModalViewControllerAnimated:YES];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"didSucceedInAuth" object:nil];
    }
 }  
+
+- (void) stop
+{
+   [webView_ stopLoading];
+}
 
 @end

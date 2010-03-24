@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class AuthWebViewController;
 
 @interface AuthViewController : UIViewController
 {
@@ -16,12 +17,16 @@
       STATE_DONE
    } state;
 
-   UIActivityIndicatorView *authActivity;
+   IBOutlet UIActivityIndicatorView *authActivity;
    IBOutlet UITextField *usernameField;
    IBOutlet UITextField *passwordField;
+   IBOutlet UILabel *instructionLabel;
+   IBOutlet UIButton *proceedButton;
+
+   AuthWebViewController *authWebViewController;
 }
 
-- (IBAction) auth;
+- (IBAction) proceedToAuthorization;
 - (IBAction) getToken;
 
 @end
