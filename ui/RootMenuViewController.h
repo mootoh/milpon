@@ -11,9 +11,10 @@
 @interface RootMenuViewController : UITableViewController
 {
    UIBarButtonItem                 *refreshButton;
-   ProgressView                    *pv;
+   ProgressView                    *pv;   
 }
 
+- (IBAction) fetchAll;
 - (IBAction) refresh;
 - (IBAction) showDialog;
 

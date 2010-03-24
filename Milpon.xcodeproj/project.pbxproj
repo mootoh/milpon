@@ -28,6 +28,8 @@
 		927A61C0113815ED005B4548 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
 		927A61F31138194B005B4548 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 927A61F21138194B005B4548 /* Settings.bundle */; };
 		92B2F4C41158EAA000254FC6 /* AuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B2F4C31158EAA000254FC6 /* AuthView.xib */; };
+		92D3D16D1159B2F4004623F8 /* RefreshingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D3D16B1159B2F4004623F8 /* RefreshingViewController.m */; };
+		92D3D16E1159B2F4004623F8 /* RefreshingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92D3D16C1159B2F4004623F8 /* RefreshingViewController.xib */; };
 		92E4AAA7102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
 		92E91C380FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
 		92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
@@ -157,6 +159,9 @@
 		927A61F21138194B005B4548 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		928601981072E55C004B7DFE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92B2F4C31158EAA000254FC6 /* AuthView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthView.xib; sourceTree = "<group>"; };
+		92D3D16A1159B2F4004623F8 /* RefreshingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingViewController.h; sourceTree = "<group>"; };
+		92D3D16B1159B2F4004623F8 /* RefreshingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshingViewController.m; sourceTree = "<group>"; };
+		92D3D16C1159B2F4004623F8 /* RefreshingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefreshingViewController.xib; sourceTree = "<group>"; };
 		92E4AA9D102C21DC00CACCC9 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E4AAAA102C220D00CACCC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_007_clear_last_sync.sql; sourceTree = "<group>"; };
@@ -508,6 +513,9 @@
 				B93A12560F9212AA00C0A9AB /* ReviewViewController.m */,
 				925C7B2D0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.h */,
 				925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */,
+				92D3D16A1159B2F4004623F8 /* RefreshingViewController.h */,
+				92D3D16B1159B2F4004623F8 /* RefreshingViewController.m */,
+				92D3D16C1159B2F4004623F8 /* RefreshingViewController.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -895,6 +903,7 @@
 				927A61C0113815ED005B4548 /* Entitlements.plist in Resources */,
 				927A61F31138194B005B4548 /* Settings.bundle in Resources */,
 				92B2F4C41158EAA000254FC6 /* AuthView.xib in Resources */,
+				92D3D16E1159B2F4004623F8 /* RefreshingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,6 +1010,7 @@
 				9278D1B40FBF07750007B03B /* NoteProvider.m in Sources */,
 				9278D1B50FBF07770007B03B /* RTMObject.m in Sources */,
 				B93B8324114D0BB900C8B833 /* DataModel.xcdatamodel in Sources */,
+				92D3D16D1159B2F4004623F8 /* RefreshingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

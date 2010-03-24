@@ -59,6 +59,7 @@
 
 - (void) syncLists
 {
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
    RTMAPIList *api_list = [[[RTMAPIList alloc] init] autorelease];
    NSArray *new_lists = [api_list getList];
    NSArray *old_lists = [[ListProvider sharedListProvider] lists];
@@ -91,10 +92,12 @@
       if (! found)
          [[ListProvider sharedListProvider] create:new];
    }
+   [pool release];
 }
 
 - (void) replaceTasks
 {
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
    TaskProvider *tp = [TaskProvider sharedTaskProvider];
    [tp erase];
 
@@ -107,6 +110,7 @@
       [tp createAtOnline:taskseries];
 
    [api_task release];
+   [pool release];
 }
 
 - (void) syncTasks:(ProgressView *)progressView

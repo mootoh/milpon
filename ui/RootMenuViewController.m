@@ -16,6 +16,7 @@
 #import "RTMSynchronizer.h"
 #import "Reachability.h"
 #import "ProgressView.h"
+#import "RefreshingViewController.h"
 
 @implementation RootMenuViewController
 
@@ -27,8 +28,8 @@ enum sec_zero {
 };
 
 enum sec_one {
-   //SEC_ONE_REVIEW,
-   SEC_ONE_MORE,
+   SEC_ONE_FEEDBACK,
+   SEC_ONE_REFRESH,
    SEC_ONE_COUNT
 };
 
@@ -126,8 +127,11 @@ enum sec_one {
       }
    } else {
       switch (indexPath.row) {
-      case SEC_ONE_MORE:
-         cell.textLabel.text =  NSLocalizedString(@"More", @"");
+      case SEC_ONE_FEEDBACK:
+         cell.textLabel.text = NSLocalizedString(@"SendFeedback", @"");
+         break;
+      case SEC_ONE_REFRESH:
+         cell.textLabel.text = NSLocalizedString(@"RefreshAll", @"");
          break;
       default:
          break;
@@ -177,9 +181,18 @@ enum sec_one {
       }
    } else {
       switch (indexPath.row) {
-      case SEC_ONE_MORE:
-         vc = [[ConfigViewController alloc] initWithNibName:nil bundle:nil];
-         break;
+      case SEC_ONE_FEEDBACK: {
+        // TODO: use in-app mail
+        NSString *subject = [NSString stringWithFormat:@"subject=Milpon Feedback"];
+        NSString *mailto = [NSString stringWithFormat:@"mailto:mootoh@gmail.com?%@", [subject stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSURL *url = [NSURL URLWithString:mailto];
+        [[UIApplication sharedApplication] openURL:url];
+        return;
+      }
+      case SEC_ONE_REFRESH: {
+         [self showFetchAllModal];
+         return;
+      }
       default:
          break;
       }
@@ -193,7 +206,7 @@ enum sec_one {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-   return section == 0 ? NSLocalizedString(@"Task", @"") : nil;
+   return section == 0 ? NSLocalizedString(@"Task", @"") : NSLocalizedString(@"More", @"");
 }
 
 - (void)dealloc
@@ -260,6 +273,7 @@ enum sec_one {
    
    [self performSelectorOnMainThread:@selector(refreshView) withObject:nil waitUntilDone:YES];
    [self performSelectorOnMainThread:@selector(hideDialog) withObject:nil waitUntilDone:YES];
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"didRefresh" object:nil];
 }
 
 - (void) refreshView
@@ -270,7 +284,14 @@ enum sec_one {
       [tvc reloadFromDB];
       [tvc.tableView reloadData];
    }
-   
+}
+
+- (void) showFetchAllModal
+{
+   RefreshingViewController *vc = [[RefreshingViewController alloc] initWithNibName:@"RefreshingViewController" bundle:nil];
+   vc.rootMenuViewController = self;
+   [self.view.window addSubview:vc.view];
+   [vc.view setNeedsDisplay];
 }
 
 - (IBAction) showDialog

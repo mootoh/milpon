@@ -119,8 +119,7 @@ static NSString *s_token;
 
 - (NSString *) path:(NSString *)method withArgs:(NSDictionary *)args
 {
-   NSMutableString *arg = [[[NSMutableString alloc] init] autorelease];
-
+   NSMutableString *arg = [NSMutableString string];
    NSMutableDictionary *args_with_token = [NSMutableDictionary dictionaryWithDictionary:args];
    if (s_token)
       [args_with_token setObject:s_token forKey:@"auth_token"];
@@ -180,7 +179,7 @@ static NSString *s_token;
    NSArray *vals = [NSArray arrayWithObjects:frob, perm, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   NSMutableString *arg = [[[NSMutableString alloc] init] autorelease];
+   NSMutableString *arg = [NSMutableString string];
    NSEnumerator *enumerator = [args keyEnumerator];
    NSString *key;
    while (key = [enumerator nextObject])
@@ -206,10 +205,11 @@ const static NSString *s_fake_timeline = @"fake timeline";
    if (! response) return nil;
 
    method_ = TIMELINES_CREATE;
-   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
+   NSXMLParser *parser = [[NSXMLParser alloc] initWithData:response];
    [parser setDelegate:self];
    BOOL parsed = [parser parse];
    NSAssert(parsed, @"parse should be done successfully");
+   [parser release];
 
    return timeline;
 }
