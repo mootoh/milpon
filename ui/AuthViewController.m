@@ -101,6 +101,12 @@
    [self dismissModalViewControllerAnimated:YES];
 }
 
+- (void) viewDidLoad
+{
+   [super viewDidLoad];
+   [usernameField becomeFirstResponder];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
    [super viewWillAppear:animated];
@@ -110,7 +116,6 @@
    [self getToken];
    
    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
