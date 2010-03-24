@@ -48,7 +48,6 @@
 		B9160EF50F565D1500473A95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EDB0F565D1500473A95 /* AppDelegate.m */; };
 		B9160EF60F565D1500473A95 /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EDD0F565D1500473A95 /* AuthViewController.m */; };
 		B9160EF70F565D1500473A95 /* AuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EDF0F565D1500473A95 /* AuthWebViewController.m */; };
-		B9160EF80F565D1500473A95 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EE10F565D1500473A95 /* ConfigViewController.m */; };
 		B9160EFA0F565D1500473A95 /* ListSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EE50F565D1500473A95 /* ListSelectViewController.m */; };
 		B9160EFF0F565D1500473A95 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EF00F565D1500473A95 /* TaskListViewController.m */; };
 		B9160F000F565D1500473A95 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EF20F565D1500473A95 /* TaskViewController.m */; };
@@ -192,8 +191,6 @@
 		B9160EDD0F565D1500473A95 /* AuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
 		B9160EDE0F565D1500473A95 /* AuthWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthWebViewController.h; sourceTree = "<group>"; };
 		B9160EDF0F565D1500473A95 /* AuthWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthWebViewController.m; sourceTree = "<group>"; };
-		B9160EE00F565D1500473A95 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
-		B9160EE10F565D1500473A95 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		B9160EE40F565D1500473A95 /* ListSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListSelectViewController.h; sourceTree = "<group>"; };
 		B9160EE50F565D1500473A95 /* ListSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListSelectViewController.m; sourceTree = "<group>"; };
 		B9160EEC0F565D1500473A95 /* ReloadableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReloadableTableViewController.h; sourceTree = "<group>"; };
@@ -494,8 +491,6 @@
 				B9160EDA0F565D1500473A95 /* AppDelegate.h */,
 				B9160EDB0F565D1500473A95 /* AppDelegate.m */,
 				B9160FB90F565DB600473A95 /* MainWindow.xib */,
-				B9160EE00F565D1500473A95 /* ConfigViewController.h */,
-				B9160EE10F565D1500473A95 /* ConfigViewController.m */,
 				B9160EE40F565D1500473A95 /* ListSelectViewController.h */,
 				B9160EE50F565D1500473A95 /* ListSelectViewController.m */,
 				B9160EEC0F565D1500473A95 /* ReloadableTableViewController.h */,
@@ -970,7 +965,6 @@
 				B9160EF50F565D1500473A95 /* AppDelegate.m in Sources */,
 				B9160EF60F565D1500473A95 /* AuthViewController.m in Sources */,
 				B9160EF70F565D1500473A95 /* AuthWebViewController.m in Sources */,
-				B9160EF80F565D1500473A95 /* ConfigViewController.m in Sources */,
 				B9160EFA0F565D1500473A95 /* ListSelectViewController.m in Sources */,
 				B9160EFF0F565D1500473A95 /* TaskListViewController.m in Sources */,
 				B9160F000F565D1500473A95 /* TaskViewController.m in Sources */,

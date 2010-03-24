@@ -17,5 +17,6 @@
 - (IBAction) fetchAll;
 - (IBAction) refresh;
 - (IBAction) showDialog;
+- (void) showFetchAllModal;
 
 @end

@@ -12,7 +12,6 @@
 #import "TaskCollectionViewController.h"
 #import "AppDelegate.h"
 #import "ReviewViewController.h"
-#import "ConfigViewController.h"
 #import "RTMSynchronizer.h"
 #import "Reachability.h"
 #import "ProgressView.h"
