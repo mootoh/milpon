@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-@class AuthWebViewController;
 
-@interface AuthViewController : UIViewController
+@interface AuthViewController : UIViewController <UIWebViewDelegate>
 {
    enum {
       STATE_INITIAL,
-      STATE_JUMPED,
+      STATE_SUBMITTED,
+      STATE_WRONG_PASSWORD,
+      STATE_USERINFO_ENTERED,
+      STATE_SHOW_WEBVIEW,
       STATE_DONE
    } state;
 
@@ -22,12 +24,11 @@
    IBOutlet UITextField *passwordField;
    IBOutlet UILabel *instructionLabel;
    IBOutlet UIButton *proceedButton;
-
-   AuthWebViewController *authWebViewController;
+   IBOutlet UIWebView *webView;
 }
 
 - (IBAction) proceedToAuthorization;
 - (IBAction) getToken;
+- (void) failedInAuthorization;
 
 @end
-// vim:set ft=objc:

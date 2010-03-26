@@ -2,16 +2,18 @@
 //  RootMenuViewController.h
 //  Milpon
 //
-//  Created by mootoh on 4/12/09.
-//  Copyright 2009 deadbeaf.org. All rights reserved.
+//  Created by Motohiro Takayama on 3/26/10.
+//  Copyright 2010 deadbeaf.org. All rights reserved.
 //
+
+#import <UIKit/UIKit.h>
 
 @class ProgressView;
 
 @interface RootMenuViewController : UITableViewController
 {
    UIBarButtonItem                 *refreshButton;
-   ProgressView                    *pv;   
+   ProgressView                    *pv;
 }
 
 - (IBAction) fetchAll;

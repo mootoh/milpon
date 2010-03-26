@@ -3,9 +3,9 @@
 #import "RTMAPIAuth.h"
 #import "RTMAuth.h"
 #import "AppDelegate.h"
-#import "AuthWebViewController.h"
 #import "RTMAPI.h"
 #import "ReloadableTableViewController.h"
+#import "logger.h"
 
 @implementation AuthViewController
 
@@ -14,47 +14,43 @@
    if (self = [super initWithNibName:nibName bundle:bundle]) {
       state = STATE_INITIAL;
       self.title = NSLocalizedString(@"Setup", "setup screen");
-      authWebViewController = nil;
-
-      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFailInAuth) name:@"didFailInAuth" object:nil];
-      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedInAuth) name:@"didSucceedInAuth" object:nil];
-      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentAuthWebView) name:@"presentAuthWebView" object:nil];
-      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDismissWebView) name:@"didDismissWebView" object:nil];
    }
    return self;
 }
 
 - (void) dealloc
 {
-   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFailInAuth" object:nil];
-   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didSucceedInAuth" object:nil];
-   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"presentAuthWebView" object:nil];
-   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didDismissWebView" object:nil];
-   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFetchAll" object:nil];
-
-   [authWebViewController release];
-//   [proceedButton release];
-//   [authActivity release];
-//   [usernameField release];
-//   [passwordField release];
-//   [instructionLabel release];
    [super dealloc];
 }
 
-- (void) alertError
+- (void) reset
 {
-   UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"＞＜"
-      message:NSLocalizedString(@"AuthError", @"error in RTM site auth.")
-      delegate:nil
-      cancelButtonTitle:@"OK"
-      otherButtonTitles:nil];
-   [av show];
-   [av release];
+   usernameField.enabled = YES;
+   passwordField.enabled = YES;
+   proceedButton.enabled = YES;
+   
+   [authActivity stopAnimating];
+   webView.hidden = YES;
+   [usernameField becomeFirstResponder];
+}
+
+- (void) setInitialInstruction
+{
+   instructionLabel.text = @"Press OK button in the next screen.";
+}
+
+- (void) viewDidLoad
+{
+   [super viewDidLoad];
+   [self reset];   
+   [self performSelector:@selector(setInitialInstruction) withObject:nil afterDelay:2.0];
+
 }
 
 - (IBAction) proceedToAuthorization
 {
-   instructionLabel.text = @"Press OK button in the next screen.";
+   NSAssert(state == STATE_INITIAL || state == STATE_WRONG_PASSWORD, @"check state");
+   instructionLabel.text = @"Authorizing...";
    
    [usernameField resignFirstResponder];
    usernameField.enabled = NO;
@@ -63,73 +59,82 @@
    proceedButton.enabled = NO;
    
    [authActivity startAnimating];
-
+   
    // get Frob
    RTMAPIAuth *api_auth = [[[RTMAPIAuth alloc] init] autorelease];
    NSString *frob = [api_auth getFrob];
    if (!frob) {
-      [self alertError];
+      [self failedInAuthorization];
       return;
    }
-
+   
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    RTMAuth *auth = app.auth;
    auth.frob = frob;
-
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
+   
+   RTMAPI *api = [[RTMAPI alloc] init];
    NSString *urlString = [api authURL:frob forPermission:@"delete"];
    NSURL *authURL = [NSURL URLWithString:urlString];
-
-   NSLog(@"authURL = %@", authURL);
-
-   authWebViewController = [[AuthWebViewController alloc] initWithNibName:nil bundle:nil];
-   authWebViewController.url = authURL;
-   authWebViewController.username = usernameField.text;
-   authWebViewController.password = passwordField.text;
-
-   [authWebViewController startLoading];
-//   [self presentModalViewController:authWebViewController animated:YES];
-
-   state = STATE_JUMPED;
+   
+   LOG(@"authURL = %@", authURL);
+   
+   NSURLRequest *req = [NSURLRequest requestWithURL:authURL];
+   webView.hidden = YES;
+   [webView loadRequest:req];
+   
+   [api release];
+   state = STATE_SUBMITTED;
 }
 
-- (void) didFailInAuth
+- (void) failedInAuthorization
 {
-   NSLog(@"failed in auth");
-   instructionLabel.text = @"Login failed.";
-   [authWebViewController stop];
-
-   [usernameField becomeFirstResponder];
-   usernameField.enabled = YES;
-   passwordField.enabled = YES;
-   proceedButton.enabled = YES;
-   [authActivity stopAnimating];
+   NSLog(@"faildInAuthorization: state=%d", state);
+   NSAssert(state == STATE_SUBMITTED || state == STATE_USERINFO_ENTERED, @"check state");
+   [webView stopLoading];
+   state = STATE_WRONG_PASSWORD;
    
-   [authWebViewController dismissModalViewControllerAnimated:YES];
-   [authWebViewController release];
+   //   [UIView beginAnimations:@"failedInAuthorization" context:nil];
+   //   [UIView setAnimationDelegate:self];
+   //   [UIView setAnimationDidStopSelector:@selector(failedInAuthorizationAnimationStop:finished:context:)];
+   //   [UIView setAnimationDuration:1.5f];
+   //   
+   //  webView.alpha = 0.0f;
+   //   instructionLabel.text = @"Wrong Username / Password.";   
+   //   
+   //   [UIView commitAnimations];
+   instructionLabel.text = @"Wrong Username / Password.";
+   [self performSelector:@selector(reset) withObject:nil afterDelay:1.0f];
 }
 
 - (void) didSucceedInAuth
 {
    NSLog(@"succeeded in auth");
    instructionLabel.text = @"Loading Tasks...";
-   [authWebViewController stop];
-   [authWebViewController dismissModalViewControllerAnimated:YES];
+   [webView stopLoading];
+   webView.hidden = YES;
+
+   [UIView beginAnimations:@"didSucceedInAuth" context:nil];
+   [UIView setAnimationDelegate:self];
+   [UIView setAnimationDidStopSelector:@selector(didSucceedInAuthAnimationStop:finished:context:)];
+   [UIView setAnimationDuration:1.5f];
+   {   
+      usernameField.alpha = 0.0f;
+      passwordField.alpha = 0.0f;
+      proceedButton.alpha = 0.0f;
+      instructionLabel.center = [UIApplication sharedApplication].keyWindow.center;
+   }
+   [UIView commitAnimations];
 }
 
-- (void) didDismissWebView
+- (void)didSucceedInAuthAnimationStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
-   [authWebViewController release];
-
+   usernameField.hidden = YES;
+   passwordField.hidden = YES;
+   proceedButton.hidden = YES;
+   
    [self getToken];
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFetchAll) name:@"didFetchAll" object:nil];
-   [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchAll" object:nil];
-}
-
-- (void) presentAuthWebView
-{
-   NSLog(@"present Auth WebView");
-   [self presentModalViewController:authWebViewController animated:YES];
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchAll" object:nil];   
 }
 
 - (IBAction) getToken
@@ -147,7 +152,7 @@
    [authActivity stopAnimating];
 
    if (!token) {
-      [self alertError];
+      [self failedInAuthorization];
       return;
    }
 
@@ -156,11 +161,15 @@
    [app.auth save];
 }
 
-- (void) done:(NSTimer*)theTimer
+- (void) didFetchAll
 {
-   state = STATE_DONE;
-   [self dismissModalViewControllerAnimated:YES];
+   instructionLabel.text = @"Done!";
+   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFetchAll" object:nil];
+   [self performSelector:@selector(backToRootMenu) withObject:nil afterDelay:1.5f];
+}   
 
+- (void) backToRootMenu
+{
    UINavigationController *nc = (UINavigationController *)self.parentViewController;
    UIViewController *vc = nc.topViewController;
    if ([vc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
@@ -168,51 +177,65 @@
       [tvc reloadFromDB];
       [tvc.tableView reloadData];
    }
+   [self dismissModalViewControllerAnimated:YES];   
+}
+
+#pragma mark UIWebViewDelegate
+
+- (void)webViewDidStartLoad:(UIWebView *)wv
+{
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)wv
+{
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
    
-}
-
-- (void) viewDidLoad
-{
-   [super viewDidLoad];
-   [usernameField becomeFirstResponder];
-}
-
-/*
-- (void)viewWillAppear:(BOOL)animated
-{
-   [super viewWillAppear:animated];
-   if (state != STATE_JUMPED)
-      return;
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated
-{
-   [super viewDidAppear:animated];
-   if (state != STATE_JUMPED)
-      return;
-}
-*/
-- (void) didFetchAll
-{
-   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFetchAll" object:nil];
+   if (state == STATE_WRONG_PASSWORD) return;
    
-   NSTimer *timer;
-   timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(done:) userInfo:nil repeats:NO];
-}   
-
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-   [super viewWillDisappear:animated];
-   if (STATE_DONE == state) {
-      UIViewController *vc = ((UINavigationController *)self.navigationController.parentViewController).topViewController;
-      if ([vc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
-         UITableViewController <ReloadableTableViewControllerProtocol> *tvc = (UITableViewController <ReloadableTableViewControllerProtocol> *)vc;
-         [tvc reloadFromDB];
-         [tvc.tableView reloadData];
-      }
+   // authorizing case
+   BOOL authorizeingPhase = NO;
+   
+   NSString *result = [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"var username = document.getElementById('username'); username.value = '%@';", usernameField.text]];
+   authorizeingPhase = ![result isEqualToString:@""];
+   result = [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"var password = document.getElementById('password'); password.value='%@';", passwordField.text]];
+   authorizeingPhase = authorizeingPhase && ![result isEqualToString:@""];
+   NSLog(@"authorizingPhase = %d", authorizeingPhase);
+   if (authorizeingPhase) {
+      if (state == STATE_SUBMITTED) {
+         [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms['loginform']; form.submit();"];
+         state = STATE_USERINFO_ENTERED;
+         return;
+      } else {
+         [self failedInAuthorization];
+         return;
+      }         
    }
-}
+   
+   // authorize it
+   NSString *authorize_yes = [webView stringByEvaluatingJavaScriptFromString:@"var authorize_yes = document.getElementById('authorize_yes'); authorize_yes ? 'yes' : '';"];
+   if (! [authorize_yes isEqualToString:@""] && state == STATE_USERINFO_ENTERED) {
+      result = [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms[0]; form ? 'form exist' : 'form not';"];
+//      result = [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms.length; form;"];      
+//      
+//      NSLog(@"form count= %@", result);
+      
+      //      result = [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms[0]; form.submit();"];
+      //      NSLog(@"submit result = %@", result);
+      webView.hidden = NO;
+      //[[NSNotificationCenter defaultCenter] postNotificationName:@"presentAuthWebView" object:nil];
+      
+      state = STATE_SHOW_WEBVIEW;
+      return;
+   }
+   
+   result = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('pageheader').children[0].children[0].innerHTML"];
+   NSLog(@"pageheader = %@", result);
+   if ([result isEqualToString:@"Application successfully authorized"]) {
+      NSAssert(state == STATE_SHOW_WEBVIEW || state == STATE_USERINFO_ENTERED, @"check state");
+      state = STATE_DONE;
+      [self didSucceedInAuth];
+   }
+}  
 
 @end

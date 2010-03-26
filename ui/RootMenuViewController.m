@@ -2,8 +2,8 @@
 //  RootMenuViewController.m
 //  Milpon
 //
-//  Created by mootoh on 4/12/09.
-//  Copyright 2009 deadbeaf.org. All rights reserved.
+//  Created by Motohiro Takayama on 3/26/10.
+//  Copyright 2010 deadbeaf.org. All rights reserved.
 //
 
 #import "RootMenuViewController.h"
@@ -32,17 +32,20 @@ enum sec_one {
    SEC_ONE_COUNT
 };
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id) initWithCoder:(NSCoder *)aDecoder
 {
-   if (self = [super initWithStyle:style]) {
+   if (self = [super initWithCoder:aDecoder]) {
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchAll) name:@"fetchAll" object:nil];
    }
    return self;
 }
 
-- (void)viewDidLoad
-{
+#pragma mark -
+#pragma mark View lifecycle
+
+- (void)viewDidLoad {
    [super viewDidLoad];
+
    self.title = NSLocalizedString(@"Milpon", @"");
 
    refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
@@ -70,23 +73,48 @@ enum sec_one {
    self.tableView.scrollEnabled = NO;
 }
 
-- (void)didReceiveMemoryWarning
-{
-   [super didReceiveMemoryWarning];
+/*
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+*/
+/*
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+*/
+/*
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+*/
+/*
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+}
+*/
+/*
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+*/
+
+
+#pragma mark -
+#pragma mark Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 2;
 }
 
-#pragma mark Table view methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-   return 2;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   if (section == 0)
-      return SEC_ZERO_COUNT;
-   if (section == 1)
-      return SEC_ONE_COUNT;
+   if (section == 0) return SEC_ZERO_COUNT;
+   if (section == 1) return SEC_ONE_COUNT;
+   NSAssert(NO, @"not reach here");
    return 0;
 }
 
@@ -140,6 +168,8 @@ enum sec_one {
    return cell;
 }
 
+#pragma mark -
+#pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -208,12 +238,21 @@ enum sec_one {
    return section == 0 ? NSLocalizedString(@"Task", @"") : NSLocalizedString(@"More", @"");
 }
 
+#pragma mark -
+#pragma mark Memory management
+
+- (void)didReceiveMemoryWarning
+{
+   [super didReceiveMemoryWarning];
+}
+
 - (void)dealloc
 {
    [refreshButton release];
    [super dealloc];
 }
 
+#pragma mark Private
 
 - (IBAction) fetchAll
 {
