@@ -27,7 +27,6 @@
   return self;
 }
 
-
 + (NSString *) authPath
 {
    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -64,11 +63,11 @@
 
 - (void) dealloc
 {
-  [api_key release];
-  [shared_secret release];
-  if (frob) [frob release];
-  if (token) [token release];
-  [super dealloc];
+   [api_key release];
+   [shared_secret release];
+   if (frob) [frob release];
+   if (token) [token release];
+   [super dealloc];
 }
 
 - (void) encodeWithCoder:(NSCoder *)encoder
