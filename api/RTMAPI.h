@@ -11,7 +11,8 @@
 /**
  * access to RTM Web API.
  */
-@interface RTMAPI : NSObject {
+@interface RTMAPI : NSObject
+{
    enum {
       TIMELINES_CREATE
    } method_;
@@ -47,4 +48,3 @@
 - (NSString *) createTimeline;
 
 @end
-// vim:set ft=objc:

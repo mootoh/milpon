@@ -16,9 +16,9 @@
 
 @implementation RTMAPI
 
-static NSString *s_api_key;
-static NSString *s_shared_secret;
-static NSString *s_token;
+static NSString *s_api_key = nil;
+static NSString *s_shared_secret = nil;
+static NSString *s_token = nil;
 
 + (void) setApiKey:(NSString *)key
 {
@@ -116,7 +116,6 @@ static NSString *s_token;
 #endif // LOCAL_DEBUG
 }
 
-
 - (NSString *) path:(NSString *)method withArgs:(NSDictionary *)args
 {
    NSMutableString *arg = [NSMutableString string];
@@ -174,7 +173,8 @@ static NSString *s_token;
 }
 
 // XXX: dup with path:
-- (NSString *) authURL:(NSString *)frob forPermission:(NSString *)perm {	
+- (NSString *) authURL:(NSString *)frob forPermission:(NSString *)perm
+{
    NSArray *keys = [NSArray arrayWithObjects:@"frob", @"perms", nil];
    NSArray *vals = [NSArray arrayWithObjects:frob, perm, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
