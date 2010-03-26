@@ -116,7 +116,7 @@
    [UIView beginAnimations:@"didSucceedInAuth" context:nil];
    [UIView setAnimationDelegate:self];
    [UIView setAnimationDidStopSelector:@selector(didSucceedInAuthAnimationStop:finished:context:)];
-   [UIView setAnimationDuration:1.5f];
+   [UIView setAnimationDuration:0.5f];
    {   
       usernameField.alpha = 0.0f;
       passwordField.alpha = 0.0f;
@@ -165,7 +165,7 @@
 {
    instructionLabel.text = @"Done!";
    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFetchAll" object:nil];
-   [self performSelector:@selector(backToRootMenu) withObject:nil afterDelay:1.5f];
+   [self performSelector:@selector(backToRootMenu) withObject:nil afterDelay:1.0f];
 }   
 
 - (void) backToRootMenu
