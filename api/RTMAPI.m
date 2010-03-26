@@ -216,9 +216,8 @@ const static NSString *s_fake_timeline = @"fake timeline";
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
 {
-   if ([elementName isEqualToString:@"timeline"]) {
+   if ([elementName isEqualToString:@"timeline"])
       NSAssert(method_ == TIMELINES_CREATE, @"method should be timelines.create");
-   }
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
