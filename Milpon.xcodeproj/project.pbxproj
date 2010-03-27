@@ -19,7 +19,6 @@
 		925C7A500FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4B0FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql */; };
 		925C7A510FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4C0FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql */; };
 		925C7A520FBEB7F300BCD6EF /* migrate_005_version_2.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4D0FBEB7F300BCD6EF /* migrate_005_version_2.sql */; };
-		925C7B2F0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */; };
 		9278D1950FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */; };
 		9278D1B30FBF07730007B03B /* DBNoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43D0FAB140E00343773 /* DBNoteProvider.m */; };
 		9278D1B40FBF07750007B03B /* NoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43F0FAB140E00343773 /* NoteProvider.m */; };
@@ -147,8 +146,6 @@
 		925C7A4B0FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_002_add_to_list_id_to_task.sql; sourceTree = "<group>"; };
 		925C7A4C0FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_003_add_note_id_to_note.sql; sourceTree = "<group>"; };
 		925C7A4D0FBEB7F300BCD6EF /* migrate_005_version_2.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_005_version_2.sql; sourceTree = "<group>"; };
-		925C7B2D0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeFetchAllViewController.h; sourceTree = "<group>"; };
-		925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeFetchAllViewController.m; sourceTree = "<group>"; };
 		9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_006_add_initial_lastsync.sql; sourceTree = "<group>"; };
 		9278D1F40FBF0DB50007B03B /* SplashScreen-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SplashScreen-Info.plist"; sourceTree = "<group>"; };
 		9278D28A0FBF0EE80007B03B /* SplashScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SplashScreen.xib; path = splashscreen/SplashScreen.xib; sourceTree = SOURCE_ROOT; };
@@ -503,8 +500,6 @@
 				B9160FC10F565DB600473A95 /* TaskEditCell.m */,
 				B93A12550F9212AA00C0A9AB /* ReviewViewController.h */,
 				B93A12560F9212AA00C0A9AB /* ReviewViewController.m */,
-				925C7B2D0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.h */,
-				925C7B2E0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m */,
 				92D3D16A1159B2F4004623F8 /* RefreshingViewController.h */,
 				92D3D16B1159B2F4004623F8 /* RefreshingViewController.m */,
 				92D3D16C1159B2F4004623F8 /* RefreshingViewController.xib */,
@@ -996,7 +991,6 @@
 				B93A12980F921AAA00C0A9AB /* OverviewViewController.m in Sources */,
 				B97F4FF10F94A1260085FB9B /* TaskCollection.m in Sources */,
 				B97F4FF80F94A1D90085FB9B /* TaskCollectionViewController.m in Sources */,
-				925C7B2F0FBEC4D500BCD6EF /* UpgradeFetchAllViewController.m in Sources */,
 				9278D1B30FBF07730007B03B /* DBNoteProvider.m in Sources */,
 				9278D1B40FBF07750007B03B /* NoteProvider.m in Sources */,
 				9278D1B50FBF07770007B03B /* RTMObject.m in Sources */,
