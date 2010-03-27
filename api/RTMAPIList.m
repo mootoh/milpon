@@ -17,24 +17,53 @@
 @interface ListGetCallback : RTMAPIXMLParserCallback
 {
    enum {
+      NONE,
       LIST,
       FILTER
    } mode;
 
    NSMutableDictionary *params;
    NSMutableArray *lists;
+   NSString *text;
    BOOL skip;
 }
 
-- (NSArray *)lists;
+@property (nonatomic, readonly) NSMutableArray *lists;
 
 @end // ListGetCallback
 
 @implementation ListGetCallback
+@synthesize lists;
+
+- (void) reset
+{
+   mode = NONE;
+   params = nil;
+   skip = NO;
+   text = @"";
+}
+
+- (id) init
+{
+   if (self = [super init]) {
+      lists = nil;
+      [self reset];
+   }
+   return self;
+}
 
 - (NSArray *)lists
 {
    return lists;
+}
+
+// filter out 'Sent' and smart lists.
+// TODO: also skip archived list
+- (BOOL) shouldSkip:(NSDictionary *)attributeDict
+{
+   return [[attributeDict valueForKey:@"name"] isEqualToString:@"Sent"]
+       || [[attributeDict valueForKey:@"archived"] isEqualToString:@"1"]
+       || [[attributeDict valueForKey:@"deleted"] isEqualToString:@"1"];
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
@@ -42,41 +71,50 @@
    [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict];
 
    if ([elementName isEqualToString:@"lists"]) { // start to parse
+      NSAssert(lists == nil && mode == NONE, @"state check");
       lists = [NSMutableArray array];
-      skip = NO;
-   } else if ([elementName isEqualToString:@"list"]) {
+      return;
+   }
+   if ([elementName isEqualToString:@"list"]) {
+      NSAssert(lists != nil && mode == NONE, @"state check");
       mode = LIST;
-      // some filtering
-      if ([[attributeDict valueForKey:@"name"] isEqualToString:@"Sent"] || [[attributeDict valueForKey:@"smart"] isEqualToString:@"1"]) {
+      if ([self shouldSkip:attributeDict]) {
          skip = YES;
-      } else {
-         skip = NO;
-         params = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
+         return;
       }
-   } else if ([elementName isEqualToString:@"filter"]) {
+
+      skip = NO;
+      params = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
+      return;
+   }
+
+   if ([elementName isEqualToString:@"filter"]) {
+      if (skip) return;
       mode = FILTER;
    }
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars
 {
-   // check whethere chars contains white space only.
-   const char *str = [chars UTF8String];
-   int i=0, len=[chars length];
-   for (; i<len; i++)
-      if (! isspace(str[i])) break;
-   if (i == len) return;
-
-   NSAssert2(mode == FILTER, @"characters should be found in <filter> but in %@, chars=%@", mode, chars);
-   [params setObject:chars forKey:@"filter"];
+   if (skip) return;
+   NSAssert(mode == FILTER, @"state check");
+   text = [text stringByAppendingString:chars];
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-   if ([elementName isEqualToString:@"list"] && !skip)
-      [lists addObject:params];
-   else if ([elementName isEqualToString:@"filter"])
+   if ([elementName isEqualToString:@"list"]) {
+      NSAssert(mode == LIST, @"state check");
+      if (! skip)
+         [lists addObject:params];
+      [self reset];
+   } else if ([elementName isEqualToString:@"filter"]) {
+      if (skip) return;
+      NSAssert(mode == FILTER && params != nil, @"state check");
+      [params setObject:text forKey:@"filter"];
+      text = nil;
       mode = LIST;
+   }
 }
 @end // ListGetCallback
 

@@ -12,6 +12,15 @@
 @implementation RTMAPIXMLParserCallback
 @synthesize succeeded, error;
 
+- (id) init
+{
+   if (self = [super init]) {
+      succeeded = NO;
+      error = nil;
+   }
+   return self;
+}
+
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
 {
    if ([elementName isEqualToString:@"rsp"]) {
