@@ -163,8 +163,11 @@ enum {
 
 - (void) switchToOverview
 {
-   // if already overview
-   //   skip
+   // skip if already overview
+   UIViewController *topVC = navigationController.topViewController;
+   if ([topVC isKindOfClass:[OverviewViewController class]])
+      return;
+
    // transit to overview
    OverviewViewController *vc = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];
    [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:YES];
@@ -179,8 +182,7 @@ enum {
    TaskCollectionViewController *vc = [[TaskCollectionViewController alloc] initWithStyle:UITableViewStylePlain];
    ListTaskCollection *collector = [[ListTaskCollection alloc] init];
    [(TaskCollectionViewController *)vc setCollector:collector];
-   
-   //vc.title = @"List";
+
    UIImageView *iv = [[UIImageView alloc] initWithImage:[[[UIImage alloc] initWithContentsOfFile:
                                                           [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]] autorelease]];
    vc.navigationItem.titleView = iv;
@@ -194,7 +196,7 @@ enum {
    TaskCollectionViewController *vc = [[TaskCollectionViewController alloc] initWithStyle:UITableViewStylePlain];
    TagTaskCollection *collector = [[TagTaskCollection alloc] init];
    [(TaskCollectionViewController *)vc setCollector:collector];
-   //vc.title = @"Tag";
+
    UIImageView *iv = [[UIImageView alloc] initWithImage:[[[UIImage alloc] initWithContentsOfFile:
                                                           [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]] autorelease]];
    vc.navigationItem.titleView = iv;

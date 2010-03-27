@@ -140,6 +140,13 @@ static const int SECTIONS = 4;
    [ctrl release];
 }
 
+- (void) viewDidLoad
+{
+   [super viewDidLoad];
+   UIBarButtonItem *bbi = [self.toolbarItems objectAtIndex:2];
+   bbi.image = [UIImage imageNamed:@"icon_calendar.png"];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
    [super viewWillAppear:animated];

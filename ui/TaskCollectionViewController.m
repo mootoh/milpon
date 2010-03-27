@@ -21,6 +21,15 @@
    collection = [[collector collection] retain];
 }
 
+- (void) viewDidLoad
+{
+   [super viewDidLoad];
+
+   NSInteger idx = [collector isKindOfClass:[ListTaskCollection class]] ? 4 : 6;
+   UIBarButtonItem *bbi = [self.toolbarItems objectAtIndex:idx];
+   bbi.image = [UIImage imageNamed:idx == 4 ? @"icon_list.png" : @"icon_tag.png"];
+}
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

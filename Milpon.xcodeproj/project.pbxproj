@@ -28,6 +28,9 @@
 		927A61F31138194B005B4548 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 927A61F21138194B005B4548 /* Settings.bundle */; };
 		92B2F4C41158EAA000254FC6 /* AuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B2F4C31158EAA000254FC6 /* AuthView.xib */; };
 		92D21ED4115DF8080074E93A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D21ED3115DF8080074E93A /* RootViewController.m */; };
+		92D21FB5115E077B0074E93A /* icon_overview_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FB4115E077B0074E93A /* icon_overview_disabled.png */; };
+		92D21FDC115E08FF0074E93A /* icon_list_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FDA115E08FF0074E93A /* icon_list_disabled.png */; };
+		92D21FDD115E08FF0074E93A /* icon_tag_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FDB115E08FF0074E93A /* icon_tag_disabled.png */; };
 		92D3D16D1159B2F4004623F8 /* RefreshingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D3D16B1159B2F4004623F8 /* RefreshingViewController.m */; };
 		92D3D16E1159B2F4004623F8 /* RefreshingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92D3D16C1159B2F4004623F8 /* RefreshingViewController.xib */; };
 		92E4AAA7102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
@@ -155,6 +158,9 @@
 		92B2F4C31158EAA000254FC6 /* AuthView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthView.xib; sourceTree = "<group>"; };
 		92D21ED2115DF8080074E93A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		92D21ED3115DF8080074E93A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		92D21FB4115E077B0074E93A /* icon_overview_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_overview_disabled.png; sourceTree = "<group>"; };
+		92D21FDA115E08FF0074E93A /* icon_list_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_list_disabled.png; sourceTree = "<group>"; };
+		92D21FDB115E08FF0074E93A /* icon_tag_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tag_disabled.png; sourceTree = "<group>"; };
 		92D3D16A1159B2F4004623F8 /* RefreshingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingViewController.h; sourceTree = "<group>"; };
 		92D3D16B1159B2F4004623F8 /* RefreshingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshingViewController.m; sourceTree = "<group>"; };
 		92D3D16C1159B2F4004623F8 /* RefreshingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefreshingViewController.xib; sourceTree = "<group>"; };
@@ -670,6 +676,9 @@
 				B9160F5A0F565D9300473A95 /* icon_priority_3.png */,
 				B9160F5B0F565D9300473A95 /* icon_tag.png */,
 				B9160F5D0F565D9300473A95 /* icon_target.png */,
+				92D21FB4115E077B0074E93A /* icon_overview_disabled.png */,
+				92D21FDA115E08FF0074E93A /* icon_list_disabled.png */,
+				92D21FDB115E08FF0074E93A /* icon_tag_disabled.png */,
 			);
 			name = icons;
 			sourceTree = "<group>";
@@ -892,6 +901,9 @@
 				927A61F31138194B005B4548 /* Settings.bundle in Resources */,
 				92B2F4C41158EAA000254FC6 /* AuthView.xib in Resources */,
 				92D3D16E1159B2F4004623F8 /* RefreshingViewController.xib in Resources */,
+				92D21FB5115E077B0074E93A /* icon_overview_disabled.png in Resources */,
+				92D21FDC115E08FF0074E93A /* icon_list_disabled.png in Resources */,
+				92D21FDD115E08FF0074E93A /* icon_tag_disabled.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

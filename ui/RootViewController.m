@@ -38,9 +38,9 @@
    UIBarButtonItem *tightSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
    tightSpace.width = 20.0f;
    
-   UIBarButtonItem *overviewButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_calendar.png"] style:UIBarButtonItemStylePlain target:app action:@selector(switchToOverview)];
-   UIBarButtonItem *listButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_list.png"] style:UIBarButtonItemStylePlain target:app action:@selector(switchToList)];
-   UIBarButtonItem *tagButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_tag.png"] style:UIBarButtonItemStylePlain target:app action:@selector(switchToTag)];
+   UIBarButtonItem *overviewButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_overview_disabled.png"] style:UIBarButtonItemStylePlain target:app action:@selector(switchToOverview)];
+   UIBarButtonItem *listButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_list_disabled.png"] style:UIBarButtonItemStylePlain target:app action:@selector(switchToList)];
+   UIBarButtonItem *tagButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_tag_disabled.png"] style:UIBarButtonItemStylePlain target:app action:@selector(switchToTag)];
    
    self.toolbarItems = [NSArray arrayWithObjects:refreshButton, flexibleSpace, overviewButton, tightSpace, listButton, tightSpace, tagButton, flexibleSpace, addButton, nil];
    self.navigationController.toolbar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
