@@ -176,8 +176,11 @@ enum {
 
 - (void) switchToList
 {
-   // if already list
-   //   skip
+   // skip if already list
+   UIViewController *topVC = navigationController.topViewController;
+   if ([topVC isKindOfClass:[TaskCollectionViewController class]] && [((TaskCollectionViewController *)topVC).collector isKindOfClass:[ListTaskCollection class]])
+      return;
+
    // transit to list
    TaskCollectionViewController *vc = [[TaskCollectionViewController alloc] initWithStyle:UITableViewStylePlain];
    ListTaskCollection *collector = [[ListTaskCollection alloc] init];
@@ -193,6 +196,11 @@ enum {
 
 - (void) switchToTag
 {
+   // skip if already tag
+   UIViewController *topVC = navigationController.topViewController;
+   if ([topVC isKindOfClass:[TaskCollectionViewController class]] && [((TaskCollectionViewController *)topVC).collector isKindOfClass:[TagTaskCollection class]])
+      return;
+
    TaskCollectionViewController *vc = [[TaskCollectionViewController alloc] initWithStyle:UITableViewStylePlain];
    TagTaskCollection *collector = [[TagTaskCollection alloc] init];
    [(TaskCollectionViewController *)vc setCollector:collector];
