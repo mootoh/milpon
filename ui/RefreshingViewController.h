@@ -14,10 +14,7 @@
 {
    IBOutlet UIActivityIndicatorView *activityIndicatorView;
    IBOutlet UILabel *label;
-   RootMenuViewController *rootMenuViewController;
 }
-
-@property (nonatomic, retain) RootMenuViewController *rootMenuViewController;
 
 - (IBAction) didRefreshed;
 

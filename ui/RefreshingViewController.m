@@ -7,10 +7,10 @@
 //
 
 #import "RefreshingViewController.h"
-#import "RootMenuViewController.h"
+#import "AppDelegate.h"
+#import "RTMSynchronizer.h"
 
 @implementation RefreshingViewController
-@synthesize rootMenuViewController;
 
 - (void)viewDidLoad
 {
@@ -29,6 +29,7 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+   [super viewWillAppear:animated];
    self.view.alpha = 0.0f;
    [UIView beginAnimations:@"refreshingAnimation" context:nil];
    [UIView setAnimationDelegate:self];
@@ -40,38 +41,18 @@
 
 - (void)refreshingStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
-   [rootMenuViewController fetchAll];   
+   AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+   [appDelegate.syncer replaceAll];
 }
 
-- (void) viewDidAppear:(BOOL)animated
+- (void)didReceiveMemoryWarning
 {
+   [super didReceiveMemoryWarning];
 }
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-}
-
-- (void) viewDidDisappear:(BOOL)animated
-{
-}
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 
 - (void)dealloc
 {
-    [super dealloc];
+   [super dealloc];
 }
 
 - (IBAction) didRefreshed

@@ -34,9 +34,7 @@
 {
    if (self = [super init]) {      
       auth = aauth;
-      
-      RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-      self.timeLine = [api createTimeline];
+      self.timeLine = nil;
    }
    return self;
 }
@@ -378,17 +376,22 @@
    return YES;
 }
 
+#pragma mark public interface
+
 - (void) replaceAll
 {
-   if (! [self is_reachable]) return;
-
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
+   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
+   self.timeLine = [api createTimeline];
 
    [self replaceLists];
    [self replaceTasks];
    
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
    [delegate didReplaceAll];
+
+   self.timeLine = nil;
 }
 
 - (void) update:(ProgressView *)progressView
@@ -396,12 +399,17 @@
    NSLog(@"update");
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
+   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
+   self.timeLine = [api createTimeline];
+
    //refreshButton.enabled = NO;
    //[self showDialog];
 
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updated) name:@"updateOperationFinished" object:nil];
    [self performSelectorInBackground:@selector(updateOperation:) withObject:progressView];
 }
+
+#pragma mark helper
 
 - (void) updateOperation:(ProgressView *)pv
 {
@@ -419,6 +427,7 @@
    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"updateOperationFinished" object:nil];
    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
    [delegate didUpdate];
+   self.timeLine = nil;
 }
 
 #pragma mark TODO

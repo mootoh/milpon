@@ -56,6 +56,7 @@
 
 @synthesize window;
 @synthesize auth;
+@synthesize syncer;
 
 /**
   * init DB and authorization info

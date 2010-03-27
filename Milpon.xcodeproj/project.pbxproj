@@ -1058,7 +1058,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = others/Entitlements.plist;
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1068,7 +1069,8 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = others/Info.plist;
 				PRODUCT_NAME = Milpon;
-				SDKROOT = iphoneos2.2.1;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.1.3;
 			};
 			name = Debug;
 		};
@@ -1084,7 +1086,7 @@
 				INFOPLIST_FILE = others/Info.plist;
 				PRODUCT_NAME = Milpon;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BFA52439-DF9F-48CC-9EB0-D9030562ECE3";
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.1.3;
 			};
 			name = Release;
 		};
@@ -1095,11 +1097,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.1.3;
 			};
 			name = Test;
 		};
@@ -1115,7 +1118,7 @@
 				INFOPLIST_FILE = others/Info.plist;
 				PRODUCT_NAME = Milpon;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E292CD0F-BF12-41CA-BE5D-A042C4C437A3";
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.1.3;
 			};
 			name = Test;
 		};
@@ -1142,6 +1145,7 @@
 				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTest;
+				SDKROOT = iphonesimulator3.1.3;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
@@ -1174,6 +1178,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTest;
+				SDKROOT = iphonesimulator3.1.3;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -1202,6 +1207,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTest;
+				SDKROOT = iphonesimulator3.1.3;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1229,6 +1235,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTest;
+				SDKROOT = iphonesimulator3.1.3;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Test;
@@ -1255,6 +1262,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTest;
+				SDKROOT = iphonesimulator3.1.3;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = UnitTest;
@@ -1266,13 +1274,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.1.3;
 			};
 			name = UnitTest;
 		};
@@ -1289,7 +1297,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				INFOPLIST_FILE = others/Info.plist;
 				PRODUCT_NAME = Milpon;
-				SDKROOT = iphonesimulator2.2.1;
+				SDKROOT = iphoneos3.1.3;
 			};
 			name = UnitTest;
 		};
@@ -1316,7 +1324,7 @@
 				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
+				SDKROOT = iphonesimulator3.1.3;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -1345,7 +1353,7 @@
 				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTest;
-				SDKROOT = macosx10.5;
+				SDKROOT = iphonesimulator3.1.3;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -1374,6 +1382,7 @@
 				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTest;
+				SDKROOT = iphonesimulator3.1.3;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
@@ -1387,13 +1396,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.1.3;
 			};
 			name = Debug;
 		};
@@ -1404,11 +1413,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.1.3;
 			};
 			name = Release;
 		};
