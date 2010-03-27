@@ -18,6 +18,7 @@
    RTMAuth                         *auth;
    RTMSynchronizer                 *syncer;
    ProgressView                    *progressView;
+   UIImageView                     *arrowImageView;
 }
 
 @property (nonatomic, retain) UIWindow *window;

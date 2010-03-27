@@ -58,6 +58,14 @@
 @synthesize auth;
 @synthesize syncer;
 
+const CGFloat arrowXs[] = {
+   160-58,
+   160,
+   160+58
+};
+
+const CGFloat arrowY = 480-44-5;
+
 /**
   * init DB and authorization info
   */
@@ -78,6 +86,7 @@
 
 - (void) dealloc
 {
+   [arrowImageView release];
    [progressView release];
    [navigationController release];
    [syncer release];
@@ -99,7 +108,11 @@
    progressView = [[ProgressView alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height, appFrame.size.width, 100)];
    progressView.tag = PROGRESSVIEW_TAG;
    [window addSubview:progressView];
-
+   
+   arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
+   [window addSubview:arrowImageView];
+   arrowImageView.center = CGPointMake(arrowXs[0], arrowY);
+   
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // get the settings prefs
    if ([defaults boolForKey:@"pref_sync_at_start"] && [self authorized])
       [syncer update:progressView];
@@ -180,6 +193,10 @@ enum {
    OverviewViewController *vc = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];
    [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:YES];
    [vc release];
+
+   [UIView beginAnimations:@"moveArrow" context:nil];
+   arrowImageView.center = CGPointMake(arrowXs[0], arrowY);
+   [UIView commitAnimations];
 }
 
 - (void) switchToList
@@ -200,6 +217,10 @@ enum {
    [collector release];
    [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:YES];
    [vc release];
+   
+   [UIView beginAnimations:@"moveArrow" context:nil];
+   arrowImageView.center = CGPointMake(arrowXs[1], arrowY);
+   [UIView commitAnimations];
 }
 
 - (void) switchToTag
@@ -220,6 +241,10 @@ enum {
    [collector release];
    [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:YES];
    [vc release];
+   
+   [UIView beginAnimations:@"moveArrow" context:nil];
+   arrowImageView.center = CGPointMake(arrowXs[2], arrowY);
+   [UIView commitAnimations];
 }   
 
 #pragma mark Sync
