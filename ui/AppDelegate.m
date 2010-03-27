@@ -23,15 +23,21 @@
 
 @interface AppDelegate (Private)
 - (UIViewController *) recoverViewController;
+- (BOOL) authorized;
 @end // AppDelegate (Private)
 
 @implementation AppDelegate (Private)
+
+- (BOOL) authorized
+{
+   return auth.token && ![auth.token isEqualToString:@""];
+}
 
 - (UIViewController *) recoverViewController
 {
    UIViewController *vc = nil;
    
-   if (!auth.token || [auth.token isEqualToString:@""]) {
+   if (! [self authorized]) {
       vc = [[AuthViewController alloc] initWithNibName:@"AuthView" bundle:nil];
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishedAuthorization) name:@"backToRootMenu" object:nil];
    } else {
@@ -61,6 +67,8 @@
       [RTMAPI setSecret:auth.shared_secret];
       if (auth.token)
          [RTMAPI setToken:auth.token];
+      syncer = [[RTMSynchronizer alloc] initWithAuth:auth];
+      syncer.delegate = self;
    }
    return self;
 }
@@ -68,6 +76,7 @@
 - (void) dealloc
 {
    [navigationController release];
+   [syncer release];
    [auth release];
    [window release];
    [super dealloc];
@@ -82,9 +91,9 @@
    navigationController.navigationBar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
    [window addSubview:navigationController.view];
 
-//   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // get the settings prefs
-//   if ([defaults boolForKey:@"pref_sync_at_start"])
-//      [rmvc refresh];
+   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // get the settings prefs
+   if ([defaults boolForKey:@"pref_sync_at_start"] && [self authorized])
+      [syncer update];
 
    [window makeKeyAndVisible];
 }
@@ -137,6 +146,22 @@ enum {
 
    UIViewController *vc = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];   
    [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:NO];
+}
+
+#pragma mark RTMSynchronizerDelegate
+
+- (void) didUpdate
+{
+   UIViewController *vc = navigationController.topViewController;
+   if ([vc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
+      UITableViewController<ReloadableTableViewControllerProtocol> *tvc = (UITableViewController<ReloadableTableViewControllerProtocol> *)vc;
+      [tvc reloadFromDB];
+      [tvc.tableView reloadData];
+   }
+}
+
+- (void) didReplaceAll
+{
 }
 
 @end

@@ -15,12 +15,14 @@
    if (self = [super initWithNibName:nibName bundle:bundle]) {
       state = STATE_INITIAL;
       self.title = NSLocalizedString(@"Setup", "setup screen");
+      syncer = nil;
    }
    return self;
 }
 
 - (void) dealloc
 {
+   [syncer release];
    [super dealloc];
 }
 
@@ -137,7 +139,7 @@
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
    RTMAuth *auth = app.auth;
 
-   RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithAuth:auth];
+   syncer = [[RTMSynchronizer alloc] initWithAuth:auth];
    syncer.delegate = self;
    [syncer replaceAll];
 }
@@ -168,14 +170,6 @@
 
 - (void) backToRootMenu
 {
-//   UINavigationController *nc = (UINavigationController *)self.parentViewController;
-//   UIViewController *vc = nc.topViewController;
-//   if ([vc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
-//      UITableViewController<ReloadableTableViewControllerProtocol> *tvc = (UITableViewController<ReloadableTableViewControllerProtocol> *)vc;
-//      [tvc reloadFromDB];
-//      [tvc.tableView reloadData];
-//   }
-//   [self dismissModalViewControllerAnimated:YES];   
    [[NSNotificationCenter defaultCenter] postNotificationName:@"backToRootMenu" object:nil];
 }
 

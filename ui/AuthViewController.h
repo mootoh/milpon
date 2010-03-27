@@ -26,6 +26,8 @@
    IBOutlet UILabel *instructionLabel;
    IBOutlet UIButton *proceedButton;
    IBOutlet UIWebView *webView;
+   
+   RTMSynchronizer *syncer;
 }
 
 - (IBAction) proceedToAuthorization;

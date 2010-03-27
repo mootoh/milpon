@@ -6,13 +6,16 @@
 //  Copyright deadbeaf.org 2008. All rights reserved.
 //
 
+#import "RTMSynchronizer.h"
+
 @class RTMAuth;
 
-@interface AppDelegate : NSObject <UIApplicationDelegate>
+@interface AppDelegate : NSObject <UIApplicationDelegate, RTMSynchronizerDelegate>
 {	
    IBOutlet UIWindow               *window;
    IBOutlet UINavigationController *navigationController;
    RTMAuth                         *auth;
+   RTMSynchronizer                 *syncer;
 }
 
 @property (nonatomic, retain) UIWindow *window;
