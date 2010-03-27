@@ -59,12 +59,12 @@
 @synthesize syncer;
 
 const CGFloat arrowXs[] = {
-   160-58,
+   160-53,
    160,
-   160+58
+   160+53,
 };
 
-const CGFloat arrowY = 480-44-5;
+const CGFloat arrowY = 480-44-3;
 
 /**
   * init DB and authorization info
