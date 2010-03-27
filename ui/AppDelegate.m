@@ -15,7 +15,6 @@
 #import "AddTaskViewController.h"
 #import "RootMenuViewController.h"
 #import "OverviewViewController.h"
-#import "UpgradeFetchAllViewController.h"
 #import "LocalCache.h"
 #import "logger.h"
 #import "TaskProvider.h"
@@ -23,36 +22,24 @@
 #import "MilponHelper.h"
 
 @interface AppDelegate (Private)
-- (void) showAuthentication;
-- (void) recoverView;
+- (UIViewController *) recoverViewController;
 @end // AppDelegate (Private)
 
 @implementation AppDelegate (Private)
 
-- (void) showAuthentication
+- (UIViewController *) recoverViewController
 {
-   AuthViewController *avc = [[AuthViewController alloc] initWithNibName:@"AuthView" bundle:nil];
-   [navigationController presentModalViewController:avc animated:NO];
-   [avc release];
-}
-
-- (void) recoverView
-{
-   // TODO: determine which view to be recovered
-   OverviewViewController *hvc = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];
-
-   // recover it
-   [navigationController pushViewController:hvc animated:NO];
-   [hvc release];
-}
-
-- (void) showUpgradeFetchAllView
-{
-   UpgradeFetchAllViewController *ufavc = [[UpgradeFetchAllViewController alloc] initWithNibName:nil bundle:nil];
+   UIViewController *vc = nil;
    
-   UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:ufavc];
-   [navigationController presentModalViewController:nc animated:NO];
-   [nc release];
+   if (!auth.token || [auth.token isEqualToString:@""]) {
+      vc = [[AuthViewController alloc] initWithNibName:@"AuthView" bundle:nil];
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishedAuthorization) name:@"backToRootMenu" object:nil];
+   } else {
+      // TODO: determine which view to be recovered
+      vc = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];
+   }
+   NSAssert(vc, @"check ViewController");
+   return vc;
 }
 
 @end // AppDelegate (Private)
@@ -86,43 +73,18 @@
    [super dealloc];
 }
 
-#define VERSION_1_0_MIGRATE_NUMBER 4
-- (BOOL) migrate:(LocalCache *)local_cache
-{
-   BOOL upgraded_from_1_0 = NO;
-   if ([local_cache current_migrate_version] == VERSION_1_0_MIGRATE_NUMBER) {
-      upgraded_from_1_0 = YES;
-      [local_cache upgrade_from_1_0_to_2_0];
-   }
-   [local_cache migrate];
-   return upgraded_from_1_0;
-}
-
 - (void) applicationDidFinishLaunching:(UIApplication *)application
 {
-   LocalCache *local_cache = [LocalCache sharedLocalCache];
-   BOOL upgraded = [self migrate:local_cache];
-   
-   RootMenuViewController *rmvc = [[RootMenuViewController alloc] initWithStyle:UITableViewStyleGrouped];
-   [rmvc release];
+   UIViewController *rootViewController = [self recoverViewController];
+   navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+   [rootViewController release];   
 
    navigationController.navigationBar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
    [window addSubview:navigationController.view];
-   
-   if (!auth.token || [auth.token isEqualToString:@""]) {
-      [self showAuthentication];
-      [self recoverView];
-   } else {
-      if (upgraded) {
-         [self showUpgradeFetchAllView];
-      } else {
-         [self recoverView];
-      }
-   }
 
-   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // get the settings prefs
-   if ([defaults boolForKey:@"pref_sync_at_start"])
-      [rmvc refresh];
+//   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // get the settings prefs
+//   if ([defaults boolForKey:@"pref_sync_at_start"])
+//      [rmvc refresh];
 
    [window makeKeyAndVisible];
 }
@@ -167,6 +129,14 @@ enum {
    [navigationController presentModalViewController:navc animated:NO];
    [navc release];
    [atvController release];
+}
+
+- (IBAction) finishedAuthorization
+{
+   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"backToRootMenu" object:nil];
+
+   UIViewController *vc = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];   
+   [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:NO];
 }
 
 @end

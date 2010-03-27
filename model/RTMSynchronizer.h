@@ -9,15 +9,26 @@
 @class RTMAuth;
 @class ProgressView;
 
+@protocol RTMSynchronizerDelegate
+
+- (void) didReplaceAll;
+- (void) didUpdate;
+
+@end
+
 @interface RTMSynchronizer : NSObject {
    RTMAuth *auth;
    NSString *timeLine;
+   id <RTMSynchronizerDelegate> delegate;
 }
 
 @property (nonatomic, retain) NSString *timeLine;
+@property (nonatomic, retain) id <RTMSynchronizerDelegate> delegate;
 
+- (id) initWithAuth:(RTMAuth *)aauth;
 
-- (id) init:(RTMAuth *)aauth;
+- (void) replaceAll;
+- (void) update;
 
 - (void) replaceLists;
 /**

@@ -12,8 +12,8 @@
 
 @interface RootMenuViewController : UITableViewController
 {
-   UIBarButtonItem                 *refreshButton;
-   ProgressView                    *pv;
+   UIBarButtonItem *refreshButton;
+   ProgressView    *pv;
 }
 
 - (IBAction) fetchAll;

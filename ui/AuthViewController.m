@@ -6,6 +6,7 @@
 #import "RTMAPI.h"
 #import "ReloadableTableViewController.h"
 #import "logger.h"
+#import "RTMSynchronizer.h"
 
 @implementation AuthViewController
 
@@ -133,8 +134,12 @@
    proceedButton.hidden = YES;
    
    [self getToken];
-   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFetchAll) name:@"didFetchAll" object:nil];
-   [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchAll" object:nil];   
+   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+   RTMAuth *auth = app.auth;
+
+   RTMSynchronizer *syncer = [[RTMSynchronizer alloc] initWithAuth:auth];
+   syncer.delegate = self;
+   [syncer replaceAll];
 }
 
 - (IBAction) getToken
@@ -161,23 +166,30 @@
    [app.auth save];
 }
 
-- (void) didFetchAll
-{
-   instructionLabel.text = @"Done!";
-   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFetchAll" object:nil];
-   [self performSelector:@selector(backToRootMenu) withObject:nil afterDelay:1.0f];
-}   
-
 - (void) backToRootMenu
 {
-   UINavigationController *nc = (UINavigationController *)self.parentViewController;
-   UIViewController *vc = nc.topViewController;
-   if ([vc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
-      UITableViewController<ReloadableTableViewControllerProtocol> *tvc = (UITableViewController<ReloadableTableViewControllerProtocol> *)vc;
-      [tvc reloadFromDB];
-      [tvc.tableView reloadData];
-   }
-   [self dismissModalViewControllerAnimated:YES];   
+//   UINavigationController *nc = (UINavigationController *)self.parentViewController;
+//   UIViewController *vc = nc.topViewController;
+//   if ([vc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
+//      UITableViewController<ReloadableTableViewControllerProtocol> *tvc = (UITableViewController<ReloadableTableViewControllerProtocol> *)vc;
+//      [tvc reloadFromDB];
+//      [tvc.tableView reloadData];
+//   }
+//   [self dismissModalViewControllerAnimated:YES];   
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"backToRootMenu" object:nil];
+}
+
+#pragma mark RTMSynchronizerDelegate
+
+- (void) didUpdate
+{
+}
+
+- (void) didReplaceAll
+{
+   NSLog(@"didReplaceAll");
+   instructionLabel.text = @"Done!";
+   [self performSelector:@selector(backToRootMenu) withObject:nil afterDelay:1.0f];
 }
 
 #pragma mark UIWebViewDelegate

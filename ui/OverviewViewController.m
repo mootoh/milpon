@@ -102,9 +102,26 @@ static const int SECTIONS = 4;
    [super viewDidLoad];
 
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+   UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithTitle:@"info" style:UIBarButtonItemStylePlain target:nil action:nil];
+   self.navigationItem.rightBarButtonItem = infoButton;
+   [infoButton release];
+   
+   UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:nil action:nil];
    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:app action:@selector(addTask)];
-   self.navigationItem.rightBarButtonItem = addButton;
+   UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+   UIBarButtonItem *tightSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+   tightSpace.width = 20.0f;
+   UIBarButtonItem *overviewButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_calendar.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+   UIBarButtonItem *listButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_list.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+   UIBarButtonItem *tagButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_tag.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+   
+   self.toolbarItems = [NSArray arrayWithObjects:refreshButton, flexibleSpace, overviewButton, tightSpace, listButton, tightSpace, tagButton, flexibleSpace, addButton, nil];
+   [self.navigationController setToolbarHidden:NO];
    [addButton release];
+   [overviewButton release];
+   [tightSpace release];
+   [flexibleSpace release];
+   [refreshButton release];   
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

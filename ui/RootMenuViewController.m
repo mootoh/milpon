@@ -47,8 +47,7 @@ enum sec_one {
    [super viewDidLoad];
 
    self.title = NSLocalizedString(@"Milpon", @"");
-
-   refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+   self.tableView.scrollEnabled = NO;
    
    CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
    pv = [[ProgressView alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height, appFrame.size.width, 100)];
@@ -56,51 +55,25 @@ enum sec_one {
    AppDelegate *ad = (AppDelegate *)[UIApplication sharedApplication].delegate;
    [ad.window addSubview:pv];
    
-   UILabel *taskLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-   taskLabel.text = @"Task";
-   self.tableView.tableHeaderView = taskLabel;
-   [taskLabel release];
-
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
+   refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:app action:@selector(addTask)];
-   
-   self.navigationItem.rightBarButtonItem = addButton;
-   self.navigationItem.leftBarButtonItem  = refreshButton;
+   UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+   UIBarButtonItem *tightSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+   tightSpace.width = 20.0f;
+   UIBarButtonItem *overviewButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_calendar.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+   UIBarButtonItem *listButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_list.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+   UIBarButtonItem *tagButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_tag.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
 
+   self.toolbarItems = [NSArray arrayWithObjects:refreshButton, flexibleSpace, overviewButton, tightSpace, listButton, tightSpace, tagButton, flexibleSpace, addButton, nil];
+   [self.navigationController setToolbarHidden:NO animated:YES];
    [addButton release];
-
-   self.tableView.scrollEnabled = NO;
+   [overviewButton release];
+   [tightSpace release];
+   [flexibleSpace release];
+   [refreshButton release];
 }
-
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view data source
@@ -248,7 +221,6 @@ enum sec_one {
 
 - (void)dealloc
 {
-   [refreshButton release];
    [super dealloc];
 }
 

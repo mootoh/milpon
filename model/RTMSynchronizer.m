@@ -27,8 +27,9 @@
 
 @implementation RTMSynchronizer
 @synthesize timeLine;
+@synthesize delegate;
 
-- (id) init:(RTMAuth *)aauth
+- (id) initWithAuth:(RTMAuth *)aauth
 {
    if (self = [super init]) {      
       auth = aauth;
@@ -353,6 +354,22 @@
    [api_note release];
    [pool release];
    [api_task release];
+}
+
+- (void) replaceAll
+{
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
+   [self replaceLists];
+   [self replaceTasks];
+   
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+   [delegate didReplaceAll];
+}
+
+- (void) update
+{
+   [delegate didUpdate];
 }
 
 @end

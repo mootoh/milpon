@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTMSynchronizer.h"
 
-@interface AuthViewController : UIViewController <UIWebViewDelegate>
+@interface AuthViewController : UIViewController <UIWebViewDelegate, RTMSynchronizerDelegate>
 {
    enum {
       STATE_INITIAL,
