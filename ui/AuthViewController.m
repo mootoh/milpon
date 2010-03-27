@@ -88,7 +88,7 @@
 
 - (void) failedInAuthorization
 {
-   NSLog(@"faildInAuthorization: state=%d", state);
+   //NSLog(@"faildInAuthorization: state=%d", state);
    NSAssert(state == STATE_SUBMITTED || state == STATE_USERINFO_ENTERED, @"check state");
    [webView stopLoading];
    state = STATE_WRONG_PASSWORD;
@@ -108,7 +108,7 @@
 
 - (void) didSucceedInAuth
 {
-   NSLog(@"succeeded in auth");
+   //NSLog(@"succeeded in auth");
    instructionLabel.text = @"Loading Tasks...";
    [webView stopLoading];
    webView.hidden = YES;
@@ -200,7 +200,7 @@
    authorizeingPhase = ![result isEqualToString:@""];
    result = [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"var password = document.getElementById('password'); password.value='%@';", passwordField.text]];
    authorizeingPhase = authorizeingPhase && ![result isEqualToString:@""];
-   NSLog(@"authorizingPhase = %d", authorizeingPhase);
+   //NSLog(@"authorizingPhase = %d", authorizeingPhase);
    if (authorizeingPhase) {
       if (state == STATE_SUBMITTED) {
          [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms['loginform']; form.submit();"];
@@ -230,7 +230,7 @@
    }
    
    result = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('pageheader').children[0].children[0].innerHTML"];
-   NSLog(@"pageheader = %@", result);
+   //NSLog(@"pageheader = %@", result);
    if ([result isEqualToString:@"Application successfully authorized"]) {
       NSAssert(state == STATE_SHOW_WEBVIEW || state == STATE_USERINFO_ENTERED, @"check state");
       state = STATE_DONE;
