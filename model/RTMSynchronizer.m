@@ -24,6 +24,7 @@
 #import "NoteProvider.h"
 #import "MilponHelper.h"
 #import "TagProvider.h"
+#import "Reachability.h"
 
 @implementation RTMSynchronizer
 @synthesize timeLine;
@@ -356,8 +357,31 @@
    [api_task release];
 }
 
+- (BOOL) is_reachable
+{
+#ifndef LOCAL_DEBUG
+   Reachability *reach = [Reachability sharedReachability];
+   reach.hostName = @"api.rememberthemilk.com";
+   NetworkStatus stat =  [reach internetConnectionStatus];
+   reach.networkStatusNotificationsEnabled = NO;
+   if (stat == NotReachable) {
+      UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Not Connected"
+                                                   message:@"Not connected to the RTM site. Sync when you are online."
+                                                  delegate:nil
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil];
+      [av show];
+      [av release];
+      return NO;
+   }
+#endif // LOCAL_DEBUG
+   return YES;
+}
+
 - (void) replaceAll
 {
+   if (! [self is_reachable]) return;
+
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
    [self replaceLists];
@@ -367,10 +391,58 @@
    [delegate didReplaceAll];
 }
 
-- (void) update
+- (void) update:(ProgressView *)progressView
 {
    NSLog(@"update");
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
+   //refreshButton.enabled = NO;
+   //[self showDialog];
+
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updated) name:@"updateOperationFinished" object:nil];
+   [self performSelectorInBackground:@selector(updateOperation:) withObject:progressView];
+}
+
+- (void) updateOperation:(ProgressView *)pv
+{
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+   [self uploadPendingTasks:pv];
+   [self syncModifiedTasks:pv];
+   [self syncTasks:pv];
+
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"updateOperationFinished" object:nil];
+   [pool release];
+}
+
+- (void) updated
+{
+   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"updateOperationFinished" object:nil];
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
    [delegate didUpdate];
 }
+
+#pragma mark TODO
+#if 0
+
+
+- (void) refreshView
+{
+   UIViewController *vc = self.navigationController.topViewController;
+   if ([vc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
+      UITableViewController<ReloadableTableViewControllerProtocol> *tvc = (UITableViewController<ReloadableTableViewControllerProtocol> *)vc;
+      [tvc reloadFromDB];
+      [tvc.tableView reloadData];
+   }
+}
+
+- (void) showFetchAllModal
+{
+   RefreshingViewController *vc = [[RefreshingViewController alloc] initWithNibName:@"RefreshingViewController" bundle:nil];
+   vc.rootMenuViewController = self;
+   [self.view.window addSubview:vc.view];
+   [vc.view setNeedsDisplay];
+}
+
+#endif // 0
 
 @end

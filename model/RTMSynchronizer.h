@@ -28,7 +28,7 @@
 - (id) initWithAuth:(RTMAuth *)aauth;
 
 - (void) replaceAll;
-- (void) update;
+- (void) update:(ProgressView *)progressView;;
 
 - (void) replaceLists;
 /**
@@ -39,6 +39,8 @@
 - (void) replaceTasks;
 - (void) syncTasks:(ProgressView *)progressView;
 - (void) uploadPendingTasks:(ProgressView *)progressView;
-- (void) syncModifiedTasks:(ProgressView *)ProgressView;
+- (void) syncModifiedTasks:(ProgressView *)progressView;
+
+- (BOOL) is_reachable;
 
 @end

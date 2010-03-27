@@ -9,6 +9,7 @@
 #import "RTMSynchronizer.h"
 
 @class RTMAuth;
+@class ProgressView;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate, RTMSynchronizerDelegate>
 {	
@@ -16,6 +17,7 @@
    IBOutlet UINavigationController *navigationController;
    RTMAuth                         *auth;
    RTMSynchronizer                 *syncer;
+   ProgressView                    *progressView;
 }
 
 @property (nonatomic, retain) UIWindow *window;

@@ -21,6 +21,7 @@
 #import "MilponHelper.h"
 #import "TaskCollectionViewController.h"
 #import "TaskCollection.h"
+#import "ProgressView.h"
 
 @interface AppDelegate (Private)
 - (UIViewController *) recoverViewController;
@@ -76,6 +77,7 @@
 
 - (void) dealloc
 {
+   [progressView release];
    [navigationController release];
    [syncer release];
    [auth release];
@@ -92,9 +94,14 @@
    navigationController.navigationBar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
    [window addSubview:navigationController.view];
 
+   CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+   progressView = [[ProgressView alloc] initWithFrame:CGRectMake(appFrame.origin.x, appFrame.size.height, appFrame.size.width, 100)];
+   progressView.tag = PROGRESSVIEW_TAG;
+   [window addSubview:progressView];
+
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // get the settings prefs
    if ([defaults boolForKey:@"pref_sync_at_start"] && [self authorized])
-      [syncer update];
+      [syncer update:progressView];
 
    [window makeKeyAndVisible];
 }
@@ -216,10 +223,56 @@ enum {
 
 #pragma mark Sync
 
+- (IBAction) showDialog
+{
+   CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+   progressView.alpha = 0.0f;
+   progressView.backgroundColor = [UIColor blackColor];
+   progressView.opaque = YES;
+   progressView.message = @"Syncing...";
+
+   // animation part
+   [UIView beginAnimations:nil context:NULL]; {
+      [UIView setAnimationDuration:0.20f];
+      [UIView setAnimationDelegate:self];
+
+      progressView.alpha = 0.8f;
+      progressView.frame = CGRectMake(appFrame.origin.x, appFrame.size.height-80, appFrame.size.width, 100);
+   } [UIView commitAnimations];
+}
+
+- (IBAction) hideDialog
+{
+   CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+   progressView.message = @"Synced.";
+
+   // animation part
+   [UIView beginAnimations:nil context:NULL]; {
+      [UIView setAnimationDuration:0.20f];
+      [UIView setAnimationDelegate:self];
+
+      progressView.alpha = 0.0f;
+      progressView.frame = CGRectMake(appFrame.origin.x, appFrame.size.height, appFrame.size.width, 100);
+   } [UIView commitAnimations];
+
+   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//   refreshButton.enabled = YES;
+   [window setNeedsDisplay];
+}
+
 - (IBAction) update
 {
+   if (! [syncer is_reachable]) return;
+
    // show the progress view
-   [syncer update];
+   [self showDialog];
+   [syncer update:progressView];
+}
+
+- (IBAction) replaceAll
+{
+   if (! [syncer is_reachable]) return;
+   [syncer replaceAll];
 }
 
 - (void) reloadTableView
@@ -234,11 +287,11 @@ enum {
 
 #pragma mark RTMSynchronizerDelegate
 
-
 - (void) didUpdate
 {
-   // dismiss the progress view
    [self reloadTableView];
+   // dismiss the progress view
+   [self performSelectorOnMainThread:@selector(hideDialog) withObject:nil waitUntilDone:YES];
 }
 
 - (void) didReplaceAll
