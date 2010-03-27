@@ -22,4 +22,6 @@
 @property (nonatomic, retain) RTMAuth *auth;
 
 - (IBAction) addTask;
+- (IBAction) update;
+
 @end

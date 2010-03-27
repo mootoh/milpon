@@ -369,6 +369,7 @@
 
 - (void) update
 {
+   NSLog(@"update");
    [delegate didUpdate];
 }
 

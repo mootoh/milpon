@@ -148,9 +148,13 @@ enum {
    [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:NO];
 }
 
-#pragma mark RTMSynchronizerDelegate
+- (IBAction) update
+{
+   // show the progress view
+   [syncer update];
+}
 
-- (void) didUpdate
+- (void) reloadTableView
 {
    UIViewController *vc = navigationController.topViewController;
    if ([vc conformsToProtocol:@protocol(ReloadableTableViewControllerProtocol)]) {
@@ -160,8 +164,19 @@ enum {
    }
 }
 
+#pragma mark RTMSynchronizerDelegate
+
+
+- (void) didUpdate
+{
+   // dismiss the progress view
+   [self reloadTableView];
+}
+
 - (void) didReplaceAll
 {
+   // dismiss the progress view
+   [self reloadTableView];
 }
 
 @end
