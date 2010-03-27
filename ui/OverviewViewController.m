@@ -144,7 +144,7 @@ static const int SECTIONS = 4;
 {
    [super viewDidLoad];
    UIBarButtonItem *bbi = [self.toolbarItems objectAtIndex:2];
-   bbi.image = [UIImage imageNamed:@"icon_calendar.png"];
+   bbi.image = [UIImage imageNamed:@"icon_overview.png"];
 }
 
 - (void)viewWillAppear:(BOOL)animated

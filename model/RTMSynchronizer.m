@@ -382,8 +382,9 @@
 {
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
+   RTMAPI *api = [[RTMAPI alloc] init];
    self.timeLine = [api createTimeline];
+   [api release];
 
    [self replaceLists];
    [self replaceTasks];
@@ -399,8 +400,9 @@
    NSLog(@"update");
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
+   RTMAPI *api = [[RTMAPI alloc] init];
    self.timeLine = [api createTimeline];
+   [api release];
 
    //refreshButton.enabled = NO;
    //[self showDialog];
