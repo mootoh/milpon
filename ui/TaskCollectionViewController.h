@@ -6,9 +6,11 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
+#import "RootViewController.h"
+
 @protocol TaskCollection;
 
-@interface TaskCollectionViewController : UITableViewController
+@interface TaskCollectionViewController : RootViewController
 {
    NSObject <TaskCollection> *collector;
    NSArray *collection;

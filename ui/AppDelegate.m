@@ -13,13 +13,14 @@
 #import "RTMList.h"
 #import "AuthViewController.h"
 #import "AddTaskViewController.h"
-#import "RootMenuViewController.h"
 #import "OverviewViewController.h"
 #import "LocalCache.h"
 #import "logger.h"
 #import "TaskProvider.h"
 #import "ListProvider.h"
 #import "MilponHelper.h"
+#import "TaskCollectionViewController.h"
+#import "TaskCollection.h"
 
 @interface AppDelegate (Private)
 - (UIViewController *) recoverViewController;
@@ -147,6 +148,63 @@ enum {
    UIViewController *vc = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];   
    [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:NO];
 }
+
+- (IBAction) showInfo
+{
+   // TODO: use in-app mail
+   NSString *subject = [NSString stringWithFormat:@"subject=Milpon Feedback"];
+   NSString *mailto = [NSString stringWithFormat:@"mailto:mootoh@gmail.com?%@", [subject stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+   NSURL *url = [NSURL URLWithString:mailto];
+   [[UIApplication sharedApplication] openURL:url];
+   return;
+}
+
+#pragma mark switch views
+
+- (void) switchToOverview
+{
+   // if already overview
+   //   skip
+   // transit to overview
+   OverviewViewController *vc = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];
+   [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:YES];
+   [vc release];
+}
+
+- (void) switchToList
+{
+   // if already list
+   //   skip
+   // transit to list
+   TaskCollectionViewController *vc = [[TaskCollectionViewController alloc] initWithStyle:UITableViewStylePlain];
+   ListTaskCollection *collector = [[ListTaskCollection alloc] init];
+   [(TaskCollectionViewController *)vc setCollector:collector];
+   
+   //vc.title = @"List";
+   UIImageView *iv = [[UIImageView alloc] initWithImage:[[[UIImage alloc] initWithContentsOfFile:
+                                                          [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]] autorelease]];
+   vc.navigationItem.titleView = iv;
+   [collector release];
+   [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:YES];
+   [vc release];
+}
+
+- (void) switchToTag
+{
+   TaskCollectionViewController *vc = [[TaskCollectionViewController alloc] initWithStyle:UITableViewStylePlain];
+   TagTaskCollection *collector = [[TagTaskCollection alloc] init];
+   [(TaskCollectionViewController *)vc setCollector:collector];
+   //vc.title = @"Tag";
+   UIImageView *iv = [[UIImageView alloc] initWithImage:[[[UIImage alloc] initWithContentsOfFile:
+                                                          [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]] autorelease]];
+   vc.navigationItem.titleView = iv;
+   
+   [collector release];
+   [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:YES];
+   [vc release];
+}   
+
+#pragma mark Sync
 
 - (IBAction) update
 {

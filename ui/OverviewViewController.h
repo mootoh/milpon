@@ -7,8 +7,9 @@
 //
 
 #import "ReloadableTableViewController.h"
+#import "RootViewController.h"
 
-@interface OverviewViewController : UITableViewController <ReloadableTableViewControllerProtocol>
+@interface OverviewViewController : RootViewController
 {
    NSArray *headers;
    NSArray *tasks;

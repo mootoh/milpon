@@ -23,7 +23,8 @@
 
 #pragma mark Table view methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
@@ -81,7 +82,7 @@
    [ctrl release];
 }
 
-- (void)dealloc
+- (void) dealloc
 {
    [collection release];
    [super dealloc];

@@ -7,11 +7,12 @@
 //
 
 #import "ReloadableTableViewController.h"
+#import "RootViewController.h"
 
 @class RTMList;
 @protocol Collection;
 
-@interface TaskListViewController : UITableViewController <ReloadableTableViewControllerProtocol>
+@interface TaskListViewController : RootViewController
 {
    //RTMList *list;
    NSArray *tasks;
