@@ -85,6 +85,9 @@
    // Push the detail view controller
    [[self navigationController] pushViewController:ctrl animated:YES];
    [ctrl release];
+   
+   AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+   [appDelegate hideArrow];
 }
 
 /*

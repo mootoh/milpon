@@ -138,6 +138,8 @@ static const int SECTIONS = 4;
 
    [[self navigationController] pushViewController:ctrl animated:YES];
    [ctrl release];
+   AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+   [appDelegate hideArrow];
 }
 
 - (void) viewDidLoad

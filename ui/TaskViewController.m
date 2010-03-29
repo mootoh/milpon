@@ -217,6 +217,8 @@ enum {
       [tvc.tableView reloadData];
    }
    [super viewWillDisappear:animated];
+   AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+   [appDelegate showArrow];
 }
 
 - (void) setPriorityButton

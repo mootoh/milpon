@@ -115,7 +115,7 @@ const CGFloat arrowY = 480-44-3;
    [window addSubview:progressView];
    
    arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
-   [window addSubview:arrowImageView];
+   [navigationController.view addSubview:arrowImageView];
    arrowImageView.center = CGPointMake(arrowXs[0], arrowY);
    
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // get the settings prefs
@@ -355,6 +355,24 @@ enum {
    [refreshingViewController release];
    refreshingViewController = nil;
    [self reloadTableView];
+}
+
+# pragma mark others
+
+- (void) showArrow
+{
+   arrowImageView.alpha = 0.0f;
+   [UIView beginAnimations:@"showArrow" context:nil];
+   arrowImageView.alpha = 1.0f;
+   [UIView commitAnimations];
+}
+
+- (void) hideArrow
+{
+   arrowImageView.alpha = 1.0f;
+   [UIView beginAnimations:@"showArrow" context:nil];
+   arrowImageView.alpha = 0.0f;
+   [UIView commitAnimations];
 }
 
 @end

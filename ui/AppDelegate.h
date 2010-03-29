@@ -11,6 +11,7 @@
 @class RTMAuth;
 @class ProgressView;
 @class RefreshingViewController;
+@protocol RTMSynchronizerDelegate;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate, RTMSynchronizerDelegate>
 {	
@@ -30,5 +31,8 @@
 - (IBAction) addTask;
 - (IBAction) update;
 - (IBAction) replaceAll;
+
+- (void) showArrow;
+- (void) hideArrow;
 
 @end

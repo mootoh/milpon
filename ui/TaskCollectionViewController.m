@@ -10,6 +10,7 @@
 #import "TaskCollection.h"
 #import "TaskListViewController.h"
 #import "Collection.h"
+#import "AppDelegate.h"
 
 @implementation TaskCollectionViewController
 
