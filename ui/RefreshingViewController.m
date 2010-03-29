@@ -15,7 +15,7 @@
 - (void)viewDidLoad
 {
    [super viewDidLoad];
-   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRefreshed) name:@"didFetchAll" object:nil];
+//   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRefreshed) name:@"didFetchAll" object:nil];
    [activityIndicatorView startAnimating];
 }
 
@@ -29,20 +29,15 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+   AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
    [super viewWillAppear:animated];
    self.view.alpha = 0.0f;
    [UIView beginAnimations:@"refreshingAnimation" context:nil];
-   [UIView setAnimationDelegate:self];
-   [UIView setAnimationDidStopSelector:@selector(refreshingStop:finished:context:)];
+   [UIView setAnimationDelegate:appDelegate];
+   [UIView setAnimationDidStopSelector:@selector(refreshingViewAnimation:finished:context:)];
    self.view.alpha = 0.8f;
    self.view.backgroundColor = [UIColor blackColor];
    [UIView commitAnimations];
-}
-
-- (void)refreshingStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
-{
-   AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-   [appDelegate.syncer replaceAll];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,7 +65,8 @@
                                                  
 - (void)refreshedStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
-   [self dismissModalViewControllerAnimated:NO];
+   //[self dismissModalViewControllerAnimated:NO];
+   [self.view removeFromSuperview];
 }
 
 @end

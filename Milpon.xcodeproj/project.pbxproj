@@ -35,6 +35,8 @@
 		92D2213D115E41B40074E93A /* icon_overview.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D2213C115E41B40074E93A /* icon_overview.png */; };
 		92D22153115E44B10074E93A /* icon_tag_toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D22152115E44B10074E93A /* icon_tag_toolbar.png */; };
 		92D22168115E46310074E93A /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D22167115E46310074E93A /* arrow.png */; };
+		92D225CA11602D530074E93A /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D225C811602D530074E93A /* InfoViewController.m */; };
+		92D225CB11602D530074E93A /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92D225C911602D530074E93A /* InfoViewController.xib */; };
 		92D3D16D1159B2F4004623F8 /* RefreshingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D3D16B1159B2F4004623F8 /* RefreshingViewController.m */; };
 		92D3D16E1159B2F4004623F8 /* RefreshingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92D3D16C1159B2F4004623F8 /* RefreshingViewController.xib */; };
 		92E4AAA7102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
@@ -169,6 +171,9 @@
 		92D2213C115E41B40074E93A /* icon_overview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_overview.png; sourceTree = "<group>"; };
 		92D22152115E44B10074E93A /* icon_tag_toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tag_toolbar.png; sourceTree = "<group>"; };
 		92D22167115E46310074E93A /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		92D225C711602D530074E93A /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		92D225C811602D530074E93A /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		92D225C911602D530074E93A /* InfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
 		92D3D16A1159B2F4004623F8 /* RefreshingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingViewController.h; sourceTree = "<group>"; };
 		92D3D16B1159B2F4004623F8 /* RefreshingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshingViewController.m; sourceTree = "<group>"; };
 		92D3D16C1159B2F4004623F8 /* RefreshingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefreshingViewController.xib; sourceTree = "<group>"; };
@@ -512,8 +517,6 @@
 				B9160EE40F565D1500473A95 /* ListSelectViewController.h */,
 				B9160EE50F565D1500473A95 /* ListSelectViewController.m */,
 				B9160EEC0F565D1500473A95 /* ReloadableTableViewController.h */,
-				B9160FBA0F565DB600473A95 /* PriorityImageView.h */,
-				B9160FBB0F565DB600473A95 /* PriorityImageView.m */,
 				B9160FBC0F565DB600473A95 /* ProgressView.h */,
 				B9160FBD0F565DB600473A95 /* ProgressView.m */,
 				B9160FC00F565DB600473A95 /* TaskEditCell.h */,
@@ -521,6 +524,9 @@
 				92D3D16A1159B2F4004623F8 /* RefreshingViewController.h */,
 				92D3D16B1159B2F4004623F8 /* RefreshingViewController.m */,
 				92D3D16C1159B2F4004623F8 /* RefreshingViewController.xib */,
+				92D225C711602D530074E93A /* InfoViewController.h */,
+				92D225C811602D530074E93A /* InfoViewController.m */,
+				92D225C911602D530074E93A /* InfoViewController.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -740,6 +746,8 @@
 				B9160EF20F565D1500473A95 /* TaskViewController.m */,
 				B926C44A0F67812F0014DB7D /* AttributeView.h */,
 				B926C44B0F67812F0014DB7D /* AttributeView.m */,
+				B9160FBA0F565DB600473A95 /* PriorityImageView.h */,
+				B9160FBB0F565DB600473A95 /* PriorityImageView.m */,
 			);
 			name = "task view";
 			sourceTree = "<group>";
@@ -920,6 +928,7 @@
 				92D2213D115E41B40074E93A /* icon_overview.png in Resources */,
 				92D22153115E44B10074E93A /* icon_tag_toolbar.png in Resources */,
 				92D22168115E46310074E93A /* arrow.png in Resources */,
+				92D225CB11602D530074E93A /* InfoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1023,6 +1032,7 @@
 				B93B8324114D0BB900C8B833 /* DataModel.xcdatamodel in Sources */,
 				92D3D16D1159B2F4004623F8 /* RefreshingViewController.m in Sources */,
 				92D21ED4115DF8080074E93A /* RootViewController.m in Sources */,
+				92D225CA11602D530074E93A /* InfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

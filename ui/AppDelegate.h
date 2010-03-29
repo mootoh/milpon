@@ -10,6 +10,7 @@
 
 @class RTMAuth;
 @class ProgressView;
+@class RefreshingViewController;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate, RTMSynchronizerDelegate>
 {	
@@ -19,6 +20,7 @@
    RTMSynchronizer                 *syncer;
    ProgressView                    *progressView;
    UIImageView                     *arrowImageView;
+   RefreshingViewController        *refreshingViewController;
 }
 
 @property (nonatomic, retain) UIWindow *window;
@@ -27,5 +29,6 @@
 
 - (IBAction) addTask;
 - (IBAction) update;
+- (IBAction) replaceAll;
 
 @end

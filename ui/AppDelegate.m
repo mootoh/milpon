@@ -22,6 +22,8 @@
 #import "TaskCollectionViewController.h"
 #import "TaskCollection.h"
 #import "ProgressView.h"
+#import "InfoViewController.h"
+#import "RefreshingViewController.h"
 
 @interface AppDelegate (Private)
 - (UIViewController *) recoverViewController;
@@ -80,12 +82,14 @@ const CGFloat arrowY = 480-44-3;
          [RTMAPI setToken:auth.token];
       syncer = [[RTMSynchronizer alloc] initWithAuth:auth];
       syncer.delegate = self;
+      refreshingViewController = nil;
    }
    return self;
 }
 
 - (void) dealloc
 {
+   [refreshingViewController release];
    [arrowImageView release];
    [progressView release];
    [navigationController release];
@@ -172,12 +176,11 @@ enum {
 
 - (IBAction) showInfo
 {
-   // TODO: use in-app mail
-   NSString *subject = [NSString stringWithFormat:@"subject=Milpon Feedback"];
-   NSString *mailto = [NSString stringWithFormat:@"mailto:mootoh@gmail.com?%@", [subject stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-   NSURL *url = [NSURL URLWithString:mailto];
-   [[UIApplication sharedApplication] openURL:url];
-   return;
+   InfoViewController *ivc = [[InfoViewController alloc] initWithStyle:UITableViewStyleGrouped];
+   UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:ivc];
+   [navigationController presentModalViewController:nc animated:YES];
+   [nc release];
+   [ivc release];
 }
 
 #pragma mark switch views
@@ -286,6 +289,14 @@ enum {
    [window setNeedsDisplay];
 }
 
+- (void) showFetchAllModal
+{
+   NSAssert(refreshingViewController == nil, @"state check");
+   refreshingViewController = [[RefreshingViewController alloc] initWithNibName:@"RefreshingViewController" bundle:nil];
+   [window addSubview:refreshingViewController.view];
+   [refreshingViewController.view setNeedsDisplay];
+}
+
 - (IBAction) update
 {
    if (! [syncer is_reachable]) return;
@@ -298,7 +309,13 @@ enum {
 - (IBAction) replaceAll
 {
    if (! [syncer is_reachable]) return;
-   [syncer replaceAll];
+   [self showFetchAllModal];
+   //[syncer replaceAll];
+}
+
+- (void)refreshingViewAnimation:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
+{
+   [syncer performSelectorInBackground:@selector(replaceAll) withObject:nil];
 }
 
 - (void) reloadTableView
@@ -322,7 +339,9 @@ enum {
 
 - (void) didReplaceAll
 {
-   // dismiss the progress view
+   [refreshingViewController didRefreshed];
+   [refreshingViewController release];
+   refreshingViewController = nil;
    [self reloadTableView];
 }
 

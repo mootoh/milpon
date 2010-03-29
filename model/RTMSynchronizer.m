@@ -398,10 +398,6 @@
 - (void) update:(ProgressView *)progressView
 {
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
-   //refreshButton.enabled = NO;
-   //[self showDialog];
-
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updated) name:@"updateOperationFinished" object:nil];
    [self performSelectorInBackground:@selector(updateOperation:) withObject:progressView];
 }
@@ -444,14 +440,6 @@
       [tvc reloadFromDB];
       [tvc.tableView reloadData];
    }
-}
-
-- (void) showFetchAllModal
-{
-   RefreshingViewController *vc = [[RefreshingViewController alloc] initWithNibName:@"RefreshingViewController" bundle:nil];
-   vc.rootMenuViewController = self;
-   [self.view.window addSubview:vc.view];
-   [vc.view setNeedsDisplay];
 }
 
 #endif // 0
