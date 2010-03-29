@@ -164,7 +164,12 @@ enum {
 
    if ([navigationController.topViewController isKindOfClass:[TaskListViewController class]]) {
       TaskListViewController *tlvc = (TaskListViewController *)navigationController.topViewController;
-      atvController.list = (RTMList *)tlvc.collection;
+      id item = tlvc.collection;
+      if ([item isKindOfClass:[RTMList class]]) {
+         atvController.list = (RTMList *)tlvc.collection;
+      } else { // tag
+         [atvController.tags addObject:(RTMTag *)tlvc.collection];
+      }
    }
 
    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:atvController];
