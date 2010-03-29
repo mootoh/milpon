@@ -24,6 +24,7 @@
 #import "ProgressView.h"
 #import "InfoViewController.h"
 #import "RefreshingViewController.h"
+#import "TaskListViewController.h"
 
 @interface AppDelegate (Private)
 - (UIViewController *) recoverViewController;
@@ -160,6 +161,12 @@ enum {
 - (IBAction) addTask
 {
    AddTaskViewController *atvController = [[AddTaskViewController alloc] initWithStyle:UITableViewStylePlain];
+
+   if ([navigationController.topViewController isKindOfClass:[TaskListViewController class]]) {
+      TaskListViewController *tlvc = (TaskListViewController *)navigationController.topViewController;
+      atvController.list = (RTMList *)tlvc.collection;
+   }
+
    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:atvController];
    [navigationController presentModalViewController:navc animated:NO];
    [navc release];
