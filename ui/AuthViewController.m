@@ -181,7 +181,7 @@
 
 - (void) didReplaceAll
 {
-   NSLog(@"didReplaceAll");
+   LOG(@"didReplaceAll");
    instructionLabel.text = @"Done!";
    [self performSelector:@selector(backToRootMenu) withObject:nil afterDelay:1.0f];
 }

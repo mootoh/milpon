@@ -397,12 +397,7 @@
 
 - (void) update:(ProgressView *)progressView
 {
-   NSLog(@"update");
    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
-   RTMAPI *api = [[RTMAPI alloc] init];
-   self.timeLine = [api createTimeline];
-   [api release];
 
    //refreshButton.enabled = NO;
    //[self showDialog];
@@ -416,6 +411,11 @@
 - (void) updateOperation:(ProgressView *)pv
 {
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+   RTMAPI *api = [[RTMAPI alloc] init];
+   self.timeLine = [api createTimeline];
+   [api release];
+
    [self uploadPendingTasks:pv];
    [self syncModifiedTasks:pv];
    [self syncTasks:pv];
