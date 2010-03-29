@@ -216,6 +216,7 @@ enum {
       [tvc reloadFromDB];
       [tvc.tableView reloadData];
    }
+   [super viewWillDisappear:animated];
 }
 
 - (void) setPriorityButton

@@ -60,7 +60,7 @@
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-   [super viewDidAppear:animated];
+   [super viewWillAppear:animated];
    self.navigationItem.rightBarButtonItem = nil;
 }
 
