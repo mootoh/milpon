@@ -119,7 +119,7 @@ const CGFloat arrowY = 480-44-3;
    
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // get the settings prefs
    if ([defaults boolForKey:@"pref_sync_at_start"] && [self authorized])
-      [syncer update:progressView];
+      [self update];
 
    [window makeKeyAndVisible];
 }
