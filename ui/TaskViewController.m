@@ -68,6 +68,7 @@ enum {
 - (void) viewDidLoad
 {
    self.title = task.name;
+   self.navigationController.toolbarHidden = YES;
 
 /*
    name.text = task.name;
@@ -216,9 +217,12 @@ enum {
       [tvc reloadFromDB];
       [tvc.tableView reloadData];
    }
-   [super viewWillDisappear:animated];
+
+   self.navigationController.toolbarHidden = NO;
    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
    [appDelegate showArrow];
+
+   [super viewWillDisappear:animated];
 }
 
 - (void) setPriorityButton
