@@ -13,4 +13,4 @@ New BSD.
 
 ----
 
-[http://twitter.com/](mootoh)
+[http://twitter.com/mootoh](@mootoh)
