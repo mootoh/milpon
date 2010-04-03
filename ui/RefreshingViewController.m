@@ -29,8 +29,6 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-   [super viewWillAppear:animated];
-
    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
    self.view.alpha = 0.0f;
    [UIView beginAnimations:@"refreshingAnimation" context:nil];
@@ -39,7 +37,8 @@
    self.view.alpha = 0.8f;
    self.view.backgroundColor = [UIColor blackColor];
    [UIView commitAnimations];
-   [self viewWillAppear:animated];
+
+   [super viewWillAppear:animated];   
 }
 
 - (void)didReceiveMemoryWarning
