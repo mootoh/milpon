@@ -7,6 +7,8 @@
  *
  */
 
+#define MILPON_VERSION  @"2.5"
+
 @protocol TaskEditDelegate
 
 - (void) setDue:(NSDate *)date;

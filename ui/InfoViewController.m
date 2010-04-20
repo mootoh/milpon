@@ -9,6 +9,7 @@
 #import "InfoViewController.h"
 #import "AppDelegate.h"
 #import "DCSatisfactionRemoteViewController.h"
+#import "Milpon.h"
 
 @interface InfoViewController (Private)
 - (void) sendFeedbackMail;
@@ -40,7 +41,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 3;
+    return 4;
 }
 
 
@@ -63,6 +64,9 @@
          break;
       case 2:
          cell.textLabel.text = @"Clear Cache";
+         break;
+      case 3:
+         cell.textLabel.text = [NSString stringWithFormat:@"Version: %@", MILPON_VERSION];
       default:
          break;
    }
@@ -88,10 +92,14 @@
       case 2: {
          AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
          [appDelegate replaceAll];
+         break;
       }
+      case 3:
+         break;
       default:
          break;
    }
+   [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark -

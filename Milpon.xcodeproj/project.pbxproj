@@ -1789,7 +1789,7 @@
 				INFOPLIST_FILE = others/Info.plist;
 				PRODUCT_NAME = Milpon;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1.3;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
@@ -1797,79 +1797,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = others/Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Motohiro Takayama";
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
 				INFOPLIST_FILE = others/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 2.0;
 				PRODUCT_NAME = Milpon;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BFA52439-DF9F-48CC-9EB0-D9030562ECE3";
-				SDKROOT = iphoneos3.1.3;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
-		};
-		927A61D511381779005B4548 /* Test */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_VERSION = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1.3;
-			};
-			name = Test;
-		};
-		927A61D611381779005B4548 /* Test */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama";
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				INFOPLIST_FILE = others/Info.plist;
-				PRODUCT_NAME = Milpon;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E292CD0F-BF12-41CA-BE5D-A042C4C437A3";
-				SDKROOT = iphoneos3.1.3;
-			};
-			name = Test;
-		};
-		927A61D811381779005B4548 /* Test */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "UnitTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PLIST_FILE_OUTPUT_FORMAT = "same-as-input";
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = iphonesimulator3.1.3;
-				STRINGS_FILE_OUTPUT_ENCODING = "UTF-16";
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = Test;
 		};
 		92F7184D114E204D00925BB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1931,33 +1870,6 @@
 				ZERO_LINK = NO;
 			};
 			name = Release;
-		};
-		92F7184F114E204D00925BB6 /* Test */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "UnitTest-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				SDKROOT = iphonesimulator3.1.3;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Test;
 		};
 		92F71850114E204D00925BB6 /* UnitTest */ = {
 			isa = XCBuildConfiguration;
@@ -2111,24 +2023,25 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 2.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1.3;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -2149,7 +2062,6 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-				927A61D611381779005B4548 /* Test */,
 				B97AA0310F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2160,7 +2072,6 @@
 			buildConfigurations = (
 				92F7184D114E204D00925BB6 /* Debug */,
 				92F7184E114E204D00925BB6 /* Release */,
-				92F7184F114E204D00925BB6 /* Test */,
 				92F71850114E204D00925BB6 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2171,7 +2082,6 @@
 			buildConfigurations = (
 				B9B77FAF0F56A31500BF0EF3 /* Debug */,
 				B9B77FB00F56A31500BF0EF3 /* Release */,
-				927A61D811381779005B4548 /* Test */,
 				B97AA0320F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2182,7 +2092,6 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
-				927A61D511381779005B4548 /* Test */,
 				B97AA0300F9FEB70004A23E3 /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
