@@ -52,7 +52,7 @@
       vc = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];
    }
    NSAssert(vc, @"check ViewController");
-   return vc;
+   return [vc autorelease];
 }
 
 @end // AppDelegate (Private)
@@ -106,7 +106,6 @@ const CGFloat arrowY = 480-44-3;
 {
    UIViewController *rootViewController = [self recoverViewController];
    navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-   [rootViewController release];   
 
    navigationController.navigationBar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
    [window addSubview:navigationController.view];
@@ -192,6 +191,7 @@ enum {
 
    UIViewController *vc = [[OverviewViewController alloc] initWithStyle:UITableViewStylePlain];   
    [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:NO];
+   [vc release];
 }
 
 - (IBAction) showInfo

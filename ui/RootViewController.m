@@ -46,6 +46,8 @@
    self.navigationController.toolbar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
    [self.navigationController setToolbarHidden:NO];
    [addButton release];
+   [listButton release];
+   [tagButton release];
    [overviewButton release];
    [tightSpace release];
    [flexibleSpace release];

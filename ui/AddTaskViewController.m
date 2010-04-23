@@ -190,6 +190,7 @@ enum {
             label = [[UILabel alloc] initWithFrame:CGRectMake(30, 2, 220, 36)];
             label.tag = LABEL_TAG;
             [cell.contentView addSubview:label];
+            [label release];
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
          } else {

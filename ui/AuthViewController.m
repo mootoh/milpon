@@ -221,7 +221,7 @@
    // authorize it
    NSString *authorize_yes = [webView stringByEvaluatingJavaScriptFromString:@"var authorize_yes = document.getElementById('authorize_yes'); authorize_yes ? 'yes' : '';"];
    if (! [authorize_yes isEqualToString:@""] && state == STATE_USERINFO_ENTERED) {
-      result = [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms[0]; form ? 'form exist' : 'form not';"];
+      [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms[0]; form ? 'form exist' : 'form not';"];
 //      result = [webView stringByEvaluatingJavaScriptFromString:@"var form = document.forms.length; form;"];      
 //      
 //      NSLog(@"form count= %@", result);
