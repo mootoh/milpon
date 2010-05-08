@@ -32,6 +32,7 @@ static UIImage *s_checkedIcon = nil;
       self.all_tags = [[tag_provider tags] sortedArrayUsingSelector:@selector(compareByTagName:)];
       self.title = @"Tags";
       selected_flags = [[NSMutableDictionary alloc] init];
+      selected_tags = nil;
    }
    return self;
 }
@@ -39,6 +40,7 @@ static UIImage *s_checkedIcon = nil;
 - (void)dealloc
 {
    [all_tags release];
+   if (selected_tags) [selected_tags release];
    [selected_flags release];
    [tag_provider release];
    [super dealloc];

@@ -77,7 +77,9 @@ const CGFloat arrowY = 480-44-3;
 - (id) init
 {
    if (self = [super init]) {
-      self.auth = [[RTMAuth alloc] init];
+      RTMAuth *ath =[[RTMAuth alloc] init];
+      self.auth = ath;
+      [ath release];
 
       [RTMAPI setApiKey:auth.api_key];
       [RTMAPI setSecret:auth.shared_secret];
@@ -233,11 +235,11 @@ enum {
    TaskCollectionViewController *vc = [[TaskCollectionViewController alloc] initWithStyle:UITableViewStylePlain];
    ListTaskCollection *collector = [[ListTaskCollection alloc] init];
    [(TaskCollectionViewController *)vc setCollector:collector];
+   [collector release];
 
    UIImageView *iv = [[UIImageView alloc] initWithImage:[[[UIImage alloc] initWithContentsOfFile:
                                                           [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]] autorelease]];
    vc.navigationItem.titleView = iv;
-   [collector release];
    [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:YES];
    [vc release];
    
@@ -256,12 +258,12 @@ enum {
    TaskCollectionViewController *vc = [[TaskCollectionViewController alloc] initWithStyle:UITableViewStylePlain];
    TagTaskCollection *collector = [[TagTaskCollection alloc] init];
    [(TaskCollectionViewController *)vc setCollector:collector];
+   [collector release];
 
    UIImageView *iv = [[UIImageView alloc] initWithImage:[[[UIImage alloc] initWithContentsOfFile:
                                                           [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_tag.png"]] autorelease]];
    vc.navigationItem.titleView = iv;
    
-   [collector release];
    [navigationController setViewControllers:[NSArray arrayWithObject:vc] animated:YES];
    [vc release];
    

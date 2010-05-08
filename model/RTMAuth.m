@@ -42,7 +42,7 @@
    if ([fm fileExistsAtPath:path]) {
       NSMutableData *data = [NSMutableData dataWithContentsOfFile:path];
       NSKeyedUnarchiver *decoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-      self = [decoder decodeObjectForKey:@"auth"];
+      self = [[decoder decodeObjectForKey:@"auth"] retain];
       [decoder finishDecoding];
       [decoder release];
    } else {

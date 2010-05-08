@@ -26,6 +26,7 @@
 {
    [super viewDidLoad];
 
+   collector = nil;
    NSInteger idx = [collector isKindOfClass:[ListTaskCollection class]] ? 4 : 6;
    UIBarButtonItem *bbi = [self.toolbarItems objectAtIndex:idx];
    bbi.image = [UIImage imageNamed:idx == 4 ? @"icon_list_toolbar.png" : @"icon_tag_toolbar.png"];
@@ -94,6 +95,7 @@
 
 - (void) dealloc
 {
+   if (collector) [collector release];
    [collection release];
    [super dealloc];
 }
