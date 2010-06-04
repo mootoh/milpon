@@ -14,11 +14,83 @@
 #define REST_PATH "/services/rest/"
 #define AUTH_PATH "/services/auth/"
 
-@implementation RTMAPI
+@interface RTMAPI (Private)
+/**
+ * construct request path.
+ */
+- (NSString *) path:(NSString *)method withArgs:(NSDictionary *)args;
+/**
+ * sign a request.
+ */
+- (NSString *) sign:(NSString *)method withArgs:(NSDictionary *)args;
+@end
+
+@implementation RTMAPI (Private)
 
 static NSString *s_api_key = nil;
 static NSString *s_shared_secret = nil;
 static NSString *s_token = nil;
+
+- (NSString *) path:(NSString *)method withArgs:(NSDictionary *)args
+{
+   NSMutableString *arg = [NSMutableString string];
+   NSMutableDictionary *args_with_token = [NSMutableDictionary dictionaryWithDictionary:args];
+   if (s_token)
+      [args_with_token setObject:s_token forKey:@"auth_token"];
+   
+   NSEnumerator *enumerator = [args_with_token keyEnumerator];
+   NSString *key;
+   while (key = [enumerator nextObject]) {
+      // escape values
+      id v = [args_with_token objectForKey:key];
+      NSString *val = [v isKindOfClass:[NSString class]] ? v : [v stringValue];
+      val = [val stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; // TODO
+      val = [val stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
+      
+      [arg appendFormat:@"&%@=%@", key, val];
+   }
+   
+   NSString *sig = [self sign:method withArgs:args_with_token];
+   NSString *ret = [NSString
+                    stringWithFormat:@"%s%s?method=%@&api_key=%@&api_sig=%@%@",
+                    RTM_URI, REST_PATH, method, s_api_key, sig, arg];
+   return ret;
+}
+
+- (NSString *)sign:(NSString *)method withArgs:(NSDictionary *)args
+{
+   // append method, api_key
+   NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:args];
+   if (method) [params setObject:method forKey:@"method"];
+   
+   [params setObject:s_api_key forKey:@"api_key"];
+   
+   NSMutableArray *keys = [NSMutableArray arrayWithArray:[params allKeys]];
+   [keys sortUsingSelector:@selector(compare:)];
+   
+   NSString *key;
+   NSMutableString *concat = [NSMutableString stringWithString:s_shared_secret];
+   for (key in keys)
+      [concat appendFormat:@"%@%@", key, [params objectForKey:key]];
+   
+   // MD5 hash
+   unsigned char digest[CC_MD5_DIGEST_LENGTH];
+   memset(digest, 0, CC_MD5_DIGEST_LENGTH);
+   const char *from = [concat UTF8String];
+   CC_MD5(from, strlen(from), digest);
+   NSString *ret = [NSString stringWithFormat:
+                    @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+                    digest[0], digest[1], digest[2], digest[3],
+                    digest[4], digest[5], digest[6], digest[7],
+                    digest[8], digest[9], digest[10], digest[11],
+                    digest[12], digest[13], digest[14], digest[15]];
+   return ret;
+}
+
+@end
+
+
+@implementation RTMAPI
 
 + (void) setApiKey:(NSString *)key
 {
@@ -114,62 +186,6 @@ static NSString *s_token = nil;
 #endif // DUMP_API_RESPONSE
    return ret;
 #endif // LOCAL_DEBUG
-}
-
-- (NSString *) path:(NSString *)method withArgs:(NSDictionary *)args
-{
-   NSMutableString *arg = [NSMutableString string];
-   NSMutableDictionary *args_with_token = [NSMutableDictionary dictionaryWithDictionary:args];
-   if (s_token)
-      [args_with_token setObject:s_token forKey:@"auth_token"];
-
-   NSEnumerator *enumerator = [args_with_token keyEnumerator];
-   NSString *key;
-   while (key = [enumerator nextObject]) {
-      // escape values
-      id v = [args_with_token objectForKey:key];
-      NSString *val = [v isKindOfClass:[NSString class]] ? v : [v stringValue];
-      val = [val stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; // TODO
-      val = [val stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
-
-      [arg appendFormat:@"&%@=%@", key, val];
-   }
-
-   NSString *sig = [self sign:method withArgs:args_with_token];
-   NSString *ret = [NSString
-      stringWithFormat:@"%s%s?method=%@&api_key=%@&api_sig=%@%@",
-      RTM_URI, REST_PATH, method, s_api_key, sig, arg];
-   return ret;
-}
-
-- (NSString *)sign:(NSString *)method withArgs:(NSDictionary *)args
-{
-   // append method, api_key
-   NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:args];
-   if (method) [params setObject:method forKey:@"method"];
-
-   [params setObject:s_api_key forKey:@"api_key"];
-
-   NSMutableArray *keys = [NSMutableArray arrayWithArray:[params allKeys]];
-   [keys sortUsingSelector:@selector(compare:)];
-
-   NSString *key;
-   NSMutableString *concat = [NSMutableString stringWithString:s_shared_secret];
-   for (key in keys)
-      [concat appendFormat:@"%@%@", key, [params objectForKey:key]];
-
-   // MD5 hash
-   unsigned char digest[CC_MD5_DIGEST_LENGTH];
-   memset(digest, 0, CC_MD5_DIGEST_LENGTH);
-   const char *from = [concat UTF8String];
-   CC_MD5(from, strlen(from), digest);
-   NSString *ret = [NSString stringWithFormat:
-      @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-      digest[0], digest[1], digest[2], digest[3],
-      digest[4], digest[5], digest[6], digest[7],
-      digest[8], digest[9], digest[10], digest[11],
-      digest[12], digest[13], digest[14], digest[15]];
-   return ret;
 }
 
 // XXX: dup with path:

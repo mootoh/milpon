@@ -5,6 +5,7 @@
 //  Created by mootoh on 9/5/08.
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
+#import <UIKit/UIKit.h>
 
 /**
  * holds authentication information.

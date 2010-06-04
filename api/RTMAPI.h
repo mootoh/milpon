@@ -6,7 +6,7 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * access to RTM Web API.
@@ -30,14 +30,6 @@
  * if error happened in HTTP request, returns nil.
  */
 - (NSData *) call:(NSString *)method withArgs:(NSDictionary *)args;
-/**
- * construct request path.
- */
-- (NSString *) path:(NSString *)method withArgs:(NSDictionary *)args;
-/**
- * sign a request.
- */
-- (NSString *) sign:(NSString *)method withArgs:(NSDictionary *)args;
 /**
  * construct authentication URL.
  */
