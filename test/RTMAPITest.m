@@ -18,7 +18,6 @@
  * RTMAPITest
  */
 @interface RTMAPITest : SenTestCase {
-   RTMAuth *auth;
    RTMAPI *api;
 }
 @end
@@ -27,7 +26,6 @@
 
 - (void) setUp
 {
-   auth = [[RTMAuth alloc] init];
    api  = [[RTMAPI alloc] init];
    [RTMAPI setApiKey:auth.api_key];
    [RTMAPI setSecret:auth.shared_secret];
@@ -37,7 +35,6 @@
 - (void) tearDown
 {
    [api release];
-   [auth release];
 }
 
 - (void) testCall

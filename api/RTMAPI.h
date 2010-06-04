@@ -13,6 +13,8 @@
  */
 @interface RTMAPI : NSObject
 {
+   NSString *token;
+
    enum {
       MP_TIMELINES_CREATE
    } method_;
@@ -20,9 +22,7 @@
    NSString *timeline; //!< for parser
 }
 
-+ (void) setApiKey:(NSString *)key;
-+ (void) setSecret:(NSString *)sec;
-+ (void) setToken:(NSString *)tok;
+@property (nonatomic, retain) NSString *token;
 
 /**
  * call RTM API method with args.

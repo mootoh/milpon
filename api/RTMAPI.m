@@ -9,6 +9,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "RTMAPI.h"
 #import "logger.h"
+#import "PrivateInfo.h"
 
 #define MP_RTM_URI   "http://api.rememberthemilk.com"
 #define MP_REST_PATH "/services/rest/"
@@ -27,16 +28,12 @@
 
 @implementation RTMAPI (Private)
 
-static NSString *s_api_key = nil;
-static NSString *s_shared_secret = nil;
-static NSString *s_token = nil;
-
 - (NSString *) path:(NSString *)method withArgs:(NSDictionary *)args
 {
    NSMutableString                 *arg = [NSMutableString string];
    NSMutableDictionary *args_with_token = [NSMutableDictionary dictionaryWithDictionary:args];
-   if (s_token)
-      [args_with_token setObject:s_token forKey:@"auth_token"];
+   if (token)
+      [args_with_token setObject:token forKey:@"auth_token"];
    
    NSEnumerator *enumerator = [args_with_token keyEnumerator];
    NSString *key;
@@ -53,7 +50,7 @@ static NSString *s_token = nil;
    NSString *sig = [self sign:method withArgs:args_with_token];
    NSString *ret = [NSString
                     stringWithFormat:@"%s%s?method=%@&api_key=%@&api_sig=%@%@",
-                    MP_RTM_URI, MP_REST_PATH, method, s_api_key, sig, arg];
+                    MP_RTM_URI, MP_REST_PATH, method, RTM_API_KEY, sig, arg];
    return ret;
 }
 
@@ -63,13 +60,13 @@ static NSString *s_token = nil;
    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:args];
    if (method) [params setObject:method forKey:@"method"];
    
-   [params setObject:s_api_key forKey:@"api_key"];
+   [params setObject:RTM_API_KEY forKey:@"api_key"];
    
    NSMutableArray *keys = [NSMutableArray arrayWithArray:[params allKeys]];
    [keys sortUsingSelector:@selector(compare:)];
    
    NSString *key;
-   NSMutableString *concat = [NSMutableString stringWithString:s_shared_secret];
+   NSMutableString *concat = [NSMutableString stringWithString:RTM_SHARED_SECRET];
    for (key in keys)
       [concat appendFormat:@"%@%@", key, [params objectForKey:key]];
    
@@ -89,26 +86,21 @@ static NSString *s_token = nil;
 
 @end
 
-
 @implementation RTMAPI
 
-+ (void) setApiKey:(NSString *)key
-{
-   s_api_key = [key retain];
-}
+@synthesize token;
 
-+ (void) setSecret:(NSString *)sec
+- (id) init
 {
-   s_shared_secret = [sec retain];
-}
-
-+ (void) setToken:(NSString *)tok
-{
-   s_token = [tok retain];
+   if (self = [super init]) {
+      self.token = [[NSUserDefaults standardUserDefaults] stringForKey:@"RTM token"];
+   }
+   return self;
 }
 
 - (void) dealloc
 {
+   [token release];
    [timeline release];
    [super dealloc];
 }
@@ -203,7 +195,7 @@ static NSString *s_token = nil;
 
    NSString *sig = [self sign:nil withArgs:args];
    NSString *ret = [NSString stringWithFormat:@"%s%s?api_key=%@%@&api_sig=%@",
-            MP_RTM_URI, MP_AUTH_PATH, s_api_key, arg, sig];
+            MP_RTM_URI, MP_AUTH_PATH, RTM_API_KEY, arg, sig];
    return ret;
 }
 
