@@ -9,23 +9,25 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "RTMAuth.h"
 
-@interface RTMAuthTest : SenTestCase; @end
+@interface RTMAuthTest : SenTestCase
+{
+   RTMAPI *api;
+}
+@end
 
 @implementation RTMAuthTest
 
 - (void) setUp
 {
+   api = [[RTMAPI alloc] init];
 }
 
 - (void) tearDown
 {
+   [api release];
 }
 
-- (void) testCreate
-{
-   RTMAuth *auth = [[[RTMAuth alloc] init] autorelease];
-   STAssertNotNil(auth, @"should be created");
-}
+/*
 
 - (void) testProperties
 {
@@ -35,4 +37,5 @@
    STAssertNotNil(auth.frob, @"frob check");
    STAssertNotNil(auth.token, @"token check");
 }
+ */
 @end

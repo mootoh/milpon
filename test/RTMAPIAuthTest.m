@@ -7,55 +7,55 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "RTMAPIAuth.h"
+#import "RTMAPI+Auth.h"
 #import "RTMAPI.h"
-#import "RTMAuth.h"
+#import "PrivateInfo.h"
 
 #define TEST_FROB @"ec1d083b2e10b554e6c90487328d65ba9312d6e5"
 
-@interface RTMAPIAuthTest : SenTestCase {
-  RTMAuth *auth;
-  RTMAPI *api;
+@interface RTMAPIAuthTest : SenTestCase
+{
+   RTMAPI *api;
 }
 @end
 
 @implementation RTMAPIAuthTest
 
-- (void) setUp
+- (void)setUp
 {
-  auth = [[RTMAuth alloc] init];
-  api  = [[RTMAPI alloc] init];
-  [RTMAPI setApiKey:auth.api_key];
-  [RTMAPI setSecret:auth.shared_secret];
-  [RTMAPI setToken:auth.token];
+   api = [[RTMAPI alloc] init];
 }
 
-- (void) tearDown
+- (void)tearDown
 {
-  [api release];
-  [auth release];
+   [api release];
 }
 
-- (void) testCheckToken
+- (void)testGetFrob
 {
-	RTMAPIAuth *api_auth = [[[RTMAPIAuth alloc] init] autorelease];
-	STAssertTrue([api_auth checkToken:auth.token], @"token should be valid");
-}
-
-- (void) not_testGetFrob
-{
-	RTMAPIAuth *api_auth = [[[RTMAPIAuth alloc] init] autorelease];
-	NSString *frob = [api_auth getFrob];
+	NSString *frob = [api getFrob];
 	STAssertNotNil(frob, @"frob should be acquired.");
 	NSLog(@"frob = %@", frob);
 }
 
-- (void) not_testGetToken
+- (void)_testGetToken
 {
-	RTMAPIAuth *api_auth = [[[RTMAPIAuth alloc] init] autorelease];
-	NSString *token = [api_auth getToken:TEST_FROB];
+	NSString *frob = [api getFrob];
+   NSLog(@"frob for getToken: %@", frob);
+   NSString *url = [api authURL:frob forPermission:@"read"];
+   NSLog(@"auth URL = %@", url);
+    
+   // interruption: authenticate by the URL
+
+   NSString *token = [api getToken:frob];
 	STAssertNotNil(token, @"token should be acquired.");
 	NSLog(@"token = %@", token);
+}
+   
+- (void)testCheckToken
+{
+	STAssertThrows([api checkToken:@"invalid token"], @"token should not be valid");
+	STAssertNoThrow([api checkToken:RTM_TOKEN_R], nil);
 }
 
 @end

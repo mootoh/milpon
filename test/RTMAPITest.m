@@ -109,13 +109,14 @@
 
 - (void) setUp
 {
-   api  = [[RTMAPI alloc] init];
+   api = [[RTMAPI alloc] init];
 }
 
 - (void) tearDown
 {
    [api release];
 }
+
 - (void) testToken
 {
    STAssertNil(api.token, @"token should not be defined");
@@ -136,6 +137,9 @@
 {
    // login with no token will fail
    STAssertThrowsSpecificNamed([api login], NSException, @"RTMAPIException", nil);
+   api.token = RTM_TOKEN_R;
+   STAssertNoThrow([api login], nil);
+   api.token = nil;
 }
 
 - (void) testAuthURL
