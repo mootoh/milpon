@@ -87,11 +87,12 @@
 
 @synthesize token;
 
+#define k_RTM_TOKEN_KEY @"RTM token"
+
 - (id) init
 {
    if (self = [super init]) {
-      self.token = [[NSUserDefaults standardUserDefaults] stringForKey:@"RTM token"];
-      timeline = nil;
+      self.token = [[NSUserDefaults standardUserDefaults] stringForKey:k_RTM_TOKEN_KEY];
    }
    return self;
 }
@@ -99,8 +100,14 @@
 - (void) dealloc
 {
    [token release];
-   [timeline release];
    [super dealloc];
+}
+
+- (void) setToken:(NSString *)tkn
+{
+   [[NSUserDefaults standardUserDefaults] setObject:tkn forKey:k_RTM_TOKEN_KEY];
+   if (token) [token release];
+   token = [tkn retain];
 }
 
 #ifdef LOCAL_DEBUG
@@ -144,9 +151,10 @@
 {
    NSData *response = [self call:method args:args];
    NSAssert(response, @"check response");
+   LOG(@"response = %@", [[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding] autorelease]);
    
    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:response];
-   parser.delegate = self;
+   parser.delegate = delegate;
    if (! [parser parse]) {
       NSString *errorString = [[parser parserError] localizedDescription];
       parser.delegate = nil;
@@ -212,16 +220,43 @@
 
 - (NSString *) createTimeline
 {
-   return (NSString *)[self call:@"rtm.timelines.create" args:nil withDelegate:self];
+   return (NSString *)[self call:@"rtm.timelines.create" args:nil withDelegate:nil];
 }
 
+@end
+
 #pragma mark -
-#pragma mark RTMAPIDelegate
+#pragma mark timeLine
+
+@interface RTMAPITimeLine : NSObject <RTMAPIDelegate>
+{
+   NSString *timeline;
+}
+@end
+
+@implementation RTMAPITimeLine
+
+- (id) init
+{
+   if (self = [super init]) {
+      timeline = nil;
+   }
+   return self;
+}
+
+- (void) dealloc
+{
+   [timeline release];
+   [super dealloc];
+}
 
 - (id) result
 {
    return timeline;
 }
+
+#pragma mark -
+#pragma mark RTMAPIDelegate
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {

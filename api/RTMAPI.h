@@ -17,10 +17,9 @@
 /**
  * access to RTM Web API.
  */
-@interface RTMAPI : NSObject <RTMAPIDelegate>
+@interface RTMAPI : NSObject
 {
    NSString *token;
-   NSString *timeline; //!< for parser
 }
 
 @property (nonatomic, retain) NSString *token;
@@ -42,6 +41,11 @@
  * construct authentication URL.
  */
 - (NSString *) authURL:(NSString *)frob forPermission:(NSString *)perm;
+
+@end
+
+@interface RTMAPI (Timeline)
+
 /**
  * @brief call RTM API 'rtm.timelines.create'.
  * @note  this method is not reentrant.
