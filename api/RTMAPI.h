@@ -26,13 +26,14 @@
 @property (nonatomic, retain) NSString *token;
 
 /**
- * call RTM API method with args.
+ * synchronous call RTM API method with args.
  *
  * if error happened in HTTP request, returns nil.
  */
 - (NSData *) call:(NSString *)method args:(NSDictionary *)args;
 
 /**
+ * synchronous call with delegate, wrapper for call:args.
  * @param delegate XMLParser delegate
  */
 - (id) call:(NSString *)method args:(NSDictionary *)args withDelegate:(id <RTMAPIDelegate>)delegate;
