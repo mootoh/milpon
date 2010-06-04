@@ -28,30 +28,29 @@
 
 @implementation RTMAPI (Private)
 
-- (NSString *) path:(NSString *)method withArgs:(NSDictionary *)args
+- (NSString *)constructwithEscaping:(NSDictionary *)args
 {
-   NSMutableString                 *arg = [NSMutableString string];
-   NSMutableDictionary *args_with_token = [NSMutableDictionary dictionaryWithDictionary:args];
-   if (token)
-      [args_with_token setObject:token forKey:@"auth_token"];
-   
-   NSEnumerator *enumerator = [args_with_token keyEnumerator];
-   NSString *key;
-   while (key = [enumerator nextObject]) {
-      // escape values
-      id v = [args_with_token objectForKey:key];
+   NSMutableString     *arg = [NSMutableString string];
+   for (id key in args) {
+      id v = [args objectForKey:key];
       NSString *val = [v isKindOfClass:[NSString class]] ? v : [v stringValue];
+
+      // escape values
       val = [val stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; // TODO
       val = [val stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
-
+      
       [arg appendFormat:@"&%@=%@", key, val];
    }
+   return arg;
+}
 
+- (NSString *)path:(NSString *)method withArgs:(NSDictionary *)args
+{
+   NSMutableDictionary *args_with_token = [NSMutableDictionary dictionaryWithDictionary:args];
+   if (token) [args_with_token setObject:token forKey:@"auth_token"];
+   NSString *arg = [self constructwithEscaping:args_with_token];
    NSString *sig = [self sign:method withArgs:args_with_token];
-   NSString *ret = [NSString
-                    stringWithFormat:@"%s%s?method=%@&api_key=%@&api_sig=%@%@",
-                    MP_RTM_URI, MP_REST_PATH, method, RTM_API_KEY, sig, arg];
-   return ret;
+   return [NSString stringWithFormat:@"%s%s?method=%@&api_key=%@&api_sig=%@%@", MP_RTM_URI, MP_REST_PATH, method, RTM_API_KEY, sig, arg];
 }
 
 - (NSString *)sign:(NSString *)method withArgs:(NSDictionary *)args
@@ -65,9 +64,8 @@
    NSMutableArray *keys = [NSMutableArray arrayWithArray:[params allKeys]];
    [keys sortUsingSelector:@selector(compare:)];
    
-   NSString *key;
    NSMutableString *concat = [NSMutableString stringWithString:RTM_SHARED_SECRET];
-   for (key in keys)
+   for (NSString *key in keys)
       [concat appendFormat:@"%@%@", key, [params objectForKey:key]];
    
    // MD5 hash
@@ -75,13 +73,12 @@
    memset(digest, 0, CC_MD5_DIGEST_LENGTH);
    const char *from = [concat UTF8String];
    CC_MD5(from, strlen(from), digest);
-   NSString *ret = [NSString stringWithFormat:
-                    @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-                    digest[0], digest[1], digest[2], digest[3],
-                    digest[4], digest[5], digest[6], digest[7],
-                    digest[8], digest[9], digest[10], digest[11],
-                    digest[12], digest[13], digest[14], digest[15]];
-   return ret;
+   return  [NSString stringWithFormat:
+               @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+               digest[0], digest[1], digest[2], digest[3],
+               digest[4], digest[5], digest[6], digest[7],
+               digest[8], digest[9], digest[10], digest[11],
+               digest[12], digest[13], digest[14], digest[15]];
 }
 
 @end
@@ -94,6 +91,7 @@
 {
    if (self = [super init]) {
       self.token = [[NSUserDefaults standardUserDefaults] stringForKey:@"RTM token"];
+      timeline = nil;
    }
    return self;
 }
@@ -142,13 +140,31 @@
 }
 #endif // LOCAL_DEBUG
 
-- (NSData *) call:(NSString *)method withArgs:(NSDictionary *)args
+- (id) call:(NSString *)method args:(NSDictionary *)args withDelegate:(id <RTMAPIDelegate>)delegate
+{
+   NSData *response = [self call:method args:args];
+   NSAssert(response, @"check response");
+   
+   NSXMLParser *parser = [[NSXMLParser alloc] initWithData:response];
+   parser.delegate = self;
+   if (! [parser parse]) {
+      NSString *errorString = [[parser parserError] localizedDescription];
+      parser.delegate = nil;
+      [parser release];
+      [NSException raise:@"APIResponseParserError" format:@"failed in parse: %@", errorString];
+   }
+
+   parser.delegate = nil;
+   [parser release];
+   return [delegate result];
+}
+
+- (NSData *) call:(NSString *)method args:(NSDictionary *)args
 {
 #ifdef LOCAL_DEBUG
    NSString *path = [self resultXMLPath:method];
    return [NSData dataWithContentsOfFile:path];
 #else // LOCAL_DEBUG
-   //sleep(1);
    NSString *url = [self path:method withArgs:args];
    NSURLRequest *req = [NSURLRequest
       requestWithURL:[NSURL URLWithString:url]
@@ -158,14 +174,9 @@
    NSError *err;
 
    LOG(@"API calling for url=%@", url);
-   NSData *ret = [NSURLConnection sendSynchronousRequest:req
-      returningResponse:&res
-      error:&err];
-   if (NULL == ret) {
-      LOG(@"failed in API call: %@, url=%@", [err localizedDescription], url);
-   } else {
-      LOG(@"API call succeeded for url=%@", url);
-   }
+   NSData *ret = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
+   if (NULL == ret)
+      [NSException raise:@"ConnectionError" format:@"failed in API call: %@, url=%@", [err localizedDescription], url];
 
 //#define DUMP_API_RESPONSE
 #ifdef DUMP_API_RESPONSE
@@ -177,7 +188,7 @@
    }
 #endif // DUMP_API_RESPONSE
    return ret;
-#endif // LOCAL_DEBUG
+#endif // ! LOCAL_DEBUG
 }
 
 // XXX: dup with path:
@@ -199,41 +210,23 @@
    return ret;
 }
 
-#ifdef LOCAL_DEBUG
-const static NSString *s_fake_timeline = @"fake timeline";
-#endif // LOCAL_DEBUG
-
 - (NSString *) createTimeline
 {
-#ifdef LOCAL_DEBUG
-   return (NSString *)s_fake_timeline;
-#endif // LOCAL_DEBUG
-
-   NSData *response = [self call:@"rtm.timelines.create" withArgs:nil];
-   if (! response) return nil;
-
-   method_ = MP_TIMELINES_CREATE;
-   NSXMLParser *parser = [[NSXMLParser alloc] initWithData:response];
-   [parser setDelegate:self];
-   BOOL parsed = [parser parse];
-   NSAssert(parsed, @"parse should be done successfully");
-   [parser release];
-
-   return timeline;
+   return (NSString *)[self call:@"rtm.timelines.create" args:nil withDelegate:self];
 }
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
+#pragma mark -
+#pragma mark RTMAPIDelegate
+
+- (id) result
 {
-   if ([elementName isEqualToString:@"timeline"])
-      NSAssert(method_ == MP_TIMELINES_CREATE, @"method should be timelines.create");
+   return timeline;
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-   if ([elementName isEqualToString:@"timeline"]) {
-      NSAssert(method_ == MP_TIMELINES_CREATE, @"method should be timelines.create");
+   if ([elementName isEqualToString:@"timeline"])
       NSAssert(timeline, @"timeline should be obtained");
-   }
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars

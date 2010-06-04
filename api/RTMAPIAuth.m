@@ -77,7 +77,7 @@
 {
   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
   NSDictionary *args = [NSDictionary dictionaryWithObject:token forKey:@"auth_token"];
-  NSData *ret = [api call:@"rtm.auth.checkToken" withArgs:args];
+  NSData *ret = [api call:@"rtm.auth.checkToken" args:args];
   if (! ret) return NO;
 
   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:ret] autorelease];
@@ -98,7 +98,7 @@
 - (NSString *) getFrob
 {
   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-  NSData *ret = [api call:@"rtm.auth.getFrob" withArgs:nil];
+  NSData *ret = [api call:@"rtm.auth.getFrob" args:nil];
   if (! ret) return nil;
 
   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:ret] autorelease];
@@ -116,7 +116,7 @@
 {
   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
   NSDictionary *args = [NSDictionary dictionaryWithObject:frob forKey:@"frob"];
-  NSData *ret = [api call:@"rtm.auth.getToken" withArgs:args];
+  NSData *ret = [api call:@"rtm.auth.getToken" args:args];
   if (! ret) return nil;
 
   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:ret] autorelease];
