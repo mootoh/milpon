@@ -1196,7 +1196,7 @@
 				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "UnitTest-Info.plist";
+				INFOPLIST_FILE = "others/UnitTest-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
