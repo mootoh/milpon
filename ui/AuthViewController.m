@@ -92,7 +92,7 @@
 - (void) failedInAuthorization
 {
    //NSLog(@"faildInAuthorization: state=%d", state);
-   NSAssert(state == STATE_SUBMITTED || state == STATE_USERINFO_ENTERED, @"check state");
+   NSAssert(state == STATE_INITIAL || state == STATE_SUBMITTED || state == STATE_USERINFO_ENTERED, @"check state");
    [webView stopLoading];
    state = STATE_WRONG_PASSWORD;
    

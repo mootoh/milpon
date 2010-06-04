@@ -34,5 +34,4 @@
 
 - (void) showArrow;
 - (void) hideArrow;
-- (IBAction)launchSatisfactionRemoteComponent:(id) sender;
 @end

@@ -8,7 +8,6 @@
 
 #import "InfoViewController.h"
 #import "AppDelegate.h"
-#import "DCSatisfactionRemoteViewController.h"
 #import "Milpon.h"
 
 @interface InfoViewController (Private)
@@ -85,8 +84,7 @@
          [self sendFeedbackMail];
          break;
       case 1: {
-         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-         [appDelegate launchSatisfactionRemoteComponent:self.navigationController];
+         // TODO:
          break;
       }
       case 2: {

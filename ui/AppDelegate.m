@@ -25,7 +25,6 @@
 #import "InfoViewController.h"
 #import "RefreshingViewController.h"
 #import "TaskListViewController.h"
-#import "DCSatisfactionRemoteViewController.h"
 #import "PrivateInfo.h"
 
 @interface AppDelegate (Private)
@@ -130,7 +129,6 @@ const CGFloat arrowY = 480-44-3;
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-   [self launchSatisfactionRemoteComponent:url];
    return YES;
 }
 
@@ -383,27 +381,6 @@ enum {
    [UIView beginAnimations:@"showArrow" context:nil];
    arrowImageView.alpha = 0.0f;
    [UIView commitAnimations];
-}
-
-#pragma mark SatisfactionRemoteComponent
-
-- (IBAction)launchSatisfactionRemoteComponent:(id) sender
-{
-   DCSatisfactionRemoteViewController *remoteViewController = [[DCSatisfactionRemoteViewController alloc] initWithGetSatisfactionOAuthKey:GETSATISFACTION_OAUTHKEY
-                                                               getSatisfactionOAuthSecret:GETSATISFACTION_OAUTHSECRET
-                                                               companyKey:GETSATISFACTION_COMPANY_KEY];
-   remoteViewController.companyName = GETSATISFACTION_COMPANY_NAME;
-   remoteViewController.productId   = GETSATISFACTION_PRODUCT_ID;
-   remoteViewController.productName = GETSATISFACTION_PRODUCT_NAME;
-
-   if ([sender isKindOfClass:[NSURL class]]) {
-      remoteViewController.didReturnFromSafari = YES;
-      [navigationController presentModalViewController:remoteViewController animated:YES];
-   } else {
-      [sender presentModalViewController:remoteViewController animated:YES];
-   }
-
-   [remoteViewController release];
 }
 
 @end
