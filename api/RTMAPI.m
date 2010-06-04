@@ -10,9 +10,9 @@
 #import "RTMAPI.h"
 #import "logger.h"
 
-#define RTM_URI   "http://api.rememberthemilk.com"
-#define REST_PATH "/services/rest/"
-#define AUTH_PATH "/services/auth/"
+#define MP_RTM_URI   "http://api.rememberthemilk.com"
+#define MP_REST_PATH "/services/rest/"
+#define MP_AUTH_PATH "/services/auth/"
 
 @interface RTMAPI (Private)
 /**
@@ -33,7 +33,7 @@ static NSString *s_token = nil;
 
 - (NSString *) path:(NSString *)method withArgs:(NSDictionary *)args
 {
-   NSMutableString *arg = [NSMutableString string];
+   NSMutableString                 *arg = [NSMutableString string];
    NSMutableDictionary *args_with_token = [NSMutableDictionary dictionaryWithDictionary:args];
    if (s_token)
       [args_with_token setObject:s_token forKey:@"auth_token"];
@@ -46,14 +46,14 @@ static NSString *s_token = nil;
       NSString *val = [v isKindOfClass:[NSString class]] ? v : [v stringValue];
       val = [val stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; // TODO
       val = [val stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
-      
+
       [arg appendFormat:@"&%@=%@", key, val];
    }
-   
+
    NSString *sig = [self sign:method withArgs:args_with_token];
    NSString *ret = [NSString
                     stringWithFormat:@"%s%s?method=%@&api_key=%@&api_sig=%@%@",
-                    RTM_URI, REST_PATH, method, s_api_key, sig, arg];
+                    MP_RTM_URI, MP_REST_PATH, method, s_api_key, sig, arg];
    return ret;
 }
 
@@ -203,7 +203,7 @@ static NSString *s_token = nil;
 
    NSString *sig = [self sign:nil withArgs:args];
    NSString *ret = [NSString stringWithFormat:@"%s%s?api_key=%@%@&api_sig=%@",
-            RTM_URI, AUTH_PATH, s_api_key, arg, sig];
+            MP_RTM_URI, MP_AUTH_PATH, s_api_key, arg, sig];
    return ret;
 }
 
@@ -220,7 +220,7 @@ const static NSString *s_fake_timeline = @"fake timeline";
    NSData *response = [self call:@"rtm.timelines.create" withArgs:nil];
    if (! response) return nil;
 
-   method_ = TIMELINES_CREATE;
+   method_ = MP_TIMELINES_CREATE;
    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:response];
    [parser setDelegate:self];
    BOOL parsed = [parser parse];
@@ -233,13 +233,13 @@ const static NSString *s_fake_timeline = @"fake timeline";
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
 {
    if ([elementName isEqualToString:@"timeline"])
-      NSAssert(method_ == TIMELINES_CREATE, @"method should be timelines.create");
+      NSAssert(method_ == MP_TIMELINES_CREATE, @"method should be timelines.create");
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
    if ([elementName isEqualToString:@"timeline"]) {
-      NSAssert(method_ == TIMELINES_CREATE, @"method should be timelines.create");
+      NSAssert(method_ == MP_TIMELINES_CREATE, @"method should be timelines.create");
       NSAssert(timeline, @"timeline should be obtained");
    }
 }

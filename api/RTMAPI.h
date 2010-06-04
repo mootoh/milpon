@@ -14,7 +14,7 @@
 @interface RTMAPI : NSObject
 {
    enum {
-      TIMELINES_CREATE
+      MP_TIMELINES_CREATE
    } method_;
 
    NSString *timeline; //!< for parser
