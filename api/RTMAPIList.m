@@ -9,12 +9,12 @@
 #import "RTMAPIList.h"
 #import "RTMAPI.h"
 #import "RTMList.h"
-#import "RTMAPIXMLParserCallback.h"
+#import "RTMAPIParserDelegate.h"
 
 /* -------------------------------------------------------------------
  * ListGetCallback
  */
-@interface ListGetCallback : RTMAPIXMLParserCallback
+@interface ListGetCallback : RTMAPIParserDelegate
 {
    enum {
       NONE,
@@ -121,7 +121,7 @@
 /* -------------------------------------------------------------------
  * ListAddCallback
  */
-@interface ListAddCallback : RTMAPIXMLParserCallback
+@interface ListAddCallback : RTMAPIParserDelegate
 {
    NSString * iD;
 }
@@ -148,7 +148,7 @@
 /* -------------------------------------------------------------------
  * ListDeleteCallback
  */
-@interface ListDeleteCallback : RTMAPIXMLParserCallback; @end
+@interface ListDeleteCallback : RTMAPIParserDelegate; @end
 
 @implementation ListDeleteCallback
 

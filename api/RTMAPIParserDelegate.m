@@ -6,11 +6,11 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import "RTMAPIXMLParserCallback.h"
+#import "RTMAPIParserDelegate.h"
 #import "RTMError.h"
 
-@implementation RTMAPIXMLParserCallback
-@synthesize succeeded, error;
+@implementation RTMAPIParserDelegate
+@synthesize error;
 
 - (id) init
 {
@@ -27,13 +27,18 @@
       succeeded = [[attributeDict valueForKey:@"stat"] isEqualToString:@"ok"];
    } else if ([elementName isEqualToString:@"err"]) {
       NSAssert(!succeeded, @"stat should be 'fail'");
-      NSDictionary *user_info = [NSDictionary
-         dictionaryWithObject:[attributeDict valueForKey:@"msg"]
-                       forKey:NSLocalizedDescriptionKey];
+      NSDictionary *user_info = [NSDictionary dictionaryWithObject:[attributeDict valueForKey:@"msg"] forKey:NSLocalizedDescriptionKey];
       error = [NSError errorWithDomain:RTMAPIErrorDomain
                                   code:[[attributeDict valueForKey:@"code"] integerValue]
                               userInfo:user_info];
+      [parser abortParsing];
    }
+}
+
+- (id) result
+{
+   NSAssert(NO, @"not reach here!");
+   return nil;
 }
 
 @end

@@ -6,6 +6,8 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
+#import "RTMAPI.h"
+
 typedef enum {
   RTM_PERM_READ,
   RTM_PERM_WRITE,

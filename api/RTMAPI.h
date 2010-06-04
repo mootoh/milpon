@@ -7,15 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@protocol RTMAPIDelegate
-
-- (id) result;
-
-@end
+#import "RTMAPIParserDelegate.h"
 
 /**
- * access to RTM Web API.
+ * access to the RTM REST API.
  */
 @interface RTMAPI : NSObject
 {
@@ -25,31 +20,14 @@
 @property (nonatomic, retain) NSString *token;
 
 /**
- * synchronous call RTM API method with args.
- *
- * if error happened in HTTP request, returns nil.
- */
-- (NSData *) call:(NSString *)method args:(NSDictionary *)args;
-
-/**
  * synchronous call with delegate, wrapper for call:args.
  * @param delegate XMLParser delegate
  */
-- (id) call:(NSString *)method args:(NSDictionary *)args withDelegate:(id <RTMAPIDelegate>)delegate;
+- (id) call:(NSString *)method args:(NSDictionary *)args withDelegate:(RTMAPIParserDelegate *)delegate;
 
 /**
  * construct authentication URL.
  */
 - (NSString *) authURL:(NSString *)frob forPermission:(NSString *)perm;
-
-@end
-
-@interface RTMAPI (Timeline)
-
-/**
- * @brief call RTM API 'rtm.timelines.create'.
- * @note  this method is not reentrant.
- */
-- (NSString *) createTimeline;
 
 @end

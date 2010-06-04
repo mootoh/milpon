@@ -9,10 +9,10 @@
 #import "RTMAPINote.h"
 #import "RTMAPI.h"
 #import "RTMNote.h"
-#import "RTMAPIXMLParserCallback.h"
+#import "RTMAPIParserDelegate.h"
 #import "logger.h"
 
-@interface NoteAddCallback : RTMAPIXMLParserCallback
+@interface NoteAddCallback : RTMAPIParserDelegate
 {
    NSInteger note_id;
 }
@@ -74,7 +74,7 @@
    if (! response) return NO;
 
    NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIXMLParserCallback *cb = [[[RTMAPIXMLParserCallback alloc] init] autorelease];
+   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
@@ -96,7 +96,7 @@
    if (! response) return NO;
    
    NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIXMLParserCallback *cb = [[[RTMAPIXMLParserCallback alloc] init] autorelease];
+   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {

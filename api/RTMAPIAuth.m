@@ -8,13 +8,13 @@
 
 #import "RTMAPI.h"
 #import "RTMAPIAuth.h"
-#import "RTMAPIXMLParserCallback.h"
+#import "RTMAPIParserDelegate.h"
 #import "logger.h"
 
 /* -------------------------------------------------------------------
  * CheckTokenCallback
  */
-@interface CheckTokenCallback : RTMAPIXMLParserCallback {
+@interface CheckTokenCallback : RTMAPIParserDelegate {
   NSString *token;
 }
 @property (nonatomic, retain) NSString *token;
@@ -33,7 +33,7 @@
 /* -------------------------------------------------------------------
  * GetFrobCallback
  */
-@interface GetFrobCallback : RTMAPIXMLParserCallback {
+@interface GetFrobCallback : RTMAPIParserDelegate {
   NSString *frob;
 }
 @property (nonatomic, retain) NSString *frob;
@@ -52,7 +52,7 @@
 /* -------------------------------------------------------------------
  * GetTokenCallback
  */
-@interface GetTokenCallback : RTMAPIXMLParserCallback {
+@interface GetTokenCallback : RTMAPIParserDelegate {
   NSString *token;
 }
 @property (nonatomic, retain) NSString *token;

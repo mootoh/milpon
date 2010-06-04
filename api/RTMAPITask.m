@@ -10,13 +10,13 @@
 #import "RTMAPI.h"
 #import "RTMTask.h"
 #import "RTMNote.h"
-#import "RTMAPIXMLParserCallback.h"
+#import "RTMAPIParserDelegate.h"
 #import "logger.h"
 
 /* -------------------------------------------------------------------
  * TaskGetListCallback
  */
-@interface TaskGetListCallback : RTMAPIXMLParserCallback
+@interface TaskGetListCallback : RTMAPIParserDelegate
 {
    enum state_t {
       TAG,
@@ -160,7 +160,7 @@
 /* -------------------------------------------------------------------
  * TaskListAddCallback
  */
-@interface TaskListAddCallback : RTMAPIXMLParserCallback
+@interface TaskListAddCallback : RTMAPIParserDelegate
 {
    NSMutableDictionary *ids;
 }
@@ -272,7 +272,7 @@
    if (! response) return NO;
 
    NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIXMLParserCallback *cb = [[[RTMAPIXMLParserCallback alloc] init] autorelease];
+   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
@@ -300,7 +300,7 @@
    if (! response) return NO;
 
    NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIXMLParserCallback *cb = [[[RTMAPIXMLParserCallback alloc] init] autorelease];
+   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
@@ -328,7 +328,7 @@
    if (! response) return NO;
 
    NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIXMLParserCallback *cb = [[[RTMAPIXMLParserCallback alloc] init] autorelease];
+   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
@@ -356,7 +356,7 @@
    if (! response) return NO;
 
    NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIXMLParserCallback *cb = [[[RTMAPIXMLParserCallback alloc] init] autorelease];
+   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
@@ -384,7 +384,7 @@
    if (! response) return NO;
 
    NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIXMLParserCallback *cb = [[[RTMAPIXMLParserCallback alloc] init] autorelease];
+   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
@@ -411,7 +411,7 @@
    if (! response) return NO;
 
    NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIXMLParserCallback *cb = [[[RTMAPIXMLParserCallback alloc] init] autorelease];
+   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
@@ -439,7 +439,7 @@
    if (! response) return NO;
    
    NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIXMLParserCallback *cb = [[[RTMAPIXMLParserCallback alloc] init] autorelease];
+   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
@@ -460,7 +460,7 @@
    if (! response) return NO;
    
    NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIXMLParserCallback *cb = [[[RTMAPIXMLParserCallback alloc] init] autorelease];
+   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {
@@ -482,7 +482,7 @@
    if (! response) return NO;
    
    NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIXMLParserCallback *cb = [[[RTMAPIXMLParserCallback alloc] init] autorelease];
+   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
    [parser setDelegate:cb];
    [parser parse];
    if (! cb.succeeded) {

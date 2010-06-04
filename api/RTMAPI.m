@@ -24,6 +24,13 @@
  * sign a request.
  */
 - (NSString *) sign:(NSString *)method withArgs:(NSDictionary *)args;
+
+/**
+ * synchronous call RTM API method with args.
+ *
+ * if error happened in HTTP request, returns nil.
+ */
+- (NSData *) call:(NSString *)method args:(NSDictionary *)args;
 @end
 
 @implementation RTMAPI (Private)
@@ -79,6 +86,39 @@
                digest[4], digest[5], digest[6], digest[7],
                digest[8], digest[9], digest[10], digest[11],
                digest[12], digest[13], digest[14], digest[15]];
+}
+
+
+- (NSData *) call:(NSString *)method args:(NSDictionary *)args
+{
+#ifdef LOCAL_DEBUG
+   NSString *path = [self resultXMLPath:method];
+   return [NSData dataWithContentsOfFile:path];
+#else // LOCAL_DEBUG
+   NSString *url = [self path:method withArgs:args];
+   NSURLRequest *req = [NSURLRequest
+                        requestWithURL:[NSURL URLWithString:url]
+                        cachePolicy:NSURLRequestUseProtocolCachePolicy
+                        timeoutInterval:60.0];
+   NSURLResponse *res;
+   NSError *err;
+   
+   LOG(@"API calling for url=%@", url);
+   NSData *ret = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
+   if (NULL == ret)
+      [NSException raise:@"ConnectionError" format:@"failed in API call: %@, url=%@", [err localizedDescription], url];
+   
+   //#define DUMP_API_RESPONSE
+#ifdef DUMP_API_RESPONSE
+   if (ret) {
+      //NSString *dump_path = [NSString stringWithFormat:@"/tmp/%@.xml", method];
+      //BOOL wrote = [ret writeToFile:dump_path options:NSAtomicWrite error:nil];
+      //NSAssert(wrote, @"dump should be written");
+      LOG(@"method=%@, response=%@", method, [[[NSString alloc] initWithData:ret encoding:NSUTF8StringEncoding] autorelease]);
+   }
+#endif // DUMP_API_RESPONSE
+   return ret;
+#endif // ! LOCAL_DEBUG
 }
 
 @end
@@ -147,7 +187,7 @@
 }
 #endif // LOCAL_DEBUG
 
-- (id) call:(NSString *)method args:(NSDictionary *)args withDelegate:(id <RTMAPIDelegate>)delegate
+- (id) call:(NSString *)method args:(NSDictionary *)args withDelegate:(RTMAPIParserDelegate *)delegate
 {
    NSData *response = [self call:method args:args];
    NSAssert(response, @"check response");
@@ -155,48 +195,24 @@
    
    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:response];
    parser.delegate = delegate;
+   
+   NSException *exception = nil;
+   
    if (! [parser parse]) {
-      NSString *errorString = [[parser parserError] localizedDescription];
-      parser.delegate = nil;
-      [parser release];
-      [NSException raise:@"APIResponseParserError" format:@"failed in parse: %@", errorString];
+      NSInteger errCode = [[parser parserError] code];
+      if (errCode == NSXMLParserInternalError || errCode == NSXMLParserDelegateAbortedParseError) { // rsp error
+         NSAssert(delegate.error, @"error should be set");
+         exception = [NSException exceptionWithName:@"RTMAPIException" reason:[NSString stringWithFormat:@"%d : %@", [delegate.error code], [delegate.error localizedDescription]] userInfo:nil];
+      } else {         
+         NSString *errorString = [[parser parserError] localizedDescription];
+         exception = [NSException exceptionWithName:@"APIResponseParserError" reason:[NSString stringWithFormat:@"failed in parse: %@", errorString] userInfo:nil];
+      }
    }
 
    parser.delegate = nil;
    [parser release];
+   if (exception) [exception raise];
    return [delegate result];
-}
-
-- (NSData *) call:(NSString *)method args:(NSDictionary *)args
-{
-#ifdef LOCAL_DEBUG
-   NSString *path = [self resultXMLPath:method];
-   return [NSData dataWithContentsOfFile:path];
-#else // LOCAL_DEBUG
-   NSString *url = [self path:method withArgs:args];
-   NSURLRequest *req = [NSURLRequest
-      requestWithURL:[NSURL URLWithString:url]
-      cachePolicy:NSURLRequestUseProtocolCachePolicy
-      timeoutInterval:60.0];
-   NSURLResponse *res;
-   NSError *err;
-
-   LOG(@"API calling for url=%@", url);
-   NSData *ret = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
-   if (NULL == ret)
-      [NSException raise:@"ConnectionError" format:@"failed in API call: %@, url=%@", [err localizedDescription], url];
-
-//#define DUMP_API_RESPONSE
-#ifdef DUMP_API_RESPONSE
-   if (ret) {
-      //NSString *dump_path = [NSString stringWithFormat:@"/tmp/%@.xml", method];
-      //BOOL wrote = [ret writeToFile:dump_path options:NSAtomicWrite error:nil];
-      //NSAssert(wrote, @"dump should be written");
-      LOG(@"method=%@, response=%@", method, [[[NSString alloc] initWithData:ret encoding:NSUTF8StringEncoding] autorelease]);
-   }
-#endif // DUMP_API_RESPONSE
-   return ret;
-#endif // ! LOCAL_DEBUG
 }
 
 // XXX: dup with path:
@@ -216,58 +232,6 @@
    NSString *ret = [NSString stringWithFormat:@"%s%s?api_key=%@%@&api_sig=%@",
             MP_RTM_URI, MP_AUTH_PATH, RTM_API_KEY, arg, sig];
    return ret;
-}
-
-- (NSString *) createTimeline
-{
-   return (NSString *)[self call:@"rtm.timelines.create" args:nil withDelegate:nil];
-}
-
-@end
-
-#pragma mark -
-#pragma mark timeLine
-
-@interface RTMAPITimeLine : NSObject <RTMAPIDelegate>
-{
-   NSString *timeline;
-}
-@end
-
-@implementation RTMAPITimeLine
-
-- (id) init
-{
-   if (self = [super init]) {
-      timeline = nil;
-   }
-   return self;
-}
-
-- (void) dealloc
-{
-   [timeline release];
-   [super dealloc];
-}
-
-- (id) result
-{
-   return timeline;
-}
-
-#pragma mark -
-#pragma mark RTMAPIDelegate
-
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-   if ([elementName isEqualToString:@"timeline"])
-      NSAssert(timeline, @"timeline should be obtained");
-}
-
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars
-{
-   [timeline release];
-   timeline = [chars retain];
 }
 
 @end
