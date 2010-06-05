@@ -14,8 +14,8 @@
 		92016B0511B9FB0E00B3D341 /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 923B79F111B9317B00F9B973 /* RTMAPI+Timeline.m */; };
 		92016B4C11BA005300B3D341 /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPI+List.m */; };
 		92016C6111BA181300B3D341 /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPI+Task.m */; };
-		92016C8211BA19DC00B3D341 /* RTMAPITaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */; };
 		92016C8711BA19FF00B3D341 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
+		92016CD711BA508800B3D341 /* RTMAPITaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */; };
 		922C0016101C66EC0029AC32 /* IconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 922C0015101C66EC0029AC32 /* IconSmall.png */; };
 		923B786311B89F7400F9B973 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIParserDelegate.m */; };
 		923B79F311B9317B00F9B973 /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 923B79F111B9317B00F9B973 /* RTMAPI+Timeline.m */; };
@@ -1060,8 +1060,8 @@
 				92016B0511B9FB0E00B3D341 /* RTMAPI+Timeline.m in Sources */,
 				92016B4C11BA005300B3D341 /* RTMAPI+List.m in Sources */,
 				92016C6111BA181300B3D341 /* RTMAPI+Task.m in Sources */,
-				92016C8211BA19DC00B3D341 /* RTMAPITaskTest.m in Sources */,
 				92016C8711BA19FF00B3D341 /* RTMAPI.m in Sources */,
+				92016CD711BA508800B3D341 /* RTMAPITaskTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

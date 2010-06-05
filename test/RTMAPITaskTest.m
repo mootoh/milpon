@@ -35,36 +35,35 @@
 //   [db release];
 }
 
-- (void) testGetList
+- (void) _testGetList
 {
    NSArray *tasks = [api getTaskList];
    STAssertNotNil(tasks, @"task getList should not be nil");		
    STAssertTrue([tasks count] > 0, @"tasks should be one or more.");
    LOG(@"tasks = %@", tasks);
 }
+
+- (void) _testGetListForID
+{
+   NSArray *tasks = [api getTaskList:@"8698547" filter:nil lastSync:nil];
+   STAssertTrue([tasks count] > 0, @"tasks in Inbox should be one or more.");
+}
+
+- (void) _testGetLastSync
+{
+   NSString *lastSync = @"2010-06-05T08:27:05Z";
+   NSArray *tasks = [api getTaskList:nil filter:nil lastSync:lastSync];
+   STAssertTrue([tasks count] > 0, @"tasks from lastSync %@ should be one or more.", lastSync);
+}
+
+- (void) testGetWithFilter
+{
+   NSString *filter = @"isTagged:true";
+   NSArray *tasks = [api getTaskList:nil filter:filter lastSync:nil];
+   STAssertTrue([tasks count] > 0, @"tasks with tag should be one or more.");
+}
+
 #if 0
-- (void) testGetListForID
-{
-   RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
-   STAssertTrue([[api_task getListForList:@"977050"] count] > 0, @"tasks in Inbox should be one or more.");
-}
-
-- (void) testGetListWithLastSync
-{
-   RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
-
-   NSDate *now = [NSDate date];
-   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-   [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-   [formatter setDateFormat:@"yyyy-MM_ddTHH:mm:ssZ"];
-
-   NSString *last_sync = [formatter stringFromDate:now];
-
-   NSArray *tasks = [api_task getListWithLastSync:last_sync];
-   STAssertNotNil(tasks, @"task getListWithLastSync should not be nil");		
-   //STAssertTrue([tasks count] == 0, @"tasks should be zero");
-}
-
 - (void) testTags
 {
    RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];

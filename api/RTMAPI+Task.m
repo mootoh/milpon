@@ -6,33 +6,31 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import "RTMAPI+Task.h"
 #import "RTMAPI.h"
-//#import "RTMTask.h"
-//#import "RTMNote.h"
+#import "RTMAPI+Task.h"
 #import "RTMAPIParserDelegate.h"
 #import "logger.h"
 
-/* -------------------------------------------------------------------
- * TaskGetListCallback
- */
+// -------------------------------------------------------------------
+#pragma mark TaskGetListCallback
 @interface TaskGetListCallback : RTMAPIParserDelegate
 {
    enum state_t {
       TAG,
       NOTE,
-      RRULE
+      RRULE,
+      DELETED
    } mode;
 
-   NSString *list_id;
-   NSMutableArray *tasks;
-   NSMutableArray *tags;
-   NSString *tag;
-   NSMutableArray *notes;
-   NSMutableArray *task_entries;
-   NSMutableDictionary *note;
-   NSString *note_str;
+   NSMutableSet        *taskseriesSet;
+   NSString            *list_id;
    NSMutableDictionary *taskseries;
+   NSMutableArray      *tags;
+   NSMutableArray      *notes;
+   NSMutableArray      *taskEntries;
+   NSMutableDictionary *note;
+   NSMutableDictionary *rrule;
+   NSString            *string;
 }
 @end // TaskGetListCallback
 
@@ -41,28 +39,28 @@
 - (id) init
 {
    if (self = [super init]) {
-      list_id = nil;
-      tasks = [[NSMutableArray alloc] init];
-      tags = nil;
-      tag = nil;
-      notes = nil;
-      task_entries = nil;
-      note = nil;
-      note_str = nil;
-      taskseries = nil;
+      taskseriesSet = [[NSMutableSet alloc] init];
+      list_id       = nil;
+      taskseries    = nil;
+      tags          = nil;
+      notes         = nil;
+      taskEntries   = nil;
+      note          = nil;
+      rrule         = nil;
+      string        = nil;
    }
    return self;
 }
 
 - (void) dealloc
 {
-   [tasks release];
+   [taskseriesSet release];
    [super dealloc];
 }
 
 - (id) result
 {
-   return tasks;
+   return taskseriesSet;
 }
 
 /*
@@ -72,18 +70,21 @@
 {
    SUPER_PARSE;
 
-   if ([elementName isEqualToString:@"tasks"])
+   if ([elementName isEqualToString:@"tasks"]) {
+      NSAssert(list_id == nil, @"state check");
       return;
+   }
    if ([elementName isEqualToString:@"list"]) {
       list_id = [attributeDict valueForKey:@"id"];
       return;
    }
    if ([elementName isEqualToString:@"taskseries"]) {
+      NSAssert(list_id != nil, @"state check");
       taskseries = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
       [taskseries setObject:list_id forKey:@"list_id"];
-      task_entries = [NSMutableArray array];
-      [taskseries setObject:task_entries forKey:@"tasks"];
-      [tasks addObject:taskseries];
+      taskEntries = [NSMutableArray array];
+      [taskseries setObject:taskEntries forKey:@"tasks"];
+      [taskseriesSet addObject:taskseries];
       return;
    }
    if ([elementName isEqualToString:@"tags"]) {
@@ -95,7 +96,7 @@
    if ([elementName isEqualToString:@"tag"]) {
       NSAssert(taskseries, @"should be in taskseries element");
       NSAssert(tags, @"should be in tags element");
-      tag = @"";
+      string = @"";
       mode = TAG;
       return;
    }
@@ -110,19 +111,21 @@
       NSAssert(notes, @"should be in notes element");
       mode = NOTE;
       note = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
-      note_str = @"";
+      string = @"";
       [notes addObject:note];
       return;
    }
    if ([elementName isEqualToString:@"rrule"]) {
       NSAssert(taskseries, @"should be in taskseries element");
       mode = RRULE;
+      string = @"";
+      rrule = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
       return;
    }
    if ([elementName isEqualToString:@"task"]) {
       NSAssert(taskseries, @"should be in taskseries element");
-      NSAssert(task_entries, @"should be in taskseries element");
-      [task_entries addObject:attributeDict];
+      NSAssert(taskEntries, @"should be in taskseries element");
+      [taskEntries addObject:attributeDict];
       return;
    }
 }
@@ -131,49 +134,43 @@
 {
    if ([elementName isEqualToString:@"taskseries"]) {
       taskseries = nil;
-      task_entries = nil;
-   } else if ([elementName isEqualToString:@"tags"]) {
+      taskEntries = nil;
+      return;
+   }
+   if ([elementName isEqualToString:@"tags"]) {
       tags = nil;
-   } else if ([elementName isEqualToString:@"tag"]) {
+      return;
+   }
+   if ([elementName isEqualToString:@"tag"]) {
       NSAssert(tags, @"should be in tags");
-      [tags addObject:tag];
-      tag = nil;
-   } else if ([elementName isEqualToString:@"notes"]) {
+      [tags addObject:string];
+      string = nil;
+      return;
+   }
+   if ([elementName isEqualToString:@"notes"]) {
       notes = nil;
-   } else if ([elementName isEqualToString:@"note"]) {
-      if (! [note_str isEqualToString:@""])
-         [note setObject:note_str forKey:@"text"];
+      return;
+   }
+   if ([elementName isEqualToString:@"note"]) {
+      if (! [string isEqualToString:@""])
+         [note setObject:string forKey:@"text"];
       note = nil;
-      note_str = nil;
+      string = nil;
+      return;
+   }
+   if ([elementName isEqualToString:@"rrule"]) {
+      if (string && ! [string isEqualToString:@""])
+         [rrule setObject:string forKey:@"rule"];
+      [taskseries setObject:rrule forKey:@"rrule"];
+      string = nil;
+      return;
    }
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars
 {
-   // check whethere chars contains white space only.
-   const char *str = [chars UTF8String];
-   int i=0, len=[chars length];
-   for (; i<len; i++)
-      if (! isspace(str[i])) break;
-   if (i == len) return;
-
-   switch (mode) {
-      case TAG:
-         NSAssert(tags, @"should be in tags");
-         tag = [tag stringByAppendingString:chars];
-         break;
-      case NOTE:
-         NSAssert(notes, @"should be in notes");
-         NSAssert(note, @"should be in note");
-         note_str = [note_str stringByAppendingString:chars];
-         break;
-      case RRULE:
-         [taskseries setObject:chars forKey:@"rrule"];
-         break;
-      default:
-         NSAssert(NO, @"should not reach here");
-         break;
-   }
+   NSAssert(string != nil, @"");
+   string = [string stringByAppendingString:chars];
 }
 
 @end // TaskGetListCallback
@@ -223,6 +220,20 @@
 {
    return [self getList_internal:nil];
 }
+
+- (NSArray *) getTaskList:(NSString *)inListID filter:(NSString *)filter lastSync:(NSString *)lastSync
+{
+   NSMutableDictionary *args = [NSMutableDictionary dictionary];
+   if (inListID)
+      [args setObject:inListID forKey:@"list_id"];
+   if (filter)
+      [args setObject:filter forKey:@"filter"];
+   if (lastSync)
+      [args setObject:lastSync forKey:@"last_sync"];
+   
+   return [self getList_internal:args];
+}
+
 #if 0
 - (NSArray *) getListForList:(NSString *)list_id
 {
