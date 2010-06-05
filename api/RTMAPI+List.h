@@ -12,16 +12,16 @@
 /**
  * call rtm.lists.add
  *
- * @return added list id. if failed, return nil.
+ * @return added list dictionary. if failed, exception will be raised.
  */
-- (NSString *) add:(NSString *)name withFilter:(NSString *)filter withTimeLine:(NSString *)timeLine;
+- (NSDictionary *) add:(NSString *)name timeline:(NSString *)timeline filter:(NSString *)filter;
 
 /**
  * call rtm.lists.delete
  *
  * @return deletion has been done successfully or not.
  */
-- (BOOL) delete:(NSString *)list_id withTimeLine:(NSString *)timeLine;
+- (BOOL) delete:(NSString *)listID timeline:(NSString *)timeline;
 /**
  * call rtm.lists.getList
  *

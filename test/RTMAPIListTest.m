@@ -7,10 +7,13 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "RTMAPI+Timeline.h"
 #import "RTMAPI+List.h"
 #import "RTMAPI.h"
 #import "PrivateInfo.h"
 #import "logger.h"
+
+#define k_LIST_NAME_FOR_UNIT_TEST @"testAdd"
 
 @interface RTMAPIListTest : SenTestCase
 {
@@ -52,51 +55,67 @@
    }
 }
 
-#if 0
-- (void) _testAddDelete
+- (void) testAdd
 {
-	RTMAPIList *list_api = [[[RTMAPIList alloc] init] autorelease];
-
-	NSInteger count_first = [[list_api getList] count];
-
-  // add
-  NSString *list_id = [list_api add:@"testAdd" withFilter:nil];
-  NSLog(@"new list id = %@", list_id);
-	STAssertNotNil(list_id, @"list should be added.");
-
-  // get lists for check added
-	NSArray *lists = [list_api getList];
-  NSInteger count_added = [lists count];
-  STAssertEquals(count_added, count_first+1, @"lists count check");
-
-  // check: is new list in lists ?
-  BOOL found = NO;
-  NSDictionary *list;
-  for (list in lists) {
-    if ([list_id isEqualToString:[list objectForKey:@"id"]]) {
-      found = YES;
-      break;
-    }
-  }
-  STAssertTrue(found, @"list id existent check");
-
-  // delete
-  STAssertTrue([list_api delete:list_id], @"delete check");
-
-  // get lists again for check deleted
-	lists = [list_api getList];
-  NSInteger count_deleted = [lists count];
-  STAssertEquals(count_deleted, count_first, @"lists count check");
-
-  // check: does new list no longer exist in lists ?
-  found = NO;
-  for (list in lists) {
-    if ([list_id isEqualToString:[list objectForKey:@"id"]]) {
-      found = YES;
-      break;
-    }
-  }
-  STAssertFalse(found, @"list id absense check");
+   NSString *timeline = [api createTimeline];
+   STAssertNotNil(timeline, nil);
+   NSDictionary *addedList = [api add:k_LIST_NAME_FOR_UNIT_TEST timeline:timeline filter:nil];
+   STAssertNotNil(addedList, nil);
+   LOG(@"addedList = %@", addedList);
 }
-#endif // 0
+
+- (void) testAddAndDelete
+{
+	NSInteger count_first = [[api getList] count];
+
+   // add
+   NSString *timeline = [api createTimeline];
+   NSDictionary *addedList = [api add:k_LIST_NAME_FOR_UNIT_TEST timeline:timeline filter:nil];
+   NSString *addedListID = [addedList objectForKey:@"id"];
+   
+   // get lists for check added
+	NSArray *lists = [api getList];
+   NSInteger count_added = [lists count];
+   STAssertEquals(count_added, count_first+1, @"lists count check");
+
+   // check: is the added list in the lists ?
+   BOOL found = NO;
+   for (NSDictionary *list in lists) {
+      if ([addedListID isEqualToString:[list objectForKey:@"id"]]) {
+         found = YES;
+         break;
+      }
+   }
+   STAssertTrue(found, @"added list id existent check");
+
+   // delete
+   STAssertTrue([api delete:addedListID timeline:timeline], @"delete check");
+   
+   // get lists again for check deleted
+	lists = [api getList];
+   NSInteger count_deleted = [lists count];
+   STAssertEquals(count_deleted, count_first, @"lists count check");
+   
+   // check: does new list no longer exist in lists ?
+   found = NO;
+   for (NSDictionary *list in lists) {
+      if ([addedListID isEqualToString:[list objectForKey:@"id"]]) {
+         found = YES;
+         break;
+      }
+   }
+   STAssertFalse(found, @"list id absense check");
+}
+
+- (void)testZZZ_Cleanup
+{
+   NSString *timeline = [api createTimeline];
+
+	NSArray *lists = [api getList];
+   STAssertNotNil(lists, nil);
+   for (NSDictionary *list in lists) {
+      if ([[list objectForKey:@"name"] isEqualToString:k_LIST_NAME_FOR_UNIT_TEST])
+         STAssertTrue([api delete:[list objectForKey:@"id"] timeline:timeline], nil);
+   }
+}
 @end

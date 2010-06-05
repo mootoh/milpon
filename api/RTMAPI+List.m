@@ -111,20 +111,37 @@
  */
 @interface ListAddCallback : RTMAPIParserDelegate
 {
-   NSString * iD;
+   NSDictionary *list;
 }
 @end // ListAddCallback
 
 @implementation ListAddCallback
 
+- (id) init
+{
+   if (self = [super init]) {
+      list = nil;
+   }
+   return self;
+}
+
+- (void) dealloc
+{
+   [list release];
+   [super dealloc];
+}
+
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
 {
-   [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict];
+   SUPER_PARSE;
 
-   if ([elementName isEqualToString:@"list"]) {
-      iD = [attributeDict valueForKey:@"id"];
-      // [parser abortParsing]; // shortcut
-   }
+   if ([elementName isEqualToString:@"list"])
+      list = [attributeDict retain];
+}
+
+- (id) result
+{
+   return list;
 }
 
 @end // ListAddCallback
@@ -132,20 +149,34 @@
 /* -------------------------------------------------------------------
  * ListDeleteCallback
  */
-@interface ListDeleteCallback : RTMAPIParserDelegate; @end
+@interface ListDeleteCallback : RTMAPIParserDelegate
+{
+   BOOL deleted;
+}
+@end
 
 @implementation ListDeleteCallback
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
+- (id) init
 {
-   [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict];
-
-   if ([elementName isEqualToString:@"list"]) {
-      if (1 != [[attributeDict valueForKey:@"deleted"] integerValue])
-         @throw @"failed in deleting a list.";
+   if (self = [super init]) {
+      deleted = NO;
    }
+   return self;
 }
 
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
+{
+   SUPER_PARSE;
+
+   if ([elementName isEqualToString:@"list"])
+      deleted = (1 == [[attributeDict valueForKey:@"deleted"] integerValue]);
+}
+
+- (id) result
+{
+   return deleted ? self : nil;
+}
 @end
 
 // -------------------------------------------------------------------
@@ -159,49 +190,24 @@
    return (NSArray *)[self call:@"rtm.lists.getList" args:nil withDelegate:[[[ListGetCallback alloc] init] autorelease]];
 }
 
-#if 0
-- (NSString *) add:(NSString *)name withFilter:(NSString *)filter withTimeLine:(NSString *)timeLine
+- (NSDictionary *) add:(NSString *)name timeline:(NSString *)timeline filter:(NSString *)filter
 {
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSArray *keys = [NSArray arrayWithObjects:@"name", @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:name, timeLine, nil];
+   NSArray *vals = [NSArray arrayWithObjects:name, timeline, nil];
 
-   NSMutableDictionary *args = [NSDictionary dictionaryWithObjects:vals
-      forKeys:keys];
+   NSMutableDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    if (filter)
       [args setObject:filter forKey:@"filter"];
 
-   NSData *response = [api call:@"rtm.lists.add" withArgs:args];
-   if (! response) return nil;
-
-   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   ListAddCallback *cb = [[[ListAddCallback alloc] init] autorelease];
-   [parser setDelegate:cb];
-   if (! [parser parse])
-      @throw @"failed in parsing rtm.lists.add response.";
-   return cb.iD;
+   return [self call:@"rtm.lists.add" args:args withDelegate:[[[ListAddCallback alloc] init] autorelease]];
 }
 
-- (BOOL) delete:(NSString *)list_id withTimeLine:(NSString *)timeLine
+- (BOOL) delete:(NSString *)listID timeline:(NSString *)timeline
 {
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:list_id, timeLine, nil];
+   NSArray *vals = [NSArray arrayWithObjects:listID, timeline, nil];
+   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals
-      forKeys:keys];
-
-   NSData *response = [api call:@"rtm.lists.delete" withArgs:args];
-   if (! response) return NO;
-
-   method = LISTS_DELETE;
-   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   ListDeleteCallback *cb = [[[ListAddCallback alloc] init] autorelease];
-   [parser setDelegate:cb];
-   if (! [parser parse])
-      @throw @"failed in parsing rtm.lists.add response.";
-
-   return YES;
+   return [self call:@"rtm.lists.delete" args:args withDelegate:[[[ListDeleteCallback alloc] init] autorelease]] != nil;
 }
-#endif // 0
 @end
