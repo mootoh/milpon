@@ -6,6 +6,8 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 @interface MilponHelper : NSObject
 {
    NSDateFormatter *the_formatter;

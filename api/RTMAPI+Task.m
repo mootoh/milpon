@@ -231,17 +231,17 @@
  */
 @implementation RTMAPI (Task)
 
-- (NSArray *) getList_internal:(NSDictionary *)args
+- (NSSet *) getList_internal:(NSDictionary *)args
 {
    return [self call:@"rtm.tasks.getList" args:args withDelegate:[[[TaskGetListCallback alloc] init] autorelease]];
 }
 
-- (NSArray *) getTaskList
+- (NSSet *) getTaskList
 {
    return [self getList_internal:nil];
 }
 
-- (NSArray *) getTaskList:(NSString *)inListID filter:(NSString *)filter lastSync:(NSString *)lastSync
+- (NSSet *) getTaskList:(NSString *)inListID filter:(NSString *)filter lastSync:(NSString *)lastSync
 {
    NSMutableDictionary *args = [NSMutableDictionary dictionary];
    if (inListID)
@@ -275,35 +275,21 @@
    return YES;
 }
 
-#if 0
-- (BOOL) setDue:(NSString *)due forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
+- (BOOL) setDueDate:(NSString *)due timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id has_due_time:(BOOL)has_due_time parse:(BOOL)parse
 {
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"due", nil];
-   NSArray *vals = [NSArray arrayWithObjects:
-      [ids objectForKey:@"list_id"],
-      [ids objectForKey:@"taskseries_id"],
-      [ids objectForKey:@"task_id"],
-      timeLine,
-      due,
-      nil];
-   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   NSArray *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, due, nil];
+   NSMutableDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
+   if (has_due_time)
+      [args setObject:@"1" forKey:@"has_due_time"];
+   if (parse)
+      [args setObject:@"1" forKey:@"parse"];
 
-   NSData *response = [api call:@"rtm.tasks.setDueDate" withArgs:args];
-   if (! response) return NO;
-
-   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
-   [parser setDelegate:cb];
-   [parser parse];
-   if (! cb.succeeded) {
-      LOG(@"setDueDate failed : %@", [cb.error localizedDescription]);
-      return NO;
-   }
+   [self call:@"rtm.tasks.setDueDate" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
    return YES;
 }
 
+#if 0
 - (BOOL) setLocation:(NSString *)location_id forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];

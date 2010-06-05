@@ -12,10 +12,9 @@
 #import "RTMAPI+Timeline.h"
 #import "PrivateInfo.h"
 #import "logger.h"
-//#import "LocalCache.h"
+#import "MilponHelper.h"
 
 @interface RTMAPITaskTest : SenTestCase {
-//   LocalCache *db;
    RTMAPI *api;
 }
 @end
@@ -24,7 +23,6 @@
 
 - (void) setUp
 {
-//   db   = [[LocalCache sharedLocalCache] retain];
    api = [[RTMAPI alloc] init];
    api.token = RTM_TOKEN_D;
 }
@@ -33,12 +31,11 @@
 {
    api.token = nil;
    [api release];
-//   [db release];
 }
 
 - (void) _testGetList
 {
-   NSArray *tasks = [api getTaskList];
+   NSSet *tasks = [api getTaskList];
    STAssertNotNil(tasks, @"task getList should not be nil");		
    STAssertTrue([tasks count] > 0, @"tasks should be one or more.");
    LOG(@"tasks = %@", tasks);
@@ -46,42 +43,69 @@
 
 - (void) _testGetListForID
 {
-   NSArray *tasks = [api getTaskList:@"8698547" filter:nil lastSync:nil];
+   NSSet *tasks = [api getTaskList:@"8698547" filter:nil lastSync:nil];
    STAssertTrue([tasks count] > 0, @"tasks in Inbox should be one or more.");
 }
 
 - (void) _testGetLastSync
 {
    NSString *lastSync = @"2010-06-05T08:27:05Z";
-   NSArray *tasks = [api getTaskList:nil filter:nil lastSync:lastSync];
+   NSSet *tasks = [api getTaskList:nil filter:nil lastSync:lastSync];
    STAssertTrue([tasks count] > 0, @"tasks from lastSync %@ should be one or more.", lastSync);
 }
 
 - (void) _testGetWithFilter
 {
    NSString *filter = @"isTagged:true";
-   NSArray *tasks = [api getTaskList:nil filter:filter lastSync:nil];
+   NSSet *tasks = [api getTaskList:nil filter:filter lastSync:nil];
    STAssertTrue([tasks count] > 0, @"tasks with tag should be one or more.");
 }
 
-- (void) testAddAndDelete
+- (void) _testAddAndDelete
 {
    NSString *name = @"testAdd";
    NSString *timeline = [api createTimeline];
-   
+
    NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timeline];
    STAssertNotNil(addedTask, @"");
    LOG(@"addedTask = %@", addedTask);
-   
+
    NSString *task_id = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
    NSString *taskseries_id = [addedTask objectForKey:@"id"];
    NSString *list_id = [addedTask objectForKey:@"list_id"];
    STAssertNotNil(task_id, nil);
    STAssertNotNil(taskseries_id, nil);
    STAssertNotNil(list_id, nil);
-   
+
    BOOL deleted = [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timeline];
    STAssertTrue(deleted, nil);
+}
+
+- (void) testAddAndSetDueDateThenDelete
+{
+   NSString *name = @"testAddAndSetDueDate";
+   NSString *timelineAdd = [api createTimeline];
+
+   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timelineAdd];
+   STAssertNotNil(addedTask, nil);
+
+   NSString *addedDateString = [[MilponHelper sharedHelper] dateToRtmString:[NSDate date]];
+   NSString *timelineSetDueDate = [api createTimeline];
+   NSString *task_id = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString *taskseries_id = [addedTask objectForKey:@"id"];
+   NSString *list_id = [addedTask objectForKey:@"list_id"];
+   NSString *due = @"2010-07-01T22:13:00Z";
+   [api setDueDate:due timeline:timelineSetDueDate list_id:list_id taskseries_id:taskseries_id task_id:task_id has_due_time:NO parse:NO];
+
+   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   STAssertEquals([taskserieses count], 1U, nil);
+   NSDictionary *taskseries = [taskserieses anyObject];
+   NSString *dueSpecified = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"due"];
+   STAssertTrue([dueSpecified isEqualToString:due], nil);
+   NSString *dueHasTime = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"has_due_time"];
+   STAssertTrue([dueHasTime isEqualToString:@"0"], nil);
+
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetDueDate];   
 }
 
 #if 0
