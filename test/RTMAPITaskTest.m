@@ -94,7 +94,7 @@
    NSString      *taskseries_id = [addedTask objectForKey:@"id"];
    NSString            *list_id = [addedTask objectForKey:@"list_id"];
    NSString                *due = @"2010-07-01T22:13:00Z";
-   [api setDueDate:due timeline:timelineSetDueDate list_id:list_id taskseries_id:taskseries_id task_id:task_id has_due_time:NO parse:NO];
+   [api setTaskDueDate:due timeline:timelineSetDueDate list_id:list_id taskseries_id:taskseries_id task_id:task_id has_due_time:NO parse:NO];
 
    NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
    STAssertEquals([taskserieses count], 1U, nil);
