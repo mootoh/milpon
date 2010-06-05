@@ -8,8 +8,9 @@
 
 #import "RTMAPI.h"
 #import "RTMAPI+Timeline.h"
+#import "RTMAPIParserDelegate.h"
 
-@interface RTMAPITimeLineDelegate : NSObject <RTMAPIDelegate>
+@interface RTMAPITimeLineDelegate : RTMAPIParserDelegate
 {
    NSString *timeline;
 }
@@ -58,7 +59,7 @@
 
 - (NSString *) createTimeline
 {
-   return (NSString *)[self call:@"rtm.timelines.create" args:nil withDelegate:[[[RTMAPITimeLineDelegate alloc] init] autorelease]];
+   return (NSString *)[self call:@"rtm.timelines.create" args:[NSDictionary dictionaryWithObject:self.token forKey:@"auth_token"] withDelegate:[[[RTMAPITimeLineDelegate alloc] init] autorelease]];
 }
 
 @end

@@ -58,4 +58,24 @@
 	STAssertNoThrow([api checkToken:RTM_TOKEN_R], nil);
 }
 
+/*
+ * helper method to retrieve token
+ */
+#define GET_TOKEN_URL 1
+- (void)_testGetDeleteToken
+{
+#ifdef GET_TOKEN_URL
+	NSString *frob = [api getFrob];
+   NSLog(@"frob for getToken: %@", frob);
+   NSString *url = [api authURL:frob forPermission:@"delete"];
+   NSLog(@"auth URL = %@", url);
+   
+   // interruption: authenticate by the URL
+#else
+   NSString *token = [api getToken:@"3482ff73941e916d4e91d97f29534103ed671e8c"];
+	STAssertNotNil(token, @"token should be acquired.");
+	NSLog(@"token for delete = %@", token);
+#endif
+}
+
 @end

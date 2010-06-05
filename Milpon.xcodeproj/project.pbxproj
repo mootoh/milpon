@@ -11,13 +11,13 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		92016B0511B9FB0E00B3D341 /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 923B79F111B9317B00F9B973 /* RTMAPI+Timeline.m */; };
+		92016B1A11B9FD4C00B3D341 /* RTMAPITest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDA0F565DE000473A95 /* RTMAPITest.m */; };
 		922C0016101C66EC0029AC32 /* IconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 922C0015101C66EC0029AC32 /* IconSmall.png */; };
 		923B786311B89F7400F9B973 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIParserDelegate.m */; };
 		923B78BF11B8BB9300F9B973 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
 		923B79F311B9317B00F9B973 /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 923B79F111B9317B00F9B973 /* RTMAPI+Timeline.m */; };
 		923B7AB211B948DE00F9B973 /* RTMAPI+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPI+Auth.m */; };
-		923B7AD011B94B4900F9B973 /* RTMAPIAuthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD70F565DE000473A95 /* RTMAPIAuthTest.m */; };
-		923B7B0911B94F6F00F9B973 /* RTMAPITest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FDA0F565DE000473A95 /* RTMAPITest.m */; };
 		925C7A4E0FBEB7F300BCD6EF /* migrate_000_init.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A490FBEB7F300BCD6EF /* migrate_000_init.sql */; };
 		925C7A4F0FBEB7F300BCD6EF /* migrate_001_add_filter_to_list.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4A0FBEB7F300BCD6EF /* migrate_001_add_filter_to_list.sql */; };
 		925C7A500FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4B0FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql */; };
@@ -1056,8 +1056,8 @@
 				923B786311B89F7400F9B973 /* RTMAPIParserDelegate.m in Sources */,
 				923B78BF11B8BB9300F9B973 /* RTMAPI.m in Sources */,
 				923B7AB211B948DE00F9B973 /* RTMAPI+Auth.m in Sources */,
-				923B7AD011B94B4900F9B973 /* RTMAPIAuthTest.m in Sources */,
-				923B7B0911B94F6F00F9B973 /* RTMAPITest.m in Sources */,
+				92016B0511B9FB0E00B3D341 /* RTMAPI+Timeline.m in Sources */,
+				92016B1A11B9FD4C00B3D341 /* RTMAPITest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

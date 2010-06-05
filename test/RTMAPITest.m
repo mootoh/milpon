@@ -10,8 +10,7 @@
 #import "logger.h"
 #import "PrivateInfo.h"
 #import "RTMAPI.h"
-#import "MockRTMAPI.h"
-#import "RTMAuth.h"
+#import "RTMAPI+Timeline.h"
 #import "RTMAPIParserDelegate.h"
 
 #define TEST_FROB @"ec1d083b2e10b554e6c90487328d65ba9312d6e5"
@@ -148,12 +147,14 @@
    STAssertNotNil(url, @"check auth url");
    NSLog(@"auth url = %@", url);
 }
-#if 0
+
 - (void) testCreateTimeline
 {
+   api.token = RTM_TOKEN_D;
    NSString *timeline = [api createTimeline];
    STAssertNotNil(timeline, @"check timeline");
    NSLog(@"timeline = %@", timeline);
+   api.token = nil;
 }
-#endif 
+
 @end

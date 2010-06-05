@@ -9,13 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "RTMAPI.h"
 
-@interface RTMAPITimeLineDelegate : NSObject <RTMAPIDelegate>
-{
-   NSString *timeline;
-}
-
-@end
-
 @interface RTMAPI (Timeline)
 
 /**
