@@ -99,16 +99,18 @@
 
    NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
    STAssertEquals([taskserieses count], 1U, nil);
+
    NSDictionary *taskseries = [taskserieses anyObject];
    NSString   *dueSpecified = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"due"];
    STAssertTrue([dueSpecified isEqualToString:due], nil);
+
    NSString *dueHasTime = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"has_due_time"];
    STAssertTrue([dueHasTime isEqualToString:@"0"], nil);
 
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetDueDate];   
 }
 
-- (void) testAddAndLocatoin
+- (void) _testAddAndLocatoin
 {
    NSSet *locations = [api getLocations];
    STAssertTrue([locations count] > 0, nil);
@@ -128,12 +130,38 @@
    
    NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
    STAssertEquals([taskserieses count], 1U, nil);
+
    NSDictionary *taskseries  = [taskserieses anyObject];
-   LOG(@"taskseries = %@", taskseries);
    NSString     *location_id = [taskseries objectForKey:@"location_id"];
-   LOG(@"location_id = %@, id=%@", location_id, [[locations anyObject] objectForKey:@"id"]);
    STAssertTrue([location_id isEqualToString:[[locations anyObject] objectForKey:@"id"]], nil);   
+
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetLocation];   
+}
+
+- (void) testAddAndPriority
+{
+   NSString *name        = @"testAddAndPriority";
+   NSString *timelineAdd = [api createTimeline];
+   
+   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timelineAdd];
+   STAssertNotNil(addedTask, nil);
+   
+   NSString    *addedDateString  = [[MilponHelper sharedHelper] dateToRtmString:[NSDate date]];
+   NSString *timelineSetPriority = [api createTimeline];
+   NSString            *task_id  = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString      *taskseries_id  = [addedTask objectForKey:@"id"];
+   NSString            *list_id  = [addedTask objectForKey:@"list_id"];
+   NSString            *priority = @"1";
+   [api setTaskPriority:priority timeline:timelineSetPriority list_id:list_id taskseries_id:taskseries_id task_id:task_id];
+   
+   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   STAssertEquals([taskserieses count], 1U, nil);
+
+   NSDictionary *taskseries  = [taskserieses anyObject];
+   NSString     *pri = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"priority"];
+   STAssertTrue([priority isEqualToString:pri], nil);
+
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetPriority];
 }
 
 #if 0

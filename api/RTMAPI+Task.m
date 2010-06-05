@@ -256,8 +256,8 @@
 
 - (NSDictionary *) addTask:(NSString *)name list_id:(NSString *)list_id timeline:(NSString *)timeline
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"name", @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:name, timeline, nil];
+   NSArray             *keys = [NSArray arrayWithObjects:@"name", @"timeline", nil];
+   NSArray             *vals = [NSArray arrayWithObjects:name, timeline, nil];
    NSMutableDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (list_id)
       [args setObject:list_id forKey:@"list_id"];
@@ -267,8 +267,8 @@
 
 - (void) deleteTask:(NSString *)task_id taskseries_id:(NSString *)taskseries_id list_id:(NSString *)list_id timeline:(NSString *)timeLine
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeLine, nil];
+   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", nil];
+   NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeLine, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
    [self call:@"rtm.tasks.delete" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
@@ -276,8 +276,8 @@
 
 - (void) setTaskDueDate:(NSString *)due timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id has_due_time:(BOOL)has_due_time parse:(BOOL)parse
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"due", nil];
-   NSArray *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, due, nil];
+   NSArray             *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"due", nil];
+   NSArray             *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, due, nil];
    NSMutableDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (has_due_time)
       [args setObject:@"1" forKey:@"has_due_time"];
@@ -289,42 +289,23 @@
 
 - (void) setTaskLocation:(NSString *)location_id timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"location_id", nil];
-   NSArray *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, location_id, nil];
+   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"location_id", nil];
+   NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, location_id, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    
    [self call:@"rtm.tasks.setLocation" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
-#if 0
-- (BOOL) setPriority:(NSString *)priority forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
+- (void) setTaskPriority:(NSString *)priority timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id
 {
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-
-   NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"priority", nil];
-   NSArray *vals = [NSArray arrayWithObjects:
-      [ids objectForKey:@"list_id"],
-      [ids objectForKey:@"taskseries_id"],
-      [ids objectForKey:@"task_id"],
-      timeLine,
-      priority,
-      nil];
+   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"priority", nil];
+   NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, priority, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   NSData *response = [api call:@"rtm.tasks.setPriority" withArgs:args];
-   if (! response) return NO;
-
-   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
-   [parser setDelegate:cb];
-   [parser parse];
-   if (! cb.succeeded) {
-      LOG(@"setPriority failed : %@", [cb.error localizedDescription]);
-      return NO;
-   }
-   return YES;
+   [self call:@"rtm.tasks.setPriority" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
+#if 0
 - (BOOL) setEstimate:(NSString *)estimate forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
