@@ -23,6 +23,7 @@
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict;
 @end
 
-// helper macro
+#pragma mark -
+#pragma mark helper macros
 #define SUPER_PARSE [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict]
 #define SKIP_RSP if ([elementName isEqualToString:@"rsp"]) return

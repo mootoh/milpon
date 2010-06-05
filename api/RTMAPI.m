@@ -15,6 +15,8 @@
 #define MP_REST_PATH "/services/rest/"
 #define MP_AUTH_PATH "/services/auth/"
 
+#pragma mark -
+#pragma mark Private
 @interface RTMAPI (Private)
 /**
  * construct request path.
@@ -123,6 +125,8 @@
 
 @end
 
+#pragma mark -
+#pragma mark RTMAPI
 @implementation RTMAPI
 
 @synthesize token;

@@ -12,7 +12,6 @@
 #import "logger.h"
 
 // -------------------------------------------------------------------
-#pragma mark -
 #pragma mark GetDictionaryCallback
 
 @interface GetDictionaryCallback : RTMAPIParserDelegate
@@ -74,11 +73,9 @@
 {
    NSString *string;
 }
-@property (nonatomic, retain) NSString *string;
 @end
 
 @implementation GetStringCallback
-@synthesize string;
 
 - (id) init
 {
@@ -96,7 +93,8 @@
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars
 {
-   self.string = chars;
+   if (string) [string release];
+   string = [chars retain];
    [parser abortParsing];
 }
 

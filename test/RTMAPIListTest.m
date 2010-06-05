@@ -107,6 +107,7 @@
    STAssertFalse(found, @"list id absense check");
 }
 
+#pragma mark -
 - (void)testZZZ_Cleanup
 {
    NSString *timeline = [api createTimeline];

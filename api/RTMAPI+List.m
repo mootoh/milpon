@@ -106,9 +106,9 @@
 
 @end // ListGetCallback
 
-/* -------------------------------------------------------------------
- * ListAddCallback
- */
+// -------------------------------------------------------------------
+#pragma mark -
+#pragma mark ListAddCallback
 @interface ListAddCallback : RTMAPIParserDelegate
 {
    NSDictionary *list;
@@ -146,9 +146,9 @@
 
 @end // ListAddCallback
 
-/* -------------------------------------------------------------------
- * ListDeleteCallback
- */
+// -------------------------------------------------------------------
+#pragma mark -
+#pragma mark ListDeleteCallback
 @interface ListDeleteCallback : RTMAPIParserDelegate
 {
    BOOL deleted;

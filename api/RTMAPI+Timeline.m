@@ -10,6 +10,7 @@
 #import "RTMAPI+Timeline.h"
 #import "RTMAPIParserDelegate.h"
 
+#pragma mark RTMAPITimeLineDelegate
 @interface RTMAPITimeLineDelegate : RTMAPIParserDelegate
 {
    NSString *timeline;
@@ -33,9 +34,6 @@
    [super dealloc];
 }
 
-#pragma mark -
-#pragma mark RTMAPIDelegate
-
 - (id) result
 {
    return timeline;
@@ -55,6 +53,7 @@
 
 @end
 
+#pragma mark -
 @implementation RTMAPI (Timeline)
 
 - (NSString *) createTimeline
