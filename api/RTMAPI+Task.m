@@ -1,15 +1,15 @@
 //
-//  RTMAPITask.m
+//  RTMAPI+Task.m
 //  Milpon
 //
 //  Created by mootoh on 8/31/08.
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import "RTMAPITask.h"
+#import "RTMAPI+Task.h"
 #import "RTMAPI.h"
-#import "RTMTask.h"
-#import "RTMNote.h"
+//#import "RTMTask.h"
+//#import "RTMNote.h"
 #import "RTMAPIParserDelegate.h"
 #import "logger.h"
 
@@ -42,7 +42,7 @@
 {
    if (self = [super init]) {
       list_id = nil;
-      tasks = nil;
+      tasks = [[NSMutableArray alloc] init];
       tags = nil;
       tag = nil;
       notes = nil;
@@ -54,7 +54,13 @@
    return self;
 }
 
-- (NSArray *) tasks
+- (void) dealloc
+{
+   [tasks release];
+   [super dealloc];
+}
+
+- (id) result
 {
    return tasks;
 }
@@ -64,45 +70,60 @@
  */
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
 {
-   [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict];
+   SUPER_PARSE;
 
-   if ([elementName isEqualToString:@"tasks"]) {
-      tasks = [NSMutableArray array];
-   } else if ([elementName isEqualToString:@"list"]) {
+   if ([elementName isEqualToString:@"tasks"])
+      return;
+   if ([elementName isEqualToString:@"list"]) {
       list_id = [attributeDict valueForKey:@"id"];
-   } else  if ([elementName isEqualToString:@"taskseries"]) {
+      return;
+   }
+   if ([elementName isEqualToString:@"taskseries"]) {
       taskseries = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
       [taskseries setObject:list_id forKey:@"list_id"];
       task_entries = [NSMutableArray array];
       [taskseries setObject:task_entries forKey:@"tasks"];
       [tasks addObject:taskseries];
-   } else if ([elementName isEqualToString:@"tags"]) {
+      return;
+   }
+   if ([elementName isEqualToString:@"tags"]) {
       NSAssert(taskseries, @"should be in taskseries element");
       tags = [NSMutableArray array];
       [taskseries setObject:tags forKey:@"tags"];
-   } else if ([elementName isEqualToString:@"tag"]) {
+      return;
+   }
+   if ([elementName isEqualToString:@"tag"]) {
       NSAssert(taskseries, @"should be in taskseries element");
       NSAssert(tags, @"should be in tags element");
       tag = @"";
       mode = TAG;
-   } else if ([elementName isEqualToString:@"notes"]) {
+      return;
+   }
+   if ([elementName isEqualToString:@"notes"]) {
       NSAssert(taskseries, @"should be in taskseries element");
       notes = [NSMutableArray array];
       [taskseries setObject:notes forKey:@"notes"];
-   } else if ([elementName isEqualToString:@"note"]) {
+      return;
+   }
+   if ([elementName isEqualToString:@"note"]) {
       NSAssert(taskseries, @"should be in taskseries element");
       NSAssert(notes, @"should be in notes element");
       mode = NOTE;
       note = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
       note_str = @"";
       [notes addObject:note];
-   } else if ([elementName isEqualToString:@"rrule"]) {
+      return;
+   }
+   if ([elementName isEqualToString:@"rrule"]) {
       NSAssert(taskseries, @"should be in taskseries element");
       mode = RRULE;
-   } else if ([elementName isEqualToString:@"task"]) {
+      return;
+   }
+   if ([elementName isEqualToString:@"task"]) {
       NSAssert(taskseries, @"should be in taskseries element");
       NSAssert(task_entries, @"should be in taskseries element");
       [task_entries addObject:attributeDict];
+      return;
    }
 }
 
@@ -191,31 +212,18 @@
 /* -------------------------------------------------------------------
  * RTMAPITask
  */
-@implementation RTMAPITask
+@implementation RTMAPI (Task)
 
 - (NSArray *) getList_internal:(NSDictionary *)args
 {
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSData *response = [api call:@"rtm.tasks.getList" withArgs:args];
-   if (! response) return nil;
-
-   method = TASKS_GETLIST;
-   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   TaskGetListCallback *cb = [[[TaskGetListCallback alloc] init] autorelease];
-   [parser setDelegate:cb];
-   [parser parse];
-   if (! cb.succeeded) {
-      LOG(@"getList failed : %@", [cb.error localizedDescription]);
-      return nil;
-   }
-   return [cb tasks];
+   return [self call:@"rtm.tasks.getList" args:args withDelegate:[[[TaskGetListCallback alloc] init] autorelease]];
 }
 
-- (NSArray *) getList
+- (NSArray *) getTaskList
 {
    return [self getList_internal:nil];
 }
-
+#if 0
 - (NSArray *) getListForList:(NSString *)list_id
 {
    NSDictionary *args = [NSDictionary dictionaryWithObject:list_id forKey:@"list_id"];
@@ -491,4 +499,5 @@
    }
    return YES;   
 }
+#endif // 0
 @end

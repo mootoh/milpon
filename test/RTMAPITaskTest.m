@@ -7,14 +7,14 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "RTMAPITask.h"
 #import "RTMAPI.h"
-#import "LocalCache.h"
-#import "RTMAuth.h"
+#import "RTMAPI+Task.h"
+#import "PrivateInfo.h"
+#import "logger.h"
+//#import "LocalCache.h"
 
 @interface RTMAPITaskTest : SenTestCase {
-   LocalCache *db;
-   RTMAuth *auth;
+//   LocalCache *db;
    RTMAPI *api;
 }
 @end
@@ -23,29 +23,26 @@
 
 - (void) setUp
 {
-   db   = [[LocalCache sharedLocalCache] retain];
-   auth = [[RTMAuth alloc] init];
-   api  = [[RTMAPI alloc] init];
-   [RTMAPI setApiKey:auth.api_key];
-   [RTMAPI setSecret:auth.shared_secret];
-   [RTMAPI setToken:auth.token];
+//   db   = [[LocalCache sharedLocalCache] retain];
+   api = [[RTMAPI alloc] init];
+   api.token = RTM_TOKEN_D;
 }
 
 - (void) tearDown
 {
+   api.token = nil;
    [api release];
-   [auth release];
-   [db release];
+//   [db release];
 }
 
 - (void) testGetList
 {
-   RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
-   NSArray *tasks = [api_task getList];
+   NSArray *tasks = [api getTaskList];
    STAssertNotNil(tasks, @"task getList should not be nil");		
    STAssertTrue([tasks count] > 0, @"tasks should be one or more.");
+   LOG(@"tasks = %@", tasks);
 }
-
+#if 0
 - (void) testGetListForID
 {
    RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
@@ -102,5 +99,5 @@
 
    STAssertTrue([api_task delete:[ids valueForKey:@"task_id"] inTaskSeries:[ids valueForKey:@"taskseries_id"] inList:[ids valueForKey:@"list_id"]], @"check delete");
 }
-
+#endif // 0
 @end
