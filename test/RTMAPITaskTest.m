@@ -9,6 +9,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "RTMAPI.h"
 #import "RTMAPI+Task.h"
+#import "RTMAPI+Timeline.h"
 #import "PrivateInfo.h"
 #import "logger.h"
 //#import "LocalCache.h"
@@ -56,11 +57,31 @@
    STAssertTrue([tasks count] > 0, @"tasks from lastSync %@ should be one or more.", lastSync);
 }
 
-- (void) testGetWithFilter
+- (void) _testGetWithFilter
 {
    NSString *filter = @"isTagged:true";
    NSArray *tasks = [api getTaskList:nil filter:filter lastSync:nil];
    STAssertTrue([tasks count] > 0, @"tasks with tag should be one or more.");
+}
+
+- (void) testAddAndDelete
+{
+   NSString *name = @"testAdd";
+   NSString *timeline = [api createTimeline];
+   
+   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timeline];
+   STAssertNotNil(addedTask, @"");
+   LOG(@"addedTask = %@", addedTask);
+   
+   NSString *task_id = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString *taskseries_id = [addedTask objectForKey:@"id"];
+   NSString *list_id = [addedTask objectForKey:@"list_id"];
+   STAssertNotNil(task_id, nil);
+   STAssertNotNil(taskseries_id, nil);
+   STAssertNotNil(list_id, nil);
+   
+   BOOL deleted = [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timeline];
+   STAssertTrue(deleted, nil);
 }
 
 #if 0
@@ -77,16 +98,6 @@
       }
    }
    STAssertTrue(tag_found, @"at least one tag should be found.");
-}
-
-- (void) testAdd_and_Delete
-{
-   RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
-   NSDictionary *ids = [api_task add:@"task add from API." inList:nil];
-   STAssertNotNil([ids valueForKey:@"taskseries_id"], @"check created taskseries id");
-   STAssertNotNil([ids valueForKey:@"task_id"], @"check created task id");
-
-   STAssertTrue([api_task delete:[ids valueForKey:@"task_id"] inTaskSeries:[ids valueForKey:@"taskseries_id"] inList:[ids valueForKey:@"list_id"]], @"check delete");
 }
 
 - (void) testAddInList_and_Delete

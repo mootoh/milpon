@@ -10,20 +10,18 @@
 
 @interface RTMAPI (Task)
 
+/**
+ * @return array of TaskSeries, each has associated list_id.
+ */
 - (NSArray *) getTaskList;
 - (NSArray *) getTaskList:(NSString *)inListID filter:(NSString *)filter lastSync:(NSString *)lastSync;
+/**
+ * @return added TaskSereis.
+ */
+- (NSDictionary *) addTask:(NSString *)name list_id:(NSString *)list_id timeline:(NSString *)timeline;
+- (BOOL) deleteTask:(NSString *)task_id taskseries_id:(NSString *)taskseries_id list_id:(NSString *)list_id timeline:(NSString *)timeLine;
 
 #if 0
-- (NSArray *) getListForList:(NSString *)list_id;
-- (NSArray *) getListWithLastSync:(NSString *)last_sync;
-- (NSArray *) getListForList:(NSString *)list_id withLastSync:(NSString *)last_sync;
-
-/**
- * @return [taskseries_id, task_id]
- */
-- (NSDictionary *) add:(NSString *)name inList:(NSString *)list_id withTimeLine:(NSString *)timeLine;
-- (BOOL) delete:(NSString *)task_id inTaskSeries:(NSString *)taskseries_id inList:(NSString *)list_id withTimeLine:(NSString *)timeLine;
-
 - (BOOL) setDue:(NSString *)due forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine;
 - (BOOL) setLocation:(NSString *)location_id forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine;
 - (BOOL) setPriority:(NSString *)priority forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine;

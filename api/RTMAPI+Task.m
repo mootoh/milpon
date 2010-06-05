@@ -178,30 +178,50 @@
 /* -------------------------------------------------------------------
  * TaskListAddCallback
  */
-@interface TaskListAddCallback : RTMAPIParserDelegate
+@interface TaskAddCallback : RTMAPIParserDelegate
 {
-   NSMutableDictionary *ids;
+   NSMutableDictionary *addedTask;
+   NSString *list_id;
 }
 @end
 
-@implementation TaskListAddCallback
+@implementation TaskAddCallback
 
-- (NSDictionary *) ids
+- (id) init
 {
-   return ids;
+   if (self = [super init]) {
+      addedTask = nil;
+      list_id = nil;
+   }
+   return self;
+}
+
+- (void) dealloc
+{
+   [super dealloc];
+}
+
+- (id) result
+{
+   return addedTask;
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
 {
-   [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict];
+   SUPER_PARSE;
 
    if ([elementName isEqualToString:@"list"]) {
-      ids = [NSMutableDictionary dictionary];
-      [ids setObject:[attributeDict valueForKey:@"id"] forKey:@"list_id"];
-   } else if ([elementName isEqualToString:@"taskseries"]) {
-      [ids setObject:[attributeDict valueForKey:@"id"] forKey:@"taskseries_id"];
-   } else if ([elementName isEqualToString:@"task"]) {
-      [ids setObject:[attributeDict valueForKey:@"id"] forKey:@"task_id"];
+      list_id = [attributeDict valueForKey:@"id"];
+      return;
+   }
+   if ([elementName isEqualToString:@"taskseries"]) {
+      addedTask = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
+      [addedTask setObject:list_id forKey:@"list_id"];
+      return;
+   }
+   if ([elementName isEqualToString:@"task"]) {
+      [addedTask setObject:attributeDict forKey:@"task"];
+      return;
    }
 }
 @end
@@ -234,73 +254,28 @@
    return [self getList_internal:args];
 }
 
-#if 0
-- (NSArray *) getListForList:(NSString *)list_id
+- (NSDictionary *) addTask:(NSString *)name list_id:(NSString *)list_id timeline:(NSString *)timeline
 {
-   NSDictionary *args = [NSDictionary dictionaryWithObject:list_id forKey:@"list_id"];
-   return [self getList_internal:args];
-}	
-
-- (NSArray *) getListWithLastSync:(NSString *)last_sync
-{
-   NSDictionary *args = [NSDictionary dictionaryWithObject:last_sync forKey:@"last_sync"];
-   return [self getList_internal:args];
-}	
-
-- (NSArray *) getListForList:(NSString *)list_id withLastSync:(NSString *)last_sync
-{
-   NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"last_sync", nil];
-   NSArray *vals = [NSArray arrayWithObjects:list_id, last_sync, nil];
-   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-   return [self getList_internal:args];
-}	
-
-- (NSDictionary *) add:(NSString *)name inList:(NSString *)list_id withTimeLine:(NSString *)timeLine
-{
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-
    NSArray *keys = [NSArray arrayWithObjects:@"name", @"timeline", nil];
-   NSArray *vals = [NSArray arrayWithObjects:name, timeLine, nil];
+   NSArray *vals = [NSArray arrayWithObjects:name, timeline, nil];
    NSMutableDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (list_id)
       [args setObject:list_id forKey:@"list_id"];
-
-   NSData *response = [api call:@"rtm.tasks.add" withArgs:args];
-   if (! response) return nil;
-
-   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   TaskListAddCallback *cb = [[[TaskListAddCallback alloc] init] autorelease];
-   [parser setDelegate:cb];
-   [parser parse];
-   if (! cb.succeeded) {
-      LOG(@"add failed : %@", [cb.error localizedDescription]);
-      return nil;
-   }
-   return [cb ids];
+   
+   return [self call:@"rtm.tasks.add" args:args withDelegate:[[[TaskAddCallback alloc] init] autorelease]];
 }
 
-- (BOOL) delete:(NSString *)task_id inTaskSeries:(NSString *)taskseries_id inList:(NSString *)list_id withTimeLine:(NSString *)timeLine
+- (BOOL) deleteTask:(NSString *)task_id taskseries_id:(NSString *)taskseries_id list_id:(NSString *)list_id timeline:(NSString *)timeLine
 {
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", nil];
    NSArray *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeLine, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   NSData *response = [api call:@"rtm.tasks.delete" withArgs:args];
-   if (! response) return NO;
-
-   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
-   [parser setDelegate:cb];
-   [parser parse];
-   if (! cb.succeeded) {
-      LOG(@"delete failed : %@", [cb.error localizedDescription]);
-      return NO;
-   }
+   [self call:@"rtm.tasks.delete" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
    return YES;
 }
 
+#if 0
 - (BOOL) setDue:(NSString *)due forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
