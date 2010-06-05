@@ -113,13 +113,9 @@
 {
    NSString * iD;
 }
-
-@property (nonatomic, readonly) NSString * iD;
 @end // ListAddCallback
 
 @implementation ListAddCallback
-
-@synthesize iD;
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
 {
@@ -160,9 +156,9 @@
 
 - (NSArray *) getList
 {
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   return (NSArray *)[api call:@"rtm.lists.getList" args:nil withDelegate:[[[ListGetCallback alloc] init] autorelease]];
+   return (NSArray *)[self call:@"rtm.lists.getList" args:nil withDelegate:[[[ListGetCallback alloc] init] autorelease]];
 }
+
 #if 0
 - (NSString *) add:(NSString *)name withFilter:(NSString *)filter withTimeLine:(NSString *)timeLine
 {
