@@ -1,25 +1,13 @@
 //
-//  RTMAPIList.h
+//  RTMAPI+List.h
 //  Milpon
 //
 //  Created by mootoh on 8/31/08.
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
+#import "RTMAPI.h"
 
-/**
- * access to RTM Web API.
- */
-@interface RTMAPIList : NSObject {
-   enum method_t {
-      LISTS_ADD,            // out of scope
-      LISTS_ARCHIVE,        // out of scope
-      LISTS_DELETE,         // out of scope
-      LISTS_GETLIST,
-      LISTS_SETDEFAULTLIST, // out of scope
-      LISTS_SETNAME,        // out of scope
-      LISTS_UNARCHIVE       // out of scope
-   } method;
-}
+@interface RTMAPI (List)
 
 /**
  * call rtm.lists.add
@@ -27,6 +15,7 @@
  * @return added list id. if failed, return nil.
  */
 - (NSString *) add:(NSString *)name withFilter:(NSString *)filter withTimeLine:(NSString *)timeLine;
+
 /**
  * call rtm.lists.delete
  *

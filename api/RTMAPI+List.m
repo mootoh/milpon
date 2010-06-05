@@ -1,19 +1,18 @@
 //
-//  RTMAPIList.m
+//  RTMAPI+List.m
 //  Milpon
 //
 //  Created by mootoh on 8/31/08.
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import "RTMAPIList.h"
+#import "RTMAPI+List.h"
 #import "RTMAPI.h"
-#import "RTMList.h"
 #import "RTMAPIParserDelegate.h"
 
-/* -------------------------------------------------------------------
- * ListGetCallback
- */
+// -------------------------------------------------------------------
+#pragma mark -
+#pragma mark ListGetCallback
 @interface ListGetCallback : RTMAPIParserDelegate
 {
    enum {
@@ -23,38 +22,39 @@
    } mode;
 
    NSMutableDictionary *params;
-   NSMutableArray *lists;
-   NSString *text;
-   BOOL skip;
+   NSMutableArray      *lists;
+   NSString            *text;
+   BOOL                 skip;
 }
-
-@property (nonatomic, readonly) NSMutableArray *lists;
-
-@end // ListGetCallback
+@end
 
 @implementation ListGetCallback
-@synthesize lists;
 
 - (void) reset
 {
    mode = NONE;
+   [params release];
    params = nil;
-   skip = NO;
    text = @"";
+   skip = NO;
 }
 
 - (id) init
 {
    if (self = [super init]) {
-      lists = nil;
+      lists = [[NSMutableArray alloc] init];
       [self reset];
    }
    return self;
 }
 
-- (NSArray *)lists
+- (void) dealloc
 {
-   return lists;
+   [params release];
+   [lists release];
+   [text release];
+   
+   [super dealloc];
 }
 
 // filter out 'Sent' and smart lists.
@@ -71,8 +71,7 @@
    [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict];
 
    if ([elementName isEqualToString:@"lists"]) { // start to parse
-      NSAssert(lists == nil && mode == NONE, @"state check");
-      lists = [NSMutableArray array];
+      NSAssert(mode == NONE, @"state check");
       return;
    }
    if ([elementName isEqualToString:@"list"]) {
@@ -84,7 +83,7 @@
       }
 
       skip = NO;
-      params = [NSMutableDictionary dictionaryWithDictionary:attributeDict];
+      params = [[NSMutableDictionary alloc] initWithDictionary:attributeDict];
       return;
    }
 
@@ -116,6 +115,12 @@
       mode = LIST;
    }
 }
+
+- (id) result
+{
+   return lists;
+}
+
 @end // ListGetCallback
 
 /* -------------------------------------------------------------------
@@ -164,26 +169,18 @@
 
 @end
 
-/* -------------------------------------------------------------------
- * RTMAPIList
- */
-@implementation RTMAPIList
+// -------------------------------------------------------------------
+#pragma mark -
+#pragma mark RTMAPIList
+
+@implementation RTMAPI (List)
 
 - (NSArray *) getList
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   NSData *response = [api call:@"rtm.lists.getList" withArgs:nil];
-   if (! response) return nil;
-
-   method = LISTS_GETLIST;
-   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   ListGetCallback *cb = [[[ListGetCallback alloc] init] autorelease];
-   [parser setDelegate:cb];
-   if (! [parser parse])
-      @throw @"failed in parsing rtm.lists.getList response.";
-   return [cb lists];
+   return (NSArray *)[api call:@"rtm.lists.getList" args:nil withDelegate:[[[ListGetCallback alloc] init] autorelease]];
 }
-
+#if 0
 - (NSString *) add:(NSString *)name withFilter:(NSString *)filter withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
@@ -227,5 +224,5 @@
 
    return YES;
 }
-
+#endif // 0
 @end

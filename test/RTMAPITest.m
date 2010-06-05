@@ -131,7 +131,6 @@
    STAssertTrue([[echoed objectForKey:@"foo"] isEqualToString:@"bar"], @"");
 }
 
-
 - (void) testLogin
 {
    // login with no token will fail

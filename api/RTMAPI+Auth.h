@@ -9,12 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "RTMAPI.h"
 
-typedef enum {
-   RTM_PERM_READ,
-   RTM_PERM_WRITE,
-   RTM_PERM_DELETE
-} RTMPermission;
-
 @interface RTMAPI (Auth)
 
 - (BOOL) checkToken:(NSString *)token;

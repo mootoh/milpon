@@ -7,13 +7,13 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "RTMAPIList.h"
+#import "RTMAPI+List.h"
 #import "RTMAPI.h"
-#import "RTMAuth.h"
+#import "PrivateInfo.h"
+#import "logger.h"
 
 @interface RTMAPIListTest : SenTestCase
 {
-  RTMAuth *auth;
   RTMAPI *api;
 }
 @end
@@ -22,25 +22,24 @@
 
 - (void) setUp
 {
-  auth = [[RTMAuth alloc] init];
-  api  = [[RTMAPI alloc] init];
-  [RTMAPI setApiKey:auth.api_key];
-  [RTMAPI setSecret:auth.shared_secret];
-  [RTMAPI setToken:auth.token];
+   api  = [[RTMAPI alloc] init];
+   api.token = RTM_TOKEN_D;
 }
 
 - (void) tearDown
 {
-  [api release];
-  [auth release];
+   api.token = nil;
+   [api release];
 }
 
 - (void) testGetList
 {
-	RTMAPIList *list_api = [[[RTMAPIList alloc] init] autorelease];
-	STAssertTrue([[list_api getList] count] > 0, @"lists should be one or more.");
+   NSArray *lists = [api getList];
+	STAssertTrue([lists count] > 0, @"lists should be one or more.");
+   LOG(@"lists = %@", lists);
 }
 
+#if 0
 - (void) _testAddDelete
 {
 	RTMAPIList *list_api = [[[RTMAPIList alloc] init] autorelease];
@@ -86,5 +85,5 @@
   }
   STAssertFalse(found, @"list id absense check");
 }
-
+#endif // 0
 @end
