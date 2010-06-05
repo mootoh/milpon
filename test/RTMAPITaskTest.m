@@ -10,6 +10,7 @@
 #import "RTMAPI.h"
 #import "RTMAPI+Task.h"
 #import "RTMAPI+Timeline.h"
+#import "RTMAPI+Location.h"
 #import "PrivateInfo.h"
 #import "logger.h"
 #import "MilponHelper.h"
@@ -105,6 +106,34 @@
    STAssertTrue([dueHasTime isEqualToString:@"0"], nil);
 
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetDueDate];   
+}
+
+- (void) testAddAndLocatoin
+{
+   NSSet *locations = [api getLocations];
+   STAssertTrue([locations count] > 0, nil);
+
+   NSString *name        = @"testAddAndLocation";
+   NSString *timelineAdd = [api createTimeline];
+   
+   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timelineAdd];
+   STAssertNotNil(addedTask, nil);
+   
+   NSString    *addedDateString  = [[MilponHelper sharedHelper] dateToRtmString:[NSDate date]];
+   NSString *timelineSetLocation = [api createTimeline];
+   NSString            *task_id  = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString      *taskseries_id  = [addedTask objectForKey:@"id"];
+   NSString            *list_id  = [addedTask objectForKey:@"list_id"];
+   [api setTaskLocation:[[locations anyObject] objectForKey:@"id"] timeline:timelineSetLocation list_id:list_id taskseries_id:taskseries_id task_id:task_id];
+   
+   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   STAssertEquals([taskserieses count], 1U, nil);
+   NSDictionary *taskseries  = [taskserieses anyObject];
+   LOG(@"taskseries = %@", taskseries);
+   NSString     *location_id = [taskseries objectForKey:@"location_id"];
+   LOG(@"location_id = %@, id=%@", location_id, [[locations anyObject] objectForKey:@"id"]);
+   STAssertTrue([location_id isEqualToString:[[locations anyObject] objectForKey:@"id"]], nil);   
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetLocation];   
 }
 
 #if 0
