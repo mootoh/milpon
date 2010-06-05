@@ -24,7 +24,6 @@
    NSMutableDictionary *params;
    NSMutableArray      *lists;
    NSString            *text;
-   BOOL                 skip;
 }
 @end
 
@@ -36,7 +35,6 @@
    [params release];
    params = nil;
    text = @"";
-   skip = NO;
 }
 
 - (id) init
@@ -52,23 +50,13 @@
 {
    [params release];
    [lists release];
-   [text release];
-   
    [super dealloc];
-}
-
-// filter out 'Sent' and smart lists.
-// TODO: also skip archived list
-- (BOOL) shouldSkip:(NSDictionary *)attributeDict
-{
-   return [[attributeDict valueForKey:@"name"] isEqualToString:@"Sent"]
-       || [[attributeDict valueForKey:@"archived"] isEqualToString:@"1"]
-       || [[attributeDict valueForKey:@"deleted"] isEqualToString:@"1"];
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
 {
-   [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict];
+   SUPER_PARSE;
+   SKIP_RSP;
 
    if ([elementName isEqualToString:@"lists"]) { // start to parse
       NSAssert(mode == NONE, @"state check");
@@ -77,25 +65,20 @@
    if ([elementName isEqualToString:@"list"]) {
       NSAssert(lists != nil && mode == NONE, @"state check");
       mode = LIST;
-      if ([self shouldSkip:attributeDict]) {
-         skip = YES;
-         return;
-      }
-
-      skip = NO;
       params = [[NSMutableDictionary alloc] initWithDictionary:attributeDict];
       return;
    }
 
    if ([elementName isEqualToString:@"filter"]) {
-      if (skip) return;
       mode = FILTER;
+      return;
    }
+
+   NSAssert1(NO, @"not reach here: elementName=%@", elementName);
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars
 {
-   if (skip) return;
    NSAssert(mode == FILTER, @"state check");
    text = [text stringByAppendingString:chars];
 }
@@ -103,12 +86,12 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
    if ([elementName isEqualToString:@"list"]) {
-      NSAssert(mode == LIST, @"state check");
-      if (! skip)
-         [lists addObject:params];
+      NSAssert2(mode == LIST, @"state check for %@, params=%@", elementName, params);
+      [lists addObject:params];
       [self reset];
-   } else if ([elementName isEqualToString:@"filter"]) {
-      if (skip) return;
+      return;
+   }
+   if ([elementName isEqualToString:@"filter"]) {
       NSAssert(mode == FILTER && params != nil, @"state check");
       [params setObject:text forKey:@"filter"];
       text = nil;

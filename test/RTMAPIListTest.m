@@ -37,6 +37,19 @@
    NSArray *lists = [api getList];
 	STAssertTrue([lists count] > 0, @"lists should be one or more.");
    LOG(@"lists = %@", lists);
+
+   NSDictionary *listDict = [lists objectAtIndex:0];
+   STAssertNotNil(listDict, nil);
+   
+   // check the list elements
+   NSArray *keys = [NSArray arrayWithObjects:@"archived", @"deleted", @"id", @"locked", @"name", @"position", @"smart", @"sort_order", nil];
+
+   for (NSDictionary *list in lists) {
+      for (NSString *key in keys) {
+         id val = [list objectForKey:key];
+         STAssertNotNil(val, @"key is %@", key);
+      }
+   }
 }
 
 #if 0

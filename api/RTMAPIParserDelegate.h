@@ -12,7 +12,7 @@
  * only cares about 'rsp' result code.
  */
 @interface RTMAPIParserDelegate : NSObject {
-   BOOL succeeded;
+   BOOL     succeeded;
    NSError *error;
 }
 
@@ -21,5 +21,8 @@
 - (id) result; //!< result of the API call.
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict;
-
 @end
+
+// helper macro
+#define SUPER_PARSE [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict]
+#define SKIP_RSP if ([elementName isEqualToString:@"rsp"]) return
