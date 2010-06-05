@@ -80,7 +80,7 @@
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timeline];
 }
 
-- (void) testAddAndSetDueDateThenDelete
+- (void) _testAddAndSetDueDateThenDelete
 {
    NSString *name        = @"testAddAndSetDueDate";
    NSString *timelineAdd = [api createTimeline];

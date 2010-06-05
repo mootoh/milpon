@@ -265,17 +265,16 @@
    return [self call:@"rtm.tasks.add" args:args withDelegate:[[[TaskAddCallback alloc] init] autorelease]];
 }
 
-- (BOOL) deleteTask:(NSString *)task_id taskseries_id:(NSString *)taskseries_id list_id:(NSString *)list_id timeline:(NSString *)timeLine
+- (void) deleteTask:(NSString *)task_id taskseries_id:(NSString *)taskseries_id list_id:(NSString *)list_id timeline:(NSString *)timeLine
 {
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", nil];
    NSArray *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeLine, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
    [self call:@"rtm.tasks.delete" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
-   return YES;
 }
 
-- (BOOL) setDueDate:(NSString *)due timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id has_due_time:(BOOL)has_due_time parse:(BOOL)parse
+- (void) setDueDate:(NSString *)due timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id has_due_time:(BOOL)has_due_time parse:(BOOL)parse
 {
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"due", nil];
    NSArray *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, due, nil];
@@ -286,38 +285,18 @@
       [args setObject:@"1" forKey:@"parse"];
 
    [self call:@"rtm.tasks.setDueDate" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
-   return YES;
+}
+
+- (void) setLocation:(NSString *)location_id timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id
+{
+   NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"location_id", nil];
+   NSArray *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, location_id, nil];
+   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   
+   [self call:@"rtm.tasks.setLocation" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
 #if 0
-- (BOOL) setLocation:(NSString *)location_id forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
-{
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-
-   NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"location_id", nil];
-   NSArray *vals = [NSArray arrayWithObjects:
-      [ids objectForKey:@"list_id"],
-      [ids objectForKey:@"taskseries_id"],
-      [ids objectForKey:@"task_id"],
-      timeLine,
-      location_id,
-      nil];
-   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-
-   NSData *response = [api call:@"rtm.tasks.setLocation" withArgs:args];
-   if (! response) return NO;
-
-   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
-   [parser setDelegate:cb];
-   [parser parse];
-   if (! cb.succeeded) {
-      LOG(@"setLocation failed : %@", [cb.error localizedDescription]);
-      return NO;
-   }
-   return YES;
-}
-
 - (BOOL) setPriority:(NSString *)priority forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
