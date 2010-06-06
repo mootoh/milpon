@@ -49,17 +49,17 @@
    SUPER_PARSE;
    SKIP_RSP;
    
-   key = [elementName retain];
+   key = elementName;
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-   [key release];
    key = nil;
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)chars
 {
+   NSAssert(key, @"state check");
    [dict setObject:chars forKey:key];
 }
 
