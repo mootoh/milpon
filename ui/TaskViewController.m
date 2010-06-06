@@ -13,7 +13,7 @@
 #import "RTMList.h"
 #import "RTMTag.h"
 #import "RTMNote.h"
-#import "logger.h"
+#import "MPLogger.h"
 #import "ListProvider.h"
 #import "NoteProvider.h"
 #import "MilponHelper.h"

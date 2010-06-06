@@ -7,7 +7,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "logger.h"
+#import "MPLogger.h"
 #import "PrivateInfo.h"
 #import "RTMAPI.h"
 #import "RTMAPI+Timeline.h"

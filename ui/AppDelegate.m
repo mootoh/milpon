@@ -14,7 +14,7 @@
 #import "AddTaskViewController.h"
 #import "OverviewViewController.h"
 #import "LocalCache.h"
-#import "logger.h"
+#import "MPLogger.h"
 #import "TaskProvider.h"
 #import "ListProvider.h"
 #import "MilponHelper.h"

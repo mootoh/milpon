@@ -20,7 +20,7 @@
 #import "ListProvider.h"
 #import "TagProvider.h"
 #import "NoteProvider.h"
-#import "logger.h"
+#import "MPLogger.h"
 
 @implementation AddTaskViewController
 

@@ -12,7 +12,7 @@
 #import "RTMAPI+Timeline.h"
 #import "RTMAPI+Location.h"
 #import "PrivateInfo.h"
-#import "logger.h"
+#import "MPLogger.h"
 #import "MilponHelper.h"
 
 @interface RTMAPITaskTest : SenTestCase {

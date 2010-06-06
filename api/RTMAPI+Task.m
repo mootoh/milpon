@@ -9,7 +9,7 @@
 #import "RTMAPI.h"
 #import "RTMAPI+Task.h"
 #import "RTMAPIParserDelegate.h"
-#import "logger.h"
+#import "MPLogger.h"
 
 // -------------------------------------------------------------------
 #pragma mark TaskGetListCallback

@@ -9,7 +9,7 @@
 #import "RTMAPI.h"
 #import "RTMAPI+Auth.h"
 #import "RTMAPIParserDelegate.h"
-#import "logger.h"
+#import "MPLogger.h"
 
 // -------------------------------------------------------------------
 #pragma mark GetDictionaryCallback

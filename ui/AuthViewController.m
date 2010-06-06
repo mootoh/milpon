@@ -4,7 +4,7 @@
 #import "AppDelegate.h"
 #import "RTMAPI.h"
 #import "ReloadableTableViewController.h"
-#import "logger.h"
+#import "MPLogger.h"
 #import "RTMSynchronizer.h"
 
 @implementation AuthViewController

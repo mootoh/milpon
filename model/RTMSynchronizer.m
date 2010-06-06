@@ -17,7 +17,7 @@
 #import "RTMAPI+Note.h"
 #import "RTMAPI+Timeline.h"
 #import "ProgressView.h"
-#import "logger.h"
+#import "MPLogger.h"
 #import "ListProvider.h"
 #import "TaskProvider.h"
 #import "LocalCache.h"

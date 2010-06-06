@@ -7,7 +7,7 @@
 //
 
 #import "PriorityImageView.h"
-#import "logger.h"
+#import "MPLogger.h"
 
 @implementation PriorityImageView
 

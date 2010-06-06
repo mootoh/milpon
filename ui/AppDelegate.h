@@ -13,6 +13,7 @@
 @class RefreshingViewController;
 @protocol RTMSynchronizerDelegate;
 
+#pragma mark -
 @interface AppDelegate : NSObject <UIApplicationDelegate, RTMSynchronizerDelegate>
 {	
    IBOutlet UIWindow               *window;
@@ -24,9 +25,9 @@
    RefreshingViewController        *refreshingViewController;
 }
 
-@property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, retain)   UIWindow        *window;
 @property (nonatomic, readonly) RTMSynchronizer *syncer;
-@property (nonatomic, readonly) RTMAPI *api;
+@property (nonatomic, readonly) RTMAPI          *api;
 
 - (IBAction) addTask;
 - (IBAction) update;

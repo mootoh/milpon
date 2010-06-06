@@ -9,7 +9,7 @@
 #import "RTMAPI.h"
 #import "RTMAPI+Note.h"
 #import "RTMAPIParserDelegate.h"
-#import "logger.h"
+#import "MPLogger.h"
 
 @interface NoteAddCallback : RTMAPIParserDelegate
 {

@@ -8,7 +8,7 @@
 
 #import <CommonCrypto/CommonDigest.h>
 #import "RTMAPI.h"
-#import "logger.h"
+#import "MPLogger.h"
 #import "PrivateInfo.h"
 
 #define MP_RTM_URI   "http://api.rememberthemilk.com"

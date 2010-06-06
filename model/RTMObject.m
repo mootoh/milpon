@@ -8,7 +8,7 @@
 
 #import "RTMObject.h"
 #import "LocalCache.h"
-#import "logger.h"
+#import "MPLogger.h"
 
 @implementation RTMObject
 

@@ -11,7 +11,7 @@
 #import "RTMAPI+List.h"
 #import "RTMAPI.h"
 #import "PrivateInfo.h"
-#import "logger.h"
+#import "MPLogger.h"
 
 #define k_LIST_NAME_FOR_UNIT_TEST @"testAdd"
 

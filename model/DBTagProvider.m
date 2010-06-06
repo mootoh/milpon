@@ -9,7 +9,7 @@
 #import "DBTagProvider.h"
 #import "RTMTag.h"
 #import "LocalCache.h"
-#import "logger.h"
+#import "MPLogger.h"
 //#import "RTMAPITag.h"
 
 @interface DBTagProvider (Private);

@@ -11,7 +11,7 @@
 #import "RTMTask.h"
 #import "TagProvider.h"
 #import "TaskProvider.h"
-#import "logger.h"
+#import "MPLogger.h"
 
 @implementation RTMTag
 

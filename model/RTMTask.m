@@ -6,7 +6,7 @@
 #import "MilponHelper.h"
 #import "LocalCache.h"
 #import "NoteProvider.h"
-#import "logger.h"
+#import "MPLogger.h"
 
 @implementation RTMTask
 

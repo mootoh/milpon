@@ -8,7 +8,7 @@
 
 #import <sqlite3.h>
 #import "LocalCache.h"
-#import "logger.h"
+#import "MPLogger.h"
 #import "MilponHelper.h"
 
 @interface LocalCache (Private)
