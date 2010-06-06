@@ -190,7 +190,7 @@
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetEstimate];
 }
 
-- (void) testAddAndComplete
+- (void) _testAddAndComplete
 {
    NSString *name        = @"testAddAndComplete";
    NSString *timelineAdd = [api createTimeline];
@@ -213,6 +213,36 @@
    STAssertTrue(completed && ![completed isEqualToString:@""], nil);
 
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineComplete];
+}
+
+- (void) _testAddAndSetTags
+{
+   NSString        *name = @"testAddAndSetTags";
+   NSString *timelineAdd = [api createTimeline];
+   
+   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timelineAdd];
+   STAssertNotNil(addedTask, nil);
+   
+   NSString  *addedDateString = [[MilponHelper sharedHelper] dateToRtmString:[NSDate date]];
+   NSString  *timelineSetTags = [api createTimeline];
+   NSString          *task_id = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString    *taskseries_id = [addedTask objectForKey:@"id"];
+   NSString          *list_id = [addedTask objectForKey:@"list_id"];
+
+   NSSet         *tags = [NSSet setWithObjects:@"fuga", @"hoge", @"moge", nil];
+   NSString *tagString = @"";
+   for (NSString *tag in tags)
+      tagString = [tagString stringByAppendingFormat:@",%@", tag];
+   [api setTaskTags:tagString task_id:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetTags];
+
+   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   STAssertEquals([taskserieses count], 1U, nil);
+
+   NSDictionary *taskseries = [taskserieses anyObject];
+   NSSet      *tagsAssigned = [taskseries objectForKey:@"tags"];
+    STAssertTrue([tags isEqualToSet:tagsAssigned], nil);
+
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetTags];
 }
 
 
