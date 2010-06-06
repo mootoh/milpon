@@ -158,7 +158,7 @@
    STAssertEquals([taskserieses count], 1U, nil);
 
    NSDictionary *taskseries  = [taskserieses anyObject];
-   NSString     *pri = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"priority"];
+   NSString             *pri = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"priority"];
    STAssertTrue([priority isEqualToString:pri], nil);
 
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetPriority];
@@ -184,7 +184,7 @@
    STAssertEquals([taskserieses count], 1U, nil);
    
    NSDictionary *taskseries  = [taskserieses anyObject];
-   NSString     *est = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"estimate"];
+   NSString             *est = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"estimate"];
    STAssertTrue([estimate isEqualToString:est], nil);
    
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetEstimate];
@@ -208,8 +208,8 @@
    NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
    STAssertEquals([taskserieses count], 1U, nil);
 
-   NSDictionary *taskseries  = [taskserieses anyObject];
-   NSString     *completed = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"completed"];
+   NSDictionary *taskseries = [taskserieses anyObject];
+   NSString      *completed = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"completed"];
    STAssertTrue(completed && ![completed isEqualToString:@""], nil);
 
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineComplete];
