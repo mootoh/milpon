@@ -343,28 +343,14 @@
    [self call:@"rtm.tasks.moveTo" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
-
-#if 0
-- (BOOL) setName:(NSString *)name forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
+- (void) setTaskName:(NSString *)name timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id
 {
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
+   NSAssert(name, @"name is required");
+
+   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"timeline", @"name", nil];
+   NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, name, nil];
+   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    
-   NSMutableDictionary *args = [NSMutableDictionary dictionaryWithDictionary:ids];
-   [args setObject:timeLine forKey:@"timeline"];
-   [args setObject:name forKey:@"name"];
-   
-   NSData *response = [api call:@"rtm.tasks.setName" withArgs:args];
-   if (! response) return NO;
-   
-   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
-   [parser setDelegate:cb];
-   [parser parse];
-   if (! cb.succeeded) {
-      LOG(@"setName failed : %@", [cb.error localizedDescription]);
-      return NO;
-   }
-   return YES;   
+   [self call:@"rtm.tasks.setName" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
-#endif // 0
 @end

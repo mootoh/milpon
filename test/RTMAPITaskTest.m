@@ -245,7 +245,7 @@
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetTags];
 }
 
-- (void) testAddAndMoveTo
+- (void) _testAddAndMoveTo
 {
    NSString        *name = @"testAddAndMoveTo";
    NSString *timelineAdd = [api createTimeline];
@@ -269,6 +269,32 @@
    STAssertTrue([moved_list_id isEqualToString:to_list_id], nil);
 
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:moved_list_id timeline:timelineMoveTo];
+}
+
+- (void) testAddAndSetName
+{
+   NSString        *name = @"testAddAndSetName";
+   NSString *timelineAdd = [api createTimeline];
+   
+   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timelineAdd];
+   STAssertNotNil(addedTask, nil);
+   
+   NSString  *addedDateString  = [[MilponHelper sharedHelper] dateToRtmString:[NSDate date]];
+   NSString   *timelineSetName = [api createTimeline];
+   NSString          *task_id  = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString    *taskseries_id  = [addedTask objectForKey:@"id"];
+   NSString          *list_id  = [addedTask objectForKey:@"list_id"];
+   NSString           *nameTo  = @"testAddAndSetNameRenamed";
+   [api setTaskName:nameTo timeline:timelineSetName list_id:list_id taskseries_id:taskseries_id task_id:task_id];
+   
+   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   STAssertEquals([taskserieses count], 1U, nil);
+   
+   NSDictionary  *taskseries = [taskserieses anyObject];
+   NSString     *renamedName = [taskseries objectForKey:@"name"];
+   STAssertTrue([renamedName isEqualToString:nameTo], nil);
+   
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetName];
 }
 
 
