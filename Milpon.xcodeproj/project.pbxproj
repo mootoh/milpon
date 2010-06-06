@@ -70,7 +70,6 @@
 		B9160EFA0F565D1500473A95 /* ListSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EE50F565D1500473A95 /* ListSelectViewController.m */; };
 		B9160EFF0F565D1500473A95 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EF00F565D1500473A95 /* TaskListViewController.m */; };
 		B9160F000F565D1500473A95 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EF20F565D1500473A95 /* TaskViewController.m */; };
-		B9160F2D0F565D4C00473A95 /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1B0F565D4C00473A95 /* RTMAuth.m */; };
 		B9160F2E0F565D4C00473A95 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
 		B9160F300F565D4C00473A95 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
 		B9160F310F565D4C00473A95 /* RTMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F230F565D4C00473A95 /* RTMNote.m */; };
@@ -135,7 +134,6 @@
 		B9B956210F65D17C0046712A /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
 		B9B9562D0F65D1FC0046712A /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPI+Task.m */; };
 		B9B9562E0F65D1FF0046712A /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
-		B9B956300F65D2130046712A /* RTMAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1B0F565D4C00473A95 /* RTMAuth.m */; };
 		B9B956320F65D21E0046712A /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIParserDelegate.m */; };
 		B9B957110F6615880046712A /* DBTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B9570F0F6615880046712A /* DBTagProvider.m */; };
 		B9B957560F6617670046712A /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
@@ -230,8 +228,6 @@
 		B9160EF10F565D1500473A95 /* TaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskViewController.h; sourceTree = "<group>"; };
 		B9160EF20F565D1500473A95 /* TaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskViewController.m; sourceTree = "<group>"; };
 		B9160F190F565D4C00473A95 /* ListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProvider.h; sourceTree = "<group>"; };
-		B9160F1A0F565D4C00473A95 /* RTMAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAuth.h; sourceTree = "<group>"; };
-		B9160F1B0F565D4C00473A95 /* RTMAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAuth.m; sourceTree = "<group>"; };
 		B9160F1C0F565D4C00473A95 /* LocalCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCache.h; sourceTree = "<group>"; };
 		B9160F1D0F565D4C00473A95 /* LocalCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCache.m; sourceTree = "<group>"; };
 		B9160F200F565D4C00473A95 /* RTMList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMList.h; sourceTree = "<group>"; };
@@ -513,16 +509,16 @@
 				B9160EC30F565CEF00473A95 /* RTMAPI+Auth.m */,
 				B9160EC40F565CEF00473A95 /* RTMAPI+List.h */,
 				B9160EC50F565CEF00473A95 /* RTMAPI+List.m */,
-				B9160EC60F565CEF00473A95 /* RTMAPI+Note.h */,
-				B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */,
 				B9160EC80F565CEF00473A95 /* RTMAPI+Task.h */,
 				B9160EC90F565CEF00473A95 /* RTMAPI+Task.m */,
-				B9160ECA0F565CEF00473A95 /* RTMAPIParserDelegate.h */,
-				B9160ECB0F565CEF00473A95 /* RTMAPIParserDelegate.m */,
+				B9160EC60F565CEF00473A95 /* RTMAPI+Note.h */,
+				B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */,
 				923B79F011B9317B00F9B973 /* RTMAPI+Timeline.h */,
 				923B79F111B9317B00F9B973 /* RTMAPI+Timeline.m */,
 				92016DDE11BB0DCB00B3D341 /* RTMAPI+Location.h */,
 				92016DDF11BB0DCB00B3D341 /* RTMAPI+Location.m */,
+				B9160ECA0F565CEF00473A95 /* RTMAPIParserDelegate.h */,
+				B9160ECB0F565CEF00473A95 /* RTMAPIParserDelegate.m */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -575,8 +571,6 @@
 			children = (
 				B910D9350FA1E3600051EFB0 /* object */,
 				B910D9360FA1E36C0051EFB0 /* provider */,
-				B9160F1A0F565D4C00473A95 /* RTMAuth.h */,
-				B9160F1B0F565D4C00473A95 /* RTMAuth.m */,
 				B9160F1C0F565D4C00473A95 /* LocalCache.h */,
 				B9160F1D0F565D4C00473A95 /* LocalCache.m */,
 				B9160F280F565D4C00473A95 /* RTMSynchronizer.h */,
@@ -1021,7 +1015,6 @@
 				B9160EFA0F565D1500473A95 /* ListSelectViewController.m in Sources */,
 				B9160EFF0F565D1500473A95 /* TaskListViewController.m in Sources */,
 				B9160F000F565D1500473A95 /* TaskViewController.m in Sources */,
-				B9160F2D0F565D4C00473A95 /* RTMAuth.m in Sources */,
 				B9160F2E0F565D4C00473A95 /* LocalCache.m in Sources */,
 				B9160F300F565D4C00473A95 /* RTMList.m in Sources */,
 				B9160F310F565D4C00473A95 /* RTMNote.m in Sources */,
@@ -1090,7 +1083,6 @@
 				B9B956210F65D17C0046712A /* TaskProvider.m in Sources */,
 				B9B9562D0F65D1FC0046712A /* RTMAPI+Task.m in Sources */,
 				B9B9562E0F65D1FF0046712A /* RTMAPI.m in Sources */,
-				B9B956300F65D2130046712A /* RTMAuth.m in Sources */,
 				B9B956320F65D21E0046712A /* RTMAPIParserDelegate.m in Sources */,
 				B93AE4420FAB140E00343773 /* DBNoteProvider.m in Sources */,
 				B93AE4430FAB140E00343773 /* NoteProvider.m in Sources */,

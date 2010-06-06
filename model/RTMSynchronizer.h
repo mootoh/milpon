@@ -6,7 +6,7 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-@class RTMAuth;
+@class RTMAPI;
 @class ProgressView;
 
 @protocol RTMSynchronizerDelegate
@@ -17,15 +17,15 @@
 @end
 
 @interface RTMSynchronizer : NSObject {
-   RTMAuth *auth;
-   NSString *timeLine;
+   RTMAPI                      *api;
+   NSString                    *timeLine;
    id <RTMSynchronizerDelegate> delegate;
 }
 
 @property (nonatomic, retain) NSString *timeLine;
 @property (nonatomic, retain) id <RTMSynchronizerDelegate> delegate;
 
-- (id) initWithAuth:(RTMAuth *)aauth;
+- (id) initWithAPI:(RTMAPI *)api;
 
 - (void) replaceAll;
 - (void) update:(ProgressView *)progressView;;

@@ -28,10 +28,11 @@
    IBOutlet UIWebView *webView;
    
    RTMSynchronizer *syncer;
+   NSString *frob;
 }
 
 - (IBAction) proceedToAuthorization;
-- (IBAction) getToken;
+- (IBAction) getToken:(RTMAPI *)api;
 - (void) failedInAuthorization;
 
 @end

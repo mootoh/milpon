@@ -1,7 +1,6 @@
 #import "AuthViewController.h"
 #import "RTMAPI.h"
 #import "RTMAPI+Auth.h"
-#import "RTMAuth.h"
 #import "AppDelegate.h"
 #import "RTMAPI.h"
 #import "ReloadableTableViewController.h"
@@ -16,6 +15,7 @@
       state = STATE_INITIAL;
       self.title = NSLocalizedString(@"Setup", "setup screen");
       syncer = nil;
+      frob = nil;
    }
    return self;
 }
@@ -64,18 +64,13 @@
    [authActivity startAnimating];
    
    // get Frob
-   RTMAPIAuth *api_auth = [[[RTMAPIAuth alloc] init] autorelease];
-   NSString *frob = [api_auth getFrob];
+   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
+   frob = [api getFrob];
    if (!frob) {
       [self failedInAuthorization];
       return;
    }
    
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   RTMAuth *auth = app.auth;
-   auth.frob = frob;
-   
-   RTMAPI *api = [[RTMAPI alloc] init];
    NSString *urlString = [api authURL:frob forPermission:@"delete"];
    NSURL *authURL = [NSURL URLWithString:urlString];
    
@@ -135,37 +130,27 @@
    passwordField.hidden = YES;
    proceedButton.hidden = YES;
    
-   [self getToken];
    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   RTMAuth *auth = app.auth;
-
-   syncer = [[RTMSynchronizer alloc] initWithAuth:auth];
+   [self getToken:app.api];
+   syncer = [[RTMSynchronizer alloc] initWithAPI:app.api];
    syncer.delegate = self;
    [syncer replaceAll];
 }
 
-- (IBAction) getToken
+- (IBAction) getToken:(RTMAPI *)api
 {
    [authActivity startAnimating];
 
-   AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-   RTMAuth *auth = app.auth;
-   NSString *frob = auth.frob;
-
-   // get Token
-   RTMAPIAuth *api_auth = [[[RTMAPIAuth alloc] init] autorelease];
-   NSString *token = [api_auth getToken:frob];
+   NSString *token = [api getToken:frob];
 
    [authActivity stopAnimating];
 
-   if (!token) {
+   if (! token) {
       [self failedInAuthorization];
       return;
    }
-
-   auth.token = token;
-   [RTMAPI setToken:auth.token];
-   [app.auth save];
+   
+   [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"token"]; // TODO: move the store process to AppDelegate or somewhere.
 }
 
 - (void) backToRootMenu

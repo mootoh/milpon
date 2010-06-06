@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "RTMAPI.h"
-#import "RTMAuth.h"
 #import "RTMTask.h"
 #import "RTMList.h"
 #import "AuthViewController.h"
@@ -36,7 +35,8 @@
 
 - (BOOL) authorized
 {
-   return auth.token && ![auth.token isEqualToString:@""];
+   NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+   return token != nil;
 }
 
 - (UIViewController *) recoverViewController
@@ -59,8 +59,8 @@
 @implementation AppDelegate
 
 @synthesize window;
-@synthesize auth;
 @synthesize syncer;
+@synthesize api;
 
 const CGFloat arrowXs[] = {
    160-53,
@@ -76,15 +76,10 @@ const CGFloat arrowY = 480-44-3;
 - (id) init
 {
    if (self = [super init]) {
-      RTMAuth *ath =[[RTMAuth alloc] init];
-      self.auth = ath;
-      [ath release];
-
-      [RTMAPI setApiKey:auth.api_key];
-      [RTMAPI setSecret:auth.shared_secret];
-      if (auth.token)
-         [RTMAPI setToken:auth.token];
-      syncer = [[RTMSynchronizer alloc] initWithAuth:auth];
+      api = [[RTMAPI alloc] init];
+      if ([self authorized])
+         api.token = [[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+      syncer = [[RTMSynchronizer alloc] initWithAPI:api];
       syncer.delegate = self;
       refreshingViewController = nil;
    }
@@ -98,7 +93,7 @@ const CGFloat arrowY = 480-44-3;
    [progressView release];
    [navigationController release];
    [syncer release];
-   [auth release];
+   [api release];
    [window release];
    [super dealloc];
 }

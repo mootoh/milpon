@@ -6,10 +6,11 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "DBListProvider.h"
 #import "RTMList.h"
 #import "LocalCache.h"
-#import "RTMAPIList.h"
+#import "RTMAPI+List.h"
 
 @interface DBListProvider (Private);
 - (NSArray *) loadLists:(NSDictionary *)option;
@@ -47,9 +48,8 @@
 {
    [self erase];
 
-   RTMAPIList *api_list = [[RTMAPIList alloc] init];
-   NSArray *lists = [api_list getList];
-   [api_list release];
+   AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+   NSArray *lists = [appDelegate.api getList];
 
    for (NSDictionary *list in lists)
       [self create:list];

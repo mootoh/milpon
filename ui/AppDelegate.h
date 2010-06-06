@@ -8,7 +8,7 @@
 
 #import "RTMSynchronizer.h"
 
-@class RTMAuth;
+@class RTMAPI;
 @class ProgressView;
 @class RefreshingViewController;
 @protocol RTMSynchronizerDelegate;
@@ -17,7 +17,7 @@
 {	
    IBOutlet UIWindow               *window;
    IBOutlet UINavigationController *navigationController;
-   RTMAuth                         *auth;
+   RTMAPI                          *api;
    RTMSynchronizer                 *syncer;
    ProgressView                    *progressView;
    UIImageView                     *arrowImageView;
@@ -25,8 +25,8 @@
 }
 
 @property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) RTMAuth *auth;
 @property (nonatomic, readonly) RTMSynchronizer *syncer;
+@property (nonatomic, readonly) RTMAPI *api;
 
 - (IBAction) addTask;
 - (IBAction) update;
