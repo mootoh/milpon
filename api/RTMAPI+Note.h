@@ -11,9 +11,6 @@
 
 - (NSDictionary *) addNote:(NSString *)title text:(NSString *)text timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id;
 - (void) deleteNote:(NSString *)note_id timeline:(NSString *)timeline;
-
-#if 0
-- (BOOL) edit:(NSDictionary *)ids withTitle:(NSString *)title withText:(NSString *)text withTimeLine:(NSString *)timeLine;
-#endif // 0
+- (NSDictionary *) editNote:(NSString *)note_id title:(NSString *)title text:(NSString *)text timeline:(NSString *)timeline;
 
 @end
