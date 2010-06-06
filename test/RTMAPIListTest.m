@@ -64,7 +64,7 @@
    LOG(@"addedList = %@", addedList);
 }
 
-- (void) testAddAndDelete
+- (void) _testAddAndDelete
 {
 	NSInteger count_first = [[api getList] count];
 

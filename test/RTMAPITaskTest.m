@@ -240,28 +240,39 @@
 
    NSDictionary *taskseries = [taskserieses anyObject];
    NSSet      *tagsAssigned = [taskseries objectForKey:@"tags"];
-    STAssertTrue([tags isEqualToSet:tagsAssigned], nil);
+   STAssertTrue([tags isEqualToSet:tagsAssigned], nil);
 
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetTags];
 }
 
-
-#if 0
-- (void) testTags
+- (void) testAddAndMoveTo
 {
-   RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
-   NSArray *tasks = [api_task getList];
-   BOOL tag_found = NO;
-   for (NSDictionary *taskseries in tasks) { // iterate in taskseries
-      NSArray *tags = [taskseries objectForKey:@"tags"];
-      if (tags) {
-         tag_found = YES;
-         break;
-      }
-   }
-   STAssertTrue(tag_found, @"at least one tag should be found.");
+   NSString        *name = @"testAddAndMoveTo";
+   NSString *timelineAdd = [api createTimeline];
+
+   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timelineAdd];
+   STAssertNotNil(addedTask, nil);
+
+   NSString  *addedDateString = [[MilponHelper sharedHelper] dateToRtmString:[NSDate date]];
+   NSString   *timelineMoveTo = [api createTimeline];
+   NSString          *task_id = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString    *taskseries_id = [addedTask objectForKey:@"id"];
+   NSString     *from_list_id = [addedTask objectForKey:@"list_id"];
+   NSString       *to_list_id = @"8698547"; // somewhere
+   [api moveTaskTo:to_list_id from_list_id:from_list_id task_id:task_id taskseries_id:taskseries_id timeline:timelineMoveTo];
+
+   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   STAssertEquals([taskserieses count], 1U, nil);
+
+   NSDictionary  *taskseries = [taskserieses anyObject];
+   NSString   *moved_list_id = [taskseries objectForKey:@"list_id"];
+   STAssertTrue([moved_list_id isEqualToString:to_list_id], nil);
+
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:moved_list_id timeline:timelineMoveTo];
 }
 
+
+#if 0
 - (void) testAddInList_and_Delete
 {
    RTMAPITask *api_task = [[[RTMAPITask alloc] init] autorelease];
