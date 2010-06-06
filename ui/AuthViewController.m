@@ -39,7 +39,7 @@
 
 - (void) setInitialInstruction
 {
-   instructionLabel.text = @"Press OK button in the next screen.";
+   instructionLabel.text = @"Press OK button in the next screen."; // TODO: localize it
 }
 
 - (void) viewDidLoad
@@ -47,7 +47,6 @@
    [super viewDidLoad];
    [self reset];   
    [self performSelector:@selector(setInitialInstruction) withObject:nil afterDelay:2.0];
-
 }
 
 - (IBAction) proceedToAuthorization
@@ -62,32 +61,41 @@
    proceedButton.enabled = NO;
    
    [authActivity startAnimating];
-   
+
    // get Frob
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-   frob = [api getFrob];
-   if (!frob) {
+   AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+   @try {
+      frob = [appDelegate.api getFrob];
+   }
+   @catch (NSException *e) {
+      LOG(@"exception : %@ : %@", e.name, e.reason);
+      NSError *error = [e.userInfo objectForKey:@"error"];
+      if (error.code == RTM_ERROR_SERVICE_DOWN) {
+         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"RTM is down" message:@"RTM is currently unavailable. Try again later." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+         [alertView show];
+         return;
+      }
       [self failedInAuthorization];
       return;
    }
    
-   NSString *urlString = [api authURL:frob forPermission:@"delete"];
-   NSURL *authURL = [NSURL URLWithString:urlString];
-   
-   LOG(@"authURL = %@", authURL);
-   
-   NSURLRequest *req = [NSURLRequest requestWithURL:authURL];
-   webView.hidden = YES;
+   NSString *urlString = [appDelegate.api authURL:frob forPermission:@"delete"];
+   NSURL      *authURL = [NSURL URLWithString:urlString];
+   NSURLRequest   *req = [NSURLRequest requestWithURL:authURL];
+   webView.hidden      = YES;
    [webView loadRequest:req];
    
-   [api release];
    state = STATE_SUBMITTED;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+   [self reset];
 }
 
 - (void) failedInAuthorization
 {
-   //NSLog(@"faildInAuthorization: state=%d", state);
-   NSAssert(state == STATE_INITIAL || state == STATE_SUBMITTED || state == STATE_USERINFO_ENTERED, @"check state");
+   NSAssert(state == STATE_INITIAL || state == STATE_SUBMITTED || state == STATE_USERINFO_ENTERED|| state == STATE_WRONG_PASSWORD, @"check state");
    [webView stopLoading];
    state = STATE_WRONG_PASSWORD;
    

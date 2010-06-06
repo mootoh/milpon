@@ -26,6 +26,9 @@
 #import "TaskListViewController.h"
 #import "PrivateInfo.h"
 
+// ---------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark Private
 @interface AppDelegate (Private)
 - (UIViewController *) recoverViewController;
 - (BOOL) authorized;
@@ -35,14 +38,13 @@
 
 - (BOOL) authorized
 {
-   NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
-   return token != nil;
+   return api.token != nil;
 }
 
 - (UIViewController *) recoverViewController
 {
    UIViewController *vc = nil;
-   
+
    if (! [self authorized]) {
       vc = [[AuthViewController alloc] initWithNibName:@"AuthView" bundle:nil];
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishedAuthorization) name:@"backToRootMenu" object:nil];
@@ -54,7 +56,11 @@
    return [vc autorelease];
 }
 
-@end // AppDelegate (Private)
+@end
+
+// ---------------------------------------------------------------------------------
+#pragma mark -
+#pragma mark AppDelegate
 
 @implementation AppDelegate
 
@@ -77,8 +83,6 @@ const CGFloat arrowY = 480-44-3;
 {
    if (self = [super init]) {
       api = [[RTMAPI alloc] init];
-      if ([self authorized])
-         api.token = [[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
       syncer = [[RTMSynchronizer alloc] initWithAPI:api];
       syncer.delegate = self;
       refreshingViewController = nil;
@@ -101,8 +105,8 @@ const CGFloat arrowY = 480-44-3;
 - (void) applicationDidFinishLaunching:(UIApplication *)application
 {
    UIViewController *rootViewController = [self recoverViewController];
-   navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
 
+   navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
    navigationController.navigationBar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
    [window addSubview:navigationController.view];
 
@@ -120,11 +124,6 @@ const CGFloat arrowY = 480-44-3;
       [self update];
 
    [window makeKeyAndVisible];
-}
-
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-   return YES;
 }
 
 enum {

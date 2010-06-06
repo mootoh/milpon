@@ -199,8 +199,10 @@
    if (! [parser parse]) {
       NSInteger errCode = [[parser parserError] code];
       if (errCode == NSXMLParserInternalError || errCode == NSXMLParserDelegateAbortedParseError) { // rsp error
-         if (delegate.error)
-            exception = [NSException exceptionWithName:@"RTMAPIException" reason:[NSString stringWithFormat:@"%d : %@", [delegate.error code], [delegate.error localizedDescription]] userInfo:nil];
+         if (delegate.error) {
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:delegate.error forKey:@"error"];
+            exception = [NSException exceptionWithName:@"RTMAPIException" reason:[NSString stringWithFormat:@"%d : %@", [delegate.error code], [delegate.error localizedDescription]] userInfo:userInfo];
+         }
       } else {         
          NSString *errorString = [[parser parserError] localizedDescription];
          exception = [NSException exceptionWithName:@"APIResponseParserError" reason:[NSString stringWithFormat:@"failed in parse: %@", errorString] userInfo:nil];

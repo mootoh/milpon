@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "RTMAPIParserDelegate.h"
 
+enum {
+   RTM_ERROR_SERVICE_DOWN = 105
+};
+
 /**
  * access to the RTM REST API.
  */
