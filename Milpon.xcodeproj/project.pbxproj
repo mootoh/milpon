@@ -27,7 +27,8 @@
 		925C7A500FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4B0FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql */; };
 		925C7A510FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4C0FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql */; };
 		925C7A520FBEB7F300BCD6EF /* migrate_005_version_2.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4D0FBEB7F300BCD6EF /* migrate_005_version_2.sql */; };
-		927353BD11BB2ABC0039EF99 /* RTMAPITaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */; };
+		9273542611BB30BE0039EF99 /* RTMAPINoteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9273542511BB30BE0039EF99 /* RTMAPINoteTest.m */; };
+		9273542F11BB34550039EF99 /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */; };
 		9278D1950FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */; };
 		9278D1B30FBF07730007B03B /* DBNoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43D0FAB140E00343773 /* DBNoteProvider.m */; };
 		9278D1B40FBF07750007B03B /* NoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43F0FAB140E00343773 /* NoteProvider.m */; };
@@ -60,7 +61,7 @@
 		B9160ECC0F565CEF00473A95 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
 		B9160ECD0F565CEF00473A95 /* RTMAPI+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPI+Auth.m */; };
 		B9160ECE0F565CEF00473A95 /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPI+List.m */; };
-		B9160ECF0F565CEF00473A95 /* RTMAPINote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPINote.m */; };
+		B9160ECF0F565CEF00473A95 /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */; };
 		B9160ED00F565CEF00473A95 /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPI+Task.m */; };
 		B9160ED10F565CEF00473A95 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIParserDelegate.m */; };
 		B9160EF40F565D1500473A95 /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ED90F565D1500473A95 /* AddTaskViewController.m */; };
@@ -164,6 +165,7 @@
 		925C7A4B0FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_002_add_to_list_id_to_task.sql; sourceTree = "<group>"; };
 		925C7A4C0FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_003_add_note_id_to_note.sql; sourceTree = "<group>"; };
 		925C7A4D0FBEB7F300BCD6EF /* migrate_005_version_2.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_005_version_2.sql; sourceTree = "<group>"; };
+		9273542511BB30BE0039EF99 /* RTMAPINoteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPINoteTest.m; sourceTree = "<group>"; };
 		9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_006_add_initial_lastsync.sql; sourceTree = "<group>"; };
 		9278D1F40FBF0DB50007B03B /* SplashScreen-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SplashScreen-Info.plist"; sourceTree = "<group>"; };
 		9278D28A0FBF0EE80007B03B /* SplashScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SplashScreen.xib; path = splashscreen/SplashScreen.xib; sourceTree = SOURCE_ROOT; };
@@ -206,8 +208,8 @@
 		B9160EC30F565CEF00473A95 /* RTMAPI+Auth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTMAPI+Auth.m"; sourceTree = "<group>"; };
 		B9160EC40F565CEF00473A95 /* RTMAPI+List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTMAPI+List.h"; sourceTree = "<group>"; };
 		B9160EC50F565CEF00473A95 /* RTMAPI+List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTMAPI+List.m"; sourceTree = "<group>"; };
-		B9160EC60F565CEF00473A95 /* RTMAPINote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPINote.h; sourceTree = "<group>"; };
-		B9160EC70F565CEF00473A95 /* RTMAPINote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMAPINote.m; sourceTree = "<group>"; };
+		B9160EC60F565CEF00473A95 /* RTMAPI+Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTMAPI+Note.h"; sourceTree = "<group>"; };
+		B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTMAPI+Note.m"; sourceTree = "<group>"; };
 		B9160EC80F565CEF00473A95 /* RTMAPI+Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTMAPI+Task.h"; sourceTree = "<group>"; };
 		B9160EC90F565CEF00473A95 /* RTMAPI+Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTMAPI+Task.m"; sourceTree = "<group>"; };
 		B9160ECA0F565CEF00473A95 /* RTMAPIParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMAPIParserDelegate.h; sourceTree = "<group>"; };
@@ -511,8 +513,8 @@
 				B9160EC30F565CEF00473A95 /* RTMAPI+Auth.m */,
 				B9160EC40F565CEF00473A95 /* RTMAPI+List.h */,
 				B9160EC50F565CEF00473A95 /* RTMAPI+List.m */,
-				B9160EC60F565CEF00473A95 /* RTMAPINote.h */,
-				B9160EC70F565CEF00473A95 /* RTMAPINote.m */,
+				B9160EC60F565CEF00473A95 /* RTMAPI+Note.h */,
+				B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */,
 				B9160EC80F565CEF00473A95 /* RTMAPI+Task.h */,
 				B9160EC90F565CEF00473A95 /* RTMAPI+Task.m */,
 				B9160ECA0F565CEF00473A95 /* RTMAPIParserDelegate.h */,
@@ -666,6 +668,7 @@
 			isa = PBXGroup;
 			children = (
 				B9AE52090F6B408A0076D258 /* api */,
+				B9160FDB0F565DE000473A95 /* RTMAuthTest.m */,
 				B9160FDD0F565DE000473A95 /* ListTest.m */,
 				B9160FE10F565DE000473A95 /* TaskTest.m */,
 				B9B957310F66160B0046712A /* TagProviderTest.m */,
@@ -740,13 +743,13 @@
 		B9AE52090F6B408A0076D258 /* api */ = {
 			isa = PBXGroup;
 			children = (
-				B9160FD30F565DE000473A95 /* MockRTMAPI.h */,
-				B9160FD40F565DE000473A95 /* MockRTMAPI.m */,
+				B9160FDA0F565DE000473A95 /* RTMAPITest.m */,
 				B9160FD70F565DE000473A95 /* RTMAPIAuthTest.m */,
 				B9160FD80F565DE000473A95 /* RTMAPIListTest.m */,
 				B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */,
-				B9160FDA0F565DE000473A95 /* RTMAPITest.m */,
-				B9160FDB0F565DE000473A95 /* RTMAuthTest.m */,
+				9273542511BB30BE0039EF99 /* RTMAPINoteTest.m */,
+				B9160FD30F565DE000473A95 /* MockRTMAPI.h */,
+				B9160FD40F565DE000473A95 /* MockRTMAPI.m */,
 			);
 			name = api;
 			sourceTree = "<group>";
@@ -1009,7 +1012,7 @@
 				B9160ECC0F565CEF00473A95 /* RTMAPI.m in Sources */,
 				B9160ECD0F565CEF00473A95 /* RTMAPI+Auth.m in Sources */,
 				B9160ECE0F565CEF00473A95 /* RTMAPI+List.m in Sources */,
-				B9160ECF0F565CEF00473A95 /* RTMAPINote.m in Sources */,
+				B9160ECF0F565CEF00473A95 /* RTMAPI+Note.m in Sources */,
 				B9160ED00F565CEF00473A95 /* RTMAPI+Task.m in Sources */,
 				B9160ED10F565CEF00473A95 /* RTMAPIParserDelegate.m in Sources */,
 				B9160EF40F565D1500473A95 /* AddTaskViewController.m in Sources */,
@@ -1071,7 +1074,8 @@
 				92016C8711BA19FF00B3D341 /* RTMAPI.m in Sources */,
 				92016D9311BB051A00B3D341 /* MilponHelper.m in Sources */,
 				92016DE011BB0DCB00B3D341 /* RTMAPI+Location.m in Sources */,
-				927353BD11BB2ABC0039EF99 /* RTMAPITaskTest.m in Sources */,
+				9273542611BB30BE0039EF99 /* RTMAPINoteTest.m in Sources */,
+				9273542F11BB34550039EF99 /* RTMAPI+Note.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

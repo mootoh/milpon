@@ -1,6 +1,6 @@
 #import "AuthViewController.h"
 #import "RTMAPI.h"
-#import "RTMAPIAuth.h"
+#import "RTMAPI+Auth.h"
 #import "RTMAuth.h"
 #import "AppDelegate.h"
 #import "RTMAPI.h"

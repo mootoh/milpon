@@ -353,4 +353,5 @@
    
    [self call:@"rtm.tasks.setName" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
+
 @end
