@@ -305,35 +305,16 @@
    [self call:@"rtm.tasks.setPriority" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
-#if 0
-- (BOOL) setEstimate:(NSString *)estimate forIDs:(NSDictionary *)ids withTimeLine:(NSString *)timeLine
+- (void) setTaskEstimate:(NSString *)estimate timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id
 {
-   RTMAPI *api = [[[RTMAPI alloc] init] autorelease];
-
-   NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"estimate", nil];
-   NSArray *vals = [NSArray arrayWithObjects:
-      [ids objectForKey:@"list_id"],
-      [ids objectForKey:@"taskseries_id"],
-      [ids objectForKey:@"task_id"],
-      timeLine,
-      estimate,
-      nil];
+   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"estimate", nil];
+   NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, estimate, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-
-   NSData *response = [api call:@"rtm.tasks.setEstimate" withArgs:args];
-   if (! response) return NO;
-
-   NSXMLParser *parser = [[[NSXMLParser alloc] initWithData:response] autorelease];
-   RTMAPIParserDelegate *cb = [[[RTMAPIParserDelegate alloc] init] autorelease];
-   [parser setDelegate:cb];
-   [parser parse];
-   if (! cb.succeeded) {
-      LOG(@"setEstimate failed : %@", [cb.error localizedDescription]);
-      return NO;
-   }
-   return YES;
+   
+   [self call:@"rtm.tasks.setEstimate" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
+#if 0
 - (BOOL) complete:(RTMTask *)task withTimeLine:(NSString *)timeLine
 {
    RTMAPI *api = [[[RTMAPI alloc] init] autorelease];

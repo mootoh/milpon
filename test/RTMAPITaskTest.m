@@ -138,7 +138,7 @@
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetLocation];   
 }
 
-- (void) testAddAndPriority
+- (void) _testAddAndPriority
 {
    NSString *name        = @"testAddAndPriority";
    NSString *timelineAdd = [api createTimeline];
@@ -162,6 +162,32 @@
    STAssertTrue([priority isEqualToString:pri], nil);
 
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetPriority];
+}
+
+- (void) _testAddAndEstimate
+{
+   NSString *name        = @"testAddAndEstimate";
+   NSString *timelineAdd = [api createTimeline];
+   
+   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timelineAdd];
+   STAssertNotNil(addedTask, nil);
+   
+   NSString     *addedDateString = [[MilponHelper sharedHelper] dateToRtmString:[NSDate date]];
+   NSString *timelineSetEstimate = [api createTimeline];
+   NSString             *task_id = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString       *taskseries_id = [addedTask objectForKey:@"id"];
+   NSString             *list_id = [addedTask objectForKey:@"list_id"];
+   NSString            *estimate = @"1 hours";
+   [api setTaskEstimate:estimate timeline:timelineSetEstimate list_id:list_id taskseries_id:taskseries_id task_id:task_id];
+   
+   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   STAssertEquals([taskserieses count], 1U, nil);
+   
+   NSDictionary *taskseries  = [taskserieses anyObject];
+   NSString     *est = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"estimate"];
+   STAssertTrue([estimate isEqualToString:est], nil);
+   
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetEstimate];
 }
 
 #if 0
