@@ -27,7 +27,6 @@
 		925C7A500FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4B0FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql */; };
 		925C7A510FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4C0FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql */; };
 		925C7A520FBEB7F300BCD6EF /* migrate_005_version_2.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4D0FBEB7F300BCD6EF /* migrate_005_version_2.sql */; };
-		9273542611BB30BE0039EF99 /* RTMAPINoteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9273542511BB30BE0039EF99 /* RTMAPINoteTest.m */; };
 		9273542F11BB34550039EF99 /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */; };
 		9278D1950FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */; };
 		9278D1B30FBF07730007B03B /* DBNoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43D0FAB140E00343773 /* DBNoteProvider.m */; };
@@ -1089,7 +1088,6 @@
 				92016C8711BA19FF00B3D341 /* RTMAPI.m in Sources */,
 				92016D9311BB051A00B3D341 /* MilponHelper.m in Sources */,
 				92016DE011BB0DCB00B3D341 /* RTMAPI+Location.m in Sources */,
-				9273542611BB30BE0039EF99 /* RTMAPINoteTest.m in Sources */,
 				9273542F11BB34550039EF99 /* RTMAPI+Note.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

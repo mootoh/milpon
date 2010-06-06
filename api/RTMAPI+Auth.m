@@ -112,7 +112,7 @@
 
 - (BOOL) checkToken:(NSString *)tkn
 {
-   NSDictionary *userInfo = (NSDictionary *)[self call:@"rtm.auth.checkToken" args:[NSDictionary dictionaryWithObject:tkn forKey:@"auth_token"] withDelegate:[[[GetDictionaryCallback alloc] init] autorelease]];
+   NSDictionary *userInfo = (NSDictionary *)[self call:@"rtm.auth.checkToken" args:[NSDictionary dictionaryWithObject:tkn forKey:@"auth_token"] delegate:[[[GetDictionaryCallback alloc] init] autorelease]];
    return userInfo != nil;
 }
 
@@ -123,12 +123,12 @@
  */
 - (NSString *) getFrob
 {
-   return (NSString *)[self call:@"rtm.auth.getFrob" args:nil withDelegate:[[[GetStringCallback alloc] init] autorelease]];
+   return (NSString *)[self call:@"rtm.auth.getFrob" args:nil delegate:[[[GetStringCallback alloc] init] autorelease]];
 }
 
 - (NSString *) getToken:(NSString *)frob
 {
-   NSDictionary *userInfo = (NSDictionary *)[self call:@"rtm.auth.getToken" args:[NSDictionary dictionaryWithObject:frob forKey:@"frob"] withDelegate:[[[GetDictionaryCallback alloc] init] autorelease]];
+   NSDictionary *userInfo = (NSDictionary *)[self call:@"rtm.auth.getToken" args:[NSDictionary dictionaryWithObject:frob forKey:@"frob"] delegate:[[[GetDictionaryCallback alloc] init] autorelease]];
    return [userInfo objectForKey:@"token"];
 }
 

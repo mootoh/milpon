@@ -187,7 +187,7 @@
 
 - (NSArray *) getList
 {
-   return (NSArray *)[self call:@"rtm.lists.getList" args:nil withDelegate:[[[ListGetCallback alloc] init] autorelease]];
+   return (NSArray *)[self call:@"rtm.lists.getList" args:nil delegate:[[[ListGetCallback alloc] init] autorelease]];
 }
 
 - (NSDictionary *) add:(NSString *)name timeline:(NSString *)timeline filter:(NSString *)filter
@@ -199,7 +199,7 @@
    if (filter)
       [args setObject:filter forKey:@"filter"];
 
-   return [self call:@"rtm.lists.add" args:args withDelegate:[[[ListAddCallback alloc] init] autorelease]];
+   return [self call:@"rtm.lists.add" args:args delegate:[[[ListAddCallback alloc] init] autorelease]];
 }
 
 - (BOOL) delete:(NSString *)listID timeline:(NSString *)timeline
@@ -208,6 +208,6 @@
    NSArray *vals = [NSArray arrayWithObjects:listID, timeline, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   return [self call:@"rtm.lists.delete" args:args withDelegate:[[[ListDeleteCallback alloc] init] autorelease]] != nil;
+   return [self call:@"rtm.lists.delete" args:args delegate:[[[ListDeleteCallback alloc] init] autorelease]] != nil;
 }
 @end

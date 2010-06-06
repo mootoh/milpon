@@ -61,7 +61,7 @@
 
 - (NSSet *) getLocations
 {
-   return [self call:@"rtm.locations.getList" args:nil withDelegate:[[[LocationGetCallback alloc] init] autorelease]];
+   return [self call:@"rtm.locations.getList" args:nil delegate:[[[LocationGetCallback alloc] init] autorelease]];
 }
 
 @end

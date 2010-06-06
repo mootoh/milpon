@@ -63,7 +63,7 @@
    NSArray *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, title, text, timeline, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   return (NSDictionary *)[self call:@"rtm.tasks.notes.add" args:args withDelegate:[[[NoteAddCallback alloc] init] autorelease]];
+   return (NSDictionary *)[self call:@"rtm.tasks.notes.add" args:args delegate:[[[NoteAddCallback alloc] init] autorelease]];
 }
 
 - (void) deleteNote:(NSString *)note_id timeline:(NSString *)timeline
@@ -72,7 +72,7 @@
    NSArray *vals = [NSArray arrayWithObjects:note_id, timeline, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   [self call:@"rtm.tasks.notes.delete" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
+   [self call:@"rtm.tasks.notes.delete" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
 - (NSDictionary *) editNote:(NSString *)note_id title:(NSString *)title text:(NSString *)text timeline:(NSString *)timeline
@@ -81,7 +81,7 @@
    NSArray *vals = [NSArray arrayWithObjects:note_id, title, text, timeline, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   return (NSDictionary *)[self call:@"rtm.tasks.notes.edit" args:args withDelegate:[[[NoteAddCallback alloc] init] autorelease]];
+   return (NSDictionary *)[self call:@"rtm.tasks.notes.edit" args:args delegate:[[[NoteAddCallback alloc] init] autorelease]];
 }
 
 @end

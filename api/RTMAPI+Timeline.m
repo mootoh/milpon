@@ -58,7 +58,7 @@
 
 - (NSString *) createTimeline
 {
-   return (NSString *)[self call:@"rtm.timelines.create" args:[NSDictionary dictionaryWithObject:self.token forKey:@"auth_token"] withDelegate:[[[RTMAPITimeLineDelegate alloc] init] autorelease]];
+   return (NSString *)[self call:@"rtm.timelines.create" args:[NSDictionary dictionaryWithObject:self.token forKey:@"auth_token"] delegate:[[[RTMAPITimeLineDelegate alloc] init] autorelease]];
 }
 
 @end

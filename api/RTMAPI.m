@@ -15,6 +15,7 @@
 #define MP_REST_PATH "/services/rest/"
 #define MP_AUTH_PATH "/services/auth/"
 
+// -----------------------------------------------------------------------------------
 #pragma mark -
 #pragma mark Private
 @interface RTMAPI (Private)
@@ -39,9 +40,9 @@
 
 - (NSString *)constructwithEscaping:(NSDictionary *)args
 {
-   NSMutableString     *arg = [NSMutableString string];
+   NSMutableString *arg = [NSMutableString string];
    for (id key in args) {
-      id v = [args objectForKey:key];
+      id          v = [args objectForKey:key];
       NSString *val = [v isKindOfClass:[NSString class]] ? v : [v stringValue];
 
       // escape values
@@ -57,6 +58,7 @@
 {
    NSMutableDictionary *args_with_token = [NSMutableDictionary dictionaryWithDictionary:args];
    if (token) [args_with_token setObject:token forKey:@"auth_token"];
+
    NSString *arg = [self constructwithEscaping:args_with_token];
    NSString *sig = [self sign:method withArgs:args_with_token];
    return [NSString stringWithFormat:@"%s%s?method=%@&api_key=%@&api_sig=%@%@", MP_RTM_URI, MP_REST_PATH, method, RTM_API_KEY, sig, arg];
@@ -67,8 +69,7 @@
    // append method, api_key
    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:args];
    if (method) [params setObject:method forKey:@"method"];
-   
-   [params setObject:RTM_API_KEY forKey:@"api_key"];
+    [params setObject:RTM_API_KEY forKey:@"api_key"];
    
    NSMutableArray *keys = [NSMutableArray arrayWithArray:[params allKeys]];
    [keys sortUsingSelector:@selector(compare:)];
@@ -82,6 +83,7 @@
    memset(digest, 0, CC_MD5_DIGEST_LENGTH);
    const char *from = [concat UTF8String];
    CC_MD5(from, strlen(from), digest);
+ 
    return  [NSString stringWithFormat:
                @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
                digest[0], digest[1], digest[2], digest[3],
@@ -90,41 +92,33 @@
                digest[12], digest[13], digest[14], digest[15]];
 }
 
-
 - (NSData *) call:(NSString *)method args:(NSDictionary *)args
 {
-#ifdef LOCAL_DEBUG
-   NSString *path = [self resultXMLPath:method];
-   return [NSData dataWithContentsOfFile:path];
-#else // LOCAL_DEBUG
-   NSString *url = [self path:method withArgs:args];
-   NSURLRequest *req = [NSURLRequest
-                        requestWithURL:[NSURL URLWithString:url]
-                        cachePolicy:NSURLRequestUseProtocolCachePolicy
-                        timeoutInterval:60.0];
-   NSURLResponse *res;
-   NSError *err;
+   NSString      *url = [self path:method withArgs:args];
+   NSURLRequest  *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]
+                                         cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                     timeoutInterval:60.0];
+   NSURLResponse *res = nil;
+   NSError       *err = nil;
    
    LOG(@"API calling for url=%@", url);
    NSData *ret = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
    if (NULL == ret)
       [NSException raise:@"ConnectionError" format:@"failed in API call: %@, url=%@", [err localizedDescription], url];
    
-   //#define DUMP_API_RESPONSE
 #ifdef DUMP_API_RESPONSE
-   if (ret) {
-      //NSString *dump_path = [NSString stringWithFormat:@"/tmp/%@.xml", method];
-      //BOOL wrote = [ret writeToFile:dump_path options:NSAtomicWrite error:nil];
-      //NSAssert(wrote, @"dump should be written");
-      LOG(@"method=%@, response=%@", method, [[[NSString alloc] initWithData:ret encoding:NSUTF8StringEncoding] autorelease]);
-   }
+   //NSString *dump_path = [NSString stringWithFormat:@"/tmp/%@.xml", method];
+   //BOOL wrote = [ret writeToFile:dump_path options:NSAtomicWrite error:nil];
+   //NSAssert(wrote, @"dump should be written");
+   LOG(@"method=%@, response=%@", method, [[[NSString alloc] initWithData:ret encoding:NSUTF8StringEncoding] autorelease]);
 #endif // DUMP_API_RESPONSE
+
    return ret;
-#endif // ! LOCAL_DEBUG
 }
 
 @end
 
+// -----------------------------------------------------------------------------------
 #pragma mark -
 #pragma mark RTMAPI
 @implementation RTMAPI
@@ -191,7 +185,7 @@
 }
 #endif // LOCAL_DEBUG
 
-- (id) call:(NSString *)method args:(NSDictionary *)args withDelegate:(RTMAPIParserDelegate *)delegate
+- (id) call:(NSString *)method args:(NSDictionary *)args delegate:(RTMAPIParserDelegate *)delegate
 {
    NSData *response = [self call:method args:args];
    NSAssert(response, @"check response");
@@ -222,20 +216,16 @@
 // XXX: dup with path:
 - (NSString *) authURL:(NSString *)frob forPermission:(NSString *)perm
 {
-   NSArray *keys = [NSArray arrayWithObjects:@"frob", @"perms", nil];
-   NSArray *vals = [NSArray arrayWithObjects:frob, perm, nil];
+   NSArray      *keys = [NSArray arrayWithObjects:@"frob", @"perms", nil];
+   NSArray      *vals = [NSArray arrayWithObjects:frob, perm, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   NSMutableString *arg = [NSMutableString string];
-   NSEnumerator *enumerator = [args keyEnumerator];
-   NSString *key;
-   while (key = [enumerator nextObject])
-      [arg appendFormat:@"&%@=%@", key, [args objectForKey:key]];
+   NSString *arg = @"";
+   for (NSString *key in args)
+      arg = [arg stringByAppendingFormat:@"&%@=%@", key, [args objectForKey:key]];
 
    NSString *sig = [self sign:nil withArgs:args];
-   NSString *ret = [NSString stringWithFormat:@"%s%s?api_key=%@%@&api_sig=%@",
-            MP_RTM_URI, MP_AUTH_PATH, RTM_API_KEY, arg, sig];
-   return ret;
+   return [NSString stringWithFormat:@"%s%s?api_key=%@%@&api_sig=%@", MP_RTM_URI, MP_AUTH_PATH, RTM_API_KEY, arg, sig];
 }
 
 @end

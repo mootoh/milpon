@@ -233,7 +233,7 @@
 
 - (NSSet *) getList_internal:(NSDictionary *)args
 {
-   return [self call:@"rtm.tasks.getList" args:args withDelegate:[[[TaskGetListCallback alloc] init] autorelease]];
+   return [self call:@"rtm.tasks.getList" args:args delegate:[[[TaskGetListCallback alloc] init] autorelease]];
 }
 
 - (NSSet *) getTaskList
@@ -262,7 +262,7 @@
    if (list_id)
       [args setObject:list_id forKey:@"list_id"];
    
-   return [self call:@"rtm.tasks.add" args:args withDelegate:[[[TaskAddCallback alloc] init] autorelease]];
+   return [self call:@"rtm.tasks.add" args:args delegate:[[[TaskAddCallback alloc] init] autorelease]];
 }
 
 - (void) deleteTask:(NSString *)task_id taskseries_id:(NSString *)taskseries_id list_id:(NSString *)list_id timeline:(NSString *)timeLine
@@ -271,7 +271,7 @@
    NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeLine, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   [self call:@"rtm.tasks.delete" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
+   [self call:@"rtm.tasks.delete" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
 - (void) setTaskDueDate:(NSString *)due timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id has_due_time:(BOOL)has_due_time parse:(BOOL)parse
@@ -284,7 +284,7 @@
    if (parse)
       [args setObject:@"1" forKey:@"parse"];
 
-   [self call:@"rtm.tasks.setDueDate" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
+   [self call:@"rtm.tasks.setDueDate" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
 - (void) setTaskLocation:(NSString *)location_id timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id
@@ -293,7 +293,7 @@
    NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, location_id, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    
-   [self call:@"rtm.tasks.setLocation" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
+   [self call:@"rtm.tasks.setLocation" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
 - (void) setTaskPriority:(NSString *)priority timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id
@@ -302,7 +302,7 @@
    NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, priority, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   [self call:@"rtm.tasks.setPriority" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
+   [self call:@"rtm.tasks.setPriority" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
 - (void) setTaskEstimate:(NSString *)estimate timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id
@@ -311,7 +311,7 @@
    NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, estimate, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    
-   [self call:@"rtm.tasks.setEstimate" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
+   [self call:@"rtm.tasks.setEstimate" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
 - (void) completeTask:(NSString *)task_id taskseries_id:(NSString *)taskseries_id list_id:(NSString *)list_id timeline:(NSString *)timeline
@@ -320,7 +320,7 @@
    NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    
-   [self call:@"rtm.tasks.complete" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
+   [self call:@"rtm.tasks.complete" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
 - (void) setTaskTags:(NSString *)tags task_id:(NSString *)task_id taskseries_id:(NSString *)taskseries_id list_id:(NSString *)list_id timeline:(NSString *)timeline
@@ -331,7 +331,7 @@
    if (tags)
       [args setObject:tags forKey:@"tags"];
    
-   [self call:@"rtm.tasks.setTags" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
+   [self call:@"rtm.tasks.setTags" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
 - (void) moveTaskTo:(NSString *)to_list_id from_list_id:(NSString *)from_list_id task_id:(NSString *)task_id taskseries_id:(NSString *)taskseries_id  timeline:(NSString *)timeline
@@ -340,7 +340,7 @@
    NSArray      *vals = [NSArray arrayWithObjects:to_list_id, from_list_id, taskseries_id, task_id, timeline, nil];
    NSDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    
-   [self call:@"rtm.tasks.moveTo" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
+   [self call:@"rtm.tasks.moveTo" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
 - (void) setTaskName:(NSString *)name timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id
@@ -351,7 +351,7 @@
    NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, name, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    
-   [self call:@"rtm.tasks.setName" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
+   [self call:@"rtm.tasks.setName" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
 @end

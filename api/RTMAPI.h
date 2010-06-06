@@ -20,10 +20,10 @@
 @property (nonatomic, retain) NSString *token;
 
 /**
- * synchronous call with delegate, wrapper for call:args.
+ * @brief synchronous call with delegate, wrapper for call:args.
  * @param delegate XMLParser delegate
  */
-- (id) call:(NSString *)method args:(NSDictionary *)args withDelegate:(RTMAPIParserDelegate *)delegate;
+- (id) call:(NSString *)method args:(NSDictionary *)args delegate:(RTMAPIParserDelegate *)delegate;
 
 /**
  * construct authentication URL.
