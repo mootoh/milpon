@@ -2,7 +2,6 @@
 #import "RTMAPI.h"
 #import "RTMAPI+Auth.h"
 #import "AppDelegate.h"
-#import "RTMAPI.h"
 #import "ReloadableTableViewController.h"
 #import "MPLogger.h"
 #import "RTMSynchronizer.h"
@@ -12,16 +11,17 @@
 - (id) initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle
 {
    if (self = [super initWithNibName:nibName bundle:bundle]) {
-      state = STATE_INITIAL;
+      state      = STATE_INITIAL;
+      syncer     = nil;
+      frob       = nil;
       self.title = NSLocalizedString(@"Setup", "setup screen");
-      syncer = nil;
-      frob = nil;
    }
    return self;
 }
 
 - (void) dealloc
 {
+   [frob release];
    [syncer release];
    [super dealloc];
 }
@@ -31,9 +31,9 @@
    usernameField.enabled = YES;
    passwordField.enabled = YES;
    proceedButton.enabled = YES;
+   webView.hidden        = YES;
    
    [authActivity stopAnimating];
-   webView.hidden = YES;
    [usernameField becomeFirstResponder];
 }
 
@@ -45,7 +45,7 @@
 - (void) viewDidLoad
 {
    [super viewDidLoad];
-   [self reset];   
+   [self reset];
    [self performSelector:@selector(setInitialInstruction) withObject:nil afterDelay:2.0];
 }
 
@@ -65,7 +65,7 @@
    // get Frob
    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
    @try {
-      frob = [appDelegate.api getFrob];
+      frob = [[appDelegate.api getFrob] retain];
    }
    @catch (NSException *e) {
       LOG(@"exception : %@ : %@", e.name, e.reason);
@@ -98,23 +98,12 @@
    NSAssert(state == STATE_INITIAL || state == STATE_SUBMITTED || state == STATE_USERINFO_ENTERED|| state == STATE_WRONG_PASSWORD, @"check state");
    [webView stopLoading];
    state = STATE_WRONG_PASSWORD;
-   
-   //   [UIView beginAnimations:@"failedInAuthorization" context:nil];
-   //   [UIView setAnimationDelegate:self];
-   //   [UIView setAnimationDidStopSelector:@selector(failedInAuthorizationAnimationStop:finished:context:)];
-   //   [UIView setAnimationDuration:1.5f];
-   //   
-   //  webView.alpha = 0.0f;
-   //   instructionLabel.text = @"Wrong Username / Password.";   
-   //   
-   //   [UIView commitAnimations];
    instructionLabel.text = @"Wrong Username / Password.";
    [self performSelector:@selector(reset) withObject:nil afterDelay:1.0f];
 }
 
 - (void) didSucceedInAuth
 {
-   //NSLog(@"succeeded in auth");
    instructionLabel.text = @"Loading Tasks...";
    [webView stopLoading];
    webView.hidden = YES;
@@ -124,9 +113,9 @@
    [UIView setAnimationDidStopSelector:@selector(didSucceedInAuthAnimationStop:finished:context:)];
    [UIView setAnimationDuration:0.5f];
    {   
-      usernameField.alpha = 0.0f;
-      passwordField.alpha = 0.0f;
-      proceedButton.alpha = 0.0f;
+      usernameField.alpha     = 0.0f;
+      passwordField.alpha     = 0.0f;
+      proceedButton.alpha     = 0.0f;
       instructionLabel.center = [UIApplication sharedApplication].keyWindow.center;
    }
    [UIView commitAnimations];
@@ -158,7 +147,7 @@
       return;
    }
    
-   [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"token"]; // TODO: move the store process to AppDelegate or somewhere.
+   api.token = token;
 }
 
 - (void) backToRootMenu
@@ -166,6 +155,7 @@
    [[NSNotificationCenter defaultCenter] postNotificationName:@"backToRootMenu" object:nil];
 }
 
+#pragma mark -
 #pragma mark RTMSynchronizerDelegate
 
 - (void) didUpdate
@@ -179,6 +169,7 @@
    [self performSelector:@selector(backToRootMenu) withObject:nil afterDelay:1.0f];
 }
 
+#pragma mark -
 #pragma mark UIWebViewDelegate
 
 - (void)webViewDidStartLoad:(UIWebView *)wv

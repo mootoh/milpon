@@ -21,14 +21,14 @@
    } state;
 
    IBOutlet UIActivityIndicatorView *authActivity;
-   IBOutlet UITextField *usernameField;
-   IBOutlet UITextField *passwordField;
-   IBOutlet UILabel *instructionLabel;
-   IBOutlet UIButton *proceedButton;
-   IBOutlet UIWebView *webView;
+   IBOutlet UITextField             *usernameField;
+   IBOutlet UITextField             *passwordField;
+   IBOutlet UILabel                 *instructionLabel;
+   IBOutlet UIButton                *proceedButton;
+   IBOutlet UIWebView               *webView;
    
    RTMSynchronizer *syncer;
-   NSString *frob;
+   NSString        *frob;
 }
 
 - (IBAction) proceedToAuthorization;

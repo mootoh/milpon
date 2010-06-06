@@ -153,10 +153,13 @@
             [NSString stringWithFormat:@"'%@'", [[MilponHelper sharedHelper] dateToString:v]];
       } else if ([v isKindOfClass:[NSArray class]]) {
          // fall through
+      } else if ([v isKindOfClass:[NSDictionary class]]) {
+         // rrule is a dictionary,
+         // TODO: fall through
       } else {
          [[NSException
            exceptionWithName:@"LocalCacheException"
-           reason:[NSString stringWithFormat:@"unknown typ %s for key %@, LINE=%d", object_getClassName(v), key, __LINE__]
+           reason:[NSString stringWithFormat:@"unknown type %s for key %@, LINE=%d", object_getClassName(v), key, __LINE__]
            userInfo:nil] raise];
       }
       vals = [vals stringByAppendingFormat:@"%@, ", val];
@@ -189,6 +192,9 @@
          sqlite3_bind_text(stmt, i, [(NSString *)v UTF8String], -1, SQLITE_TRANSIENT);
       } else if ([v isKindOfClass:[NSArray class]]) {
          // fall through
+      } else if ([v isKindOfClass:[NSDictionary class]]) {
+         // rrule is a dictionary,
+         // TODO: fall through
       } else {
          [[NSException
            exceptionWithName:@"LocalCacheException"
