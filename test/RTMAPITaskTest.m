@@ -190,6 +190,32 @@
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetEstimate];
 }
 
+- (void) testAddAndComplete
+{
+   NSString *name        = @"testAddAndComplete";
+   NSString *timelineAdd = [api createTimeline];
+
+   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timelineAdd];
+   STAssertNotNil(addedTask, nil);
+
+   NSString  *addedDateString = [[MilponHelper sharedHelper] dateToRtmString:[NSDate date]];
+   NSString *timelineComplete = [api createTimeline];
+   NSString          *task_id = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString    *taskseries_id = [addedTask objectForKey:@"id"];
+   NSString          *list_id = [addedTask objectForKey:@"list_id"];
+   [api completeTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineComplete];
+
+   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   STAssertEquals([taskserieses count], 1U, nil);
+
+   NSDictionary *taskseries  = [taskserieses anyObject];
+   NSString     *completed = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"completed"];
+   STAssertTrue(completed && ![completed isEqualToString:@""], nil);
+
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineComplete];
+}
+
+
 #if 0
 - (void) testTags
 {

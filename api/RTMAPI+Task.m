@@ -267,7 +267,7 @@
 
 - (void) deleteTask:(NSString *)task_id taskseries_id:(NSString *)taskseries_id list_id:(NSString *)list_id timeline:(NSString *)timeLine
 {
-   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", nil];
+   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"timeline", nil];
    NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeLine, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
@@ -276,7 +276,7 @@
 
 - (void) setTaskDueDate:(NSString *)due timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id has_due_time:(BOOL)has_due_time parse:(BOOL)parse
 {
-   NSArray             *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"due", nil];
+   NSArray             *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"timeline", @"due", nil];
    NSArray             *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, due, nil];
    NSMutableDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (has_due_time)
@@ -289,7 +289,7 @@
 
 - (void) setTaskLocation:(NSString *)location_id timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id
 {
-   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"location_id", nil];
+   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"timeline", @"location_id", nil];
    NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, location_id, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    
@@ -298,7 +298,7 @@
 
 - (void) setTaskPriority:(NSString *)priority timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id
 {
-   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"priority", nil];
+   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"timeline", @"priority", nil];
    NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, priority, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
@@ -307,11 +307,20 @@
 
 - (void) setTaskEstimate:(NSString *)estimate timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id
 {
-   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id",  @"timeline", @"estimate", nil];
+   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"timeline", @"estimate", nil];
    NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, estimate, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
    
    [self call:@"rtm.tasks.setEstimate" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
+}
+
+- (void) completeTask:(NSString *)task_id taskseries_id:(NSString *)taskseries_id list_id:(NSString *)list_id timeline:(NSString *)timeline
+{
+   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"timeline", nil];
+   NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, nil];
+   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   
+   [self call:@"rtm.tasks.complete" args:args withDelegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
 #if 0
