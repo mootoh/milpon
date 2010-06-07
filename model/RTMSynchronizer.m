@@ -159,7 +159,7 @@
 
       // added successfuly
       NSString *taskseries_id = [task_ret objectForKey:@"id"];
-      NSString *task_id       = [[[task_ret objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"id"];
+      NSString *task_id       = [[task_ret objectForKey:@"task"] objectForKey:@"id"];
       NSAssert(taskseries_id, @"");
       NSAssert(task_id, @"");
 
