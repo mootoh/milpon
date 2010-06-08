@@ -130,7 +130,11 @@
 - (id) init
 {
    if (self = [super init]) {
+#ifdef DEBUG
+      self.token = RTM_TOKEN_D;
+#else // DEBUG
       self.token = [[NSUserDefaults standardUserDefaults] stringForKey:k_RTM_TOKEN_KEY];
+#endif // DEBUG
    }
    return self;
 }

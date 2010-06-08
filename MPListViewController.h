@@ -9,14 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface MPListViewController : UITableViewController
+@interface MPListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
-   NSArray *lists;
    NSFetchedResultsController *fetchedResultsController;
    NSManagedObjectContext     *managedObjectContext;
 }
 
-@property (nonatomic, retain) NSArray *lists;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext     *managedObjectContext;
 
