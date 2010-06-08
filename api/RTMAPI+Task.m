@@ -22,7 +22,7 @@
       DELETED
    } mode;
 
-   NSMutableSet        *taskseriesSet;
+   NSMutableArray      *taskserieses;
    NSString            *list_id;
    NSMutableDictionary *taskseries;
    NSMutableSet        *tags;
@@ -39,28 +39,28 @@
 - (id) init
 {
    if (self = [super init]) {
-      taskseriesSet = [[NSMutableSet alloc] init];
-      list_id       = nil;
-      taskseries    = nil;
-      tags          = nil;
-      notes         = nil;
-      taskEntries   = nil;
-      note          = nil;
-      rrule         = nil;
-      string        = nil;
+      taskserieses = [[NSMutableArray alloc] init];
+      list_id      = nil;
+      taskseries   = nil;
+      tags         = nil;
+      notes        = nil;
+      taskEntries  = nil;
+      note         = nil;
+      rrule        = nil;
+      string       = nil;
    }
    return self;
 }
 
 - (void) dealloc
 {
-   [taskseriesSet release];
+   [taskserieses release];
    [super dealloc];
 }
 
 - (id) result
 {
-   return taskseriesSet;
+   return taskserieses;
 }
 
 /*
@@ -84,7 +84,7 @@
       [taskseries setObject:list_id forKey:@"list_id"];
       taskEntries = [NSMutableArray array];
       [taskseries setObject:taskEntries forKey:@"tasks"];
-      [taskseriesSet addObject:taskseries];
+      [taskserieses addObject:taskseries];
       return;
    }
    if ([elementName isEqualToString:@"tags"]) {
@@ -231,17 +231,17 @@
  */
 @implementation RTMAPI (Task)
 
-- (NSSet *) getList_internal:(NSDictionary *)args
+- (NSArray *) getList_internal:(NSDictionary *)args
 {
    return [self call:@"rtm.tasks.getList" args:args delegate:[[[TaskGetListCallback alloc] init] autorelease]];
 }
 
-- (NSSet *) getTaskList
+- (NSArray *) getTaskList
 {
    return [self getList_internal:nil];
 }
 
-- (NSSet *) getTaskList:(NSString *)inListID filter:(NSString *)filter lastSync:(NSString *)lastSync
+- (NSArray *) getTaskList:(NSString *)inListID filter:(NSString *)filter lastSync:(NSString *)lastSync
 {
    NSMutableDictionary *args = [NSMutableDictionary dictionary];
    if (inListID)

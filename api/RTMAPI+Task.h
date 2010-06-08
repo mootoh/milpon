@@ -13,8 +13,8 @@
 /**
  * @return array of TaskSeries, each has associated list_id.
  */
-- (NSSet *) getTaskList;
-- (NSSet *) getTaskList:(NSString *)inListID filter:(NSString *)filter lastSync:(NSString *)lastSync;
+- (NSArray *) getTaskList;
+- (NSArray *) getTaskList:(NSString *)inListID filter:(NSString *)filter lastSync:(NSString *)lastSync;
 
 /**
  * @return added TaskSereis.
