@@ -373,8 +373,7 @@
       return;
    }
    
-   NSString *listString = [NSString stringWithFormat:@"%d", [list integerValue]];
-   NSArray *tasksRetrieved = [api getTaskList:listString filter:nil lastSync:nil];
+   NSArray *tasksRetrieved = [api getTaskList];
    for (NSDictionary *taskseries in tasksRetrieved) {
       [self insertNewTask:taskseries];
    }

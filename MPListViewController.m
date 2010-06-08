@@ -92,6 +92,10 @@
    
    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
    cell.textLabel.text = [[managedObject valueForKey:@"name"] description];
+   if ([[managedObject valueForKey:@"smart"] boolValue])
+      cell.textLabel.textColor = [UIColor grayColor];
+   else
+      cell.textLabel.textColor = [UIColor blackColor];
 }
 
 
@@ -174,7 +178,7 @@
    MPTaskListViewController *tlv = [[MPTaskListViewController alloc] initWithStyle:UITableViewStylePlain];
    
    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
-   tlv.list = [managedObject valueForKey:@"iD"];
+   NSSet *taskSerieses = [managedObject valueForKey:@"taskSerieses"];
    tlv.managedObjectContext = self.managedObjectContext;
    [self.navigationController pushViewController:tlv animated:YES];
    [tlv release];
@@ -244,7 +248,7 @@
    [fetchRequest setFetchBatchSize:20];
    
    // Edit the sort key as appropriate.
-   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
+   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
    
    [fetchRequest setSortDescriptors:sortDescriptors];
