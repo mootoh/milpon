@@ -29,9 +29,6 @@
 		925C7A520FBEB7F300BCD6EF /* migrate_005_version_2.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4D0FBEB7F300BCD6EF /* migrate_005_version_2.sql */; };
 		9273542F11BB34550039EF99 /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */; };
 		9278D1950FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */; };
-		9278D1B30FBF07730007B03B /* DBNoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43D0FAB140E00343773 /* DBNoteProvider.m */; };
-		9278D1B40FBF07750007B03B /* NoteProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B93AE43F0FAB140E00343773 /* NoteProvider.m */; };
-		9278D1B50FBF07770007B03B /* RTMObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C48AA0FA04BD5001032CD /* RTMObject.m */; };
 		9278D1B60FBF07C00007B03B /* MilponBetaIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */; };
 		9278D3B40FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
 		927A61C0113815ED005B4548 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
@@ -52,17 +49,13 @@
 		92FAED8A11BD428900A33279 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAED8911BD428900A33279 /* MPAppDelegate.m */; };
 		92FAEDA511BDB54100A33279 /* MPListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAEDA411BDB54100A33279 /* MPListViewController.m */; };
 		92FAEDF011BDBD5800A33279 /* MPTaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAEDEF11BDBD5800A33279 /* MPTaskListViewController.m */; };
+		92FAEE5E11BDC59100A33279 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92F7189B114E228E00925BB6 /* CoreData.framework */; };
 		B9160ECC0F565CEF00473A95 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
 		B9160ECD0F565CEF00473A95 /* RTMAPI+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPI+Auth.m */; };
 		B9160ECE0F565CEF00473A95 /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPI+List.m */; };
 		B9160ECF0F565CEF00473A95 /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */; };
 		B9160ED00F565CEF00473A95 /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPI+Task.m */; };
 		B9160ED10F565CEF00473A95 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIParserDelegate.m */; };
-		B9160F2E0F565D4C00473A95 /* LocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F1D0F565D4C00473A95 /* LocalCache.m */; };
-		B9160F300F565D4C00473A95 /* RTMList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F210F565D4C00473A95 /* RTMList.m */; };
-		B9160F310F565D4C00473A95 /* RTMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F230F565D4C00473A95 /* RTMNote.m */; };
-		B9160F340F565D4C00473A95 /* RTMSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F290F565D4C00473A95 /* RTMSynchronizer.m */; };
-		B9160F350F565D4C00473A95 /* RTMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F2B0F565D4C00473A95 /* RTMTask.m */; };
 		B9160F3C0F565D6800473A95 /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
 		B9160F680F565D9300473A95 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F440F565D9300473A95 /* checkBox.png */; };
 		B9160F6A0F565D9300473A95 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F460F565D9300473A95 /* checkBoxChecked.png */; };
@@ -93,18 +86,10 @@
 		B9160FB30F565DAB00473A95 /* uiccalendar_main.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA20F565DAB00473A95 /* uiccalendar_main.png */; };
 		B9160FB40F565DAB00473A95 /* uiccalendar_right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA30F565DAB00473A95 /* uiccalendar_right_arrow.png */; };
 		B9160FB50F565DAB00473A95 /* uiccalendar_title.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA40F565DAB00473A95 /* uiccalendar_title.png */; };
-		B916108A0F56618400473A95 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B91610890F56618400473A95 /* libsqlite3.dylib */; };
 		B916108D0F56686600473A95 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
 		B926C4BF0F67991B0014DB7D /* icon_url.png in Resources */ = {isa = PBXBuildFile; fileRef = B926C4BE0F67991B0014DB7D /* icon_url.png */; };
-		B93B8324114D0BB900C8B833 /* DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B93B8322114D0BB800C8B833 /* DataModel.xcdatamodel */; };
+		B93B8324114D0BB900C8B833 /* Milpon.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */; };
 		B95C5C080F598C8400A368DC /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
-		B9B957110F6615880046712A /* DBTagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B9570F0F6615880046712A /* DBTagProvider.m */; };
-		B9B957560F6617670046712A /* RTMTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957540F6617670046712A /* RTMTag.m */; };
-		B9B957650F662E780046712A /* TagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B957630F662E780046712A /* TagProvider.m */; };
-		B9D0433E0F5F493E00641E61 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0433C0F5F493E00641E61 /* TaskProvider.m */; };
-		B9D043440F5F49A900641E61 /* DBTaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D043420F5F49A900641E61 /* DBTaskProvider.m */; };
-		B9D1200C0F56A97B00B5ABA4 /* ListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1200A0F56A97B00B5ABA4 /* ListProvider.m */; };
-		B9D120A40F5763DB00B5ABA4 /* DBListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D120A30F5763DB00B5ABA4 /* DBListProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -290,7 +275,7 @@
 		B93AE43D0FAB140E00343773 /* DBNoteProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBNoteProvider.m; sourceTree = "<group>"; };
 		B93AE43E0FAB140E00343773 /* NoteProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteProvider.h; sourceTree = "<group>"; };
 		B93AE43F0FAB140E00343773 /* NoteProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteProvider.m; sourceTree = "<group>"; };
-		B93B8322114D0BB800C8B833 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Milpon.xcdatamodel; sourceTree = "<group>"; };
 		B93D753A0F941105001E11F3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = ../others/Entitlements.plist; sourceTree = "<group>"; };
 		B95C5C070F598C8400A368DC /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = rtm.sql; sourceTree = "<group>"; };
 		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
@@ -330,9 +315,9 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
-				B916108A0F56618400473A95 /* libsqlite3.dylib in Frameworks */,
 				B916108D0F56686600473A95 /* SystemConfiguration.framework in Frameworks */,
 				92BFB8A011610A670024023D /* Security.framework in Frameworks */,
+				92FAEE5E11BDC59100A33279 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,7 +566,7 @@
 				B9160F1D0F565D4C00473A95 /* LocalCache.m */,
 				B9160F280F565D4C00473A95 /* RTMSynchronizer.h */,
 				B9160F290F565D4C00473A95 /* RTMSynchronizer.m */,
-				B93B8322114D0BB800C8B833 /* DataModel.xcdatamodel */,
+				B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */,
 			);
 			name = Model;
 			path = model;
@@ -963,26 +948,11 @@
 				B9160ECF0F565CEF00473A95 /* RTMAPI+Note.m in Sources */,
 				B9160ED00F565CEF00473A95 /* RTMAPI+Task.m in Sources */,
 				B9160ED10F565CEF00473A95 /* RTMAPIParserDelegate.m in Sources */,
-				B9160F2E0F565D4C00473A95 /* LocalCache.m in Sources */,
-				B9160F300F565D4C00473A95 /* RTMList.m in Sources */,
-				B9160F310F565D4C00473A95 /* RTMNote.m in Sources */,
-				B9160F340F565D4C00473A95 /* RTMSynchronizer.m in Sources */,
-				B9160F350F565D4C00473A95 /* RTMTask.m in Sources */,
 				B9160F3C0F565D6800473A95 /* MilponHelper.m in Sources */,
 				B9160FA50F565DAB00473A95 /* Reachability.m in Sources */,
 				B9160FA70F565DAB00473A95 /* UICCalendarPicker.m in Sources */,
 				B9160FA80F565DAB00473A95 /* UICCalendarPickerDateButton.m in Sources */,
-				B9D1200C0F56A97B00B5ABA4 /* ListProvider.m in Sources */,
-				B9D120A40F5763DB00B5ABA4 /* DBListProvider.m in Sources */,
-				B9D0433E0F5F493E00641E61 /* TaskProvider.m in Sources */,
-				B9D043440F5F49A900641E61 /* DBTaskProvider.m in Sources */,
-				B9B957110F6615880046712A /* DBTagProvider.m in Sources */,
-				B9B957560F6617670046712A /* RTMTag.m in Sources */,
-				B9B957650F662E780046712A /* TagProvider.m in Sources */,
-				9278D1B30FBF07730007B03B /* DBNoteProvider.m in Sources */,
-				9278D1B40FBF07750007B03B /* NoteProvider.m in Sources */,
-				9278D1B50FBF07770007B03B /* RTMObject.m in Sources */,
-				B93B8324114D0BB900C8B833 /* DataModel.xcdatamodel in Sources */,
+				B93B8324114D0BB900C8B833 /* Milpon.xcdatamodel in Sources */,
 				923B79F311B9317B00F9B973 /* RTMAPI+Timeline.m in Sources */,
 				92016DE111BB0DCB00B3D341 /* RTMAPI+Location.m in Sources */,
 				92FAED8A11BD428900A33279 /* MPAppDelegate.m in Sources */,

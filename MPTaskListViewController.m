@@ -8,6 +8,7 @@
 
 #import "MPTaskListViewController.h"
 #import "RTMAPI+Task.h"
+#import "RTMAPI+Timeline.h"
 
 @implementation MPTaskListViewController
 @synthesize taskserieses;
@@ -19,14 +20,19 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidLoad
+{
+   [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    //self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+   UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTask)];
+   self.toolbarItems = [NSArray arrayWithObjects:addButton, nil];
+   [addButton release];
+
+   // Uncomment the following line to preserve selection between presentations.
+   //self.clearsSelectionOnViewWillAppear = NO;
+
+   // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+   // self.navigationItem.rightBarButtonItem = self.editButtonItem;
    [self performSelectorInBackground:@selector(getTasks) withObject:nil];
 }
 
@@ -186,5 +192,20 @@
    [pool release];
 }
 
+- (void) addTask
+{
+   RTMAPI *api = [[RTMAPI alloc] init];
+   if (api.token == nil) {
+      UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"no token" message:@"no token" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+      [av show];
+      [av release];
+   } else {
+      NSString *timeline = [api createTimeline];
+      [api addTask:@"testNewUI" list_id:list timeline:timeline];
+      [api getTaskList:list filter:nil lastSync:nil];
+      [self.tableView reloadData];
+   }
+   
+   [api release];
+}
 @end
-

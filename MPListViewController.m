@@ -13,6 +13,7 @@
 @implementation MPListViewController
 
 @synthesize lists;
+@synthesize fetchedResultsController, managedObjectContext;
 
 #pragma mark -
 #pragma mark Initialization
@@ -41,7 +42,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-   [self performSelectorInBackground:@selector(getLists) withObject:nil];
+   //[self performSelectorInBackground:@selector(getLists) withObject:nil];
 }
 
 /*

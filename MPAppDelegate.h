@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 @interface MPAppDelegate : NSObject <UIApplicationDelegate>
 {
-   IBOutlet UIWindow *window;
+   NSManagedObjectModel         *managedObjectModel;
+   NSManagedObjectContext       *managedObjectContext;
+   NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+   IBOutlet UIWindow               *window;
    IBOutlet UINavigationController *navigationController;
 }
 
