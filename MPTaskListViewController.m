@@ -408,6 +408,7 @@
       UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"no token" message:@"no token" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
       [av show];
       [av release];
+      [api release];
       return;
    }
    
@@ -418,5 +419,6 @@
    }
    
    [api release];
-}                              
+}
+
 @end

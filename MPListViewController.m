@@ -7,8 +7,10 @@
 //
 
 #import "RTMAPI+List.h"
+#import "RTMAPI+Task.h"
 #import "MPListViewController.h"
 #import "MPTaskListViewController.h"
+#import "MilponHelper.h"
 #import "MPLogger.h"
 
 #pragma mark CountCircleView
@@ -78,9 +80,11 @@
    self.title = @"Lists";
 
    // toolbar
-   UIBarButtonItem *syncButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(syncList)];
-   self.toolbarItems = [NSArray arrayWithObjects:syncButton, nil];
-   [syncButton release];
+   UIBarButtonItem *syncListButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(syncList)];
+   UIBarButtonItem *syncTaskButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(syncTaskList)];
+   self.toolbarItems = [NSArray arrayWithObjects:syncListButton, syncTaskButton, nil];
+   [syncListButton release];
+   [syncTaskButton release];
 
    // fetch Lists
    NSError *error = nil;
@@ -260,7 +264,7 @@
 }
 
 #pragma mark -
-#pragma mark Add a new object
+#pragma mark List API
 
 - (NSNumber *) integerNumberFromString:(NSString *)string
 {
@@ -426,6 +430,7 @@
       UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"no token" message:@"no token" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
       [av show];
       [av release];
+      [api release];
       return;
    }
 
@@ -444,4 +449,88 @@
       
    [api release];
 }
+
+#pragma mark -
+#pragma mark Task API
+
+- (void)insertNewTask:(NSDictionary *)taskseries
+{
+   // make a relationship.
+   // Create the fetch request for the entity.
+   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+   // Edit the entity name as appropriate.
+   NSEntityDescription *listEntity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext];
+   [fetchRequest setEntity:listEntity];
+   
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"iD == %d", [[taskseries objectForKey:@"list_id"] integerValue]];
+   [fetchRequest setPredicate:pred];
+   
+   NSError *error = nil;
+   NSArray *fetched = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+   if (error) {
+      LOG(@"error");
+      abort();
+   }
+   
+   NSAssert([fetched count] == 1, @"should be 1");
+   NSManagedObject *listObject = [fetched objectAtIndex:0];
+
+   if ([[listObject valueForKey:@"smart"] boolValue]) {
+      LOG(@"something bad happens");
+      LOG(@"taskseries = %@, list = %@", taskseries, listObject);
+      return;
+   }
+   NSAssert([[listObject valueForKey:@"smart"] boolValue] == NO, @"the task should not belong to any smart lists.");
+
+   NSEntityDescription *entity = [NSEntityDescription entityForName:@"TaskSeries" inManagedObjectContext:managedObjectContext];
+   NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:managedObjectContext];
+   
+   // If appropriate, configure the new managed object.
+   [newManagedObject setValue:[taskseries objectForKey:@"name"] forKey:@"name"];
+   NSNumber *iD = [NSNumber numberWithInteger:[[taskseries objectForKey:@"id"] integerValue]];
+   [newManagedObject setValue:iD forKey:@"iD"];
+   NSDate *created = [[MilponHelper sharedHelper] rtmStringToDate:[taskseries objectForKey:@"created"]];
+   [newManagedObject setValue:created forKey:@"created"];   
+   
+   if ([taskseries objectForKey:@"modified"]) {
+      NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[taskseries objectForKey:@"modified"]];
+      [newManagedObject setValue:date forKey:@"modified"];
+   }      
+   if ([taskseries objectForKey:@"rrule"]) {
+      NSDictionary *rrule = [taskseries objectForKey:@"rrule"];
+      NSString *packedRrule = [NSString stringWithFormat:@"%@-%@", [rrule objectForKey:@"every"], [rrule objectForKey:@"rule"]];
+      [newManagedObject setValue:packedRrule forKey:@"rrule"];
+   }
+
+   [newManagedObject setValue:listObject forKey:@"inList"];
+
+   // Save the context.
+   error = nil;
+   if (![managedObjectContext save:&error]) {
+      NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+      abort();
+   }
+}
+
+
+- (void) syncTaskList
+{
+   RTMAPI *api = [[RTMAPI alloc] init];
+   if (api.token == nil) {
+      UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"no token" message:@"no token" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+      [av show];
+      [av release];
+      [api release];
+      return;
+   }
+   
+   NSArray *tasksRetrieved = [api getTaskList];
+
+   for (NSDictionary *taskseries in tasksRetrieved) {
+      [self insertNewTask:taskseries];
+   }
+   
+   [api release];
+}
+
 @end
