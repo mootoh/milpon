@@ -504,6 +504,25 @@
 
    [newManagedObject setValue:listObject forKey:@"inList"];
 
+   // setup Tasks in the TaskSeries
+   for (NSDictionary *task in [taskseries objectForKey:@"tasks"]) {
+      NSEntityDescription *taskEntity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext];
+      NSManagedObject *newTask = [NSEntityDescription insertNewObjectForEntityForName:[taskEntity name] inManagedObjectContext:managedObjectContext];
+      
+      NSNumber *taskID = [NSNumber numberWithInteger:[[task objectForKey:@"id"] integerValue]];
+      [newTask setValue:taskID forKey:@"iD"];
+      
+      if ([task objectForKey:@"added"]) {
+         NSDate *addedDate = [[MilponHelper sharedHelper] rtmStringToDate:[task objectForKey:@"added"]];
+         [newTask setValue:addedDate forKey:@"added"];
+      }
+      
+      [newTask setValue:[self boolNumberFromString:[task objectForKey:@"has_due_time"]] forKey:@"has_due_time"];
+      [newTask setValue:[self integerNumberFromString:[task objectForKey:@"postponed"]] forKey:@"postponed"];
+      [newTask setValue:[self integerNumberFromString:[task objectForKey:@"priority"]] forKey:@"priority"];
+      [newTask setValue:newManagedObject forKey:@"taskSeries"];
+   }
+   
    // Save the context.
    error = nil;
    if (![managedObjectContext save:&error]) {

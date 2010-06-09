@@ -7,6 +7,7 @@
 //
 
 #import "MPTaskListViewController.h"
+#import "MPTaskViewController.h"
 #import "RTMAPI+Task.h"
 #import "RTMAPI+Timeline.h"
 #import "MilponHelper.h"
@@ -179,20 +180,19 @@
 }
 */
 
-
 #pragma mark -
 #pragma mark Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
-}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   MPTaskViewController *tv = [[MPTaskViewController alloc] initWithStyle:UITableViewStyleGrouped];
 
+   NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
+   tv.taskseriesObject = managedObject;
+   tv.managedObjectContext = self.managedObjectContext;
+   [self.navigationController pushViewController:tv animated:YES];
+   [tv release];
+}
 
 #pragma mark -
 #pragma mark Memory management
@@ -368,14 +368,23 @@
 #pragma mark -
 #pragma mark Add a new object
 
+- (NSNumber *) integerNumberFromString:(NSString *)string
+{
+   return [NSNumber numberWithInteger:[string integerValue]];
+}
+
+- (NSNumber *) boolNumberFromString:(NSString *)string
+{
+   return [NSNumber numberWithBool:[string boolValue]];
+}
+
 - (void)insertNewTask:(NSDictionary *)taskseries {
    
    // Create a new instance of the entity managed by the fetched results controller.
-   NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
-   NSEntityDescription *entity = [[fetchedResultsController fetchRequest] entity];
-   NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+   NSEntityDescription       *entity = [[fetchedResultsController fetchRequest] entity];
+   NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:managedObjectContext];
    
-   // If appropriate, configure the new managed object.
+   // setup TaskSeries
    [newManagedObject setValue:[taskseries objectForKey:@"name"] forKey:@"name"];
    NSNumber *iD = [NSNumber numberWithInteger:[[taskseries objectForKey:@"id"] integerValue]];
    [newManagedObject setValue:iD forKey:@"iD"];
@@ -391,11 +400,29 @@
       NSDictionary *rrule = [taskseries objectForKey:@"rrule"];
       NSString *packedRrule = [NSString stringWithFormat:@"%@-%@", [rrule objectForKey:@"every"], [rrule objectForKey:@"rule"]];
       [newManagedObject setValue:packedRrule forKey:@"rrule"];
-   }      
+   }
+
+   // setup Tasks in the TaskSeries
+   for (NSDictionary *task in [taskseries objectForKey:@"tasks"]) {
+      NSEntityDescription *taskEntity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext];
+      NSManagedObject *newTask = [NSEntityDescription insertNewObjectForEntityForName:[taskEntity name] inManagedObjectContext:managedObjectContext];
+
+      NSNumber *taskID = [NSNumber numberWithInteger:[[task objectForKey:@"id"] integerValue]];
+      [newTask setValue:taskID forKey:@"iD"];
+
+      if ([task objectForKey:@"added"]) {
+         NSDate *addedDate = [[MilponHelper sharedHelper] rtmStringToDate:[task objectForKey:@"added"]];
+         [newTask setValue:addedDate forKey:@"added"];
+      }
+
+      [newTask setValue:[self boolNumberFromString:[task objectForKey:@"has_due_time"]] forKey:@"has_due_time"];
+      [newTask setValue:[self integerNumberFromString:[task objectForKey:@"postponed"]] forKey:@"postponed"];
+      [newTask setValue:[self integerNumberFromString:[task objectForKey:@"priority"]] forKey:@"priority"];
+   }
    
    // Save the context.
    NSError *error = nil;
-   if (![context save:&error]) {
+   if (![managedObjectContext save:&error]) {
       NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
       abort();
    }

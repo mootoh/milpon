@@ -45,18 +45,6 @@
 		92E91C380FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
 		92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
 		92F7189C114E228E00925BB6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92F7189B114E228E00925BB6 /* CoreData.framework */; };
-		92F8584C11BFCC740006DA57 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F440F565D9300473A95 /* checkBox.png */; };
-		92F8584D11BFCC740006DA57 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F460F565D9300473A95 /* checkBoxChecked.png */; };
-		92F8584E11BFCC740006DA57 /* icon_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F4E0F565D9300473A95 /* icon_calendar.png */; };
-		92F8584F11BFCC740006DA57 /* icon_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F500F565D9300473A95 /* icon_checked.png */; };
-		92F8585011BFCC740006DA57 /* icon_list.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F520F565D9300473A95 /* icon_list.png */; };
-		92F8585111BFCC740006DA57 /* icon_note.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F540F565D9300473A95 /* icon_note.png */; };
-		92F8585211BFCC740006DA57 /* icon_priority_4.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F570F565D9300473A95 /* icon_priority_4.png */; };
-		92F8585311BFCC740006DA57 /* icon_priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F580F565D9300473A95 /* icon_priority_1.png */; };
-		92F8585411BFCC740006DA57 /* icon_priority_2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F590F565D9300473A95 /* icon_priority_2.png */; };
-		92F8585511BFCC740006DA57 /* icon_priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5A0F565D9300473A95 /* icon_priority_3.png */; };
-		92F8585611BFCC740006DA57 /* icon_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5B0F565D9300473A95 /* icon_tag.png */; };
-		92F8585711BFCC740006DA57 /* icon_target.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5D0F565D9300473A95 /* icon_target.png */; };
 		92F8585811BFCC740006DA57 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = B9160F8F0F565DAB00473A95 /* README.txt */; };
 		92F8585911BFCC740006DA57 /* uiccalendar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F980F565DAB00473A95 /* uiccalendar_background.png */; };
 		92F8585A11BFCC740006DA57 /* uiccalendar_cell_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F990F565DAB00473A95 /* uiccalendar_cell_disabled.png */; };
@@ -71,29 +59,9 @@
 		92F8586311BFCC740006DA57 /* uiccalendar_main.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA20F565DAB00473A95 /* uiccalendar_main.png */; };
 		92F8586411BFCC740006DA57 /* uiccalendar_right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA30F565DAB00473A95 /* uiccalendar_right_arrow.png */; };
 		92F8586511BFCC740006DA57 /* uiccalendar_title.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160FA40F565DAB00473A95 /* uiccalendar_title.png */; };
-		92F8586611BFCC740006DA57 /* rtm.sql in Resources */ = {isa = PBXBuildFile; fileRef = B95C5C070F598C8400A368DC /* rtm.sql */; };
-		92F8586711BFCC740006DA57 /* icon_url.png in Resources */ = {isa = PBXBuildFile; fileRef = B926C4BE0F67991B0014DB7D /* icon_url.png */; };
-		92F8586811BFCC740006DA57 /* migrate_000_init.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A490FBEB7F300BCD6EF /* migrate_000_init.sql */; };
-		92F8586911BFCC740006DA57 /* migrate_001_add_filter_to_list.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4A0FBEB7F300BCD6EF /* migrate_001_add_filter_to_list.sql */; };
-		92F8586A11BFCC740006DA57 /* migrate_002_add_to_list_id_to_task.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4B0FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql */; };
-		92F8586B11BFCC740006DA57 /* migrate_003_add_note_id_to_note.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4C0FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql */; };
-		92F8586C11BFCC740006DA57 /* migrate_005_version_2.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4D0FBEB7F300BCD6EF /* migrate_005_version_2.sql */; };
-		92F8586D11BFCC740006DA57 /* migrate_006_add_initial_lastsync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */; };
 		92F8586E11BFCC740006DA57 /* MilponBetaIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */; };
-		92F8586F11BFCC740006DA57 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
-		92F8587011BFCC740006DA57 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
-		92F8587111BFCC740006DA57 /* IconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 922C0015101C66EC0029AC32 /* IconSmall.png */; };
 		92F8587211BFCC740006DA57 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
 		92F8587311BFCC740006DA57 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
-		92F8587411BFCC740006DA57 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
-		92F8587511BFCC740006DA57 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 927A61F21138194B005B4548 /* Settings.bundle */; };
-		92F8587611BFCC740006DA57 /* icon_overview_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FB4115E077B0074E93A /* icon_overview_disabled.png */; };
-		92F8587711BFCC740006DA57 /* icon_list_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FDA115E08FF0074E93A /* icon_list_disabled.png */; };
-		92F8587811BFCC740006DA57 /* icon_tag_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FDB115E08FF0074E93A /* icon_tag_disabled.png */; };
-		92F8587911BFCC740006DA57 /* icon_list_toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D2211F115E3D4A0074E93A /* icon_list_toolbar.png */; };
-		92F8587A11BFCC740006DA57 /* icon_overview.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D2213C115E41B40074E93A /* icon_overview.png */; };
-		92F8587B11BFCC740006DA57 /* icon_tag_toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D22152115E44B10074E93A /* icon_tag_toolbar.png */; };
-		92F8587C11BFCC740006DA57 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D22167115E46310074E93A /* arrow.png */; };
 		92F8587D11BFCC740006DA57 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9160FB90F565DB600473A95 /* MainWindow.xib */; };
 		92F8587F11BFCC740006DA57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		92F8588011BFCC740006DA57 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
@@ -118,6 +86,9 @@
 		92F8589411BFCC740006DA57 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B916108C0F56686600473A95 /* SystemConfiguration.framework */; };
 		92F8589511BFCC740006DA57 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BFB89F11610A670024023D /* Security.framework */; };
 		92F8589611BFCC740006DA57 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92F7189B114E228E00925BB6 /* CoreData.framework */; };
+		92F8596811C04B870006DA57 /* MPTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F8596711C04B870006DA57 /* MPTaskViewController.m */; };
+		92F8596911C04B870006DA57 /* MPTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F8596711C04B870006DA57 /* MPTaskViewController.m */; };
+		92F859FE11C0540C0006DA57 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 927A61F21138194B005B4548 /* Settings.bundle */; };
 		92FAED6711BD413400A33279 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9160FB90F565DB600473A95 /* MainWindow.xib */; };
 		92FAED8A11BD428900A33279 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAED8911BD428900A33279 /* MPAppDelegate.m */; };
 		92FAEDA511BDB54100A33279 /* MPListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAEDA411BDB54100A33279 /* MPListViewController.m */; };
@@ -219,6 +190,8 @@
 		92F7184C114E204C00925BB6 /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTest-Info.plist"; sourceTree = "<group>"; };
 		92F7189B114E228E00925BB6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		92F8589B11BFCC740006DA57 /* Milpon Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		92F8596611C04B870006DA57 /* MPTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTaskViewController.h; sourceTree = "<group>"; };
+		92F8596711C04B870006DA57 /* MPTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTaskViewController.m; sourceTree = "<group>"; };
 		92FAEC0311BB8EB300A33279 /* RTMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMError.h; sourceTree = "<group>"; };
 		92FAED8811BD428900A33279 /* MPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
 		92FAED8911BD428900A33279 /* MPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
@@ -528,6 +501,8 @@
 				92FAEDA411BDB54100A33279 /* MPListViewController.m */,
 				92FAEDEE11BDBD5800A33279 /* MPTaskListViewController.h */,
 				92FAEDEF11BDBD5800A33279 /* MPTaskListViewController.m */,
+				92F8596611C04B870006DA57 /* MPTaskViewController.h */,
+				92F8596711C04B870006DA57 /* MPTaskViewController.m */,
 			);
 			name = "New UI";
 			sourceTree = "<group>";
@@ -1020,18 +995,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92F8584C11BFCC740006DA57 /* checkBox.png in Resources */,
-				92F8584D11BFCC740006DA57 /* checkBoxChecked.png in Resources */,
-				92F8584E11BFCC740006DA57 /* icon_calendar.png in Resources */,
-				92F8584F11BFCC740006DA57 /* icon_checked.png in Resources */,
-				92F8585011BFCC740006DA57 /* icon_list.png in Resources */,
-				92F8585111BFCC740006DA57 /* icon_note.png in Resources */,
-				92F8585211BFCC740006DA57 /* icon_priority_4.png in Resources */,
-				92F8585311BFCC740006DA57 /* icon_priority_1.png in Resources */,
-				92F8585411BFCC740006DA57 /* icon_priority_2.png in Resources */,
-				92F8585511BFCC740006DA57 /* icon_priority_3.png in Resources */,
-				92F8585611BFCC740006DA57 /* icon_tag.png in Resources */,
-				92F8585711BFCC740006DA57 /* icon_target.png in Resources */,
 				92F8585811BFCC740006DA57 /* README.txt in Resources */,
 				92F8585911BFCC740006DA57 /* uiccalendar_background.png in Resources */,
 				92F8585A11BFCC740006DA57 /* uiccalendar_cell_disabled.png in Resources */,
@@ -1046,30 +1009,11 @@
 				92F8586311BFCC740006DA57 /* uiccalendar_main.png in Resources */,
 				92F8586411BFCC740006DA57 /* uiccalendar_right_arrow.png in Resources */,
 				92F8586511BFCC740006DA57 /* uiccalendar_title.png in Resources */,
-				92F8586611BFCC740006DA57 /* rtm.sql in Resources */,
-				92F8586711BFCC740006DA57 /* icon_url.png in Resources */,
-				92F8586811BFCC740006DA57 /* migrate_000_init.sql in Resources */,
-				92F8586911BFCC740006DA57 /* migrate_001_add_filter_to_list.sql in Resources */,
-				92F8586A11BFCC740006DA57 /* migrate_002_add_to_list_id_to_task.sql in Resources */,
-				92F8586B11BFCC740006DA57 /* migrate_003_add_note_id_to_note.sql in Resources */,
-				92F8586C11BFCC740006DA57 /* migrate_005_version_2.sql in Resources */,
-				92F8586D11BFCC740006DA57 /* migrate_006_add_initial_lastsync.sql in Resources */,
 				92F8586E11BFCC740006DA57 /* MilponBetaIconSmall.png in Resources */,
-				92F8586F11BFCC740006DA57 /* Default.png in Resources */,
-				92F8587011BFCC740006DA57 /* migrate_007_clear_last_sync.sql in Resources */,
-				92F8587111BFCC740006DA57 /* IconSmall.png in Resources */,
 				92F8587211BFCC740006DA57 /* Localizable.strings in Resources */,
 				92F8587311BFCC740006DA57 /* recurrentIcon.png in Resources */,
-				92F8587411BFCC740006DA57 /* Entitlements.plist in Resources */,
-				92F8587511BFCC740006DA57 /* Settings.bundle in Resources */,
-				92F8587611BFCC740006DA57 /* icon_overview_disabled.png in Resources */,
-				92F8587711BFCC740006DA57 /* icon_list_disabled.png in Resources */,
-				92F8587811BFCC740006DA57 /* icon_tag_disabled.png in Resources */,
-				92F8587911BFCC740006DA57 /* icon_list_toolbar.png in Resources */,
-				92F8587A11BFCC740006DA57 /* icon_overview.png in Resources */,
-				92F8587B11BFCC740006DA57 /* icon_tag_toolbar.png in Resources */,
-				92F8587C11BFCC740006DA57 /* arrow.png in Resources */,
 				92F8587D11BFCC740006DA57 /* MainWindow.xib in Resources */,
+				92F859FE11C0540C0006DA57 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1113,6 +1057,7 @@
 				92FAED8A11BD428900A33279 /* MPAppDelegate.m in Sources */,
 				92FAEDA511BDB54100A33279 /* MPListViewController.m in Sources */,
 				92FAEDF011BDBD5800A33279 /* MPTaskListViewController.m in Sources */,
+				92F8596811C04B870006DA57 /* MPTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1153,6 +1098,7 @@
 				92F8588D11BFCC740006DA57 /* MPAppDelegate.m in Sources */,
 				92F8588E11BFCC740006DA57 /* MPListViewController.m in Sources */,
 				92F8588F11BFCC740006DA57 /* MPTaskListViewController.m in Sources */,
+				92F8596911C04B870006DA57 /* MPTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
