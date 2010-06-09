@@ -513,13 +513,40 @@
       [newTask setValue:taskID forKey:@"iD"];
       
       if ([task objectForKey:@"added"]) {
-         NSDate *addedDate = [[MilponHelper sharedHelper] rtmStringToDate:[task objectForKey:@"added"]];
-         [newTask setValue:addedDate forKey:@"added"];
+         NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[task objectForKey:@"added"]];
+         [newTask setValue:date forKey:@"added"];
+      }
+
+      NSString *completedString = [task objectForKey:@"completed"];
+      if (completedString && ! [completedString isEqualToString:@""]) {
+         NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[task objectForKey:@"completed"]];
+         [newTask setValue:date forKey:@"completed"];
       }
       
+      NSString *deletedString = [task objectForKey:@"deleted"];
+      if (deletedString && ! [deletedString isEqualToString:@""]) {
+         NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[task objectForKey:@"deleted"]];
+         [newTask setValue:date forKey:@"deleted"];
+      }
+
+      NSString *dueString = [task objectForKey:@"due"];
+      if (dueString && ! [dueString isEqualToString:@""]) {
+         NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[task objectForKey:@"due"]];
+         [newTask setValue:date forKey:@"due"];
+      }
+
+      NSString *estimateString = [task objectForKey:@"estimate"];
+      if (estimateString && ! [estimateString isEqualToString:@""]) {
+         [newTask setValue:[task objectForKey:@"estimate"] forKey:@"estimate"];
+      }
+
       [newTask setValue:[self boolNumberFromString:[task objectForKey:@"has_due_time"]] forKey:@"has_due_time"];
       [newTask setValue:[self integerNumberFromString:[task objectForKey:@"postponed"]] forKey:@"postponed"];
-      [newTask setValue:[self integerNumberFromString:[task objectForKey:@"priority"]] forKey:@"priority"];
+      
+      NSString *priorityString = [task objectForKey:@"priority"];
+      NSInteger priority = [priorityString isEqualToString:@"N"] ? 0 : [priorityString integerValue];
+      [newTask setValue:[NSNumber numberWithInteger:priority] forKey:@"priority"];
+
       [newTask setValue:newManagedObject forKey:@"taskSeries"];
    }
    

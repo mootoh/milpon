@@ -83,23 +83,23 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
    
    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
-   cell.textLabel.text = [[managedObject valueForKey:@"name"] description];
+   cell.textLabel.text = [[[managedObject valueForKey:@"taskSeries"] valueForKey:@"name"] description];
    
-   NSDate *created = [managedObject valueForKey:@"created"];
-//   NSDate *now = [NSDate date];
+   NSDate *due = [managedObject valueForKey:@"due"];
+   if (due) {
+      NSDate *now = [NSDate date];
 
-   /*
-   NSTimeInterval interval = [created timeIntervalSinceReferenceDate:now];
-   LOG(@"interval = %d", interval);
-   if (interval >= 0 && interval < 60*60*24*7) {
+      NSTimeInterval interval = [due timeIntervalSinceDate:now];
+      LOG(@"interval = %d", interval);
+      if (interval >= 0 && interval < 60*60*24*7) {
+      }
+      
+      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+      [dateFormatter setDateFormat:@"E"];
+      NSString *dueString = [dateFormatter stringFromDate:due];
+      cell.detailTextLabel.text = dueString;
    }
-    */
-
-   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-   [dateFormatter setDateFormat:@"E"];
-   NSString *createdString = [dateFormatter stringFromDate:created];
-   cell.detailTextLabel.text = createdString;
-
+      
    // format with current system locale.
    //   if the due date is in 7 days, use the weekday symbols.
    //   if the due date is in this year, do not use year number
@@ -269,24 +269,24 @@
    // Create the fetch request for the entity.
    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
    // Edit the entity name as appropriate.
-   NSEntityDescription *entity = [NSEntityDescription entityForName:@"TaskSeries" inManagedObjectContext:managedObjectContext];
+   NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext];
    [fetchRequest setEntity:entity];
    
    // Set the batch size to a suitable number.
    [fetchRequest setFetchBatchSize:20];
    
    // Edit the sort key as appropriate.
-   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
+   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"taskSeries.name" ascending:NO];
    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
    
    [fetchRequest setSortDescriptors:sortDescriptors];
    
-   NSPredicate *pred = [NSPredicate predicateWithFormat:@"inList.iD == %@", [listObject valueForKey:@"iD"]];
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"taskSeries.inList.iD == %@", [listObject valueForKey:@"iD"]];
    [fetchRequest setPredicate:pred];
    
    // Edit the section name key path and cache name if appropriate.
    // nil for section name key path means "no sections".
-   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"Task"];
    aFetchedResultsController.delegate = self;
    self.fetchedResultsController = aFetchedResultsController;
    
