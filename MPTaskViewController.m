@@ -14,7 +14,7 @@
 
 @implementation MPTaskViewController
 @synthesize fetchedResultsController, managedObjectContext;
-@synthesize taskseriesObject;
+@synthesize taskObject;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -30,24 +30,42 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
+   NSManagedObject *taskseriesObject = [taskObject valueForKey:@"taskSeries"];
+   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+   [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+
    switch (indexPath.section) {
       case 0:
          cell.textLabel.text = @"name";
          cell.detailTextLabel.text = [[taskseriesObject valueForKey:@"name"] description];
          break;
       case 1:
-         cell.textLabel.text = @"tasks";
-         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [[taskseriesObject valueForKey:@"tasks"] count]];
+         switch (indexPath.row) {
+            case 0:
+               cell.textLabel.text = @"due";
+               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskObject valueForKey:@"due"]];
+               break;
+            case 1:
+               cell.textLabel.text = @"estimate";
+               cell.detailTextLabel.text = [[taskObject valueForKey:@"estimate"] description];
+               break;
+            case 2:
+               cell.textLabel.text = @"repeat";
+               cell.detailTextLabel.text = [[taskseriesObject valueForKey:@"rrule"] description];
+               break;
+            default:
+               break;
+         }
          break;
       case 2:
          switch (indexPath.row) {
             case 0:
                cell.textLabel.text = @"created";
-               cell.detailTextLabel.text = [[taskseriesObject valueForKey:@"created"] description];
+               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskseriesObject valueForKey:@"created"]];
                break;
             case 1:
                cell.textLabel.text = @"modified";
-               cell.detailTextLabel.text = [[taskseriesObject valueForKey:@"modified"] description];
+               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskseriesObject valueForKey:@"modified"]];
                break;
             default:
                break;
@@ -56,18 +74,7 @@
       default:
          break;
    }
-      
-/*
-   NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
-   cell.textLabel.text = [[managedObject valueForKey:@"name"] description];
-   
-   NSDate *created = [managedObject valueForKey:@"created"];
-   
-   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-   [dateFormatter setDateFormat:@"E"];
-   NSString *createdString = [dateFormatter stringFromDate:created];
-   cell.detailTextLabel.text = createdString;
-*/
+   [dateFormatter release];
 }
 
 
@@ -80,10 +87,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
    switch (section) {
-      case 0:
+      case 0: // name
          return 1;
-      case 1:
-         return 1;
+      case 1: // due, estimate, recurrence
+         return 3;
       case 2:
          return 2;
       default:

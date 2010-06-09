@@ -27,6 +27,8 @@
 {
    [super viewDidLoad];
 
+   self.title = [listObject valueForKey:@"name"];
+
    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(syncTaskList)];
    self.toolbarItems = [NSArray arrayWithObjects:addButton, nil];
    [addButton release];
@@ -102,17 +104,8 @@
       
       cell.detailTextLabel.text = dueString;
    }
-      
-   // format with current system locale.
-   //   if the due date is in 7 days, use the weekday symbols.
-   //   if the due date is in this year, do not use year number
-   //   otherwise, use ShortStyle format.
-#if 0
-   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-   [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-   NSString *createdString = [dateFormatter stringFromDate:created];
-   cell.detailTextLabel.text = createdString;
-#endif // 0
+   if ([managedObject valueForKey:@"completed"])
+      cell.textLabel.textColor = [UIColor grayColor];
 }
 
 
@@ -191,7 +184,7 @@
    MPTaskViewController *tv = [[MPTaskViewController alloc] initWithStyle:UITableViewStyleGrouped];
 
    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
-   tv.taskseriesObject = managedObject;
+   tv.taskObject = managedObject;
    tv.managedObjectContext = self.managedObjectContext;
    [self.navigationController pushViewController:tv animated:YES];
    [tv release];
@@ -222,23 +215,6 @@
 #pragma mark API
 
 #if 0
-- (void) getTasks
-{
-   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-   RTMAPI *api = [[RTMAPI alloc] init];
-   if (api.token == nil) {
-      UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"no token" message:@"no token" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-      [av show];
-      [av release];
-   } else {
-      self.taskserieses = [api getTaskList:list filter:nil lastSync:nil];
-      [self.tableView reloadData];
-   }
-   
-   [api release];
-   [pool release];
-}
-
 - (void) addTask
 {
    RTMAPI *api = [[RTMAPI alloc] init];
@@ -279,12 +255,13 @@
    [fetchRequest setFetchBatchSize:20];
    
    // Edit the sort key as appropriate.
-   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"taskSeries.name" ascending:NO];
-   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+   NSSortDescriptor *dueSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"due" ascending:YES];
+   NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"taskSeries.name" ascending:YES];
+   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:dueSortDescriptor, nameSortDescriptor, nil];
    
    [fetchRequest setSortDescriptors:sortDescriptors];
    
-   NSPredicate *pred = [NSPredicate predicateWithFormat:@"taskSeries.inList.iD == %@", [listObject valueForKey:@"iD"]];
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"taskSeries.inList.iD == %@ AND deleted == NULL", [listObject valueForKey:@"iD"]];
    [fetchRequest setPredicate:pred];
    
    // Edit the section name key path and cache name if appropriate.
@@ -292,10 +269,11 @@
    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"Task"];
    aFetchedResultsController.delegate = self;
    self.fetchedResultsController = aFetchedResultsController;
-   
+
    [aFetchedResultsController release];
    [fetchRequest release];
-   [sortDescriptor release];
+   [dueSortDescriptor release];
+   [nameSortDescriptor release];
    [sortDescriptors release];
    
    return fetchedResultsController;

@@ -13,11 +13,11 @@
 {
    NSFetchedResultsController *fetchedResultsController;
    NSManagedObjectContext     *managedObjectContext;
-   NSManagedObject            *taskseriesObject;
+   NSManagedObject            *taskObject;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext     *managedObjectContext;
-@property (nonatomic, retain) NSManagedObject            *taskseriesObject;
+@property (nonatomic, retain) NSManagedObject            *taskObject;
 
 @end
