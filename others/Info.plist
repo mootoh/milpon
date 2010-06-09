@@ -10,8 +10,6 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string>IconSmall.png</string>
-	<key>UIPrerenderedIcon</key>
-	<string>true</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.deadbeaf.milpon</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -22,12 +20,6 @@
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>2.5</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>NSMainNibFile</key>
-	<string>MainWindow</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -39,5 +31,13 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>2.5</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSMainNibFile</key>
+	<string>MainWindow</string>
+	<key>UIPrerenderedIcon</key>
+	<string>true</string>
 </dict>
 </plist>
