@@ -11,6 +11,61 @@
 #import "MPTaskListViewController.h"
 #import "MPLogger.h"
 
+@interface CountCircleView : UIView
+{
+   NSUInteger count;
+   UILabel *countLabel;
+}
+@property (nonatomic) NSUInteger count;
+@end
+
+@implementation CountCircleView
+@synthesize count;
+
+- (id) initWithFrame:(CGRect)frame
+{
+   if (self = [super initWithFrame:frame]) {
+      self.backgroundColor = [UIColor clearColor];
+      count = 0;
+      countLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.origin.x + 3, self.frame.origin.y + 3, self.frame.size.width - 6, self.frame.size.height - 6)];
+//      countLabel.textColor = [UIColor whiteColor];
+      countLabel.textColor = [UIColor colorWithRed:0.000 green:0.251 blue:0.502 alpha:1.000];
+      countLabel.text = [NSString stringWithFormat:@"%d", count];
+      countLabel.textAlignment = UITextAlignmentCenter;
+      countLabel.backgroundColor = [UIColor clearColor];
+      countLabel.adjustsFontSizeToFitWidth = YES;
+      countLabel.minimumFontSize = 8;
+      [self addSubview:countLabel];
+   }
+   return self;
+}
+
+- (void) dealloc
+{
+   [countLabel release];
+   [super dealloc];
+}
+
+- (void) setCount:(NSUInteger)cnt
+{
+   count = cnt;
+   countLabel.text = [NSString stringWithFormat:@"%d", count];
+   //   [self setNeedsDisplay];
+}
+
+- (void) drawRect:(CGRect)rect
+{
+   CGContextRef context = UIGraphicsGetCurrentContext();
+
+   CGContextSetFillColorWithColor(context, [[UIColor colorWithRed:0.000 green:0.502 blue:1.000 alpha:0.20] CGColor]);
+   CGContextFillEllipseInRect(context, rect);
+
+//   CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
+//   CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
+//   [countLabel setNeedsDisplay];
+}
+@end
+
 @implementation MPListViewController
 
 @synthesize fetchedResultsController, managedObjectContext;
@@ -89,16 +144,21 @@
    
    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
    cell.textLabel.text = [[managedObject valueForKey:@"name"] description];
-   cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [[managedObject valueForKey:@"taskSerieses"] count]];
-
+   
    if ([[managedObject valueForKey:@"smart"] boolValue]) {
-      cell.textLabel.textColor = [UIColor grayColor];
-      cell.detailTextLabel.text = [cell.detailTextLabel.text stringByAppendingString:[managedObject valueForKey:@"filter"]];
+      cell.textLabel.textColor = [UIColor colorWithRed:0.000 green:0.502 blue:0.502 alpha:1.000];
+      cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+      cell.detailTextLabel.textColor = [UIColor grayColor];
+      cell.detailTextLabel.text = [NSString stringWithFormat:@"%@  ", [managedObject valueForKey:@"filter"]];
    }
    else {
       cell.textLabel.textColor = [UIColor blackColor];
    }
    
+   CountCircleView *ccv = [[CountCircleView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+   ccv.count = [[managedObject valueForKey:@"taskSerieses"] count];
+   cell.accessoryView = ccv;
+   [ccv release];
 }
 
 
@@ -251,10 +311,13 @@
    [fetchRequest setFetchBatchSize:20];
    
    // Edit the sort key as appropriate.
-   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-   
+   NSSortDescriptor *positionSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
+   NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:positionSortDescriptor, nameSortDescriptor, nil];
    [fetchRequest setSortDescriptors:sortDescriptors];
+   
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"archived == false AND deleted == false"];
+   [fetchRequest setPredicate:pred];
    
    // Edit the section name key path and cache name if appropriate.
    // nil for section name key path means "no sections".
@@ -264,7 +327,8 @@
    
    [aFetchedResultsController release];
    [fetchRequest release];
-   [sortDescriptor release];
+   [nameSortDescriptor release];
+   [positionSortDescriptor release];
    [sortDescriptors release];
    
    return fetchedResultsController;
