@@ -9,6 +9,7 @@
 #import "RTMAPI+List.h"
 #import "MPListViewController.h"
 #import "MPTaskListViewController.h"
+#import "MPLogger.h"
 
 @implementation MPListViewController
 
@@ -26,7 +27,6 @@
 }
 */
 
-
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -34,9 +34,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-   self.title = @"Milpon";
+   self.title = @"Lists";
 
-   UIBarButtonItem *syncButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(syncList)];
+   UIBarButtonItem *syncButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(syncList)];
    self.toolbarItems = [NSArray arrayWithObjects:syncButton, nil];
    [syncButton release];
    
@@ -51,9 +51,6 @@
       abort();
    }
    
-    // Uncomment the following line to preserve selection between presentations.
- //   self.clearsSelectionOnViewWillAppear = NO;
- 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
    //[self performSelectorInBackground:@selector(getLists) withObject:nil];
@@ -282,7 +279,6 @@
    [self.tableView beginUpdates];
 }
 
-
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
    
@@ -378,14 +374,47 @@
    // Save the context.
    NSError *error = nil;
    if (![context save:&error]) {
-      /*
-       Replace this implementation with code to handle the error appropriately.
-       
-       abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-       */
       NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
       abort();
    }
+}
+
+- (NSManagedObject *) isListExist:(NSString *)listID
+{
+   // Create the fetch request for the entity.
+   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+   // Edit the entity name as appropriate.
+   NSEntityDescription *entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext];
+   [fetchRequest setEntity:entity];
+   
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"iD == %d", [listID integerValue]];
+   [fetchRequest setPredicate:pred];
+   
+   NSError *error = nil;
+   NSArray *fetched = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+   if (error) {
+      LOG(@"error");
+      abort();
+   }
+   
+   if ([fetched count] == 0)
+      return nil;
+   
+   NSAssert([fetched count] == 1, @"should be 1");
+   return [fetched objectAtIndex:0];
+}
+
+- (NSSet *) deletedLists:(NSArray *) listsRetrieved
+{
+   NSMutableSet *deleted = [NSMutableSet set];
+   for (NSManagedObject *mo in [fetchedResultsController fetchedObjects]) {
+      NSString *idString = [NSString stringWithFormat:@"%d", [[mo valueForKey:@"iD"] integerValue]];
+      NSPredicate *pred = [NSPredicate predicateWithFormat:@"(id == %@)", idString];
+      NSArray *exists = [listsRetrieved filteredArrayUsingPredicate:pred];
+      if ([exists count] == 0)
+         [deleted addObject:mo];
+   }
+   return deleted;
 }
 
 - (void) syncList
@@ -399,9 +428,13 @@
    }
 
    NSArray *listsRetrieved = [api getList];
-   for (NSDictionary *list in listsRetrieved) {
-      [self insertNewList:list];
-   }
+   NSSet *deletedLists = [self deletedLists:listsRetrieved];
+   for (NSManagedObject *deletedList in deletedLists)
+      [managedObjectContext deleteObject:deletedList];
+
+   for (NSDictionary *list in listsRetrieved)
+      if (! [self isListExist:[list objectForKey:@"id"]])
+         [self insertNewList:list];
       
    [api release];
 }

@@ -83,6 +83,32 @@
    
    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
    cell.textLabel.text = [[managedObject valueForKey:@"name"] description];
+   
+   NSDate *created = [managedObject valueForKey:@"created"];
+//   NSDate *now = [NSDate date];
+
+   /*
+   NSTimeInterval interval = [created timeIntervalSinceReferenceDate:now];
+   LOG(@"interval = %d", interval);
+   if (interval >= 0 && interval < 60*60*24*7) {
+   }
+    */
+
+   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+   [dateFormatter setDateFormat:@"E"];
+   NSString *createdString = [dateFormatter stringFromDate:created];
+   cell.detailTextLabel.text = createdString;
+
+   // format with current system locale.
+   //   if the due date is in 7 days, use the weekday symbols.
+   //   if the due date is in this year, do not use year number
+   //   otherwise, use ShortStyle format.
+#if 0
+   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+   [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+   NSString *createdString = [dateFormatter stringFromDate:created];
+   cell.detailTextLabel.text = createdString;
+#endif // 0
 }
 
 
@@ -100,11 +126,11 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
-   static NSString *CellIdentifier = @"Cell";
+   static NSString *CellIdentifier = @"TaskListCell";
    
    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
    if (cell == nil) {
-      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
    }
    
    // Configure the cell...
@@ -357,14 +383,19 @@
    [newManagedObject setValue:created forKey:@"created"];   
    [newManagedObject setValue:listObject forKey:@"inList"];
    
+   if ([taskseries objectForKey:@"modified"]) {
+      NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[taskseries objectForKey:@"modified"]];
+      [newManagedObject setValue:date forKey:@"modified"];
+   }      
+   if ([taskseries objectForKey:@"rrule"]) {
+      NSDictionary *rrule = [taskseries objectForKey:@"rrule"];
+      NSString *packedRrule = [NSString stringWithFormat:@"%@-%@", [rrule objectForKey:@"every"], [rrule objectForKey:@"rule"]];
+      [newManagedObject setValue:packedRrule forKey:@"rrule"];
+   }      
+   
    // Save the context.
    NSError *error = nil;
    if (![context save:&error]) {
-      /*
-       Replace this implementation with code to handle the error appropriately.
-       
-       abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-       */
       NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
       abort();
    }

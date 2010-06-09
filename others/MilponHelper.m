@@ -8,7 +8,7 @@
 
 #import "MilponHelper.h"
 
-static MilponHelper *the_milpon_helper;
+static MilponHelper *the_milpon_helper = nil;
 
 @implementation MilponHelper
 
