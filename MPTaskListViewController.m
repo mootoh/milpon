@@ -87,16 +87,19 @@
    
    NSDate *due = [managedObject valueForKey:@"due"];
    if (due) {
+      NSString *dueString = nil;
       NSDate *now = [NSDate date];
-
+      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
       NSTimeInterval interval = [due timeIntervalSinceDate:now];
       LOG(@"interval = %d", interval);
+
       if (interval >= 0 && interval < 60*60*24*7) {
+         [dateFormatter setDateFormat:@"E"];
+      } else {
+         [dateFormatter setDateStyle:NSDateFormatterShortStyle];
       }
+      dueString = [dateFormatter stringFromDate:due];
       
-      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-      [dateFormatter setDateFormat:@"E"];
-      NSString *dueString = [dateFormatter stringFromDate:due];
       cell.detailTextLabel.text = dueString;
    }
       
