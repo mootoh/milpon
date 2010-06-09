@@ -12,11 +12,11 @@
 @interface MPTaskListViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
    NSFetchedResultsController *fetchedResultsController;
    NSManagedObjectContext     *managedObjectContext;
-   NSNumber *list;
+   NSManagedObject            *listObject;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext     *managedObjectContext;
-@property (nonatomic, retain) NSNumber *list;
+@property (nonatomic, retain) NSManagedObject            *listObject;
 
 @end

@@ -92,10 +92,16 @@
    
    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
    cell.textLabel.text = [[managedObject valueForKey:@"name"] description];
-   if ([[managedObject valueForKey:@"smart"] boolValue])
+   cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [[managedObject valueForKey:@"taskSerieses"] count]];
+
+   if ([[managedObject valueForKey:@"smart"] boolValue]) {
       cell.textLabel.textColor = [UIColor grayColor];
-   else
+      cell.detailTextLabel.text = [cell.detailTextLabel.text stringByAppendingString:[managedObject valueForKey:@"filter"]];
+   }
+   else {
       cell.textLabel.textColor = [UIColor blackColor];
+   }
+   
 }
 
 
@@ -116,11 +122,11 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"ListCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
    
     // Configure the cell...
@@ -178,8 +184,8 @@
    MPTaskListViewController *tlv = [[MPTaskListViewController alloc] initWithStyle:UITableViewStylePlain];
    
    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
-   NSSet *taskSerieses = [managedObject valueForKey:@"taskSerieses"];
    tlv.managedObjectContext = self.managedObjectContext;
+   tlv.listObject = managedObject;
    [self.navigationController pushViewController:tlv animated:YES];
    [tlv release];
 }

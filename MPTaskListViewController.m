@@ -9,10 +9,12 @@
 #import "MPTaskListViewController.h"
 #import "RTMAPI+Task.h"
 #import "RTMAPI+Timeline.h"
+#import "MilponHelper.h"
+#import "MPLogger.h"
 
 @implementation MPTaskListViewController
 @synthesize fetchedResultsController, managedObjectContext;
-@synthesize list;
+@synthesize listObject;
 
 #pragma mark -
 #pragma mark Initialization
@@ -253,6 +255,9 @@
    
    [fetchRequest setSortDescriptors:sortDescriptors];
    
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"inList.iD == %@", [listObject valueForKey:@"iD"]];
+   [fetchRequest setPredicate:pred];
+   
    // Edit the section name key path and cache name if appropriate.
    // nil for section name key path means "no sections".
    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
@@ -347,8 +352,10 @@
    // If appropriate, configure the new managed object.
    [newManagedObject setValue:[taskseries objectForKey:@"name"] forKey:@"name"];
    NSNumber *iD = [NSNumber numberWithInteger:[[taskseries objectForKey:@"id"] integerValue]];
-   NSLog(@"name = %@, iD = %@", [taskseries objectForKey:@"name"], iD);
    [newManagedObject setValue:iD forKey:@"iD"];
+   NSDate *created = [[MilponHelper sharedHelper] rtmStringToDate:[taskseries objectForKey:@"created"]];
+   [newManagedObject setValue:created forKey:@"created"];   
+   [newManagedObject setValue:listObject forKey:@"inList"];
    
    // Save the context.
    NSError *error = nil;
@@ -373,7 +380,8 @@
       return;
    }
    
-   NSArray *tasksRetrieved = [api getTaskList];
+   NSString *listString = [NSString stringWithFormat:@"%d", [[listObject valueForKey:@"iD"] integerValue]];
+   NSArray *tasksRetrieved = [api getTaskList:listString filter:nil lastSync:nil];
    for (NSDictionary *taskseries in tasksRetrieved) {
       [self insertNewTask:taskseries];
    }
