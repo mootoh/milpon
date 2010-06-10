@@ -236,6 +236,44 @@
 #pragma mark -
 #pragma mark Fetched results controller
 
+- (NSString *) parseFilter:(NSString *) filter
+{
+   NSString *ret = @"";
+
+   NSDate *now = [NSDate date];
+   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
+   
+   unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+   NSCalendar *calendar = [NSCalendar currentCalendar];
+   NSDateComponents *comps = [calendar components:unitFlags fromDate:now];
+   
+   NSDate *todayBegin = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT", [comps year], [comps month], [comps day]]];
+   NSDate *todayEnd   = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_23:59:59 GMT", [comps year], [comps month], [comps day]]];
+   
+   
+   ret = [ret stringByAppendingFormat:@"AND due BETWEEN %@", [NSArray arrayWithObjects:todayBegin, todayEnd, nil]];
+
+   return ret;
+}
+
+- (NSPredicate *) todayPredicate
+{
+   NSDate *now = [NSDate date];
+   NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+   [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss zzz"];
+   
+   unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+   NSCalendar *calendar = [NSCalendar currentCalendar];
+   NSDateComponents *comps = [calendar components:unitFlags fromDate:now];
+   
+   NSDate *todayBegin = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_00:00:00 GMT", [comps year], [comps month], [comps day]]];
+   NSDate *todayEnd   = [formatter dateFromString:[NSString stringWithFormat:@"%d-%d-%d_23:59:59 GMT", [comps year], [comps month], [comps day]]];   
+
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"due >= %@ AND due <= %@", todayBegin, todayEnd];
+   return pred;
+}
+
 - (NSFetchedResultsController *)fetchedResultsController {
    
    if (fetchedResultsController != nil) {
@@ -261,7 +299,14 @@
    
    [fetchRequest setSortDescriptors:sortDescriptors];
    
-   NSPredicate *pred = [NSPredicate predicateWithFormat:@"taskSeries.inList.iD == %@ AND deleted == NULL", [listObject valueForKey:@"iD"]];
+   NSString *predicateString = [NSString stringWithFormat:@"taskSeries.inList.iD == %@ AND deleted == NULL ", [listObject valueForKey:@"iD"]];
+#if 0
+   BOOL isSmart = [[listObject valueForKey:@"smart"] boolValue];
+   LOG(@"isSmart = %@", isSmart);
+   if (isSmart)
+      predicateString = [predicateString stringByAppendingString:[self parseFilter:[listObject valueForKey:@"filter"]]];
+#endif // 0
+   NSPredicate *pred = [NSPredicate predicateWithFormat:predicateString];
    [fetchRequest setPredicate:pred];
    
    // Edit the section name key path and cache name if appropriate.
