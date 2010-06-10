@@ -109,7 +109,12 @@
    }
    
    CountCircleView *ccv = [[CountCircleView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
-   ccv.count = [[managedObject valueForKey:@"taskSerieses"] count];
+   NSInteger sum = 0;
+   for (NSManagedObject *task in [managedObject valueForKey:@"taskSerieses"]) {
+      sum += [[task valueForKey:@"tasks"] count];
+   }
+
+   ccv.count = sum;
    cell.accessoryView = ccv;
    [ccv release];
 }
