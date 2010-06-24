@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @interface MPTaskListViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
-   NSFetchedResultsController *fetchedResultsController;
+   NSFetchedResultsController *fetchedResultsController; // manages filtered Task collection, not TaskSeries.
    NSManagedObjectContext     *managedObjectContext;
    NSManagedObject            *listObject;
 }

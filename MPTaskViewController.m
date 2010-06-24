@@ -35,37 +35,73 @@
    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
 
    switch (indexPath.section) {
-      case 0:
-         cell.textLabel.text = @"name";
-         cell.detailTextLabel.text = [[taskseriesObject valueForKey:@"name"] description];
-         break;
-      case 1:
+      case 0: // TaskSeries
          switch (indexPath.row) {
             case 0:
-               cell.textLabel.text = @"due";
-               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskObject valueForKey:@"due"]];
+               cell.textLabel.text = @"iD";
+               cell.detailTextLabel.text = [[taskseriesObject valueForKey:@"iD"] description];
                break;
             case 1:
-               cell.textLabel.text = @"estimate";
-               cell.detailTextLabel.text = [[taskObject valueForKey:@"estimate"] description];
+               cell.textLabel.text = @"name";
+               cell.detailTextLabel.text = [[taskseriesObject valueForKey:@"name"] description];
                break;
             case 2:
-               cell.textLabel.text = @"repeat";
+               cell.textLabel.text = @"craeted";
+               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskseriesObject valueForKey:@"created"]];
+               break;
+            case 3:
+               cell.textLabel.text = @"modified";
+               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskseriesObject valueForKey:@"modified"]];
+               break;
+            case 4:
+               cell.textLabel.text = @"rrule";
                cell.detailTextLabel.text = [[taskseriesObject valueForKey:@"rrule"] description];
+               break;
+            case 5:
+               cell.textLabel.text = @"url";
+               cell.detailTextLabel.text = [[taskseriesObject valueForKey:@"url"] description];
                break;
             default:
                break;
          }
          break;
-      case 2:
+      case 1: // Task
          switch (indexPath.row) {
             case 0:
-               cell.textLabel.text = @"created";
-               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskseriesObject valueForKey:@"created"]];
+               cell.textLabel.text = @"iD";
+               cell.detailTextLabel.text = [[taskObject valueForKey:@"iD"] description];
                break;
             case 1:
-               cell.textLabel.text = @"modified";
-               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskseriesObject valueForKey:@"modified"]];
+               cell.textLabel.text = @"added";
+               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskObject valueForKey:@"added"]];
+               break;
+            case 2:
+               cell.textLabel.text = @"completed";
+               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskObject valueForKey:@"completed"]];
+               break;
+            case 3:
+               cell.textLabel.text = @"deleted";
+               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskObject valueForKey:@"deleted"]];
+               break;
+            case 4:
+               cell.textLabel.text = @"due";
+               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskObject valueForKey:@"due"]];
+               break;
+            case 5:
+               cell.textLabel.text = @"estimate";
+               cell.detailTextLabel.text = [[taskObject valueForKey:@"estimate"] description];
+               break;
+            case 6:
+               cell.textLabel.text = @"has_due_time";
+               cell.detailTextLabel.text = [[taskObject valueForKey:@"has_due_time"] description];
+               break;
+            case 7:
+               cell.textLabel.text = @"postponed";
+               cell.detailTextLabel.text = [[taskObject valueForKey:@"postponed"] description];
+               break;
+            case 8:
+               cell.textLabel.text = @"priority";
+               cell.detailTextLabel.text = [[taskObject valueForKey:@"priority"] description];
                break;
             default:
                break;
@@ -80,25 +116,35 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-   return 3;
+   return 2;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
    switch (section) {
-      case 0: // name
-         return 1;
-      case 1: // due, estimate, recurrence
-         return 3;
-      case 2:
-         return 2;
+      case 0: // TaskSeries attributes
+         return 6;
+      case 1: // Task attributes
+         return 9;
       default:
          break;
    }
    return 0;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+   switch (section) {
+      case 0:
+         return @"TaskSeries";
+      case 1:
+         return @"Task";
+      default:
+         return nil;
+   }
+   return nil;
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

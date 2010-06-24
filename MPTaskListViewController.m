@@ -41,6 +41,7 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
 
 @end
 
+#pragma mark -
 @implementation MPTaskListViewController
 @synthesize fetchedResultsController, managedObjectContext;
 @synthesize listObject;
@@ -55,19 +56,15 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
 {
    [super viewDidLoad];
 
+   // set up the view
    self.title = [listObject valueForKey:@"name"];
 
    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(syncTaskList)];
    self.toolbarItems = [NSArray arrayWithObjects:addButton, nil];
    [addButton release];
+   // [self performSelectorInBackground:@selector(getTasks) withObject:nil];
 
-   // Uncomment the following line to preserve selection between presentations.
-   //self.clearsSelectionOnViewWillAppear = NO;
-
-   // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-   // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-//   [self performSelectorInBackground:@selector(getTasks) withObject:nil];
-
+   // load the contents
    NSError *error = nil;
    if (![[self fetchedResultsController] performFetch:&error]) {
       /*
@@ -78,43 +75,13 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
       NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
       abort();
    }
-   
 }
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-   
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
    cell.textLabel.text = [[[managedObject valueForKey:@"taskSeries"] valueForKey:@"name"] description];
-   
+
    NSDate *due = [managedObject valueForKey:@"due"];
    if (due) {
       NSString *dueString = nil;
@@ -187,46 +154,6 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
    
    return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark -
 #pragma mark Table view delegate
@@ -326,39 +253,29 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
    return pred;
 }
 
-- (NSFetchedResultsController *)fetchedResultsController {
-   
-   if (fetchedResultsController != nil) {
+- (NSFetchedResultsController *) fetchedResultsController
+{
+   if (fetchedResultsController != nil)
       return fetchedResultsController;
-   }
-   
-   /*
-    Set up the fetched results controller.
-    */
+
    // Create the fetch request for the entity.
    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
    // Edit the entity name as appropriate.
    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext];
    [fetchRequest setEntity:entity];
-   
+
    // Set the batch size to a suitable number.
    [fetchRequest setFetchBatchSize:20];
-   
+
    // Edit the sort key as appropriate.
-   NSSortDescriptor *dueSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"due" ascending:YES];
+   NSSortDescriptor *dueSortDescriptor       = [[NSSortDescriptor alloc] initWithKey:@"due" ascending:YES];
    NSSortDescriptor *completedSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"completed" ascending:YES];
-   NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"taskSeries.name" ascending:YES];
+   NSSortDescriptor *nameSortDescriptor      = [[NSSortDescriptor alloc] initWithKey:@"taskSeries.name" ascending:YES];
    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:completedSortDescriptor, dueSortDescriptor, nameSortDescriptor, nil];
    
    [fetchRequest setSortDescriptors:sortDescriptors];
    
    NSString *predicateString = [NSString stringWithFormat:@"taskSeries.inList.iD == %@ AND deleted == NULL ", [listObject valueForKey:@"iD"]];
-#if 0
-   BOOL isSmart = [[listObject valueForKey:@"smart"] boolValue];
-   LOG(@"isSmart = %@", isSmart);
-   if (isSmart)
-      predicateString = [predicateString stringByAppendingString:[self parseFilter:[listObject valueForKey:@"filter"]]];
-#endif // 0
    NSPredicate *pred = [NSPredicate predicateWithFormat:predicateString];
    [fetchRequest setPredicate:pred];
    
@@ -482,6 +399,9 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
       [newTaskSeries setValue:packedRrule forKey:@"rrule"];
    }
 
+   if ([taskseries objectForKey:@"url"])
+      [newTaskSeries setValue:[taskseries objectForKey:@"url"] forKey:@"url"];
+   
    // setup Tasks in the TaskSeries
    for (NSDictionary *task in [taskseries objectForKey:@"tasks"]) {
       NSEntityDescription  *entity = [[fetchedResultsController fetchRequest] entity];
