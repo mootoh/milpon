@@ -8,8 +8,8 @@
 
 #import "MPAddTaskViewController.h"
 
-
 @implementation MPAddTaskViewController
+@synthesize nameField, prioritySegments, nameCell, dueCell, priorityCell, listCell, tagCell, rruleCell, locationCell, noteCell;
 
 
 #pragma mark -
@@ -52,7 +52,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2; // basic + detail
+   return 2; // basic + detail
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -61,8 +61,9 @@
       // name, list, priority, due & due time
       return 4;
    else
+      return 0;
       // tags, rrule, location, note
-      return 4;
+      // return 4;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -71,9 +72,44 @@
    return @"Detail";
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   if (indexPath.section == 0) {
+      switch (indexPath.row) {
+         case 0:
+            return nameCell.frame.size.height;
+         case 1:
+            return priorityCell.frame.size.height;
+         case 2:
+            return dueCell.frame.size.height;
+         case 3:
+            return listCell.frame.size.height;            
+         default:
+            break;
+      }
+   }
+   return 0.0f;
+}
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   if (indexPath.section == 0) {
+      switch (indexPath.row) {
+         case 0:
+            return nameCell;
+         case 1:
+            return priorityCell;
+         case 2:
+            return dueCell;
+         case 3:
+            listCell.textLabel.text = @"Inbox";
+            return listCell;
+         default:
+            break;
+      }
+   }
+   
    static NSString *CellIdentifier = @"AddTaskCell";
    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
    if (cell == nil) {

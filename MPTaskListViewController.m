@@ -460,31 +460,34 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
 - (void)insertNewTask:(NSDictionary *)taskseries {
    
    // Create a new instance of the entity managed by the fetched results controller.
-   NSEntityDescription       *entity = [[fetchedResultsController fetchRequest] entity];
-   NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:managedObjectContext];
+   NSManagedObject *newTaskSeries = [NSEntityDescription
+                                   insertNewObjectForEntityForName:@"TaskSeries"
+                                   inManagedObjectContext:managedObjectContext];
    
    // setup TaskSeries
-   [newManagedObject setValue:[taskseries objectForKey:@"name"] forKey:@"name"];
+   [newTaskSeries setValue:[taskseries objectForKey:@"name"] forKey:@"name"];
    NSNumber *iD = [NSNumber numberWithInteger:[[taskseries objectForKey:@"id"] integerValue]];
-   [newManagedObject setValue:iD forKey:@"iD"];
+   [newTaskSeries setValue:iD forKey:@"iD"];
    NSDate *created = [[MilponHelper sharedHelper] rtmStringToDate:[taskseries objectForKey:@"created"]];
-   [newManagedObject setValue:created forKey:@"created"];   
-   [newManagedObject setValue:listObject forKey:@"inList"];
+   [newTaskSeries setValue:created forKey:@"created"];   
+   [newTaskSeries setValue:listObject forKey:@"inList"];
    
    if ([taskseries objectForKey:@"modified"]) {
       NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[taskseries objectForKey:@"modified"]];
-      [newManagedObject setValue:date forKey:@"modified"];
+      [newTaskSeries setValue:date forKey:@"modified"];
    }      
    if ([taskseries objectForKey:@"rrule"]) {
       NSDictionary *rrule = [taskseries objectForKey:@"rrule"];
       NSString *packedRrule = [NSString stringWithFormat:@"%@-%@", [rrule objectForKey:@"every"], [rrule objectForKey:@"rule"]];
-      [newManagedObject setValue:packedRrule forKey:@"rrule"];
+      [newTaskSeries setValue:packedRrule forKey:@"rrule"];
    }
 
    // setup Tasks in the TaskSeries
    for (NSDictionary *task in [taskseries objectForKey:@"tasks"]) {
-      NSEntityDescription *taskEntity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext];
-      NSManagedObject *newTask = [NSEntityDescription insertNewObjectForEntityForName:[taskEntity name] inManagedObjectContext:managedObjectContext];
+      NSEntityDescription  *entity = [[fetchedResultsController fetchRequest] entity];
+      NSManagedObject     *newTask = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:managedObjectContext];
+
+      [newTask setValue:newTaskSeries forKey:@"taskSeries"];
 
       NSNumber *taskID = [NSNumber numberWithInteger:[[task objectForKey:@"id"] integerValue]];
       [newTask setValue:taskID forKey:@"iD"];

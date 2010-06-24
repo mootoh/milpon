@@ -157,7 +157,8 @@
 
 - (void) showAddTask
 {
-   MPAddTaskViewController *addTaskViewController = [[MPAddTaskViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//   MPAddTaskViewController *addTaskViewController = [[MPAddTaskViewController alloc] initWithStyle:UITableViewStyleGrouped];
+   MPAddTaskViewController *addTaskViewController = [[MPAddTaskViewController alloc] initWithNibName:@"MPAddTaskView" bundle:nil];
    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:addTaskViewController];
    [navigationController presentModalViewController:nc animated:YES];
    [addTaskViewController release];

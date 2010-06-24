@@ -41,6 +41,11 @@
 		92C71A9411D3793A00A7A5BE /* icon_priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F580F565D9300473A95 /* icon_priority_1.png */; };
 		92C71A9511D3793F00A7A5BE /* icon_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5B0F565D9300473A95 /* icon_tag.png */; };
 		92C71A9611D3794400A7A5BE /* icon_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F4E0F565D9300473A95 /* icon_calendar.png */; };
+		92C71AE711D3866400A7A5BE /* MPAddTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92C71AE611D3866400A7A5BE /* MPAddTaskView.xib */; };
+		92C71AE811D3866400A7A5BE /* MPAddTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92C71AE611D3866400A7A5BE /* MPAddTaskView.xib */; };
+		92C71B2111D38D7A00A7A5BE /* icon_priority_4.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F570F565D9300473A95 /* icon_priority_4.png */; };
+		92C71B2211D38D7B00A7A5BE /* icon_priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5A0F565D9300473A95 /* icon_priority_3.png */; };
+		92C71B2311D38D7B00A7A5BE /* icon_priority_2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F590F565D9300473A95 /* icon_priority_2.png */; };
 		92D21FB5115E077B0074E93A /* icon_overview_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FB4115E077B0074E93A /* icon_overview_disabled.png */; };
 		92D21FDC115E08FF0074E93A /* icon_list_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FDA115E08FF0074E93A /* icon_list_disabled.png */; };
 		92D21FDD115E08FF0074E93A /* icon_tag_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FDB115E08FF0074E93A /* icon_tag_disabled.png */; };
@@ -178,6 +183,7 @@
 		92BFB89F11610A670024023D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		92C719AB11D36E2600A7A5BE /* MPAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAddTaskViewController.h; sourceTree = "<group>"; };
 		92C719AC11D36E2600A7A5BE /* MPAddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAddTaskViewController.m; sourceTree = "<group>"; };
+		92C71AE611D3866400A7A5BE /* MPAddTaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPAddTaskView.xib; sourceTree = "<group>"; };
 		92D21ED2115DF8080074E93A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		92D21ED3115DF8080074E93A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		92D21FB4115E077B0074E93A /* icon_overview_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_overview_disabled.png; sourceTree = "<group>"; };
@@ -516,6 +522,7 @@
 				92F8596711C04B870006DA57 /* MPTaskViewController.m */,
 				92C719AB11D36E2600A7A5BE /* MPAddTaskViewController.h */,
 				92C719AC11D36E2600A7A5BE /* MPAddTaskViewController.m */,
+				92C71AE611D3866400A7A5BE /* MPAddTaskView.xib */,
 			);
 			name = "New UI";
 			sourceTree = "<group>";
@@ -994,6 +1001,7 @@
 				92D22153115E44B10074E93A /* icon_tag_toolbar.png in Resources */,
 				92D22168115E46310074E93A /* arrow.png in Resources */,
 				92FAED6711BD413400A33279 /* MainWindow.xib in Resources */,
+				92C71AE811D3866400A7A5BE /* MPAddTaskView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1034,6 +1042,10 @@
 				92C71A9411D3793A00A7A5BE /* icon_priority_1.png in Resources */,
 				92C71A9511D3793F00A7A5BE /* icon_tag.png in Resources */,
 				92C71A9611D3794400A7A5BE /* icon_calendar.png in Resources */,
+				92C71AE711D3866400A7A5BE /* MPAddTaskView.xib in Resources */,
+				92C71B2111D38D7A00A7A5BE /* icon_priority_4.png in Resources */,
+				92C71B2211D38D7B00A7A5BE /* icon_priority_3.png in Resources */,
+				92C71B2311D38D7B00A7A5BE /* icon_priority_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
