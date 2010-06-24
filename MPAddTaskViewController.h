@@ -10,7 +10,7 @@
 
 @interface MPAddTaskViewController : UITableViewController
 {
-
+   UITextField *nameField;
 }
 
 @end

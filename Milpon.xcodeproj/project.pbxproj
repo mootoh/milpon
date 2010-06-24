@@ -36,6 +36,11 @@
 		92BFB8A011610A670024023D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BFB89F11610A670024023D /* Security.framework */; };
 		92C719AD11D36E2600A7A5BE /* MPAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C719AC11D36E2600A7A5BE /* MPAddTaskViewController.m */; };
 		92C719AE11D36E2600A7A5BE /* MPAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C719AC11D36E2600A7A5BE /* MPAddTaskViewController.m */; };
+		92C71A5711D3766D00A7A5BE /* icon_target.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5D0F565D9300473A95 /* icon_target.png */; };
+		92C71A7C11D3786C00A7A5BE /* icon_list.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F520F565D9300473A95 /* icon_list.png */; };
+		92C71A9411D3793A00A7A5BE /* icon_priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F580F565D9300473A95 /* icon_priority_1.png */; };
+		92C71A9511D3793F00A7A5BE /* icon_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5B0F565D9300473A95 /* icon_tag.png */; };
+		92C71A9611D3794400A7A5BE /* icon_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F4E0F565D9300473A95 /* icon_calendar.png */; };
 		92D21FB5115E077B0074E93A /* icon_overview_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FB4115E077B0074E93A /* icon_overview_disabled.png */; };
 		92D21FDC115E08FF0074E93A /* icon_list_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FDA115E08FF0074E93A /* icon_list_disabled.png */; };
 		92D21FDD115E08FF0074E93A /* icon_tag_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FDB115E08FF0074E93A /* icon_tag_disabled.png */; };
@@ -1024,6 +1029,11 @@
 				92F859FE11C0540C0006DA57 /* Settings.bundle in Resources */,
 				92D3491511C223F3009BFD89 /* checkBox.png in Resources */,
 				92D349B111C348CE009BFD89 /* checkBoxChecked.png in Resources */,
+				92C71A5711D3766D00A7A5BE /* icon_target.png in Resources */,
+				92C71A7C11D3786C00A7A5BE /* icon_list.png in Resources */,
+				92C71A9411D3793A00A7A5BE /* icon_priority_1.png in Resources */,
+				92C71A9511D3793F00A7A5BE /* icon_tag.png in Resources */,
+				92C71A9611D3794400A7A5BE /* icon_calendar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,43 +31,21 @@
 - (void)viewDidLoad
 {
    [super viewDidLoad];
+   self.title = @"Add Task";
 
    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
    UIBarButtonItem *doneButton   = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
+   doneButton.enabled = NO;
    self.navigationItem.leftBarButtonItem = cancelButton;
    self.navigationItem.rightBarButtonItem = doneButton;
    [cancelButton release];
    [doneButton release];
-}
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+   nameField = [[UITextField alloc] initWithFrame:CGRectZero];
+   nameField.placeholder = @"What to do...";
+   nameField.font = [UIFont systemFontOfSize:20];
+   //   self.tableView.allowsSelection = NO;
 }
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view data source
@@ -77,80 +55,76 @@
     return 2; // basic + detail
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
    if (section == 0)
-      // name, list, priority, due, due time
-      return 5;
+      // name, list, priority, due & due time
+      return 4;
    else
       // tags, rrule, location, note
       return 4;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+   if (section == 0) return nil;
+   return @"Detail";
+}
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"AddTaskCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-   
-   if (indexPath.row == 0) {
-      UITextField *nameField = [[UITextField alloc] initWithFrame:cell.frame];
-      [cell addSubview:nameField];
-      [nameField release];
+   static NSString *CellIdentifier = @"AddTaskCell";
+   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+   if (cell == nil) {
+      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
    }
-    
-    // Configure the cell...
-    return cell;
+   cell.selectionStyle = UITableViewCellSelectionStyleNone;
+   
+   if (indexPath.section == 0) {
+      switch (indexPath.row) {
+         case 0: {
+            nameField.frame = CGRectMake(30, 10, cell.contentView.frame.size.width-64, 40);
+            [cell.contentView addSubview:nameField];
+            [nameField becomeFirstResponder];
+            
+            cell.imageView.image = [[UIImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_target.png"]];
+         } break;
+         case 1:
+            cell.imageView.image = [[UIImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_calendar.png"]];
+            cell.textLabel.text = @"Due";
+            break;
+         case 2:
+            cell.imageView.image = [[UIImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_priority_1.png"]];
+
+            // setup priority segment
+            NSArray *priority_items = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", nil];
+            UISegmentedControl *priority_segment = [[UISegmentedControl alloc] initWithFrame:CGRectMake(50, 6, CGRectGetWidth(self.view.frame)-104-10, 32)];
+            for (int i=0; i<priority_items.count; i++)
+               [priority_segment insertSegmentWithTitle:[priority_items objectAtIndex:i] atIndex:i animated:NO];
+            
+            priority_segment.selectedSegmentIndex = 3;
+            [cell.contentView addSubview:priority_segment];
+            [priority_segment release];
+            
+            break;
+         case 3:
+            cell.imageView.image = [[UIImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"icon_list.png"]];
+            cell.textLabel.text = @"List";
+            break;
+      }
+   }
+
+   return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   if (indexPath.row != 0) {
+      [nameField resignFirstResponder];
+   }  
     // Navigation logic may go here. Create and push another view controller.
 	/*
 	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -180,6 +154,7 @@
 
 - (void)dealloc
 {
+   [nameField release];
    [super dealloc];
 }
 
