@@ -34,6 +34,8 @@
 		927A61C0113815ED005B4548 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
 		927A61F31138194B005B4548 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 927A61F21138194B005B4548 /* Settings.bundle */; };
 		92BFB8A011610A670024023D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BFB89F11610A670024023D /* Security.framework */; };
+		92C719AD11D36E2600A7A5BE /* MPAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C719AC11D36E2600A7A5BE /* MPAddTaskViewController.m */; };
+		92C719AE11D36E2600A7A5BE /* MPAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C719AC11D36E2600A7A5BE /* MPAddTaskViewController.m */; };
 		92D21FB5115E077B0074E93A /* icon_overview_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FB4115E077B0074E93A /* icon_overview_disabled.png */; };
 		92D21FDC115E08FF0074E93A /* icon_list_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FDA115E08FF0074E93A /* icon_list_disabled.png */; };
 		92D21FDD115E08FF0074E93A /* icon_tag_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FDB115E08FF0074E93A /* icon_tag_disabled.png */; };
@@ -41,6 +43,8 @@
 		92D2213D115E41B40074E93A /* icon_overview.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D2213C115E41B40074E93A /* icon_overview.png */; };
 		92D22153115E44B10074E93A /* icon_tag_toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D22152115E44B10074E93A /* icon_tag_toolbar.png */; };
 		92D22168115E46310074E93A /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D22167115E46310074E93A /* arrow.png */; };
+		92D3491511C223F3009BFD89 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F440F565D9300473A95 /* checkBox.png */; };
+		92D349B111C348CE009BFD89 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F460F565D9300473A95 /* checkBoxChecked.png */; };
 		92E4AAA7102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
 		92E91C380FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
 		92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
@@ -167,6 +171,8 @@
 		928601981072E55C004B7DFE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92B2F4C31158EAA000254FC6 /* AuthView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthView.xib; sourceTree = "<group>"; };
 		92BFB89F11610A670024023D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		92C719AB11D36E2600A7A5BE /* MPAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAddTaskViewController.h; sourceTree = "<group>"; };
+		92C719AC11D36E2600A7A5BE /* MPAddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAddTaskViewController.m; sourceTree = "<group>"; };
 		92D21ED2115DF8080074E93A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		92D21ED3115DF8080074E93A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		92D21FB4115E077B0074E93A /* icon_overview_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_overview_disabled.png; sourceTree = "<group>"; };
@@ -503,6 +509,8 @@
 				92FAEDEF11BDBD5800A33279 /* MPTaskListViewController.m */,
 				92F8596611C04B870006DA57 /* MPTaskViewController.h */,
 				92F8596711C04B870006DA57 /* MPTaskViewController.m */,
+				92C719AB11D36E2600A7A5BE /* MPAddTaskViewController.h */,
+				92C719AC11D36E2600A7A5BE /* MPAddTaskViewController.m */,
 			);
 			name = "New UI";
 			sourceTree = "<group>";
@@ -1014,6 +1022,8 @@
 				92F8587311BFCC740006DA57 /* recurrentIcon.png in Resources */,
 				92F8587D11BFCC740006DA57 /* MainWindow.xib in Resources */,
 				92F859FE11C0540C0006DA57 /* Settings.bundle in Resources */,
+				92D3491511C223F3009BFD89 /* checkBox.png in Resources */,
+				92D349B111C348CE009BFD89 /* checkBoxChecked.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1058,6 +1068,7 @@
 				92FAEDA511BDB54100A33279 /* MPListViewController.m in Sources */,
 				92FAEDF011BDBD5800A33279 /* MPTaskListViewController.m in Sources */,
 				92F8596811C04B870006DA57 /* MPTaskViewController.m in Sources */,
+				92C719AE11D36E2600A7A5BE /* MPAddTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1099,6 +1110,7 @@
 				92F8588E11BFCC740006DA57 /* MPListViewController.m in Sources */,
 				92F8588F11BFCC740006DA57 /* MPTaskListViewController.m in Sources */,
 				92F8596911C04B870006DA57 /* MPTaskViewController.m in Sources */,
+				92C719AD11D36E2600A7A5BE /* MPAddTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

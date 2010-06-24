@@ -185,4 +185,27 @@
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark Actions
+
+- (IBAction) postpone
+{
+}
+
+- (IBAction) setDue
+{
+}
+
+- (IBAction) setName
+{
+}
+
+- (IBAction) setEstimate
+{
+}
+
+- (IBAction) setRepeatRule
+{
+}
+
 @end

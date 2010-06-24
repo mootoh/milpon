@@ -13,6 +13,34 @@
 #import "MilponHelper.h"
 #import "MPLogger.h"
 
+@interface PriorityBar : UIView
+{
+   NSInteger priority;
+}
+@property (nonatomic) NSInteger priority;
+@end
+
+@implementation PriorityBar
+@synthesize priority;
+
+static UIColor *s_colors[4] = {nil, nil, nil, nil};
+
+- (void) setPriority:(NSInteger) prty
+{
+   if (s_colors[0] == nil) {
+      s_colors[0] = [[UIColor colorWithRed:0.917 green:0.321 blue:0.0   alpha:1.0] retain];
+      s_colors[1] = [[UIColor colorWithRed:0.0   green:0.376 blue:0.749 alpha:1.0] retain];
+      s_colors[2] = [[UIColor colorWithRed:0.207 green:0.604 blue:1.0   alpha:1.0] retain];
+      s_colors[3] = [[UIColor grayColor] retain];
+   }
+      
+   priority = prty;
+   NSAssert(priority >= 0 && priority < 4, @"");
+   self.backgroundColor = s_colors[priority];
+}
+
+@end
+
 @implementation MPTaskListViewController
 @synthesize fetchedResultsController, managedObjectContext;
 @synthesize listObject;
@@ -106,13 +134,37 @@
    }
    if ([managedObject valueForKey:@"completed"])
       cell.textLabel.textColor = [UIColor grayColor];
-}
 
+   cell.indentationLevel = 1;
+   cell.indentationWidth = 60;
+
+   UIButton *checkButton = [UIButton buttonWithType:UIButtonTypeCustom];
+   [checkButton setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
+   [checkButton setImage:[UIImage imageNamed:@"checkBoxChecked.png"] forState:UIControlStateHighlighted];
+//   [checkButton addTarget:self action:@selector(toggleCheck) forControlEvents:UIControlEventTouchDown];  
+   checkButton.frame = CGRectMake(16, 2, 40, 40);
+   [cell.contentView addSubview:checkButton];
+
+   PriorityBar *pb = [[PriorityBar alloc] initWithFrame:CGRectMake(4, 0, 8, cell.frame.size.height)];
+   [cell.contentView addSubview:pb];
+   pb.priority = [[managedObject valueForKey:@"priority"] integerValue];
+   [pb release];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
    return [[fetchedResultsController sections] count];
 }
 
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+   NSArray *secs = [fetchedResultsController sections];
+   NSMutableArray *ret = [NSMutableArray array];
+   for (id <NSFetchedResultsSectionInfo> sec in secs) {
+      LOG(@"section.name = %@", sec.name);
+      [ret addObject:sec.name];
+   }
+   return ret;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
@@ -294,8 +346,9 @@
    
    // Edit the sort key as appropriate.
    NSSortDescriptor *dueSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"due" ascending:YES];
+   NSSortDescriptor *completedSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"completed" ascending:YES];
    NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"taskSeries.name" ascending:YES];
-   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:dueSortDescriptor, nameSortDescriptor, nil];
+   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:completedSortDescriptor, dueSortDescriptor, nameSortDescriptor, nil];
    
    [fetchRequest setSortDescriptors:sortDescriptors];
    
@@ -311,7 +364,7 @@
    
    // Edit the section name key path and cache name if appropriate.
    // nil for section name key path means "no sections".
-   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"Task"];
+   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"completed" cacheName:@"Task"];
    aFetchedResultsController.delegate = self;
    self.fetchedResultsController = aFetchedResultsController;
 

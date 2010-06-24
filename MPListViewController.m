@@ -13,6 +13,16 @@
 #import "MilponHelper.h"
 #import "MPLogger.h"
 
+#pragma mark CheckButtonImageView
+
+@interface CheckButtonImageView : UIImageView
+{
+}
+
+@end
+
+
+#pragma mark -
 #pragma mark CountCircleView
 
 @interface CountCircleView : UIView
@@ -82,7 +92,10 @@
    // toolbar
    UIBarButtonItem *syncListButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(syncList)];
    UIBarButtonItem *syncTaskButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(syncTaskList)];
-   self.toolbarItems = [NSArray arrayWithObjects:syncListButton, syncTaskButton, nil];
+   UIBarButtonItem *addTaskButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:[UIApplication sharedApplication].delegate action:@selector(showAddTask)];
+
+   self.toolbarItems = [NSArray arrayWithObjects:syncListButton, syncTaskButton, addTaskButton, nil];
+   [addTaskButton release];
    [syncListButton release];
    [syncTaskButton release];
 

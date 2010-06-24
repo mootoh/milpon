@@ -8,6 +8,8 @@
 
 #import "MPAppDelegate.h"
 #import "MPListViewController.h"
+#import "MPAddTaskViewController.h"
+#import "MPLogger.h"
 
 @interface MPAppDelegate (PrivateCoreDataStack)
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
@@ -140,15 +142,26 @@
 #pragma mark -
 #pragma mark Memory management
 
-- (void)dealloc {
-   
+- (void)dealloc
+{
    [managedObjectContext release];
    [managedObjectModel release];
    [persistentStoreCoordinator release];
-   
+
    [navigationController release];
    [window release];
    [super dealloc];
+}
+
+#pragma mark -
+
+- (void) showAddTask
+{
+   MPAddTaskViewController *addTaskViewController = [[MPAddTaskViewController alloc] initWithStyle:UITableViewStyleGrouped];
+   UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:addTaskViewController];
+   [navigationController presentModalViewController:nc animated:YES];
+   [addTaskViewController release];
+   [nc release];
 }
 
 @end
