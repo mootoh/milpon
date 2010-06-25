@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface MPTaskListViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
+@interface MPTaskListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+{
    NSFetchedResultsController *fetchedResultsController; // manages filtered Task collection, not TaskSeries.
    NSManagedObjectContext     *managedObjectContext;
    NSManagedObject            *listObject;
+
+   BOOL showToggle;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;

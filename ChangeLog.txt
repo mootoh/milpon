@@ -1,0 +1,9 @@
+2010-06-24  mootoh <mootoh@gmail.com>
+
+	* FetchRequestController:
+
+	たとえば sort 順を変えたいときや、 completed task も表示したい、といったふ
+	うに、 query をダイナミックに変えたいときには、 Apple の template どおりで
+	はうまくいかない。 Stack Over Flow を見たけど、 query が変わったときには、
+	FetchRequestController を作り直すことになる。その後、 tableView に reload
+	をかけるなどする。

@@ -33,7 +33,7 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
       s_colors[2] = [[UIColor colorWithRed:0.207 green:0.604 blue:1.0   alpha:1.0] retain];
       s_colors[3] = [[UIColor grayColor] retain];
    }
-      
+
    priority = prty;
    NSAssert(priority >= 0 && priority < 4, @"");
    self.backgroundColor = s_colors[priority];
@@ -56,12 +56,22 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
 {
    [super viewDidLoad];
 
+   showToggle = NO;
+
    // set up the view
    self.title = [listObject valueForKey:@"name"];
 
    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(syncTaskList)];
-   self.toolbarItems = [NSArray arrayWithObjects:addButton, nil];
+
+   UISwitch *viewToggleSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+   [viewToggleSwitch addTarget:self action:@selector(toggleValueChanged:) forControlEvents:UIControlEventValueChanged];
+   UIBarButtonItem *toggleItem = [[UIBarButtonItem alloc] initWithCustomView:viewToggleSwitch];
+   
+   self.toolbarItems = [NSArray arrayWithObjects:addButton, toggleItem, nil];
    [addButton release];
+   [toggleItem release];
+   [viewToggleSwitch release];
+
    // [self performSelectorInBackground:@selector(getTasks) withObject:nil];
 
    // load the contents
@@ -119,18 +129,16 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-   return [[fetchedResultsController sections] count];
+   NSInteger c = [[fetchedResultsController sections] count];
+   return c;
 }
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
    NSArray *secs = [fetchedResultsController sections];
-   NSMutableArray *ret = [NSMutableArray array];
-   for (id <NSFetchedResultsSectionInfo> sec in secs) {
-      LOG(@"section.name = %@", sec.name);
-      [ret addObject:sec.name];
-   }
-   return ret;
+   id <NSFetchedResultsSectionInfo> sec = [secs objectAtIndex:section];
+   return sec.name;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -276,12 +284,16 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
    [fetchRequest setSortDescriptors:sortDescriptors];
    
    NSString *predicateString = [NSString stringWithFormat:@"taskSeries.inList.iD == %@ AND deleted == NULL ", [listObject valueForKey:@"iD"]];
+   if (! showToggle) {
+      predicateString = [predicateString stringByAppendingFormat:@"AND completed == NULL"];
+   }
+
    NSPredicate *pred = [NSPredicate predicateWithFormat:predicateString];
    [fetchRequest setPredicate:pred];
    
    // Edit the section name key path and cache name if appropriate.
    // nil for section name key path means "no sections".
-   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"completed" cacheName:@"Task"];
+   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"is_completed" cacheName:@"Task"];
    aFetchedResultsController.delegate = self;
    self.fetchedResultsController = aFetchedResultsController;
 
@@ -448,6 +460,31 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
    }
    
    [api release];
+}
+
+- (void) updateFetchRequestController
+{
+   [fetchedResultsController release];
+   fetchedResultsController = nil;
+
+   NSError *error = nil;
+   if (![[self fetchedResultsController] performFetch:&error]) {
+      /*
+       Replace this implementation with code to handle the error appropriately.
+       
+       abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+       */
+      NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+      abort();
+   }
+}
+
+- (void) toggleValueChanged:(id) sender
+{
+   UISwitch *toggleSwitch = (UISwitch *)sender;
+   showToggle = toggleSwitch.on;
+   [self updateFetchRequestController];
+   [self.tableView reloadData];
 }
 
 @end

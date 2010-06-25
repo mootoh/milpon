@@ -34,6 +34,8 @@
 		927A61C0113815ED005B4548 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
 		927A61F31138194B005B4548 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 927A61F21138194B005B4548 /* Settings.bundle */; };
 		92BFB8A011610A670024023D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BFB89F11610A670024023D /* Security.framework */; };
+		92C7068211D53CD900EF3B82 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C7068111D53CD900EF3B82 /* MPTask.m */; };
+		92C7068311D53CD900EF3B82 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C7068111D53CD900EF3B82 /* MPTask.m */; };
 		92C719AD11D36E2600A7A5BE /* MPAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C719AC11D36E2600A7A5BE /* MPAddTaskViewController.m */; };
 		92C719AE11D36E2600A7A5BE /* MPAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C719AC11D36E2600A7A5BE /* MPAddTaskViewController.m */; };
 		92C71A5711D3766D00A7A5BE /* icon_target.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F5D0F565D9300473A95 /* icon_target.png */; };
@@ -181,6 +183,8 @@
 		928601981072E55C004B7DFE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92B2F4C31158EAA000254FC6 /* AuthView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthView.xib; sourceTree = "<group>"; };
 		92BFB89F11610A670024023D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		92C7068011D53CD900EF3B82 /* MPTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTask.h; sourceTree = "<group>"; };
+		92C7068111D53CD900EF3B82 /* MPTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTask.m; sourceTree = "<group>"; };
 		92C719AB11D36E2600A7A5BE /* MPAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAddTaskViewController.h; sourceTree = "<group>"; };
 		92C719AC11D36E2600A7A5BE /* MPAddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAddTaskViewController.m; sourceTree = "<group>"; };
 		92C71AE611D3866400A7A5BE /* MPAddTaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPAddTaskView.xib; sourceTree = "<group>"; };
@@ -541,6 +545,8 @@
 				B9160F2B0F565D4C00473A95 /* RTMTask.m */,
 				B9B957530F6617670046712A /* RTMTag.h */,
 				B9B957540F6617670046712A /* RTMTag.m */,
+				92C7068011D53CD900EF3B82 /* MPTask.h */,
+				92C7068111D53CD900EF3B82 /* MPTask.m */,
 			);
 			name = object;
 			sourceTree = "<group>";
@@ -1091,6 +1097,7 @@
 				92FAEDF011BDBD5800A33279 /* MPTaskListViewController.m in Sources */,
 				92F8596811C04B870006DA57 /* MPTaskViewController.m in Sources */,
 				92C719AE11D36E2600A7A5BE /* MPAddTaskViewController.m in Sources */,
+				92C7068211D53CD900EF3B82 /* MPTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1133,6 +1140,7 @@
 				92F8588F11BFCC740006DA57 /* MPTaskListViewController.m in Sources */,
 				92F8596911C04B870006DA57 /* MPTaskViewController.m in Sources */,
 				92C719AD11D36E2600A7A5BE /* MPAddTaskViewController.m in Sources */,
+				92C7068311D53CD900EF3B82 /* MPTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
