@@ -17,7 +17,9 @@
 
 @interface RTMAPIListTest : SenTestCase
 {
-  RTMAPI *api;
+   RTMAPI       *api;
+   NSString     *timeline;
+   NSDictionary *createdList;
 }
 @end
 
@@ -25,12 +27,31 @@
 
 - (void) setUp
 {
-   api  = [[RTMAPI alloc] init];
+   api = [[RTMAPI alloc] init];
    api.token = RTM_TOKEN_D;
+   createdList = nil;
+   timeline = [api createTimeline];
+   STAssertNotNil(timeline, nil);
 }
 
 - (void) tearDown
 {
+   if (createdList) {
+      NSString *listID = [createdList objectForKey:@"id"];
+      [api delete:listID timeline:timeline];
+
+      // get lists again to check if the list is absolutely deleted.
+      NSArray *lists = [api getList];
+      BOOL found = NO;
+      for (NSDictionary *list in lists) {
+         if ([listID isEqualToString:[list objectForKey:@"id"]]) {
+            found = YES;
+            break;
+         }
+      }
+      STAssertFalse(found, @"list id absense check");
+   }
+
    api.token = nil;
    [api release];
 }
@@ -55,23 +76,18 @@
    }
 }
 
-- (void) testAdd
+- (void) addList
 {
-   NSString *timeline = [api createTimeline];
-   STAssertNotNil(timeline, nil);
-   NSDictionary *addedList = [api add:k_LIST_NAME_FOR_UNIT_TEST timeline:timeline filter:nil];
-   STAssertNotNil(addedList, nil);
-   LOG(@"addedList = %@", addedList);
+   createdList = [api add:k_LIST_NAME_FOR_UNIT_TEST timeline:timeline filter:nil];
 }
 
-- (void) _testAddAndDelete
+- (void) testAdd
 {
 	NSInteger count_first = [[api getList] count];
 
    // add
-   NSString *timeline = [api createTimeline];
-   NSDictionary *addedList = [api add:k_LIST_NAME_FOR_UNIT_TEST timeline:timeline filter:nil];
-   NSString *addedListID = [addedList objectForKey:@"id"];
+   [self addList];
+   NSString *addedListID = [createdList objectForKey:@"id"];
    
    // get lists for check added
 	NSArray *lists = [api getList];
@@ -87,36 +103,61 @@
       }
    }
    STAssertTrue(found, @"added list id existent check");
+}
 
-   // delete
-   STAssertTrue([api delete:addedListID timeline:timeline], @"delete check");
-   
-   // get lists again for check deleted
-	lists = [api getList];
-   NSInteger count_deleted = [lists count];
-   STAssertEquals(count_deleted, count_first, @"lists count check");
-   
-   // check: does new list no longer exist in lists ?
-   found = NO;
+- (void) testSetName
+{
+   NSString *listNameForRenaming = @"renamed";
+
+   // add
+   [self addList];
+
+   // rename
+   NSDictionary *renamedList = [api setName:listNameForRenaming list:[createdList objectForKey:@"id"] timeline:timeline];
+   STAssertTrue([listNameForRenaming isEqualToString:[renamedList objectForKey:@"name"]], nil);
+}
+
+- (void) testArchiveAndUnArchive
+{
+   // add
+   [self addList];
+   NSString *listID = [createdList objectForKey:@"id"];
+
+   // archive
+   STAssertTrue([api archive:listID timeline:timeline], nil);
+
+   // get lists for check added
+	NSArray *lists = [api getList];
+
+   // check: is the added list in the lists ?
+   BOOL found = NO;
    for (NSDictionary *list in lists) {
-      if ([addedListID isEqualToString:[list objectForKey:@"id"]]) {
+      if ([listID isEqualToString:[list objectForKey:@"id"]]) {
          found = YES;
+
+         STAssertTrue([[list objectForKey:@"archived"] isEqualToString:@"1"], nil);
          break;
       }
    }
-   STAssertFalse(found, @"list id absense check");
-}
+   STAssertTrue(found, nil);
 
-#pragma mark -
-- (void)testZZZ_Cleanup
-{
-   NSString *timeline = [api createTimeline];
+   // unarchive
+   STAssertTrue([api unarchive:listID timeline:timeline], nil);
 
-	NSArray *lists = [api getList];
-   STAssertNotNil(lists, nil);
+   // get lists for check added
+	lists = [api getList];
+
+   // check: is the added list in the lists ?
+   found = NO;
    for (NSDictionary *list in lists) {
-      if ([[list objectForKey:@"name"] isEqualToString:k_LIST_NAME_FOR_UNIT_TEST])
-         STAssertTrue([api delete:[list objectForKey:@"id"] timeline:timeline], nil);
+      if ([listID isEqualToString:[list objectForKey:@"id"]]) {
+         found = YES;
+
+         STAssertTrue([[list objectForKey:@"archived"] isEqualToString:@"0"], nil);
+         break;
+      }
    }
+   STAssertTrue(found, nil);
 }
+
 @end

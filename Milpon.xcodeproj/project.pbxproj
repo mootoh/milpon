@@ -57,6 +57,8 @@
 		92D22168115E46310074E93A /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D22167115E46310074E93A /* arrow.png */; };
 		92D3491511C223F3009BFD89 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F440F565D9300473A95 /* checkBox.png */; };
 		92D349B111C348CE009BFD89 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F460F565D9300473A95 /* checkBoxChecked.png */; };
+		92D4D95E11D5E0C1000F4BAB /* RTMAPIListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD80F565DE000473A95 /* RTMAPIListTest.m */; };
+		92D4D96711D5E173000F4BAB /* RTMAPIListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD80F565DE000473A95 /* RTMAPIListTest.m */; };
 		92E4AAA7102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
 		92E91C380FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
 		92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
@@ -210,7 +212,7 @@
 		92F7184B114E204C00925BB6 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F7184C114E204C00925BB6 /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTest-Info.plist"; sourceTree = "<group>"; };
 		92F7189B114E228E00925BB6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		92F8589B11BFCC740006DA57 /* Milpon Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		92F8589B11BFCC740006DA57 /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F8596611C04B870006DA57 /* MPTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTaskViewController.h; sourceTree = "<group>"; };
 		92F8596711C04B870006DA57 /* MPTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTaskViewController.m; sourceTree = "<group>"; };
 		92FAEC0311BB8EB300A33279 /* MPError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPError.h; sourceTree = "<group>"; };
@@ -414,7 +416,7 @@
 			children = (
 				1D6058910D05DD3D006BFB54 /* Milpon.app */,
 				92F7184B114E204C00925BB6 /* UnitTest.octest */,
-				92F8589B11BFCC740006DA57 /* Milpon Beta.app */,
+				92F8589B11BFCC740006DA57 /* Milpon.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -932,7 +934,7 @@
 			);
 			name = "Milpon Beta";
 			productName = Milpon;
-			productReference = 92F8589B11BFCC740006DA57 /* Milpon Beta.app */;
+			productReference = 92F8589B11BFCC740006DA57 /* Milpon.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1130,6 +1132,7 @@
 				92016D9311BB051A00B3D341 /* MPHelper.m in Sources */,
 				92016DE011BB0DCB00B3D341 /* RTMAPI+Location.m in Sources */,
 				9273542F11BB34550039EF99 /* RTMAPI+Note.m in Sources */,
+				92D4D96711D5E173000F4BAB /* RTMAPIListTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1157,6 +1160,7 @@
 				92F8596911C04B870006DA57 /* MPTaskViewController.m in Sources */,
 				92C719AD11D36E2600A7A5BE /* MPAddTaskViewController.m in Sources */,
 				92C7068311D53CD900EF3B82 /* MPTask.m in Sources */,
+				92D4D95E11D5E0C1000F4BAB /* RTMAPIListTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

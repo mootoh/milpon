@@ -22,6 +22,7 @@
  * @return deletion has been done successfully or not.
  */
 - (BOOL) delete:(NSString *)listID timeline:(NSString *)timeline;
+
 /**
  * call rtm.lists.getList
  *
@@ -30,27 +31,36 @@
  */
 - (NSArray *) getList;
 
+/**
+ * call rtm.lists.setName
+ *
+ * @return renamed list dictionary. if failed, exception will be raised.
+ */
+- (NSDictionary *) setName:(NSString *)name list:(NSString *)listID timeline:(NSString *)timeline;
+
+/**
+ * call rtm.lists.archive
+ *
+ * @return archive has been done successfully or not.
+ */
+- (BOOL) archive:(NSString *)listID timeline:(NSString *)timeline;
+
+/**
+ * call rtm.lists.unarchive
+ *
+ * @return archive has been done successfully or not.
+ */
+- (BOOL) unarchive:(NSString *)listID timeline:(NSString *)timeline;
+
 #if 0
 // -------------------------------------------------------------------
 // not implemented yet.
 //
-/**
- * call rtm.lists.archive
- */
-- (void) archive:(NSString *)list_id;
 /**
  * call rtm.lists.setDefaultList
  *
  * won't implement this.
  */
 - (void) setDefaultList:(NSString *)list_id;
-/**
- * call rtm.lists.setName
- */
-- (void) setName:(NSString *)name forList:(NSString *)list_id;
-/**
- * call rtm.lists.unarchive
- */
-- (void) unarchive:(NSString *)list_id;
 #endif // 0
 @end

@@ -148,19 +148,21 @@
 
 // -------------------------------------------------------------------
 #pragma mark -
-#pragma mark ListDeleteCallback
-@interface ListDeleteCallback : RTMAPIParserDelegate
+#pragma mark ListFlagCheckCallback
+@interface ListFlagCheckCallback : RTMAPIParserDelegate
 {
-   BOOL deleted;
+   BOOL flagToCheck;
+   NSString *flagName;
 }
 @end
 
-@implementation ListDeleteCallback
+@implementation ListFlagCheckCallback
 
-- (id) init
+- (id) init:(NSString *)name
 {
    if (self = [super init]) {
-      deleted = NO;
+      flagToCheck = NO;
+      flagName = name;
    }
    return self;
 }
@@ -170,12 +172,12 @@
    SUPER_PARSE;
 
    if ([elementName isEqualToString:@"list"])
-      deleted = (1 == [[attributeDict valueForKey:@"deleted"] integerValue]);
+      flagToCheck = (1 == [[attributeDict valueForKey:flagName] integerValue]);
 }
 
 - (id) result
 {
-   return deleted ? self : nil;
+   return flagToCheck ? self : nil;
 }
 @end
 
@@ -195,7 +197,7 @@
    NSArray *keys = [NSArray arrayWithObjects:@"name", @"timeline", nil];
    NSArray *vals = [NSArray arrayWithObjects:name, timeline, nil];
 
-   NSMutableDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   NSMutableDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
    if (filter)
       [args setObject:filter forKey:@"filter"];
 
@@ -208,6 +210,34 @@
    NSArray *vals = [NSArray arrayWithObjects:listID, timeline, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
 
-   return [self call:@"rtm.lists.delete" args:args delegate:[[[ListDeleteCallback alloc] init] autorelease]] != nil;
+   return [self call:@"rtm.lists.delete" args:args delegate:[[[ListFlagCheckCallback alloc] init:@"deleted"] autorelease]] != nil;
 }
+
+- (NSDictionary *) setName:(NSString *)name list:(NSString *)listID timeline:(NSString *)timeline
+{
+   NSArray *keys = [NSArray arrayWithObjects:@"name", @"list_id", @"timeline", nil];
+   NSArray *vals = [NSArray arrayWithObjects:name, listID, timeline, nil];
+   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   
+   return [self call:@"rtm.lists.setName" args:args delegate:[[[ListAddCallback alloc] init] autorelease]];
+}
+
+- (BOOL) archive:(NSString *)listID timeline:(NSString *)timeline
+{
+   NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"timeline", nil];
+   NSArray *vals = [NSArray arrayWithObjects:listID, timeline, nil];
+   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   
+   return [self call:@"rtm.lists.archive" args:args delegate:[[[ListFlagCheckCallback alloc] init:@"archived"] autorelease]] != nil;
+}
+
+- (BOOL) unarchive:(NSString *)listID timeline:(NSString *)timeline
+{
+   NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"timeline", nil];
+   NSArray *vals = [NSArray arrayWithObjects:listID, timeline, nil];
+   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   
+   return [self call:@"rtm.lists.unarchive" args:args delegate:[[[ListFlagCheckCallback alloc] init:@"archived"] autorelease]] == nil;
+}
+
 @end
