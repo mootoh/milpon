@@ -84,7 +84,7 @@
 - (void) setupToolbar
 {
    MPAppDelegate *app = (MPAppDelegate *)[UIApplication sharedApplication].delegate;
-   UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(syncList)];
+   UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(sync)];
    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:app action:@selector(showAddTask)];
    
    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -455,17 +455,8 @@
    }
 }
 
-- (void) syncList
+- (void) syncList:(RTMAPI *) api
 {
-   RTMAPI *api = [[RTMAPI alloc] init];
-   if (api.token == nil) {
-      UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"no token" message:@"no token" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-      [av show];
-      [av release];
-      [api release];
-      return;
-   }
-
    NSArray *listsRetrieved = [api getList];
 
    // first, pick up lists deleted at the remote, and delete from the local.
@@ -489,8 +480,6 @@
          [self insertNewList:list];
       }
    }
-      
-   [api release];
 }
 
 #pragma mark -
@@ -518,6 +507,7 @@
    NSAssert([fetched count] == 1, @"should be 1");
    NSManagedObject *listObject = [fetched objectAtIndex:0];
 
+   // skip smart list
    if ([[listObject valueForKey:@"smart"] boolValue]) {
       LOG(@"something bad happens");
       LOG(@"taskseries = %@, list = %@", taskseries, listObject);
@@ -601,8 +591,16 @@
    }
 }
 
+- (void) syncTaskList:(RTMAPI *) api
+{
+   NSArray *tasksRetrieved = [api getTaskList];
+   for (NSDictionary *taskseries in tasksRetrieved) {
+      [self insertNewTask:taskseries];
+   }
+}
 
-- (void) syncTaskList
+#pragma mark -
+- (void) sync
 {
    RTMAPI *api = [[RTMAPI alloc] init];
    if (api.token == nil) {
@@ -612,14 +610,12 @@
       [api release];
       return;
    }
-   
-   NSArray *tasksRetrieved = [api getTaskList];
 
-   for (NSDictionary *taskseries in tasksRetrieved) {
-      [self insertNewTask:taskseries];
-   }
-   
+   [self syncList:api];
+   [self syncTaskList:api];
+
    [api release];
+   
+   // set lastSyncDate now.
 }
-
 @end
