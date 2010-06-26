@@ -6,11 +6,11 @@
 //  Copyright 2010 deadbeaf.org. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "MPMediator.h"
+@class RTMAPI;
 
-@interface MPListMediator : NSObject
+@interface MPListMediator : MPMediator
 {
-
 }
 
 @end

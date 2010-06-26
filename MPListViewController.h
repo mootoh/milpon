@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+@class MPListMediator, MPTaskMediator;
+
 @interface MPListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
    NSFetchedResultsController *fetchedResultsController;
    NSManagedObjectContext     *managedObjectContext;
+   MPListMediator             *listMediator;
+   MPTaskMediator             *taskMediator;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;

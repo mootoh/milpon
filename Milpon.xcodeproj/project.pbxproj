@@ -33,8 +33,11 @@
 		9278D3B40FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
 		927A61C0113815ED005B4548 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
 		927A61F31138194B005B4548 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 927A61F21138194B005B4548 /* Settings.bundle */; };
-		929415E011D65F62006AE83B /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929415DF11D65F62006AE83B /* MPListMediator.m */; };
 		929415E111D65F62006AE83B /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929415DF11D65F62006AE83B /* MPListMediator.m */; };
+		9294162311D66511006AE83B /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294162211D66511006AE83B /* MPTaskMediator.m */; };
+		9294162411D66511006AE83B /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294162211D66511006AE83B /* MPTaskMediator.m */; };
+		9294165711D6677D006AE83B /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294165611D6677D006AE83B /* MPMediator.m */; };
+		9294165811D6677D006AE83B /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294165611D6677D006AE83B /* MPMediator.m */; };
 		92BFB8A011610A670024023D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BFB89F11610A670024023D /* Security.framework */; };
 		92C7068211D53CD900EF3B82 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C7068111D53CD900EF3B82 /* MPTask.m */; };
 		92C7068311D53CD900EF3B82 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C7068111D53CD900EF3B82 /* MPTask.m */; };
@@ -193,6 +196,10 @@
 		928601981072E55C004B7DFE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		929415DE11D65F62006AE83B /* MPListMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPListMediator.h; sourceTree = "<group>"; };
 		929415DF11D65F62006AE83B /* MPListMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPListMediator.m; sourceTree = "<group>"; };
+		9294162111D66511006AE83B /* MPTaskMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTaskMediator.h; sourceTree = "<group>"; };
+		9294162211D66511006AE83B /* MPTaskMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTaskMediator.m; sourceTree = "<group>"; };
+		9294165511D6677D006AE83B /* MPMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMediator.h; sourceTree = "<group>"; };
+		9294165611D6677D006AE83B /* MPMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMediator.m; sourceTree = "<group>"; };
 		92B2F4C31158EAA000254FC6 /* AuthView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthView.xib; sourceTree = "<group>"; };
 		92BFB89F11610A670024023D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		92C7068011D53CD900EF3B82 /* MPTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPTask.h; path = model/MPTask.h; sourceTree = "<group>"; };
@@ -494,11 +501,15 @@
 		92D4D92811D5DF6B000F4BAB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */,
 				92C7068011D53CD900EF3B82 /* MPTask.h */,
 				92C7068111D53CD900EF3B82 /* MPTask.m */,
-				B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */,
+				9294165511D6677D006AE83B /* MPMediator.h */,
+				9294165611D6677D006AE83B /* MPMediator.m */,
 				929415DE11D65F62006AE83B /* MPListMediator.h */,
 				929415DF11D65F62006AE83B /* MPListMediator.m */,
+				9294162111D66511006AE83B /* MPTaskMediator.h */,
+				9294162211D66511006AE83B /* MPTaskMediator.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1162,7 +1173,8 @@
 				92016DE011BB0DCB00B3D341 /* RTMAPI+Location.m in Sources */,
 				9273542F11BB34550039EF99 /* RTMAPI+Note.m in Sources */,
 				92D4D9C011D5EBDC000F4BAB /* MPListTest.m in Sources */,
-				929415E011D65F62006AE83B /* MPListMediator.m in Sources */,
+				9294162311D66511006AE83B /* MPTaskMediator.m in Sources */,
+				9294165711D6677D006AE83B /* MPMediator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1191,6 +1203,8 @@
 				92C719AD11D36E2600A7A5BE /* MPAddTaskViewController.m in Sources */,
 				92C7068311D53CD900EF3B82 /* MPTask.m in Sources */,
 				929415E111D65F62006AE83B /* MPListMediator.m in Sources */,
+				9294162411D66511006AE83B /* MPTaskMediator.m in Sources */,
+				9294165811D6677D006AE83B /* MPMediator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1334,7 +1348,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTest;
-				SDKROOT = iphonesimulator3.1.3;
+				SDKROOT = iphonesimulator4.0;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = UnitTest;

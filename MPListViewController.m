@@ -10,13 +10,14 @@
 #import "RTMAPI+Task.h"
 #import "MPListViewController.h"
 #import "MPTaskListViewController.h"
+#import "MPListMediator.h"
+#import "MPTaskMediator.h"
 #import "MPAppDelegate.h"
 #import "MPHelper.h"
 #import "MPLogger.h"
 
 #pragma mark -
 #pragma mark CountCircleView
-
 @interface CountCircleView : UIView
 {
    NSUInteger count;
@@ -73,9 +74,6 @@
 
 @synthesize fetchedResultsController, managedObjectContext;
 
-#pragma mark -
-#pragma mark View lifecycle
-
 - (void) setupToolbar
 {
    MPAppDelegate *app = (MPAppDelegate *)[UIApplication sharedApplication].delegate;
@@ -105,15 +103,22 @@
 {
    [super viewDidLoad];
    self.title = @"Lists";
-   [self setupToolbar];
 
    // fetch Lists
    NSError *error = nil;
-   if (![[self fetchedResultsController] performFetch:&error]) {
+   if (![self.fetchedResultsController performFetch:&error]) {
       NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
       abort();
    }
+
+   listMediator = [[MPListMediator alloc] initWithFetchedResultsController:self.fetchedResultsController];
+   taskMediator = [[MPTaskMediator alloc] initWithFetchedResultsController:self.fetchedResultsController];
+
+   [self setupToolbar];
 }
+
+#pragma mark -
+#pragma mark Table view data source
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
@@ -140,8 +145,6 @@
    [ccv release];
 }
 
-#pragma mark -
-#pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -192,6 +195,7 @@
 
 - (void)dealloc
 {
+   [listMediator release];
    [super dealloc];
 }
 
@@ -290,308 +294,6 @@
 }
 
 #pragma mark -
-#pragma mark List API
-
-- (NSNumber *) integerNumberFromString:(NSString *)string
-{
-   return [NSNumber numberWithInteger:[string integerValue]];
-}
-
-- (NSNumber *) boolNumberFromString:(NSString *)string
-{
-   return [NSNumber numberWithBool:[string boolValue]];
-}
-
-- (void)insertNewList:(NSDictionary *)list
-{
-   // Create a new instance of the entity managed by the fetched results controller.
-   NSManagedObjectContext   *context = [fetchedResultsController managedObjectContext];
-   NSEntityDescription       *entity = [[fetchedResultsController fetchRequest] entity];
-   NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-   
-   // If appropriate, configure the new managed object.
-   [newManagedObject setValue:[self integerNumberFromString:[list objectForKey:@"id"]] forKey:@"iD"];
-   [newManagedObject setValue:[list objectForKey:@"name"] forKey:@"name"];
-   [newManagedObject setValue:[self boolNumberFromString:[list objectForKey:@"deleted"]] forKey:@"deleted"];
-   [newManagedObject setValue:[self boolNumberFromString:[list objectForKey:@"locked"]] forKey:@"locked"];
-   [newManagedObject setValue:[self boolNumberFromString:[list objectForKey:@"archived"]] forKey:@"archived"];
-   [newManagedObject setValue:[self integerNumberFromString:[list objectForKey:@"position"]] forKey:@"position"];
-   BOOL isSmart = [[list objectForKey:@"smart"] boolValue];
-   [newManagedObject setValue:[NSNumber numberWithBool:isSmart] forKey:@"smart"];
-   [newManagedObject setValue:[self integerNumberFromString:[list objectForKey:@"sort_order"]] forKey:@"sort_order"];
-   if (isSmart) {
-      NSAssert([list objectForKey:@"filter"], @"smart list should have filter");
-      [newManagedObject setValue:[list objectForKey:@"filter"] forKey:@"filter"];
-   }
-   
-   // Save the context.
-   NSError *error = nil;
-   if (![context save:&error]) {
-      NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-      abort();
-   }
-}
-
-- (NSManagedObject *) isListExist:(NSString *)listID
-{
-   // Create the fetch request for the entity.
-   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-   // Edit the entity name as appropriate.
-   NSEntityDescription *entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext];
-   [fetchRequest setEntity:entity];
-   
-   NSPredicate *pred = [NSPredicate predicateWithFormat:@"iD == %d", [listID integerValue]];
-   [fetchRequest setPredicate:pred];
-   
-   NSError *error = nil;
-   NSArray *fetched = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-   if (error) {
-      LOG(@"error");
-      abort();
-   }
-   
-   if ([fetched count] == 0)
-      return nil;
-   
-   NSAssert([fetched count] == 1, @"should be 1");
-   return [fetched objectAtIndex:0];
-}
-
-- (NSSet *) deletedLists:(NSArray *) listsRetrieved
-{
-   NSMutableSet *deleted = [NSMutableSet set];
-   for (NSManagedObject *mo in [fetchedResultsController fetchedObjects]) {
-      NSString *idString = [NSString stringWithFormat:@"%d", [[mo valueForKey:@"iD"] integerValue]];
-      NSPredicate *pred = [NSPredicate predicateWithFormat:@"(id == %@)", idString];
-      NSArray *exists = [listsRetrieved filteredArrayUsingPredicate:pred];
-      if ([exists count] == 0)
-         [deleted addObject:mo];
-   }
-   return deleted;
-}
-
-- (void) updateIfNeeded:(NSDictionary *) list
-{
-   // retrieve the entitiy.
-   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-   NSEntityDescription *entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext];
-   [fetchRequest setEntity:entity];
-   NSPredicate *pred = [NSPredicate predicateWithFormat:@"iD == %d", [[list objectForKey:@"id"] integerValue]];
-   [fetchRequest setPredicate:pred];
-   NSError *error = nil;
-   NSArray *fetched = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-   if (error) {
-      LOG(@"error");
-      abort();
-   }
-   NSAssert([fetched count] == 1, @"should be 1");
-   NSManagedObject *listObject = [fetched objectAtIndex:0];
-
-   // update it.
-   BOOL updated = NO;
-
-   if (! [[list objectForKey:@"name"] isEqualToString:[listObject valueForKey:@"name"]]) {
-      // name has been changed
-      updated = YES;
-      [listObject setValue:[list objectForKey:@"name"] forKey:@"name"];
-   }
-
-   // "deleted" attribute would not be set in the getList API call.
-#ifdef SUPPORT_LIST_DELETED
-   if (! [[list objectForKey:@"deleted"] boolValue] == [[listObject valueForKey:@"deleted"] boolValue]) {
-      updated = YES;
-      [listObject setValue:[self boolNumberFromString:[list objectForKey:@"deleted"]] forKey:@"deleted"];
-   }
-#endif // SUPPORT_LIST_DELETED
-
-   if (! [[list objectForKey:@"locked"] boolValue] == [[listObject valueForKey:@"locked"] boolValue]) {
-      updated = YES;
-      [listObject setValue:[self boolNumberFromString:[list objectForKey:@"locked"]] forKey:@"locked"];
-   }
-
-   if (! [[list objectForKey:@"archived"] boolValue] == [[listObject valueForKey:@"archived"] boolValue]) {
-      updated = YES;
-      [listObject setValue:[self boolNumberFromString:[list objectForKey:@"archived"]] forKey:@"archived"];
-   }
-
-#ifdef SUPPORT_LIST_POSITION
-   if (! [[list objectForKey:@"position"] integerValue] == [[listObject valueForKey:@"position"] integerValue]) {
-      updated = YES;
-      [listObject setValue:[self integerNumberFromString:[list objectForKey:@"position"]] forKey:@"position"];
-   }
-#endif // SUPPORT_LIST_POSITION
-
-   // smart list should be always smart list, so the check below would not be needed.
-   BOOL isSmart = [[list objectForKey:@"smart"] boolValue];
-   NSAssert([[listObject valueForKey:@"smart"] boolValue] == isSmart, @"Smart list should not be migrated to normal list.");
-
-   if (! [[list objectForKey:@"sort_order"] integerValue] == [[listObject valueForKey:@"sort_order"] integerValue]) {
-      updated = YES;
-      [listObject setValue:[self integerNumberFromString:[list objectForKey:@"sort_order"]] forKey:@"sort_order"];
-   }
-
-   if (isSmart) {
-      NSAssert([list objectForKey:@"filter"], @"smart list should have filter");
-      
-      if (! [[list objectForKey:@"filter"] isEqualToString:[listObject valueForKey:@"filter"]]) {
-         updated = YES;
-         [listObject setValue:[list objectForKey:@"filter"] forKey:@"filter"];
-      }
-   }
-
-   if (updated) {
-      // Save the context.
-      NSError *error = nil;
-      if (![managedObjectContext save:&error]) {
-         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-         abort();
-      }
-   }
-}
-
-- (void) syncList:(RTMAPI *) api
-{
-   NSArray *listsRetrieved = [api getList];
-
-   // first, pick up lists deleted at the remote, and delete from the local.
-   NSSet *deletedLists = [self deletedLists:listsRetrieved];
-   for (NSManagedObject *deletedList in deletedLists)
-      [managedObjectContext deleteObject:deletedList];
-   if ([deletedLists count] > 0) {
-      // Save the context.
-      NSError *error = nil;
-      if (![managedObjectContext save:&error]) {
-         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-         abort();
-      }
-   }
-
-   // then, update attributes and insert if not exists.
-   for (NSDictionary *list in listsRetrieved)
-      if ([self isListExist:[list objectForKey:@"id"]])
-         [self updateIfNeeded:list];
-      else
-         [self insertNewList:list];
-}
-
-#pragma mark -
-#pragma mark Task API
-
-- (void)insertNewTask:(NSDictionary *)taskseries
-{
-   // make a relationship.
-   // Create the fetch request for the entity.
-   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-   // Edit the entity name as appropriate.
-   NSEntityDescription *listEntity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext];
-   [fetchRequest setEntity:listEntity];
-   
-   NSPredicate *pred = [NSPredicate predicateWithFormat:@"iD == %d", [[taskseries objectForKey:@"list_id"] integerValue]];
-   [fetchRequest setPredicate:pred];
-   
-   NSError *error = nil;
-   NSArray *fetched = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-   if (error) {
-      LOG(@"error");
-      abort();
-   }
-   
-   NSAssert([fetched count] == 1, @"should be 1");
-   NSManagedObject *listObject = [fetched objectAtIndex:0];
-
-   // skip smart list
-   if ([[listObject valueForKey:@"smart"] boolValue]) {
-      LOG(@"something bad happens");
-      LOG(@"taskseries = %@, list = %@", taskseries, listObject);
-      return;
-   }
-   NSAssert([[listObject valueForKey:@"smart"] boolValue] == NO, @"the task should not belong to any smart lists.");
-
-   // create TaskSeries entity.
-   NSEntityDescription *entity = [NSEntityDescription entityForName:@"TaskSeries" inManagedObjectContext:managedObjectContext];
-   NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:managedObjectContext];
-
-   [newManagedObject setValue:[taskseries objectForKey:@"name"] forKey:@"name"];
-   NSNumber *iD = [NSNumber numberWithInteger:[[taskseries objectForKey:@"id"] integerValue]];
-   [newManagedObject setValue:iD forKey:@"iD"];
-   NSDate *created = [[MilponHelper sharedHelper] rtmStringToDate:[taskseries objectForKey:@"created"]];
-   [newManagedObject setValue:created forKey:@"created"];   
-   
-   if ([taskseries objectForKey:@"modified"]) {
-      NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[taskseries objectForKey:@"modified"]];
-      [newManagedObject setValue:date forKey:@"modified"];
-   }      
-   if ([taskseries objectForKey:@"rrule"]) {
-      NSDictionary *rrule = [taskseries objectForKey:@"rrule"];
-      NSString *packedRrule = [NSString stringWithFormat:@"%@-%@", [rrule objectForKey:@"every"], [rrule objectForKey:@"rule"]];
-      [newManagedObject setValue:packedRrule forKey:@"rrule"];
-   }
-
-   [newManagedObject setValue:listObject forKey:@"inList"];
-
-   // setup Tasks in the TaskSeries
-   for (NSDictionary *task in [taskseries objectForKey:@"tasks"]) {
-      NSEntityDescription *taskEntity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext];
-      NSManagedObject *newTask = [NSEntityDescription insertNewObjectForEntityForName:[taskEntity name] inManagedObjectContext:managedObjectContext];
-      
-      NSNumber *taskID = [NSNumber numberWithInteger:[[task objectForKey:@"id"] integerValue]];
-      [newTask setValue:taskID forKey:@"iD"];
-      
-      if ([task objectForKey:@"added"]) {
-         NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[task objectForKey:@"added"]];
-         [newTask setValue:date forKey:@"added"];
-      }
-
-      NSString *completedString = [task objectForKey:@"completed"];
-      if (completedString && ! [completedString isEqualToString:@""]) {
-         NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[task objectForKey:@"completed"]];
-         [newTask setValue:date forKey:@"completed"];
-      }
-      
-      NSString *deletedString = [task objectForKey:@"deleted"];
-      if (deletedString && ! [deletedString isEqualToString:@""]) {
-         NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[task objectForKey:@"deleted"]];
-         [newTask setValue:date forKey:@"deleted"];
-      }
-
-      NSString *dueString = [task objectForKey:@"due"];
-      if (dueString && ! [dueString isEqualToString:@""]) {
-         NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[task objectForKey:@"due"]];
-         [newTask setValue:date forKey:@"due"];
-      }
-
-      NSString *estimateString = [task objectForKey:@"estimate"];
-      if (estimateString && ! [estimateString isEqualToString:@""]) {
-         [newTask setValue:[task objectForKey:@"estimate"] forKey:@"estimate"];
-      }
-
-      [newTask setValue:[self boolNumberFromString:[task objectForKey:@"has_due_time"]] forKey:@"has_due_time"];
-      [newTask setValue:[self integerNumberFromString:[task objectForKey:@"postponed"]] forKey:@"postponed"];
-      
-      NSString *priorityString = [task objectForKey:@"priority"];
-      NSInteger priority = [priorityString isEqualToString:@"N"] ? 0 : [priorityString integerValue];
-      [newTask setValue:[NSNumber numberWithInteger:priority] forKey:@"priority"];
-
-      [newTask setValue:newManagedObject forKey:@"taskSeries"];
-   }
-   
-   // Save the context.
-   error = nil;
-   if (![managedObjectContext save:&error]) {
-      NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-      abort();
-   }
-}
-
-- (void) syncTaskList:(RTMAPI *) api
-{
-   NSArray *tasksRetrieved = [api getTaskList];
-   for (NSDictionary *taskseries in tasksRetrieved) {
-      [self insertNewTask:taskseries];
-   }
-}
-
-#pragma mark -
 - (void) sync
 {
    RTMAPI *api = [[RTMAPI alloc] init];
@@ -603,11 +305,11 @@
       return;
    }
 
-   [self syncList:api];
-   [self syncTaskList:api];
+   [listMediator sync:api];
+   [taskMediator sync:api];
 
    [api release];
    
-   // set lastSyncDate now.
+   // update lastSyncDate now.
 }
 @end
