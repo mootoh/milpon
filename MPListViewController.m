@@ -467,13 +467,11 @@
    }
 
    // then, update attributes and insert if not exists.
-   for (NSDictionary *list in listsRetrieved) {
-      if ([self isListExist:[list objectForKey:@"id"]]) {
+   for (NSDictionary *list in listsRetrieved)
+      if ([self isListExist:[list objectForKey:@"id"]])
          [self updateIfNeeded:list];
-      } else {
+      else
          [self insertNewList:list];
-      }
-   }
 }
 
 #pragma mark -
