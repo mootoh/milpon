@@ -6,7 +6,7 @@
 //  Copyright 2009 deadbeaf.org. All rights reserved.
 //
 
-#import "MilponHelper.h"
+#import "MPHelper.h"
 
 static MilponHelper *the_milpon_helper = nil;
 

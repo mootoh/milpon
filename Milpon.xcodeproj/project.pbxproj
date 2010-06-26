@@ -15,7 +15,7 @@
 		92016B4C11BA005300B3D341 /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPI+List.m */; };
 		92016C6111BA181300B3D341 /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPI+Task.m */; };
 		92016C8711BA19FF00B3D341 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
-		92016D9311BB051A00B3D341 /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
+		92016D9311BB051A00B3D341 /* MPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MPHelper.m */; };
 		92016DE011BB0DCB00B3D341 /* RTMAPI+Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 92016DDF11BB0DCB00B3D341 /* RTMAPI+Location.m */; };
 		92016DE111BB0DCB00B3D341 /* RTMAPI+Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 92016DDF11BB0DCB00B3D341 /* RTMAPI+Location.m */; };
 		922C0016101C66EC0029AC32 /* IconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 922C0015101C66EC0029AC32 /* IconSmall.png */; };
@@ -86,7 +86,7 @@
 		92F8588311BFCC740006DA57 /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */; };
 		92F8588411BFCC740006DA57 /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPI+Task.m */; };
 		92F8588511BFCC740006DA57 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIParserDelegate.m */; };
-		92F8588611BFCC740006DA57 /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
+		92F8588611BFCC740006DA57 /* MPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MPHelper.m */; };
 		92F8588711BFCC740006DA57 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F8E0F565DAB00473A95 /* Reachability.m */; };
 		92F8588811BFCC740006DA57 /* UICCalendarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F940F565DAB00473A95 /* UICCalendarPicker.m */; };
 		92F8588911BFCC740006DA57 /* UICCalendarPickerDateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F960F565DAB00473A95 /* UICCalendarPickerDateButton.m */; };
@@ -116,7 +116,7 @@
 		B9160ECF0F565CEF00473A95 /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */; };
 		B9160ED00F565CEF00473A95 /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPI+Task.m */; };
 		B9160ED10F565CEF00473A95 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIParserDelegate.m */; };
-		B9160F3C0F565D6800473A95 /* MilponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MilponHelper.m */; };
+		B9160F3C0F565D6800473A95 /* MPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MPHelper.m */; };
 		B9160F680F565D9300473A95 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F440F565D9300473A95 /* checkBox.png */; };
 		B9160F6A0F565D9300473A95 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F460F565D9300473A95 /* checkBoxChecked.png */; };
 		B9160F720F565D9300473A95 /* icon_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F4E0F565D9300473A95 /* icon_calendar.png */; };
@@ -213,7 +213,7 @@
 		92F8589B11BFCC740006DA57 /* Milpon Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F8596611C04B870006DA57 /* MPTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTaskViewController.h; sourceTree = "<group>"; };
 		92F8596711C04B870006DA57 /* MPTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTaskViewController.m; sourceTree = "<group>"; };
-		92FAEC0311BB8EB300A33279 /* RTMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMError.h; sourceTree = "<group>"; };
+		92FAEC0311BB8EB300A33279 /* MPError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPError.h; sourceTree = "<group>"; };
 		92FAED8811BD428900A33279 /* MPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
 		92FAED8911BD428900A33279 /* MPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
 		92FAEDA311BDB54100A33279 /* MPListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPListViewController.h; sourceTree = "<group>"; };
@@ -258,8 +258,8 @@
 		B9160F2A0F565D4C00473A95 /* RTMTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMTask.h; sourceTree = "<group>"; };
 		B9160F2B0F565D4C00473A95 /* RTMTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMTask.m; sourceTree = "<group>"; };
 		B9160F2C0F565D4C00473A95 /* TagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagProvider.h; sourceTree = "<group>"; };
-		B9160F370F565D6800473A95 /* MilponHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MilponHelper.h; sourceTree = "<group>"; };
-		B9160F380F565D6800473A95 /* MilponHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MilponHelper.m; sourceTree = "<group>"; };
+		B9160F370F565D6800473A95 /* MPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPHelper.h; sourceTree = "<group>"; };
+		B9160F380F565D6800473A95 /* MPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPHelper.m; sourceTree = "<group>"; };
 		B9160F390F565D6800473A95 /* PrivateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateInfo.h; sourceTree = "<group>"; };
 		B9160F440F565D9300473A95 /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBox.png; sourceTree = "<group>"; };
 		B9160F460F565D9300473A95 /* checkBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBoxChecked.png; sourceTree = "<group>"; };
@@ -678,10 +678,10 @@
 			children = (
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				B9160ED40F565D0500473A95 /* MPLogger.h */,
-				92FAEC0311BB8EB300A33279 /* RTMError.h */,
+				92FAEC0311BB8EB300A33279 /* MPError.h */,
 				32CA4F630368D1EE00C91783 /* Milpon_Prefix.pch */,
-				B9160F370F565D6800473A95 /* MilponHelper.h */,
-				B9160F380F565D6800473A95 /* MilponHelper.m */,
+				B9160F370F565D6800473A95 /* MPHelper.h */,
+				B9160F380F565D6800473A95 /* MPHelper.m */,
 				B9160F390F565D6800473A95 /* PrivateInfo.h */,
 				B9B6580B0F937D0400A1FA0A /* Milpon.h */,
 			);
@@ -1101,7 +1101,7 @@
 				B9160ECF0F565CEF00473A95 /* RTMAPI+Note.m in Sources */,
 				B9160ED00F565CEF00473A95 /* RTMAPI+Task.m in Sources */,
 				B9160ED10F565CEF00473A95 /* RTMAPIParserDelegate.m in Sources */,
-				B9160F3C0F565D6800473A95 /* MilponHelper.m in Sources */,
+				B9160F3C0F565D6800473A95 /* MPHelper.m in Sources */,
 				B9160FA50F565DAB00473A95 /* Reachability.m in Sources */,
 				B9160FA70F565DAB00473A95 /* UICCalendarPicker.m in Sources */,
 				B9160FA80F565DAB00473A95 /* UICCalendarPickerDateButton.m in Sources */,
@@ -1127,7 +1127,7 @@
 				92016B4C11BA005300B3D341 /* RTMAPI+List.m in Sources */,
 				92016C6111BA181300B3D341 /* RTMAPI+Task.m in Sources */,
 				92016C8711BA19FF00B3D341 /* RTMAPI.m in Sources */,
-				92016D9311BB051A00B3D341 /* MilponHelper.m in Sources */,
+				92016D9311BB051A00B3D341 /* MPHelper.m in Sources */,
 				92016DE011BB0DCB00B3D341 /* RTMAPI+Location.m in Sources */,
 				9273542F11BB34550039EF99 /* RTMAPI+Note.m in Sources */,
 			);
@@ -1144,7 +1144,7 @@
 				92F8588311BFCC740006DA57 /* RTMAPI+Note.m in Sources */,
 				92F8588411BFCC740006DA57 /* RTMAPI+Task.m in Sources */,
 				92F8588511BFCC740006DA57 /* RTMAPIParserDelegate.m in Sources */,
-				92F8588611BFCC740006DA57 /* MilponHelper.m in Sources */,
+				92F8588611BFCC740006DA57 /* MPHelper.m in Sources */,
 				92F8588711BFCC740006DA57 /* Reachability.m in Sources */,
 				92F8588811BFCC740006DA57 /* UICCalendarPicker.m in Sources */,
 				92F8588911BFCC740006DA57 /* UICCalendarPickerDateButton.m in Sources */,
