@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,6 +33,8 @@
 		9278D3B40FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
 		927A61C0113815ED005B4548 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
 		927A61F31138194B005B4548 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 927A61F21138194B005B4548 /* Settings.bundle */; };
+		929415E011D65F62006AE83B /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929415DF11D65F62006AE83B /* MPListMediator.m */; };
+		929415E111D65F62006AE83B /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929415DF11D65F62006AE83B /* MPListMediator.m */; };
 		92BFB8A011610A670024023D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BFB89F11610A670024023D /* Security.framework */; };
 		92C7068211D53CD900EF3B82 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C7068111D53CD900EF3B82 /* MPTask.m */; };
 		92C7068311D53CD900EF3B82 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C7068111D53CD900EF3B82 /* MPTask.m */; };
@@ -189,6 +191,8 @@
 		9278D3B30FBF185B0007B03B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		927A61F21138194B005B4548 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		928601981072E55C004B7DFE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		929415DE11D65F62006AE83B /* MPListMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPListMediator.h; sourceTree = "<group>"; };
+		929415DF11D65F62006AE83B /* MPListMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPListMediator.m; sourceTree = "<group>"; };
 		92B2F4C31158EAA000254FC6 /* AuthView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthView.xib; sourceTree = "<group>"; };
 		92BFB89F11610A670024023D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		92C7068011D53CD900EF3B82 /* MPTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPTask.h; path = model/MPTask.h; sourceTree = "<group>"; };
@@ -493,6 +497,8 @@
 				92C7068011D53CD900EF3B82 /* MPTask.h */,
 				92C7068111D53CD900EF3B82 /* MPTask.m */,
 				B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */,
+				929415DE11D65F62006AE83B /* MPListMediator.h */,
+				929415DF11D65F62006AE83B /* MPListMediator.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -963,7 +969,7 @@
 				ORGANIZATIONNAME = deadbeaf.org;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Milpon" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -1156,6 +1162,7 @@
 				92016DE011BB0DCB00B3D341 /* RTMAPI+Location.m in Sources */,
 				9273542F11BB34550039EF99 /* RTMAPI+Note.m in Sources */,
 				92D4D9C011D5EBDC000F4BAB /* MPListTest.m in Sources */,
+				929415E011D65F62006AE83B /* MPListMediator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1183,6 +1190,7 @@
 				92F8596911C04B870006DA57 /* MPTaskViewController.m in Sources */,
 				92C719AD11D36E2600A7A5BE /* MPAddTaskViewController.m in Sources */,
 				92C7068311D53CD900EF3B82 /* MPTask.m in Sources */,
+				929415E111D65F62006AE83B /* MPListMediator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1335,9 +1343,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Motohiro Takayama (7YP39CFPNV)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1346,10 +1354,10 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_VERSION = "";
 				INFOPLIST_FILE = others/Beta.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 2.0;
 				PRODUCT_NAME = "Milpon Beta";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1.3;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4B6FF0FA-750D-4435-B23B-EFEE34D8844B";
+				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
 		};
@@ -1406,7 +1414,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1.3;
+				SDKROOT = iphoneos4.0;
 			};
 			name = UnitTest;
 		};
@@ -1434,18 +1442,17 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 2.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1.3;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
 		};
@@ -1462,7 +1469,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.1.3;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Release;
 		};
