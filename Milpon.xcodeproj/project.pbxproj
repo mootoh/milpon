@@ -58,7 +58,8 @@
 		92D3491511C223F3009BFD89 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F440F565D9300473A95 /* checkBox.png */; };
 		92D349B111C348CE009BFD89 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F460F565D9300473A95 /* checkBoxChecked.png */; };
 		92D4D95E11D5E0C1000F4BAB /* RTMAPIListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD80F565DE000473A95 /* RTMAPIListTest.m */; };
-		92D4D96711D5E173000F4BAB /* RTMAPIListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD80F565DE000473A95 /* RTMAPIListTest.m */; };
+		92D4D9C011D5EBDC000F4BAB /* MPListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D4D9BF11D5EBDC000F4BAB /* MPListTest.m */; };
+		92D4D9CB11D5ECE8000F4BAB /* Milpon.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */; };
 		92E4AAA7102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
 		92E91C380FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
 		92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
@@ -205,6 +206,7 @@
 		92D3D16A1159B2F4004623F8 /* RefreshingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshingViewController.h; sourceTree = "<group>"; };
 		92D3D16B1159B2F4004623F8 /* RefreshingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshingViewController.m; sourceTree = "<group>"; };
 		92D3D16C1159B2F4004623F8 /* RefreshingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RefreshingViewController.xib; sourceTree = "<group>"; };
+		92D4D9BF11D5EBDC000F4BAB /* MPListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPListTest.m; sourceTree = "<group>"; };
 		92E4AA9D102C21DC00CACCC9 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E4AAAA102C220D00CACCC9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_007_clear_last_sync.sql; sourceTree = "<group>"; };
@@ -499,6 +501,14 @@
 			name = Old;
 			sourceTree = "<group>";
 		};
+		92D4D9BD11D5EBC6000F4BAB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				92D4D9BF11D5EBDC000F4BAB /* MPListTest.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		92FAEBB011BB81F700A33279 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
@@ -761,6 +771,7 @@
 			isa = PBXGroup;
 			children = (
 				B9AE52090F6B408A0076D258 /* API */,
+				92D4D9BD11D5EBC6000F4BAB /* Model */,
 				92FAEBB011BB81F700A33279 /* Logic */,
 				92FAEBBD11BB822F00A33279 /* UI */,
 				92FAEBBE11BB826800A33279 /* Helpers */,
@@ -1123,6 +1134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D4D9CB11D5ECE8000F4BAB /* Milpon.xcdatamodel in Sources */,
 				923B786311B89F7400F9B973 /* RTMAPIParserDelegate.m in Sources */,
 				923B7AB211B948DE00F9B973 /* RTMAPI+Auth.m in Sources */,
 				92016B0511B9FB0E00B3D341 /* RTMAPI+Timeline.m in Sources */,
@@ -1132,7 +1144,7 @@
 				92016D9311BB051A00B3D341 /* MPHelper.m in Sources */,
 				92016DE011BB0DCB00B3D341 /* RTMAPI+Location.m in Sources */,
 				9273542F11BB34550039EF99 /* RTMAPI+Note.m in Sources */,
-				92D4D96711D5E173000F4BAB /* RTMAPIListTest.m in Sources */,
+				92D4D9C011D5EBDC000F4BAB /* MPListTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
