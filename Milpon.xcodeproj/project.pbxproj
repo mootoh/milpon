@@ -183,8 +183,8 @@
 		928601981072E55C004B7DFE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92B2F4C31158EAA000254FC6 /* AuthView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthView.xib; sourceTree = "<group>"; };
 		92BFB89F11610A670024023D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		92C7068011D53CD900EF3B82 /* MPTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTask.h; sourceTree = "<group>"; };
-		92C7068111D53CD900EF3B82 /* MPTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTask.m; sourceTree = "<group>"; };
+		92C7068011D53CD900EF3B82 /* MPTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPTask.h; path = model/MPTask.h; sourceTree = "<group>"; };
+		92C7068111D53CD900EF3B82 /* MPTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPTask.m; path = model/MPTask.m; sourceTree = "<group>"; };
 		92C719AB11D36E2600A7A5BE /* MPAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAddTaskViewController.h; sourceTree = "<group>"; };
 		92C719AC11D36E2600A7A5BE /* MPAddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAddTaskViewController.m; sourceTree = "<group>"; };
 		92C71AE611D3866400A7A5BE /* MPAddTaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MPAddTaskView.xib; sourceTree = "<group>"; };
@@ -342,7 +342,7 @@
 		B93AE43D0FAB140E00343773 /* DBNoteProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBNoteProvider.m; sourceTree = "<group>"; };
 		B93AE43E0FAB140E00343773 /* NoteProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteProvider.h; sourceTree = "<group>"; };
 		B93AE43F0FAB140E00343773 /* NoteProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteProvider.m; sourceTree = "<group>"; };
-		B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Milpon.xcdatamodel; sourceTree = "<group>"; };
+		B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; name = Milpon.xcdatamodel; path = model/Milpon.xcdatamodel; sourceTree = "<group>"; };
 		B93D753A0F941105001E11F3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = ../others/Entitlements.plist; sourceTree = "<group>"; };
 		B95C5C070F598C8400A368DC /* rtm.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = rtm.sql; sourceTree = "<group>"; };
 		B970AC050F6416A1004467E9 /* TaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
@@ -423,15 +423,15 @@
 			isa = PBXGroup;
 			children = (
 				B9160EBF0F565CEF00473A95 /* API */,
-				92FAED9411BD435900A33279 /* New UI */,
-				B9160ED60F565D1500473A95 /* UI */,
-				B9160F180F565D4C00473A95 /* Model */,
+				92D4D92811D5DF6B000F4BAB /* Model */,
+				92FAED9411BD435900A33279 /* UI */,
 				B9160F360F565D6800473A95 /* Others */,
 				B9160F8C0F565DAB00473A95 /* Vendor */,
 				B9160F430F565D9300473A95 /* Resource */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				B9160FD00F565DE000473A95 /* Test */,
+				92D4D92911D5DF9B000F4BAB /* Old */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -478,6 +478,25 @@
 			name = RootView;
 			sourceTree = "<group>";
 		};
+		92D4D92811D5DF6B000F4BAB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				92C7068011D53CD900EF3B82 /* MPTask.h */,
+				92C7068111D53CD900EF3B82 /* MPTask.m */,
+				B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		92D4D92911D5DF9B000F4BAB /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				B9160ED60F565D1500473A95 /* Old UI */,
+				B9160F180F565D4C00473A95 /* Old Model */,
+			);
+			name = Old;
+			sourceTree = "<group>";
+		};
 		92FAEBB011BB81F700A33279 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,7 +532,7 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		92FAED9411BD435900A33279 /* New UI */ = {
+		92FAED9411BD435900A33279 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				92FAED8811BD428900A33279 /* MPAppDelegate.h */,
@@ -528,7 +547,7 @@
 				92C719AC11D36E2600A7A5BE /* MPAddTaskViewController.m */,
 				92C71AE611D3866400A7A5BE /* MPAddTaskView.xib */,
 			);
-			name = "New UI";
+			name = UI;
 			sourceTree = "<group>";
 		};
 		B910D9350FA1E3600051EFB0 /* object */ = {
@@ -545,8 +564,6 @@
 				B9160F2B0F565D4C00473A95 /* RTMTask.m */,
 				B9B957530F6617670046712A /* RTMTag.h */,
 				B9B957540F6617670046712A /* RTMTag.m */,
-				92C7068011D53CD900EF3B82 /* MPTask.h */,
-				92C7068111D53CD900EF3B82 /* MPTask.m */,
 			);
 			name = object;
 			sourceTree = "<group>";
@@ -598,7 +615,7 @@
 			path = api;
 			sourceTree = "<group>";
 		};
-		B9160ED60F565D1500473A95 /* UI */ = {
+		B9160ED60F565D1500473A95 /* Old UI */ = {
 			isa = PBXGroup;
 			children = (
 				B9CBAFF80F5991710025216C /* add */,
@@ -622,7 +639,7 @@
 				92D225C811602D530074E93A /* InfoViewController.m */,
 				92D225C911602D530074E93A /* InfoViewController.xib */,
 			);
-			name = UI;
+			name = "Old UI";
 			path = ui;
 			sourceTree = "<group>";
 		};
@@ -642,7 +659,7 @@
 			path = ../db;
 			sourceTree = "<group>";
 		};
-		B9160F180F565D4C00473A95 /* Model */ = {
+		B9160F180F565D4C00473A95 /* Old Model */ = {
 			isa = PBXGroup;
 			children = (
 				B910D9350FA1E3600051EFB0 /* object */,
@@ -651,9 +668,8 @@
 				B9160F1D0F565D4C00473A95 /* LocalCache.m */,
 				B9160F280F565D4C00473A95 /* RTMSynchronizer.h */,
 				B9160F290F565D4C00473A95 /* RTMSynchronizer.m */,
-				B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */,
 			);
-			name = Model;
+			name = "Old Model";
 			path = model;
 			sourceTree = "<group>";
 		};
@@ -1399,7 +1415,7 @@
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 2.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
