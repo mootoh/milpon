@@ -14,11 +14,6 @@
 #import "MPHelper.h"
 #import "MPLogger.h"
 
-#pragma mark CheckButtonImageView
-
-@interface CheckButtonImageView : UIImageView
-@end
-
 #pragma mark -
 #pragma mark CountCircleView
 
@@ -105,7 +100,6 @@
    [flexibleSpace release];
    [refreshButton release];   
 }
-
 
 - (void)viewDidLoad
 {
@@ -515,10 +509,10 @@
    }
    NSAssert([[listObject valueForKey:@"smart"] boolValue] == NO, @"the task should not belong to any smart lists.");
 
+   // create TaskSeries entity.
    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TaskSeries" inManagedObjectContext:managedObjectContext];
    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:managedObjectContext];
-   
-   // If appropriate, configure the new managed object.
+
    [newManagedObject setValue:[taskseries objectForKey:@"name"] forKey:@"name"];
    NSNumber *iD = [NSNumber numberWithInteger:[[taskseries objectForKey:@"id"] integerValue]];
    [newManagedObject setValue:iD forKey:@"iD"];
