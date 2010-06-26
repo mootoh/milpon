@@ -59,6 +59,12 @@
 		92D349B111C348CE009BFD89 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F460F565D9300473A95 /* checkBoxChecked.png */; };
 		92D4D9C011D5EBDC000F4BAB /* MPListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D4D9BF11D5EBDC000F4BAB /* MPListTest.m */; };
 		92D4D9CB11D5ECE8000F4BAB /* Milpon.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */; };
+		92D4DA5B11D638EA000F4BAB /* icon_overview_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FB4115E077B0074E93A /* icon_overview_disabled.png */; };
+		92D4DA5C11D638ED000F4BAB /* icon_list_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FDA115E08FF0074E93A /* icon_list_disabled.png */; };
+		92D4DA5D11D638F6000F4BAB /* icon_tag_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FDB115E08FF0074E93A /* icon_tag_disabled.png */; };
+		92D4DA5E11D638F8000F4BAB /* icon_tag_toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D22152115E44B10074E93A /* icon_tag_toolbar.png */; };
+		92D4DA5F11D638FC000F4BAB /* icon_list_toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D2211F115E3D4A0074E93A /* icon_list_toolbar.png */; };
+		92D4DA6011D63901000F4BAB /* icon_overview.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D2213C115E41B40074E93A /* icon_overview.png */; };
 		92E4AAA7102C220700CACCC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92E4AAA6102C220700CACCC9 /* Localizable.strings */; };
 		92E91C380FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 92E91C370FBFD57700DCDE16 /* migrate_007_clear_last_sync.sql */; };
 		92ECF0C1103809FC004F8CB5 /* recurrentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0C0103809FC004F8CB5 /* recurrentIcon.png */; };
@@ -1080,6 +1086,12 @@
 				92C71B2111D38D7A00A7A5BE /* icon_priority_4.png in Resources */,
 				92C71B2211D38D7B00A7A5BE /* icon_priority_3.png in Resources */,
 				92C71B2311D38D7B00A7A5BE /* icon_priority_2.png in Resources */,
+				92D4DA5B11D638EA000F4BAB /* icon_overview_disabled.png in Resources */,
+				92D4DA5C11D638ED000F4BAB /* icon_list_disabled.png in Resources */,
+				92D4DA5D11D638F6000F4BAB /* icon_tag_disabled.png in Resources */,
+				92D4DA5E11D638F8000F4BAB /* icon_tag_toolbar.png in Resources */,
+				92D4DA5F11D638FC000F4BAB /* icon_list_toolbar.png in Resources */,
+				92D4DA6011D63901000F4BAB /* icon_overview.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

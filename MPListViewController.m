@@ -10,6 +10,7 @@
 #import "RTMAPI+Task.h"
 #import "MPListViewController.h"
 #import "MPTaskListViewController.h"
+#import "MPAppDelegate.h"
 #import "MPHelper.h"
 #import "MPLogger.h"
 
@@ -80,21 +81,37 @@
 #pragma mark -
 #pragma mark View lifecycle
 
+- (void) setupToolbar
+{
+   MPAppDelegate *app = (MPAppDelegate *)[UIApplication sharedApplication].delegate;
+   UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(syncList)];
+   UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:app action:@selector(showAddTask)];
+   
+   UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+   UIBarButtonItem *tightSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+   tightSpace.width = 20.0f;
+   
+   UIBarButtonItem *overviewButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_overview_disabled.png"] style:UIBarButtonItemStylePlain target:app action:@selector(switchToOverview)];
+   UIBarButtonItem *listButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_list_disabled.png"] style:UIBarButtonItemStylePlain target:app action:@selector(switchToList)];
+   UIBarButtonItem *tagButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_tag_disabled.png"] style:UIBarButtonItemStylePlain target:app action:@selector(switchToTag)];
+   
+   self.toolbarItems = [NSArray arrayWithObjects:refreshButton, flexibleSpace, overviewButton, tightSpace, listButton, tightSpace, tagButton, flexibleSpace, addButton, nil];
+   self.navigationController.toolbar.tintColor = [UIColor colorWithRed:51.0f/256.0f green:102.0f/256.0f blue:153.0f/256.0f alpha:1.0];
+   [addButton release];
+   [listButton release];
+   [tagButton release];
+   [overviewButton release];
+   [tightSpace release];
+   [flexibleSpace release];
+   [refreshButton release];   
+}
+
+
 - (void)viewDidLoad
 {
    [super viewDidLoad];
-
    self.title = @"Lists";
-
-   // toolbar
-   UIBarButtonItem *syncListButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(syncList)];
-   UIBarButtonItem *syncTaskButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(syncTaskList)];
-   UIBarButtonItem *addTaskButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:[UIApplication sharedApplication].delegate action:@selector(showAddTask)];
-
-   self.toolbarItems = [NSArray arrayWithObjects:syncListButton, syncTaskButton, addTaskButton, nil];
-   [addTaskButton release];
-   [syncListButton release];
-   [syncTaskButton release];
+   [self setupToolbar];
 
    // fetch Lists
    NSError *error = nil;
@@ -455,6 +472,14 @@
    NSSet *deletedLists = [self deletedLists:listsRetrieved];
    for (NSManagedObject *deletedList in deletedLists)
       [managedObjectContext deleteObject:deletedList];
+   if ([deletedLists count] > 0) {
+      // Save the context.
+      NSError *error = nil;
+      if (![managedObjectContext save:&error]) {
+         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+         abort();
+      }
+   }
 
    // then, update attributes and insert if not exists.
    for (NSDictionary *list in listsRetrieved) {
