@@ -133,7 +133,6 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
    return c;
 }
 
-
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
    NSArray *secs = [fetchedResultsController sections];
@@ -261,6 +260,9 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
    return pred;
 }
 
+#define k_CACHE_NAME_FOR_COMPLETED     @"taskCompleted"
+#define k_CACHE_NAME_FOR_NOT_COMPLETED @"taskNotCompleted"
+
 - (NSFetchedResultsController *) fetchedResultsController
 {
    if (fetchedResultsController != nil)
@@ -291,9 +293,7 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
    NSPredicate *pred = [NSPredicate predicateWithFormat:predicateString];
    [fetchRequest setPredicate:pred];
    
-   // Edit the section name key path and cache name if appropriate.
-   // nil for section name key path means "no sections".
-   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"is_completed" cacheName:@"Task"];
+   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"is_completed" cacheName:showToggle ? k_CACHE_NAME_FOR_COMPLETED : k_CACHE_NAME_FOR_NOT_COMPLETED];
    aFetchedResultsController.delegate = self;
    self.fetchedResultsController = aFetchedResultsController;
 
