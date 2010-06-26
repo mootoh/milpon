@@ -41,12 +41,11 @@
  Returns the managed object context for the application.
  If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
  */
-- (NSManagedObjectContext *) managedObjectContext {
-   
-   if (managedObjectContext != nil) {
+- (NSManagedObjectContext *) managedObjectContext
+{   
+   if (managedObjectContext != nil)
       return managedObjectContext;
-   }
-   
+
    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
    if (coordinator != nil) {
       managedObjectContext = [[NSManagedObjectContext alloc] init];
@@ -55,34 +54,29 @@
    return managedObjectContext;
 }
 
-
 /**
  Returns the managed object model for the application.
  If the model doesn't already exist, it is created by merging all of the models found in the application bundle.
  */
-- (NSManagedObjectModel *)managedObjectModel {
-   
-   if (managedObjectModel != nil) {
+- (NSManagedObjectModel *)managedObjectModel
+{
+   if (managedObjectModel != nil)
       return managedObjectModel;
-   }
-//   managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:[NSArray arrayWithObject:[NSBundle bundleWithIdentifier:@"org.deadbeaf.Milpon"]]] retain];
+
    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:[NSArray arrayWithObject:[NSBundle bundleForClass:[self class]]]];
    return managedObjectModel;
 }
-
 
 /**
  Returns the persistent store coordinator for the application.
  If the coordinator doesn't already exist, it is created and the application's store added to it.
  */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-   
-   if (persistentStoreCoordinator != nil) {
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
+{
+   if (persistentStoreCoordinator != nil)
       return persistentStoreCoordinator;
-   }
    
    NSURL *storeUrl = [NSURL fileURLWithPath:@"/tmp/Milpon.sqlite"];
-   
    NSError *error = nil;
    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error]) {

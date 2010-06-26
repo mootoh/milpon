@@ -16,11 +16,7 @@
 #pragma mark CheckButtonImageView
 
 @interface CheckButtonImageView : UIImageView
-{
-}
-
 @end
-
 
 #pragma mark -
 #pragma mark CountCircleView
@@ -76,6 +72,7 @@
 
 @end
 
+#pragma mark  -
 @implementation MPListViewController
 
 @synthesize fetchedResultsController, managedObjectContext;
@@ -364,32 +361,31 @@
 
 - (void) updateIfNeeded:(NSDictionary *) list
 {
-   // Create the fetch request for the entity.
+   // retrieve the entitiy.
    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-   // Edit the entity name as appropriate.
    NSEntityDescription *entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext];
    [fetchRequest setEntity:entity];
-   
    NSPredicate *pred = [NSPredicate predicateWithFormat:@"iD == %d", [[list objectForKey:@"id"] integerValue]];
    [fetchRequest setPredicate:pred];
-   
    NSError *error = nil;
    NSArray *fetched = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
    if (error) {
       LOG(@"error");
       abort();
    }
-   
    NSAssert([fetched count] == 1, @"should be 1");
    NSManagedObject *listObject = [fetched objectAtIndex:0];
 
+   // update it.
    BOOL updated = NO;
 
    if (! [[list objectForKey:@"name"] isEqualToString:[listObject valueForKey:@"name"]]) {
+      // name has been changed
       updated = YES;
       [listObject setValue:[list objectForKey:@"name"] forKey:@"name"];
    }
 
+   // "deleted" attribute would not be set in the getList API call.
 #ifdef SUPPORT_LIST_DELETED
    if (! [[list objectForKey:@"deleted"] boolValue] == [[listObject valueForKey:@"deleted"] boolValue]) {
       updated = YES;
@@ -414,6 +410,7 @@
    }
 #endif // SUPPORT_LIST_POSITION
 
+   // smart list should be always smart list, so the check below would not be needed.
    BOOL isSmart = [[list objectForKey:@"smart"] boolValue];
    NSAssert([[listObject valueForKey:@"smart"] boolValue] == isSmart, @"Smart list should not be migrated to normal list.");
 
@@ -453,10 +450,13 @@
    }
 
    NSArray *listsRetrieved = [api getList];
+
+   // first, pick up lists deleted at the remote, and delete from the local.
    NSSet *deletedLists = [self deletedLists:listsRetrieved];
    for (NSManagedObject *deletedList in deletedLists)
       [managedObjectContext deleteObject:deletedList];
 
+   // then, update attributes and insert if not exists.
    for (NSDictionary *list in listsRetrieved) {
       if ([self isListExist:[list objectForKey:@"id"]]) {
          [self updateIfNeeded:list];
