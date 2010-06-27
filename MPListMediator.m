@@ -18,9 +18,8 @@
 - (void)insertNewList:(NSDictionary *)list
 {
    // Create a new instance of the entity managed by the fetched results controller.
-   NSManagedObjectContext   *context = [fetchedResultsController managedObjectContext];
-   NSEntityDescription       *entity = [[fetchedResultsController fetchRequest] entity];
-   NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+   NSEntityDescription       *entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext];
+   NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:managedObjectContext];
    
    // If appropriate, configure the new managed object.
    [newManagedObject setValue:[self integerNumberFromString:[list objectForKey:@"id"]] forKey:@"iD"];
@@ -39,125 +38,128 @@
    
    // Save the context.
    NSError *error = nil;
-   if (![context save:&error]) {
+   if (![managedObjectContext save:&error]) {
       NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
       abort();
    }
 }
 
-- (NSManagedObject *) isListExist:(NSString *)listID
+- (NSArray *) allLists
 {
    // Create the fetch request for the entity.
-   NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-   // Edit the entity name as appropriate.
-   NSEntityDescription *entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:context];
+   NSEntityDescription *entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext];
+   [fetchRequest setEntity:entity];
+   
+   NSError *error = nil;
+   NSArray *fetched = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+   if (error) {
+      LOG(@"error");
+      abort();
+   }
+   return fetched;
+}
+
+- (NSManagedObject *) listByID:(NSString *) listID
+{
+   // Create the fetch request for the entity.
+   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+   NSEntityDescription *entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext];
    [fetchRequest setEntity:entity];
    
    NSPredicate *pred = [NSPredicate predicateWithFormat:@"iD == %d", [listID integerValue]];
    [fetchRequest setPredicate:pred];
    
    NSError *error = nil;
-   NSArray *fetched = [context executeFetchRequest:fetchRequest error:&error];
+   NSArray *lists = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
    if (error) {
       LOG(@"error");
       abort();
    }
-   
-   if ([fetched count] == 0)
+   if ([lists count] == 0)
       return nil;
    
-   NSAssert([fetched count] == 1, @"should be 1");
-   return [fetched objectAtIndex:0];
+   NSAssert([lists count] == 1, @"should be 1");
+   return [lists objectAtIndex:0];
+}
+   
+- (NSManagedObject *) isListExist:(NSString *)listID
+{
+   return [self listByID:listID];
 }
 
 - (NSSet *) deletedLists:(NSArray *) listsRetrieved
 {
    NSMutableSet *deleted = [NSMutableSet set];
-   for (NSManagedObject *mo in [fetchedResultsController fetchedObjects]) {
-      NSString *idString = [NSString stringWithFormat:@"%d", [[mo valueForKey:@"iD"] integerValue]];
+   for (NSManagedObject *list in [self allLists]) {
+      NSString *idString = [NSString stringWithFormat:@"%d", [[list valueForKey:@"iD"] integerValue]];
       NSPredicate *pred = [NSPredicate predicateWithFormat:@"(id == %@)", idString];
       NSArray *exists = [listsRetrieved filteredArrayUsingPredicate:pred];
       if ([exists count] == 0)
-         [deleted addObject:mo];
+         [deleted addObject:list];
    }
    return deleted;
 }
 
 - (void) updateIfNeeded:(NSDictionary *) list
 {
-   // retrieve the entitiy.
-   NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
-   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-   NSEntityDescription *entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:context];
-   [fetchRequest setEntity:entity];
-   NSPredicate *pred = [NSPredicate predicateWithFormat:@"iD == %d", [[list objectForKey:@"id"] integerValue]];
-   [fetchRequest setPredicate:pred];
-   NSError *error = nil;
-   NSArray *fetched = [context executeFetchRequest:fetchRequest error:&error];
-   if (error) {
-      LOG(@"error");
-      abort();
-   }
-   NSAssert([fetched count] == 1, @"should be 1");
-   NSManagedObject *listObject = [fetched objectAtIndex:0];
-   
+   NSManagedObject *theList = [self listByID:[list objectForKey:@"id"]];
+
    // update it.
    BOOL updated = NO;
-   
-   if (! [[list objectForKey:@"name"] isEqualToString:[listObject valueForKey:@"name"]]) {
+   if (! [[list objectForKey:@"name"] isEqualToString:[theList valueForKey:@"name"]]) {
       // name has been changed
       updated = YES;
-      [listObject setValue:[list objectForKey:@"name"] forKey:@"name"];
+      [theList setValue:[list objectForKey:@"name"] forKey:@"name"];
    }
    
    // "deleted" attribute would not be set in the getList API call.
 #ifdef SUPPORT_LIST_DELETED
-   if (! [[list objectForKey:@"deleted"] boolValue] == [[listObject valueForKey:@"deleted"] boolValue]) {
+   if (! [[list objectForKey:@"deleted"] boolValue] == [[theList valueForKey:@"deleted"] boolValue]) {
       updated = YES;
-      [listObject setValue:[self boolNumberFromString:[list objectForKey:@"deleted"]] forKey:@"deleted"];
+      [theList setValue:[self boolNumberFromString:[list objectForKey:@"deleted"]] forKey:@"deleted"];
    }
 #endif // SUPPORT_LIST_DELETED
    
-   if (! [[list objectForKey:@"locked"] boolValue] == [[listObject valueForKey:@"locked"] boolValue]) {
+   if (! [[list objectForKey:@"locked"] boolValue] == [[theList valueForKey:@"locked"] boolValue]) {
       updated = YES;
-      [listObject setValue:[self boolNumberFromString:[list objectForKey:@"locked"]] forKey:@"locked"];
+      [theList setValue:[self boolNumberFromString:[list objectForKey:@"locked"]] forKey:@"locked"];
    }
    
-   if (! [[list objectForKey:@"archived"] boolValue] == [[listObject valueForKey:@"archived"] boolValue]) {
+   if (! [[list objectForKey:@"archived"] boolValue] == [[theList valueForKey:@"archived"] boolValue]) {
       updated = YES;
-      [listObject setValue:[self boolNumberFromString:[list objectForKey:@"archived"]] forKey:@"archived"];
+      [theList setValue:[self boolNumberFromString:[list objectForKey:@"archived"]] forKey:@"archived"];
    }
    
 #ifdef SUPPORT_LIST_POSITION
-   if (! [[list objectForKey:@"position"] integerValue] == [[listObject valueForKey:@"position"] integerValue]) {
+   if (! [[list objectForKey:@"position"] integerValue] == [[theList valueForKey:@"position"] integerValue]) {
       updated = YES;
-      [listObject setValue:[self integerNumberFromString:[list objectForKey:@"position"]] forKey:@"position"];
+      [theList setValue:[self integerNumberFromString:[list objectForKey:@"position"]] forKey:@"position"];
    }
 #endif // SUPPORT_LIST_POSITION
    
    // smart list should be always smart list, so the check below would not be needed.
    BOOL isSmart = [[list objectForKey:@"smart"] boolValue];
-   NSAssert([[listObject valueForKey:@"smart"] boolValue] == isSmart, @"Smart list should not be migrated to normal list.");
+   NSAssert([[theList valueForKey:@"smart"] boolValue] == isSmart, @"Smart list should not be migrated to normal list.");
    
-   if (! [[list objectForKey:@"sort_order"] integerValue] == [[listObject valueForKey:@"sort_order"] integerValue]) {
+   if (! [[list objectForKey:@"sort_order"] integerValue] == [[theList valueForKey:@"sort_order"] integerValue]) {
       updated = YES;
-      [listObject setValue:[self integerNumberFromString:[list objectForKey:@"sort_order"]] forKey:@"sort_order"];
+      [theList setValue:[self integerNumberFromString:[list objectForKey:@"sort_order"]] forKey:@"sort_order"];
    }
    
    if (isSmart) {
       NSAssert([list objectForKey:@"filter"], @"smart list should have filter");
       
-      if (! [[list objectForKey:@"filter"] isEqualToString:[listObject valueForKey:@"filter"]]) {
+      if (! [[list objectForKey:@"filter"] isEqualToString:[theList valueForKey:@"filter"]]) {
          updated = YES;
-         [listObject setValue:[list objectForKey:@"filter"] forKey:@"filter"];
+         [theList setValue:[list objectForKey:@"filter"] forKey:@"filter"];
       }
    }
    
    if (updated) {
       // Save the context.
       NSError *error = nil;
-      if (![context save:&error]) {
+      if (![managedObjectContext save:&error]) {
          NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
          abort();
       }
@@ -166,16 +168,15 @@
 
 - (void) sync:(RTMAPI *) api
 {
-   NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
    NSArray *listsRetrieved = [api getList];
    
    // first, pick up lists deleted at the remote, and delete from the local.
    NSSet *deletedLists = [self deletedLists:listsRetrieved];
    for (NSManagedObject *deletedList in deletedLists)
-      [context deleteObject:deletedList];
+      [managedObjectContext deleteObject:deletedList];
    if ([deletedLists count] > 0) {
       NSError *error = nil;
-      if (![context save:&error]) {
+      if (![managedObjectContext save:&error]) {
          NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
          abort();
       }
@@ -188,10 +189,12 @@
       else
          [self insertNewList:list];
 
+#if 0
    // reload and cache them.
    NSError *error = nil;
    [fetchedResultsController performFetch:&error];
    NSAssert(error == nil, nil);
+#endif // 0
 }
 
 @end

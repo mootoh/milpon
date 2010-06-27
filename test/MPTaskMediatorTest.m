@@ -66,10 +66,22 @@
    
    if ([items count] > 0) {
       [managedObjectContext save:&error];
+      if (error) {
+         LOG(@"Failed to save to data store: %@", [error localizedDescription]);
+         NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+         if(detailedErrors != nil && [detailedErrors count] > 0) {
+            for(NSError* detailedError in detailedErrors) {
+               LOG(@"  DetailedError: %@", [detailedError userInfo]);
+            }
+         }
+         else {
+            LOG(@"  %@", [error userInfo]);
+         }
+      }
       STAssertNil(error, [error localizedDescription]);
    }
    
-//   [listFetchedResultsController release];
+   [listFetchedResultsController release];
    [listMediator release];
 }
 
@@ -107,7 +119,7 @@
       STAssertNil(error, [error localizedDescription]);
    }
 
-//   [taskFetchedResultsController release];
+   [taskFetchedResultsController release];
    [taskMediator release];
 }
 
@@ -146,16 +158,16 @@
 
 - (void) testSync
 {
-
    [listMediator sync:api];
    [taskMediator sync:api];
+   /*
 
    NSError *error = nil;
    [taskFetchedResultsController performFetch:&error];
    STAssertNil(error, nil);
    NSLog(@"result = %@", [taskFetchedResultsController fetchedObjects]);
    STAssertTrue([[taskFetchedResultsController fetchedObjects] count] > 0, nil);
-
+*/
 }
 
 @end

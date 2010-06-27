@@ -11,17 +11,17 @@
 
 @implementation MPMediator
 
-- (id) initWithFetchedResultsController:(NSFetchedResultsController *) frc
+- (id) initWithManagedObjectContext:(NSManagedObjectContext *) moc
 {
    if (self = [super init]) {
-      fetchedResultsController = [frc retain];
+      managedObjectContext = [moc retain];
    }
    return self;
 }
 
 - (void) dealloc
 {
-   [fetchedResultsController release];
+   [managedObjectContext release];
    [super dealloc];
 }
 

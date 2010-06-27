@@ -20,6 +20,7 @@
 - (NSManagedObject *) isListExist:(NSString *)listID;
 - (void)insertNewList:(NSDictionary *)list;
 - (NSSet *) deletedLists:(NSArray *) listsRetrieved;
+- (NSArray *) allLists;
 
 @end
 
@@ -30,9 +31,8 @@
 
    NSManagedObjectModel         *managedObjectModel;
    NSManagedObjectContext       *managedObjectContext;
-   NSPersistentStoreCoordinator *persistentStoreCoordinator;   
-   NSFetchedResultsController   *fetchedResultsController;
-   
+   NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
    MPListMediator *listMediator;
 }
 
@@ -40,76 +40,60 @@
 
 @implementation MPListMediatorTest
 
-- (void) setUp
+#pragma mark -
+#pragma mark setup, cleanup
+- (void) setupCoreDataStack
 {
-   api = [[RTMAPI alloc] init];
-   api.token = RTM_TOKEN_D;
-
-   /*
-    * setup CoreData stack.
-    */
    managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:[NSArray arrayWithObject:[NSBundle bundleForClass:[self class]]]] retain];
-
+   
    NSURL            *storeUrl = [NSURL fileURLWithPath:@"/tmp/MilponUnitTest.sqlite"];
    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
    STAssertNotNil([persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:nil], nil);
-
+   
    managedObjectContext = [[NSManagedObjectContext alloc] init];
    [managedObjectContext setPersistentStoreCoordinator:persistentStoreCoordinator];
-
-   /*
-    * construct FetchedResultsController.
-    */
-   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-   NSEntityDescription *entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext];
-   [fetchRequest setEntity:entity];
-   [fetchRequest setFetchBatchSize:20];
-   
-   NSSortDescriptor *positionSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
-   NSSortDescriptor *nameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:positionSortDescriptor, nameSortDescriptor, nil];
-   [fetchRequest setSortDescriptors:sortDescriptors];
-   
-   NSPredicate *pred = [NSPredicate predicateWithFormat:@"archived == false AND deleted == false"];
-   [fetchRequest setPredicate:pred];
-   
-   fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"ListMediatorTest"];
-   
-   [fetchRequest release];
-   [nameSortDescriptor release];
-   [positionSortDescriptor release];
-   [sortDescriptors release];
-   
-   listMediator = [[MPListMediator alloc] initWithFetchedResultsController:fetchedResultsController];
 }
 
-- (void) tearDown
+- (void) cleanupEntities
 {
    // clean up the entities
    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
    NSEntityDescription *entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext];
    [fetchRequest setEntity:entity];
-
+   
    NSError *error = nil;
    NSArray *items = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
    STAssertNil(error, nil);
    [fetchRequest release];
-
+   
    for (NSManagedObject *managedObject in items)
       [managedObjectContext deleteObject:managedObject];
-
+   
    [managedObjectContext save:&error];
    STAssertNil(error, nil);
+}
 
+- (void) setUp
+{
+   api = [[RTMAPI alloc] init];
+   api.token = RTM_TOKEN_D;
+
+   [self setupCoreDataStack];
+   listMediator = [[MPListMediator alloc] initWithManagedObjectContext:managedObjectContext];
+}
+
+- (void) tearDown
+{
+   [self cleanupEntities];
    [listMediator release];
-   [fetchedResultsController release];
    [managedObjectContext release];
-   [managedObjectModel release];
    [persistentStoreCoordinator release];
+   [managedObjectModel release];
    [api release];
 }
 
 #pragma mark -
+#pragma mark Test cases
 
 - (void) testIsExist
 {
@@ -126,11 +110,9 @@
 - (void) testSync
 {
    [listMediator sync:api];
-   NSError *error = nil;
-   [fetchedResultsController performFetch:&error];
-   STAssertNil(error, nil);
-   NSLog(@"result = %@", [fetchedResultsController fetchedObjects]);
-   STAssertTrue([[fetchedResultsController fetchedObjects] count] > 0, nil);
+   NSArray *lists = [listMediator allLists];
+   NSLog(@"lists = %@", lists);
+   STAssertTrue([lists count] > 0, nil);
 
    {
       // check the retrieved list is in the local DB.

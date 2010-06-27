@@ -16,21 +16,16 @@
 
 #pragma mark -
 
-- (void)insertNewTask:(NSDictionary *)taskseries
+// search for the associated List.
+- (NSManagedObject *) associatedList:(NSString *) listID
 {
-   NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
-   // make a relationship.
-   // Create the fetch request for the entity.
-   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-   // Edit the entity name as appropriate.
-   NSEntityDescription *listEntity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:context];
-   [fetchRequest setEntity:listEntity];
-   
-   NSPredicate *pred = [NSPredicate predicateWithFormat:@"iD == %d", [[taskseries objectForKey:@"list_id"] integerValue]];
+   NSFetchRequest    *fetchRequest = [[NSFetchRequest alloc] init];
+   [fetchRequest setEntity:[NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext]];
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"iD == %d", [listID integerValue]];
    [fetchRequest setPredicate:pred];
    
    NSError *error = nil;
-   NSArray *fetched = [context executeFetchRequest:fetchRequest error:&error];
+   NSArray *fetched = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
    if (error) {
       LOG(@"error");
       abort();
@@ -38,41 +33,52 @@
    
    NSAssert([fetched count] == 1, @"should be 1");
    NSManagedObject *listObject = [fetched objectAtIndex:0];
+   LOG(@"listObject = %@", listObject);
+   return listObject;
+} 
+   
+- (void)insertNewTask:(NSDictionary *)taskseries
+{
+   NSManagedObject *list = [self associatedList:[taskseries objectForKey:@"list_id"]];
+   NSAssert(list, nil);
    
    // skip smart list
-   if ([[listObject valueForKey:@"smart"] boolValue]) {
+   if ([[list valueForKey:@"smart"] boolValue]) {
       LOG(@"something bad happens");
-      LOG(@"taskseries = %@, list = %@", taskseries, listObject);
+//      LOG(@"taskseries = %@, list = %@", taskseries, listObject);
+      abort();
       return;
    }
-   NSAssert([[listObject valueForKey:@"smart"] boolValue] == NO, @"the task should not belong to any smart lists.");
+   NSAssert([[list valueForKey:@"smart"] boolValue] == NO, @"the task should not belong to any smart lists.");
    
-   // create TaskSeries entity.
-   NSEntityDescription *entity = [NSEntityDescription entityForName:@"TaskSeries" inManagedObjectContext:context];
-   NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+   /*
+    * create TaskSeries entity.
+    */
+   NSEntityDescription    *entity = [NSEntityDescription entityForName:@"TaskSeries" inManagedObjectContext:managedObjectContext];
+   NSManagedObject *newTaskSeries = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:managedObjectContext];
    
-   [newManagedObject setValue:[taskseries objectForKey:@"name"] forKey:@"name"];
+   [newTaskSeries setValue:[taskseries objectForKey:@"name"] forKey:@"name"];
    NSNumber *iD = [NSNumber numberWithInteger:[[taskseries objectForKey:@"id"] integerValue]];
-   [newManagedObject setValue:iD forKey:@"iD"];
+   [newTaskSeries setValue:iD forKey:@"iD"];
    NSDate *created = [[MilponHelper sharedHelper] rtmStringToDate:[taskseries objectForKey:@"created"]];
-   [newManagedObject setValue:created forKey:@"created"];   
+   [newTaskSeries setValue:created forKey:@"created"];   
    
    if ([taskseries objectForKey:@"modified"]) {
       NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[taskseries objectForKey:@"modified"]];
-      [newManagedObject setValue:date forKey:@"modified"];
+      [newTaskSeries setValue:date forKey:@"modified"];
    }      
    if ([taskseries objectForKey:@"rrule"]) {
       NSDictionary *rrule = [taskseries objectForKey:@"rrule"];
       NSString *packedRrule = [NSString stringWithFormat:@"%@-%@", [rrule objectForKey:@"every"], [rrule objectForKey:@"rule"]];
-      [newManagedObject setValue:packedRrule forKey:@"rrule"];
+      [newTaskSeries setValue:packedRrule forKey:@"rrule"];
    }
    
-   [newManagedObject setValue:listObject forKey:@"inList"];
+   [newTaskSeries setValue:list forKey:@"inList"];
    
    // setup Tasks in the TaskSeries
    for (NSDictionary *task in [taskseries objectForKey:@"tasks"]) {
-      NSEntityDescription *taskEntity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:context];
-      NSManagedObject *newTask = [NSEntityDescription insertNewObjectForEntityForName:[taskEntity name] inManagedObjectContext:context];
+      NSEntityDescription *taskEntity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext];
+      NSManagedObject *newTask = [NSEntityDescription insertNewObjectForEntityForName:[taskEntity name] inManagedObjectContext:managedObjectContext];
       
       NSNumber *taskID = [NSNumber numberWithInteger:[[task objectForKey:@"id"] integerValue]];
       [newTask setValue:taskID forKey:@"iD"];
@@ -112,12 +118,14 @@
       NSInteger priority = [priorityString isEqualToString:@"N"] ? 0 : [priorityString integerValue];
       [newTask setValue:[NSNumber numberWithInteger:priority] forKey:@"priority"];
       
-      [newTask setValue:newManagedObject forKey:@"taskSeries"];
+      [newTask setValue:newTaskSeries forKey:@"taskSeries"];
    }
    
+   LOG(@"commiting TaskSeries: %@", newTaskSeries);
+   
    // Save the context.
-   error = nil;
-   if (![context save:&error]) {
+   NSError *error = nil;
+   if (![managedObjectContext save:&error]) {
       NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
       abort();
    }

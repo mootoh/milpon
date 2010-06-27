@@ -12,10 +12,10 @@
 
 @interface MPMediator : NSObject
 {
-   NSFetchedResultsController *fetchedResultsController;
+   NSManagedObjectContext *managedObjectContext;
 }
 
-- (id) initWithFetchedResultsController:(NSFetchedResultsController *) frc;
+- (id) initWithManagedObjectContext:(NSManagedObjectContext *) moc;
 - (void) sync:(RTMAPI *) api;
 
 - (NSNumber *) integerNumberFromString:(NSString *)string;

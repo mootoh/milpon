@@ -32,12 +32,12 @@
 		9278D3B40FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
 		927A61C0113815ED005B4548 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
 		927A61F31138194B005B4548 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 927A61F21138194B005B4548 /* Settings.bundle */; };
+		9282E29911D78F7D006FAA17 /* MPListMediatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294167D11D669B0006AE83B /* MPListMediatorTest.m */; };
 		929415E111D65F62006AE83B /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929415DF11D65F62006AE83B /* MPListMediator.m */; };
 		9294162411D66511006AE83B /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294162211D66511006AE83B /* MPTaskMediator.m */; };
 		9294165711D6677D006AE83B /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294165611D6677D006AE83B /* MPMediator.m */; };
 		9294165811D6677D006AE83B /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294165611D6677D006AE83B /* MPMediator.m */; };
 		9294175911D74DBE006AE83B /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294162211D66511006AE83B /* MPTaskMediator.m */; };
-		9294175A11D74DC0006AE83B /* MPTaskMediatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294172811D741C9006AE83B /* MPTaskMediatorTest.m */; };
 		9294176111D74ED9006AE83B /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929415DF11D65F62006AE83B /* MPListMediator.m */; };
 		9294176411D74EEB006AE83B /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPI+List.m */; };
 		92BFB8A011610A670024023D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BFB89F11610A670024023D /* Security.framework */; };
@@ -1178,9 +1178,9 @@
 				9273542F11BB34550039EF99 /* RTMAPI+Note.m in Sources */,
 				9294165711D6677D006AE83B /* MPMediator.m in Sources */,
 				9294175911D74DBE006AE83B /* MPTaskMediator.m in Sources */,
-				9294175A11D74DC0006AE83B /* MPTaskMediatorTest.m in Sources */,
 				9294176111D74ED9006AE83B /* MPListMediator.m in Sources */,
 				9294176411D74EEB006AE83B /* RTMAPI+List.m in Sources */,
+				9282E29911D78F7D006FAA17 /* MPListMediatorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
