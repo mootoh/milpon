@@ -38,8 +38,8 @@
 		9294162411D66511006AE83B /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294162211D66511006AE83B /* MPTaskMediator.m */; };
 		9294165711D6677D006AE83B /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294165611D6677D006AE83B /* MPMediator.m */; };
 		9294165811D6677D006AE83B /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294165611D6677D006AE83B /* MPMediator.m */; };
-		9294167E11D669B0006AE83B /* MPListMediatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294167D11D669B0006AE83B /* MPListMediatorTest.m */; };
 		9294169111D66CA5006AE83B /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929415DF11D65F62006AE83B /* MPListMediator.m */; };
+		9294172911D741C9006AE83B /* MPTaskMediatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294172811D741C9006AE83B /* MPTaskMediatorTest.m */; };
 		92BFB8A011610A670024023D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BFB89F11610A670024023D /* Security.framework */; };
 		92C7068211D53CD900EF3B82 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C7068111D53CD900EF3B82 /* MPTask.m */; };
 		92C7068311D53CD900EF3B82 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C7068111D53CD900EF3B82 /* MPTask.m */; };
@@ -203,6 +203,7 @@
 		9294165511D6677D006AE83B /* MPMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMediator.h; sourceTree = "<group>"; };
 		9294165611D6677D006AE83B /* MPMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMediator.m; sourceTree = "<group>"; };
 		9294167D11D669B0006AE83B /* MPListMediatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPListMediatorTest.m; sourceTree = "<group>"; };
+		9294172811D741C9006AE83B /* MPTaskMediatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTaskMediatorTest.m; sourceTree = "<group>"; };
 		92B2F4C31158EAA000254FC6 /* AuthView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthView.xib; sourceTree = "<group>"; };
 		92BFB89F11610A670024023D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		92C7068011D53CD900EF3B82 /* MPTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPTask.h; path = model/MPTask.h; sourceTree = "<group>"; };
@@ -531,6 +532,7 @@
 			children = (
 				92D4D9BF11D5EBDC000F4BAB /* MPListTest.m */,
 				9294167D11D669B0006AE83B /* MPListMediatorTest.m */,
+				9294172811D741C9006AE83B /* MPTaskMediatorTest.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1179,8 +1181,8 @@
 				92D4D9C011D5EBDC000F4BAB /* MPListTest.m in Sources */,
 				9294162311D66511006AE83B /* MPTaskMediator.m in Sources */,
 				9294165711D6677D006AE83B /* MPMediator.m in Sources */,
-				9294167E11D669B0006AE83B /* MPListMediatorTest.m in Sources */,
 				9294169111D66CA5006AE83B /* MPListMediator.m in Sources */,
+				9294172911D741C9006AE83B /* MPTaskMediatorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
