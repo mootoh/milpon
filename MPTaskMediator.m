@@ -157,16 +157,34 @@
    }
 }
 
+- (NSSet *) deletedTaskSerieses:(NSArray *) taskSerieses
+{
+   NSMutableSet *deleted = [NSMutableSet set];
+   NSArray *allTaskSerieses = [self allTaskSerieses];
+   for (NSManagedObject *taskSeries in allTaskSerieses) {
+      NSString *idString = [NSString stringWithFormat:@"%d", [[taskSeries valueForKey:@"iD"] integerValue]];
+      NSPredicate *pred = [NSPredicate predicateWithFormat:@"(id == %@)", idString];
+      NSArray *exists = [taskSerieses filteredArrayUsingPredicate:pred];
+      if ([exists count] == 0)
+         [deleted addObject:taskSeries];
+   }
+   return deleted;
+}
+
+- (void) updateIfNeeded:(NSDictionary *) taskSeries
+{
+   // TODO
+}
+
 - (void) sync:(RTMAPI *) api
 {
-
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
    NSDate *lastSync = [defaults valueForKey:@"lastSync"];
-   NSArray *tasksRetrieved = lastSync
+   NSArray *taskSeriesesRetrieved = lastSync
       ? [api getTaskList:[[MilponHelper sharedHelper] dateToRtmString:lastSync]]
       : [api getTaskList];
 
-   for (NSDictionary *taskseries in tasksRetrieved) {
+   for (NSDictionary *taskseries in taskSeriesesRetrieved) {
       [self insertNewTask:taskseries];
    }
    
