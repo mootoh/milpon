@@ -16,6 +16,32 @@
 
 #pragma mark -
 
+- (NSArray *) allEntities:(NSString *) entityName
+{
+   // Create the fetch request for the entity.
+   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+   NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:managedObjectContext];
+   [fetchRequest setEntity:entity];
+   
+   NSError *error = nil;
+   NSArray *fetched = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+   if (error) {
+      LOG(@"error");
+      abort();
+   }
+   return fetched;
+}
+
+- (NSArray *) allTaskSerieses
+{
+   return [self allEntities:@"TaskSeries"];
+}
+
+- (NSArray *) allTasks
+{
+   return [self allEntities:@"Task"];
+}
+
 // search for the associated List.
 - (NSManagedObject *) associatedList:(NSString *) listID
 {

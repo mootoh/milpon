@@ -16,6 +16,11 @@
 #import "PrivateInfo.h"
 #import "MPLogger.h"
 
+@interface MPTaskMediator (Test)
+- (NSArray *) allTaskSerieses;
+- (NSArray *) allTasks;
+@end
+
 @interface MPTaskMediatorTest : SenTestCase
 {
    RTMAPI       *api;
@@ -107,14 +112,12 @@
 {
    [listMediator sync:api];
    [taskMediator sync:api];
-   /*
 
-   NSError *error = nil;
-   [taskFetchedResultsController performFetch:&error];
-   STAssertNil(error, nil);
-   NSLog(@"result = %@", [taskFetchedResultsController fetchedObjects]);
-   STAssertTrue([[taskFetchedResultsController fetchedObjects] count] > 0, nil);
-*/
+   NSArray *taskSerieses = [taskMediator allTaskSerieses];
+   NSArray *tasks        = [taskMediator allTasks];
+
+   STAssertTrue([taskSerieses count] > 0, nil);
+   STAssertTrue([tasks count] > 0, nil);
 }
 
 @end
