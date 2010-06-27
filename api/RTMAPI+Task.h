@@ -14,6 +14,7 @@
  * @return array of TaskSeries, each has associated list_id.
  */
 - (NSArray *) getTaskList;
+- (NSArray *) getTaskList:(NSString *)lastSync;
 - (NSArray *) getTaskList:(NSString *)inListID filter:(NSString *)filter lastSync:(NSString *)lastSync;
 
 /**

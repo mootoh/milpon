@@ -159,10 +159,18 @@
 
 - (void) sync:(RTMAPI *) api
 {
-   NSArray *tasksRetrieved = [api getTaskList];
+
+   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+   NSDate *lastSync = [defaults valueForKey:@"lastSync"];
+   NSArray *tasksRetrieved = lastSync
+      ? [api getTaskList:[[MilponHelper sharedHelper] dateToRtmString:lastSync]]
+      : [api getTaskList];
+
    for (NSDictionary *taskseries in tasksRetrieved) {
       [self insertNewTask:taskseries];
    }
+   
+   [defaults setValue:[NSDate date] forKey:@"lastSync"];
 }
 
 @end

@@ -10,6 +10,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "RTMAPI+Timeline.h"
 #import "RTMAPI+List.h"
+#import "RTMAPI+Task.h"
 #import "RTMAPI.h"
 #import "MPTaskMediator.h"
 #import "MPListMediator.h"

@@ -241,6 +241,11 @@
    return [self getList_internal:nil];
 }
 
+- (NSArray *) getTaskList:(NSString *)lastSync
+{
+   return [self getList_internal:[NSDictionary dictionaryWithObject:lastSync forKey:@"last_sync"]];
+}
+
 - (NSArray *) getTaskList:(NSString *)inListID filter:(NSString *)filter lastSync:(NSString *)lastSync
 {
    NSMutableDictionary *args = [NSMutableDictionary dictionary];
