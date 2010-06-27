@@ -7,6 +7,7 @@
 //
 
 #import "MPMediator.h"
+#import "MPLogger.h"
 
 @implementation MPMediator
 

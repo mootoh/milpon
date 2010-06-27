@@ -14,20 +14,6 @@
 
 @implementation MPTaskMediator
 
-- (id) initWithFetchedResultsController:(NSFetchedResultsController *) frc
-{
-   if (self = [super init]) {
-      fetchedResultsController = [frc retain];
-   }
-   return self;
-}
-
-- (void) dealloc
-{
-   [fetchedResultsController release];
-   [super dealloc];
-}
-
 #pragma mark -
 
 - (void)insertNewTask:(NSDictionary *)taskseries

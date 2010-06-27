@@ -7,10 +7,6 @@
 //
 
 #import "MPMediator.h"
-@class RTMAPI;
 
 @interface MPTaskMediator : MPMediator
-{
-}
-
 @end

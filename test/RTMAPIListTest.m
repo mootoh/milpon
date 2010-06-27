@@ -38,7 +38,7 @@
 {
    if (createdList) {
       NSString *listID = [createdList objectForKey:@"id"];
-      [api delete:listID timeline:timeline];
+      [api deleteList:listID timeline:timeline];
 
       // get lists again to check if the list is absolutely deleted.
       NSArray *lists = [api getList];
@@ -78,7 +78,7 @@
 
 - (void) addList
 {
-   createdList = [api add:k_LIST_NAME_FOR_UNIT_TEST timeline:timeline filter:nil];
+   createdList = [api addList:k_LIST_NAME_FOR_UNIT_TEST timeline:timeline filter:nil];
 }
 
 - (void) testAdd
@@ -113,7 +113,7 @@
    [self addList];
 
    // rename
-   NSDictionary *renamedList = [api setName:listNameForRenaming list:[createdList objectForKey:@"id"] timeline:timeline];
+   NSDictionary *renamedList = [api setListName:listNameForRenaming list:[createdList objectForKey:@"id"] timeline:timeline];
    STAssertTrue([listNameForRenaming isEqualToString:[renamedList objectForKey:@"name"]], nil);
 }
 
@@ -124,7 +124,7 @@
    NSString *listID = [createdList objectForKey:@"id"];
 
    // archive
-   STAssertTrue([api archive:listID timeline:timeline], nil);
+   STAssertTrue([api archiveList:listID timeline:timeline], nil);
 
    // get lists for check added
 	NSArray *lists = [api getList];
@@ -142,7 +142,7 @@
    STAssertTrue(found, nil);
 
    // unarchive
-   STAssertTrue([api unarchive:listID timeline:timeline], nil);
+   STAssertTrue([api unarchiveList:listID timeline:timeline], nil);
 
    // get lists for check added
 	lists = [api getList];

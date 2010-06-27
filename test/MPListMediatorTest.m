@@ -144,7 +144,7 @@
    // then, add a list to the remote.
    NSString *listNameToBeAdded = @"listNameToBeAdded";
    timeline = [api createTimeline];
-   NSDictionary *addedList = [api add:listNameToBeAdded timeline:timeline filter:nil];
+   NSDictionary *addedList = [api addList:listNameToBeAdded timeline:timeline filter:nil];
    STAssertNotNil(addedList, nil);
    NSString *addedListID = [addedList objectForKey:@"id"];
 
@@ -161,7 +161,7 @@
    }
 
    // delete the added list from the remote.
-   STAssertTrue([api delete:addedListID timeline:timeline], nil);
+   STAssertTrue([api deleteList:addedListID timeline:timeline], nil);
 
    // sync, and the list also should be deleted from the local.
    [listMediator sync:api];

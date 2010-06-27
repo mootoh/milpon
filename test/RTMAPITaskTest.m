@@ -13,7 +13,7 @@
 #import "RTMAPI+Location.h"
 #import "PrivateInfo.h"
 #import "MPLogger.h"
-#import "MilponHelper.h"
+#import "MPHelper.h"
 
 @interface RTMAPITaskTest : SenTestCase {
    RTMAPI *api;
@@ -36,21 +36,21 @@
 
 - (void) _testGetList
 {
-   NSSet *tasks = [api getTaskList];
+   NSArray *tasks = [api getTaskList];
    STAssertNotNil(tasks, @"task getList should not be nil");		
    STAssertTrue([tasks count] > 0, @"tasks should be one or more.");
 }
 
 - (void) _testGetListForID
 {
-   NSSet *tasks = [api getTaskList:@"8698547" filter:nil lastSync:nil];
+   NSArray *tasks = [api getTaskList:@"8698547" filter:nil lastSync:nil];
    STAssertTrue([tasks count] > 0, @"tasks in Inbox should be one or more.");
 }
 
 - (void) _testGetLastSync
 {
    NSString *lastSync = @"2010-06-05T08:27:05Z";
-   NSSet       *tasks = [api getTaskList:nil filter:nil lastSync:lastSync];
+   NSArray     *tasks = [api getTaskList:nil filter:nil lastSync:lastSync];
 
    STAssertTrue([tasks count] > 0, @"tasks from lastSync %@ should be one or more.", lastSync);
 }
@@ -58,7 +58,7 @@
 - (void) _testGetWithFilter
 {
    NSString *filter = @"isTagged:true";
-   NSSet     *tasks = [api getTaskList:nil filter:filter lastSync:nil];
+   NSArray   *tasks = [api getTaskList:nil filter:filter lastSync:nil];
 
    STAssertTrue([tasks count] > 0, @"tasks with tag should be one or more.");
 }
@@ -97,10 +97,10 @@
    NSString                *due = @"2010-07-01T22:13:00Z";
    [api setTaskDueDate:due timeline:timelineSetDueDate list_id:list_id taskseries_id:taskseries_id task_id:task_id has_due_time:NO parse:NO];
 
-   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
    STAssertEquals([taskserieses count], 1U, nil);
 
-   NSDictionary *taskseries = [taskserieses anyObject];
+   NSDictionary *taskseries = [taskserieses objectAtIndex:0];
    NSString   *dueSpecified = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"due"];
    STAssertTrue([dueSpecified isEqualToString:due], nil);
 
@@ -128,10 +128,10 @@
    NSString            *list_id  = [addedTask objectForKey:@"list_id"];
    [api setTaskLocation:[[locations anyObject] objectForKey:@"id"] timeline:timelineSetLocation list_id:list_id taskseries_id:taskseries_id task_id:task_id];
    
-   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
    STAssertEquals([taskserieses count], 1U, nil);
 
-   NSDictionary *taskseries  = [taskserieses anyObject];
+   NSDictionary *taskseries  = [taskserieses objectAtIndex:0];
    NSString     *location_id = [taskseries objectForKey:@"location_id"];
    STAssertTrue([location_id isEqualToString:[[locations anyObject] objectForKey:@"id"]], nil);   
 
@@ -154,10 +154,10 @@
    NSString            *priority = @"1";
    [api setTaskPriority:priority timeline:timelineSetPriority list_id:list_id taskseries_id:taskseries_id task_id:task_id];
    
-   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
    STAssertEquals([taskserieses count], 1U, nil);
 
-   NSDictionary *taskseries  = [taskserieses anyObject];
+   NSDictionary *taskseries  = [taskserieses objectAtIndex:0];
    NSString             *pri = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"priority"];
    STAssertTrue([priority isEqualToString:pri], nil);
 
@@ -180,10 +180,10 @@
    NSString            *estimate = @"1 hours";
    [api setTaskEstimate:estimate timeline:timelineSetEstimate list_id:list_id taskseries_id:taskseries_id task_id:task_id];
    
-   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
    STAssertEquals([taskserieses count], 1U, nil);
    
-   NSDictionary *taskseries  = [taskserieses anyObject];
+   NSDictionary *taskseries  = [taskserieses objectAtIndex:0];
    NSString             *est = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"estimate"];
    STAssertTrue([estimate isEqualToString:est], nil);
    
@@ -205,10 +205,10 @@
    NSString          *list_id = [addedTask objectForKey:@"list_id"];
    [api completeTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineComplete];
 
-   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
    STAssertEquals([taskserieses count], 1U, nil);
 
-   NSDictionary *taskseries = [taskserieses anyObject];
+   NSDictionary *taskseries = [taskserieses objectAtIndex:0];
    NSString      *completed = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"completed"];
    STAssertTrue(completed && ![completed isEqualToString:@""], nil);
 
@@ -235,10 +235,10 @@
       tagString = [tagString stringByAppendingFormat:@",%@", tag];
    [api setTaskTags:tagString task_id:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetTags];
 
-   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
    STAssertEquals([taskserieses count], 1U, nil);
 
-   NSDictionary *taskseries = [taskserieses anyObject];
+   NSDictionary *taskseries = [taskserieses objectAtIndex:0];
    NSSet      *tagsAssigned = [taskseries objectForKey:@"tags"];
    STAssertTrue([tags isEqualToSet:tagsAssigned], nil);
 
@@ -261,10 +261,10 @@
    NSString       *to_list_id = @"8698547"; // somewhere
    [api moveTaskTo:to_list_id from_list_id:from_list_id task_id:task_id taskseries_id:taskseries_id timeline:timelineMoveTo];
 
-   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
    STAssertEquals([taskserieses count], 1U, nil);
 
-   NSDictionary  *taskseries = [taskserieses anyObject];
+   NSDictionary  *taskseries = [taskserieses objectAtIndex:0];
    NSString   *moved_list_id = [taskseries objectForKey:@"list_id"];
    STAssertTrue([moved_list_id isEqualToString:to_list_id], nil);
 
@@ -287,10 +287,10 @@
    NSString           *nameTo  = @"testAddAndSetNameRenamed";
    [api setTaskName:nameTo timeline:timelineSetName list_id:list_id taskseries_id:taskseries_id task_id:task_id];
    
-   NSSet *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
    STAssertEquals([taskserieses count], 1U, nil);
    
-   NSDictionary  *taskseries = [taskserieses anyObject];
+   NSDictionary  *taskseries = [taskserieses objectAtIndex:0];
    NSString     *renamedName = [taskseries objectForKey:@"name"];
    STAssertTrue([renamedName isEqualToString:nameTo], nil);
    

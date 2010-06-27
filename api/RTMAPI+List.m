@@ -192,7 +192,7 @@
    return (NSArray *)[self call:@"rtm.lists.getList" args:nil delegate:[[[ListGetCallback alloc] init] autorelease]];
 }
 
-- (NSDictionary *) add:(NSString *)name timeline:(NSString *)timeline filter:(NSString *)filter
+- (NSDictionary *) addList:(NSString *)name timeline:(NSString *)timeline filter:(NSString *)filter
 {
    NSArray *keys = [NSArray arrayWithObjects:@"name", @"timeline", nil];
    NSArray *vals = [NSArray arrayWithObjects:name, timeline, nil];
@@ -204,7 +204,7 @@
    return [self call:@"rtm.lists.add" args:args delegate:[[[ListAddCallback alloc] init] autorelease]];
 }
 
-- (BOOL) delete:(NSString *)listID timeline:(NSString *)timeline
+- (BOOL) deleteList:(NSString *)listID timeline:(NSString *)timeline
 {
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"timeline", nil];
    NSArray *vals = [NSArray arrayWithObjects:listID, timeline, nil];
@@ -213,7 +213,7 @@
    return [self call:@"rtm.lists.delete" args:args delegate:[[[ListFlagCheckCallback alloc] init:@"deleted"] autorelease]] != nil;
 }
 
-- (NSDictionary *) setName:(NSString *)name list:(NSString *)listID timeline:(NSString *)timeline
+- (NSDictionary *) setListName:(NSString *)name list:(NSString *)listID timeline:(NSString *)timeline
 {
    NSArray *keys = [NSArray arrayWithObjects:@"name", @"list_id", @"timeline", nil];
    NSArray *vals = [NSArray arrayWithObjects:name, listID, timeline, nil];
@@ -222,7 +222,7 @@
    return [self call:@"rtm.lists.setName" args:args delegate:[[[ListAddCallback alloc] init] autorelease]];
 }
 
-- (BOOL) archive:(NSString *)listID timeline:(NSString *)timeline
+- (BOOL) archiveList:(NSString *)listID timeline:(NSString *)timeline
 {
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"timeline", nil];
    NSArray *vals = [NSArray arrayWithObjects:listID, timeline, nil];
@@ -231,7 +231,7 @@
    return [self call:@"rtm.lists.archive" args:args delegate:[[[ListFlagCheckCallback alloc] init:@"archived"] autorelease]] != nil;
 }
 
-- (BOOL) unarchive:(NSString *)listID timeline:(NSString *)timeline
+- (BOOL) unarchiveList:(NSString *)listID timeline:(NSString *)timeline
 {
    NSArray *keys = [NSArray arrayWithObjects:@"list_id", @"timeline", nil];
    NSArray *vals = [NSArray arrayWithObjects:listID, timeline, nil];

@@ -113,7 +113,7 @@
 {
    if (createdList) {
       NSString *listID = [createdList objectForKey:@"id"];
-      [api delete:listID timeline:timeline];
+      [api deleteList:listID timeline:timeline];
       
       // get lists again to check if the list is absolutely deleted.
       NSArray *lists = [api getList];

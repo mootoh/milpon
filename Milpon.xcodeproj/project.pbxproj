@@ -12,7 +12,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		92016B0511B9FB0E00B3D341 /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 923B79F111B9317B00F9B973 /* RTMAPI+Timeline.m */; };
-		92016B4C11BA005300B3D341 /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPI+List.m */; };
 		92016C6111BA181300B3D341 /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPI+Task.m */; };
 		92016C8711BA19FF00B3D341 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
 		92016D9311BB051A00B3D341 /* MPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MPHelper.m */; };
@@ -34,12 +33,13 @@
 		927A61C0113815ED005B4548 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
 		927A61F31138194B005B4548 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 927A61F21138194B005B4548 /* Settings.bundle */; };
 		929415E111D65F62006AE83B /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929415DF11D65F62006AE83B /* MPListMediator.m */; };
-		9294162311D66511006AE83B /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294162211D66511006AE83B /* MPTaskMediator.m */; };
 		9294162411D66511006AE83B /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294162211D66511006AE83B /* MPTaskMediator.m */; };
 		9294165711D6677D006AE83B /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294165611D6677D006AE83B /* MPMediator.m */; };
 		9294165811D6677D006AE83B /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294165611D6677D006AE83B /* MPMediator.m */; };
-		9294169111D66CA5006AE83B /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929415DF11D65F62006AE83B /* MPListMediator.m */; };
-		9294172911D741C9006AE83B /* MPTaskMediatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294172811D741C9006AE83B /* MPTaskMediatorTest.m */; };
+		9294175911D74DBE006AE83B /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294162211D66511006AE83B /* MPTaskMediator.m */; };
+		9294175A11D74DC0006AE83B /* MPTaskMediatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294172811D741C9006AE83B /* MPTaskMediatorTest.m */; };
+		9294176111D74ED9006AE83B /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929415DF11D65F62006AE83B /* MPListMediator.m */; };
+		9294176411D74EEB006AE83B /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPI+List.m */; };
 		92BFB8A011610A670024023D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92BFB89F11610A670024023D /* Security.framework */; };
 		92C7068211D53CD900EF3B82 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C7068111D53CD900EF3B82 /* MPTask.m */; };
 		92C7068311D53CD900EF3B82 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C7068111D53CD900EF3B82 /* MPTask.m */; };
@@ -64,7 +64,6 @@
 		92D22168115E46310074E93A /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D22167115E46310074E93A /* arrow.png */; };
 		92D3491511C223F3009BFD89 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F440F565D9300473A95 /* checkBox.png */; };
 		92D349B111C348CE009BFD89 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = B9160F460F565D9300473A95 /* checkBoxChecked.png */; };
-		92D4D9C011D5EBDC000F4BAB /* MPListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D4D9BF11D5EBDC000F4BAB /* MPListTest.m */; };
 		92D4D9CB11D5ECE8000F4BAB /* Milpon.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */; };
 		92D4DA5B11D638EA000F4BAB /* icon_overview_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FB4115E077B0074E93A /* icon_overview_disabled.png */; };
 		92D4DA5C11D638ED000F4BAB /* icon_list_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92D21FDA115E08FF0074E93A /* icon_list_disabled.png */; };
@@ -1172,17 +1171,16 @@
 				923B786311B89F7400F9B973 /* RTMAPIParserDelegate.m in Sources */,
 				923B7AB211B948DE00F9B973 /* RTMAPI+Auth.m in Sources */,
 				92016B0511B9FB0E00B3D341 /* RTMAPI+Timeline.m in Sources */,
-				92016B4C11BA005300B3D341 /* RTMAPI+List.m in Sources */,
 				92016C6111BA181300B3D341 /* RTMAPI+Task.m in Sources */,
 				92016C8711BA19FF00B3D341 /* RTMAPI.m in Sources */,
 				92016D9311BB051A00B3D341 /* MPHelper.m in Sources */,
 				92016DE011BB0DCB00B3D341 /* RTMAPI+Location.m in Sources */,
 				9273542F11BB34550039EF99 /* RTMAPI+Note.m in Sources */,
-				92D4D9C011D5EBDC000F4BAB /* MPListTest.m in Sources */,
-				9294162311D66511006AE83B /* MPTaskMediator.m in Sources */,
 				9294165711D6677D006AE83B /* MPMediator.m in Sources */,
-				9294169111D66CA5006AE83B /* MPListMediator.m in Sources */,
-				9294172911D741C9006AE83B /* MPTaskMediatorTest.m in Sources */,
+				9294175911D74DBE006AE83B /* MPTaskMediator.m in Sources */,
+				9294175A11D74DC0006AE83B /* MPTaskMediatorTest.m in Sources */,
+				9294176111D74ED9006AE83B /* MPListMediator.m in Sources */,
+				9294176411D74EEB006AE83B /* RTMAPI+List.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

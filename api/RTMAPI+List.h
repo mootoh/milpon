@@ -14,14 +14,14 @@
  *
  * @return added list dictionary. if failed, exception will be raised.
  */
-- (NSDictionary *) add:(NSString *)name timeline:(NSString *)timeline filter:(NSString *)filter;
+- (NSDictionary *) addList:(NSString *)name timeline:(NSString *)timeline filter:(NSString *)filter;
 
 /**
  * call rtm.lists.delete
  *
  * @return deletion has been done successfully or not.
  */
-- (BOOL) delete:(NSString *)listID timeline:(NSString *)timeline;
+- (BOOL) deleteList:(NSString *)listID timeline:(NSString *)timeline;
 
 /**
  * call rtm.lists.getList
@@ -36,21 +36,21 @@
  *
  * @return renamed list dictionary. if failed, exception will be raised.
  */
-- (NSDictionary *) setName:(NSString *)name list:(NSString *)listID timeline:(NSString *)timeline;
+- (NSDictionary *) setListName:(NSString *)name list:(NSString *)listID timeline:(NSString *)timeline;
 
 /**
  * call rtm.lists.archive
  *
  * @return archive has been done successfully or not.
  */
-- (BOOL) archive:(NSString *)listID timeline:(NSString *)timeline;
+- (BOOL) archiveList:(NSString *)listID timeline:(NSString *)timeline;
 
 /**
  * call rtm.lists.unarchive
  *
  * @return archive has been done successfully or not.
  */
-- (BOOL) unarchive:(NSString *)listID timeline:(NSString *)timeline;
+- (BOOL) unarchiveList:(NSString *)listID timeline:(NSString *)timeline;
 
 #if 0
 // -------------------------------------------------------------------
