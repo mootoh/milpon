@@ -174,7 +174,6 @@
    for (NSManagedObject *deletedList in deletedLists)
       [context deleteObject:deletedList];
    if ([deletedLists count] > 0) {
-      // Save the context.
       NSError *error = nil;
       if (![context save:&error]) {
          NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -188,6 +187,11 @@
          [self updateIfNeeded:list];
       else
          [self insertNewList:list];
+
+   // reload and cache them.
+   NSError *error = nil;
+   [fetchedResultsController performFetch:&error];
+   NSAssert(error == nil, nil);
 }
 
 @end
