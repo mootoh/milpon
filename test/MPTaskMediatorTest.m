@@ -20,12 +20,11 @@
 {
    RTMAPI       *api;
    NSString     *timeline;
-   
+
    NSManagedObjectModel         *managedObjectModel;
    NSManagedObjectContext       *managedObjectContext;
    NSPersistentStoreCoordinator *persistentStoreCoordinator;   
-   NSFetchedResultsController   *listFetchedResultsController, *taskFetchedResultsController;
-   
+
    MPListMediator *listMediator;
    MPTaskMediator *taskMediator;
 }
@@ -34,103 +33,10 @@
 
 @implementation MPTaskMediatorTest
 
-- (void) setUpListMediator
+#pragma mark -
+#pragma mark setup, cleanup
+- (void) setupCoreDataStack
 {
-   NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-   [fetchRequest setEntity:[NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext]];
-   [fetchRequest setFetchBatchSize:20];
-   
-   NSSortDescriptor *idSortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"iD" ascending:YES] autorelease];
-   [fetchRequest setSortDescriptors:[NSArray arrayWithObject:idSortDescriptor]];
-   
-   NSPredicate *pred = [NSPredicate predicateWithFormat:@"archived == false AND deleted == false"];
-   [fetchRequest setPredicate:pred];
-   
-   listFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"ListMediatorTest"];
-
-   listMediator = [[MPListMediator alloc] initWithFetchedResultsController:listFetchedResultsController];
-}
-   
-- (void) tearDownListMediator
-{
-   // clean up the entities
-   NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-   [fetchRequest setEntity:[NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext]];
-   
-   NSError *error = nil;
-   NSArray *items = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-   STAssertNil(error, nil);
-   
-   for (NSManagedObject *managedObject in items)
-      [managedObjectContext deleteObject:managedObject];
-   
-   if ([items count] > 0) {
-      [managedObjectContext save:&error];
-      if (error) {
-         LOG(@"Failed to save to data store: %@", [error localizedDescription]);
-         NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
-         if(detailedErrors != nil && [detailedErrors count] > 0) {
-            for(NSError* detailedError in detailedErrors) {
-               LOG(@"  DetailedError: %@", [detailedError userInfo]);
-            }
-         }
-         else {
-            LOG(@"  %@", [error userInfo]);
-         }
-      }
-      STAssertNil(error, [error localizedDescription]);
-   }
-   
-   [listFetchedResultsController release];
-   [listMediator release];
-}
-
-- (void) setUpTaskMediator
-{
-   NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-   [fetchRequest setEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext]];
-   [fetchRequest setFetchBatchSize:20];
-   
-   NSSortDescriptor *idSortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"iD" ascending:YES] autorelease];
-   [fetchRequest setSortDescriptors:[NSArray arrayWithObject:idSortDescriptor]];
-   
-   taskFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"TaskMediatorTest"];
-   
-   taskMediator = [[MPTaskMediator alloc] initWithFetchedResultsController:taskFetchedResultsController];
-}   
-
-- (void) tearDownTaskMediator
-{
-   // clean up the entities
-   NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-   [fetchRequest setEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext]];
-   
-   NSError *error = nil;
-   NSArray *items = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-   STAssertNil(error, nil);
-
-   for (NSManagedObject *managedObject in items) {
-      LOG(@"mo = %@", managedObject);
-      [managedObjectContext deleteObject:managedObject];
-   }
-
-   if ([items count] > 0) {
-      [managedObjectContext save:&error];
-      STAssertNil(error, [error localizedDescription]);
-   }
-
-   [taskFetchedResultsController release];
-   [taskMediator release];
-}
-
-- (void) setUp
-{
-   api = [[RTMAPI alloc] init];
-   api.token = RTM_TOKEN_D;
-   
-   /*
-    * setup CoreData stack.
-    */
    managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:[NSArray arrayWithObject:[NSBundle bundleForClass:[self class]]]] retain];
    
    NSURL            *storeUrl = [NSURL fileURLWithPath:@"/tmp/MilponUnitTest.sqlite"];
@@ -139,18 +45,59 @@
    
    managedObjectContext = [[NSManagedObjectContext alloc] init];
    [managedObjectContext setPersistentStoreCoordinator:persistentStoreCoordinator];
+}
+
+// clean up the List entities
+- (void) deleteEntities:(NSString *) entityName
+{
+   NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+   [fetchRequest setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:managedObjectContext]];
    
-   [self setUpListMediator];
-   [self setUpTaskMediator];
+   NSError *error = nil;
+   NSArray *items = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+   STAssertNil(error, nil);
+   
+   for (NSManagedObject *managedObject in items)
+      [managedObjectContext deleteObject:managedObject];
+   
+   [managedObjectContext save:&error];
+   if (error) {
+      LOG(@"Failed to save to data store: %@", [error localizedDescription]);
+      NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+      if(detailedErrors != nil && [detailedErrors count] > 0) {
+         for(NSError* detailedError in detailedErrors) {
+            LOG(@"  DetailedError: %@", [detailedError userInfo]);
+         }
+      }
+      else {
+         LOG(@"  %@", [error userInfo]);
+      }
+   }
+   STAssertNil(error, [error localizedDescription]);
+}
+
+- (void) setUp
+{
+   api = [[RTMAPI alloc] init];
+   api.token = RTM_TOKEN_D;
+
+   [self setupCoreDataStack];   
+   listMediator = [[MPListMediator alloc] initWithManagedObjectContext:managedObjectContext];
+   taskMediator = [[MPTaskMediator alloc] initWithManagedObjectContext:managedObjectContext];
 }
 
 - (void) tearDown
 {
-   [self tearDownTaskMediator];
-   [self tearDownListMediator];
+   [self deleteEntities:@"TaskSeries"];
+   [self deleteEntities:@"Task"];
+   [self deleteEntities:@"List"];
+
+   [listMediator release];
+   [taskMediator release];
+
    [managedObjectContext release];
-   [managedObjectModel release];
    [persistentStoreCoordinator release];
+   [managedObjectModel release];
    [api release];
 }
 
