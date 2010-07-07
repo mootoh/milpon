@@ -33,14 +33,9 @@
 
 @implementation MPListTest
 
-
 #pragma mark -
 #pragma mark Core Data stack
 
-/**
- Returns the managed object context for the application.
- If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
- */
 - (NSManagedObjectContext *) managedObjectContext
 {   
    if (managedObjectContext != nil)
@@ -54,10 +49,6 @@
    return managedObjectContext;
 }
 
-/**
- Returns the managed object model for the application.
- If the model doesn't already exist, it is created by merging all of the models found in the application bundle.
- */
 - (NSManagedObjectModel *)managedObjectModel
 {
    if (managedObjectModel != nil)
@@ -67,10 +58,6 @@
    return managedObjectModel;
 }
 
-/**
- Returns the persistent store coordinator for the application.
- If the coordinator doesn't already exist, it is created and the application's store added to it.
- */
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
    if (persistentStoreCoordinator != nil)
@@ -105,8 +92,6 @@
    api = [[RTMAPI alloc] init];
    api.token = RTM_TOKEN_D;
    createdList = nil;
-//   timeline = [api createTimeline];
-//   STAssertNotNil(timeline, nil);
 }
 
 - (void) tearDown
