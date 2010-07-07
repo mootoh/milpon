@@ -61,6 +61,7 @@
 		92CC0C5511E5321B001EA183 /* MPTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C4B11E5321B001EA183 /* MPTaskViewController.m */; };
 		92CC0C5A11E5323E001EA183 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C5911E5323E001EA183 /* MPAppDelegate.m */; };
 		92CC0C5B11E5323E001EA183 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C5911E5323E001EA183 /* MPAppDelegate.m */; };
+		92CC0CA411E5344B001EA183 /* MilponBetaIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0CA311E5344B001EA183 /* MilponBetaIconSmall.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,7 @@
 		92CC0C4B11E5321B001EA183 /* MPTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPTaskViewController.m; path = ui/MPTaskViewController.m; sourceTree = "<group>"; };
 		92CC0C5811E5323E001EA183 /* MPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPAppDelegate.h; path = ui/MPAppDelegate.h; sourceTree = "<group>"; };
 		92CC0C5911E5323E001EA183 /* MPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPAppDelegate.m; path = ui/MPAppDelegate.m; sourceTree = "<group>"; };
+		92CC0CA311E5344B001EA183 /* MilponBetaIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MilponBetaIconSmall.png; path = resource/MilponBetaIconSmall.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				92CC0CA311E5344B001EA183 /* MilponBetaIconSmall.png */,
 				9218015B11E4C58700EDF3D8 /* Milpon-Info.plist */,
 				921801B511E4C7A100EDF3D8 /* Milpon-Beta.plist */,
 				9218015911E4C4FD00EDF3D8 /* MainWindow.xib */,
@@ -353,6 +356,7 @@
 			files = (
 				921801A411E4C78500EDF3D8 /* MainWindow.xib in Resources */,
 				92CC0C5111E5321B001EA183 /* MPAddTaskView.xib in Resources */,
+				92CC0CA411E5344B001EA183 /* MilponBetaIconSmall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,8 +484,11 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
 			};
