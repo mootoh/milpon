@@ -111,8 +111,8 @@
       abort();
    }
 
-   listMediator = [[MPListMediator alloc] initWithFetchedResultsController:self.fetchedResultsController];
-   taskMediator = [[MPTaskMediator alloc] initWithFetchedResultsController:self.fetchedResultsController];
+   listMediator = [[MPListMediator alloc] initWithManagedObjectContext:self.managedObjectContext];
+   taskMediator = [[MPTaskMediator alloc] initWithManagedObjectContext:self.managedObjectContext];
 
    [self setupToolbar];
 }
