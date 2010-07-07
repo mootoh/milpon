@@ -184,6 +184,11 @@
       ? [api getTaskList:[[MilponHelper sharedHelper] dateToRtmString:lastSync]]
       : [api getTaskList];
 
+   // check deleted TaskSerieses
+   // check deleted Tasks
+   // check deleted Notes
+   // check orphan  Tags
+
    for (NSDictionary *taskseries in taskSeriesesRetrieved) {
       [self insertNewTask:taskseries];
    }
