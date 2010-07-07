@@ -21,18 +21,50 @@
 		923B786311B89F7400F9B973 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIParserDelegate.m */; };
 		923B79F311B9317B00F9B973 /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 923B79F111B9317B00F9B973 /* RTMAPI+Timeline.m */; };
 		923B7AB211B948DE00F9B973 /* RTMAPI+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPI+Auth.m */; };
+		9248B27411E4BA5D0028560C /* Milpon.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */; };
+		9248B27511E4BA5D0028560C /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIParserDelegate.m */; };
+		9248B27611E4BA5D0028560C /* RTMAPI+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPI+Auth.m */; };
+		9248B27711E4BA5D0028560C /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 923B79F111B9317B00F9B973 /* RTMAPI+Timeline.m */; };
+		9248B27811E4BA5D0028560C /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPI+Task.m */; };
+		9248B27911E4BA5D0028560C /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
+		9248B27A11E4BA5D0028560C /* MPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MPHelper.m */; };
+		9248B27B11E4BA5D0028560C /* RTMAPI+Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 92016DDF11BB0DCB00B3D341 /* RTMAPI+Location.m */; };
+		9248B27C11E4BA5D0028560C /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */; };
+		9248B27D11E4BA5D0028560C /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294165611D6677D006AE83B /* MPMediator.m */; };
+		9248B27E11E4BA5D0028560C /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294162211D66511006AE83B /* MPTaskMediator.m */; };
+		9248B27F11E4BA5D0028560C /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929415DF11D65F62006AE83B /* MPListMediator.m */; };
+		9248B28011E4BA5D0028560C /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPI+List.m */; };
+		9248B28111E4BA5D0028560C /* MPListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D4D9BF11D5EBDC000F4BAB /* MPListTest.m */; };
+		9248B28211E4BA5D0028560C /* RTMAPIListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD80F565DE000473A95 /* RTMAPIListTest.m */; };
+		9248B28411E4BA5D0028560C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92F7189B114E228E00925BB6 /* CoreData.framework */; };
+		9248B2B111E4BB2B0028560C /* Milpon.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B93B8322114D0BB800C8B833 /* Milpon.xcdatamodel */; };
+		9248B2B211E4BB2B0028560C /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160ECB0F565CEF00473A95 /* RTMAPIParserDelegate.m */; };
+		9248B2B311E4BB2B0028560C /* RTMAPI+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC30F565CEF00473A95 /* RTMAPI+Auth.m */; };
+		9248B2B411E4BB2B0028560C /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 923B79F111B9317B00F9B973 /* RTMAPI+Timeline.m */; };
+		9248B2B511E4BB2B0028560C /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC90F565CEF00473A95 /* RTMAPI+Task.m */; };
+		9248B2B611E4BB2B0028560C /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC10F565CEF00473A95 /* RTMAPI.m */; };
+		9248B2B711E4BB2B0028560C /* MPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160F380F565D6800473A95 /* MPHelper.m */; };
+		9248B2B811E4BB2B0028560C /* RTMAPI+Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 92016DDF11BB0DCB00B3D341 /* RTMAPI+Location.m */; };
+		9248B2B911E4BB2B0028560C /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */; };
+		9248B2BA11E4BB2B0028560C /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294165611D6677D006AE83B /* MPMediator.m */; };
+		9248B2BB11E4BB2B0028560C /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294162211D66511006AE83B /* MPTaskMediator.m */; };
+		9248B2BC11E4BB2B0028560C /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929415DF11D65F62006AE83B /* MPListMediator.m */; };
+		9248B2BD11E4BB2B0028560C /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC50F565CEF00473A95 /* RTMAPI+List.m */; };
+		9248B2C111E4BB2B0028560C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92F7189B114E228E00925BB6 /* CoreData.framework */; };
+		9248B2D011E4BB710028560C /* RTMAPITaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD90F565DE000473A95 /* RTMAPITaskTest.m */; };
 		925C7A4E0FBEB7F300BCD6EF /* migrate_000_init.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A490FBEB7F300BCD6EF /* migrate_000_init.sql */; };
 		925C7A4F0FBEB7F300BCD6EF /* migrate_001_add_filter_to_list.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4A0FBEB7F300BCD6EF /* migrate_001_add_filter_to_list.sql */; };
 		925C7A500FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4B0FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql */; };
 		925C7A510FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4C0FBEB7F300BCD6EF /* migrate_003_add_note_id_to_note.sql */; };
 		925C7A520FBEB7F300BCD6EF /* migrate_005_version_2.sql in Resources */ = {isa = PBXBuildFile; fileRef = 925C7A4D0FBEB7F300BCD6EF /* migrate_005_version_2.sql */; };
+		925CFA2211E4B3F80074C250 /* MPListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D4D9BF11D5EBDC000F4BAB /* MPListTest.m */; };
+		925CFA2511E4B4710074C250 /* RTMAPIListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160FD80F565DE000473A95 /* RTMAPIListTest.m */; };
 		9273542F11BB34550039EF99 /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = B9160EC70F565CEF00473A95 /* RTMAPI+Note.m */; };
 		9278D1950FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql in Resources */ = {isa = PBXBuildFile; fileRef = 9278D1940FBF03DE0007B03B /* migrate_006_add_initial_lastsync.sql */; };
 		9278D1B60FBF07C00007B03B /* MilponBetaIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9AE53170F6B4C5C0076D258 /* MilponBetaIconSmall.png */; };
 		9278D3B40FBF185B0007B03B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9278D3B30FBF185B0007B03B /* Default.png */; };
 		927A61C0113815ED005B4548 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B93D753A0F941105001E11F3 /* Entitlements.plist */; };
 		927A61F31138194B005B4548 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 927A61F21138194B005B4548 /* Settings.bundle */; };
-		9282E2BF11D791AB006FAA17 /* MPTaskMediatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294172811D741C9006AE83B /* MPTaskMediatorTest.m */; };
 		929415E111D65F62006AE83B /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929415DF11D65F62006AE83B /* MPListMediator.m */; };
 		9294162411D66511006AE83B /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294162211D66511006AE83B /* MPTaskMediator.m */; };
 		9294165711D6677D006AE83B /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294165611D6677D006AE83B /* MPMediator.m */; };
@@ -178,6 +210,8 @@
 		922C0015101C66EC0029AC32 /* IconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconSmall.png; sourceTree = "<group>"; };
 		923B79F011B9317B00F9B973 /* RTMAPI+Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTMAPI+Timeline.h"; sourceTree = "<group>"; };
 		923B79F111B9317B00F9B973 /* RTMAPI+Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTMAPI+Timeline.m"; sourceTree = "<group>"; };
+		9248B28A11E4BA5D0028560C /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9248B2C811E4BB2B0028560C /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		925C7A490FBEB7F300BCD6EF /* migrate_000_init.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_000_init.sql; sourceTree = "<group>"; };
 		925C7A4A0FBEB7F300BCD6EF /* migrate_001_add_filter_to_list.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_001_add_filter_to_list.sql; sourceTree = "<group>"; };
 		925C7A4B0FBEB7F300BCD6EF /* migrate_002_add_to_list_id_to_task.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = migrate_002_add_to_list_id_to_task.sql; sourceTree = "<group>"; };
@@ -408,6 +442,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9248B28311E4BA5D0028560C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9248B28411E4BA5D0028560C /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9248B2C011E4BB2B0028560C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9248B2C111E4BB2B0028560C /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92F71848114E204C00925BB6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -438,6 +488,8 @@
 				1D6058910D05DD3D006BFB54 /* Milpon.app */,
 				92F7184B114E204C00925BB6 /* UnitTest.octest */,
 				92F8589B11BFCC740006DA57 /* Milpon.app */,
+				9248B28A11E4BA5D0028560C /* UnitTest.octest */,
+				9248B2C811E4BB2B0028560C /* UnitTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -940,6 +992,42 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Milpon.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9248B27111E4BA5D0028560C /* UnitTest-API-List */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9248B28611E4BA5D0028560C /* Build configuration list for PBXNativeTarget "UnitTest-API-List" */;
+			buildPhases = (
+				9248B27211E4BA5D0028560C /* Resources */,
+				9248B27311E4BA5D0028560C /* Sources */,
+				9248B28311E4BA5D0028560C /* Frameworks */,
+				9248B28511E4BA5D0028560C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UnitTest-API-List";
+			productName = UnitTest;
+			productReference = 9248B28A11E4BA5D0028560C /* UnitTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		9248B2AE11E4BB2B0028560C /* UnitTest-API-Task */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9248B2C411E4BB2B0028560C /* Build configuration list for PBXNativeTarget "UnitTest-API-Task" */;
+			buildPhases = (
+				9248B2AF11E4BB2B0028560C /* Resources */,
+				9248B2B011E4BB2B0028560C /* Sources */,
+				9248B2C011E4BB2B0028560C /* Frameworks */,
+				9248B2C311E4BB2B0028560C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UnitTest-API-Task";
+			productName = UnitTest;
+			productReference = 9248B2C811E4BB2B0028560C /* UnitTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		92F7184A114E204C00925BB6 /* UnitTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92F71851114E204D00925BB6 /* Build configuration list for PBXNativeTarget "UnitTest" */;
@@ -1004,6 +1092,8 @@
 				1D6058900D05DD3D006BFB54 /* Milpon */,
 				92F8584A11BFCC740006DA57 /* Milpon Beta */,
 				92F7184A114E204C00925BB6 /* UnitTest */,
+				9248B27111E4BA5D0028560C /* UnitTest-API-List */,
+				9248B2AE11E4BB2B0028560C /* UnitTest-API-Task */,
 			);
 		};
 /* End PBXProject section */
@@ -1067,6 +1157,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9248B27211E4BA5D0028560C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9248B2AF11E4BB2B0028560C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92F71846114E204C00925BB6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1120,6 +1224,32 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9248B28511E4BA5D0028560C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		9248B2C311E4BB2B0028560C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		92F71849114E204C00925BB6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1163,6 +1293,49 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9248B27311E4BA5D0028560C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9248B27411E4BA5D0028560C /* Milpon.xcdatamodel in Sources */,
+				9248B27511E4BA5D0028560C /* RTMAPIParserDelegate.m in Sources */,
+				9248B27611E4BA5D0028560C /* RTMAPI+Auth.m in Sources */,
+				9248B27711E4BA5D0028560C /* RTMAPI+Timeline.m in Sources */,
+				9248B27811E4BA5D0028560C /* RTMAPI+Task.m in Sources */,
+				9248B27911E4BA5D0028560C /* RTMAPI.m in Sources */,
+				9248B27A11E4BA5D0028560C /* MPHelper.m in Sources */,
+				9248B27B11E4BA5D0028560C /* RTMAPI+Location.m in Sources */,
+				9248B27C11E4BA5D0028560C /* RTMAPI+Note.m in Sources */,
+				9248B27D11E4BA5D0028560C /* MPMediator.m in Sources */,
+				9248B27E11E4BA5D0028560C /* MPTaskMediator.m in Sources */,
+				9248B27F11E4BA5D0028560C /* MPListMediator.m in Sources */,
+				9248B28011E4BA5D0028560C /* RTMAPI+List.m in Sources */,
+				9248B28111E4BA5D0028560C /* MPListTest.m in Sources */,
+				9248B28211E4BA5D0028560C /* RTMAPIListTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9248B2B011E4BB2B0028560C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9248B2B111E4BB2B0028560C /* Milpon.xcdatamodel in Sources */,
+				9248B2B211E4BB2B0028560C /* RTMAPIParserDelegate.m in Sources */,
+				9248B2B311E4BB2B0028560C /* RTMAPI+Auth.m in Sources */,
+				9248B2B411E4BB2B0028560C /* RTMAPI+Timeline.m in Sources */,
+				9248B2B511E4BB2B0028560C /* RTMAPI+Task.m in Sources */,
+				9248B2B611E4BB2B0028560C /* RTMAPI.m in Sources */,
+				9248B2B711E4BB2B0028560C /* MPHelper.m in Sources */,
+				9248B2B811E4BB2B0028560C /* RTMAPI+Location.m in Sources */,
+				9248B2B911E4BB2B0028560C /* RTMAPI+Note.m in Sources */,
+				9248B2BA11E4BB2B0028560C /* MPMediator.m in Sources */,
+				9248B2BB11E4BB2B0028560C /* MPTaskMediator.m in Sources */,
+				9248B2BC11E4BB2B0028560C /* MPListMediator.m in Sources */,
+				9248B2BD11E4BB2B0028560C /* RTMAPI+List.m in Sources */,
+				9248B2D011E4BB710028560C /* RTMAPITaskTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92F71847114E204C00925BB6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1180,7 +1353,8 @@
 				9294175911D74DBE006AE83B /* MPTaskMediator.m in Sources */,
 				9294176111D74ED9006AE83B /* MPListMediator.m in Sources */,
 				9294176411D74EEB006AE83B /* RTMAPI+List.m in Sources */,
-				9282E2BF11D791AB006FAA17 /* MPTaskMediatorTest.m in Sources */,
+				925CFA2211E4B3F80074C250 /* MPListTest.m in Sources */,
+				925CFA2511E4B4710074C250 /* RTMAPIListTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1270,6 +1444,201 @@
 			};
 			name = Release;
 		};
+		9248B28711E4BA5D0028560C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\\\"$(SDKROOT)/Developer/Library/Frameworks\\\"",
+					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/Developer/Library/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "UnitTest-Info copy.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = iphonesimulator4.0;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		9248B28811E4BA5D0028560C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\\\"$(SDKROOT)/Developer/Library/Frameworks\\\"",
+					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "UnitTest-Info copy.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = iphonesimulator3.1.3;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		9248B28911E4BA5D0028560C /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\\\"$(SDKROOT)/Developer/Library/Frameworks\\\"",
+					"\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\"",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				INFOPLIST_FILE = "others/UnitTest-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = iphonesimulator4.0;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = UnitTest;
+		};
+		9248B2C511E4BB2B0028560C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\\\\\\\"$(SDKROOT)/Developer/Library/Frameworks\\\\\\\"",
+					"\\\\\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\\\\\"",
+					"\\\"$(DEVELOPER_FRAMEWORKS_DIR)\\\"",
+					"\\\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/Developer/Library/Frameworks\\\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/Developer/Library/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "UnitTest-Info copy 2.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = iphonesimulator4.0;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		9248B2C611E4BB2B0028560C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\\\\\\\"$(SDKROOT)/Developer/Library/Frameworks\\\\\\\"",
+					"\\\\\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\\\\\"",
+					"\\\"$(DEVELOPER_FRAMEWORKS_DIR)\\\"",
+					"\\\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/Developer/Library/Frameworks\\\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "UnitTest-Info copy 2.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = iphonesimulator3.1.3;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		9248B2C711E4BB2B0028560C /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\\\\\\\"$(SDKROOT)/Developer/Library/Frameworks\\\\\\\"",
+					"\\\\\\\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\\\\\\\"",
+					"\\\"$(DEVELOPER_FRAMEWORKS_DIR)\\\"",
+					"\\\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/Developer/Library/Frameworks\\\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				INFOPLIST_FILE = "others/UnitTest-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				SDKROOT = iphonesimulator4.0;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = UnitTest;
+		};
 		92F7184D114E204D00925BB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1335,6 +1704,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
@@ -1423,18 +1793,18 @@
 		B97AA0300F9FEB70004A23E3 /* UnitTest */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphonesimulator3.2;
 			};
 			name = UnitTest;
 		};
@@ -1472,7 +1842,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -1489,7 +1859,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Release;
 		};
@@ -1502,6 +1872,26 @@
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				B97AA0310F9FEB70004A23E3 /* UnitTest */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9248B28611E4BA5D0028560C /* Build configuration list for PBXNativeTarget "UnitTest-API-List" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9248B28711E4BA5D0028560C /* Debug */,
+				9248B28811E4BA5D0028560C /* Release */,
+				9248B28911E4BA5D0028560C /* UnitTest */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9248B2C411E4BB2B0028560C /* Build configuration list for PBXNativeTarget "UnitTest-API-Task" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9248B2C511E4BB2B0028560C /* Debug */,
+				9248B2C611E4BB2B0028560C /* Release */,
+				9248B2C711E4BB2B0028560C /* UnitTest */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
