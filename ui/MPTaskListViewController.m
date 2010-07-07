@@ -98,7 +98,7 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
       NSDate *now = [NSDate date];
       NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
       NSTimeInterval interval = [due timeIntervalSinceDate:now];
-      LOG(@"interval = %d", interval);
+      LOG(@"interval = %f", interval);
 
       if (interval >= 0 && interval < 60*60*24*7) {
          [dateFormatter setDateFormat:@"E"];

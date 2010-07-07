@@ -14,7 +14,7 @@
 - (NSString *) is_completed
 {
    [self willAccessValueForKey:@"is_completed"];
-   NSDate *c = [self completed];
+   NSDate *c = [self valueForKey:@"completed"];
    [self didAccessValueForKey:@"is_completed"];
    return c == nil ? nil : @"Completed";
 }
