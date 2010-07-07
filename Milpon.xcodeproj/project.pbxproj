@@ -62,6 +62,17 @@
 		92CC0C5A11E5323E001EA183 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C5911E5323E001EA183 /* MPAppDelegate.m */; };
 		92CC0C5B11E5323E001EA183 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C5911E5323E001EA183 /* MPAppDelegate.m */; };
 		92CC0CA411E5344B001EA183 /* MilponBetaIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0CA311E5344B001EA183 /* MilponBetaIconSmall.png */; };
+		92CC0CDC11E5359F001EA183 /* MPListMediatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0CC811E53534001EA183 /* MPListMediatorTest.m */; };
+		92CC0CDD11E535A0001EA183 /* MPListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0CC911E53534001EA183 /* MPListTest.m */; };
+		92CC0CE311E535B6001EA183 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28860BE40F44EE6400985440 /* CoreData.framework */; };
+		92CC0CE611E535C6001EA183 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218018211E4C62F00EDF3D8 /* RTMAPI.m */; };
+		92CC0CE911E535D2001EA183 /* Milpon.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 28860B760F44E54D00985440 /* Milpon.xcdatamodel */; };
+		92CC0CEA11E535D5001EA183 /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C1E11E53170001EA183 /* MPListMediator.m */; };
+		92CC0CEB11E535D6001EA183 /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2011E53170001EA183 /* MPMediator.m */; };
+		92CC0CEE11E535F5001EA183 /* RTMAPI+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C211E4C7FA00EDF3D8 /* RTMAPI+Auth.m */; };
+		92CC0CEF11E535F8001EA183 /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C411E4C7FA00EDF3D8 /* RTMAPI+List.m */; };
+		92CC0CF011E535FB001EA183 /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CC11E4C7FA00EDF3D8 /* RTMAPI+Timeline.m */; };
+		92CC0CF311E53604001EA183 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CE11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +132,11 @@
 		92CC0C5811E5323E001EA183 /* MPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPAppDelegate.h; path = ui/MPAppDelegate.h; sourceTree = "<group>"; };
 		92CC0C5911E5323E001EA183 /* MPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPAppDelegate.m; path = ui/MPAppDelegate.m; sourceTree = "<group>"; };
 		92CC0CA311E5344B001EA183 /* MilponBetaIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MilponBetaIconSmall.png; path = resource/MilponBetaIconSmall.png; sourceTree = "<group>"; };
+		92CC0CC811E53534001EA183 /* MPListMediatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPListMediatorTest.m; path = test/MPListMediatorTest.m; sourceTree = "<group>"; };
+		92CC0CC911E53534001EA183 /* MPListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPListTest.m; path = test/MPListTest.m; sourceTree = "<group>"; };
+		92CC0CCA11E53534001EA183 /* MPTaskMediatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPTaskMediatorTest.m; path = test/MPTaskMediatorTest.m; sourceTree = "<group>"; };
+		92CC0CD311E53558001EA183 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		92CC0CD411E53558001EA183 /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTest-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +164,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		92CC0CD011E53558001EA183 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92CC0CE311E535B6001EA183 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -156,6 +180,7 @@
 			children = (
 				1D6058910D05DD3D006BFB54 /* Milpon.app */,
 				921801B211E4C78500EDF3D8 /* Milpon Beta.app */,
+				92CC0CD311E53558001EA183 /* UnitTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,6 +196,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				92CC0C3E11E531BE001EA183 /* Test */,
+				92CC0CD411E53558001EA183 /* UnitTest-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -256,6 +282,9 @@
 		92CC0C3E11E531BE001EA183 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				92CC0CC811E53534001EA183 /* MPListMediatorTest.m */,
+				92CC0CC911E53534001EA183 /* MPListTest.m */,
+				92CC0CCA11E53534001EA183 /* MPTaskMediatorTest.m */,
 			);
 			name = Test;
 			sourceTree = "<group>";
@@ -315,6 +344,24 @@
 			productReference = 921801B211E4C78500EDF3D8 /* Milpon Beta.app */;
 			productType = "com.apple.product-type.application";
 		};
+		92CC0CD211E53558001EA183 /* UnitTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92CC0CD711E53559001EA183 /* Build configuration list for PBXNativeTarget "UnitTest" */;
+			buildPhases = (
+				92CC0CCE11E53558001EA183 /* Resources */,
+				92CC0CCF11E53558001EA183 /* Sources */,
+				92CC0CD011E53558001EA183 /* Frameworks */,
+				92CC0CD111E53558001EA183 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UnitTest;
+			productName = UnitTest;
+			productReference = 92CC0CD311E53558001EA183 /* UnitTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -336,6 +383,7 @@
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Milpon */,
 				921801A211E4C78500EDF3D8 /* Milpon Beta */,
+				92CC0CD211E53558001EA183 /* UnitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -360,7 +408,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		92CC0CCE11E53558001EA183 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		92CC0CD111E53558001EA183 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -414,6 +485,23 @@
 				92CC0C5411E5321B001EA183 /* MPTaskListViewController.m in Sources */,
 				92CC0C5511E5321B001EA183 /* MPTaskViewController.m in Sources */,
 				92CC0C5B11E5323E001EA183 /* MPAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92CC0CCF11E53558001EA183 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92CC0CDC11E5359F001EA183 /* MPListMediatorTest.m in Sources */,
+				92CC0CDD11E535A0001EA183 /* MPListTest.m in Sources */,
+				92CC0CE611E535C6001EA183 /* RTMAPI.m in Sources */,
+				92CC0CE911E535D2001EA183 /* Milpon.xcdatamodel in Sources */,
+				92CC0CEA11E535D5001EA183 /* MPListMediator.m in Sources */,
+				92CC0CEB11E535D6001EA183 /* MPMediator.m in Sources */,
+				92CC0CEE11E535F5001EA183 /* RTMAPI+Auth.m in Sources */,
+				92CC0CEF11E535F8001EA183 /* RTMAPI+List.m in Sources */,
+				92CC0CF011E535FB001EA183 /* RTMAPI+Timeline.m in Sources */,
+				92CC0CF311E53604001EA183 /* RTMAPIParserDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +566,141 @@
 			};
 			name = Release;
 		};
+		92CC0CD511E53559001EA183 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "UnitTest-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		92CC0CD611E53559001EA183 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "UnitTest-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		92CC0CD811E53562001EA183 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PREBINDING = NO;
+				SDKROOT = iphonesimulator4.0;
+			};
+			name = UnitTest;
+		};
+		92CC0CD911E53562001EA183 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "others/Milpon-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PRODUCT_NAME = Milpon;
+			};
+			name = UnitTest;
+		};
+		92CC0CDA11E53562001EA183 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "others/Milpon-Beta.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PRODUCT_NAME = "Milpon Beta";
+			};
+			name = UnitTest;
+		};
+		92CC0CDB11E53562001EA183 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "UnitTest-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTest;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = UnitTest;
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -515,6 +738,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
+				92CC0CD911E53562001EA183 /* UnitTest */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -524,7 +748,18 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				921801B011E4C78500EDF3D8 /* Debug */,
+				92CC0CDA11E53562001EA183 /* UnitTest */,
 				921801B111E4C78500EDF3D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92CC0CD711E53559001EA183 /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92CC0CD511E53559001EA183 /* Debug */,
+				92CC0CDB11E53562001EA183 /* UnitTest */,
+				92CC0CD611E53559001EA183 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -533,6 +768,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
+				92CC0CD811E53562001EA183 /* UnitTest */,
 				C01FCF5008A954540054247B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
