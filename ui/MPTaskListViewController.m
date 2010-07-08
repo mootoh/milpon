@@ -267,6 +267,7 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
 {
    if (fetchedResultsController != nil)
       return fetchedResultsController;
+   [NSFetchedResultsController deleteCacheWithName:@"TaskCache"];
 
    // Create the fetch request for the entity.
    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -293,7 +294,9 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
    NSPredicate *pred = [NSPredicate predicateWithFormat:predicateString];
    [fetchRequest setPredicate:pred];
    
-   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"is_completed" cacheName:showToggle ? k_CACHE_NAME_FOR_COMPLETED : k_CACHE_NAME_FOR_NOT_COMPLETED];
+//   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"is_completed" cacheName:showToggle ? k_CACHE_NAME_FOR_COMPLETED : k_CACHE_NAME_FOR_NOT_COMPLETED];
+   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"TaskCache"];
+
    aFetchedResultsController.delegate = self;
    self.fetchedResultsController = aFetchedResultsController;
 
