@@ -152,13 +152,16 @@ CGFloat max(CGFloat a, CGFloat b)
    return (a > b) ? a : b;
 }
 
+static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
+
 - (CGFloat)tableView:(UITableView *) tableView heightForRowAtIndexPath:(NSIndexPath *) indexPath
 {
    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
+   if (! managedObject) return k_DEFAULT_CELL_HEIGHT;
    NSString *name = [[[managedObject valueForKey:@"taskSeries"] valueForKey:@"name"] description];
    LOG(@"name = %@", name);
    CGFloat h = [name sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(140, 1000) lineBreakMode:UILineBreakModeWordWrap].height;
-   return max(h, 44);
+   return max(h, k_DEFAULT_CELL_HEIGHT);
 }
 
 // Customize the appearance of table view cells.
