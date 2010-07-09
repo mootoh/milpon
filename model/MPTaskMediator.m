@@ -137,8 +137,8 @@
          [newTask setValue:[task objectForKey:@"estimate"] forKey:@"estimate"];
       }
       
-      [newTask setValue:[self boolNumberFromString:[task objectForKey:@"has_due_time"]] forKey:@"has_due_time"];
-      [newTask setValue:[self integerNumberFromString:[task objectForKey:@"postponed"]] forKey:@"postponed"];
+      [newTask setValue:boolNumberFromString([task objectForKey:@"has_due_time"]) forKey:@"has_due_time"];
+      [newTask setValue:integerNumberFromString([task objectForKey:@"postponed"]) forKey:@"postponed"];
       
       NSString *priorityString = [task objectForKey:@"priority"];
       NSInteger priority = [priorityString isEqualToString:@"N"] ? 0 : [priorityString integerValue];

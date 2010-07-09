@@ -80,7 +80,6 @@
 		92CC0DA011E53B34001EA183 /* MPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218019A11E4C6DE00EDF3D8 /* MPHelper.m */; };
 		92CC0DB511E53BC3001EA183 /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CA11E4C7FA00EDF3D8 /* RTMAPI+Task.m */; };
 		92CC0DB611E53BC6001EA183 /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C811E4C7FA00EDF3D8 /* RTMAPI+Note.m */; };
-		92F3802E11E6C29A0014A873 /* MPListMediatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0CC811E53534001EA183 /* MPListMediatorTest.m */; };
 		92F3809911E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809711E6C4BB0014A873 /* Milpon.xcdatamodeld */; };
 		92F3809A11E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809711E6C4BB0014A873 /* Milpon.xcdatamodeld */; };
 		92F3809B11E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809711E6C4BB0014A873 /* Milpon.xcdatamodeld */; };
@@ -88,6 +87,9 @@
 		92F3813211E6E1B50014A873 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F3813011E6E1B50014A873 /* checkBoxChecked.png */; };
 		92F3813311E6E1B50014A873 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F3812F11E6E1B50014A873 /* checkBox.png */; };
 		92F3813411E6E1B50014A873 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F3813011E6E1B50014A873 /* checkBoxChecked.png */; };
+		92F3814211E6E2A10014A873 /* Milpon.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809811E6C4BB0014A873 /* Milpon.xcdatamodel */; };
+		92F3814311E6E2A40014A873 /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2411E53170001EA183 /* MPTaskMediator.m */; };
+		92F3814411E6E2A50014A873 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2211E53170001EA183 /* MPTask.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -317,8 +319,8 @@
 			isa = PBXGroup;
 			children = (
 				92CC0D9711E53ABD001EA183 /* API */,
-				92CC0CC811E53534001EA183 /* MPListMediatorTest.m */,
 				92CC0CC911E53534001EA183 /* MPListTest.m */,
+				92CC0CC811E53534001EA183 /* MPListMediatorTest.m */,
 				92CC0CCA11E53534001EA183 /* MPTaskMediatorTest.m */,
 			);
 			name = Test;
@@ -570,8 +572,10 @@
 				92CC0DA011E53B34001EA183 /* MPHelper.m in Sources */,
 				92CC0DB511E53BC3001EA183 /* RTMAPI+Task.m in Sources */,
 				92CC0DB611E53BC6001EA183 /* RTMAPI+Note.m in Sources */,
-				92F3802E11E6C29A0014A873 /* MPListMediatorTest.m in Sources */,
 				92F3809A11E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */,
+				92F3814211E6E2A10014A873 /* Milpon.xcdatamodel in Sources */,
+				92F3814311E6E2A40014A873 /* MPTaskMediator.m in Sources */,
+				92F3814411E6E2A50014A873 /* MPTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

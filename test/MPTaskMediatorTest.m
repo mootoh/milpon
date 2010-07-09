@@ -109,7 +109,8 @@
 
 #pragma mark -
 
-- (void) testSync
+
+- (void) _testSyncSimpleCase
 {
    // 1. retrieve all Lists & Tasks.
    [listMediator sync:api];
@@ -144,9 +145,58 @@
 
    STAssertTrue([taskSerieses2nd count] == [taskSerieses count] + 1, nil);
    STAssertTrue([tasks2nd count] == [tasks count] + 1, nil);
-   
+
+   // clean up
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timeline];
+}
+
+- (void) _testSyncAndDelete
+{
+   // 1. retrieve all Lists & Tasks.
+   [listMediator sync:api];
+   [taskMediator sync:api];
    
+   // check them
+   NSArray *taskSerieses = [taskMediator allTaskSerieses];
+   NSArray *tasks        = [taskMediator allTasks];
+   
+   STAssertTrue([taskSerieses count] > 0, nil);
+   STAssertTrue([tasks count] > 0, nil);
+   
+   // add a Task
+   NSString *name = @"testAdd";
+   timeline = [api createTimeline];
+   
+   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timeline];
+   STAssertNotNil(addedTask, @"");
+   
+   NSString       *task_id = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString *taskseries_id = [addedTask objectForKey:@"id"];
+   NSString       *list_id = [addedTask objectForKey:@"list_id"];
+   STAssertNotNil(task_id, nil);
+   STAssertNotNil(taskseries_id, nil);
+   STAssertNotNil(list_id, nil);
+   
+   // 2. sync again
+   [taskMediator sync:api];
+   
+   NSArray *taskSerieses2nd = [taskMediator allTaskSerieses];
+   NSArray *tasks2nd        = [taskMediator allTasks];
+   
+   STAssertTrue([taskSerieses2nd count] == [taskSerieses count] + 1, nil);
+   STAssertTrue([tasks2nd count] == [tasks count] + 1, nil);
+ 
+   // 3. delete it
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timeline];
+
+   // 4. sync again
+   [taskMediator sync:api];
+   
+   NSArray *taskSerieses3rd = [taskMediator allTaskSerieses];
+   NSArray *tasks3rd        = [taskMediator allTasks];
+   
+   STAssertTrue([taskSerieses3rd count] == [taskSerieses count], nil);
+   STAssertTrue([tasks3rd count] == [tasks count], nil);
 }
 
 @end

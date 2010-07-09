@@ -22,15 +22,15 @@
    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:managedObjectContext];
    
    // If appropriate, configure the new managed object.
-   [newManagedObject setValue:[self integerNumberFromString:[list objectForKey:@"id"]] forKey:@"iD"];
+   [newManagedObject setValue:integerNumberFromString([list objectForKey:@"id"]) forKey:@"iD"];
    [newManagedObject setValue:[list objectForKey:@"name"] forKey:@"name"];
-   [newManagedObject setValue:[self boolNumberFromString:[list objectForKey:@"deleted"]] forKey:@"deleted"];
-   [newManagedObject setValue:[self boolNumberFromString:[list objectForKey:@"locked"]] forKey:@"locked"];
-   [newManagedObject setValue:[self boolNumberFromString:[list objectForKey:@"archived"]] forKey:@"archived"];
-   [newManagedObject setValue:[self integerNumberFromString:[list objectForKey:@"position"]] forKey:@"position"];
+   [newManagedObject setValue:boolNumberFromString([list objectForKey:@"deleted"]) forKey:@"deleted"];
+   [newManagedObject setValue:boolNumberFromString([list objectForKey:@"locked"]) forKey:@"locked"];
+   [newManagedObject setValue:boolNumberFromString([list objectForKey:@"archived"]) forKey:@"archived"];
+   [newManagedObject setValue:integerNumberFromString([list objectForKey:@"position"]) forKey:@"position"];
    BOOL isSmart = [[list objectForKey:@"smart"] boolValue];
    [newManagedObject setValue:[NSNumber numberWithBool:isSmart] forKey:@"smart"];
-   [newManagedObject setValue:[self integerNumberFromString:[list objectForKey:@"sort_order"]] forKey:@"sort_order"];
+   [newManagedObject setValue:integerNumberFromString([list objectForKey:@"sort_order"]) forKey:@"sort_order"];
    if (isSmart) {
       NSAssert([list objectForKey:@"filter"], @"smart list should have filter");
       [newManagedObject setValue:[list objectForKey:@"filter"] forKey:@"filter"];
@@ -123,12 +123,12 @@
    
    if (! [[list objectForKey:@"locked"] boolValue] == [[theList valueForKey:@"locked"] boolValue]) {
       updated = YES;
-      [theList setValue:[self boolNumberFromString:[list objectForKey:@"locked"]] forKey:@"locked"];
+      [theList setValue:boolNumberFromString([list objectForKey:@"locked"]) forKey:@"locked"];
    }
    
    if (! [[list objectForKey:@"archived"] boolValue] == [[theList valueForKey:@"archived"] boolValue]) {
       updated = YES;
-      [theList setValue:[self boolNumberFromString:[list objectForKey:@"archived"]] forKey:@"archived"];
+      [theList setValue:boolNumberFromString([list objectForKey:@"archived"]) forKey:@"archived"];
    }
    
 #ifdef SUPPORT_LIST_POSITION
@@ -144,7 +144,7 @@
    
    if (! [[list objectForKey:@"sort_order"] integerValue] == [[theList valueForKey:@"sort_order"] integerValue]) {
       updated = YES;
-      [theList setValue:[self integerNumberFromString:[list objectForKey:@"sort_order"]] forKey:@"sort_order"];
+      [theList setValue:integerNumberFromString([list objectForKey:@"sort_order"]) forKey:@"sort_order"];
    }
    
    if (isSmart) {

@@ -10,11 +10,12 @@
 #import "MPLogger.h"
 
 @implementation MPMediator
+@synthesize managedObjectContext;
 
 - (id) initWithManagedObjectContext:(NSManagedObjectContext *) moc
 {
    if (self = [super init]) {
-      managedObjectContext = [moc retain];
+      self.managedObjectContext = moc;
    }
    return self;
 }
@@ -30,15 +31,16 @@
    NSAssert(NO, @"not reach here");
 }
 
+@end
+
 #pragma mark -
-- (NSNumber *) integerNumberFromString:(NSString *)string
+
+NSNumber *integerNumberFromString(NSString *string)
 {
    return [NSNumber numberWithInteger:[string integerValue]];
 }
 
-- (NSNumber *) boolNumberFromString:(NSString *)string
+NSNumber *boolNumberFromString(NSString *string)
 {
    return [NSNumber numberWithBool:[string boolValue]];
 }
-
-@end

@@ -12,13 +12,17 @@
 
 @interface MPMediator : NSObject
 {
+   
+@protected
    NSManagedObjectContext *managedObjectContext;
 }
+
+@property (retain) NSManagedObjectContext *managedObjectContext;
 
 - (id) initWithManagedObjectContext:(NSManagedObjectContext *) moc;
 - (void) sync:(RTMAPI *) api;
 
-- (NSNumber *) integerNumberFromString:(NSString *)string;
-- (NSNumber *) boolNumberFromString:(NSString *)string;
-
 @end
+
+NSNumber *integerNumberFromString(NSString *string);
+NSNumber *boolNumberFromString(NSString *string);
