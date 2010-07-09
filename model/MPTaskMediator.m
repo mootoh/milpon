@@ -61,7 +61,7 @@
    NSManagedObject *listObject = [fetched objectAtIndex:0];
    LOG(@"listObject = %@", listObject);
    return listObject;
-} 
+}
    
 - (void)insertNewTask:(NSDictionary *)taskseries
 {

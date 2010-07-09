@@ -344,7 +344,7 @@
    NSArray      *keys = [NSArray arrayWithObjects:@"to_list_id", @"from_list_id", @"taskseries_id", @"task_id", @"timeline", nil];
    NSArray      *vals = [NSArray arrayWithObjects:to_list_id, from_list_id, taskseries_id, task_id, timeline, nil];
    NSDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
-   
+
    [self call:@"rtm.tasks.moveTo" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
@@ -355,8 +355,20 @@
    NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"timeline", @"name", nil];
    NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, name, nil];
    NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-   
+
    [self call:@"rtm.tasks.setName" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
+}
+
+- (void) setRecurrence:(NSString *)recurrence timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id
+{
+   NSArray             *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"timeline", nil];
+   NSArray             *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, nil];
+   NSMutableDictionary *args = [NSMutableDictionary dictionaryWithObjects:vals forKeys:keys];
+
+   if (recurrence)
+      [args setObject:recurrence forKey:@"repeat"];
+
+   [self call:@"rtm.tasks.setRecurrence" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
 @end

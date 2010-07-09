@@ -271,7 +271,7 @@
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:moved_list_id timeline:timelineMoveTo];
 }
 
-- (void) testAddAndSetName
+- (void) _testAddAndSetName
 {
    NSString        *name = @"testAddAndSetName";
    NSString *timelineAdd = [api createTimeline];
@@ -297,6 +297,32 @@
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetName];
 }
 
+- (void) _testSetRecurrence
+{
+   NSString *name        = @"testSetRecurrence";
+   NSString *timelineAdd = [api createTimeline];
+   
+   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timelineAdd];
+   STAssertNotNil(addedTask, nil);
+   
+   NSString  *addedDateString = [[MilponHelper sharedHelper] dateToRtmString:[NSDate date]];
+   NSString          *task_id = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString    *taskseries_id = [addedTask objectForKey:@"id"];
+   NSString          *list_id = [addedTask objectForKey:@"list_id"];
+   NSString       *recurrence = @"Every day";
+   [api setRecurrence:recurrence timeline:timelineAdd list_id:list_id taskseries_id:taskseries_id task_id:task_id];
+   
+   NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   STAssertEquals([taskserieses count], 1U, nil);
+   
+   NSDictionary *taskseries = [taskserieses objectAtIndex:0];
+   NSDictionary *rrule = [taskseries objectForKey:@"rrule"];
+   LOG(@"rrule = %@", rrule);
+   STAssertEquals(1, [[rrule objectForKey:@"every"] integerValue], nil);
+   STAssertTrue([[rrule objectForKey:@"rule"] isEqualToString:@"FREQ=DAILY;INTERVAL=1"], nil);
+   
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineAdd];
+}
 
 #if 0
 - (void) testAddInList_and_Delete

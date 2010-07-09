@@ -90,6 +90,7 @@
 		92F3814211E6E2A10014A873 /* Milpon.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809811E6C4BB0014A873 /* Milpon.xcdatamodel */; };
 		92F3814311E6E2A40014A873 /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2411E53170001EA183 /* MPTaskMediator.m */; };
 		92F3814411E6E2A50014A873 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2211E53170001EA183 /* MPTask.m */; };
+		92F381C411E6ED090014A873 /* RTMAPITaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0D9A11E53AF8001EA183 /* RTMAPITaskTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -576,6 +577,7 @@
 				92F3814211E6E2A10014A873 /* Milpon.xcdatamodel in Sources */,
 				92F3814311E6E2A40014A873 /* MPTaskMediator.m in Sources */,
 				92F3814411E6E2A50014A873 /* MPTask.m in Sources */,
+				92F381C411E6ED090014A873 /* RTMAPITaskTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

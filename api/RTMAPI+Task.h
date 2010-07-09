@@ -31,5 +31,6 @@
 - (void) setTaskTags:(NSString *)tags task_id:(NSString *)task_id taskseries_id:(NSString *)taskseries_id list_id:(NSString *)list_id timeline:(NSString *)timeline;
 - (void) moveTaskTo:(NSString *)to_list_id from_list_id:(NSString *)from_list_id task_id:(NSString *)task_id taskseries_id:(NSString *)taskseries_id  timeline:(NSString *)timeline;
 - (void) setTaskName:(NSString *)name timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id;
+- (void) setRecurrence:(NSString *)recurrence timeline:(NSString *)timeline list_id:(NSString *)list_id taskseries_id:(NSString *)taskseries_id task_id:(NSString *)task_id;
 
 @end

@@ -107,8 +107,44 @@
    [api release];
 }
 
+#pragma mark Helpers
+
+- (NSDictionary *) addTask:(NSString *)name
+{
+   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timeline];
+   STAssertNotNil(addedTask, @"");
+   
+   NSString       *task_id = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString *taskseries_id = [addedTask objectForKey:@"id"];
+   NSString       *list_id = [addedTask objectForKey:@"list_id"];
+   STAssertNotNil(task_id, nil);
+   STAssertNotNil(taskseries_id, nil);
+   STAssertNotNil(list_id, nil);
+   
+   return addedTask;
+}
+
+- (void) deleteTask:(NSDictionary *)task
+{
+   // clean up
+   NSString       *task_id = [[task objectForKey:@"task"] objectForKey:@"id"];
+   NSString *taskseries_id = [task objectForKey:@"id"];
+   NSString       *list_id = [task objectForKey:@"list_id"];
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timeline];
+}
+
 #pragma mark -
 
+- (void) testGetDeleteGet
+{
+   timeline = [api createTimeline];
+   NSDictionary *addedTask = [self addTask:@"testGetDeleteGet"];
+   [api getTaskList];
+   [self deleteTask:addedTask];
+   [api getTaskList];
+}
+
+#pragma mark -
 
 - (void) _testSyncSimpleCase
 {
@@ -126,16 +162,7 @@
    // add a Task
    NSString *name = @"testAdd";
    timeline = [api createTimeline];
-   
-   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timeline];
-   STAssertNotNil(addedTask, @"");
-   
-   NSString       *task_id = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
-   NSString *taskseries_id = [addedTask objectForKey:@"id"];
-   NSString       *list_id = [addedTask objectForKey:@"list_id"];
-   STAssertNotNil(task_id, nil);
-   STAssertNotNil(taskseries_id, nil);
-   STAssertNotNil(list_id, nil);
+   NSDictionary *addedTask = [self addTask:name];
 
    // 2. sync again
    [taskMediator sync:api];
@@ -147,7 +174,7 @@
    STAssertTrue([tasks2nd count] == [tasks count] + 1, nil);
 
    // clean up
-   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timeline];
+   [self deleteTask:addedTask];
 }
 
 - (void) _testSyncAndDelete
