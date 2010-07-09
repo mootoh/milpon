@@ -90,7 +90,7 @@
 		92F3814211E6E2A10014A873 /* Milpon.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809811E6C4BB0014A873 /* Milpon.xcdatamodel */; };
 		92F3814311E6E2A40014A873 /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2411E53170001EA183 /* MPTaskMediator.m */; };
 		92F3814411E6E2A50014A873 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2211E53170001EA183 /* MPTask.m */; };
-		92F381C411E6ED090014A873 /* RTMAPITaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0D9A11E53AF8001EA183 /* RTMAPITaskTest.m */; };
+		92F3821211E6FB820014A873 /* MPTaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F3821111E6FB820014A873 /* MPTaskTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +167,7 @@
 		92F3809811E6C4BB0014A873 /* Milpon.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Milpon.xcdatamodel; sourceTree = "<group>"; };
 		92F3812F11E6E1B50014A873 /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBox.png; path = resource/checkBox.png; sourceTree = "<group>"; };
 		92F3813011E6E1B50014A873 /* checkBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBoxChecked.png; path = resource/checkBoxChecked.png; sourceTree = "<group>"; };
+		92F3821111E6FB820014A873 /* MPTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPTaskTest.m; path = test/MPTaskTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +322,7 @@
 			children = (
 				92CC0D9711E53ABD001EA183 /* API */,
 				92CC0CC911E53534001EA183 /* MPListTest.m */,
+				92F3821111E6FB820014A873 /* MPTaskTest.m */,
 				92CC0CC811E53534001EA183 /* MPListMediatorTest.m */,
 				92CC0CCA11E53534001EA183 /* MPTaskMediatorTest.m */,
 			);
@@ -577,7 +579,7 @@
 				92F3814211E6E2A10014A873 /* Milpon.xcdatamodel in Sources */,
 				92F3814311E6E2A40014A873 /* MPTaskMediator.m in Sources */,
 				92F3814411E6E2A50014A873 /* MPTask.m in Sources */,
-				92F381C411E6ED090014A873 /* RTMAPITaskTest.m in Sources */,
+				92F3821211E6FB820014A873 /* MPTaskTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
