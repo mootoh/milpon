@@ -73,26 +73,6 @@
 		92CC0CF311E53604001EA183 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CE11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m */; };
 		92CC0D3F11E5399E001EA183 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0D2211E5399E001EA183 /* Reachability.m */; };
 		92CC0D4011E5399E001EA183 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D2311E5399E001EA183 /* README.txt */; };
-		92CC0D4111E5399E001EA183 /* UICCalendarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0D2811E5399E001EA183 /* UICCalendarPicker.m */; };
-		92CC0D4211E5399E001EA183 /* UICCalendarPickerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0D2A11E5399E001EA183 /* UICCalendarPickerAppDelegate.m */; };
-		92CC0D4311E5399E001EA183 /* UICCalendarPickerDateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0D2C11E5399E001EA183 /* UICCalendarPickerDateButton.m */; };
-		92CC0D4411E5399E001EA183 /* UICCalendarPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0D2E11E5399E001EA183 /* UICCalendarPickerViewController.m */; };
-		92CC0D4511E5399E001EA183 /* uiccalendar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D2F11E5399E001EA183 /* uiccalendar_background.png */; };
-		92CC0D4611E5399E001EA183 /* uiccalendar_calendar_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3011E5399E001EA183 /* uiccalendar_calendar_button.png */; };
-		92CC0D4711E5399E001EA183 /* uiccalendar_cell_custom1.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3111E5399E001EA183 /* uiccalendar_cell_custom1.png */; };
-		92CC0D4811E5399E001EA183 /* uiccalendar_cell_custom2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3211E5399E001EA183 /* uiccalendar_cell_custom2.png */; };
-		92CC0D4911E5399E001EA183 /* uiccalendar_cell_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3311E5399E001EA183 /* uiccalendar_cell_disabled.png */; };
-		92CC0D4A11E5399E001EA183 /* uiccalendar_cell_holiday.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3411E5399E001EA183 /* uiccalendar_cell_holiday.png */; };
-		92CC0D4B11E5399E001EA183 /* uiccalendar_cell_monthout.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3511E5399E001EA183 /* uiccalendar_cell_monthout.png */; };
-		92CC0D4C11E5399E001EA183 /* uiccalendar_cell_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3611E5399E001EA183 /* uiccalendar_cell_normal.png */; };
-		92CC0D4D11E5399E001EA183 /* uiccalendar_cell_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3711E5399E001EA183 /* uiccalendar_cell_selected.png */; };
-		92CC0D4E11E5399E001EA183 /* uiccalendar_cell_today.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3811E5399E001EA183 /* uiccalendar_cell_today.png */; };
-		92CC0D4F11E5399E001EA183 /* uiccalendar_cell_today_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3911E5399E001EA183 /* uiccalendar_cell_today_selected.png */; };
-		92CC0D5011E5399E001EA183 /* uiccalendar_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3A11E5399E001EA183 /* uiccalendar_close.png */; };
-		92CC0D5111E5399E001EA183 /* uiccalendar_left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3B11E5399E001EA183 /* uiccalendar_left_arrow.png */; };
-		92CC0D5211E5399E001EA183 /* uiccalendar_main.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3C11E5399E001EA183 /* uiccalendar_main.png */; };
-		92CC0D5311E5399E001EA183 /* uiccalendar_right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3D11E5399E001EA183 /* uiccalendar_right_arrow.png */; };
-		92CC0D5411E5399E001EA183 /* uiccalendar_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D3E11E5399E001EA183 /* uiccalendar_title.png */; };
 		92CC0D6811E539E3001EA183 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D6711E539E3001EA183 /* Localizable.strings */; };
 		92CC0D6911E539E3001EA183 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D6711E539E3001EA183 /* Localizable.strings */; };
 		92CC0D6B11E53A19001EA183 /* IconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D6A11E53A19001EA183 /* IconSmall.png */; };
@@ -170,31 +150,6 @@
 		92CC0D2111E5399E001EA183 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		92CC0D2211E5399E001EA183 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		92CC0D2311E5399E001EA183 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		92CC0D2611E5399E001EA183 /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
-		92CC0D2711E5399E001EA183 /* UICCalendarPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPicker.h; sourceTree = "<group>"; };
-		92CC0D2811E5399E001EA183 /* UICCalendarPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICCalendarPicker.m; sourceTree = "<group>"; };
-		92CC0D2911E5399E001EA183 /* UICCalendarPickerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPickerAppDelegate.h; sourceTree = "<group>"; };
-		92CC0D2A11E5399E001EA183 /* UICCalendarPickerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICCalendarPickerAppDelegate.m; sourceTree = "<group>"; };
-		92CC0D2B11E5399E001EA183 /* UICCalendarPickerDateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPickerDateButton.h; sourceTree = "<group>"; };
-		92CC0D2C11E5399E001EA183 /* UICCalendarPickerDateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICCalendarPickerDateButton.m; sourceTree = "<group>"; };
-		92CC0D2D11E5399E001EA183 /* UICCalendarPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPickerViewController.h; sourceTree = "<group>"; };
-		92CC0D2E11E5399E001EA183 /* UICCalendarPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICCalendarPickerViewController.m; sourceTree = "<group>"; };
-		92CC0D2F11E5399E001EA183 /* uiccalendar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_background.png; sourceTree = "<group>"; };
-		92CC0D3011E5399E001EA183 /* uiccalendar_calendar_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_calendar_button.png; sourceTree = "<group>"; };
-		92CC0D3111E5399E001EA183 /* uiccalendar_cell_custom1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_custom1.png; sourceTree = "<group>"; };
-		92CC0D3211E5399E001EA183 /* uiccalendar_cell_custom2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_custom2.png; sourceTree = "<group>"; };
-		92CC0D3311E5399E001EA183 /* uiccalendar_cell_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_disabled.png; sourceTree = "<group>"; };
-		92CC0D3411E5399E001EA183 /* uiccalendar_cell_holiday.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_holiday.png; sourceTree = "<group>"; };
-		92CC0D3511E5399E001EA183 /* uiccalendar_cell_monthout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_monthout.png; sourceTree = "<group>"; };
-		92CC0D3611E5399E001EA183 /* uiccalendar_cell_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_normal.png; sourceTree = "<group>"; };
-		92CC0D3711E5399E001EA183 /* uiccalendar_cell_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_selected.png; sourceTree = "<group>"; };
-		92CC0D3811E5399E001EA183 /* uiccalendar_cell_today.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_today.png; sourceTree = "<group>"; };
-		92CC0D3911E5399E001EA183 /* uiccalendar_cell_today_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_cell_today_selected.png; sourceTree = "<group>"; };
-		92CC0D3A11E5399E001EA183 /* uiccalendar_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_close.png; sourceTree = "<group>"; };
-		92CC0D3B11E5399E001EA183 /* uiccalendar_left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_left_arrow.png; sourceTree = "<group>"; };
-		92CC0D3C11E5399E001EA183 /* uiccalendar_main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_main.png; sourceTree = "<group>"; };
-		92CC0D3D11E5399E001EA183 /* uiccalendar_right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_right_arrow.png; sourceTree = "<group>"; };
-		92CC0D3E11E5399E001EA183 /* uiccalendar_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_title.png; sourceTree = "<group>"; };
 		92CC0D6711E539E3001EA183 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = resource/Localizable.strings; sourceTree = "<group>"; };
 		92CC0D6A11E53A19001EA183 /* IconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconSmall.png; path = resource/IconSmall.png; sourceTree = "<group>"; };
 		92CC0D6C11E53A2E001EA183 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -384,49 +339,8 @@
 				92CC0D2111E5399E001EA183 /* Reachability.h */,
 				92CC0D2211E5399E001EA183 /* Reachability.m */,
 				92CC0D2311E5399E001EA183 /* README.txt */,
-				92CC0D2411E5399E001EA183 /* UICCalendarPicker */,
 			);
 			path = vendor;
-			sourceTree = "<group>";
-		};
-		92CC0D2411E5399E001EA183 /* UICCalendarPicker */ = {
-			isa = PBXGroup;
-			children = (
-				92CC0D2511E5399E001EA183 /* Classes */,
-				92CC0D2F11E5399E001EA183 /* uiccalendar_background.png */,
-				92CC0D3011E5399E001EA183 /* uiccalendar_calendar_button.png */,
-				92CC0D3111E5399E001EA183 /* uiccalendar_cell_custom1.png */,
-				92CC0D3211E5399E001EA183 /* uiccalendar_cell_custom2.png */,
-				92CC0D3311E5399E001EA183 /* uiccalendar_cell_disabled.png */,
-				92CC0D3411E5399E001EA183 /* uiccalendar_cell_holiday.png */,
-				92CC0D3511E5399E001EA183 /* uiccalendar_cell_monthout.png */,
-				92CC0D3611E5399E001EA183 /* uiccalendar_cell_normal.png */,
-				92CC0D3711E5399E001EA183 /* uiccalendar_cell_selected.png */,
-				92CC0D3811E5399E001EA183 /* uiccalendar_cell_today.png */,
-				92CC0D3911E5399E001EA183 /* uiccalendar_cell_today_selected.png */,
-				92CC0D3A11E5399E001EA183 /* uiccalendar_close.png */,
-				92CC0D3B11E5399E001EA183 /* uiccalendar_left_arrow.png */,
-				92CC0D3C11E5399E001EA183 /* uiccalendar_main.png */,
-				92CC0D3D11E5399E001EA183 /* uiccalendar_right_arrow.png */,
-				92CC0D3E11E5399E001EA183 /* uiccalendar_title.png */,
-			);
-			path = UICCalendarPicker;
-			sourceTree = "<group>";
-		};
-		92CC0D2511E5399E001EA183 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				92CC0D2611E5399E001EA183 /* Debug.h */,
-				92CC0D2711E5399E001EA183 /* UICCalendarPicker.h */,
-				92CC0D2811E5399E001EA183 /* UICCalendarPicker.m */,
-				92CC0D2911E5399E001EA183 /* UICCalendarPickerAppDelegate.h */,
-				92CC0D2A11E5399E001EA183 /* UICCalendarPickerAppDelegate.m */,
-				92CC0D2B11E5399E001EA183 /* UICCalendarPickerDateButton.h */,
-				92CC0D2C11E5399E001EA183 /* UICCalendarPickerDateButton.m */,
-				92CC0D2D11E5399E001EA183 /* UICCalendarPickerViewController.h */,
-				92CC0D2E11E5399E001EA183 /* UICCalendarPickerViewController.m */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		92CC0D9711E53ABD001EA183 /* API */ = {
@@ -542,22 +456,6 @@
 				92CC0C5111E5321B001EA183 /* MPAddTaskView.xib in Resources */,
 				92CC0CA411E5344B001EA183 /* MilponBetaIconSmall.png in Resources */,
 				92CC0D4011E5399E001EA183 /* README.txt in Resources */,
-				92CC0D4511E5399E001EA183 /* uiccalendar_background.png in Resources */,
-				92CC0D4611E5399E001EA183 /* uiccalendar_calendar_button.png in Resources */,
-				92CC0D4711E5399E001EA183 /* uiccalendar_cell_custom1.png in Resources */,
-				92CC0D4811E5399E001EA183 /* uiccalendar_cell_custom2.png in Resources */,
-				92CC0D4911E5399E001EA183 /* uiccalendar_cell_disabled.png in Resources */,
-				92CC0D4A11E5399E001EA183 /* uiccalendar_cell_holiday.png in Resources */,
-				92CC0D4B11E5399E001EA183 /* uiccalendar_cell_monthout.png in Resources */,
-				92CC0D4C11E5399E001EA183 /* uiccalendar_cell_normal.png in Resources */,
-				92CC0D4D11E5399E001EA183 /* uiccalendar_cell_selected.png in Resources */,
-				92CC0D4E11E5399E001EA183 /* uiccalendar_cell_today.png in Resources */,
-				92CC0D4F11E5399E001EA183 /* uiccalendar_cell_today_selected.png in Resources */,
-				92CC0D5011E5399E001EA183 /* uiccalendar_close.png in Resources */,
-				92CC0D5111E5399E001EA183 /* uiccalendar_left_arrow.png in Resources */,
-				92CC0D5211E5399E001EA183 /* uiccalendar_main.png in Resources */,
-				92CC0D5311E5399E001EA183 /* uiccalendar_right_arrow.png in Resources */,
-				92CC0D5411E5399E001EA183 /* uiccalendar_title.png in Resources */,
 				92CC0D6811E539E3001EA183 /* Localizable.strings in Resources */,
 				92CC0D6E11E53A2E001EA183 /* Default.png in Resources */,
 				92CC0D7E11E53A63001EA183 /* Settings.bundle in Resources */,
@@ -642,10 +540,6 @@
 				92CC0C5511E5321B001EA183 /* MPTaskViewController.m in Sources */,
 				92CC0C5B11E5323E001EA183 /* MPAppDelegate.m in Sources */,
 				92CC0D3F11E5399E001EA183 /* Reachability.m in Sources */,
-				92CC0D4111E5399E001EA183 /* UICCalendarPicker.m in Sources */,
-				92CC0D4211E5399E001EA183 /* UICCalendarPickerAppDelegate.m in Sources */,
-				92CC0D4311E5399E001EA183 /* UICCalendarPickerDateButton.m in Sources */,
-				92CC0D4411E5399E001EA183 /* UICCalendarPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
