@@ -12,6 +12,7 @@
 #import "RTMAPI.h"
 #import "PrivateInfo.h"
 #import "MPLogger.h"
+#import "MPTask.h"
 #import <CoreData/CoreData.h>
 
 @interface MPTaskTest : SenTestCase
@@ -98,7 +99,7 @@
    [api release];
 }
 
-- (NSManagedObject *) createTask
+- (MPTask *) createTask
 {
    // List
    NSManagedObject *list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:[self managedObjectContext]];
@@ -111,7 +112,7 @@
    [taskSeries setValue:@"a taskSeries" forKey:@"name"];
    
    // Task
-   NSManagedObject *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[self managedObjectContext]];
+   MPTask *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:[self managedObjectContext]];
    [task setValue:[NSNumber numberWithInt:1] forKey:@"iD"];
    [task setValue:[NSDate date] forKey:@"added"];
    [task setValue:taskSeries forKey:@"taskSeries"];
@@ -130,6 +131,22 @@
 {
    NSManagedObject *task = [self createTask];
    STAssertNotNil(task, nil);
+}
+
+- (void) testComplete
+{
+   MPTask *task = [self createTask];
+   NSInteger edit_bits = 0;
+
+   edit_bits = [[task valueForKey:@"edit_bits"] integerValue];
+   STAssertFalse(edit_bits & EDIT_BITS_TASK_COMPLETION, nil);
+   STAssertNil([task valueForKey:@"completed"], nil);
+
+   [task complete];
+
+   edit_bits = [[task valueForKey:@"edit_bits"] integerValue];
+   STAssertTrue(edit_bits & EDIT_BITS_TASK_COMPLETION, nil);
+   STAssertNotNil([task valueForKey:@"completed"], nil);
 }
 
 @end
