@@ -210,8 +210,13 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
 }
 
 
-- (void)dealloc {
-    [super dealloc];
+- (void)dealloc
+{
+   [fetchedResultsController release];
+   [managedObjectContext release];
+   [listObject release];
+   
+   [super dealloc];
 }
 
 

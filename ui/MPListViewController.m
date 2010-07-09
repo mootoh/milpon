@@ -195,7 +195,11 @@
 
 - (void)dealloc
 {
+   [fetchedResultsController release];
+   [managedObjectContext release];
    [listMediator release];
+   [taskMediator release];
+   
    [super dealloc];
 }
 
