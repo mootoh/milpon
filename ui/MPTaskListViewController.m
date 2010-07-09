@@ -28,10 +28,10 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
 - (void) setPriority:(NSInteger) prty
 {
    if (s_colors[0] == nil) {
-      s_colors[0] = [[UIColor colorWithRed:0.917 green:0.321 blue:0.0   alpha:1.0] retain];
-      s_colors[1] = [[UIColor colorWithRed:0.0   green:0.376 blue:0.749 alpha:1.0] retain];
-      s_colors[2] = [[UIColor colorWithRed:0.207 green:0.604 blue:1.0   alpha:1.0] retain];
-      s_colors[3] = [[UIColor grayColor] retain];
+      s_colors[0] = [[UIColor whiteColor] retain]; // no priority
+      s_colors[1] = [[UIColor colorWithRed:0.917 green:0.321 blue:0.0   alpha:1.0] retain]; // orange
+      s_colors[2] = [[UIColor colorWithRed:0.0   green:0.376 blue:0.749 alpha:1.0] retain]; // deep blue
+      s_colors[3] = [[UIColor colorWithRed:0.207 green:0.604 blue:1.0   alpha:1.0] retain]; // light blue
    }
 
    priority = prty;
