@@ -84,6 +84,10 @@
 		92F3809911E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809711E6C4BB0014A873 /* Milpon.xcdatamodeld */; };
 		92F3809A11E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809711E6C4BB0014A873 /* Milpon.xcdatamodeld */; };
 		92F3809B11E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809711E6C4BB0014A873 /* Milpon.xcdatamodeld */; };
+		92F3813111E6E1B50014A873 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F3812F11E6E1B50014A873 /* checkBox.png */; };
+		92F3813211E6E1B50014A873 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F3813011E6E1B50014A873 /* checkBoxChecked.png */; };
+		92F3813311E6E1B50014A873 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F3812F11E6E1B50014A873 /* checkBox.png */; };
+		92F3813411E6E1B50014A873 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F3813011E6E1B50014A873 /* checkBoxChecked.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +162,8 @@
 		92CC0D9911E53AF8001EA183 /* RTMAPINoteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMAPINoteTest.m; path = test/RTMAPINoteTest.m; sourceTree = "<group>"; };
 		92CC0D9A11E53AF8001EA183 /* RTMAPITaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMAPITaskTest.m; path = test/RTMAPITaskTest.m; sourceTree = "<group>"; };
 		92F3809811E6C4BB0014A873 /* Milpon.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Milpon.xcdatamodel; sourceTree = "<group>"; };
+		92F3812F11E6E1B50014A873 /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBox.png; path = resource/checkBox.png; sourceTree = "<group>"; };
+		92F3813011E6E1B50014A873 /* checkBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBoxChecked.png; path = resource/checkBoxChecked.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +246,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				92F3812F11E6E1B50014A873 /* checkBox.png */,
+				92F3813011E6E1B50014A873 /* checkBoxChecked.png */,
 				92CC0D7C11E53A63001EA183 /* Settings.bundle */,
 				92CC0D6C11E53A2E001EA183 /* Default.png */,
 				92CC0D6A11E53A19001EA183 /* IconSmall.png */,
@@ -446,6 +454,8 @@
 				92CC0D6B11E53A19001EA183 /* IconSmall.png in Resources */,
 				92CC0D6D11E53A2E001EA183 /* Default.png in Resources */,
 				92CC0D7D11E53A63001EA183 /* Settings.bundle in Resources */,
+				92F3813311E6E1B50014A873 /* checkBox.png in Resources */,
+				92F3813411E6E1B50014A873 /* checkBoxChecked.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +470,8 @@
 				92CC0D6811E539E3001EA183 /* Localizable.strings in Resources */,
 				92CC0D6E11E53A2E001EA183 /* Default.png in Resources */,
 				92CC0D7E11E53A63001EA183 /* Settings.bundle in Resources */,
+				92F3813111E6E1B50014A873 /* checkBox.png in Resources */,
+				92F3813211E6E1B50014A873 /* checkBoxChecked.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
