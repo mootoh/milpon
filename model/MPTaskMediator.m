@@ -11,6 +11,7 @@
 #import "RTMAPI+Task.h"
 #import "MPLogger.h"
 #import "MPHelper.h"
+#import "MPTask.h"
 
 @implementation MPTaskMediator
 
@@ -42,6 +43,28 @@
    return [self allEntities:@"Task"];
 }
 
+- (MPTask *) task:(NSNumber *) task_id
+{
+   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+   NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext];
+   [fetchRequest setEntity:entity];
+   
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"iD == %d", [task_id integerValue]];
+   [fetchRequest setPredicate:pred];
+   
+   NSError *error = nil;
+   NSArray *tasks = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+   if (error) {
+      LOG(@"error");
+      abort();
+   }
+
+   if ([tasks count] == 0) return nil;
+
+   NSAssert([tasks count] == 1, nil);
+   return [tasks objectAtIndex:0];
+}   
+
 // search for the associated List.
 - (NSManagedObject *) associatedList:(NSString *) listID
 {
@@ -59,7 +82,6 @@
    
    NSAssert([fetched count] == 1, @"should be 1");
    NSManagedObject *listObject = [fetched objectAtIndex:0];
-   LOG(@"listObject = %@", listObject);
    return listObject;
 }
    
@@ -147,12 +169,10 @@
       [newTask setValue:newTaskSeries forKey:@"taskSeries"];
    }
    
-   LOG(@"commiting TaskSeries: %@", newTaskSeries);
-   
    // Save the context.
    NSError *error = nil;
    if (![managedObjectContext save:&error]) {
-      NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+      LOG(@"Unresolved error %@, %@", error, [error userInfo]);
       abort();
    }
 }
@@ -171,6 +191,57 @@
    return deleted;
 }
 
+- (void) deleteRemotelyDeletedItems:(NSArray *)taskSerieses
+{
+   BOOL is_deleted = NO;
+
+   for (NSDictionary *taskSeries in taskSerieses) {
+      for (NSDictionary *task in [taskSeries objectForKey:@"tasks"]) {
+         NSString *deleted = [task objectForKey:@"deleted"];
+         if (deleted && ![deleted isEqualToString:@""]) { // deleted
+            MPTask *mp_task = [self task:[task objectForKey:@"id"]];
+            if (! mp_task) continue;
+            
+            [managedObjectContext deleteObject:mp_task];
+            is_deleted = YES;
+         }
+      }
+   }
+   
+   if (is_deleted) {
+      NSError *error = nil;
+      if (![managedObjectContext save:&error]) {
+         LOG(@"Unresolved error %@, %@", error, [error userInfo]);
+         abort();
+      }
+   }
+}
+
+- (void) deleteOrphanTaskSerieses
+{
+   NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+   NSEntityDescription *entity = [NSEntityDescription entityForName:@"TaskSeries" inManagedObjectContext:managedObjectContext];
+   [fetchRequest setEntity:entity];
+   
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"tasks.@count == 0"];
+   [fetchRequest setPredicate:pred];
+   
+   NSError *error = nil;
+   NSArray *taskSerieses = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+   if (error) {
+      LOG(@"error");
+      abort();
+   }
+   
+   for (NSManagedObject *taskSeries in taskSerieses)
+      [self.managedObjectContext deleteObject:taskSeries];
+
+   if (![managedObjectContext save:&error]) {
+      LOG(@"Unresolved error %@, %@", error, [error userInfo]);
+      abort();
+   }
+}
+
 - (void) updateIfNeeded:(NSDictionary *) taskSeries
 {
    // TODO
@@ -185,12 +256,24 @@
       : [api getTaskList];
 
    // check deleted TaskSerieses
+   [self deleteRemotelyDeletedItems:taskSeriesesRetrieved];
+   [self deleteOrphanTaskSerieses];
+   
    // check deleted Tasks
    // check deleted Notes
    // check orphan  Tags
 
    for (NSDictionary *taskseries in taskSeriesesRetrieved) {
-      [self insertNewTask:taskseries];
+      BOOL is_deleted = NO;
+      for (NSDictionary *task in [taskseries objectForKey:@"tasks"]) {
+         NSString *deletedString = [task objectForKey:@"deleted"];
+         if (deletedString && ![deletedString isEqualToString:@""]) {
+            is_deleted = YES;
+            break;
+         }
+      }
+      if (! is_deleted)
+         [self insertNewTask:taskseries];
    }
    
    [defaults setValue:[NSDate date] forKey:@"lastSync"];

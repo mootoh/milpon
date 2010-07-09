@@ -90,7 +90,10 @@
    STAssertNotNil(taskseries_id, nil);
    STAssertNotNil(list_id, nil);
 
+   NSString  *deletedDateString = [[MilponHelper sharedHelper] dateToRtmString:[NSDate date]];
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timeline];
+   NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:deletedDateString];
+   LOG(@"after deletion: %@", taskserieses);
 }
 
 - (void) _testAddAndSetDueDateThenDelete
@@ -109,15 +112,18 @@
    NSString                *due = @"2010-07-01T22:13:00Z";
    [api setTaskDueDate:due timeline:timelineSetDueDate list_id:list_id taskseries_id:taskseries_id task_id:task_id has_due_time:NO parse:NO];
 
-   NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
-   STAssertEquals([taskserieses count], 1U, nil);
-
-   NSDictionary *taskseries = [taskserieses objectAtIndex:0];
-   NSString   *dueSpecified = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"due"];
-   STAssertTrue([dueSpecified isEqualToString:due], nil);
-
-   NSString *dueHasTime = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"has_due_time"];
-   STAssertTrue([dueHasTime isEqualToString:@"0"], nil);
+   {
+      NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+      LOG(@"taskserieses = %@", taskserieses);
+      STAssertEquals([taskserieses count], 1U, nil);
+      
+      NSDictionary *taskseries = [taskserieses objectAtIndex:0];
+      NSString   *dueSpecified = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"due"];
+      STAssertTrue([dueSpecified isEqualToString:due], nil);
+      
+      NSString *dueHasTime = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"has_due_time"];
+      STAssertTrue([dueHasTime isEqualToString:@"0"], nil);
+   }
 
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetDueDate];   
 }
@@ -227,7 +233,7 @@
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineComplete];
 }
 
-- (void) testAddAndCompleteAndUncomplete
+- (void) _testAddAndCompleteAndUncomplete
 {
    // add
    NSString *name        = @"testAddAndComplete";

@@ -9,4 +9,7 @@
 #import "MPMediator.h"
 
 @interface MPTaskMediator : MPMediator
+
+- (void) deleteRemotelyDeletedItems:(NSArray *)taskSerieses;
+
 @end

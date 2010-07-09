@@ -135,7 +135,7 @@
 
 #pragma mark -
 
-- (void) testGetDeleteGet
+- (void) _testGetDeleteGet
 {
    timeline = [api createTimeline];
    NSDictionary *addedTask = [self addTask:@"testGetDeleteGet"];
@@ -145,6 +145,7 @@
 }
 
 #pragma mark -
+
 
 - (void) _testSyncSimpleCase
 {
@@ -177,7 +178,7 @@
    [self deleteTask:addedTask];
 }
 
-- (void) _testSyncAndDelete
+- (void) testSyncAndDelete
 {
    // 1. retrieve all Lists & Tasks.
    [listMediator sync:api];
