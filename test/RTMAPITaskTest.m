@@ -34,6 +34,18 @@
    [api release];
 }
 
+#pragma mark Helpers
+
+- (void) deleteTask:(NSDictionary *)task timeline:(NSString *)timeline
+{
+   NSString       *task_id = [[task objectForKey:@"task"] objectForKey:@"id"];
+   NSString *taskseries_id = [task objectForKey:@"id"];
+   NSString       *list_id = [task objectForKey:@"list_id"];
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timeline];
+}
+
+#pragma mark -
+
 - (void) _testGetList
 {
    NSArray *tasks = [api getTaskList];
@@ -215,6 +227,49 @@
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineComplete];
 }
 
+- (void) testAddAndCompleteAndUncomplete
+{
+   // add
+   NSString *name        = @"testAddAndComplete";
+   NSString *timelineAdd = [api createTimeline];
+   
+   NSDictionary *addedTask = [api addTask:name list_id:nil timeline:timelineAdd];
+   STAssertNotNil(addedTask, nil);
+   
+   // complete
+   NSString  *addedDateString = [[MilponHelper sharedHelper] dateToRtmString:[NSDate date]];
+   NSString *timelineComplete = [api createTimeline];
+   NSString          *task_id = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString    *taskseries_id = [addedTask objectForKey:@"id"];
+   NSString          *list_id = [addedTask objectForKey:@"list_id"];
+   [api completeTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineComplete];
+   
+   {
+      NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+      STAssertEquals([taskserieses count], 1U, nil);
+      
+      NSDictionary *taskseries = [taskserieses objectAtIndex:0];
+      NSString      *completed = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"completed"];
+      STAssertTrue(completed && ![completed isEqualToString:@""], nil);
+   }
+
+   // uncomplete
+   NSString  *uncompletedDatestring = [[MilponHelper sharedHelper] dateToRtmString:[NSDate date]];
+   [api uncompleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineComplete];
+
+   {
+      NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:uncompletedDatestring];
+      STAssertEquals([taskserieses count], 1U, nil);
+      
+      NSDictionary *taskseries = [taskserieses objectAtIndex:0];
+      NSString      *completed = [[[taskseries objectForKey:@"tasks"] objectAtIndex:0] objectForKey:@"completed"];
+      STAssertTrue(completed && [completed isEqualToString:@""], nil);
+   }
+   
+   // clean up
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineComplete];
+}
+
 - (void) _testAddAndSetTags
 {
    NSString        *name = @"testAddAndSetTags";
@@ -295,14 +350,6 @@
    STAssertTrue([renamedName isEqualToString:nameTo], nil);
    
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetName];
-}
-
-- (void) deleteTask:(NSDictionary *)task timeline:(NSString *)timeline
-{
-   NSString       *task_id = [[task objectForKey:@"task"] objectForKey:@"id"];
-   NSString *taskseries_id = [task objectForKey:@"id"];
-   NSString       *list_id = [task objectForKey:@"list_id"];
-   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timeline];
 }
 
 - (void) _testSetRecurrence

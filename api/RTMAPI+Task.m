@@ -328,6 +328,15 @@
    [self call:@"rtm.tasks.complete" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
 }
 
+- (void) uncompleteTask:(NSString *)task_id taskseries_id:(NSString *)taskseries_id list_id:(NSString *)list_id timeline:(NSString *)timeline
+{
+   NSArray      *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"timeline", nil];
+   NSArray      *vals = [NSArray arrayWithObjects:list_id, taskseries_id, task_id, timeline, nil];
+   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   
+   [self call:@"rtm.tasks.uncomplete" args:args delegate:[[[RTMAPIParserDelegate alloc] init] autorelease]];
+}
+
 - (void) setTaskTags:(NSString *)tags task_id:(NSString *)task_id taskseries_id:(NSString *)taskseries_id list_id:(NSString *)list_id timeline:(NSString *)timeline
 {
    NSArray             *keys = [NSArray arrayWithObjects:@"list_id", @"taskseries_id", @"task_id", @"timeline", nil];
