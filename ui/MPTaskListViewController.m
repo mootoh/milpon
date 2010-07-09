@@ -12,31 +12,116 @@
 #import "RTMAPI+Timeline.h"
 #import "MPHelper.h"
 #import "MPLogger.h"
+#import "MPTask.h"
 
-@interface PriorityBar : UIView
+#pragma mark -
+@interface MPTaskCell : UITableViewCell
 {
-   NSInteger priority;
+   enum {
+      TAG_COMPLETE_BUTTON = 1
+   };
+
+   MPTask *task;
 }
-@property (nonatomic) NSInteger priority;
+
+@property (nonatomic, retain) MPTask *task;
+
 @end
 
-@implementation PriorityBar
-@synthesize priority;
+@implementation MPTaskCell
+@synthesize task;
 
 static UIColor *s_colors[4] = {nil, nil, nil, nil};
 
-- (void) setPriority:(NSInteger) prty
+- (UIColor *) priorityColor:(NSInteger) priority
 {
+   NSAssert(priority >= 0 && priority < 4, @"");
+
    if (s_colors[0] == nil) {
       s_colors[0] = [[UIColor whiteColor] retain]; // no priority
       s_colors[1] = [[UIColor colorWithRed:0.917 green:0.321 blue:0.0   alpha:1.0] retain]; // orange
       s_colors[2] = [[UIColor colorWithRed:0.0   green:0.376 blue:0.749 alpha:1.0] retain]; // deep blue
       s_colors[3] = [[UIColor colorWithRed:0.207 green:0.604 blue:1.0   alpha:1.0] retain]; // light blue
    }
+   
+   return s_colors[priority];
+}
 
-   priority = prty;
-   NSAssert(priority >= 0 && priority < 4, @"");
-   self.backgroundColor = s_colors[priority];
+- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+   if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+      UIButton *checkButton = [UIButton buttonWithType:UIButtonTypeCustom];
+      checkButton.tag = TAG_COMPLETE_BUTTON;
+      [self addSubview:checkButton];
+   }
+   return self;
+}
+
+- (void) drawRect:(CGRect)rect
+{
+   CGContextRef context = UIGraphicsGetCurrentContext();
+
+   CGRect nameRect = CGRectMake(44, 8, rect.size.width - 44 - 44, rect.size.height - 20);
+   NSString *name = [[[task valueForKey:@"taskSeries"] valueForKey:@"name"] description];
+
+   CGContextSetTextDrawingMode(context, kCGTextFill);
+
+   if ([task valueForKey:@"completed"]) {
+      CGContextSetRGBFillColor(context, 0.4, 0.4, 0.4, 1.0);
+   } else {
+      CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
+   }
+   
+   [name drawInRect:nameRect withFont:[UIFont boldSystemFontOfSize:16]];
+
+   UIButton *checkButton = (UIButton *)[self viewWithTag:TAG_COMPLETE_BUTTON];
+   [checkButton setImage:[UIImage imageNamed:[task valueForKey:@"completed"] ? @"checkBoxChecked.png" : @"checkBox.png"] forState:UIControlStateNormal];
+   [checkButton addTarget:self action:@selector(toggleCheck) forControlEvents:UIControlEventTouchDown];
+   checkButton.frame = CGRectMake(8, 6, 32, 32);
+   checkButton.center = CGPointMake(24, rect.size.height/2);
+
+   // draw priority bar
+   CGContextSetStrokeColorWithColor(context, [[self priorityColor:[[task valueForKey:@"priority"] integerValue]] CGColor]);
+   CGContextSetLineWidth(context, 6.0);
+   CGContextMoveToPoint(context, 3.5, 0);
+   CGContextAddLineToPoint(context, 3.5, rect.size.height);
+   CGContextStrokePath(context);
+
+   // due
+   NSDate *due = [task valueForKey:@"due"];
+   if (due) {
+      NSDate *now = [NSDate date];
+      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+      NSTimeInterval interval = [due timeIntervalSinceDate:now];
+      LOG(@"interval = %f", interval);
+      
+      if (interval >= 0 && interval < 60*60*24*7) {
+         [dateFormatter setDateFormat:@"E"];
+      } else {
+         [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+      }
+
+      NSString *dueString = [dateFormatter stringFromDate:due];
+      CGFloat h = [dueString sizeWithFont:[UIFont boldSystemFontOfSize:11] constrainedToSize:CGSizeMake(80, 1000) lineBreakMode:UILineBreakModeClip].height;
+      CGContextSetRGBFillColor(context, 0.4, 0.4, 0.4, 1.0);
+      [dueString drawInRect:CGRectMake(48, rect.size.height-h-2, 80, h+2) withFont:[UIFont systemFontOfSize:11]];
+   }
+}
+
+- (void)prepareForReuse
+{
+   [task release];
+   task = nil;
+}
+
+- (void) toggleCheck
+{
+   if ([task valueForKey:@"completed"]) {
+      [task uncomplete];
+   } else {
+      [task complete];
+   }
+//   [self setNeedsDisplay];
 }
 
 @end
@@ -87,47 +172,10 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
    }
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(MPTaskCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-   NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
-   cell.textLabel.numberOfLines = 0;
-   cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
-   cell.textLabel.text = [[[managedObject valueForKey:@"taskSeries"] valueForKey:@"name"] description];
-
-   NSDate *due = [managedObject valueForKey:@"due"];
-   if (due) {
-      NSString *dueString = nil;
-      NSDate *now = [NSDate date];
-      NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-      NSTimeInterval interval = [due timeIntervalSinceDate:now];
-      LOG(@"interval = %f", interval);
-
-      if (interval >= 0 && interval < 60*60*24*7) {
-         [dateFormatter setDateFormat:@"E"];
-      } else {
-         [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-      }
-      dueString = [dateFormatter stringFromDate:due];
-      
-      cell.detailTextLabel.text = dueString;
-   }
-   if ([managedObject valueForKey:@"completed"])
-      cell.textLabel.textColor = [UIColor grayColor];
-
-   cell.indentationLevel = 1;
-   cell.indentationWidth = 60;
-
-   UIButton *checkButton = [UIButton buttonWithType:UIButtonTypeCustom];
-   [checkButton setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
-   [checkButton setImage:[UIImage imageNamed:@"checkBoxChecked.png"] forState:UIControlStateHighlighted];
-//   [checkButton addTarget:self action:@selector(toggleCheck) forControlEvents:UIControlEventTouchDown];  
-   checkButton.frame = CGRectMake(16, 2, 40, 40);
-   [cell.contentView addSubview:checkButton];
-
-   PriorityBar *pb = [[PriorityBar alloc] initWithFrame:CGRectMake(4, 0, 8, cell.frame.size.height)];
-   [cell.contentView addSubview:pb];
-   pb.priority = [[managedObject valueForKey:@"priority"] integerValue];
-   [pb release];
+   MPTask *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
+   cell.task = managedObject;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -169,11 +217,11 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
    
    static NSString *CellIdentifier = @"TaskListCell";
    
-   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+   MPTaskCell *cell = (MPTaskCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
    if (cell == nil) {
-      cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+      cell = [[[MPTaskCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
    }
-   
+                
    // Configure the cell...
    [self configureCell:cell atIndexPath:indexPath];
    
@@ -310,10 +358,11 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
    [fetchRequest setSortDescriptors:sortDescriptors];
    
    NSString *predicateString = [NSString stringWithFormat:@"taskSeries.inList.iD == %@ AND deleted == NULL ", [listObject valueForKey:@"iD"]];
+/*   
    if (! showToggle) {
       predicateString = [predicateString stringByAppendingFormat:@"AND completed == NULL"];
    }
-
+ */
    NSPredicate *pred = [NSPredicate predicateWithFormat:predicateString];
    [fetchRequest setPredicate:pred];
    
@@ -374,7 +423,7 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
          break;
          
       case NSFetchedResultsChangeUpdate:
-         [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+         [self configureCell:(MPTaskCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
          break;
          
       case NSFetchedResultsChangeMove:
