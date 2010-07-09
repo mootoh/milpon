@@ -297,6 +297,14 @@
    [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineSetName];
 }
 
+- (void) deleteTask:(NSDictionary *)task timeline:(NSString *)timeline
+{
+   NSString       *task_id = [[task objectForKey:@"task"] objectForKey:@"id"];
+   NSString *taskseries_id = [task objectForKey:@"id"];
+   NSString       *list_id = [task objectForKey:@"list_id"];
+   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timeline];
+}
+
 - (void) _testSetRecurrence
 {
    NSString *name        = @"testSetRecurrence";
@@ -310,6 +318,7 @@
    NSString    *taskseries_id = [addedTask objectForKey:@"id"];
    NSString          *list_id = [addedTask objectForKey:@"list_id"];
    NSString       *recurrence = @"Every day";
+
    [api setRecurrence:recurrence timeline:timelineAdd list_id:list_id taskseries_id:taskseries_id task_id:task_id];
    
    NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
@@ -320,8 +329,46 @@
    LOG(@"rrule = %@", rrule);
    STAssertEquals(1, [[rrule objectForKey:@"every"] integerValue], nil);
    STAssertTrue([[rrule objectForKey:@"rule"] isEqualToString:@"FREQ=DAILY;INTERVAL=1"], nil);
-   
-   [api deleteTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineAdd];
+
+   // clean up
+   [self deleteTask:addedTask timeline:timelineAdd];
+}
+
+- (void) _testSetDueAndRecurrenceThenComplete
+{
+   // add
+   NSString            *name = @"testSetRecurrence";
+   NSString     *timelineAdd = [api createTimeline];
+   NSDictionary   *addedTask = [api addTask:name list_id:nil timeline:timelineAdd];
+   NSString *addedDateString = [[MilponHelper sharedHelper] dateToRtmString:[NSDate date]];
+   STAssertNotNil(addedTask, nil);
+
+   // set Due
+   NSString *timelineSetDueDate = [api createTimeline];
+   NSString            *task_id = [[addedTask objectForKey:@"task"] objectForKey:@"id"];
+   NSString      *taskseries_id = [addedTask objectForKey:@"id"];
+   NSString            *list_id = [addedTask objectForKey:@"list_id"];
+   NSString                *due = @"2010-07-01T22:13:00Z";
+   [api setTaskDueDate:due timeline:timelineSetDueDate list_id:list_id taskseries_id:taskseries_id task_id:task_id has_due_time:NO parse:NO];
+
+   // set recurrence
+   NSString *recurrence = @"Every day";
+   [api setRecurrence:recurrence timeline:timelineAdd list_id:list_id taskseries_id:taskseries_id task_id:task_id];
+
+   // complete it
+   [api completeTask:task_id taskseries_id:taskseries_id list_id:list_id timeline:timelineAdd];
+
+   NSArray *taskserieses = [api getTaskList:nil filter:nil lastSync:addedDateString];
+   STAssertEquals([taskserieses count], 1U, nil);
+
+   NSDictionary *taskseries = [taskserieses objectAtIndex:0];
+   NSDictionary *rrule = [taskseries objectForKey:@"rrule"];
+   STAssertEquals(1, [[rrule objectForKey:@"every"] integerValue], nil);
+   STAssertTrue([[rrule objectForKey:@"rule"] isEqualToString:@"FREQ=DAILY;INTERVAL=1"], nil);
+
+   // clean up
+   for (NSDictionary *task in [taskseries objectForKey:@"tasks"])
+      [api deleteTask:[task objectForKey:@"id"] taskseries_id:[taskseries objectForKey:@"id"] list_id:[taskseries objectForKey:@"list_id"] timeline:timelineAdd];
 }
 
 #if 0
