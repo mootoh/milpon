@@ -90,6 +90,8 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
+   cell.textLabel.numberOfLines = 0;
+   cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
    cell.textLabel.text = [[[managedObject valueForKey:@"taskSeries"] valueForKey:@"name"] description];
 
    NSDate *due = [managedObject valueForKey:@"due"];
@@ -145,6 +147,19 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
    return [sectionInfo numberOfObjects];
 }
 
+CGFloat max(CGFloat a, CGFloat b)
+{
+   return (a > b) ? a : b;
+}
+
+- (CGFloat)tableView:(UITableView *) tableView heightForRowAtIndexPath:(NSIndexPath *) indexPath
+{
+   NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
+   NSString *name = [[[managedObject valueForKey:@"taskSeries"] valueForKey:@"name"] description];
+   LOG(@"name = %@", name);
+   CGFloat h = [name sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(140, 1000) lineBreakMode:UILineBreakModeWordWrap].height;
+   return max(h, 44);
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
