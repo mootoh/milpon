@@ -121,7 +121,6 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
    } else {
       [task complete];
    }
-//   [self setNeedsDisplay];
 }
 
 @end
@@ -351,10 +350,10 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
 
    // Edit the sort key as appropriate.
    NSSortDescriptor *dueSortDescriptor       = [[NSSortDescriptor alloc] initWithKey:@"due" ascending:YES];
-   NSSortDescriptor *completedSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"completed" ascending:YES];
+//   NSSortDescriptor *completedSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"completed" ascending:YES];
    NSSortDescriptor *nameSortDescriptor      = [[NSSortDescriptor alloc] initWithKey:@"taskSeries.name" ascending:YES];
-   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:completedSortDescriptor, dueSortDescriptor, nameSortDescriptor, nil];
-   
+//   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:completedSortDescriptor, dueSortDescriptor, nameSortDescriptor, nil];
+   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:dueSortDescriptor, nameSortDescriptor, nil];
    [fetchRequest setSortDescriptors:sortDescriptors];
    
    NSString *predicateString = [NSString stringWithFormat:@"taskSeries.inList.iD == %@ AND deleted == NULL ", [listObject valueForKey:@"iD"]];
@@ -408,12 +407,10 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath {
-   
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
    UITableView *tableView = self.tableView;
-   
    switch(type) {
-         
       case NSFetchedResultsChangeInsert:
          [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
          break;
@@ -432,7 +429,6 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
          break;
    }
 }
-
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
    [self.tableView endUpdates];
