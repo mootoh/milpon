@@ -24,6 +24,9 @@
    };
 }
 
+- (NSString *) is_completed;
+
 - (void) complete;
+- (void) uncomplete;
 
 @end
