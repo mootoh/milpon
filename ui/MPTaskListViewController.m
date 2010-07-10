@@ -66,7 +66,7 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
 
    CGContextSetTextDrawingMode(context, kCGTextFill);
 
-   if ([task valueForKey:@"completed"]) {
+   if ([task is_completed]) {
       CGContextSetRGBFillColor(context, 0.4, 0.4, 0.4, 1.0);
    } else {
       CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
@@ -75,7 +75,7 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
    [name drawInRect:nameRect withFont:[UIFont boldSystemFontOfSize:16]];
 
    UIButton *checkButton = (UIButton *)[self viewWithTag:TAG_COMPLETE_BUTTON];
-   [checkButton setImage:[UIImage imageNamed:[task valueForKey:@"completed"] ? @"checkBoxChecked.png" : @"checkBox.png"] forState:UIControlStateNormal];
+   [checkButton setImage:[UIImage imageNamed:[task is_completed] ? @"checkBoxChecked.png" : @"checkBox.png"] forState:UIControlStateNormal];
    [checkButton addTarget:self action:@selector(toggleCheck) forControlEvents:UIControlEventTouchDown];
    checkButton.frame = CGRectMake(8, 6, 32, 32);
    checkButton.center = CGPointMake(24, rect.size.height/2);
@@ -116,12 +116,12 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
 
 - (void) toggleCheck
 {
-   if ([task valueForKey:@"completed"]) {
+   if ([task is_completed]) {
       [task uncomplete];
    } else {
       [task complete];
-      [self setNeedsDisplay];
    }
+   [self setNeedsDisplay];
 }
 
 @end
@@ -347,9 +347,10 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
    [fetchRequest setFetchBatchSize:20];
 
    NSSortDescriptor *dueSortDescriptor       = [[NSSortDescriptor alloc] initWithKey:@"due" ascending:YES];
-   NSSortDescriptor *completedSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"completed" ascending:YES];
+//   NSSortDescriptor *completedSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"completed" ascending:YES];
    NSSortDescriptor *nameSortDescriptor      = [[NSSortDescriptor alloc] initWithKey:@"taskSeries.name" ascending:YES];
-   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:completedSortDescriptor, dueSortDescriptor, nameSortDescriptor, nil];
+//   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:completedSortDescriptor, dueSortDescriptor, nameSortDescriptor, nil];
+   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:dueSortDescriptor, nameSortDescriptor, nil];
    [fetchRequest setSortDescriptors:sortDescriptors];
    
    NSString *predicateString = [NSString stringWithFormat:@"taskSeries.inList.iD == %@ AND deleted_ == NULL ", [listObject valueForKey:@"iD"]];
