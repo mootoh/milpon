@@ -61,6 +61,14 @@
                cell.textLabel.text = @"url";
                cell.detailTextLabel.text = [[taskseriesObject valueForKey:@"url"] description];
                break;
+            case 6: {
+               cell.textLabel.text = @"tags";
+               NSString *tag_str = @"";
+               for (NSManagedObject *tag in [taskseriesObject valueForKey:@"tags"])
+                  tag_str = [tag_str stringByAppendingFormat:@"%@ ", [tag valueForKey:@"name"]];
+               cell.detailTextLabel.text = tag_str;
+               break;
+            }
             default:
                break;
          }
@@ -124,7 +132,7 @@
 {
    switch (section) {
       case 0: // TaskSeries attributes
-         return 6;
+         return 7;
       case 1: // Task attributes
          return 9;
       default:

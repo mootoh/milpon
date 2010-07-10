@@ -93,7 +93,6 @@
    // skip smart list
    if ([[list valueForKey:@"smart"] boolValue]) {
       LOG(@"something bad happens");
-//      LOG(@"taskseries = %@, list = %@", taskseries, listObject);
       abort();
       return;
    }
@@ -119,6 +118,34 @@
       NSDictionary *rrule = [taskseries objectForKey:@"rrule"];
       NSString *packedRrule = [NSString stringWithFormat:@"%@-%@", [rrule objectForKey:@"every"], [rrule objectForKey:@"rule"]];
       [newTaskSeries setValue:packedRrule forKey:@"rrule"];
+   }
+
+   if ([taskseries objectForKey:@"url"])
+      [newTaskSeries setValue:[taskseries objectForKey:@"url"] forKey:@"url"];
+
+   if ([taskseries objectForKey:@"tags"]) {
+      NSMutableSet *tags_to_set = [NSMutableSet set];
+
+      for (NSString *tag in [taskseries objectForKey:@"tags"]) {
+         NSManagedObject *tag_to_set = nil;
+
+         // search for existing tag
+         NSArray *existing_tags = [self allEntities:@"Tag"];
+         for (NSManagedObject *existing_tag in existing_tags) {
+            if ([tag isEqualToString:[existing_tag valueForKey:@"name"]]) { // found
+               tag_to_set = existing_tag;
+               break;
+            }
+         }
+         if (! tag_to_set) {
+            NSManagedObject *newTag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:managedObjectContext];
+            [newTag setValue:tag forKey:@"name"];
+            tag_to_set = newTag;
+         }
+         [tags_to_set addObject:tag_to_set];
+      }
+      if ([tags_to_set count] > 0)
+         [newTaskSeries setValue:tags_to_set forKey:@"tags"];
    }
    
    [newTaskSeries setValue:list forKey:@"inList"];
