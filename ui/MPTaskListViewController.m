@@ -330,6 +330,7 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
    return pred;
 }
 
+#define k_CACHE_NAME_FOR_TASK          @"TaskCache"
 #define k_CACHE_NAME_FOR_COMPLETED     @"taskCompleted"
 #define k_CACHE_NAME_FOR_NOT_COMPLETED @"taskNotCompleted"
 
@@ -337,18 +338,14 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
 {
    if (fetchedResultsController != nil)
       return fetchedResultsController;
-   [NSFetchedResultsController deleteCacheWithName:@"TaskCache"];
+   [NSFetchedResultsController deleteCacheWithName:k_CACHE_NAME_FOR_TASK];
 
-   // Create the fetch request for the entity.
    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-   // Edit the entity name as appropriate.
    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext];
    [fetchRequest setEntity:entity];
 
-   // Set the batch size to a suitable number.
    [fetchRequest setFetchBatchSize:20];
 
-   // Edit the sort key as appropriate.
    NSSortDescriptor *dueSortDescriptor       = [[NSSortDescriptor alloc] initWithKey:@"due" ascending:YES];
 //   NSSortDescriptor *completedSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"completed" ascending:YES];
    NSSortDescriptor *nameSortDescriptor      = [[NSSortDescriptor alloc] initWithKey:@"taskSeries.name" ascending:YES];
@@ -366,7 +363,7 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
    [fetchRequest setPredicate:pred];
    
 //   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:@"is_completed" cacheName:showToggle ? k_CACHE_NAME_FOR_COMPLETED : k_CACHE_NAME_FOR_NOT_COMPLETED];
-   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"TaskCache"];
+   NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:k_CACHE_NAME_FOR_TASK];
 
    aFetchedResultsController.delegate = self;
    self.fetchedResultsController = aFetchedResultsController;
@@ -378,21 +375,19 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
    [sortDescriptors release];
    
    return fetchedResultsController;
-}    
-
+}
 
 #pragma mark -
 #pragma mark Fetched results controller delegate
 
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
    [self.tableView beginUpdates];
 }
 
-
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-   
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
    switch(type) {
       case NSFetchedResultsChangeInsert:
          [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
