@@ -120,6 +120,7 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
       [task uncomplete];
    } else {
       [task complete];
+      [self setNeedsDisplay];
    }
 }
 
@@ -206,7 +207,6 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
    if (! managedObject) return k_DEFAULT_CELL_HEIGHT;
    NSString *name = [[[managedObject valueForKey:@"taskSeries"] valueForKey:@"name"] description];
-   LOG(@"name = %@", name);
    CGFloat h = [name sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(140, 1000) lineBreakMode:UILineBreakModeWordWrap].height;
    return max(h, k_DEFAULT_CELL_HEIGHT);
 }
@@ -347,13 +347,12 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
    [fetchRequest setFetchBatchSize:20];
 
    NSSortDescriptor *dueSortDescriptor       = [[NSSortDescriptor alloc] initWithKey:@"due" ascending:YES];
-//   NSSortDescriptor *completedSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"completed" ascending:YES];
+   NSSortDescriptor *completedSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"completed" ascending:YES];
    NSSortDescriptor *nameSortDescriptor      = [[NSSortDescriptor alloc] initWithKey:@"taskSeries.name" ascending:YES];
-//   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:completedSortDescriptor, dueSortDescriptor, nameSortDescriptor, nil];
-   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:dueSortDescriptor, nameSortDescriptor, nil];
+   NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:completedSortDescriptor, dueSortDescriptor, nameSortDescriptor, nil];
    [fetchRequest setSortDescriptors:sortDescriptors];
    
-   NSString *predicateString = [NSString stringWithFormat:@"taskSeries.inList.iD == %@ AND deleted == NULL ", [listObject valueForKey:@"iD"]];
+   NSString *predicateString = [NSString stringWithFormat:@"taskSeries.inList.iD == %@ AND deleted_ == NULL ", [listObject valueForKey:@"iD"]];
 /*   
    if (! showToggle) {
       predicateString = [predicateString stringByAppendingFormat:@"AND completed == NULL"];

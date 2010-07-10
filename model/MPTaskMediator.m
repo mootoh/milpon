@@ -145,7 +145,7 @@
       NSString *deletedString = [task objectForKey:@"deleted"];
       if (deletedString && ! [deletedString isEqualToString:@""]) {
          NSDate *date = [[MilponHelper sharedHelper] rtmStringToDate:[task objectForKey:@"deleted"]];
-         [newTask setValue:date forKey:@"deleted"];
+         [newTask setValue:date forKey:@"deleted_"];
       }
       
       NSString *dueString = [task objectForKey:@"due"];

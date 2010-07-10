@@ -81,7 +81,7 @@
                break;
             case 3:
                cell.textLabel.text = @"deleted";
-               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskObject valueForKey:@"deleted"]];
+               cell.detailTextLabel.text = [dateFormatter stringFromDate:[taskObject valueForKey:@"deleted_"]];
                break;
             case 4:
                cell.textLabel.text = @"due";

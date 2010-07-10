@@ -24,7 +24,7 @@
    // If appropriate, configure the new managed object.
    [newManagedObject setValue:integerNumberFromString([list objectForKey:@"id"]) forKey:@"iD"];
    [newManagedObject setValue:[list objectForKey:@"name"] forKey:@"name"];
-   [newManagedObject setValue:boolNumberFromString([list objectForKey:@"deleted"]) forKey:@"deleted"];
+   [newManagedObject setValue:boolNumberFromString([list objectForKey:@"deleted"]) forKey:@"deleted_"];
    [newManagedObject setValue:boolNumberFromString([list objectForKey:@"locked"]) forKey:@"locked"];
    [newManagedObject setValue:boolNumberFromString([list objectForKey:@"archived"]) forKey:@"archived"];
    [newManagedObject setValue:integerNumberFromString([list objectForKey:@"position"]) forKey:@"position"];
@@ -115,9 +115,9 @@
    
    // "deleted" attribute would not be set in the getList API call.
 #ifdef SUPPORT_LIST_DELETED
-   if (! [[list objectForKey:@"deleted"] boolValue] == [[theList valueForKey:@"deleted"] boolValue]) {
+   if (! [[list objectForKey:@"deleted"] boolValue] == [[theList valueForKey:@"deleted_"] boolValue]) {
       updated = YES;
-      [theList setValue:[self boolNumberFromString:[list objectForKey:@"deleted"]] forKey:@"deleted"];
+      [theList setValue:[self boolNumberFromString:[list objectForKey:@"deleted"]] forKey:@"deleted_"];
    }
 #endif // SUPPORT_LIST_DELETED
    

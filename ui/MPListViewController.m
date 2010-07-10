@@ -229,7 +229,7 @@
    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:positionSortDescriptor, nameSortDescriptor, nil];
    [fetchRequest setSortDescriptors:sortDescriptors];
 
-   NSPredicate *pred = [NSPredicate predicateWithFormat:@"archived == false AND deleted == false"];
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"archived == false AND deleted_ == false"];
    [fetchRequest setPredicate:pred];
 
    // Edit the section name key path and cache name if appropriate.

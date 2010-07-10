@@ -121,7 +121,7 @@
    NSManagedObject *newList = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:[self managedObjectContext]];
    [newList setValue:[NSNumber numberWithInt:1]   forKey:@"iD"];
    [newList setValue:@"a list"                    forKey:@"name"];
-   [newList setValue:[NSNumber numberWithBool:NO] forKey:@"deleted"];
+   [newList setValue:[NSNumber numberWithBool:NO] forKey:@"deleted_"];
    [newList setValue:[NSNumber numberWithBool:NO] forKey:@"locked"];
    [newList setValue:[NSNumber numberWithBool:NO] forKey:@"archived"];
    [newList setValue:[NSNumber numberWithInt:0]   forKey:@"position"];
