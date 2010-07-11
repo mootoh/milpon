@@ -69,3 +69,8 @@ static MilponHelper *the_milpon_helper = nil;
 }
 
 @end
+
+CGFloat max(CGFloat a, CGFloat b)
+{
+   return (a > b) ? a : b;
+}

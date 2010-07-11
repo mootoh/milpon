@@ -21,7 +21,6 @@
 @interface CountCircleView : UIView
 {
    NSUInteger count;
-   UILabel *countLabel;
 }
 @property (nonatomic) NSUInteger count;
 @end
@@ -34,37 +33,42 @@
    if (self = [super initWithFrame:frame]) {
       self.backgroundColor = [UIColor clearColor];
       count = 0;
-
-      countLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.origin.x + 3, self.frame.origin.y + 3, self.frame.size.width - 6, self.frame.size.height - 6)];
-      countLabel.textColor = [UIColor colorWithRed:0.000 green:0.251 blue:0.502 alpha:1.000];
-      countLabel.text = [NSString stringWithFormat:@"%d", count];
-      countLabel.textAlignment = UITextAlignmentCenter;
-      countLabel.backgroundColor = [UIColor clearColor];
-      countLabel.adjustsFontSizeToFitWidth = YES;
-      countLabel.minimumFontSize = 8;
-      [self addSubview:countLabel];
    }
    return self;
 }
 
 - (void) dealloc
 {
-   [countLabel release];
    [super dealloc];
+}
+
+- (void) updateRect
+{
+   NSString *countString = [NSString stringWithFormat:@"%d", count];
+   CGSize sz = [countString sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(1000, self.frame.size.height) lineBreakMode:UILineBreakModeClip];
+   CGFloat w = max(sz.width  + 12, self.frame.size.width);
+   CGFloat h = max(sz.height + 8, self.frame.size.height);
+   self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, w, h);
 }
 
 - (void) setCount:(NSUInteger)cnt
 {
    count = cnt;
-   countLabel.text = [NSString stringWithFormat:@"%d", count];
+   [self updateRect];
+   [self setNeedsDisplay];
 }
 
 - (void) drawRect:(CGRect)rect
 {
    CGContextRef context = UIGraphicsGetCurrentContext();
 
-   CGContextSetFillColorWithColor(context, [[UIColor colorWithRed:0.000 green:0.502 blue:1.000 alpha:0.20] CGColor]);
+   CGContextSetFillColorWithColor(context, [[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:0.4] CGColor]);
    CGContextFillEllipseInRect(context, rect);
+   
+   NSString *countString = [NSString stringWithFormat:@"%d", count];
+   CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
+   CGRect countStringRect = CGRectMake(rect.origin.x, rect.origin.y+4, rect.size.width, rect.size.height-8);
+   [countString drawInRect:countStringRect withFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
 }
 
 @end
@@ -134,7 +138,7 @@
       cell.textLabel.textColor = [UIColor blackColor];
    }
    
-   CountCircleView *ccv = [[CountCircleView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+   CountCircleView *ccv = [[CountCircleView alloc] initWithFrame:CGRectMake(0, 0, 32, 24)];
    NSInteger sum = 0;
    for (NSManagedObject *task in [managedObject valueForKey:@"taskSerieses"]) {
       sum += [[task valueForKey:@"tasks"] count];

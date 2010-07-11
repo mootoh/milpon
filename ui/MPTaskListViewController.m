@@ -181,6 +181,7 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
 {
    MPTask *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
    cell.task = managedObject;
+   [cell setNeedsDisplay]; // XXX: this should not be necessary, but TableView displays incorrect information on the cell...
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -198,11 +199,6 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
    return [sectionInfo numberOfObjects];
-}
-
-CGFloat max(CGFloat a, CGFloat b)
-{
-   return (a > b) ? a : b;
 }
 
 static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;

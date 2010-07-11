@@ -28,3 +28,5 @@
 - (NSDate *) rtmStringToDate:(NSString *) str;
 
 @end
+
+CGFloat max(CGFloat a, CGFloat b);
