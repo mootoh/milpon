@@ -17,12 +17,12 @@
 #pragma mark -
 @interface MPTaskCell : UITableViewCell
 {
-   enum {
-      TAG_COMPLETE_BUTTON = 1
-   };
-
    MPTask *task;
 }
+
+enum {
+   TAG_COMPLETE_BUTTON = 1
+};
 
 @property (nonatomic, retain) MPTask *task;
 
@@ -93,7 +93,6 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
       NSDate *now = [NSDate date];
       NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
       NSTimeInterval interval = [due timeIntervalSinceDate:now];
-      LOG(@"interval = %f", interval);
       
       if (interval >= 0 && interval < 60*60*24*7) {
          [dateFormatter setDateFormat:@"E"];
@@ -105,6 +104,13 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
       CGFloat h = [dueString sizeWithFont:[UIFont boldSystemFontOfSize:11] constrainedToSize:CGSizeMake(80, 1000) lineBreakMode:UILineBreakModeClip].height;
       CGContextSetRGBFillColor(context, 0.4, 0.4, 0.4, 1.0);
       [dueString drawInRect:CGRectMake(48, rect.size.height-h-2, 80, h+2) withFont:[UIFont systemFontOfSize:11]];
+   }
+
+   // tags
+   NSSet *tags = [task valueForKeyPath:@"taskSeries.tags"];
+   if (tags && [tags count] > 0) {
+      UIImage *img = [UIImage imageNamed:@"icon_tag_disabled.png"];
+      [img drawInRect:CGRectMake(rect.size.width-24-4, 4, 24, 24)];
    }
 }
 
@@ -145,7 +151,7 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
 
    // set up the view
    self.title = [listObject valueForKey:@"name"];
-
+/*
    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(syncTaskList)];
 
    UISwitch *viewToggleSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -156,8 +162,7 @@ static UIColor *s_colors[4] = {nil, nil, nil, nil};
    [addButton release];
    [toggleItem release];
    [viewToggleSwitch release];
-
-   // [self performSelectorInBackground:@selector(getTasks) withObject:nil];
+*/
 
    // load the contents
    NSError *error = nil;
@@ -207,8 +212,8 @@ static const CGFloat k_DEFAULT_CELL_HEIGHT = 44.0f;
    NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
    if (! managedObject) return k_DEFAULT_CELL_HEIGHT;
    NSString *name = [[[managedObject valueForKey:@"taskSeries"] valueForKey:@"name"] description];
-   CGFloat h = [name sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(140, 1000) lineBreakMode:UILineBreakModeWordWrap].height;
-   return max(h, k_DEFAULT_CELL_HEIGHT);
+   CGFloat h = [name sizeWithFont:[UIFont boldSystemFontOfSize:16] constrainedToSize:CGSizeMake(320-44-44, 1000) lineBreakMode:UILineBreakModeWordWrap].height;
+   return max(h+8, k_DEFAULT_CELL_HEIGHT);
 }
 
 // Customize the appearance of table view cells.

@@ -38,6 +38,9 @@
 		921801DA11E4C80000EDF3D8 /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CA11E4C7FA00EDF3D8 /* RTMAPI+Task.m */; };
 		921801DB11E4C80100EDF3D8 /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CC11E4C7FA00EDF3D8 /* RTMAPI+Timeline.m */; };
 		921801DC11E4C80200EDF3D8 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CE11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m */; };
+		922CB4DD11E93F8B000C2450 /* icon_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = 922CB4DC11E93F8B000C2450 /* icon_tag.png */; };
+		922CB4E211E93FC3000C2450 /* icon_tag_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 922CB4E011E93FC3000C2450 /* icon_tag_disabled.png */; };
+		922CB4E311E93FC3000C2450 /* icon_tag_toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 922CB4E111E93FC3000C2450 /* icon_tag_toolbar.png */; };
 		92CC0C2511E53170001EA183 /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C1E11E53170001EA183 /* MPListMediator.m */; };
 		92CC0C2611E53170001EA183 /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2011E53170001EA183 /* MPMediator.m */; };
 		92CC0C2711E53170001EA183 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2211E53170001EA183 /* MPTask.m */; };
@@ -128,6 +131,9 @@
 		921801CC11E4C7FA00EDF3D8 /* RTMAPI+Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RTMAPI+Timeline.m"; path = "api/RTMAPI+Timeline.m"; sourceTree = "<group>"; };
 		921801CD11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMAPIParserDelegate.h; path = api/RTMAPIParserDelegate.h; sourceTree = "<group>"; };
 		921801CE11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMAPIParserDelegate.m; path = api/RTMAPIParserDelegate.m; sourceTree = "<group>"; };
+		922CB4DC11E93F8B000C2450 /* icon_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag.png; path = ../Milpon/resource/icon_tag.png; sourceTree = SOURCE_ROOT; };
+		922CB4E011E93FC3000C2450 /* icon_tag_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag_disabled.png; path = ../Milpon/resource/icon_tag_disabled.png; sourceTree = SOURCE_ROOT; };
+		922CB4E111E93FC3000C2450 /* icon_tag_toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag_toolbar.png; path = ../Milpon/resource/icon_tag_toolbar.png; sourceTree = SOURCE_ROOT; };
 		92CC0C1D11E53170001EA183 /* MPListMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPListMediator.h; path = model/MPListMediator.h; sourceTree = "<group>"; };
 		92CC0C1E11E53170001EA183 /* MPListMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPListMediator.m; path = model/MPListMediator.m; sourceTree = "<group>"; };
 		92CC0C1F11E53170001EA183 /* MPMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPMediator.h; path = model/MPMediator.h; sourceTree = "<group>"; };
@@ -250,6 +256,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				922CB4E011E93FC3000C2450 /* icon_tag_disabled.png */,
+				922CB4E111E93FC3000C2450 /* icon_tag_toolbar.png */,
+				922CB4DC11E93F8B000C2450 /* icon_tag.png */,
 				92F3812F11E6E1B50014A873 /* checkBox.png */,
 				92F3813011E6E1B50014A873 /* checkBoxChecked.png */,
 				92CC0D7C11E53A63001EA183 /* Settings.bundle */,
@@ -477,6 +486,9 @@
 				92CC0D7E11E53A63001EA183 /* Settings.bundle in Resources */,
 				92F3813111E6E1B50014A873 /* checkBox.png in Resources */,
 				92F3813211E6E1B50014A873 /* checkBoxChecked.png in Resources */,
+				922CB4DD11E93F8B000C2450 /* icon_tag.png in Resources */,
+				922CB4E211E93FC3000C2450 /* icon_tag_disabled.png in Resources */,
+				922CB4E311E93FC3000C2450 /* icon_tag_toolbar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
