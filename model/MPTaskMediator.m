@@ -9,6 +9,7 @@
 #import "MPTaskMediator.h"
 #import "RTMAPI.h"
 #import "RTMAPI+Task.h"
+#import "RTMAPI+Timeline.h"
 #import "MPLogger.h"
 #import "MPHelper.h"
 #import "MPTask.h"
@@ -17,17 +18,20 @@
 
 #pragma mark -
 
-- (NSArray *) allEntities:(NSString *) entityName
+- (NSArray *) allEntities:(NSString *) entityName predicate:(NSPredicate *) pred
 {
    // Create the fetch request for the entity.
    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:managedObjectContext];
    [fetchRequest setEntity:entity];
+   if (pred)
+      [fetchRequest setPredicate:pred];
    
    NSError *error = nil;
    NSArray *fetched = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
    if (error) {
       LOG(@"error");
+      [fetchRequest release];
       abort();
    }
    return fetched;
@@ -35,12 +39,24 @@
 
 - (NSArray *) allTaskSerieses
 {
-   return [self allEntities:@"TaskSeries"];
+   return [self allEntities:@"TaskSeries" predicate:nil];
 }
 
 - (NSArray *) allTasks
 {
-   return [self allEntities:@"Task"];
+   return [self allEntities:@"Task" predicate:nil];
+}
+
+- (NSArray *) modifiedTaskSerieses
+{
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"edit_bits != 0"];
+   return [self allEntities:@"TaskSeries" predicate:pred];
+}
+
+- (NSArray *) modifiedTasks
+{
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"edit_bits != 0"];
+   return [self allEntities:@"Task" predicate:pred];
 }
 
 - (MPTask *) task:(NSNumber *) task_id
@@ -130,7 +146,7 @@
          NSManagedObject *tag_to_set = nil;
 
          // search for existing tag
-         NSArray *existing_tags = [self allEntities:@"Tag"];
+         NSArray *existing_tags = [self allEntities:@"Tag" predicate:nil];
          for (NSManagedObject *existing_tag in existing_tags) {
             if ([tag isEqualToString:[existing_tag valueForKey:@"name"]]) { // found
                tag_to_set = existing_tag;
@@ -269,6 +285,10 @@
    }
 }
 
+- (void) deleteOrphanTasks {}
+- (void) deleteOrphanNotes {}
+- (void) deleteOrphanTags  {}
+
 - (void) updateIfNeeded:(NSDictionary *) taskSeries
 {
    // TODO
@@ -285,11 +305,31 @@
    // check deleted TaskSerieses
    [self deleteRemotelyDeletedItems:taskSeriesesRetrieved];
    [self deleteOrphanTaskSerieses];
-   
-   // check deleted Tasks
-   // check deleted Notes
-   // check orphan  Tags
+   [self deleteOrphanTasks];
+   [self deleteOrphanNotes];
+   [self deleteOrphanTags];
 
+   // upload local modifications
+   for (NSManagedObject *taskSeries in [self modifiedTaskSerieses]) {
+      LOG(@"modified taskSeries : %@", taskSeries);
+      NSInteger edit_bits = [[taskSeries valueForKey:@"edit_bits"] integerValue];
+   }
+   
+   NSString *timeline = [api createTimeline];
+
+   for (MPTask *task in [self modifiedTasks]) {
+      LOG(@"modified task : %@", task);
+      NSInteger edit_bits = [[task valueForKey:@"edit_bits"] integerValue];
+      if (edit_bits & EDIT_BITS_TASK_COMPLETION) {
+         if ([task is_completed]) {
+            [api completeTask:[task valueForKey:@"iD"] taskseries_id:[task valueForKeyPath:@"taskSeries.iD"] list_id:[task valueForKeyPath:@"taskSeries.inList.iD"] timeline:timeline];
+         } else {
+            [api uncompleteTask:[task valueForKey:@"iD"] taskseries_id:[task valueForKeyPath:@"taskSeries.iD"] list_id:[task valueForKeyPath:@"taskSeries.inList.iD"] timeline:timeline];
+         }
+      }
+   }
+   
+   // create or update Tasks
    for (NSDictionary *taskseries in taskSeriesesRetrieved) {
       BOOL is_deleted = NO;
       for (NSDictionary *task in [taskseries objectForKey:@"tasks"]) {
@@ -299,8 +339,12 @@
             break;
          }
       }
-      if (! is_deleted)
-         [self insertNewTask:taskseries];
+      if (is_deleted) continue;
+
+      // check existance
+      //   if exist, modify it.
+      //   else, insert as a new task.
+      [self insertNewTask:taskseries];
    }
    
    [defaults setValue:[NSDate date] forKey:@"lastSync"];
