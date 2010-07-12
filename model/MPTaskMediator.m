@@ -317,7 +317,9 @@
 
    NSString *timelineForAdd = [api createTimeline];
    for (MPTask *task in [self locallyCreatedTasks]) {
-      [api addTask:[task valueForKey:@"name"] list_id:[task valueForKeyPath:@"taskSeries.inList.iD"] timeline:timelineForAdd];
+      NSDictionary *addedTaskSeries = [api addTask:[task valueForKeyPath:@"taskSeries.name"] list_id:[task valueForKeyPath:@"taskSeries.inList.iD"] timeline:timelineForAdd];
+      LOG(@"addedTaskseries = %@", addedTaskSeries);
+      // replace the local task & taskSeries with retrieved ones.
    }
 
    // upload local modifications
