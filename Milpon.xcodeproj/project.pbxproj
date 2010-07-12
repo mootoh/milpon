@@ -131,9 +131,9 @@
 		921801CC11E4C7FA00EDF3D8 /* RTMAPI+Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RTMAPI+Timeline.m"; path = "api/RTMAPI+Timeline.m"; sourceTree = "<group>"; };
 		921801CD11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMAPIParserDelegate.h; path = api/RTMAPIParserDelegate.h; sourceTree = "<group>"; };
 		921801CE11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMAPIParserDelegate.m; path = api/RTMAPIParserDelegate.m; sourceTree = "<group>"; };
-		922CB4DC11E93F8B000C2450 /* icon_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag.png; path = ../Milpon/resource/icon_tag.png; sourceTree = SOURCE_ROOT; };
-		922CB4E011E93FC3000C2450 /* icon_tag_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag_disabled.png; path = ../Milpon/resource/icon_tag_disabled.png; sourceTree = SOURCE_ROOT; };
-		922CB4E111E93FC3000C2450 /* icon_tag_toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag_toolbar.png; path = ../Milpon/resource/icon_tag_toolbar.png; sourceTree = SOURCE_ROOT; };
+		922CB4DC11E93F8B000C2450 /* icon_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag.png; path = resource/icon_tag.png; sourceTree = "<group>"; };
+		922CB4E011E93FC3000C2450 /* icon_tag_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag_disabled.png; path = resource/icon_tag_disabled.png; sourceTree = "<group>"; };
+		922CB4E111E93FC3000C2450 /* icon_tag_toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag_toolbar.png; path = resource/icon_tag_toolbar.png; sourceTree = "<group>"; };
 		92CC0C1D11E53170001EA183 /* MPListMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPListMediator.h; path = model/MPListMediator.h; sourceTree = "<group>"; };
 		92CC0C1E11E53170001EA183 /* MPListMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPListMediator.m; path = model/MPListMediator.m; sourceTree = "<group>"; };
 		92CC0C1F11E53170001EA183 /* MPMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPMediator.h; path = model/MPMediator.h; sourceTree = "<group>"; };
@@ -256,20 +256,15 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				922CB4E011E93FC3000C2450 /* icon_tag_disabled.png */,
-				922CB4E111E93FC3000C2450 /* icon_tag_toolbar.png */,
-				922CB4DC11E93F8B000C2450 /* icon_tag.png */,
+				929B3BA111EBE139004629DD /* Icon */,
 				92F3812F11E6E1B50014A873 /* checkBox.png */,
 				92F3813011E6E1B50014A873 /* checkBoxChecked.png */,
-				92CC0D7C11E53A63001EA183 /* Settings.bundle */,
 				92CC0D6C11E53A2E001EA183 /* Default.png */,
 				92CC0D6A11E53A19001EA183 /* IconSmall.png */,
 				92CC0D6711E539E3001EA183 /* Localizable.strings */,
-				9218015B11E4C58700EDF3D8 /* Milpon-Info.plist */,
 				92CC0CA311E5344B001EA183 /* MilponBetaIconSmall.png */,
-				92CC0CD411E53558001EA183 /* UnitTest-Info.plist */,
-				921801B511E4C7A100EDF3D8 /* Milpon-Beta.plist */,
-				9218015911E4C4FD00EDF3D8 /* MainWindow.xib */,
+				92CC0D7C11E53A63001EA183 /* Settings.bundle */,
+				929B3BA611EBE15E004629DD /* plists */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -308,6 +303,26 @@
 				9218018211E4C62F00EDF3D8 /* RTMAPI.m */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		929B3BA111EBE139004629DD /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				922CB4E011E93FC3000C2450 /* icon_tag_disabled.png */,
+				922CB4E111E93FC3000C2450 /* icon_tag_toolbar.png */,
+				922CB4DC11E93F8B000C2450 /* icon_tag.png */,
+			);
+			name = Icon;
+			sourceTree = "<group>";
+		};
+		929B3BA611EBE15E004629DD /* plists */ = {
+			isa = PBXGroup;
+			children = (
+				9218015B11E4C58700EDF3D8 /* Milpon-Info.plist */,
+				92CC0CD411E53558001EA183 /* UnitTest-Info.plist */,
+				921801B511E4C7A100EDF3D8 /* Milpon-Beta.plist */,
+			);
+			name = plists;
 			sourceTree = "<group>";
 		};
 		92CC0C1811E53129001EA183 /* Model */ = {
@@ -352,6 +367,7 @@
 				92CC0C4911E5321B001EA183 /* MPTaskListViewController.m */,
 				92CC0C4A11E5321B001EA183 /* MPTaskViewController.h */,
 				92CC0C4B11E5321B001EA183 /* MPTaskViewController.m */,
+				9218015911E4C4FD00EDF3D8 /* MainWindow.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
