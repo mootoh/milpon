@@ -156,6 +156,7 @@
 {
 //   MPAddTaskViewController *addTaskViewController = [[MPAddTaskViewController alloc] initWithStyle:UITableViewStyleGrouped];
    MPAddTaskViewController *addTaskViewController = [[MPAddTaskViewController alloc] initWithNibName:@"MPAddTaskView" bundle:nil];
+   addTaskViewController.managedObjectContext = managedObjectContext;
    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:addTaskViewController];
    [navigationController presentModalViewController:nc animated:YES];
    [addTaskViewController release];

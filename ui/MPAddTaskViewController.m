@@ -7,9 +7,12 @@
 //
 
 #import "MPAddTaskViewController.h"
+#import "MPTask.h"
+#import "MPLogger.h"
 
 @implementation MPAddTaskViewController
 @synthesize nameField, prioritySegments, nameCell, dueCell, priorityCell, listCell, tagCell, rruleCell, locationCell, noteCell;
+@synthesize managedObjectContext;
 
 
 #pragma mark -
@@ -35,7 +38,7 @@
 
    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
    UIBarButtonItem *doneButton   = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
-   doneButton.enabled = NO;
+   doneButton.enabled = YES;
    self.navigationItem.leftBarButtonItem = cancelButton;
    self.navigationItem.rightBarButtonItem = doneButton;
    [cancelButton release];
@@ -201,10 +204,63 @@
    [self dismissModalViewControllerAnimated:YES];
 }
 
+- (NSManagedObject *) inboxList
+{
+   // Create the fetch request for the entity.
+   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+   NSEntityDescription *entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext];
+   [fetchRequest setEntity:entity];
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"name == 'Inbox'"];
+   [fetchRequest setPredicate:pred];
+   
+   NSError *error = nil;
+   NSArray *fetched = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+   if (error) {
+      LOG(@"error");
+      [fetchRequest release];
+      abort();
+   }
+   return [fetched objectAtIndex:0];
+}
+
 - (void) done
 {
+   
    // save the task properties.
+   NSManagedObject *newTaskSeries = [NSEntityDescription
+                                     insertNewObjectForEntityForName:@"TaskSeries"
+                                     inManagedObjectContext:managedObjectContext];
+   [newTaskSeries setValue:[NSNumber numberWithInteger:-1] forKey:@"iD"];
+//   [newTaskSeries setValue:nameField.text forKey:@"name"];
+   [newTaskSeries setValue:@"local task" forKey:@"name"];
+   [newTaskSeries setValue:[self inboxList] forKey:@"inList"];
+
+   NSManagedObject *newTask = [NSEntityDescription
+                                     insertNewObjectForEntityForName:@"Task"
+                                     inManagedObjectContext:managedObjectContext];
+   [newTask setValue:newTaskSeries forKey:@"taskSeries"];
+   [newTask setValue:[NSNumber numberWithInt:-1] forKey:@"iD"];
+   [newTask setValue:[NSDate date] forKey:@"added"];
+
+   // Save the context.
+   NSError *error = nil;
+   if (![managedObjectContext save:&error]) {
+      NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+      abort();
+   }
+   
    [self dismissModalViewControllerAnimated:YES];
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+   LOG(@"didbegin text = %@", textField.text);
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+   LOG(@"didEnd text = %@", textField.text);
+}
+
 
 @end

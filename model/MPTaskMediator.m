@@ -294,6 +294,12 @@
    // TODO
 }
 
+- (NSArray *) locallyCreatedTasks
+{
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"taskSeries.iD == -1"];
+   return [self allEntities:@"Task" predicate:pred];
+}
+
 - (void) sync:(RTMAPI *) api
 {
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -308,6 +314,11 @@
    [self deleteOrphanTasks];
    [self deleteOrphanNotes];
    [self deleteOrphanTags];
+
+   NSString *timelineForAdd = [api createTimeline];
+   for (MPTask *task in [self locallyCreatedTasks]) {
+      [api addTask:[task valueForKey:@"name"] list_id:[task valueForKeyPath:@"taskSeries.inList.iD"] timeline:timelineForAdd];
+   }
 
    // upload local modifications
    for (NSManagedObject *taskSeries in [self modifiedTaskSerieses]) {

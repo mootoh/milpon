@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MPAddTaskViewController : UITableViewController
+@interface MPAddTaskViewController : UITableViewController <UITextFieldDelegate>
 {
    IBOutlet UITextField *nameField;
    IBOutlet UISegmentedControl *prioritySegments;
@@ -24,6 +24,8 @@
    IBOutlet UITableViewCell *rruleCell;
    IBOutlet UITableViewCell *locationCell;
    IBOutlet UITableViewCell *noteCell;
+
+   NSManagedObjectContext     *managedObjectContext;
 }
 
 @property (nonatomic, retain) UITextField *nameField;
@@ -36,5 +38,7 @@
 @property (nonatomic, retain) UITableViewCell *rruleCell;
 @property (nonatomic, retain) UITableViewCell *locationCell;
 @property (nonatomic, retain) UITableViewCell *noteCell;
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end
