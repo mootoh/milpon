@@ -294,12 +294,62 @@
    // TODO
 }
 
-- (NSArray *) locallyCreatedTasks
+- (NSArray *) locallyCreatedTaskSerieses
 {
-   NSPredicate *pred = [NSPredicate predicateWithFormat:@"taskSeries.iD == -1"];
-   return [self allEntities:@"Task" predicate:pred];
+   NSPredicate *pred = [NSPredicate predicateWithFormat:@"iD == -1"];
+   return [self allEntities:@"TaskSeries" predicate:pred];
 }
 
+- (void) deleteTaskSeries:(NSManagedObject *) taskSeries
+{
+   [managedObjectContext deleteObject:taskSeries];
+}
+
+- (void) createAndSyncTask:(RTMAPI *)api
+{
+   NSString *timelineForAdd = [api createTimeline];
+   for (NSManagedObject *taskSeries in [self locallyCreatedTaskSerieses]) {
+      NSAssert([[taskSeries valueForKey:@"tasks"] count] == 1, @"locally created taskSeries should have only 1 task.");
+
+      // create at remote
+      NSDictionary *addedTaskSeries = [api addTask:[taskSeries valueForKey:@"name"] list_id:[taskSeries valueForKeyPath:@"inList.iD"] timeline:timelineForAdd];
+      LOG(@"addedTaskseries = %@", addedTaskSeries);
+      
+      // sync the attributes
+      // - rrule
+      // - url
+      // - location
+      //
+      // - notes
+      //  - title
+      //  - body
+      //
+      // - participants
+      // - tags
+      // 
+      // - tasks
+      //  - completed
+      //  - due
+      //  - estimate
+      //  - has_due_time
+      //  - postponed
+      //  - priority
+
+      // create at local
+      [self insertNewTask:addedTaskSeries];
+      
+      // replace the local task & taskSeries with retrieved ones.
+      [self deleteTaskSeries:taskSeries];
+   }
+
+   NSError *error = nil;
+   if (![managedObjectContext save:&error]) {
+      LOG(@"Unresolved error %@, %@", error, [error userInfo]);
+      abort();
+   }
+}
+
+// TODO: take a transactional approach to make sure the data integrity.
 - (void) sync:(RTMAPI *) api
 {
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -315,12 +365,7 @@
    [self deleteOrphanNotes];
    [self deleteOrphanTags];
 
-   NSString *timelineForAdd = [api createTimeline];
-   for (MPTask *task in [self locallyCreatedTasks]) {
-      NSDictionary *addedTaskSeries = [api addTask:[task valueForKeyPath:@"taskSeries.name"] list_id:[task valueForKeyPath:@"taskSeries.inList.iD"] timeline:timelineForAdd];
-      LOG(@"addedTaskseries = %@", addedTaskSeries);
-      // replace the local task & taskSeries with retrieved ones.
-   }
+   [self createAndSyncTask:api];
 
    // upload local modifications
    for (NSManagedObject *taskSeries in [self modifiedTaskSerieses]) {
