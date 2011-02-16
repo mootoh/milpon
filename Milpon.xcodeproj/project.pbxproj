@@ -9,21 +9,11 @@
 /* Begin PBXBuildFile section */
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28860BE40F44EE6400985440 /* CoreData.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		9218015A11E4C4FD00EDF3D8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9218015911E4C4FD00EDF3D8 /* MainWindow.xib */; };
 		9218018311E4C62F00EDF3D8 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218018211E4C62F00EDF3D8 /* RTMAPI.m */; };
 		9218019D11E4C6DE00EDF3D8 /* MPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218019A11E4C6DE00EDF3D8 /* MPHelper.m */; };
-		921801A411E4C78500EDF3D8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9218015911E4C4FD00EDF3D8 /* MainWindow.xib */; };
-		921801A611E4C78500EDF3D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		921801A811E4C78500EDF3D8 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218018211E4C62F00EDF3D8 /* RTMAPI.m */; };
-		921801A911E4C78500EDF3D8 /* MPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218019A11E4C6DE00EDF3D8 /* MPHelper.m */; };
-		921801AB11E4C78500EDF3D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		921801AC11E4C78500EDF3D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		921801AD11E4C78500EDF3D8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		921801AE11E4C78500EDF3D8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28860BE40F44EE6400985440 /* CoreData.framework */; };
-		921801BC11E4C7E400EDF3D8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 921801BB11E4C7E400EDF3D8 /* Security.framework */; };
 		921801CF11E4C7FA00EDF3D8 /* RTMAPI+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C211E4C7FA00EDF3D8 /* RTMAPI+Auth.m */; };
 		921801D011E4C7FA00EDF3D8 /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C411E4C7FA00EDF3D8 /* RTMAPI+List.m */; };
 		921801D111E4C7FA00EDF3D8 /* RTMAPI+Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C611E4C7FA00EDF3D8 /* RTMAPI+Location.m */; };
@@ -31,75 +21,29 @@
 		921801D311E4C7FA00EDF3D8 /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CA11E4C7FA00EDF3D8 /* RTMAPI+Task.m */; };
 		921801D411E4C7FA00EDF3D8 /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CC11E4C7FA00EDF3D8 /* RTMAPI+Timeline.m */; };
 		921801D511E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CE11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m */; };
-		921801D611E4C7FD00EDF3D8 /* RTMAPI+Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C611E4C7FA00EDF3D8 /* RTMAPI+Location.m */; };
-		921801D711E4C7FD00EDF3D8 /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C411E4C7FA00EDF3D8 /* RTMAPI+List.m */; };
-		921801D811E4C7FE00EDF3D8 /* RTMAPI+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C211E4C7FA00EDF3D8 /* RTMAPI+Auth.m */; };
-		921801D911E4C80000EDF3D8 /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C811E4C7FA00EDF3D8 /* RTMAPI+Note.m */; };
-		921801DA11E4C80000EDF3D8 /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CA11E4C7FA00EDF3D8 /* RTMAPI+Task.m */; };
-		921801DB11E4C80100EDF3D8 /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CC11E4C7FA00EDF3D8 /* RTMAPI+Timeline.m */; };
-		921801DC11E4C80200EDF3D8 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CE11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m */; };
-		922CB4DD11E93F8B000C2450 /* icon_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = 922CB4DC11E93F8B000C2450 /* icon_tag.png */; };
-		922CB4E211E93FC3000C2450 /* icon_tag_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 922CB4E011E93FC3000C2450 /* icon_tag_disabled.png */; };
-		922CB4E311E93FC3000C2450 /* icon_tag_toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 922CB4E111E93FC3000C2450 /* icon_tag_toolbar.png */; };
+		92314588130BD7A4002F206F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92314587130BD7A4002F206F /* UIKit.framework */; };
 		92CC0C2511E53170001EA183 /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C1E11E53170001EA183 /* MPListMediator.m */; };
 		92CC0C2611E53170001EA183 /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2011E53170001EA183 /* MPMediator.m */; };
 		92CC0C2711E53170001EA183 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2211E53170001EA183 /* MPTask.m */; };
 		92CC0C2811E53170001EA183 /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2411E53170001EA183 /* MPTaskMediator.m */; };
-		92CC0C2911E53170001EA183 /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C1E11E53170001EA183 /* MPListMediator.m */; };
-		92CC0C2A11E53170001EA183 /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2011E53170001EA183 /* MPMediator.m */; };
-		92CC0C2B11E53170001EA183 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2211E53170001EA183 /* MPTask.m */; };
-		92CC0C2C11E53170001EA183 /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2411E53170001EA183 /* MPTaskMediator.m */; };
-		92CC0C3A11E53199001EA183 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92CC0C3911E53199001EA183 /* SystemConfiguration.framework */; };
 		92CC0C4C11E5321B001EA183 /* MPAddTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0C4311E5321B001EA183 /* MPAddTaskView.xib */; };
 		92CC0C4D11E5321B001EA183 /* MPAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C4511E5321B001EA183 /* MPAddTaskViewController.m */; };
 		92CC0C4E11E5321B001EA183 /* MPListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C4711E5321B001EA183 /* MPListViewController.m */; };
 		92CC0C4F11E5321B001EA183 /* MPTaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C4911E5321B001EA183 /* MPTaskListViewController.m */; };
 		92CC0C5011E5321B001EA183 /* MPTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C4B11E5321B001EA183 /* MPTaskViewController.m */; };
-		92CC0C5111E5321B001EA183 /* MPAddTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0C4311E5321B001EA183 /* MPAddTaskView.xib */; };
-		92CC0C5211E5321B001EA183 /* MPAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C4511E5321B001EA183 /* MPAddTaskViewController.m */; };
-		92CC0C5311E5321B001EA183 /* MPListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C4711E5321B001EA183 /* MPListViewController.m */; };
-		92CC0C5411E5321B001EA183 /* MPTaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C4911E5321B001EA183 /* MPTaskListViewController.m */; };
-		92CC0C5511E5321B001EA183 /* MPTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C4B11E5321B001EA183 /* MPTaskViewController.m */; };
 		92CC0C5A11E5323E001EA183 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C5911E5323E001EA183 /* MPAppDelegate.m */; };
-		92CC0C5B11E5323E001EA183 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C5911E5323E001EA183 /* MPAppDelegate.m */; };
-		92CC0CA411E5344B001EA183 /* MilponBetaIconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0CA311E5344B001EA183 /* MilponBetaIconSmall.png */; };
-		92CC0CE311E535B6001EA183 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28860BE40F44EE6400985440 /* CoreData.framework */; };
-		92CC0CE611E535C6001EA183 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218018211E4C62F00EDF3D8 /* RTMAPI.m */; };
-		92CC0CEA11E535D5001EA183 /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C1E11E53170001EA183 /* MPListMediator.m */; };
-		92CC0CEB11E535D6001EA183 /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2011E53170001EA183 /* MPMediator.m */; };
-		92CC0CEE11E535F5001EA183 /* RTMAPI+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C211E4C7FA00EDF3D8 /* RTMAPI+Auth.m */; };
-		92CC0CEF11E535F8001EA183 /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C411E4C7FA00EDF3D8 /* RTMAPI+List.m */; };
-		92CC0CF011E535FB001EA183 /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CC11E4C7FA00EDF3D8 /* RTMAPI+Timeline.m */; };
-		92CC0CF311E53604001EA183 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CE11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m */; };
-		92CC0D3F11E5399E001EA183 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0D2211E5399E001EA183 /* Reachability.m */; };
-		92CC0D4011E5399E001EA183 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D2311E5399E001EA183 /* README.txt */; };
-		92CC0D6811E539E3001EA183 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D6711E539E3001EA183 /* Localizable.strings */; };
 		92CC0D6911E539E3001EA183 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D6711E539E3001EA183 /* Localizable.strings */; };
 		92CC0D6B11E53A19001EA183 /* IconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D6A11E53A19001EA183 /* IconSmall.png */; };
 		92CC0D6D11E53A2E001EA183 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D6C11E53A2E001EA183 /* Default.png */; };
-		92CC0D6E11E53A2E001EA183 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D6C11E53A2E001EA183 /* Default.png */; };
 		92CC0D7D11E53A63001EA183 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D7C11E53A63001EA183 /* Settings.bundle */; };
-		92CC0D7E11E53A63001EA183 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D7C11E53A63001EA183 /* Settings.bundle */; };
-		92CC0DA011E53B34001EA183 /* MPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218019A11E4C6DE00EDF3D8 /* MPHelper.m */; };
-		92CC0DB611E53BC6001EA183 /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C811E4C7FA00EDF3D8 /* RTMAPI+Note.m */; };
-		92F3809911E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809711E6C4BB0014A873 /* Milpon.xcdatamodeld */; };
-		92F3809A11E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809711E6C4BB0014A873 /* Milpon.xcdatamodeld */; };
 		92F3809B11E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809711E6C4BB0014A873 /* Milpon.xcdatamodeld */; };
-		92F3813111E6E1B50014A873 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F3812F11E6E1B50014A873 /* checkBox.png */; };
-		92F3813211E6E1B50014A873 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F3813011E6E1B50014A873 /* checkBoxChecked.png */; };
 		92F3813311E6E1B50014A873 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F3812F11E6E1B50014A873 /* checkBox.png */; };
 		92F3813411E6E1B50014A873 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F3813011E6E1B50014A873 /* checkBoxChecked.png */; };
-		92F3814211E6E2A10014A873 /* Milpon.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809811E6C4BB0014A873 /* Milpon.xcdatamodel */; };
-		92F3814311E6E2A40014A873 /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2411E53170001EA183 /* MPTaskMediator.m */; };
-		92F3814411E6E2A50014A873 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2211E53170001EA183 /* MPTask.m */; };
-		92F3823C11E704180014A873 /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CA11E4C7FA00EDF3D8 /* RTMAPI+Task.m */; };
-		92F3826D11E712BC0014A873 /* MPTaskMediatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0CCA11E53534001EA183 /* MPTaskMediatorTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28860BE40F44EE6400985440 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* Milpon_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Milpon_Prefix.pch; path = others/Milpon_Prefix.pch; sourceTree = "<group>"; };
@@ -114,7 +58,6 @@
 		9218019A11E4C6DE00EDF3D8 /* MPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPHelper.m; path = others/MPHelper.m; sourceTree = "<group>"; };
 		9218019B11E4C6DE00EDF3D8 /* MPLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPLogger.h; path = others/MPLogger.h; sourceTree = "<group>"; };
 		9218019C11E4C6DE00EDF3D8 /* PrivateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateInfo.h; path = others/PrivateInfo.h; sourceTree = "<group>"; };
-		921801B211E4C78500EDF3D8 /* Milpon Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milpon Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		921801B511E4C7A100EDF3D8 /* Milpon-Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Milpon-Beta.plist"; path = "others/Milpon-Beta.plist"; sourceTree = "<group>"; };
 		921801BB11E4C7E400EDF3D8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		921801C111E4C7FA00EDF3D8 /* RTMAPI+Auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RTMAPI+Auth.h"; path = "api/RTMAPI+Auth.h"; sourceTree = "<group>"; };
@@ -134,6 +77,7 @@
 		922CB4DC11E93F8B000C2450 /* icon_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag.png; path = resource/icon_tag.png; sourceTree = "<group>"; };
 		922CB4E011E93FC3000C2450 /* icon_tag_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag_disabled.png; path = resource/icon_tag_disabled.png; sourceTree = "<group>"; };
 		922CB4E111E93FC3000C2450 /* icon_tag_toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag_toolbar.png; path = resource/icon_tag_toolbar.png; sourceTree = "<group>"; };
+		92314587130BD7A4002F206F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		92CC0C1D11E53170001EA183 /* MPListMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPListMediator.h; path = model/MPListMediator.h; sourceTree = "<group>"; };
 		92CC0C1E11E53170001EA183 /* MPListMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPListMediator.m; path = model/MPListMediator.m; sourceTree = "<group>"; };
 		92CC0C1F11E53170001EA183 /* MPMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPMediator.h; path = model/MPMediator.h; sourceTree = "<group>"; };
@@ -158,7 +102,6 @@
 		92CC0CC811E53534001EA183 /* MPListMediatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPListMediatorTest.m; path = test/MPListMediatorTest.m; sourceTree = "<group>"; };
 		92CC0CC911E53534001EA183 /* MPListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPListTest.m; path = test/MPListTest.m; sourceTree = "<group>"; };
 		92CC0CCA11E53534001EA183 /* MPTaskMediatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPTaskMediatorTest.m; path = test/MPTaskMediatorTest.m; sourceTree = "<group>"; };
-		92CC0CD311E53558001EA183 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		92CC0CD411E53558001EA183 /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTest-Info.plist"; path = "others/UnitTest-Info.plist"; sourceTree = "<group>"; };
 		92CC0D2111E5399E001EA183 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		92CC0D2211E5399E001EA183 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -182,30 +125,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		921801AA11E4C78500EDF3D8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				921801AB11E4C78500EDF3D8 /* Foundation.framework in Frameworks */,
-				921801AC11E4C78500EDF3D8 /* UIKit.framework in Frameworks */,
-				921801AD11E4C78500EDF3D8 /* CoreGraphics.framework in Frameworks */,
-				921801AE11E4C78500EDF3D8 /* CoreData.framework in Frameworks */,
-				921801BC11E4C7E400EDF3D8 /* Security.framework in Frameworks */,
-				92CC0C3A11E53199001EA183 /* SystemConfiguration.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		92CC0CD011E53558001EA183 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				92CC0CE311E535B6001EA183 /* CoreData.framework in Frameworks */,
+				92314588130BD7A4002F206F /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,8 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Milpon.app */,
-				921801B211E4C78500EDF3D8 /* Milpon Beta.app */,
-				92CC0CD311E53558001EA183 /* UnitTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -272,12 +192,12 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				28860BE40F44EE6400985440 /* CoreData.framework */,
 				921801BB11E4C7E400EDF3D8 /* Security.framework */,
 				92CC0C3911E53199001EA183 /* SystemConfiguration.framework */,
+				92314587130BD7A4002F206F /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -412,41 +332,6 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Milpon.app */;
 			productType = "com.apple.product-type.application";
 		};
-		921801A211E4C78500EDF3D8 /* Milpon Beta */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 921801AF11E4C78500EDF3D8 /* Build configuration list for PBXNativeTarget "Milpon Beta" */;
-			buildPhases = (
-				921801A311E4C78500EDF3D8 /* Resources */,
-				921801A511E4C78500EDF3D8 /* Sources */,
-				921801AA11E4C78500EDF3D8 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Milpon Beta";
-			productName = Milpon;
-			productReference = 921801B211E4C78500EDF3D8 /* Milpon Beta.app */;
-			productType = "com.apple.product-type.application";
-		};
-		92CC0CD211E53558001EA183 /* UnitTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 92CC0CD711E53559001EA183 /* Build configuration list for PBXNativeTarget "UnitTest" */;
-			buildPhases = (
-				92CC0CCE11E53558001EA183 /* Resources */,
-				92CC0CCF11E53558001EA183 /* Sources */,
-				92CC0CD011E53558001EA183 /* Frameworks */,
-				92CC0CD111E53558001EA183 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = UnitTest;
-			productName = UnitTest;
-			productReference = 92CC0CD311E53558001EA183 /* UnitTest.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -454,6 +339,7 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Milpon" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -467,8 +353,6 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Milpon */,
-				921801A211E4C78500EDF3D8 /* Milpon Beta */,
-				92CC0CD211E53558001EA183 /* UnitTest */,
 			);
 		};
 /* End PBXProject section */
@@ -489,49 +373,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		921801A311E4C78500EDF3D8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				921801A411E4C78500EDF3D8 /* MainWindow.xib in Resources */,
-				92CC0C5111E5321B001EA183 /* MPAddTaskView.xib in Resources */,
-				92CC0CA411E5344B001EA183 /* MilponBetaIconSmall.png in Resources */,
-				92CC0D4011E5399E001EA183 /* README.txt in Resources */,
-				92CC0D6811E539E3001EA183 /* Localizable.strings in Resources */,
-				92CC0D6E11E53A2E001EA183 /* Default.png in Resources */,
-				92CC0D7E11E53A63001EA183 /* Settings.bundle in Resources */,
-				92F3813111E6E1B50014A873 /* checkBox.png in Resources */,
-				92F3813211E6E1B50014A873 /* checkBoxChecked.png in Resources */,
-				922CB4DD11E93F8B000C2450 /* icon_tag.png in Resources */,
-				922CB4E211E93FC3000C2450 /* icon_tag_disabled.png in Resources */,
-				922CB4E311E93FC3000C2450 /* icon_tag_toolbar.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		92CC0CCE11E53558001EA183 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		92CC0CD111E53558001EA183 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -561,56 +403,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		921801A511E4C78500EDF3D8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				921801A611E4C78500EDF3D8 /* main.m in Sources */,
-				921801A811E4C78500EDF3D8 /* RTMAPI.m in Sources */,
-				921801A911E4C78500EDF3D8 /* MPHelper.m in Sources */,
-				921801D611E4C7FD00EDF3D8 /* RTMAPI+Location.m in Sources */,
-				921801D711E4C7FD00EDF3D8 /* RTMAPI+List.m in Sources */,
-				921801D811E4C7FE00EDF3D8 /* RTMAPI+Auth.m in Sources */,
-				921801D911E4C80000EDF3D8 /* RTMAPI+Note.m in Sources */,
-				921801DA11E4C80000EDF3D8 /* RTMAPI+Task.m in Sources */,
-				921801DB11E4C80100EDF3D8 /* RTMAPI+Timeline.m in Sources */,
-				921801DC11E4C80200EDF3D8 /* RTMAPIParserDelegate.m in Sources */,
-				92CC0C2911E53170001EA183 /* MPListMediator.m in Sources */,
-				92CC0C2A11E53170001EA183 /* MPMediator.m in Sources */,
-				92CC0C2B11E53170001EA183 /* MPTask.m in Sources */,
-				92CC0C2C11E53170001EA183 /* MPTaskMediator.m in Sources */,
-				92CC0C5211E5321B001EA183 /* MPAddTaskViewController.m in Sources */,
-				92CC0C5311E5321B001EA183 /* MPListViewController.m in Sources */,
-				92CC0C5411E5321B001EA183 /* MPTaskListViewController.m in Sources */,
-				92CC0C5511E5321B001EA183 /* MPTaskViewController.m in Sources */,
-				92CC0C5B11E5323E001EA183 /* MPAppDelegate.m in Sources */,
-				92CC0D3F11E5399E001EA183 /* Reachability.m in Sources */,
-				92F3809911E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		92CC0CCF11E53558001EA183 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				92CC0CE611E535C6001EA183 /* RTMAPI.m in Sources */,
-				92CC0CEA11E535D5001EA183 /* MPListMediator.m in Sources */,
-				92CC0CEB11E535D6001EA183 /* MPMediator.m in Sources */,
-				92CC0CEE11E535F5001EA183 /* RTMAPI+Auth.m in Sources */,
-				92CC0CEF11E535F8001EA183 /* RTMAPI+List.m in Sources */,
-				92CC0CF011E535FB001EA183 /* RTMAPI+Timeline.m in Sources */,
-				92CC0CF311E53604001EA183 /* RTMAPIParserDelegate.m in Sources */,
-				92CC0DA011E53B34001EA183 /* MPHelper.m in Sources */,
-				92CC0DB611E53BC6001EA183 /* RTMAPI+Note.m in Sources */,
-				92F3809A11E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */,
-				92F3814211E6E2A10014A873 /* Milpon.xcdatamodel in Sources */,
-				92F3814311E6E2A40014A873 /* MPTaskMediator.m in Sources */,
-				92F3814411E6E2A50014A873 /* MPTask.m in Sources */,
-				92F3823C11E704180014A873 /* RTMAPI+Task.m in Sources */,
-				92F3826D11E712BC0014A873 /* MPTaskMediatorTest.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -636,98 +428,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
-				INFOPLIST_FILE = "Milpon-Info.plist";
+				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
+				INFOPLIST_FILE = "others/Milpon-Info.plist";
 				PRODUCT_NAME = Milpon;
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		921801B011E4C78500EDF3D8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_VERSION = 4.2;
-				INFOPLIST_FILE = "others/Milpon-Beta.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				PRODUCT_NAME = "Milpon Beta";
-			};
-			name = Debug;
-		};
-		921801B111E4C78500EDF3D8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "others/Milpon-Beta.plist";
-				PRODUCT_NAME = Milpon;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		92CC0CD511E53559001EA183 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "UnitTest-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		92CC0CD611E53559001EA183 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "UnitTest-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -743,7 +447,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos;
 			};
 			name = UnitTest;
 		};
@@ -763,51 +467,6 @@
 			};
 			name = UnitTest;
 		};
-		92CC0CDA11E53562001EA183 /* UnitTest */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "others/Milpon-Beta.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				PRODUCT_NAME = "Milpon Beta";
-			};
-			name = UnitTest;
-		};
-		92CC0CDB11E53562001EA183 /* UnitTest */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "others/UnitTest-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = UnitTest;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = UnitTest;
-		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -820,7 +479,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -834,7 +493,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -847,26 +506,6 @@
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				92CC0CD911E53562001EA183 /* UnitTest */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		921801AF11E4C78500EDF3D8 /* Build configuration list for PBXNativeTarget "Milpon Beta" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				921801B011E4C78500EDF3D8 /* Debug */,
-				92CC0CDA11E53562001EA183 /* UnitTest */,
-				921801B111E4C78500EDF3D8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		92CC0CD711E53559001EA183 /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				92CC0CD511E53559001EA183 /* Debug */,
-				92CC0CDB11E53562001EA183 /* UnitTest */,
-				92CC0CD611E53559001EA183 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
