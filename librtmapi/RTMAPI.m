@@ -8,6 +8,126 @@
 
 #import <CommonCrypto/CommonDigest.h>
 #import "RTMAPI.h"
+
+@implementation RTMAPIRequest
+
+- (id) init
+{
+   if (self = [super init]) {
+      callbackBlock = nil;
+      echoResult = nil;
+   }
+   return self;
+}
+
+- (id) initWithToken:(NSString *)tkn
+{
+   if (self = [super init]) {
+      token = [tkn copy];
+   }
+   return self;
+}
+
+- (void) echo:(void (^)(NSInteger statusCode, NSString *result))block
+{
+   NSURL *echoURL = [NSURL URLWithString:@"http://api.rememberthemilk.com/services/rest?method=rtm.test.echo&api_key=dd42526fcd8708815d09ba89c9f9d6e5"];
+   NSURLRequest *req = [NSURLRequest requestWithURL:echoURL];
+
+   callbackBlock = block;
+   NSURLConnection *connection = [NSURLConnection connectionWithRequest:req delegate:self];
+   [connection start];
+}
+
+#pragma mark -
+#pragma mark NSURLConnection delegates
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+   NSLog(@"didReceiveResponse");
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+   NSLog(@"didReceiveData");
+   if (callbackBlock) {
+      NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
+      parser.delegate = self;
+      
+      if ([parser parse]) {
+         callbackBlock(RTM_STATUS_OK, echoResult);
+      } else {
+         NSInteger errCode = [[parser parserError] code];
+         if (errCode == NSXMLParserInternalError || errCode == NSXMLParserDelegateAbortedParseError) { // rsp error
+            callbackBlock(errCode, @"API result parse error");
+         } else {         
+            NSString *errorString = [[parser parserError] localizedDescription];
+            callbackBlock(errCode, errorString);
+         }
+      }
+      
+      parser.delegate = nil;
+      [parser release];
+   }
+}
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+{
+   NSLog(@"canAuthenticateAgainstProtectionSpace");
+}
+
+#pragma mark -
+#pragma mark NSXMLParserDelegate
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
+{
+   BOOL succeeded = NO;
+//   NSError *error = nil;
+
+   if ([elementName isEqualToString:@"rsp"]) {
+      succeeded = [[attributeDict valueForKey:@"stat"] isEqualToString:@"ok"];
+//      callbackBlock(RTM_STATUS_OK, 
+   } else if ([elementName isEqualToString:@"err"]) {
+      NSAssert(!succeeded, @"stat should be 'fail'");
+      /*
+      NSDictionary *user_info = [NSDictionary dictionaryWithObject:[attributeDict valueForKey:@"msg"] forKey:NSLocalizedDescriptionKey];
+      error = [NSError errorWithDomain:MPAPIErrorDomain
+                                  code:[[attributeDict valueForKey:@"code"] integerValue]
+                              userInfo:user_info];
+       */
+      [parser abortParsing];
+   }
+}
+
+@end
+
+@implementation RTMAPICenter
+
+- (void) addRequst:(RTMAPIRequest *)request
+{
+   dispatch_queue_t aQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+   dispatch_async(aQueue, ^{
+      NSLog(@"in the queue");
+   });
+}
+
+@end
+
+#if 0
+/**
+ * @brief synchronous call with delegate, wrapper for call:args.
+ * @param delegate XMLParser delegate
+ */
+- (id) call:(NSString *)method args:(NSDictionary *)args delegate:(RTMAPIParserDelegate *)delegate;
+
+/**
+ * construct authentication URL.
+ */
+- (NSString *) authURL:(NSString *)frob forPermission:(NSString *)perm;
+
+@end
+#endif // 0
+
+#if 0
+
 #import "MPLogger.h"
 #import "PrivateInfo.h"
 
@@ -235,3 +355,4 @@
 }
 
 @end
+#endif // 0

@@ -6,32 +6,38 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "RTMAPIParserDelegate.h"
+#import <Foundation/Foundation.h>
 
 enum {
-   RTM_ERROR_SERVICE_DOWN = 105
+   RTM_ERROR_SERVICE_DOWN = 105,
+   RTM_STATUS_OK = 0
 };
 
 /**
- * access to the RTM REST API.
+ * Base class for requesting RTM REST APIs.
+ * http://www.rememberthemilk.com/services/api/methods/
  */
-@interface RTMAPI : NSObject
+@interface RTMAPIRequest : NSObject <NSXMLParserDelegate>
 {
    NSString *token;
+
+   void (^callbackBlock)(NSInteger statusCode, NSString *result);
+   NSString *echoResult;
 }
 
-@property (nonatomic, retain) NSString *token;
+- (id) initWithToken:(NSString *)token;
+
+- (void) echo:(void (^)(NSInteger statusCode, NSString *result))block;
+
+@end // RTMAPIRequest
 
 /**
- * @brief synchronous call with delegate, wrapper for call:args.
- * @param delegate XMLParser delegate
+ * Communication hub for API requests and the server responses.
  */
-- (id) call:(NSString *)method args:(NSDictionary *)args delegate:(RTMAPIParserDelegate *)delegate;
+@interface RTMAPICenter : NSObject
+{
+}
 
-/**
- * construct authentication URL.
- */
-- (NSString *) authURL:(NSString *)frob forPermission:(NSString *)perm;
+- (void) addRequst:(RTMAPIRequest *)request;
 
 @end

@@ -7,116 +7,51 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* MilponAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MilponAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28860BE40F44EE6400985440 /* CoreData.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		9218015A11E4C4FD00EDF3D8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9218015911E4C4FD00EDF3D8 /* MainWindow.xib */; };
-		9218018311E4C62F00EDF3D8 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218018211E4C62F00EDF3D8 /* RTMAPI.m */; };
-		9218019D11E4C6DE00EDF3D8 /* MPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9218019A11E4C6DE00EDF3D8 /* MPHelper.m */; };
-		921801CF11E4C7FA00EDF3D8 /* RTMAPI+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C211E4C7FA00EDF3D8 /* RTMAPI+Auth.m */; };
-		921801D011E4C7FA00EDF3D8 /* RTMAPI+List.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C411E4C7FA00EDF3D8 /* RTMAPI+List.m */; };
-		921801D111E4C7FA00EDF3D8 /* RTMAPI+Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C611E4C7FA00EDF3D8 /* RTMAPI+Location.m */; };
-		921801D211E4C7FA00EDF3D8 /* RTMAPI+Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801C811E4C7FA00EDF3D8 /* RTMAPI+Note.m */; };
-		921801D311E4C7FA00EDF3D8 /* RTMAPI+Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CA11E4C7FA00EDF3D8 /* RTMAPI+Task.m */; };
-		921801D411E4C7FA00EDF3D8 /* RTMAPI+Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CC11E4C7FA00EDF3D8 /* RTMAPI+Timeline.m */; };
-		921801D511E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 921801CE11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m */; };
-		92314588130BD7A4002F206F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92314587130BD7A4002F206F /* UIKit.framework */; };
-		92CC0C2511E53170001EA183 /* MPListMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C1E11E53170001EA183 /* MPListMediator.m */; };
-		92CC0C2611E53170001EA183 /* MPMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2011E53170001EA183 /* MPMediator.m */; };
-		92CC0C2711E53170001EA183 /* MPTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2211E53170001EA183 /* MPTask.m */; };
-		92CC0C2811E53170001EA183 /* MPTaskMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C2411E53170001EA183 /* MPTaskMediator.m */; };
-		92CC0C4C11E5321B001EA183 /* MPAddTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0C4311E5321B001EA183 /* MPAddTaskView.xib */; };
-		92CC0C4D11E5321B001EA183 /* MPAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C4511E5321B001EA183 /* MPAddTaskViewController.m */; };
-		92CC0C4E11E5321B001EA183 /* MPListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C4711E5321B001EA183 /* MPListViewController.m */; };
-		92CC0C4F11E5321B001EA183 /* MPTaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C4911E5321B001EA183 /* MPTaskListViewController.m */; };
-		92CC0C5011E5321B001EA183 /* MPTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C4B11E5321B001EA183 /* MPTaskViewController.m */; };
-		92CC0C5A11E5323E001EA183 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CC0C5911E5323E001EA183 /* MPAppDelegate.m */; };
-		92CC0D6911E539E3001EA183 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D6711E539E3001EA183 /* Localizable.strings */; };
-		92CC0D6B11E53A19001EA183 /* IconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D6A11E53A19001EA183 /* IconSmall.png */; };
-		92CC0D6D11E53A2E001EA183 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D6C11E53A2E001EA183 /* Default.png */; };
-		92CC0D7D11E53A63001EA183 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 92CC0D7C11E53A63001EA183 /* Settings.bundle */; };
-		92F3809B11E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92F3809711E6C4BB0014A873 /* Milpon.xcdatamodeld */; };
-		92F3813311E6E1B50014A873 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F3812F11E6E1B50014A873 /* checkBox.png */; };
-		92F3813411E6E1B50014A873 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 92F3813011E6E1B50014A873 /* checkBoxChecked.png */; };
+		2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* RootViewController.xib */; };
+		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
+		28D3F202112F7DC200FD0661 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* Milpon.xcdatamodeld */; };
+		92054DB9130E7A9A00E1C549 /* PrivateInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 92054DB8130E7A9A00E1C549 /* PrivateInfo.h */; };
+		9217E9AB130CDE980037F852 /* RTMAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 9217E9AA130CDE980037F852 /* RTMAPI.h */; };
+		9217E9B5130CE1FE0037F852 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217E9B4130CE1FE0037F852 /* RTMAPI.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9217E99E130CDB510037F852 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9217E96C130CD9090037F852;
+			remoteInfo = librtmapi;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* MilponAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MilponAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* MilponAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MilponAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Milpon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milpon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		28860B760F44E54D00985440 /* Milpon.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Milpon.xcdatamodel; sourceTree = "<group>"; };
 		28860BE40F44EE6400985440 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28A0AAE50D9B0CCF005BE974 /* Milpon_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Milpon_Prefix.pch; path = others/Milpon_Prefix.pch; sourceTree = "<group>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = others/main.m; sourceTree = "<group>"; };
-		9218015911E4C4FD00EDF3D8 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = ui/MainWindow.xib; sourceTree = "<group>"; };
-		9218015B11E4C58700EDF3D8 /* Milpon-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Milpon-Info.plist"; path = "others/Milpon-Info.plist"; sourceTree = "<group>"; };
-		9218018111E4C62F00EDF3D8 /* RTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMAPI.h; path = api/RTMAPI.h; sourceTree = "<group>"; };
-		9218018211E4C62F00EDF3D8 /* RTMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMAPI.m; path = api/RTMAPI.m; sourceTree = "<group>"; };
-		9218019711E4C6DE00EDF3D8 /* Milpon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Milpon.h; path = others/Milpon.h; sourceTree = "<group>"; };
-		9218019811E4C6DE00EDF3D8 /* MPError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPError.h; path = others/MPError.h; sourceTree = "<group>"; };
-		9218019911E4C6DE00EDF3D8 /* MPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPHelper.h; path = others/MPHelper.h; sourceTree = "<group>"; };
-		9218019A11E4C6DE00EDF3D8 /* MPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPHelper.m; path = others/MPHelper.m; sourceTree = "<group>"; };
-		9218019B11E4C6DE00EDF3D8 /* MPLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPLogger.h; path = others/MPLogger.h; sourceTree = "<group>"; };
-		9218019C11E4C6DE00EDF3D8 /* PrivateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateInfo.h; path = others/PrivateInfo.h; sourceTree = "<group>"; };
-		921801B511E4C7A100EDF3D8 /* Milpon-Beta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Milpon-Beta.plist"; path = "others/Milpon-Beta.plist"; sourceTree = "<group>"; };
-		921801BB11E4C7E400EDF3D8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		921801C111E4C7FA00EDF3D8 /* RTMAPI+Auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RTMAPI+Auth.h"; path = "api/RTMAPI+Auth.h"; sourceTree = "<group>"; };
-		921801C211E4C7FA00EDF3D8 /* RTMAPI+Auth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RTMAPI+Auth.m"; path = "api/RTMAPI+Auth.m"; sourceTree = "<group>"; };
-		921801C311E4C7FA00EDF3D8 /* RTMAPI+List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RTMAPI+List.h"; path = "api/RTMAPI+List.h"; sourceTree = "<group>"; };
-		921801C411E4C7FA00EDF3D8 /* RTMAPI+List.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RTMAPI+List.m"; path = "api/RTMAPI+List.m"; sourceTree = "<group>"; };
-		921801C511E4C7FA00EDF3D8 /* RTMAPI+Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RTMAPI+Location.h"; path = "api/RTMAPI+Location.h"; sourceTree = "<group>"; };
-		921801C611E4C7FA00EDF3D8 /* RTMAPI+Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RTMAPI+Location.m"; path = "api/RTMAPI+Location.m"; sourceTree = "<group>"; };
-		921801C711E4C7FA00EDF3D8 /* RTMAPI+Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RTMAPI+Note.h"; path = "api/RTMAPI+Note.h"; sourceTree = "<group>"; };
-		921801C811E4C7FA00EDF3D8 /* RTMAPI+Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RTMAPI+Note.m"; path = "api/RTMAPI+Note.m"; sourceTree = "<group>"; };
-		921801C911E4C7FA00EDF3D8 /* RTMAPI+Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RTMAPI+Task.h"; path = "api/RTMAPI+Task.h"; sourceTree = "<group>"; };
-		921801CA11E4C7FA00EDF3D8 /* RTMAPI+Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RTMAPI+Task.m"; path = "api/RTMAPI+Task.m"; sourceTree = "<group>"; };
-		921801CB11E4C7FA00EDF3D8 /* RTMAPI+Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RTMAPI+Timeline.h"; path = "api/RTMAPI+Timeline.h"; sourceTree = "<group>"; };
-		921801CC11E4C7FA00EDF3D8 /* RTMAPI+Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RTMAPI+Timeline.m"; path = "api/RTMAPI+Timeline.m"; sourceTree = "<group>"; };
-		921801CD11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMAPIParserDelegate.h; path = api/RTMAPIParserDelegate.h; sourceTree = "<group>"; };
-		921801CE11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMAPIParserDelegate.m; path = api/RTMAPIParserDelegate.m; sourceTree = "<group>"; };
-		922CB4DC11E93F8B000C2450 /* icon_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag.png; path = resource/icon_tag.png; sourceTree = "<group>"; };
-		922CB4E011E93FC3000C2450 /* icon_tag_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag_disabled.png; path = resource/icon_tag_disabled.png; sourceTree = "<group>"; };
-		922CB4E111E93FC3000C2450 /* icon_tag_toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tag_toolbar.png; path = resource/icon_tag_toolbar.png; sourceTree = "<group>"; };
-		92314587130BD7A4002F206F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		92CC0C1D11E53170001EA183 /* MPListMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPListMediator.h; path = model/MPListMediator.h; sourceTree = "<group>"; };
-		92CC0C1E11E53170001EA183 /* MPListMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPListMediator.m; path = model/MPListMediator.m; sourceTree = "<group>"; };
-		92CC0C1F11E53170001EA183 /* MPMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPMediator.h; path = model/MPMediator.h; sourceTree = "<group>"; };
-		92CC0C2011E53170001EA183 /* MPMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPMediator.m; path = model/MPMediator.m; sourceTree = "<group>"; };
-		92CC0C2111E53170001EA183 /* MPTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPTask.h; path = model/MPTask.h; sourceTree = "<group>"; };
-		92CC0C2211E53170001EA183 /* MPTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPTask.m; path = model/MPTask.m; sourceTree = "<group>"; };
-		92CC0C2311E53170001EA183 /* MPTaskMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPTaskMediator.h; path = model/MPTaskMediator.h; sourceTree = "<group>"; };
-		92CC0C2411E53170001EA183 /* MPTaskMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPTaskMediator.m; path = model/MPTaskMediator.m; sourceTree = "<group>"; };
-		92CC0C3911E53199001EA183 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		92CC0C4311E5321B001EA183 /* MPAddTaskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MPAddTaskView.xib; path = ui/MPAddTaskView.xib; sourceTree = "<group>"; };
-		92CC0C4411E5321B001EA183 /* MPAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPAddTaskViewController.h; path = ui/MPAddTaskViewController.h; sourceTree = "<group>"; };
-		92CC0C4511E5321B001EA183 /* MPAddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPAddTaskViewController.m; path = ui/MPAddTaskViewController.m; sourceTree = "<group>"; };
-		92CC0C4611E5321B001EA183 /* MPListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPListViewController.h; path = ui/MPListViewController.h; sourceTree = "<group>"; };
-		92CC0C4711E5321B001EA183 /* MPListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPListViewController.m; path = ui/MPListViewController.m; sourceTree = "<group>"; };
-		92CC0C4811E5321B001EA183 /* MPTaskListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPTaskListViewController.h; path = ui/MPTaskListViewController.h; sourceTree = "<group>"; };
-		92CC0C4911E5321B001EA183 /* MPTaskListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPTaskListViewController.m; path = ui/MPTaskListViewController.m; sourceTree = "<group>"; };
-		92CC0C4A11E5321B001EA183 /* MPTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPTaskViewController.h; path = ui/MPTaskViewController.h; sourceTree = "<group>"; };
-		92CC0C4B11E5321B001EA183 /* MPTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPTaskViewController.m; path = ui/MPTaskViewController.m; sourceTree = "<group>"; };
-		92CC0C5811E5323E001EA183 /* MPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPAppDelegate.h; path = ui/MPAppDelegate.h; sourceTree = "<group>"; };
-		92CC0C5911E5323E001EA183 /* MPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPAppDelegate.m; path = ui/MPAppDelegate.m; sourceTree = "<group>"; };
-		92CC0CA311E5344B001EA183 /* MilponBetaIconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MilponBetaIconSmall.png; path = resource/MilponBetaIconSmall.png; sourceTree = "<group>"; };
-		92CC0CC811E53534001EA183 /* MPListMediatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPListMediatorTest.m; path = test/MPListMediatorTest.m; sourceTree = "<group>"; };
-		92CC0CC911E53534001EA183 /* MPListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPListTest.m; path = test/MPListTest.m; sourceTree = "<group>"; };
-		92CC0CCA11E53534001EA183 /* MPTaskMediatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPTaskMediatorTest.m; path = test/MPTaskMediatorTest.m; sourceTree = "<group>"; };
-		92CC0CD411E53558001EA183 /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTest-Info.plist"; path = "others/UnitTest-Info.plist"; sourceTree = "<group>"; };
-		92CC0D2111E5399E001EA183 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		92CC0D2211E5399E001EA183 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		92CC0D2311E5399E001EA183 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		92CC0D6711E539E3001EA183 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = resource/Localizable.strings; sourceTree = "<group>"; };
-		92CC0D6A11E53A19001EA183 /* IconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconSmall.png; path = resource/IconSmall.png; sourceTree = "<group>"; };
-		92CC0D6C11E53A2E001EA183 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		92CC0D7C11E53A63001EA183 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = resource/Settings.bundle; sourceTree = "<group>"; };
-		92CC0D9811E53AF8001EA183 /* RTMAPIListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMAPIListTest.m; path = test/RTMAPIListTest.m; sourceTree = "<group>"; };
-		92CC0D9911E53AF8001EA183 /* RTMAPINoteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMAPINoteTest.m; path = test/RTMAPINoteTest.m; sourceTree = "<group>"; };
-		92CC0D9A11E53AF8001EA183 /* RTMAPITaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMAPITaskTest.m; path = test/RTMAPITaskTest.m; sourceTree = "<group>"; };
-		92F3809811E6C4BB0014A873 /* Milpon.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Milpon.xcdatamodel; sourceTree = "<group>"; };
-		92F3812F11E6E1B50014A873 /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBox.png; path = resource/checkBox.png; sourceTree = "<group>"; };
-		92F3813011E6E1B50014A873 /* checkBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBoxChecked.png; path = resource/checkBoxChecked.png; sourceTree = "<group>"; };
-		92F3821111E6FB820014A873 /* MPTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPTaskTest.m; path = test/MPTaskTest.m; sourceTree = "<group>"; };
+		2899E55F0DE3E45000AC0155 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		28A0AAE50D9B0CCF005BE974 /* Milpon_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Milpon_Prefix.pch; sourceTree = "<group>"; };
+		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Milpon-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Milpon-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		92054DB8130E7A9A00E1C549 /* PrivateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateInfo.h; path = others/PrivateInfo.h; sourceTree = "<group>"; };
+		9217E96D130CD9090037F852 /* librtmapi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librtmapi.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9217E9AA130CDE980037F852 /* RTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMAPI.h; path = librtmapi/RTMAPI.h; sourceTree = "<group>"; };
+		9217E9B4130CE1FE0037F852 /* RTMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMAPI.m; path = librtmapi/RTMAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,19 +60,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */,
-				92314588130BD7A4002F206F /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9217E96B130CD9090037F852 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
+				28C286E00D94DF7D0034E888 /* RootViewController.m */,
+				1D3623240D0F684500981E51 /* MilponAppDelegate.h */,
+				1D3623250D0F684500981E51 /* MilponAppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Milpon.app */,
+				9217E96D130CD9090037F852 /* librtmapi.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,12 +99,10 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				9218018011E4C61000EDF3D8 /* API */,
-				92CC0C1811E53129001EA183 /* Model */,
-				92CC0C4211E53202001EA183 /* UI */,
+				9217E970130CD9230037F852 /* librtmapi */,
+				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
-				92CC0C3E11E531BE001EA183 /* Test */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -160,13 +112,6 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				92CC0D2011E5399E001EA183 /* vendor */,
-				9218019711E4C6DE00EDF3D8 /* Milpon.h */,
-				9218019811E4C6DE00EDF3D8 /* MPError.h */,
-				9218019911E4C6DE00EDF3D8 /* MPHelper.h */,
-				9218019A11E4C6DE00EDF3D8 /* MPHelper.m */,
-				9218019B11E4C6DE00EDF3D8 /* MPLogger.h */,
-				9218019C11E4C6DE00EDF3D8 /* PrivateInfo.h */,
 				28A0AAE50D9B0CCF005BE974 /* Milpon_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -176,15 +121,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				929B3BA111EBE139004629DD /* Icon */,
-				92F3812F11E6E1B50014A873 /* checkBox.png */,
-				92F3813011E6E1B50014A873 /* checkBoxChecked.png */,
-				92CC0D6C11E53A2E001EA183 /* Default.png */,
-				92CC0D6A11E53A19001EA183 /* IconSmall.png */,
-				92CC0D6711E539E3001EA183 /* Localizable.strings */,
-				92CC0CA311E5344B001EA183 /* MilponBetaIconSmall.png */,
-				92CC0D7C11E53A63001EA183 /* Settings.bundle */,
-				929B3BA611EBE15E004629DD /* plists */,
+				28D3F201112F7DC200FD0661 /* Milpon.xcdatamodeld */,
+				2899E55F0DE3E45000AC0155 /* RootViewController.xib */,
+				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* Milpon-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -192,127 +132,37 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				28860BE40F44EE6400985440 /* CoreData.framework */,
-				921801BB11E4C7E400EDF3D8 /* Security.framework */,
-				92CC0C3911E53199001EA183 /* SystemConfiguration.framework */,
-				92314587130BD7A4002F206F /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9218018011E4C61000EDF3D8 /* API */ = {
+		9217E970130CD9230037F852 /* librtmapi */ = {
 			isa = PBXGroup;
 			children = (
-				921801C111E4C7FA00EDF3D8 /* RTMAPI+Auth.h */,
-				921801C211E4C7FA00EDF3D8 /* RTMAPI+Auth.m */,
-				921801C311E4C7FA00EDF3D8 /* RTMAPI+List.h */,
-				921801C411E4C7FA00EDF3D8 /* RTMAPI+List.m */,
-				921801C511E4C7FA00EDF3D8 /* RTMAPI+Location.h */,
-				921801C611E4C7FA00EDF3D8 /* RTMAPI+Location.m */,
-				921801C711E4C7FA00EDF3D8 /* RTMAPI+Note.h */,
-				921801C811E4C7FA00EDF3D8 /* RTMAPI+Note.m */,
-				921801C911E4C7FA00EDF3D8 /* RTMAPI+Task.h */,
-				921801CA11E4C7FA00EDF3D8 /* RTMAPI+Task.m */,
-				921801CB11E4C7FA00EDF3D8 /* RTMAPI+Timeline.h */,
-				921801CC11E4C7FA00EDF3D8 /* RTMAPI+Timeline.m */,
-				921801CD11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.h */,
-				921801CE11E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m */,
-				9218018111E4C62F00EDF3D8 /* RTMAPI.h */,
-				9218018211E4C62F00EDF3D8 /* RTMAPI.m */,
+				92054DB8130E7A9A00E1C549 /* PrivateInfo.h */,
+				9217E9AA130CDE980037F852 /* RTMAPI.h */,
+				9217E9B4130CE1FE0037F852 /* RTMAPI.m */,
 			);
-			name = API;
-			sourceTree = "<group>";
-		};
-		929B3BA111EBE139004629DD /* Icon */ = {
-			isa = PBXGroup;
-			children = (
-				922CB4E011E93FC3000C2450 /* icon_tag_disabled.png */,
-				922CB4E111E93FC3000C2450 /* icon_tag_toolbar.png */,
-				922CB4DC11E93F8B000C2450 /* icon_tag.png */,
-			);
-			name = Icon;
-			sourceTree = "<group>";
-		};
-		929B3BA611EBE15E004629DD /* plists */ = {
-			isa = PBXGroup;
-			children = (
-				9218015B11E4C58700EDF3D8 /* Milpon-Info.plist */,
-				92CC0CD411E53558001EA183 /* UnitTest-Info.plist */,
-				921801B511E4C7A100EDF3D8 /* Milpon-Beta.plist */,
-			);
-			name = plists;
-			sourceTree = "<group>";
-		};
-		92CC0C1811E53129001EA183 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				92F3809711E6C4BB0014A873 /* Milpon.xcdatamodeld */,
-				92CC0C1D11E53170001EA183 /* MPListMediator.h */,
-				92CC0C1E11E53170001EA183 /* MPListMediator.m */,
-				92CC0C1F11E53170001EA183 /* MPMediator.h */,
-				92CC0C2011E53170001EA183 /* MPMediator.m */,
-				92CC0C2111E53170001EA183 /* MPTask.h */,
-				92CC0C2211E53170001EA183 /* MPTask.m */,
-				92CC0C2311E53170001EA183 /* MPTaskMediator.h */,
-				92CC0C2411E53170001EA183 /* MPTaskMediator.m */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		92CC0C3E11E531BE001EA183 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				92CC0D9711E53ABD001EA183 /* API */,
-				92CC0CC911E53534001EA183 /* MPListTest.m */,
-				92F3821111E6FB820014A873 /* MPTaskTest.m */,
-				92CC0CC811E53534001EA183 /* MPListMediatorTest.m */,
-				92CC0CCA11E53534001EA183 /* MPTaskMediatorTest.m */,
-			);
-			name = Test;
-			sourceTree = "<group>";
-		};
-		92CC0C4211E53202001EA183 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				92CC0C5811E5323E001EA183 /* MPAppDelegate.h */,
-				92CC0C5911E5323E001EA183 /* MPAppDelegate.m */,
-				92CC0C4311E5321B001EA183 /* MPAddTaskView.xib */,
-				92CC0C4411E5321B001EA183 /* MPAddTaskViewController.h */,
-				92CC0C4511E5321B001EA183 /* MPAddTaskViewController.m */,
-				92CC0C4611E5321B001EA183 /* MPListViewController.h */,
-				92CC0C4711E5321B001EA183 /* MPListViewController.m */,
-				92CC0C4811E5321B001EA183 /* MPTaskListViewController.h */,
-				92CC0C4911E5321B001EA183 /* MPTaskListViewController.m */,
-				92CC0C4A11E5321B001EA183 /* MPTaskViewController.h */,
-				92CC0C4B11E5321B001EA183 /* MPTaskViewController.m */,
-				9218015911E4C4FD00EDF3D8 /* MainWindow.xib */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
-		92CC0D2011E5399E001EA183 /* vendor */ = {
-			isa = PBXGroup;
-			children = (
-				92CC0D2111E5399E001EA183 /* Reachability.h */,
-				92CC0D2211E5399E001EA183 /* Reachability.m */,
-				92CC0D2311E5399E001EA183 /* README.txt */,
-			);
-			path = vendor;
-			sourceTree = "<group>";
-		};
-		92CC0D9711E53ABD001EA183 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				92CC0D9811E53AF8001EA183 /* RTMAPIListTest.m */,
-				92CC0D9911E53AF8001EA183 /* RTMAPINoteTest.m */,
-				92CC0D9A11E53AF8001EA183 /* RTMAPITaskTest.m */,
-			);
-			name = API;
+			name = librtmapi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9217E969130CD9090037F852 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9217E9AB130CDE980037F852 /* RTMAPI.h in Headers */,
+				92054DB9130E7A9A00E1C549 /* PrivateInfo.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		1D6058900D05DD3D006BFB54 /* Milpon */ = {
@@ -326,11 +176,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				9217E99F130CDB510037F852 /* PBXTargetDependency */,
 			);
 			name = Milpon;
 			productName = Milpon;
 			productReference = 1D6058910D05DD3D006BFB54 /* Milpon.app */;
 			productType = "com.apple.product-type.application";
+		};
+		9217E96C130CD9090037F852 /* rtmapi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9217E971130CD9230037F852 /* Build configuration list for PBXNativeTarget "rtmapi" */;
+			buildPhases = (
+				9217E969130CD9090037F852 /* Headers */,
+				9217E96A130CD9090037F852 /* Sources */,
+				9217E96B130CD9090037F852 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = rtmapi;
+			productName = librtmapi;
+			productReference = 9217E96D130CD9090037F852 /* librtmapi.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -353,6 +221,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Milpon */,
+				9217E96C130CD9090037F852 /* rtmapi */,
 			);
 		};
 /* End PBXProject section */
@@ -362,14 +231,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9218015A11E4C4FD00EDF3D8 /* MainWindow.xib in Resources */,
-				92CC0C4C11E5321B001EA183 /* MPAddTaskView.xib in Resources */,
-				92CC0D6911E539E3001EA183 /* Localizable.strings in Resources */,
-				92CC0D6B11E53A19001EA183 /* IconSmall.png in Resources */,
-				92CC0D6D11E53A2E001EA183 /* Default.png in Resources */,
-				92CC0D7D11E53A63001EA183 /* Settings.bundle in Resources */,
-				92F3813311E6E1B50014A873 /* checkBox.png in Resources */,
-				92F3813411E6E1B50014A873 /* checkBoxChecked.png in Resources */,
+				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
+				2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,29 +244,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				9218018311E4C62F00EDF3D8 /* RTMAPI.m in Sources */,
-				9218019D11E4C6DE00EDF3D8 /* MPHelper.m in Sources */,
-				921801CF11E4C7FA00EDF3D8 /* RTMAPI+Auth.m in Sources */,
-				921801D011E4C7FA00EDF3D8 /* RTMAPI+List.m in Sources */,
-				921801D111E4C7FA00EDF3D8 /* RTMAPI+Location.m in Sources */,
-				921801D211E4C7FA00EDF3D8 /* RTMAPI+Note.m in Sources */,
-				921801D311E4C7FA00EDF3D8 /* RTMAPI+Task.m in Sources */,
-				921801D411E4C7FA00EDF3D8 /* RTMAPI+Timeline.m in Sources */,
-				921801D511E4C7FA00EDF3D8 /* RTMAPIParserDelegate.m in Sources */,
-				92CC0C2511E53170001EA183 /* MPListMediator.m in Sources */,
-				92CC0C2611E53170001EA183 /* MPMediator.m in Sources */,
-				92CC0C2711E53170001EA183 /* MPTask.m in Sources */,
-				92CC0C2811E53170001EA183 /* MPTaskMediator.m in Sources */,
-				92CC0C4D11E5321B001EA183 /* MPAddTaskViewController.m in Sources */,
-				92CC0C4E11E5321B001EA183 /* MPListViewController.m in Sources */,
-				92CC0C4F11E5321B001EA183 /* MPTaskListViewController.m in Sources */,
-				92CC0C5011E5321B001EA183 /* MPTaskViewController.m in Sources */,
-				92CC0C5A11E5323E001EA183 /* MPAppDelegate.m in Sources */,
-				92F3809B11E6C4BB0014A873 /* Milpon.xcdatamodeld in Sources */,
+				1D3623260D0F684500981E51 /* MilponAppDelegate.m in Sources */,
+				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
+				28D3F202112F7DC200FD0661 /* Milpon.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9217E96A130CD9090037F852 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9217E9B5130CE1FE0037F852 /* RTMAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9217E99F130CDB510037F852 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9217E96C130CD9090037F852 /* rtmapi */;
+			targetProxy = 9217E99E130CDB510037F852 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -414,10 +277,9 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "others/Milpon-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
+				INFOPLIST_FILE = "Milpon-Info.plist";
+				OTHER_LDFLAGS = "-lrtmapi";
 				PRODUCT_NAME = Milpon;
 			};
 			name = Debug;
@@ -428,44 +290,39 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				INFOPLIST_FILE = "others/Milpon-Info.plist";
+				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
+				INFOPLIST_FILE = "Milpon-Info.plist";
 				PRODUCT_NAME = Milpon;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		92CC0CD811E53562001EA183 /* UnitTest */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
-				GCC_VERSION = 4.2;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				PREBINDING = NO;
-				SDKROOT = iphoneos;
-			};
-			name = UnitTest;
-		};
-		92CC0CD911E53562001EA183 /* UnitTest */ = {
+		9217E96E130CD9090037F852 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = others/Milpon_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "others/Milpon-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				PRODUCT_NAME = Milpon;
+				PREBINDING = NO;
+				PRODUCT_NAME = rtmapi;
+				SDKROOT = iphoneos;
 			};
-			name = UnitTest;
+			name = Debug;
+		};
+		9217E96F130CD9090037F852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = librtmapi;
+				SDKROOT = iphoneos;
+				ZERO_LINK = NO;
+			};
+			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -473,11 +330,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
-				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
@@ -504,8 +358,16 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
-				92CC0CD911E53562001EA183 /* UnitTest */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9217E971130CD9230037F852 /* Build configuration list for PBXNativeTarget "rtmapi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9217E96E130CD9090037F852 /* Debug */,
+				9217E96F130CD9090037F852 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -514,7 +376,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
-				92CC0CD811E53562001EA183 /* UnitTest */,
 				C01FCF5008A954540054247B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -523,14 +384,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		92F3809711E6C4BB0014A873 /* Milpon.xcdatamodeld */ = {
+		28D3F201112F7DC200FD0661 /* Milpon.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				92F3809811E6C4BB0014A873 /* Milpon.xcdatamodel */,
+				28860B760F44E54D00985440 /* Milpon.xcdatamodel */,
 			);
-			currentVersion = 92F3809811E6C4BB0014A873 /* Milpon.xcdatamodel */;
-			name = Milpon.xcdatamodeld;
-			path = model/Milpon.xcdatamodeld;
+			currentVersion = 28860B760F44E54D00985440 /* Milpon.xcdatamodel */;
+			path = Milpon.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
