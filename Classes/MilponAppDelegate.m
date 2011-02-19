@@ -8,7 +8,7 @@
 
 #import "MilponAppDelegate.h"
 #import "RootViewController.h"
-#import "RTMAPI.h"
+#import "MilkCocoa.h"
 
 @implementation MilponAppDelegate
 
@@ -29,13 +29,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-//   RTMAPICenter *center = [[RTMAPICenter alloc] init];
+//   MCCenter *center = [[MCCenter alloc] init];
 //   [center addRequst:nil];
    
-   RTMAPIRequest *req = [[RTMAPIRequest alloc] init];
-   [req echo:^(NSInteger statusCode, NSString *result) {
-      NSLog(@"statusCode = %d, result = %@", statusCode, result);
+   MCRequest *req = [[MCRequest alloc] init];
+   [req echo:^(NSError *error, NSString *result) {
+      NSLog(@"statusCode = %d, result = %@", [error code], result);
    }];
+   [req release];
    
     // Add the navigation controller's view to the window and display.
     [self.window addSubview:navigationController.view];

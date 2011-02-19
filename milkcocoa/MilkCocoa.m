@@ -1,5 +1,5 @@
 //
-//  RTMAPI.m
+//  MilkCocoa.m
 //  Milpon
 //
 //  Created by mootoh on 8/30/08.
@@ -7,15 +7,22 @@
 //
 
 #import <CommonCrypto/CommonDigest.h>
-#import "RTMAPI.h"
+#import "MilkCocoa.h"
+#import "MCLog.h"
+#import "PrivateInfo.h"
 
-@implementation RTMAPIRequest
+@implementation MCRequest
 
 - (id) init
 {
    if (self = [super init]) {
       callbackBlock = nil;
       echoResult = nil;
+      succeeded = NO;
+      response = [[NSMutableDictionary alloc] init];
+      error = nil;
+      currentKey = nil;
+      currentValue = nil;
    }
    return self;
 }
@@ -28,9 +35,16 @@
    return self;
 }
 
-- (void) echo:(void (^)(NSInteger statusCode, NSString *result))block
+- (void) dealloc
 {
-   NSURL *echoURL = [NSURL URLWithString:@"http://api.rememberthemilk.com/services/rest?method=rtm.test.echo&api_key=dd42526fcd8708815d09ba89c9f9d6e5"];
+   if (error) [error release];
+   [response release];
+   [super dealloc];
+}
+
+- (void) echo:(void (^)(NSError *error, NSString *result))block
+{
+   NSURL *echoURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.rememberthemilk.com/services/rest/?method=rtm.test.echo&api_key=%@", RTM_API_KEY]];
    NSURLRequest *req = [NSURLRequest requestWithURL:echoURL];
 
    callbackBlock = block;
@@ -43,26 +57,30 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-   NSLog(@"didReceiveResponse");
+   MCLOG_METHOD;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-   NSLog(@"didReceiveData");
+   NSLog(@"didReceiveData:%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
+
    if (callbackBlock) {
       NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
       parser.delegate = self;
       
-      if ([parser parse]) {
-         callbackBlock(RTM_STATUS_OK, echoResult);
+      if ([parser parse]) { // succeeded in parsing
+         NSString *responseString = @"";
+         for (NSString *key in response)
+            responseString = [responseString stringByAppendingFormat:@"%@=%@ ", key, [response valueForKey:key]];
+
+         callbackBlock(nil, responseString);
       } else {
          NSInteger errCode = [[parser parserError] code];
-         if (errCode == NSXMLParserInternalError || errCode == NSXMLParserDelegateAbortedParseError) { // rsp error
-            callbackBlock(errCode, @"API result parse error");
-         } else {         
-            NSString *errorString = [[parser parserError] localizedDescription];
-            callbackBlock(errCode, errorString);
-         }
+         if (errCode == NSXMLParserInternalError || errCode == NSXMLParserDelegateAbortedParseError)
+            // rsp error
+            callbackBlock(error, @"API result parse error");
+         else
+            callbackBlock([parser parserError], @"XML Parser error");
       }
       
       parser.delegate = nil;
@@ -70,38 +88,49 @@
    }
 }
 
-- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
-{
-   NSLog(@"canAuthenticateAgainstProtectionSpace");
-}
 
 #pragma mark -
 #pragma mark NSXMLParserDelegate
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
 {
-   BOOL succeeded = NO;
-//   NSError *error = nil;
-
    if ([elementName isEqualToString:@"rsp"]) {
       succeeded = [[attributeDict valueForKey:@"stat"] isEqualToString:@"ok"];
-//      callbackBlock(RTM_STATUS_OK, 
    } else if ([elementName isEqualToString:@"err"]) {
-      NSAssert(!succeeded, @"stat should be 'fail'");
-      /*
+      NSAssert(!succeeded, @"rsp:stat should be 'fail'");
+
       NSDictionary *user_info = [NSDictionary dictionaryWithObject:[attributeDict valueForKey:@"msg"] forKey:NSLocalizedDescriptionKey];
-      error = [NSError errorWithDomain:MPAPIErrorDomain
+      error = [NSError errorWithDomain:k_MC_ERROR_DOMAIN
                                   code:[[attributeDict valueForKey:@"code"] integerValue]
                               userInfo:user_info];
-       */
       [parser abortParsing];
+   } else {
+      NSAssert(succeeded, @"should be in rsp element");
+
+      currentKey = elementName;
+      currentValue = @"";
    }
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+   if ([elementName isEqualToString:@"rsp"] || [elementName isEqualToString:@"err"])
+      return;
+
+   [response setObject:currentValue forKey:currentKey];
+   currentKey = nil;
+   currentValue = nil;
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+{
+   currentValue = [currentValue stringByAppendingString:string];
 }
 
 @end
 
-@implementation RTMAPICenter
+@implementation MCCenter
 
-- (void) addRequst:(RTMAPIRequest *)request
+- (void) addRequst:(MCRequest *)request
 {
    dispatch_queue_t aQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
    dispatch_async(aQueue, ^{

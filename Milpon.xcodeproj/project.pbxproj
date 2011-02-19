@@ -18,8 +18,9 @@
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28D3F202112F7DC200FD0661 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* Milpon.xcdatamodeld */; };
 		92054DB9130E7A9A00E1C549 /* PrivateInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 92054DB8130E7A9A00E1C549 /* PrivateInfo.h */; };
-		9217E9AB130CDE980037F852 /* RTMAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 9217E9AA130CDE980037F852 /* RTMAPI.h */; };
-		9217E9B5130CE1FE0037F852 /* RTMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217E9B4130CE1FE0037F852 /* RTMAPI.m */; };
+		92D3656E13107D2C00B224A1 /* MilkCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D3656C13107D2C00B224A1 /* MilkCocoa.h */; };
+		92D3656F13107D2C00B224A1 /* MilkCocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D3656D13107D2C00B224A1 /* MilkCocoa.m */; };
+		92D365C3131080A300B224A1 /* MCLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D365C2131080A300B224A1 /* MCLog.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,9 +50,10 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Milpon-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Milpon-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		92054DB8130E7A9A00E1C549 /* PrivateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateInfo.h; path = others/PrivateInfo.h; sourceTree = "<group>"; };
-		9217E96D130CD9090037F852 /* librtmapi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librtmapi.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9217E9AA130CDE980037F852 /* RTMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTMAPI.h; path = librtmapi/RTMAPI.h; sourceTree = "<group>"; };
-		9217E9B4130CE1FE0037F852 /* RTMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTMAPI.m; path = librtmapi/RTMAPI.m; sourceTree = "<group>"; };
+		9217E96D130CD9090037F852 /* libmilkcocoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmilkcocoa.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		92D3656C13107D2C00B224A1 /* MilkCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MilkCocoa.h; path = milkcocoa/MilkCocoa.h; sourceTree = "<group>"; };
+		92D3656D13107D2C00B224A1 /* MilkCocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MilkCocoa.m; path = milkcocoa/MilkCocoa.m; sourceTree = "<group>"; };
+		92D365C2131080A300B224A1 /* MCLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCLog.h; path = milkcocoa/MCLog.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Milpon.app */,
-				9217E96D130CD9090037F852 /* librtmapi.a */,
+				9217E96D130CD9090037F852 /* libmilkcocoa.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,7 +101,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				9217E970130CD9230037F852 /* librtmapi */,
+				9217E970130CD9230037F852 /* MilkCocoa */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -140,14 +142,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9217E970130CD9230037F852 /* librtmapi */ = {
+		9217E970130CD9230037F852 /* MilkCocoa */ = {
 			isa = PBXGroup;
 			children = (
+				92D3656C13107D2C00B224A1 /* MilkCocoa.h */,
+				92D3656D13107D2C00B224A1 /* MilkCocoa.m */,
 				92054DB8130E7A9A00E1C549 /* PrivateInfo.h */,
-				9217E9AA130CDE980037F852 /* RTMAPI.h */,
-				9217E9B4130CE1FE0037F852 /* RTMAPI.m */,
+				92D365C2131080A300B224A1 /* MCLog.h */,
 			);
-			name = librtmapi;
+			name = MilkCocoa;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,8 +160,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9217E9AB130CDE980037F852 /* RTMAPI.h in Headers */,
 				92054DB9130E7A9A00E1C549 /* PrivateInfo.h in Headers */,
+				92D3656E13107D2C00B224A1 /* MilkCocoa.h in Headers */,
+				92D365C3131080A300B224A1 /* MCLog.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,9 +187,9 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Milpon.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9217E96C130CD9090037F852 /* rtmapi */ = {
+		9217E96C130CD9090037F852 /* milkcocoa */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9217E971130CD9230037F852 /* Build configuration list for PBXNativeTarget "rtmapi" */;
+			buildConfigurationList = 9217E971130CD9230037F852 /* Build configuration list for PBXNativeTarget "milkcocoa" */;
 			buildPhases = (
 				9217E969130CD9090037F852 /* Headers */,
 				9217E96A130CD9090037F852 /* Sources */,
@@ -195,9 +199,9 @@
 			);
 			dependencies = (
 			);
-			name = rtmapi;
+			name = milkcocoa;
 			productName = librtmapi;
-			productReference = 9217E96D130CD9090037F852 /* librtmapi.a */;
+			productReference = 9217E96D130CD9090037F852 /* libmilkcocoa.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -221,7 +225,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Milpon */,
-				9217E96C130CD9090037F852 /* rtmapi */,
+				9217E96C130CD9090037F852 /* milkcocoa */,
 			);
 		};
 /* End PBXProject section */
@@ -254,7 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9217E9B5130CE1FE0037F852 /* RTMAPI.m in Sources */,
+				92D3656F13107D2C00B224A1 /* MilkCocoa.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +267,7 @@
 /* Begin PBXTargetDependency section */
 		9217E99F130CDB510037F852 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9217E96C130CD9090037F852 /* rtmapi */;
+			target = 9217E96C130CD9090037F852 /* milkcocoa */;
 			targetProxy = 9217E99E130CDB510037F852 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -279,7 +283,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Milpon_Prefix.pch;
 				INFOPLIST_FILE = "Milpon-Info.plist";
-				OTHER_LDFLAGS = "-lrtmapi";
+				OTHER_LDFLAGS = "-lmilkcocoa";
 				PRODUCT_NAME = Milpon;
 			};
 			name = Debug;
@@ -305,7 +309,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				PREBINDING = NO;
-				PRODUCT_NAME = rtmapi;
+				PRODUCT_NAME = milkcocoa;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -330,8 +334,11 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
@@ -363,7 +370,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9217E971130CD9230037F852 /* Build configuration list for PBXNativeTarget "rtmapi" */ = {
+		9217E971130CD9230037F852 /* Build configuration list for PBXNativeTarget "milkcocoa" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9217E96E130CD9090037F852 /* Debug */,
