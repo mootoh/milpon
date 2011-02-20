@@ -6,7 +6,7 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #define k_MC_ERROR_DOMAIN @"MilkCocoa"
 
@@ -20,37 +20,44 @@ enum {
    MC_RTM_STATUS_OK              = 0
 };
 
+@class MCParserDelegate;
+
 /**
  * Base class for requesting RTM REST APIs.
  * http://www.rememberthemilk.com/services/api/methods/
  */
-@interface MCRequest : NSObject <NSXMLParserDelegate>
+@interface MCRequest : NSObject
 {
    NSString *token;
+	MCParserDelegate *parserDelegate;
 
-   void (^callbackBlock)(NSError *error, NSString *result);
-
-   // for XML Parser
-   NSString *echoResult;
-   BOOL succeeded;
-   NSMutableDictionary *response;
-   NSError *error;
-   NSString *currentKey, *currentValue;
+   void (^callbackBlock)(NSError *error, NSDictionary *result);
 }
 
-- (id) initWithToken:(NSString *)token;
-
-- (void) echo:(void (^)(NSError *error, NSString *result))block;
+/**
+ * send an API request to RTM asynchronously.
+ *
+ * callback:
+ *   - the response is packed into the dictionary if succeeded.
+ *   - if failed, error is set.
+ */
+- (void) send:(void (^)(NSError *error, NSDictionary *result))callback;
+//- (id) initWithToken:(NSString *)token;
+//- (void) echo:(void (^)(NSError *error, NSString *result))block;
 
 @end // MCRequest
 
 
 /**
  * Communication hub for API requests and the server responses.
+ * Main purpose: regulation of the API calls.
  */
 @interface MCCenter : NSObject
 {
+	NSOperationQueue *requestQueue;
 }
+
++ (MCCenter *) defaultCenter;
 
 - (void) addRequst:(MCRequest *)request;
 

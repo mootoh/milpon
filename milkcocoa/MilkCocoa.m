@@ -8,6 +8,7 @@
 
 #import <CommonCrypto/CommonDigest.h>
 #import "MilkCocoa.h"
+#import "MCParserDelegate.h"
 #import "MCLog.h"
 #import "PrivateInfo.h"
 
@@ -17,16 +18,12 @@
 {
    if (self = [super init]) {
       callbackBlock = nil;
-      echoResult = nil;
-      succeeded = NO;
-      response = [[NSMutableDictionary alloc] init];
-      error = nil;
-      currentKey = nil;
-      currentValue = nil;
+		parserDelegate = nil;
    }
    return self;
 }
 
+#if 0
 - (id) initWithToken:(NSString *)tkn
 {
    if (self = [super init]) {
@@ -34,53 +31,63 @@
    }
    return self;
 }
+#endif // 0
 
 - (void) dealloc
 {
-   if (error) [error release];
-   [response release];
+   MCLOG_METHOD;
+
+	if (parserDelegate) [parserDelegate release];
    [super dealloc];
 }
 
-- (void) echo:(void (^)(NSError *error, NSString *result))block
+- (void) send:(void (^)(NSError *error, NSDictionary *result))callback
 {
+   callbackBlock = callback;
+   [[MCCenter defaultCenter] addRequst:self];
+}
+
+- (void) sendInternal
+{
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	MCLOG_METHOD;
+   
    NSURL *echoURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.rememberthemilk.com/services/rest/?method=rtm.test.echo&api_key=%@", RTM_API_KEY]];
    NSURLRequest *req = [NSURLRequest requestWithURL:echoURL];
 
-   callbackBlock = block;
-   NSURLConnection *connection = [NSURLConnection connectionWithRequest:req delegate:self];
-   [connection start];
+   NSURLResponse *response = nil;
+   NSError *error = nil;
+   NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
+   MCLOG(@"--------- %@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
+
+//   NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:req delegate:self startImmediately:NO];
+//   [connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+//   [connection start];
+   [pool release];
 }
+
 
 #pragma mark -
 #pragma mark NSURLConnection delegates
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-   MCLOG_METHOD;
-}
-
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-   NSLog(@"didReceiveData:%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
+   MCLOG(@"didReceiveData:%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
 
    if (callbackBlock) {
       NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
-      parser.delegate = self;
+		parserDelegate = [[MCParserDelegate alloc] init];
+      parser.delegate = parserDelegate;
       
       if ([parser parse]) { // succeeded in parsing
-         NSString *responseString = @"";
-         for (NSString *key in response)
-            responseString = [responseString stringByAppendingFormat:@"%@=%@ ", key, [response valueForKey:key]];
-
-         callbackBlock(nil, responseString);
+         callbackBlock(nil, parserDelegate.response);
       } else {
          NSInteger errCode = [[parser parserError] code];
          if (errCode == NSXMLParserInternalError || errCode == NSXMLParserDelegateAbortedParseError)
             // rsp error
-            callbackBlock(error, @"API result parse error");
+            callbackBlock(parserDelegate.error, nil);
          else
-            callbackBlock([parser parserError], @"XML Parser error");
+            callbackBlock([parser parserError], nil);
       }
       
       parser.delegate = nil;
@@ -88,54 +95,42 @@
    }
 }
 
-
-#pragma mark -
-#pragma mark NSXMLParserDelegate
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
-{
-   if ([elementName isEqualToString:@"rsp"]) {
-      succeeded = [[attributeDict valueForKey:@"stat"] isEqualToString:@"ok"];
-   } else if ([elementName isEqualToString:@"err"]) {
-      NSAssert(!succeeded, @"rsp:stat should be 'fail'");
-
-      NSDictionary *user_info = [NSDictionary dictionaryWithObject:[attributeDict valueForKey:@"msg"] forKey:NSLocalizedDescriptionKey];
-      error = [NSError errorWithDomain:k_MC_ERROR_DOMAIN
-                                  code:[[attributeDict valueForKey:@"code"] integerValue]
-                              userInfo:user_info];
-      [parser abortParsing];
-   } else {
-      NSAssert(succeeded, @"should be in rsp element");
-
-      currentKey = elementName;
-      currentValue = @"";
-   }
-}
-
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-   if ([elementName isEqualToString:@"rsp"] || [elementName isEqualToString:@"err"])
-      return;
-
-   [response setObject:currentValue forKey:currentKey];
-   currentKey = nil;
-   currentValue = nil;
-}
-
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-   currentValue = [currentValue stringByAppendingString:string];
-}
-
 @end
+
 
 @implementation MCCenter
 
+static MCCenter *s_instance = nil;
+
++ (MCCenter *) defaultCenter
+{
+	if (s_instance == nil)
+		s_instance = [[MCCenter alloc] init];
+
+	return s_instance;
+}
+
+- (id) init
+{
+	if (self = [super init]) {
+		requestQueue = [[NSOperationQueue alloc] init];
+	}
+	return self;
+}
+
+- (void) dealloc
+{
+	[requestQueue release];
+	[super dealloc];
+}
+
 - (void) addRequst:(MCRequest *)request
 {
-   dispatch_queue_t aQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-   dispatch_async(aQueue, ^{
-      NSLog(@"in the queue");
-   });
+	[requestQueue addOperationWithBlock:^{
+      [request retain];
+      [request performSelectorOnMainThread:@selector(sendInternal) withObject:nil waitUntilDone:YES];
+      [request release];
+   }];
 }
 
 @end

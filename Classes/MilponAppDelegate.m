@@ -9,6 +9,7 @@
 #import "MilponAppDelegate.h"
 #import "RootViewController.h"
 #import "MilkCocoa.h"
+#import "MCLog.h"
 
 @implementation MilponAppDelegate
 
@@ -26,25 +27,32 @@
 }
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
-    // Override point for customization after application launch.
-//   MCCenter *center = [[MCCenter alloc] init];
-//   [center addRequst:nil];
-   
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+   for (int i=0; i<3; i++) {
    MCRequest *req = [[MCRequest alloc] init];
-   [req echo:^(NSError *error, NSString *result) {
-      NSLog(@"statusCode = %d, result = %@", [error code], result);
+   [req send:^(NSError *error, NSDictionary *result) {
+		if (error) {
+			NSLog(@"Error: %@", [error localizedDescription]);
+		} else {
+			NSString *responseString = @"";
+			for (NSString *key in result)
+				responseString = [responseString stringByAppendingFormat:@"%@=%@ ", key, [result valueForKey:key]];
+
+			NSLog(@"[rtm.test.echo] %@", responseString);
+		}
    }];
    [req release];
-   
-    // Add the navigation controller's view to the window and display.
-    [self.window addSubview:navigationController.view];
-    [self.window makeKeyAndVisible];
 
-    return YES;
+      MCLOG(@"----------------------------");
+   }
+
+	// Add the navigation controller's view to the window and display.
+	[self.window addSubview:navigationController.view];
+	[self.window makeKeyAndVisible];
+
+	return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*

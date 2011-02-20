@@ -1,5 +1,5 @@
 //
-//  RTMAPIXMLParserCallback.h
+//  MCParserDelegate.h
 //  Milpon
 //
 //  Created by mootoh on 9/30/08.
@@ -11,16 +11,20 @@
  * base class of parsers for RTM API response,
  * only cares about 'rsp' result code.
  */
-@interface RTMAPIParserDelegate : NSObject {
+@interface MCParserDelegate : NSObject <NSXMLParserDelegate>
+{
    BOOL     succeeded;
    NSError *error;
+
+   NSString *echoResult;
+   NSMutableDictionary *response;
+
+   NSString *currentKey, *currentValue;
 }
 
+@property (nonatomic, readonly) NSMutableDictionary *response;
 @property (nonatomic, readonly) NSError *error;
 
-- (id) result; //!< result of the API call.
-
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict;
 @end
 
 #pragma mark -
