@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface MilponAppDelegate : NSObject <UIApplicationDelegate> {
-    
-    UIWindow *window;
-    UINavigationController *navigationController;
+@interface MilponAppDelegate : NSObject <UIApplicationDelegate>
+{
+   UIWindow *window;
+   UINavigationController *navigationController;
 
 @private
-    NSManagedObjectContext *managedObjectContext_;
-    NSManagedObjectModel *managedObjectModel_;
-    NSPersistentStoreCoordinator *persistentStoreCoordinator_;
+   NSManagedObjectContext *managedObjectContext_;
+   NSManagedObjectModel *managedObjectModel_;
+   NSPersistentStoreCoordinator *persistentStoreCoordinator_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -31,4 +31,3 @@
 - (void)saveContext;
 
 @end
-

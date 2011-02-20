@@ -29,7 +29,7 @@ enum {
 @interface MCRequest : NSObject
 {
    NSString *token;
-	MCParserDelegate *parserDelegate;
+   MCParserDelegate *parserDelegate;
 
    void (^callbackBlock)(NSError *error, NSDictionary *result);
 }
@@ -54,7 +54,7 @@ enum {
  */
 @interface MCCenter : NSObject
 {
-	NSOperationQueue *requestQueue;
+   NSOperationQueue *requestQueue;
 }
 
 + (MCCenter *) defaultCenter;
