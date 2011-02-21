@@ -7,7 +7,8 @@
 //
 
 #import "RootViewController.h"
-
+#import "MilkCocoa.h"
+#import "MCLog.h"
 
 @interface RootViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -22,21 +23,35 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidLoad
+{
+   [super viewDidLoad];
 
-    // Set up the edit and add buttons.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
-    self.navigationItem.rightBarButtonItem = addButton;
-    [addButton release];
+   // Set up the edit and add buttons.
+   self.navigationItem.leftBarButtonItem = self.editButtonItem;
+
+   UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
+   self.navigationItem.rightBarButtonItem = addButton;
+   [addButton release];
+
+/*
+   [MCRequest getList:^(NSError *error, NSArray *lists) {
+      if (error) {
+         MCLOG(@"Error: %@", [error localizedDescription]);
+         return;
+      }
+
+      for (NSDictionary *listDict in lists) {
+      }
+   }];
+*/
 }
 
 
 // Implement viewWillAppear: to do additional setup before the view is presented.
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewWillAppear:(BOOL)animated
+{
+   [super viewWillAppear:animated];
 }
 
 

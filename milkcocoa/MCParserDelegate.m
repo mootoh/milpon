@@ -67,4 +67,16 @@
    currentValue = [currentValue stringByAppendingString:string];
 }
 
+#pragma mark MCXMLParserDelegate
+
+- (id) result
+{
+   return response;
+}
+
+- (NSError *) error
+{
+   return error;
+}
+
 @end

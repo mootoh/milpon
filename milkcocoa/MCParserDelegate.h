@@ -6,12 +6,13 @@
 //  Copyright 2008 deadbeaf.org. All rights reserved.
 //
 #import <UIKit/UIKit.h>
+#import "MilkCocoa.h"
 
 /**
  * base class of parsers for RTM API response,
  * only cares about 'rsp' result code.
  */
-@interface MCParserDelegate : NSObject <NSXMLParserDelegate>
+@interface MCParserDelegate : NSObject <NSXMLParserDelegate, MCXMLParserDelegate>
 {
    BOOL     succeeded;
    NSError *error;

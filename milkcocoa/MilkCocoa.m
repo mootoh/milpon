@@ -12,38 +12,68 @@
 #import "MCLog.h"
 #import "PrivateInfo.h"
 
+#pragma mark Internal class
+
+/**
+ * Communication hub for API requests and the server responses.
+ * Main purpose: regulation of the API calls.
+ */
+@interface MCCenter : NSObject
+{
+   NSOperationQueue *requestQueue;
+}
+
++ (MCCenter *) defaultCenter;
+
+- (void) addRequst:(MCRequest *)request;
+
+@end
+
+#pragma mark -
+
+#pragma mark Private
+@interface MCRequest (Private)
+
+- (NSString *) constructRequestPath:(NSString *)method withArgs:(NSDictionary *)args;
+- (NSString *) signRequest:(NSString *)method withArgs:(NSDictionary *)args;
+
+/**
+ * synchronous call RTM API method with args.
+ *
+ * if error happened in HTTP request, returns nil.
+ */
+- (NSData *) call:(NSString *)method args:(NSDictionary *)args;
+
+@end
+
 @implementation MCRequest
 
-- (id) init
+- (id) initWithToken:(NSString *)tkn method:(NSString *)mtd parameters:(NSDictionary *)params parserDelegate:(id <NSXMLParserDelegate, MCXMLParserDelegate>) delegate callback:(void (^)(NSError *error, id result))cb
 {
    if (self = [super init]) {
-      callbackBlock = nil;
-      parserDelegate = nil;
+      token = tkn ? [tkn copy] : nil;
+      params = params ?
+         [[NSMutableDictionary alloc] initWithDictionary:params] :
+         [[NSMutableDictionary alloc] init];
+      [parameters setObject:mtd forKey:@"method"];
+      callbackBlock = cb;
+      xmlParserDelegate = [delegate retain];
    }
    return self;
 }
-
-#if 0
-- (id) initWithToken:(NSString *)tkn
-{
-   if (self = [super init]) {
-      token = [tkn copy];
-   }
-   return self;
-}
-#endif // 0
 
 - (void) dealloc
 {
    MCLOG_METHOD;
 
-   if (parserDelegate) [parserDelegate release];
+   [xmlParserDelegate release];
+   [parameters release];
+   [token release];
    [super dealloc];
 }
 
-- (void) send:(void (^)(NSError *error, NSDictionary *result))callback
+- (void) send
 {
-   callbackBlock = callback;
    [[MCCenter defaultCenter] addRequst:self];
 }
 
@@ -51,7 +81,7 @@
 {
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
    MCLOG_METHOD;
-   
+
    NSURL *echoURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.rememberthemilk.com/services/rest/?method=rtm.test.echo&api_key=%@", RTM_API_KEY]];
    NSURLRequest *req = [NSURLRequest requestWithURL:echoURL];
 
@@ -74,29 +104,75 @@
 {
    MCLOG(@"didReceiveData:%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
 
-   if (callbackBlock) {
-      NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
-      parserDelegate = [[MCParserDelegate alloc] init];
-      parser.delegate = parserDelegate;
-      
-      if ([parser parse]) { // succeeded in parsing
-         callbackBlock(nil, parserDelegate.response);
-      } else {
-         NSInteger errCode = [[parser parserError] code];
-         if (errCode == NSXMLParserInternalError || errCode == NSXMLParserDelegateAbortedParseError)
-            // rsp error
-            callbackBlock(parserDelegate.error, nil);
-         else
-            callbackBlock([parser parserError], nil);
-      }
-      
-      parser.delegate = nil;
-      [parser release];
+   NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
+   parser.delegate = xmlParserDelegate;
+
+   if ([parser parse]) { // succeeded in parsing
+      callbackBlock(nil, [xmlParserDelegate response]);
+   } else {
+      NSInteger errCode = [[parser parserError] code];
+      if (errCode == NSXMLParserInternalError || errCode == NSXMLParserDelegateAbortedParseError)
+         // rsp error
+         callbackBlock([xmlParserDelegate error], nil);
+      else
+         callbackBlock([parser parserError], nil);
    }
+
+   parser.delegate = nil;
+   [parser release];
 }
 
+@end // MCRequest
+
+@interface MCTestEchoXMLParserDelegate : MCParserDelegate
 @end
 
+@implementation MCTestEchoXMLParserDelegate
+@end // MCTestEchoXMLParserDelegate
+
+
+@interface MCListGetListXMLParserDelegate : MCParserDelegate
+@end
+
+@implementation MCListGetListXMLParserDelegate
+@end // MCListGetListXMLParserDelegate
+
+
+@implementation MCRequest (Test)
+
++ (void) echo:(void (^)(NSError *error, NSDictionary *result))callback
+{
+   MCTestEchoXMLParserDelegate *parserDelegate = [[MCTestEchoXMLParserDelegate alloc] init];
+   MCRequest *req = [[MCRequest alloc] initWithToken:nil method:@"rtm.test.echo" parameters:nil parserDelegate:parserDelegate callback:^(NSError *error, NSDictionary *result) {
+      if (error) {
+         NSLog(@"Error: %@", [error localizedDescription]);
+         return;
+      }
+
+      NSString *responseString = @"";
+      for (NSString *key in result)
+         responseString = [responseString stringByAppendingFormat:@"%@=%@ ", key, [result valueForKey:key]];
+
+      NSLog(@"[rtm.test.echo] %@", responseString);
+   }];
+   [req send];
+   [req release];
+}
+
+@end // MCRequest (Tesp)
+
+
+@implementation MCRequest (List)
++ (void) getList:(void (^)(NSError *error, NSArray *lists))callback
+{
+   MCListGetListXMLParserDelegate *parserDelegate = [[MCListGetListXMLParserDelegate alloc] init];
+
+   MCRequest *req = [[MCRequest alloc] initWithToken:RTM_TOKEN_R method:@"rtm.lists.getList" parameters:nil parserDelegate:parserDelegate callback:callback];
+   [req send];
+   [parserDelegate release];
+}
+
+@end // MCListRequest
 
 @implementation MCCenter
 
@@ -160,25 +236,6 @@ static MCCenter *s_instance = nil;
 #define MP_AUTH_PATH "/services/auth/"
 
 // -----------------------------------------------------------------------------------
-#pragma mark -
-#pragma mark Private
-@interface RTMAPI (Private)
-/**
- * construct request path.
- */
-- (NSString *) path:(NSString *)method withArgs:(NSDictionary *)args;
-/**
- * sign a request.
- */
-- (NSString *) sign:(NSString *)method withArgs:(NSDictionary *)args;
-
-/**
- * synchronous call RTM API method with args.
- *
- * if error happened in HTTP request, returns nil.
- */
-- (NSData *) call:(NSString *)method args:(NSDictionary *)args;
-@end
 
 @implementation RTMAPI (Private)
 
@@ -380,3 +437,4 @@ static MCCenter *s_instance = nil;
 
 @end
 #endif // 0
+// vim:set expandtab:sw=3:

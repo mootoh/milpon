@@ -20,7 +20,12 @@ enum {
    MC_RTM_STATUS_OK              = 0
 };
 
-@class MCParserDelegate;
+@protocol MCXMLParserDelegate
+
+- (id) response;
+- (NSError *) error;
+
+@end
 
 /**
  * Base class for requesting RTM REST APIs.
@@ -29,9 +34,10 @@ enum {
 @interface MCRequest : NSObject
 {
    NSString *token;
-   MCParserDelegate *parserDelegate;
+   NSMutableDictionary *parameters;
+   void (^callbackBlock)(NSError *error, id result);
 
-   void (^callbackBlock)(NSError *error, NSDictionary *result);
+   id <NSXMLParserDelegate, MCXMLParserDelegate> xmlParserDelegate;
 }
 
 /**
@@ -41,24 +47,22 @@ enum {
  *   - the response is packed into the dictionary if succeeded.
  *   - if failed, error is set.
  */
-- (void) send:(void (^)(NSError *error, NSDictionary *result))callback;
-//- (id) initWithToken:(NSString *)token;
-//- (void) echo:(void (^)(NSError *error, NSString *result))block;
+- (void) send;
 
 @end // MCRequest
 
 
-/**
- * Communication hub for API requests and the server responses.
- * Main purpose: regulation of the API calls.
- */
-@interface MCCenter : NSObject
-{
-   NSOperationQueue *requestQueue;
-}
+@interface MCRequest (Test)
 
-+ (MCCenter *) defaultCenter;
++ (void) echo:(void (^)(NSError *error, NSDictionary *result))callback;
 
-- (void) addRequst:(MCRequest *)request;
+@end // MCRequest (Test)
 
-@end
+
+@interface MCRequest (List)
+
++ (void) getList:(void (^)(NSError *error, NSArray *lists))callback;
+
+@end // MCRequest (List)
+
+// vim:set expandtab:sw=3:
