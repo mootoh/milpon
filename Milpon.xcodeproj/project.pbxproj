@@ -18,6 +18,7 @@
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28D3F202112F7DC200FD0661 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* Milpon.xcdatamodeld */; };
 		92054DB9130E7A9A00E1C549 /* PrivateInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 92054DB8130E7A9A00E1C549 /* PrivateInfo.h */; };
+		9286AC7C13132EAB007A2C36 /* MilkCocoaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9286AC7013132D18007A2C36 /* MilkCocoaTest.m */; };
 		92D3656E13107D2C00B224A1 /* MilkCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D3656C13107D2C00B224A1 /* MilkCocoa.h */; };
 		92D3656F13107D2C00B224A1 /* MilkCocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D3656D13107D2C00B224A1 /* MilkCocoa.m */; };
 		92D365C3131080A300B224A1 /* MCLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D365C2131080A300B224A1 /* MCLog.h */; };
@@ -32,6 +33,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9217E96C130CD9090037F852;
 			remoteInfo = librtmapi;
+		};
+		9286AC6C13132CE6007A2C36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9217E96C130CD9090037F852 /* milkcocoa */;
+			remoteInfo = milkcocoa;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -53,6 +61,10 @@
 		8D1107310486CEB800E47090 /* Milpon-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Milpon-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		92054DB8130E7A9A00E1C549 /* PrivateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateInfo.h; path = others/PrivateInfo.h; sourceTree = "<group>"; };
 		9217E96D130CD9090037F852 /* libmilkcocoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmilkcocoa.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9286AC6713132CE0007A2C36 /* MilkCocoaTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MilkCocoaTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9286AC6813132CE0007A2C36 /* MilkCocoaTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MilkCocoaTest-Info.plist"; sourceTree = "<group>"; };
+		9286AC6F13132D18007A2C36 /* MilkCocoaTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MilkCocoaTest.h; path = milkcocoa/MilkCocoaTest.h; sourceTree = "<group>"; };
+		9286AC7013132D18007A2C36 /* MilkCocoaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MilkCocoaTest.m; path = milkcocoa/MilkCocoaTest.m; sourceTree = "<group>"; };
 		92D3656C13107D2C00B224A1 /* MilkCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MilkCocoa.h; path = milkcocoa/MilkCocoa.h; sourceTree = "<group>"; };
 		92D3656D13107D2C00B224A1 /* MilkCocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MilkCocoa.m; path = milkcocoa/MilkCocoa.m; sourceTree = "<group>"; };
 		92D365C2131080A300B224A1 /* MCLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCLog.h; path = milkcocoa/MCLog.h; sourceTree = "<group>"; };
@@ -79,6 +91,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9286AC6413132CE0007A2C36 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -98,6 +117,7 @@
 			children = (
 				1D6058910D05DD3D006BFB54 /* Milpon.app */,
 				9217E96D130CD9090037F852 /* libmilkcocoa.a */,
+				9286AC6713132CE0007A2C36 /* MilkCocoaTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,6 +131,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				9286AC6813132CE0007A2C36 /* MilkCocoaTest-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -149,6 +170,7 @@
 		9217E970130CD9230037F852 /* MilkCocoa */ = {
 			isa = PBXGroup;
 			children = (
+				9286AC6E13132CF4007A2C36 /* Test */,
 				92D366C31310C4DF00B224A1 /* MCParserDelegate.h */,
 				92D366C41310C4DF00B224A1 /* MCParserDelegate.m */,
 				92D3656C13107D2C00B224A1 /* MilkCocoa.h */,
@@ -157,6 +179,15 @@
 				92D365C2131080A300B224A1 /* MCLog.h */,
 			);
 			name = MilkCocoa;
+			sourceTree = "<group>";
+		};
+		9286AC6E13132CF4007A2C36 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				9286AC6F13132D18007A2C36 /* MilkCocoaTest.h */,
+				9286AC7013132D18007A2C36 /* MilkCocoaTest.m */,
+			);
+			name = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +242,25 @@
 			productReference = 9217E96D130CD9090037F852 /* libmilkcocoa.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		9286AC6613132CE0007A2C36 /* MilkCocoaTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9286AC6B13132CE0007A2C36 /* Build configuration list for PBXNativeTarget "MilkCocoaTest" */;
+			buildPhases = (
+				9286AC6213132CE0007A2C36 /* Resources */,
+				9286AC6313132CE0007A2C36 /* Sources */,
+				9286AC6413132CE0007A2C36 /* Frameworks */,
+				9286AC6513132CE0007A2C36 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9286AC6D13132CE6007A2C36 /* PBXTargetDependency */,
+			);
+			name = MilkCocoaTest;
+			productName = MilkCocoaTest;
+			productReference = 9286AC6713132CE0007A2C36 /* MilkCocoaTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -233,6 +283,7 @@
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Milpon */,
 				9217E96C130CD9090037F852 /* milkcocoa */,
+				9286AC6613132CE0007A2C36 /* MilkCocoaTest */,
 			);
 		};
 /* End PBXProject section */
@@ -247,7 +298,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9286AC6213132CE0007A2C36 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9286AC6513132CE0007A2C36 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -270,6 +344,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9286AC6313132CE0007A2C36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9286AC7C13132EAB007A2C36 /* MilkCocoaTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -277,6 +359,11 @@
 			isa = PBXTargetDependency;
 			target = 9217E96C130CD9090037F852 /* milkcocoa */;
 			targetProxy = 9217E99E130CDB510037F852 /* PBXContainerItemProxy */;
+		};
+		9286AC6D13132CE6007A2C36 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9217E96C130CD9090037F852 /* milkcocoa */;
+			targetProxy = 9286AC6C13132CE6007A2C36 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -336,6 +423,67 @@
 			};
 			name = Release;
 		};
+		9286AC6913132CE0007A2C36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "MilkCocoaTest-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+					"-lmilkcocoa",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MilkCocoaTest;
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		9286AC6A13132CE0007A2C36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "MilkCocoaTest-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MilkCocoaTest;
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -383,6 +531,15 @@
 			buildConfigurations = (
 				9217E96E130CD9090037F852 /* Debug */,
 				9217E96F130CD9090037F852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9286AC6B13132CE0007A2C36 /* Build configuration list for PBXNativeTarget "MilkCocoaTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9286AC6913132CE0007A2C36 /* Debug */,
+				9286AC6A13132CE0007A2C36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
