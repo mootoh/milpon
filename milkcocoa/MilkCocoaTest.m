@@ -18,6 +18,15 @@
 
    [MCRequest echo:^(NSError *error, NSDictionary *result) {
       NSLog(@"echoed.");
+
+      STAssertNil(error, @"should be succeeded");
+
+      NSString *method = [result objectForKey:@"method"];
+      STAssertTrue([method isEqualToString:@"rtm.test.echo"], [NSString stringWithFormat:@"method check, received:", method]);
+
+      NSString *api_key = [result objectForKey:@"api_key"];
+      STAssertNotNil(result, @"should be passed a valid api_key");
+
       [condition lock];
       finished = YES;
       [condition signal];
