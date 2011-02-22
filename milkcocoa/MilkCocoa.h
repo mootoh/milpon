@@ -33,6 +33,7 @@ enum {
  */
 @interface MCRequest : NSObject
 {
+   NSString *method;
    NSString *token;
    NSMutableDictionary *parameters;
    void (^callbackBlock)(NSError *error, id result);

@@ -12,8 +12,12 @@
 #import "MCLog.h"
 #import "PrivateInfo.h"
 
-#pragma mark Internal class
+#define MP_RTM_URI   "http://api.rememberthemilk.com"
+#define MP_REST_PATH "/services/rest/"
+#define MP_AUTH_PATH "/services/auth/"
 
+#pragma mark Private
+// {{{
 /**
  * Communication hub for API requests and the server responses.
  * Main purpose: regulation of the API calls.
@@ -27,24 +31,18 @@
 
 - (void) addRequst:(MCRequest *)request;
 
-@end
+@end // MCCenter
 
-#pragma mark -
 
-#pragma mark Private
 @interface MCRequest (Private)
 
-- (NSString *) constructRequestPath:(NSString *)method withArgs:(NSDictionary *)args;
-- (NSString *) signRequest:(NSString *)method withArgs:(NSDictionary *)args;
+- (NSString *) constructRequestPath;
+- (NSString *) signRequest:(NSMutableDictionary *)args;
 
-/**
- * synchronous call RTM API method with args.
- *
- * if error happened in HTTP request, returns nil.
- */
-- (NSData *) call:(NSString *)method args:(NSDictionary *)args;
+@end // MCRequest (Private)
+// }}}
 
-@end
+#pragma mark Public
 
 @implementation MCRequest
 
@@ -52,10 +50,10 @@
 {
    if (self = [super init]) {
       token = tkn ? [tkn copy] : nil;
-      params = params ?
+      parameters = params ?
          [[NSMutableDictionary alloc] initWithDictionary:params] :
          [[NSMutableDictionary alloc] init];
-      [parameters setObject:mtd forKey:@"method"];
+      method = [mtd copy];
       callbackBlock = cb;
       xmlParserDelegate = [delegate retain];
    }
@@ -65,6 +63,8 @@
 - (void) dealloc
 {
    [xmlParserDelegate release];
+   callbackBlock = nil;
+   [method release];
    [parameters release];
    [token release];
    [super dealloc];
@@ -72,20 +72,29 @@
 
 - (void) send
 {
-   [[MCCenter defaultCenter] addRequst:self];
-}
-
-- (void) sendInternal
-{
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-   NSURL *echoURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.rememberthemilk.com/services/rest/?method=rtm.test.echo&api_key=%@", RTM_API_KEY]];
-   NSURLRequest *req = [NSURLRequest requestWithURL:echoURL];
+   NSString *urlString = [self constructRequestPath];
+   NSURLRequest   *req = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]
+                                          cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                      timeoutInterval:60.0];
 
-   NSURLResponse *response = nil;
+   MCLOG(@"url = %@", urlString);
+
    NSError *error = nil;
+   NSURLResponse *response = nil;
    NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
-   MCLOG(@"--------- %@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
+   if (NULL == data)
+      [NSException raise:@"ConnectionError" format:@"failed in API call: %@, url=%@", [error localizedDescription], urlString];
+   
+#ifdef DUMP_API_RESPONSE
+   //NSString *dump_path = [NSString stringWithFormat:@"/tmp/%@.xml", method];
+   //BOOL wrote = [ret writeToFile:dump_path options:NSAtomicWrite error:nil];
+   //NSAssert(wrote, @"dump should be written");
+   MCLOG(@"method=%@, response=%@", method, [[[NSString alloc] initWithData:ret encoding:NSUTF8StringEncoding] autorelease]);
+#endif // DUMP_API_RESPONSE
+
+   MCLOG(@"<<<<<<<<<\n%@\n>>>>>>>>>", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
 
    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
    parser.delegate = xmlParserDelegate;
@@ -111,6 +120,7 @@
 }
 
 
+#if 0
 #pragma mark -
 #pragma mark NSURLConnection delegates
 
@@ -135,8 +145,74 @@
    parser.delegate = nil;
    [parser release];
 }
+#endif // 0
 
 @end // MCRequest
+
+#pragma mark Private
+
+@implementation MCRequest (Private)
+
+- (NSString *) signRequest:(NSMutableDictionary *)args
+{
+   // append method, api_key
+   [args setObject:method forKey:@"method"];
+   [args setObject:RTM_API_KEY forKey:@"api_key"];
+
+   NSMutableArray *keys = [NSMutableArray arrayWithArray:[args allKeys]];
+   [keys sortUsingSelector:@selector(compare:)];
+   
+   NSMutableString *concat = [NSMutableString stringWithString:RTM_SHARED_SECRET];
+   for (NSString *key in keys)
+      [concat appendFormat:@"%@%@", key, [args objectForKey:key]];
+   
+   // MD5 hash
+   unsigned char digest[CC_MD5_DIGEST_LENGTH];
+   memset(digest, 0, CC_MD5_DIGEST_LENGTH);
+   const char *from = [concat UTF8String];
+   CC_MD5(from, strlen(from), digest);
+ 
+   return  [NSString stringWithFormat:
+               @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+               digest[0], digest[1], digest[2], digest[3],
+               digest[4], digest[5], digest[6], digest[7],
+               digest[8], digest[9], digest[10], digest[11],
+               digest[12], digest[13], digest[14], digest[15]];
+}
+
+- (NSString *) escape:(NSString *) src
+{
+   // escape values
+   NSString *dst = [src stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; // TODO
+   dst = [dst stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
+   return dst;
+}
+
+- (NSString *) pairString:(NSDictionary *)args
+{
+   NSMutableString *arg = [NSMutableString string];
+   for (id key in args) {
+      id          v = [args objectForKey:key];
+      NSString *val = [v isKindOfClass:[NSString class]] ? v : [v stringValue];
+
+      val = [self escape:val];
+      [arg appendFormat:@"&%@=%@", key, val];
+   }
+   return arg;
+}
+
+- (NSString *) constructRequestPath
+{
+   NSMutableDictionary *args = [NSMutableDictionary dictionaryWithDictionary:parameters];
+   if (token)
+      [args setObject:token forKey:@"auth_token"];
+
+   NSString *arg = [self pairString:args];
+   NSString *sig = [self signRequest:args];
+   return [NSString stringWithFormat:@"%s%s?method=%@&api_key=%@&api_sig=%@%@", MP_RTM_URI, MP_REST_PATH, method, RTM_API_KEY, sig, arg];
+}
+
+@end // MCRequest (Private)
 
 @interface MCTestEchoXMLParserDelegate : MCParserDelegate
 @end
@@ -158,7 +234,7 @@
 {
    MCTestEchoXMLParserDelegate *parserDelegate = [[MCTestEchoXMLParserDelegate alloc] init];
    MCRequest *req = [[MCRequest alloc] initWithToken:nil method:@"rtm.test.echo" parameters:nil parserDelegate:parserDelegate callback:callback];
-   [req send];
+   [[MCCenter defaultCenter] addRequst:req];
    [req release];
 }
 
@@ -171,7 +247,7 @@
    MCListGetListXMLParserDelegate *parserDelegate = [[MCListGetListXMLParserDelegate alloc] init];
 
    MCRequest *req = [[MCRequest alloc] initWithToken:RTM_TOKEN_R method:@"rtm.lists.getList" parameters:nil parserDelegate:parserDelegate callback:callback];
-   [req send];
+   [[MCCenter defaultCenter] addRequst:req];
    [parserDelegate release];
 }
 
@@ -208,9 +284,9 @@ static MCCenter *s_instance = nil;
    [requestQueue addOperationWithBlock:^{
       [request retain];
 #ifdef UNIT_TEST
-      [request sendInternal];
+      [request send];
 #else // UNIT_TEST
-      [request performSelectorOnMainThread:@selector(sendInternal) withObject:nil waitUntilDone:YES];
+      [request performSelectorOnMainThread:@selector(send) withObject:nil waitUntilDone:YES];
 #endif // UNIT_TEST
       [request release];
    }];
@@ -235,94 +311,9 @@ static MCCenter *s_instance = nil;
 
 #if 0
 
-#import "MPLogger.h"
-#import "PrivateInfo.h"
-
-#define MP_RTM_URI   "http://api.rememberthemilk.com"
-#define MP_REST_PATH "/services/rest/"
-#define MP_AUTH_PATH "/services/auth/"
-
 // -----------------------------------------------------------------------------------
 
 @implementation RTMAPI (Private)
-
-- (NSString *)constructwithEscaping:(NSDictionary *)args
-{
-   NSMutableString *arg = [NSMutableString string];
-   for (id key in args) {
-      id          v = [args objectForKey:key];
-      NSString *val = [v isKindOfClass:[NSString class]] ? v : [v stringValue];
-
-      // escape values
-      val = [val stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; // TODO
-      val = [val stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
-      
-      [arg appendFormat:@"&%@=%@", key, val];
-   }
-   return arg;
-}
-
-- (NSString *)path:(NSString *)method withArgs:(NSDictionary *)args
-{
-   NSMutableDictionary *args_with_token = [NSMutableDictionary dictionaryWithDictionary:args];
-   if (token) [args_with_token setObject:token forKey:@"auth_token"];
-
-   NSString *arg = [self constructwithEscaping:args_with_token];
-   NSString *sig = [self sign:method withArgs:args_with_token];
-   return [NSString stringWithFormat:@"%s%s?method=%@&api_key=%@&api_sig=%@%@", MP_RTM_URI, MP_REST_PATH, method, RTM_API_KEY, sig, arg];
-}
-
-- (NSString *)sign:(NSString *)method withArgs:(NSDictionary *)args
-{
-   // append method, api_key
-   NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:args];
-   if (method) [params setObject:method forKey:@"method"];
-    [params setObject:RTM_API_KEY forKey:@"api_key"];
-   
-   NSMutableArray *keys = [NSMutableArray arrayWithArray:[params allKeys]];
-   [keys sortUsingSelector:@selector(compare:)];
-   
-   NSMutableString *concat = [NSMutableString stringWithString:RTM_SHARED_SECRET];
-   for (NSString *key in keys)
-      [concat appendFormat:@"%@%@", key, [params objectForKey:key]];
-   
-   // MD5 hash
-   unsigned char digest[CC_MD5_DIGEST_LENGTH];
-   memset(digest, 0, CC_MD5_DIGEST_LENGTH);
-   const char *from = [concat UTF8String];
-   CC_MD5(from, strlen(from), digest);
- 
-   return  [NSString stringWithFormat:
-               @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-               digest[0], digest[1], digest[2], digest[3],
-               digest[4], digest[5], digest[6], digest[7],
-               digest[8], digest[9], digest[10], digest[11],
-               digest[12], digest[13], digest[14], digest[15]];
-}
-
-- (NSData *) call:(NSString *)method args:(NSDictionary *)args
-{
-   NSString      *url = [self path:method withArgs:args];
-   NSURLRequest  *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]
-                                         cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                     timeoutInterval:60.0];
-   NSURLResponse *res = nil;
-   NSError       *err = nil;
-   
-   LOG(@"API calling for url=%@", url);
-   NSData *ret = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&err];
-   if (NULL == ret)
-      [NSException raise:@"ConnectionError" format:@"failed in API call: %@, url=%@", [err localizedDescription], url];
-   
-#ifdef DUMP_API_RESPONSE
-   //NSString *dump_path = [NSString stringWithFormat:@"/tmp/%@.xml", method];
-   //BOOL wrote = [ret writeToFile:dump_path options:NSAtomicWrite error:nil];
-   //NSAssert(wrote, @"dump should be written");
-   LOG(@"method=%@, response=%@", method, [[[NSString alloc] initWithData:ret encoding:NSUTF8StringEncoding] autorelease]);
-#endif // DUMP_API_RESPONSE
-
-   return ret;
-}
 
 @end
 
@@ -444,4 +435,4 @@ static MCCenter *s_instance = nil;
 
 @end
 #endif // 0
-// vim:set expandtab:sw=3:
+// vim:set expandtab:sw=3:fdm=marker:
