@@ -39,10 +39,10 @@
    } else if ([elementName isEqualToString:@"err"]) {
       NSAssert(!succeeded, @"rsp:stat should be 'fail'");
 
-      NSDictionary *user_info = [NSDictionary dictionaryWithObject:[attributeDict valueForKey:@"msg"] forKey:NSLocalizedDescriptionKey];
+      NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[attributeDict valueForKey:@"msg"] forKey:NSLocalizedDescriptionKey];
       error = [NSError errorWithDomain:k_MC_ERROR_DOMAIN
                                   code:[[attributeDict valueForKey:@"code"] integerValue]
-                              userInfo:user_info];
+                              userInfo:userInfo];
       [parser abortParsing];
    } else {
       NSAssert(succeeded, @"should be in rsp element");

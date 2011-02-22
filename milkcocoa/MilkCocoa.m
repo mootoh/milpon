@@ -100,8 +100,10 @@
    parser.delegate = xmlParserDelegate;
 
    if ([parser parse]) { // succeeded in parsing
+      MCLOG(@"parse end");
       callbackBlock(nil, [xmlParserDelegate response]);
    } else {
+      MCLOG(@"parse error");
       NSInteger errCode = [[parser parserError] code];
       if (errCode == NSXMLParserInternalError || errCode == NSXMLParserDelegateAbortedParseError)
          // rsp error
@@ -227,6 +229,11 @@
 @implementation MCListGetListXMLParserDelegate
 @end // MCListGetListXMLParserDelegate
 
+@interface MCAuthCheckTokenXMLParserDelegate : MCParserDelegate
+@end
+
+@implementation MCAuthCheckTokenXMLParserDelegate
+@end
 
 @implementation MCRequest (Test)
 
@@ -238,7 +245,7 @@
    [req release];
 }
 
-@end // MCRequest (Tesp)
+@end // Test
 
 
 @implementation MCRequest (List)
@@ -251,7 +258,31 @@
    [parserDelegate release];
 }
 
-@end // MCListRequest
+@end // List
+
+
+@implementation MCRequest (Auth)
+
++ (void) checkToken:(NSString *)token callback:(void (^)(NSError *error, id isValid))callback;
+{
+   MCAuthCheckTokenXMLParserDelegate *parserDelegate = [[MCAuthCheckTokenXMLParserDelegate alloc] init];
+
+   MCRequest *req = [[MCRequest alloc] initWithToken:nil method:@"rtm.auth.checkToken" parameters:[NSDictionary dictionaryWithObject:token forKey:@"auth_token"] parserDelegate:parserDelegate callback:callback];
+   [[MCCenter defaultCenter] addRequst:req];
+   [parserDelegate release];
+}
+
++ (void) getFrob:(void (^)(NSError *error, id result))callback
+{
+   MCParserDelegate *parserDelegate = [[MCParserDelegate alloc] init];
+
+   MCRequest *req = [[MCRequest alloc] initWithToken:nil method:@"rtm.auth.getFrob" parameters:nil parserDelegate:parserDelegate callback:callback];
+   [[MCCenter defaultCenter] addRequst:req];
+   [parserDelegate release];
+}
+
+@end // Auth
+
 
 @implementation MCCenter
 
@@ -285,47 +316,27 @@ static MCCenter *s_instance = nil;
       [request retain];
 #ifdef UNIT_TEST
       [request send];
-#else // UNIT_TEST
+#else
       [request performSelectorOnMainThread:@selector(send) withObject:nil waitUntilDone:YES];
-#endif // UNIT_TEST
+#endif
       [request release];
    }];
 }
 
-@end
+@end // MCCenter
 
 #if 0
-/**
- * @brief synchronous call with delegate, wrapper for call:args.
- * @param delegate XMLParser delegate
- */
-- (id) call:(NSString *)method args:(NSDictionary *)args delegate:(RTMAPIParserDelegate *)delegate;
 
 /**
  * construct authentication URL.
  */
 - (NSString *) authURL:(NSString *)frob forPermission:(NSString *)perm;
 
-@end
 #endif // 0
 
 #if 0
 
 // -----------------------------------------------------------------------------------
-
-@implementation RTMAPI (Private)
-
-@end
-
-// -----------------------------------------------------------------------------------
-#pragma mark -
-#pragma mark RTMAPI
-@implementation RTMAPI
-
-@synthesize token;
-
-#define k_RTM_TOKEN_KEY @"RTM token"
-
 - (id) init
 {
    if (self = [super init]) {

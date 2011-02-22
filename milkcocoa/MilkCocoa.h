@@ -57,13 +57,21 @@ enum {
 
 + (void) echo:(void (^)(NSError *error, NSDictionary *result))callback;
 
-@end // MCRequest (Test)
+@end // Test
 
 
 @interface MCRequest (List)
 
 + (void) getList:(void (^)(NSError *error, NSArray *lists))callback;
 
-@end // MCRequest (List)
+@end // List
+
+@interface MCRequest (Auth)
+
++ (void) checkToken:(NSString *)token callback:(void (^)(NSError *error, id isValid))callback;
++ (void) getFrob:(void (^)(NSError *error, NSString *frob))callback;
+- (NSString *) getToken:(NSString *)frob;
+
+@end // Auth
 
 // vim:set expandtab:sw=3:
