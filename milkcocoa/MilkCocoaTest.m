@@ -7,12 +7,27 @@
 //
 
 #import "MilkCocoaTest.h"
+#import "MilkCocoa.h"
 
 @implementation MilkCocoaTest
 
-- (void) testMath
+- (void) testEcho
 {
-   STAssertTrue((1+1)==2, @"Compiler isn't feeling well today :-(" );
+   __block BOOL finished = NO;
+   NSCondition *condition = [[NSCondition alloc] init];
+
+   [MCRequest echo:^(NSError *error, NSDictionary *result) {
+      NSLog(@"echoed.");
+      [condition lock];
+      finished = YES;
+      [condition signal];
+      [condition unlock];
+   }];
+
+   [condition lock];
+   while (! finished)
+      [condition wait];
+   [condition unlock];
 }
 
 @end

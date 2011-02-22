@@ -26,7 +26,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-   [MCRequest echo:nil];
+   [MCRequest echo:^(NSError *error, NSDictionary *result) {
+      if (error) {
+         NSLog(@"Error: %@", [error localizedDescription]);
+         return;
+      }
+
+      NSString *responseString = @"";
+      for (NSString *key in result)
+         responseString = [responseString stringByAppendingFormat:@"%@=%@ ", key, [result valueForKey:key]];
+
+      NSLog(@"[rtm.test.echo] %@", responseString);
+   }];
 
    // Add the navigation controller's view to the window and display.
    [self.window addSubview:navigationController.view];

@@ -64,8 +64,6 @@
 
 - (void) dealloc
 {
-   MCLOG_METHOD;
-
    [xmlParserDelegate release];
    [parameters release];
    [token release];
@@ -80,7 +78,6 @@
 - (void) sendInternal
 {
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-   MCLOG_METHOD;
 
    NSURL *echoURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.rememberthemilk.com/services/rest/?method=rtm.test.echo&api_key=%@", RTM_API_KEY]];
    NSURLRequest *req = [NSURLRequest requestWithURL:echoURL];
@@ -89,6 +86,23 @@
    NSError *error = nil;
    NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
    MCLOG(@"--------- %@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
+
+   NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
+   parser.delegate = xmlParserDelegate;
+
+   if ([parser parse]) { // succeeded in parsing
+      callbackBlock(nil, [xmlParserDelegate response]);
+   } else {
+      NSInteger errCode = [[parser parserError] code];
+      if (errCode == NSXMLParserInternalError || errCode == NSXMLParserDelegateAbortedParseError)
+         // rsp error
+         callbackBlock([xmlParserDelegate error], nil);
+      else
+         callbackBlock([parser parserError], nil);
+   }
+
+   parser.delegate = nil;
+   [parser release];
 
 //   NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:req delegate:self startImmediately:NO];
 //   [connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
@@ -143,18 +157,7 @@
 + (void) echo:(void (^)(NSError *error, NSDictionary *result))callback
 {
    MCTestEchoXMLParserDelegate *parserDelegate = [[MCTestEchoXMLParserDelegate alloc] init];
-   MCRequest *req = [[MCRequest alloc] initWithToken:nil method:@"rtm.test.echo" parameters:nil parserDelegate:parserDelegate callback:^(NSError *error, NSDictionary *result) {
-      if (error) {
-         NSLog(@"Error: %@", [error localizedDescription]);
-         return;
-      }
-
-      NSString *responseString = @"";
-      for (NSString *key in result)
-         responseString = [responseString stringByAppendingFormat:@"%@=%@ ", key, [result valueForKey:key]];
-
-      NSLog(@"[rtm.test.echo] %@", responseString);
-   }];
+   MCRequest *req = [[MCRequest alloc] initWithToken:nil method:@"rtm.test.echo" parameters:nil parserDelegate:parserDelegate callback:callback];
    [req send];
    [req release];
 }
@@ -204,7 +207,11 @@ static MCCenter *s_instance = nil;
 {
    [requestQueue addOperationWithBlock:^{
       [request retain];
+#ifdef UNIT_TEST
+      [request sendInternal];
+#else // UNIT_TEST
       [request performSelectorOnMainThread:@selector(sendInternal) withObject:nil waitUntilDone:YES];
+#endif // UNIT_TEST
       [request release];
    }];
 }
