@@ -8,14 +8,14 @@
 #define MP_AUTH_PATH "/services/auth/"
 
 #pragma mark Private
-// {{{
 @interface MCRequest (Private)
 
 - (NSString *) constructRequestPath;
-- (NSString *) signRequest:(NSMutableDictionary *)args;
+- (NSString *) signRequest:(NSDictionary *)args;
++ (NSString *) signRequest:(NSDictionary *)args;
 
 @end // MCRequest (Private)
-// }}}
+
 
 #pragma mark Public
 
@@ -124,18 +124,29 @@
 }
 #endif // 0
 
+// XXX: dup with path:
++ (NSString *) authURL:(NSString *)frob permission:(NSString *)perm
+{
+   NSArray      *keys = [NSArray arrayWithObjects:@"frob", @"perms", nil];
+   NSArray      *vals = [NSArray arrayWithObjects:frob, perm, nil];
+   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   
+   NSString *arg = @"";
+   for (NSString *key in args)
+      arg = [arg stringByAppendingFormat:@"&%@=%@", key, [args objectForKey:key]];
+   
+   NSString *sig = [MCRequest signRequest:args];
+   return [NSString stringWithFormat:@"%s%s?api_key=%@%@&api_sig=%@", MP_RTM_URI, MP_AUTH_PATH, RTM_API_KEY, arg, sig];
+}
+
 @end // MCRequest
 
 #pragma mark Private
 
 @implementation MCRequest (Private)
 
-- (NSString *) signRequest:(NSMutableDictionary *)args
++ (NSString *) signRequest:(NSDictionary *)args
 {
-   // append method, api_key
-   [args setObject:method forKey:@"method"];
-   [args setObject:RTM_API_KEY forKey:@"api_key"];
-
    NSMutableArray *keys = [NSMutableArray arrayWithArray:[args allKeys]];
    [keys sortUsingSelector:@selector(compare:)];
 
@@ -155,6 +166,16 @@
                digest[4], digest[5], digest[6], digest[7],
                digest[8], digest[9], digest[10], digest[11],
                digest[12], digest[13], digest[14], digest[15]];
+}
+
+- (NSString *) signRequest:(NSDictionary *)args
+{
+   // append method, api_key
+   NSMutableDictionary *mutableArgs = [NSMutableDictionary dictionaryWithDictionary:args];
+   [mutableArgs setObject:method forKey:@"method"];
+   [mutableArgs setObject:RTM_API_KEY forKey:@"api_key"];
+
+   return [MCRequest signRequest:mutableArgs];
 }
 
 - (NSString *) escape:(NSString *) src
@@ -232,15 +253,6 @@ static MCCenter *s_instance = nil;
 }
 
 @end // MCCenter
-
-#if 0
-
-/**
- * construct authentication URL.
- */
-- (NSString *) authURL:(NSString *)frob forPermission:(NSString *)perm;
-
-#endif // 0
 
 #if 0
 
@@ -337,20 +349,4 @@ static MCCenter *s_instance = nil;
    return [delegate result];
 }
 
-// XXX: dup with path:
-- (NSString *) authURL:(NSString *)frob forPermission:(NSString *)perm
-{
-   NSArray      *keys = [NSArray arrayWithObjects:@"frob", @"perms", nil];
-   NSArray      *vals = [NSArray arrayWithObjects:frob, perm, nil];
-   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-
-   NSString *arg = @"";
-   for (NSString *key in args)
-      arg = [arg stringByAppendingFormat:@"&%@=%@", key, [args objectForKey:key]];
-
-   NSString *sig = [self sign:nil withArgs:args];
-   return [NSString stringWithFormat:@"%s%s?api_key=%@%@&api_sig=%@", MP_RTM_URI, MP_AUTH_PATH, RTM_API_KEY, arg, sig];
-}
-
-@end
 #endif // 0

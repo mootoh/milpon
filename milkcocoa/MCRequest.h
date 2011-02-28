@@ -32,6 +32,11 @@
  */
 - (void) send;
 
+/**
+ * construct authentication URL.
+ */
++ (NSString *) authURL:(NSString *)frob permission:(NSString *)perm;
+
 @end // MCRequest
 
 /**

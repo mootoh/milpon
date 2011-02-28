@@ -35,7 +35,7 @@ enum {
 
 + (void) checkToken:(NSString *)token callback:(void (^)(NSError *error, BOOL isValid))callback;
 + (void) getFrob:(void (^)(NSError *error, NSString *frob))callback;
-+ (NSString *) getToken:(NSString *)frob;
++ (void) getToken:(NSString *)frob callback:(void (^)(NSError *error, NSString *frob))callback;
 
 @end // Auth
 

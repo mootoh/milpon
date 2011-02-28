@@ -43,7 +43,7 @@
    __block BOOL finished = NO;
    NSCondition *condition = [[NSCondition alloc] init];
 
-   [MCRequest getList:^(NSError *error, NSArray *lists) {
+   [MilkCocoa getList:^(NSError *error, NSArray *lists) {
       STAssertNil(error, @"should be success");
 
       [condition lock];
