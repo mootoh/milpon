@@ -26,7 +26,28 @@
 @property (nonatomic, readonly) NSMutableDictionary *response;
 @property (nonatomic, readonly) NSError *error;
 
+@end // MCParserDelegate
+
+
+@interface MCStringParserDelegate : MCParserDelegate
+@end // String
+
+
+@interface MCDictionaryParserDelegate : MCParserDelegate
+@end // Dictionary
+
+
+@interface MCTestEchoXMLParserDelegate : MCParserDelegate
 @end
+
+
+@interface MCListGetListXMLParserDelegate : MCParserDelegate
+@end
+
+
+@interface MCAuthCheckTokenXMLParserDelegate : MCParserDelegate
+@end
+
 
 #pragma mark -
 #pragma mark helper macros

@@ -1,12 +1,5 @@
-//
-//  MilkcCocoa.h
-//  Milpon
-//
-//  Created by mootoh on 8/30/08.
-//  Copyright 2008 deadbeaf.org. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
+#import "MCRequest.h"
 
 #define k_MC_ERROR_DOMAIN @"MilkCocoa"
 
@@ -20,57 +13,29 @@ enum {
    MC_RTM_STATUS_OK              = 0
 };
 
-@protocol MCXMLParserDelegate
-
-- (id) response;
-- (NSError *) error;
-
-@end
-
-/**
- * Base class for requesting RTM REST APIs.
- * http://www.rememberthemilk.com/services/api/methods/
- */
-@interface MCRequest : NSObject
-{
-   NSString *method;
-   NSString *token;
-   NSMutableDictionary *parameters;
-   void (^callbackBlock)(NSError *error, id result);
-
-   id <NSXMLParserDelegate, MCXMLParserDelegate> xmlParserDelegate;
-}
-
-/**
- * send an API request to RTM asynchronously.
- *
- * callback:
- *   - the response is packed into the dictionary if succeeded.
- *   - if failed, error is set.
- */
-- (void) send;
-
-@end // MCRequest
+@interface MilkCocoa : NSObject
+@end // MilkCocoa
 
 
-@interface MCRequest (Test)
+@interface MilkCocoa (Test)
 
 + (void) echo:(void (^)(NSError *error, NSDictionary *result))callback;
 
 @end // Test
 
 
-@interface MCRequest (List)
+@interface MilkCocoa (List)
 
 + (void) getList:(void (^)(NSError *error, NSArray *lists))callback;
 
 @end // List
 
-@interface MCRequest (Auth)
 
-+ (void) checkToken:(NSString *)token callback:(void (^)(NSError *error, id isValid))callback;
+@interface MilkCocoa (Auth)
+
++ (void) checkToken:(NSString *)token callback:(void (^)(NSError *error, BOOL isValid))callback;
 + (void) getFrob:(void (^)(NSError *error, NSString *frob))callback;
-- (NSString *) getToken:(NSString *)frob;
++ (NSString *) getToken:(NSString *)frob;
 
 @end // Auth
 

@@ -14,12 +14,7 @@
 
 - (void) testEcho
 {
-   __block BOOL finished = NO;
-   NSCondition *condition = [[NSCondition alloc] init];
-
-   [MCRequest echo:^(NSError *error, NSDictionary *result) {
-      NSLog(@"echoed.");
-
+   [MilkCocoa echo:^(NSError *error, NSDictionary *result) {
       STAssertNil(error, @"should be success");
 
       NSString *method = [result objectForKey:@"method"];
@@ -27,17 +22,7 @@
 
       NSString *api_key = [result objectForKey:@"api_key"];
       STAssertNotNil(api_key, @"should be passed a valid api_key");
-
-      [condition lock];
-      finished = YES;
-      [condition signal];
-      [condition unlock];
    }];
-
-   [condition lock];
-   while (! finished)
-      [condition wait];
-   [condition unlock];
 }
 
 - (void) _testGetList
@@ -85,22 +70,10 @@
    __block BOOL finished = NO;
    NSCondition *condition = [[NSCondition alloc] init];
 
-   [MCRequest getFrob:^(NSError *error, id result) {
+   [MilkCocoa getFrob:^(NSError *error, NSString *frob) {
       STAssertNil(error, @"should be success");
+      STAssertNotNil(frob, @"frob should be retrieved");
 
-      NSString *frob = [result objectForKey:@"frob"];
-#if 0
-      if (frob == nil) {
-         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"cannot find a frob in the response" forKey:NSLocalizedDescriptionKey];
-         error = [NSError errorWithDomain:k_MC_ERROR_DOMAIN
-                                     code:1
-                                 userInfo:userInfo];
-         callback(error, nil);
-         return;
-      }
-#endif // 0
-
-      STAssertNotNil(frob, @"frob should be otained.");
       NSLog(@"frob = %@", frob);
 
       [condition lock];

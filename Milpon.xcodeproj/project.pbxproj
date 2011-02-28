@@ -19,6 +19,8 @@
 		28D3F202112F7DC200FD0661 /* Milpon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* Milpon.xcdatamodeld */; };
 		92054DB9130E7A9A00E1C549 /* PrivateInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 92054DB8130E7A9A00E1C549 /* PrivateInfo.h */; };
 		9286AC7C13132EAB007A2C36 /* MilkCocoaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9286AC7013132D18007A2C36 /* MilkCocoaTest.m */; };
+		9286ADE01313B04F007A2C36 /* MCRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 9286ADDE1313B04F007A2C36 /* MCRequest.h */; };
+		9286ADE11313B04F007A2C36 /* MCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9286ADDF1313B04F007A2C36 /* MCRequest.m */; };
 		92D3656E13107D2C00B224A1 /* MilkCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D3656C13107D2C00B224A1 /* MilkCocoa.h */; };
 		92D3656F13107D2C00B224A1 /* MilkCocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D3656D13107D2C00B224A1 /* MilkCocoa.m */; };
 		92D365C3131080A300B224A1 /* MCLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D365C2131080A300B224A1 /* MCLog.h */; };
@@ -38,7 +40,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9217E96C130CD9090037F852 /* milkcocoa */;
+			remoteGlobalIDString = 9217E96C130CD9090037F852;
 			remoteInfo = milkcocoa;
 		};
 /* End PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		9286AC6813132CE0007A2C36 /* MilkCocoaTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MilkCocoaTest-Info.plist"; sourceTree = "<group>"; };
 		9286AC6F13132D18007A2C36 /* MilkCocoaTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MilkCocoaTest.h; path = milkcocoa/MilkCocoaTest.h; sourceTree = "<group>"; };
 		9286AC7013132D18007A2C36 /* MilkCocoaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MilkCocoaTest.m; path = milkcocoa/MilkCocoaTest.m; sourceTree = "<group>"; };
+		9286ADDE1313B04F007A2C36 /* MCRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCRequest.h; path = milkcocoa/MCRequest.h; sourceTree = "<group>"; };
+		9286ADDF1313B04F007A2C36 /* MCRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCRequest.m; path = milkcocoa/MCRequest.m; sourceTree = "<group>"; };
 		92D3656C13107D2C00B224A1 /* MilkCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MilkCocoa.h; path = milkcocoa/MilkCocoa.h; sourceTree = "<group>"; };
 		92D3656D13107D2C00B224A1 /* MilkCocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MilkCocoa.m; path = milkcocoa/MilkCocoa.m; sourceTree = "<group>"; };
 		92D365C2131080A300B224A1 /* MCLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCLog.h; path = milkcocoa/MCLog.h; sourceTree = "<group>"; };
@@ -170,13 +174,15 @@
 		9217E970130CD9230037F852 /* MilkCocoa */ = {
 			isa = PBXGroup;
 			children = (
-				9286AC6E13132CF4007A2C36 /* Test */,
+				9286ADDE1313B04F007A2C36 /* MCRequest.h */,
+				9286ADDF1313B04F007A2C36 /* MCRequest.m */,
 				92D366C31310C4DF00B224A1 /* MCParserDelegate.h */,
 				92D366C41310C4DF00B224A1 /* MCParserDelegate.m */,
 				92D3656C13107D2C00B224A1 /* MilkCocoa.h */,
 				92D3656D13107D2C00B224A1 /* MilkCocoa.m */,
 				92054DB8130E7A9A00E1C549 /* PrivateInfo.h */,
 				92D365C2131080A300B224A1 /* MCLog.h */,
+				9286AC6E13132CF4007A2C36 /* Test */,
 			);
 			name = MilkCocoa;
 			sourceTree = "<group>";
@@ -201,6 +207,7 @@
 				92D3656E13107D2C00B224A1 /* MilkCocoa.h in Headers */,
 				92D365C3131080A300B224A1 /* MCLog.h in Headers */,
 				92D366C51310C4DF00B224A1 /* MCParserDelegate.h in Headers */,
+				9286ADE01313B04F007A2C36 /* MCRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +348,7 @@
 			files = (
 				92D3656F13107D2C00B224A1 /* MilkCocoa.m in Sources */,
 				92D366C61310C4DF00B224A1 /* MCParserDelegate.m in Sources */,
+				9286ADE11313B04F007A2C36 /* MCRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

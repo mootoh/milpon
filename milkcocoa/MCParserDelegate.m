@@ -80,3 +80,13 @@
 }
 
 @end
+
+@implementation MCTestEchoXMLParserDelegate
+@end // MCTestEchoXMLParserDelegate
+
+
+@implementation MCListGetListXMLParserDelegate
+@end // MCListGetListXMLParserDelegate
+
+@implementation MCAuthCheckTokenXMLParserDelegate
+@end
