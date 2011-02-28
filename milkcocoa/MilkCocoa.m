@@ -4,6 +4,8 @@
 #import "MCLog.h"
 #import "PrivateInfo.h"
 
+#define MP_AUTH_PATH "/services/auth/"
+
 @implementation MilkCocoa
 @end
 
@@ -86,6 +88,20 @@
    [[MCCenter defaultCenter] addRequst:req];
    [parserDelegate release];
    [req release];
+}
+
++ (NSString *) authURL:(NSString *)frob permission:(NSString *)perm
+{
+   NSArray      *keys = [NSArray arrayWithObjects:@"api_key", @"frob", @"perms", nil];
+   NSArray      *vals = [NSArray arrayWithObjects:RTM_API_KEY, frob, perm, nil];
+   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
+   
+   NSString *arg = @"";
+   for (NSString *key in args)
+      arg = [arg stringByAppendingFormat:@"&%@=%@", key, [args objectForKey:key]];
+   
+   NSString *sig = [MCRequest signRequest:args];
+   return [NSString stringWithFormat:@"%s%s?api_key=%@%@&api_sig=%@", MP_RTM_URI, MP_AUTH_PATH, RTM_API_KEY, arg, sig];
 }
 
 @end // Auth

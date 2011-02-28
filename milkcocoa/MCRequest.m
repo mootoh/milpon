@@ -3,9 +3,7 @@
 #import "PrivateInfo.h"
 #import "MCLog.h"
 
-#define MP_RTM_URI   "http://api.rememberthemilk.com"
 #define MP_REST_PATH "/services/rest/"
-#define MP_AUTH_PATH "/services/auth/"
 
 #pragma mark Private
 @interface MCRequest (Private)
@@ -123,21 +121,6 @@
    [parser release];
 }
 #endif // 0
-
-// XXX: dup with path:
-+ (NSString *) authURL:(NSString *)frob permission:(NSString *)perm
-{
-   NSArray      *keys = [NSArray arrayWithObjects:@"frob", @"perms", nil];
-   NSArray      *vals = [NSArray arrayWithObjects:frob, perm, nil];
-   NSDictionary *args = [NSDictionary dictionaryWithObjects:vals forKeys:keys];
-   
-   NSString *arg = @"";
-   for (NSString *key in args)
-      arg = [arg stringByAppendingFormat:@"&%@=%@", key, [args objectForKey:key]];
-   
-   NSString *sig = [MCRequest signRequest:args];
-   return [NSString stringWithFormat:@"%s%s?api_key=%@%@&api_sig=%@", MP_RTM_URI, MP_AUTH_PATH, RTM_API_KEY, arg, sig];
-}
 
 @end // MCRequest
 

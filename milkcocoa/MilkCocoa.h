@@ -2,6 +2,7 @@
 #import "MCRequest.h"
 
 #define k_MC_ERROR_DOMAIN @"MilkCocoa"
+#define MP_RTM_URI   "http://api.rememberthemilk.com"
 
 enum {
    MC_RTM_INVALID_API_KEY        = 100,
@@ -36,6 +37,11 @@ enum {
 + (void) checkToken:(NSString *)token callback:(void (^)(NSError *error, BOOL isValid))callback;
 + (void) getFrob:(void (^)(NSError *error, NSString *frob))callback;
 + (void) getToken:(NSString *)frob callback:(void (^)(NSError *error, NSString *frob))callback;
+
+/**
+ * construct authentication URL.
+ */
++ (NSString *) authURL:(NSString *)frob permission:(NSString *)perm;
 
 @end // Auth
 

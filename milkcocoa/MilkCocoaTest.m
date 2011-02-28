@@ -11,6 +11,9 @@
 #import "PrivateInfo.h"
 
 @implementation MilkCocoaTest
+@end
+
+@implementation MilkCocoaTest (Test)
 
 - (void) testEcho
 {
@@ -38,40 +41,24 @@
    [condition unlock];
 }
 
-- (void) _testGetList
-{
-   __block BOOL finished = NO;
-   NSCondition *condition = [[NSCondition alloc] init];
+@end
 
-   [MilkCocoa getList:^(NSError *error, NSArray *lists) {
-      STAssertNil(error, @"should be success");
-
-      [condition lock];
-      finished = YES;
-      [condition signal];
-      [condition unlock];
-   }];
-
-   [condition lock];
-   while (! finished)
-      [condition wait];
-   [condition unlock];
-}
+@implementation MilkCocoaTest (Auth)
 
 - (void) _testCheckToken
 {
    __block BOOL finished = NO;
    NSCondition *condition = [[NSCondition alloc] init];
-
+   
    [MilkCocoa checkToken:RTM_TOKEN_R callback:^(NSError *error, BOOL isValid) {
       STAssertNil(error, @"should be success");
-
+      
       [condition lock];
       finished = YES;
       [condition signal];
       [condition unlock];
    }];
-
+   
    [condition lock];
    while (! finished)
       [condition wait];
@@ -82,13 +69,62 @@
 {
    __block BOOL finished = NO;
    NSCondition *condition = [[NSCondition alloc] init];
-
+   
    [MilkCocoa getFrob:^(NSError *error, NSString *frob) {
       STAssertNil(error, @"should be success");
       STAssertNotNil(frob, @"frob should be retrieved");
-
+      
       NSLog(@"frob = %@", frob);
+      
+      [condition lock];
+      finished = YES;
+      [condition signal];
+      [condition unlock];
+   }];
+   
+   [condition lock];
+   while (! finished)
+      [condition wait];
+   [condition unlock];
+}
 
+- (void) _testGetToken
+{
+   __block BOOL finished = NO;
+   NSCondition *condition = [[NSCondition alloc] init];
+   
+   [MilkCocoa getToken:RTM_FROB callback:^(NSError *error, NSString *token) {
+      STAssertNil(error, @"should be success");
+      STAssertNotNil(token, @"token should be retrieved");
+      
+      NSLog(@"token = %@", token);
+      
+      [condition lock];
+      finished = YES;
+      [condition signal];
+      [condition unlock];
+   }];
+   
+   [condition lock];
+   while (! finished)
+      [condition wait];
+   [condition unlock];
+}
+
+- (void) testAuthURL
+{
+   __block BOOL finished = NO;
+   NSCondition *condition = [[NSCondition alloc] init];
+   
+   [MilkCocoa getFrob:^(NSError *error, NSString *frob) {
+      STAssertNil(error, @"should be success");
+      STAssertNotNil(frob, @"frob should be retrieved");
+      
+      NSLog(@"frob = %@", frob);
+      
+      NSString *authURL = [MilkCocoa authURL:frob permission:@"read"];
+      NSLog(@"authURL = %@", authURL);
+      
       [condition lock];
       finished = YES;
       [condition signal];
@@ -101,23 +137,25 @@
    [condition unlock];
 }
 
-- (void) _testGetToken
+@end
+
+
+@implementation MilkCocoaTest (List)
+
+- (void) _testGetList
 {
    __block BOOL finished = NO;
    NSCondition *condition = [[NSCondition alloc] init];
-
-   [MilkCocoa getToken:RTM_FROB callback:^(NSError *error, NSString *token) {
+   
+   [MilkCocoa getList:^(NSError *error, NSArray *lists) {
       STAssertNil(error, @"should be success");
-      STAssertNotNil(token, @"token should be retrieved");
-
-      NSLog(@"token = %@", token);
-
+      
       [condition lock];
       finished = YES;
       [condition signal];
       [condition unlock];
    }];
-
+   
    [condition lock];
    while (! finished)
       [condition wait];
