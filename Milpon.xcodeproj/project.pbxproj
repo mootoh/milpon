@@ -180,8 +180,8 @@
 				9286ADDF1313B04F007A2C36 /* MCRequest.m */,
 				92D366C31310C4DF00B224A1 /* MCParserDelegate.h */,
 				92D366C41310C4DF00B224A1 /* MCParserDelegate.m */,
-				92054DB8130E7A9A00E1C549 /* PrivateInfo.h */,
 				92D365C2131080A300B224A1 /* MCLog.h */,
+				92054DB8130E7A9A00E1C549 /* PrivateInfo.h */,
 				9286AC6E13132CF4007A2C36 /* Test */,
 			);
 			name = MilkCocoa;

@@ -15,7 +15,7 @@
 
 @implementation MilkCocoaTest (Test)
 
-- (void) testEcho
+- (void) _testEcho
 {
    __block BOOL finished = NO;
    NSCondition *condition = [[NSCondition alloc] init];
@@ -88,30 +88,7 @@
    [condition unlock];
 }
 
-- (void) _testGetToken
-{
-   __block BOOL finished = NO;
-   NSCondition *condition = [[NSCondition alloc] init];
-   
-   [MilkCocoa getToken:RTM_FROB callback:^(NSError *error, NSString *token) {
-      STAssertNil(error, @"should be success");
-      STAssertNotNil(token, @"token should be retrieved");
-      
-      NSLog(@"token = %@", token);
-      
-      [condition lock];
-      finished = YES;
-      [condition signal];
-      [condition unlock];
-   }];
-   
-   [condition lock];
-   while (! finished)
-      [condition wait];
-   [condition unlock];
-}
-
-- (void) testAuthURL
+- (void) _testAuthURL
 {
    __block BOOL finished = NO;
    NSCondition *condition = [[NSCondition alloc] init];
@@ -137,12 +114,39 @@
    [condition unlock];
 }
 
+// 1. run testAuthURL.
+// 2. access the authURL obtained, and grant access for the API key.
+// 3. run testGetToken test with the frob obtained by testAuthURL
+- (void) _testGetToken
+{
+   __block BOOL finished = NO;
+   NSCondition *condition = [[NSCondition alloc] init];
+   
+   [MilkCocoa getToken:@"e873c0319fe2e6cb30b1595fcf7501207dce7cb0" callback:^(NSError *error, NSString *token) {
+      STAssertNil(error, @"should be success");
+      STAssertNotNil(token, @"token should be retrieved");
+      
+      NSLog(@"token = %@", token);
+      
+      [condition lock];
+      finished = YES;
+      [condition signal];
+      [condition unlock];
+   }];
+   
+   [condition lock];
+   while (! finished)
+      [condition wait];
+   [condition unlock];
+}
+
+
 @end
 
 
 @implementation MilkCocoaTest (List)
 
-- (void) _testGetList
+- (void) testGetList
 {
    __block BOOL finished = NO;
    NSCondition *condition = [[NSCondition alloc] init];
