@@ -63,7 +63,7 @@
    __block BOOL finished = NO;
    NSCondition *condition = [[NSCondition alloc] init];
 
-   [MCRequest checkToken:RTM_TOKEN_R callback:^(NSError *error, NSArray *lists) {
+   [MilkCocoa checkToken:RTM_TOKEN_R callback:^(NSError *error, BOOL isValid) {
       STAssertNil(error, @"should be success");
 
       [condition lock];
@@ -78,7 +78,7 @@
    [condition unlock];
 }
 
-- (void) testGetFrob
+- (void) _testGetFrob
 {
    __block BOOL finished = NO;
    NSCondition *condition = [[NSCondition alloc] init];
@@ -88,6 +88,29 @@
       STAssertNotNil(frob, @"frob should be retrieved");
 
       NSLog(@"frob = %@", frob);
+
+      [condition lock];
+      finished = YES;
+      [condition signal];
+      [condition unlock];
+   }];
+
+   [condition lock];
+   while (! finished)
+      [condition wait];
+   [condition unlock];
+}
+
+- (void) _testGetToken
+{
+   __block BOOL finished = NO;
+   NSCondition *condition = [[NSCondition alloc] init];
+
+   [MilkCocoa getToken:RTM_FROB callback:^(NSError *error, NSString *token) {
+      STAssertNil(error, @"should be success");
+      STAssertNotNil(token, @"token should be retrieved");
+
+      NSLog(@"token = %@", token);
 
       [condition lock];
       finished = YES;

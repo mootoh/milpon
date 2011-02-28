@@ -44,8 +44,7 @@
 + (void) checkToken:(NSString *)token callback:(void (^)(NSError *error, BOOL isValid))callback
 {
    MCParserDelegate *parserDelegate = [[MCParserDelegate alloc] init];
-
-   MCRequest *req = [[MCRequest alloc] initWithToken:nil method:@"rtm.auth.checkToken" parameters:[NSDictionary dictionaryWithObject:token forKey:@"auth_token"] parserDelegate:parserDelegate callback:^(NSError *err, id res) {
+   MCRequest *req = [[MCRequest alloc] initWithToken:token method:@"rtm.auth.checkToken" parameters:nil parserDelegate:parserDelegate callback:^(NSError *err, id res) {
       if (err)
          callback(err, FALSE);
       else
@@ -53,6 +52,7 @@
    }];
    [[MCCenter defaultCenter] addRequst:req];
    [parserDelegate release];
+   [req release];
 }
 
 + (void) getFrob:(void (^)(NSError *error, NSString *frob))callback
@@ -67,7 +67,25 @@
 
    [[MCCenter defaultCenter] addRequst:req];
    [parserDelegate release];
-   [req release];   
+   [req release];
+}
+
++ (void) getToken:(NSString *)frob callback:(void (^)(NSError *error, NSString *frob))callback
+{
+   MCParserDelegate *parserDelegate = [[MCParserDelegate alloc] init];
+   MCRequest *req = [[MCRequest alloc] initWithToken:nil
+                                              method:@"rtm.auth.getToken"
+                                          parameters:[NSDictionary dictionaryWithObject:frob forKey:@"frob"]
+                                      parserDelegate:parserDelegate callback:^(NSError *err, id res) {
+      if (err)
+         callback(err, nil);
+      else
+         callback(nil, [res objectForKey:@"token"]);
+   }];
+
+   [[MCCenter defaultCenter] addRequst:req];
+   [parserDelegate release];
+   [req release];
 }
 
 @end // Auth
