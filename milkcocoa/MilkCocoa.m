@@ -11,29 +11,15 @@
 
 + (void) echo:(void (^)(NSError *, NSDictionary *))callback
 {
-   __block BOOL finished = NO;
-   NSCondition *condition = [[NSCondition alloc] init];
-
    MCTestEchoXMLParserDelegate *parserDelegate = [[MCTestEchoXMLParserDelegate alloc] init];
    MCRequest *req = [[MCRequest alloc] initWithToken:nil method:@"rtm.test.echo" parameters:nil parserDelegate:parserDelegate callback:^(NSError *err, id res) {
       if (err)
          callback(err, nil);
       else
          callback(nil, res);
-
-      [condition lock];
-      finished = YES;
-      [condition signal];
-      [condition unlock];
    }];
-//   [[MCCenter defaultCenter] addRequst:req];
-   [req send];
-
-   [condition lock];
-   while (! finished)
-      [condition wait];
-   [condition unlock];
-
+   [[MCCenter defaultCenter] addRequst:req];
+   [parserDelegate release];
    [req release];
 }
 
@@ -71,29 +57,16 @@
 
 + (void) getFrob:(void (^)(NSError *error, NSString *frob))callback
 {
-   __block BOOL finished = NO;
-   NSCondition *condition = [[NSCondition alloc] init];
    MCParserDelegate *parserDelegate = [[MCParserDelegate alloc] init];
-
    MCRequest *req = [[MCRequest alloc] initWithToken:nil method:@"rtm.auth.getFrob" parameters:nil parserDelegate:parserDelegate callback:^(NSError *err, id res) {
       if (err)
          callback(err, nil);
       else
          callback(nil, [res objectForKey:@"frob"]);
-
-      [condition lock];
-      finished = YES;
-      [condition signal];
-      [condition unlock];
    }];
+
    [[MCCenter defaultCenter] addRequst:req];
    [parserDelegate release];
-
-   [condition lock];
-   while (! finished)
-      [condition wait];
-   [condition unlock];
-
    [req release];   
 }
 

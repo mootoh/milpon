@@ -14,6 +14,9 @@
 
 - (void) testEcho
 {
+   __block BOOL finished = NO;
+   NSCondition *condition = [[NSCondition alloc] init];
+
    [MilkCocoa echo:^(NSError *error, NSDictionary *result) {
       STAssertNil(error, @"should be success");
 
@@ -22,7 +25,17 @@
 
       NSString *api_key = [result objectForKey:@"api_key"];
       STAssertNotNil(api_key, @"should be passed a valid api_key");
+
+      [condition lock];
+      finished = YES;
+      [condition signal];
+      [condition unlock];
    }];
+
+   [condition lock];
+   while (! finished)
+      [condition wait];
+   [condition unlock];
 }
 
 - (void) _testGetList

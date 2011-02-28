@@ -29,7 +29,7 @@
          [[NSMutableDictionary alloc] initWithDictionary:params] :
          [[NSMutableDictionary alloc] init];
       method = [mtd copy];
-      callbackBlock = cb;
+      callbackBlock = [cb copy];
       xmlParserDelegate = [delegate retain];
    }
    return self;
@@ -38,7 +38,7 @@
 - (void) dealloc
 {
    [xmlParserDelegate release];
-   callbackBlock = nil;
+   [callbackBlock release];
    [method release];
    [parameters release];
    [token release];
