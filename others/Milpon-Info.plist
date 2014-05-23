@@ -20,14 +20,6 @@
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>2.5</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>NSMainNibFile</key>
-	<string>MainWindow</string>
-	<key>UIApplicationExitsOnSuspend</key>
-	<string>true</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -45,6 +37,8 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>UIApplicationExitsOnSuspend</key>
+	<string>true</string>
 	<key>UIPrerenderedIcon</key>
 	<string>true</string>
 </dict>
